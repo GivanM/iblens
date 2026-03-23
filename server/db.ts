@@ -1,11 +1,10 @@
-import { eq } from "drizzle-orm";
+import { eq, desc, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { InsertUser, users, analyses, InsertAnalysis } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
 
-// Lazily create the drizzle instance so local tooling can run without a DB.
 export async function getDb() {
   if (!_db && process.env.DATABASE_URL) {
     try {
@@ -89,4 +88,97 @@ export async function getUserByOpenId(openId: string) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-// TODO: add feature queries here as your schema grows.
+// ---- Analysis helpers ----
+
+export async function createAnalysis(data: InsertAnalysis) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const [result] = await db.insert(analyses).values(data).$returningId();
+  return result;
+}
+
+export async function getUserAnalyses(userId: number, limit = 20) {
+  const db = await getDb();
+  if (!db) return [];
+
+  return db.select().from(analyses).where(eq(analyses.userId, userId)).orderBy(desc(analyses.createdAt)).limit(limit);
+}
+
+export async function getAnalysisById(id: number, userId: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+
+  const result = await db.select().from(analyses)
+    .where(eq(analyses.id, id))
+    .limit(1);
+
+  if (result.length === 0 || result[0].userId !== userId) return undefined;
+  return result[0];
+}
+
+// ---- Usage / Tier helpers ----
+
+export async function incrementAnalysisCount(userId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  await db.update(users)
+    .set({ analysisCount: sql`${users.analysisCount} + 1` })
+    .where(eq(users.id, userId));
+}
+
+export async function canUserAnalyze(userId: number): Promise<{ allowed: boolean; reason?: string; remaining?: number }> {
+  const db = await getDb();
+  if (!db) return { allowed: false, reason: "Database not available" };
+
+  const result = await db.select({
+    tier: users.tier,
+    analysisCount: users.analysisCount,
+    freeAnalysisLimit: users.freeAnalysisLimit,
+  }).from(users).where(eq(users.id, userId)).limit(1);
+
+  if (result.length === 0) return { allowed: false, reason: "User not found" };
+
+  const user = result[0];
+  if (user.tier === "pro") return { allowed: true, remaining: -1 };
+
+  const remaining = user.freeAnalysisLimit - user.analysisCount;
+  if (remaining <= 0) {
+    return { allowed: false, reason: "Free analysis limit reached. Upgrade to Pro for unlimited analyses.", remaining: 0 };
+  }
+
+  return { allowed: true, remaining };
+}
+
+export async function upgradeUserToPro(userId: number, stripeCustomerId: string, stripeSubscriptionId: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  await db.update(users)
+    .set({ tier: "pro", stripeCustomerId, stripeSubscriptionId })
+    .where(eq(users.id, userId));
+}
+
+export async function downgradeUserToFree(stripeSubscriptionId: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  await db.update(users)
+    .set({ tier: "free", stripeSubscriptionId: null })
+    .where(eq(users.stripeSubscriptionId, stripeSubscriptionId));
+}
+
+export async function getUserUsageStats(userId: number) {
+  const db = await getDb();
+  if (!db) return null;
+
+  const result = await db.select({
+    tier: users.tier,
+    analysisCount: users.analysisCount,
+    freeAnalysisLimit: users.freeAnalysisLimit,
+    stripeSubscriptionId: users.stripeSubscriptionId,
+  }).from(users).where(eq(users.id, userId)).limit(1);
+
+  return result.length > 0 ? result[0] : null;
+}

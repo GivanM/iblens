@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE `analyses` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`userId` int NOT NULL,\n\t`type` enum('essay','university') NOT NULL,\n\t`essayType` varchar(10),\n\t`subject` varchar(100),\n\t`researchQuestion` text,\n\t`predictedScore` int,\n\t`averageGrade` varchar(10),\n\t`fieldOfStudy` varchar(100),\n\t`resultJson` json,\n\t`predictedGrade` varchar(20),\n\t`createdAt` timestamp NOT NULL DEFAULT (now()),\n\tCONSTRAINT `analyses_id` PRIMARY KEY(`id`)\n);\n\nALTER TABLE `users` ADD `tier` enum('free','pro') DEFAULT 'free' NOT NULL;\nALTER TABLE `users` ADD `stripeCustomerId` varchar(255);\nALTER TABLE `users` ADD `stripeSubscriptionId` varchar(255);\nALTER TABLE `users` ADD `analysisCount` int DEFAULT 0 NOT NULL;\nALTER TABLE `users` ADD `freeAnalysisLimit` int DEFAULT 1 NOT NULL;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 24fXLWCbAf6m8v8.bba070603413 --database fPpXrWUtmpLttw7Fz9wKLE --execute CREATE TABLE `analyses` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`userId` int NOT NULL,\n\t`type` enum('essay','university') NOT NULL,\n\t`essayType` varchar(10),\n\t`subject` varchar(100),\n\t`researchQuestion` text,\n\t`predictedScore` int,\n\t`averageGrade` varchar(10),\n\t`fieldOfStudy` varchar(100),\n\t`resultJson` json,\n\t`predictedGrade` varchar(20),\n\t`createdAt` timestamp NOT NULL DEFAULT (now()),\n\tCONSTRAINT `analyses_id` PRIMARY KEY(`id`)\n);\n\nALTER TABLE `users` ADD `tier` enum('free','pro') DEFAULT 'free' NOT NULL;\nALTER TABLE `users` ADD `stripeCustomerId` varchar(255);\nALTER TABLE `users` ADD `stripeSubscriptionId` varchar(255);\nALTER TABLE `users` ADD `analysisCount` int DEFAULT 0 NOT NULL;\nALTER TABLE `users` ADD `freeAnalysisLimit` int DEFAULT 1 NOT NULL;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 4192
+}
