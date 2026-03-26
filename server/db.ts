@@ -169,6 +169,26 @@ export async function downgradeUserToFree(stripeSubscriptionId: string) {
     .where(eq(users.stripeSubscriptionId, stripeSubscriptionId));
 }
 
+// ---- LemonSqueezy tier helpers ----
+
+export async function upgradeUserToProLS(userId: number, lsCustomerId: string, lsSubscriptionId: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  await db.update(users)
+    .set({ tier: "pro", lsCustomerId, lsSubscriptionId })
+    .where(eq(users.id, userId));
+}
+
+export async function downgradeUserToFreeLS(lsSubscriptionId: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  await db.update(users)
+    .set({ tier: "free", lsSubscriptionId: null })
+    .where(eq(users.lsSubscriptionId, lsSubscriptionId));
+}
+
 export async function getUserUsageStats(userId: number) {
   const db = await getDb();
   if (!db) return null;

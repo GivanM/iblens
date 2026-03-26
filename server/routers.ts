@@ -13,6 +13,7 @@ import {
   getUserUsageStats,
 } from "./db";
 import { createCheckoutSession } from "./stripe/stripe";
+import { createLSCheckoutSession } from "./lemonsqueezy/lemonsqueezy";
 
 const IB_SUBJECTS = [
   "Business Management", "Economics", "History", "Biology", "Chemistry",
@@ -252,6 +253,19 @@ export const appRouter = router({
           origin: input.origin,
         });
         return { url: session.url };
+      }),
+  }),
+  lemonsqueezy: router({
+    createCheckout: protectedProcedure
+      .input(z.object({ origin: z.string() }))
+      .mutation(async ({ ctx, input }) => {
+        const result = await createLSCheckoutSession({
+          userId: ctx.user.id,
+          userEmail: ctx.user.email,
+          userName: ctx.user.name,
+          origin: input.origin,
+        });
+        return { url: result.url };
       }),
   }),
 });

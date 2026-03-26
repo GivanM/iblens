@@ -14,3 +14,7 @@
 - [x] Responsive design (mobile + desktop)
 - [x] Navigation and layout (header, auth flow, protected routes)
 - [x] Vitest tests for backend procedures (12 tests passing)
+- [x] LemonSqueezy API integration (backend: checkout session creation, webhook handling)
+- [x] LemonSqueezy subscription management (upgrade/downgrade user tier on payment events)
+- [x] Frontend: add LemonSqueezy as payment option alongside Stripe
+- [x] Tests for LemonSqueezy integration (14 tests total passing)

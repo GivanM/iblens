@@ -10,6 +10,8 @@ export const users = mysqlTable("users", {
   tier: mysqlEnum("tier", ["free", "pro"]).default("free").notNull(),
   stripeCustomerId: varchar("stripeCustomerId", { length: 255 }),
   stripeSubscriptionId: varchar("stripeSubscriptionId", { length: 255 }),
+  lsCustomerId: varchar("lsCustomerId", { length: 255 }),
+  lsSubscriptionId: varchar("lsSubscriptionId", { length: 255 }),
   analysisCount: int("analysisCount").default(0).notNull(),
   freeAnalysisLimit: int("freeAnalysisLimit").default(1).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),

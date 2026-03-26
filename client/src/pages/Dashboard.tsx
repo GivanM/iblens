@@ -5,18 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import {
   FileText, GraduationCap, Crown, BarChart3, Clock,
-  ArrowRight, Loader2, Sparkles, AlertCircle
+  ArrowRight, Loader2, Sparkles, AlertCircle, CreditCard
 } from "lucide-react";
-
-function sanitizeText(text: string): string {
-  const div = document.createElement("div");
-  div.textContent = text;
-  return div.innerHTML;
-}
 
 export default function Dashboard() {
   const { user, isAuthenticated, loading } = useAuth();
@@ -31,21 +25,39 @@ export default function Dashboard() {
     enabled: isAuthenticated,
   });
 
-  const checkoutMutation = trpc.stripe.createCheckout.useMutation({
+  const stripeCheckout = trpc.stripe.createCheckout.useMutation({
     onSuccess: (data) => {
       if (data.url) {
-        toast.info("Redirecting to checkout...");
+        toast.info("Redirecting to Stripe checkout...");
         window.open(data.url, "_blank");
       }
     },
     onError: (error) => {
-      toast.error(error.message || "Failed to start checkout");
+      toast.error(error.message || "Failed to start Stripe checkout");
     },
   });
 
-  const handleUpgrade = () => {
-    checkoutMutation.mutate({ origin: window.location.origin });
+  const lsCheckout = trpc.lemonsqueezy.createCheckout.useMutation({
+    onSuccess: (data) => {
+      if (data.url) {
+        toast.info("Redirecting to LemonSqueezy checkout...");
+        window.open(data.url, "_blank");
+      }
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to start LemonSqueezy checkout");
+    },
+  });
+
+  const handleStripeUpgrade = () => {
+    stripeCheckout.mutate({ origin: window.location.origin });
   };
+
+  const handleLSUpgrade = () => {
+    lsCheckout.mutate({ origin: window.location.origin });
+  };
+
+  const isCheckoutPending = stripeCheckout.isPending || lsCheckout.isPending;
 
   const historyQuery = trpc.dashboard.history.useQuery(undefined, {
     enabled: isAuthenticated,
@@ -134,36 +146,64 @@ export default function Dashboard() {
       {/* Upgrade CTA for free users */}
       {usage?.tier === "free" && (
         <Card className="mb-8 border-primary/30 bg-primary/5">
-          <CardContent className="p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <Crown className="w-6 h-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-semibold mb-0.5">Upgrade to Pro</h3>
-                <p className="text-sm text-muted-foreground">
-                  Get unlimited analyses for $14.99/month. Cancel anytime.
-                </p>
+          <CardContent className="p-6">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-5">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Crown className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-0.5">Upgrade to Pro</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Get unlimited analyses for $14.99/month. Cancel anytime.
+                  </p>
+                </div>
               </div>
             </div>
-            <Button className="flex-shrink-0" onClick={handleUpgrade} disabled={checkoutMutation.isPending}>
-              {checkoutMutation.isPending ? (
-                <><Loader2 className="w-4 h-4 mr-1 animate-spin" /> Processing...</>
-              ) : (
-                <>Upgrade Now <ArrowRight className="w-4 h-4 ml-1" /></>
-              )}
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button
+                className="flex-1"
+                onClick={handleStripeUpgrade}
+                disabled={isCheckoutPending}
+              >
+                {stripeCheckout.isPending ? (
+                  <><Loader2 className="w-4 h-4 mr-1 animate-spin" /> Processing...</>
+                ) : (
+                  <><CreditCard className="w-4 h-4 mr-1" /> Pay with Card (Stripe) <ArrowRight className="w-4 h-4 ml-1" /></>
+                )}
+              </Button>
+              <Button
+                variant="outline"
+                className="flex-1 border-yellow-400 hover:bg-yellow-50 text-yellow-700"
+                onClick={handleLSUpgrade}
+                disabled={isCheckoutPending}
+              >
+                {lsCheckout.isPending ? (
+                  <><Loader2 className="w-4 h-4 mr-1 animate-spin" /> Processing...</>
+                ) : (
+                  <>
+                    <svg className="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 14.17l7.59-7.59L20 8l-9 9z"/>
+                    </svg>
+                    Pay with LemonSqueezy <ArrowRight className="w-4 h-4 ml-1" />
+                  </>
+                )}
+              </Button>
+            </div>
+            <p className="text-xs text-muted-foreground mt-3 text-center">
+              Choose your preferred payment method. Both options provide the same Pro features.
+            </p>
           </CardContent>
         </Card>
       )}
 
-      {/* No analyses yet */}
+      {/* Free limit warning */}
       {!usage?.canAnalyze && usage?.tier === "free" && (
         <Card className="mb-8 border-amber-200 bg-amber-50">
           <CardContent className="p-4 flex items-center gap-3">
             <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0" />
             <p className="text-sm">
-              You've used all your free analyses. <Link href="/#pricing" className="text-primary font-medium hover:underline">Upgrade to Pro</Link> for unlimited access.
+              You've used all your free analyses. Upgrade to Pro above for unlimited access.
             </p>
           </CardContent>
         </Card>
@@ -202,48 +242,45 @@ export default function Dashboard() {
             </div>
           ) : (
             <div className="space-y-3">
-              {history.map((item) => {
-                const result = item.resultJson as any;
-                return (
-                  <div
-                    key={item.id}
-                    className="flex items-center gap-4 p-4 rounded-lg border hover:bg-muted/50 transition-colors"
-                  >
-                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                      item.type === "essay" ? "bg-blue-100" : "bg-emerald-100"
-                    }`}>
-                      {item.type === "essay" ? (
-                        <FileText className="w-5 h-5 text-blue-600" />
-                      ) : (
-                        <GraduationCap className="w-5 h-5 text-emerald-600" />
-                      )}
+              {history.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex items-center gap-4 p-4 rounded-lg border hover:bg-muted/50 transition-colors"
+                >
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                    item.type === "essay" ? "bg-blue-100" : "bg-emerald-100"
+                  }`}>
+                    {item.type === "essay" ? (
+                      <FileText className="w-5 h-5 text-blue-600" />
+                    ) : (
+                      <GraduationCap className="w-5 h-5 text-emerald-600" />
+                    )}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-medium text-sm truncate">
+                      {item.type === "essay"
+                        ? `${item.essayType} — ${item.subject || "Unknown"}`
+                        : `University Strategy — ${item.fieldOfStudy || "Unknown"}`}
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="font-medium text-sm truncate">
-                        {item.type === "essay"
-                          ? `${item.essayType} — ${item.subject || "Unknown"}`
-                          : `University Strategy — ${item.fieldOfStudy || "Unknown"}`}
-                      </div>
-                      <div className="text-xs text-muted-foreground mt-0.5">
-                        {new Date(item.createdAt).toLocaleDateString("en-GB", {
-                          day: "numeric",
-                          month: "short",
-                          year: "numeric",
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
-                      </div>
-                    </div>
-                    <div className="text-right flex-shrink-0">
-                      {item.predictedGrade && (
-                        <Badge variant="secondary" className="text-xs">
-                          {item.predictedGrade}
-                        </Badge>
-                      )}
+                    <div className="text-xs text-muted-foreground mt-0.5">
+                      {new Date(item.createdAt).toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
                     </div>
                   </div>
-                );
-              })}
+                  <div className="text-right flex-shrink-0">
+                    {item.predictedGrade && (
+                      <Badge variant="secondary" className="text-xs">
+                        {item.predictedGrade}
+                      </Badge>
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </CardContent>

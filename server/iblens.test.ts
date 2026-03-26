@@ -78,6 +78,14 @@ vi.mock("./stripe/stripe", () => ({
   registerStripeWebhook: vi.fn(),
 }));
 
+// Mock LemonSqueezy
+vi.mock("./lemonsqueezy/lemonsqueezy", () => ({
+  createLSCheckoutSession: vi.fn().mockResolvedValue({
+    url: "https://my-store.lemonsqueezy.com/checkout/test",
+  }),
+  registerLemonSqueezyWebhook: vi.fn(),
+}));
+
 type AuthenticatedUser = NonNullable<TrpcContext["user"]>;
 
 type CookieCall = {
@@ -259,6 +267,29 @@ describe("stripe.createCheckout", () => {
 
     await expect(
       caller.stripe.createCheckout({ origin: "https://test.example.com" })
+    ).rejects.toThrow();
+  });
+});
+
+describe("lemonsqueezy.createCheckout", () => {
+  it("returns checkout URL for authenticated user", async () => {
+    const { ctx } = createAuthContext();
+    const caller = appRouter.createCaller(ctx);
+
+    const result = await caller.lemonsqueezy.createCheckout({
+      origin: "https://test.example.com",
+    });
+
+    expect(result).toBeDefined();
+    expect(result.url).toBe("https://my-store.lemonsqueezy.com/checkout/test");
+  });
+
+  it("rejects when user is not authenticated", async () => {
+    const ctx = createUnauthContext();
+    const caller = appRouter.createCaller(ctx);
+
+    await expect(
+      caller.lemonsqueezy.createCheckout({ origin: "https://test.example.com" })
     ).rejects.toThrow();
   });
 });
