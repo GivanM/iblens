@@ -1,7 +1,7 @@
 import { Express, Request, Response } from "express";
 import crypto from "crypto";
 import { createPayment, completePayment } from "../db";
-import { PRODUCTS, ProductKey } from "../stripe/products";
+import { PRODUCTS, ProductKey } from "../products";
 
 const NP_API_BASE = "https://api.nowpayments.io/v1";
 
@@ -30,13 +30,21 @@ export async function createNPInvoice(params: {
   const product = PRODUCTS[params.productKey];
   const priceUsd = product.priceAmount / 100;
 
+  // Derive product type from key
+  const productTypeMap: Record<string, string> = {
+    ESSAY_SINGLE: "essay_single",
+    ESSAY_PACK_5: "essay_pack_5",
+    ESSAY_PACK_10: "essay_pack_10",
+    UNIVERSITY_SINGLE: "university_single",
+  };
+
   // Create a pending payment record
   const paymentRecord = await createPayment({
     userId: params.userId,
-    productType: product.productType,
+    productType: (productTypeMap[params.productKey] || params.productKey.toLowerCase()) as "essay_single" | "essay_pack_5" | "essay_pack_10" | "university_single",
     creditsGranted: product.credits.essay + product.credits.university,
     amount: product.priceAmount,
-    currency: product.currency,
+    currency: "usd",
     provider: "nowpayments",
     status: "pending",
   });

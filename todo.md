@@ -28,3 +28,11 @@
 - [x] Update Dashboard to show purchase history and credit balances
 - [ ] Request NOWPayments API key from user (pending: user needs to register)
 - [x] Write tests for new payment model (16 tests passing)
+- [x] Remove Stripe integration (backend routes, webhook, checkout procedure)
+- [x] Remove LemonSqueezy integration (backend routes, webhook, checkout procedure)
+- [x] Remove Stripe/LS webhook registrations from server index.ts
+- [x] Update routers.ts: remove stripe/ls checkout procedures, keep only crypto
+- [x] Update Dashboard: single Buy Now button per product (NOWPayments handles card+crypto)
+- [x] Update Home.tsx pricing section: clean single-provider flow
+- [x] Update tests: removed Stripe/LS mocks, 16 tests passing
+- [x] Clean up unused stripe/lemonsqueezy directories

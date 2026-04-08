@@ -7,19 +7,17 @@ import { toast } from "sonner";
 import { Link } from "wouter";
 import { getLoginUrl } from "@/const";
 import {
-  FileText, GraduationCap, CreditCard, Bitcoin, Loader2,
-  Clock, ArrowRight, Gift, Package, ShoppingCart, Wallet
+  FileText, GraduationCap, Loader2,
+  Clock, ArrowRight, Gift, Package, ShoppingCart, Wallet, CreditCard
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
 type ProductKey = "ESSAY_SINGLE" | "ESSAY_PACK_5" | "ESSAY_PACK_10" | "UNIVERSITY_SINGLE";
-type PaymentProvider = "stripe" | "crypto";
 
 export default function Dashboard() {
   const { user, isAuthenticated, loading: authLoading } = useAuth();
   const [buyingProduct, setBuyingProduct] = useState<string | null>(null);
 
-  // Check for payment success/cancel in URL
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get("payment") === "success") {
@@ -35,43 +33,23 @@ export default function Dashboard() {
   const historyQuery = trpc.dashboard.history.useQuery(undefined, { enabled: isAuthenticated });
   const paymentsQuery = trpc.dashboard.payments.useQuery(undefined, { enabled: isAuthenticated });
 
-  const stripeCheckout = trpc.payment.stripeCheckout.useMutation({
-    onSuccess: (data: { url: string | null }) => {
-      if (data.url) {
-        window.open(data.url, "_blank");
-        toast.info("Redirecting to Stripe checkout...");
-      }
-      setBuyingProduct(null);
-    },
-    onError: (error: { message: string }) => {
-      toast.error(error.message || "Failed to create checkout session");
-      setBuyingProduct(null);
-    },
-  });
-
-  const cryptoCheckout = trpc.payment.cryptoCheckout.useMutation({
+  const checkout = trpc.payment.checkout.useMutation({
     onSuccess: (data: { url: string }) => {
       if (data.url) {
         window.open(data.url, "_blank");
-        toast.info("Redirecting to crypto payment page...");
+        toast.info("Redirecting to payment page — you can pay with card or crypto.");
       }
       setBuyingProduct(null);
     },
     onError: (error: { message: string }) => {
-      toast.error(error.message || "Failed to create crypto payment");
+      toast.error(error.message || "Failed to create payment session");
       setBuyingProduct(null);
     },
   });
 
-  const handleBuy = (productKey: ProductKey, provider: PaymentProvider) => {
-    setBuyingProduct(`${productKey}_${provider}`);
-    const origin = window.location.origin;
-
-    if (provider === "stripe") {
-      stripeCheckout.mutate({ origin, productKey });
-    } else if (provider === "crypto") {
-      cryptoCheckout.mutate({ origin, productKey });
-    }
+  const handleBuy = (productKey: ProductKey) => {
+    setBuyingProduct(productKey);
+    checkout.mutate({ origin: window.location.origin, productKey });
   };
 
   if (authLoading) {
@@ -153,6 +131,7 @@ export default function Dashboard() {
             <ShoppingCart className="w-5 h-5" />
             Purchase Credits
           </CardTitle>
+          <p className="text-xs text-muted-foreground">Pay with any card or cryptocurrency — all payments are securely processed.</p>
         </CardHeader>
         <CardContent>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -160,29 +139,17 @@ export default function Dashboard() {
             <div className="border rounded-lg p-4 text-center">
               <FileText className="w-6 h-6 text-primary mx-auto mb-2" />
               <h4 className="font-semibold text-sm">1 Essay Analysis</h4>
-              <div className="text-xl font-bold my-1">$4.99</div>
-              <div className="flex flex-col gap-1.5 mt-3">
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="w-full text-xs"
-                  disabled={buyingProduct !== null}
-                  onClick={() => handleBuy("ESSAY_SINGLE", "stripe")}
-                >
-                  {buyingProduct === "ESSAY_SINGLE_stripe" ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : <CreditCard className="w-3 h-3 mr-1" />}
-                  Card
-                </Button>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="w-full text-xs"
-                  disabled={buyingProduct !== null}
-                  onClick={() => handleBuy("ESSAY_SINGLE", "crypto")}
-                >
-                  {buyingProduct === "ESSAY_SINGLE_crypto" ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : <Bitcoin className="w-3 h-3 mr-1" />}
-                  Crypto
-                </Button>
-              </div>
+              <div className="text-xl font-bold my-2">$4.99</div>
+              <Button
+                size="sm"
+                variant="outline"
+                className="w-full"
+                disabled={buyingProduct !== null}
+                onClick={() => handleBuy("ESSAY_SINGLE")}
+              >
+                {buyingProduct === "ESSAY_SINGLE" ? <Loader2 className="w-3 h-3 animate-spin mr-1.5" /> : <CreditCard className="w-3 h-3 mr-1.5" />}
+                Buy Now
+              </Button>
             </div>
 
             {/* Essay Pack 5 */}
@@ -190,29 +157,17 @@ export default function Dashboard() {
               <Package className="w-6 h-6 text-primary mx-auto mb-2" />
               <h4 className="font-semibold text-sm">5 Essay Analyses</h4>
               <div className="text-xl font-bold my-1">$19.99</div>
-              <p className="text-xs text-muted-foreground mb-1">$3.99 each — save 20%</p>
-              <div className="flex flex-col gap-1.5 mt-3">
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="w-full text-xs"
-                  disabled={buyingProduct !== null}
-                  onClick={() => handleBuy("ESSAY_PACK_5", "stripe")}
-                >
-                  {buyingProduct === "ESSAY_PACK_5_stripe" ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : <CreditCard className="w-3 h-3 mr-1" />}
-                  Card
-                </Button>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="w-full text-xs"
-                  disabled={buyingProduct !== null}
-                  onClick={() => handleBuy("ESSAY_PACK_5", "crypto")}
-                >
-                  {buyingProduct === "ESSAY_PACK_5_crypto" ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : <Bitcoin className="w-3 h-3 mr-1" />}
-                  Crypto
-                </Button>
-              </div>
+              <p className="text-xs text-muted-foreground mb-2">$3.99 each — save 20%</p>
+              <Button
+                size="sm"
+                variant="outline"
+                className="w-full"
+                disabled={buyingProduct !== null}
+                onClick={() => handleBuy("ESSAY_PACK_5")}
+              >
+                {buyingProduct === "ESSAY_PACK_5" ? <Loader2 className="w-3 h-3 animate-spin mr-1.5" /> : <CreditCard className="w-3 h-3 mr-1.5" />}
+                Buy Now
+              </Button>
             </div>
 
             {/* Essay Pack 10 */}
@@ -223,28 +178,16 @@ export default function Dashboard() {
               <Package className="w-6 h-6 text-primary mx-auto mb-2" />
               <h4 className="font-semibold text-sm">10 Essay Analyses</h4>
               <div className="text-xl font-bold my-1">$34.99</div>
-              <p className="text-xs text-muted-foreground mb-1">$3.49 each — save 30%</p>
-              <div className="flex flex-col gap-1.5 mt-3">
-                <Button
-                  size="sm"
-                  className="w-full text-xs"
-                  disabled={buyingProduct !== null}
-                  onClick={() => handleBuy("ESSAY_PACK_10", "stripe")}
-                >
-                  {buyingProduct === "ESSAY_PACK_10_stripe" ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : <CreditCard className="w-3 h-3 mr-1" />}
-                  Card
-                </Button>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="w-full text-xs"
-                  disabled={buyingProduct !== null}
-                  onClick={() => handleBuy("ESSAY_PACK_10", "crypto")}
-                >
-                  {buyingProduct === "ESSAY_PACK_10_crypto" ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : <Bitcoin className="w-3 h-3 mr-1" />}
-                  Crypto
-                </Button>
-              </div>
+              <p className="text-xs text-muted-foreground mb-2">$3.49 each — save 30%</p>
+              <Button
+                size="sm"
+                className="w-full"
+                disabled={buyingProduct !== null}
+                onClick={() => handleBuy("ESSAY_PACK_10")}
+              >
+                {buyingProduct === "ESSAY_PACK_10" ? <Loader2 className="w-3 h-3 animate-spin mr-1.5" /> : <CreditCard className="w-3 h-3 mr-1.5" />}
+                Buy Now
+              </Button>
             </div>
 
             {/* University Single */}
@@ -252,29 +195,17 @@ export default function Dashboard() {
               <GraduationCap className="w-6 h-6 text-primary mx-auto mb-2" />
               <h4 className="font-semibold text-sm">University Strategy</h4>
               <div className="text-xl font-bold my-1">$9.99</div>
-              <p className="text-xs text-muted-foreground mb-1">Personalized plan</p>
-              <div className="flex flex-col gap-1.5 mt-3">
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="w-full text-xs"
-                  disabled={buyingProduct !== null}
-                  onClick={() => handleBuy("UNIVERSITY_SINGLE", "stripe")}
-                >
-                  {buyingProduct === "UNIVERSITY_SINGLE_stripe" ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : <CreditCard className="w-3 h-3 mr-1" />}
-                  Card
-                </Button>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="w-full text-xs"
-                  disabled={buyingProduct !== null}
-                  onClick={() => handleBuy("UNIVERSITY_SINGLE", "crypto")}
-                >
-                  {buyingProduct === "UNIVERSITY_SINGLE_crypto" ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : <Bitcoin className="w-3 h-3 mr-1" />}
-                  Crypto
-                </Button>
-              </div>
+              <p className="text-xs text-muted-foreground mb-2">Personalized plan</p>
+              <Button
+                size="sm"
+                variant="outline"
+                className="w-full"
+                disabled={buyingProduct !== null}
+                onClick={() => handleBuy("UNIVERSITY_SINGLE")}
+              >
+                {buyingProduct === "UNIVERSITY_SINGLE" ? <Loader2 className="w-3 h-3 animate-spin mr-1.5" /> : <CreditCard className="w-3 h-3 mr-1.5" />}
+                Buy Now
+              </Button>
             </div>
           </div>
         </CardContent>
@@ -380,11 +311,7 @@ export default function Dashboard() {
             <div className="space-y-3">
               {paymentsList.map((p) => (
                 <div key={p.id} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
-                  {p.provider === "nowpayments" ? (
-                    <Bitcoin className="w-5 h-5 text-orange-500 flex-shrink-0" />
-                  ) : (
-                    <CreditCard className="w-5 h-5 text-primary flex-shrink-0" />
-                  )}
+                  <CreditCard className="w-5 h-5 text-primary flex-shrink-0" />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium">
                       {p.productType === "essay_single" ? "1 Essay Analysis"
@@ -393,7 +320,7 @@ export default function Dashboard() {
                         : "University Strategy"}
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      {new Date(p.createdAt).toLocaleDateString()} — {p.provider}
+                      {new Date(p.createdAt).toLocaleDateString()}
                     </p>
                   </div>
                   <div className="text-right flex-shrink-0">

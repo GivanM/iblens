@@ -15,9 +15,7 @@ import {
   getUserCredits,
   getUserPayments,
 } from "./db";
-import { createStripeCheckout } from "./stripe/stripe";
-import { PRODUCTS, ProductKey } from "./stripe/products";
-import { createLSCheckoutSession } from "./lemonsqueezy/lemonsqueezy";
+import { PRODUCTS } from "./products";
 import { createNPInvoice } from "./nowpayments/nowpayments";
 
 const IB_SUBJECTS = [
@@ -244,35 +242,9 @@ const pricingRouter = router({
   }),
 });
 
-// ---- Payment Router ----
+// ---- Payment Router (NOWPayments only) ----
 const paymentRouter = router({
-  stripeCheckout: protectedProcedure
-    .input(z.object({ origin: z.string(), productKey: productKeySchema }))
-    .mutation(async ({ ctx, input }) => {
-      const session = await createStripeCheckout({
-        userId: ctx.user.id,
-        userEmail: ctx.user.email,
-        userName: ctx.user.name,
-        origin: input.origin,
-        productKey: input.productKey,
-      });
-      return { url: session.url };
-    }),
-
-  lemonSqueezyCheckout: protectedProcedure
-    .input(z.object({ origin: z.string(), productKey: productKeySchema }))
-    .mutation(async ({ ctx, input }) => {
-      const result = await createLSCheckoutSession({
-        userId: ctx.user.id,
-        userEmail: ctx.user.email,
-        userName: ctx.user.name,
-        origin: input.origin,
-        productKey: input.productKey,
-      });
-      return { url: result.url };
-    }),
-
-  cryptoCheckout: protectedProcedure
+  checkout: protectedProcedure
     .input(z.object({ origin: z.string(), productKey: productKeySchema }))
     .mutation(async ({ ctx, input }) => {
       const result = await createNPInvoice({

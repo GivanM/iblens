@@ -47,7 +47,7 @@ vi.mock("./db", () => ({
     {
       id: 1,
       userId: 1,
-      provider: "stripe",
+      provider: "nowpayments",
       productType: "essay_single",
       amount: 499,
       status: "completed",
@@ -55,7 +55,8 @@ vi.mock("./db", () => ({
     },
   ]),
   addCreditsToUser: vi.fn().mockResolvedValue(undefined),
-  recordPayment: vi.fn().mockResolvedValue({ id: 1 }),
+  createPayment: vi.fn().mockResolvedValue({ id: 1 }),
+  completePayment: vi.fn().mockResolvedValue(undefined),
 }));
 
 // Mock LLM
@@ -82,28 +83,12 @@ vi.mock("./_core/llm", () => ({
   }),
 }));
 
-// Mock Stripe
-vi.mock("./stripe/stripe", () => ({
-  createStripeCheckout: vi.fn().mockResolvedValue({
-    url: "https://checkout.stripe.com/test",
-  }),
-  registerStripeWebhook: vi.fn(),
-}));
-
-// Mock LemonSqueezy
-vi.mock("./lemonsqueezy/lemonsqueezy", () => ({
-  createLSCheckoutSession: vi.fn().mockResolvedValue({
-    url: "https://my-store.lemonsqueezy.com/checkout/test",
-  }),
-  registerLemonSqueezyWebhook: vi.fn(),
-}));
-
-// Mock NOWPayments
+// Mock NOWPayments (the only payment provider)
 vi.mock("./nowpayments/nowpayments", () => ({
   createNPInvoice: vi.fn().mockResolvedValue({
     invoiceUrl: "https://nowpayments.io/payment/test-invoice",
   }),
-  registerNPWebhook: vi.fn(),
+  registerNowPaymentsWebhook: vi.fn(),
 }));
 
 type AuthenticatedUser = NonNullable<TrpcContext["user"]>;
@@ -261,41 +246,42 @@ describe("dashboard.payments", () => {
     const caller = appRouter.createCaller(ctx);
     const result = await caller.dashboard.payments();
     expect(result).toHaveLength(1);
-    expect(result[0].provider).toBe("stripe");
+    expect(result[0].provider).toBe("nowpayments");
     expect(result[0].amount).toBe(499);
     expect(result[0].status).toBe("completed");
   });
 });
 
-// ---- Payment Tests ----
-describe("payment.stripeCheckout", () => {
-  it("returns checkout URL for essay single", async () => {
+// ---- Payment Tests (NOWPayments only) ----
+describe("payment.checkout", () => {
+  it("returns payment URL for essay single", async () => {
     const { ctx } = createAuthContext();
     const caller = appRouter.createCaller(ctx);
-    const result = await caller.payment.stripeCheckout({
+    const result = await caller.payment.checkout({
       origin: "https://test.example.com",
       productKey: "ESSAY_SINGLE",
     });
     expect(result).toBeDefined();
-    expect(result.url).toBe("https://checkout.stripe.com/test");
+    expect(result.url).toBe("https://nowpayments.io/payment/test-invoice");
   });
 
-  it("rejects when user is not authenticated", async () => {
-    const ctx = createUnauthContext();
-    const caller = appRouter.createCaller(ctx);
-    await expect(
-      caller.payment.stripeCheckout({ origin: "https://test.example.com", productKey: "ESSAY_SINGLE" })
-    ).rejects.toThrow();
-  });
-});
-
-describe("payment.cryptoCheckout", () => {
-  it("returns crypto invoice URL", async () => {
+  it("returns payment URL for essay pack", async () => {
     const { ctx } = createAuthContext();
     const caller = appRouter.createCaller(ctx);
-    const result = await caller.payment.cryptoCheckout({
+    const result = await caller.payment.checkout({
       origin: "https://test.example.com",
       productKey: "ESSAY_PACK_10",
+    });
+    expect(result).toBeDefined();
+    expect(result.url).toBe("https://nowpayments.io/payment/test-invoice");
+  });
+
+  it("returns payment URL for university strategy", async () => {
+    const { ctx } = createAuthContext();
+    const caller = appRouter.createCaller(ctx);
+    const result = await caller.payment.checkout({
+      origin: "https://test.example.com",
+      productKey: "UNIVERSITY_SINGLE",
     });
     expect(result).toBeDefined();
     expect(result.url).toBe("https://nowpayments.io/payment/test-invoice");
@@ -305,7 +291,7 @@ describe("payment.cryptoCheckout", () => {
     const ctx = createUnauthContext();
     const caller = appRouter.createCaller(ctx);
     await expect(
-      caller.payment.cryptoCheckout({ origin: "https://test.example.com", productKey: "ESSAY_SINGLE" })
+      caller.payment.checkout({ origin: "https://test.example.com", productKey: "ESSAY_SINGLE" })
     ).rejects.toThrow();
   });
 });
@@ -318,6 +304,7 @@ describe("pricing.products", () => {
     const result = await caller.pricing.products();
     expect(result).toBeDefined();
     expect(result.ESSAY_SINGLE.price).toBe(4.99);
+    expect(result.ESSAY_PACK_5.price).toBe(19.99);
     expect(result.ESSAY_PACK_10.price).toBe(34.99);
     expect(result.UNIVERSITY_SINGLE.price).toBe(9.99);
   });
