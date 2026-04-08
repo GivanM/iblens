@@ -1,4 +1,4 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, json, boolean } from "drizzle-orm/mysql-core";
+import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, json, boolean, decimal } from "drizzle-orm/mysql-core";
 
 export const users = mysqlTable("users", {
   id: int("id").autoincrement().primaryKey(),
@@ -7,13 +7,10 @@ export const users = mysqlTable("users", {
   email: varchar("email", { length: 320 }),
   loginMethod: varchar("loginMethod", { length: 64 }),
   role: mysqlEnum("role", ["user", "admin"]).default("user").notNull(),
-  tier: mysqlEnum("tier", ["free", "pro"]).default("free").notNull(),
-  stripeCustomerId: varchar("stripeCustomerId", { length: 255 }),
-  stripeSubscriptionId: varchar("stripeSubscriptionId", { length: 255 }),
-  lsCustomerId: varchar("lsCustomerId", { length: 255 }),
-  lsSubscriptionId: varchar("lsSubscriptionId", { length: 255 }),
-  analysisCount: int("analysisCount").default(0).notNull(),
-  freeAnalysisLimit: int("freeAnalysisLimit").default(1).notNull(),
+  // Credits system: each user gets 1 free essay credit on signup
+  freeEssayUsed: boolean("freeEssayUsed").default(false).notNull(),
+  essayCredits: int("essayCredits").default(0).notNull(),
+  universityCredits: int("universityCredits").default(0).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
   lastSignedIn: timestamp("lastSignedIn").defaultNow().notNull(),
@@ -37,7 +34,26 @@ export const analyses = mysqlTable("analyses", {
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
 
+export const payments = mysqlTable("payments", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  // What was purchased
+  productType: mysqlEnum("productType", ["essay_single", "essay_pack_5", "essay_pack_10", "university_single"]).notNull(),
+  creditsGranted: int("creditsGranted").notNull(),
+  // Payment details
+  amount: int("amount").notNull(), // in cents (e.g. 499 = $4.99)
+  currency: varchar("currency", { length: 10 }).default("usd").notNull(),
+  provider: mysqlEnum("provider", ["stripe", "lemonsqueezy", "nowpayments"]).notNull(),
+  providerPaymentId: varchar("providerPaymentId", { length: 255 }),
+  status: mysqlEnum("status", ["pending", "completed", "failed", "expired"]).default("pending").notNull(),
+  // Metadata
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  completedAt: timestamp("completedAt"),
+});
+
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 export type Analysis = typeof analyses.$inferSelect;
 export type InsertAnalysis = typeof analyses.$inferInsert;
+export type Payment = typeof payments.$inferSelect;
+export type InsertPayment = typeof payments.$inferInsert;

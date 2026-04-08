@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE `payments` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`userId` int NOT NULL,\n\t`productType` enum('essay_single','essay_pack_5','essay_pack_10','university_single') NOT NULL,\n\t`creditsGranted` int NOT NULL,\n\t`amount` int NOT NULL,\n\t`currency` varchar(10) NOT NULL DEFAULT 'usd',\n\t`provider` enum('stripe','lemonsqueezy','nowpayments') NOT NULL,\n\t`providerPaymentId` varchar(255),\n\t`status` enum('pending','completed','failed','expired') NOT NULL DEFAULT 'pending',\n\t`createdAt` timestamp NOT NULL DEFAULT (now()),\n\t`completedAt` timestamp,\n\tCONSTRAINT `payments_id` PRIMARY KEY(`id`)\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 24fXLWCbAf6m8v8.bba070603413 --database fPpXrWUtmpLttw7Fz9wKLE --execute CREATE TABLE `payments` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`userId` int NOT NULL,\n\t`productType` enum('essay_single','essay_pack_5','essay_pack_10','university_single') NOT NULL,\n\t`creditsGranted` int NOT NULL,\n\t`amount` int NOT NULL,\n\t`currency` varchar(10) NOT NULL DEFAULT 'usd',\n\t`provider` enum('stripe','lemonsqueezy','nowpayments') NOT NULL,\n\t`providerPaymentId` varchar(255),\n\t`status` enum('pending','completed','failed','expired') NOT NULL DEFAULT 'pending',\n\t`createdAt` timestamp NOT NULL DEFAULT (now()),\n\t`completedAt` timestamp,\n\tCONSTRAINT `payments_id` PRIMARY KEY(`id`)\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 5077
+}

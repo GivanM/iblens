@@ -1,6 +1,7 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
 import { getLoginUrl } from "@/const";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -59,12 +60,20 @@ export default function EssayAnalyzer() {
   const [essayText, setEssayText] = useState("");
   const [result, setResult] = useState<EssayResult | null>(null);
 
+  const creditsQuery = trpc.dashboard.credits.useQuery(undefined, { enabled: isAuthenticated });
+  const credits = creditsQuery.data;
+
   const analyzeMutation = trpc.essay.analyze.useMutation({
     onSuccess: (data) => {
       setResult(data.result as EssayResult);
-      toast.success("Analysis complete!");
+      creditsQuery.refetch();
+      if (data.wasFree) {
+        toast.success("Free analysis complete! Future analyses cost $4.99.");
+      } else {
+        toast.success("Analysis complete!");
+      }
     },
-    onError: (error) => {
+    onError: (error: { message: string }) => {
       toast.error(error.message);
     },
   });
@@ -72,6 +81,10 @@ export default function EssayAnalyzer() {
   const handleAnalyze = () => {
     if (!isAuthenticated) {
       window.location.href = getLoginUrl();
+      return;
+    }
+    if (!credits?.canAnalyzeEssay) {
+      toast.error("No essay credits remaining. Purchase credits from your dashboard.");
       return;
     }
     if (essayText.length < 150) {
@@ -164,10 +177,28 @@ export default function EssayAnalyzer() {
             </p>
           </div>
 
+          {/* Credit status banner */}
+          {isAuthenticated && credits && (
+            <div className={`text-sm p-3 rounded-lg ${
+              credits.canAnalyzeEssay
+                ? credits.freeEssayAvailable
+                  ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                  : "bg-blue-50 text-blue-700 border border-blue-200"
+                : "bg-amber-50 text-amber-700 border border-amber-200"
+            }`}>
+              {credits.freeEssayAvailable
+                ? "Your first essay analysis is free!"
+                : credits.essayCredits > 0
+                  ? `You have ${credits.essayCredits} essay credit${credits.essayCredits > 1 ? "s" : ""} remaining.`
+                  : <span>No credits remaining. <Link href="/dashboard" className="underline font-medium">Purchase credits</Link> to continue.</span>
+              }
+            </div>
+          )}
+
           <Button
             className="w-full h-11"
             onClick={handleAnalyze}
-            disabled={analyzeMutation.isPending}
+            disabled={analyzeMutation.isPending || (isAuthenticated && !credits?.canAnalyzeEssay)}
           >
             {analyzeMutation.isPending ? (
               <>
@@ -177,12 +208,22 @@ export default function EssayAnalyzer() {
             ) : !isAuthenticated ? (
               <>
                 <Lock className="w-4 h-4 mr-2" />
-                Sign in to Analyze
+                Sign in to Analyze (first one free!)
+              </>
+            ) : !credits?.canAnalyzeEssay ? (
+              <>
+                <Lock className="w-4 h-4 mr-2" />
+                Purchase Credits to Analyze
+              </>
+            ) : credits?.freeEssayAvailable ? (
+              <>
+                <FileText className="w-4 h-4 mr-2" />
+                Analyze Free
               </>
             ) : (
               <>
                 <FileText className="w-4 h-4 mr-2" />
-                Analyze My Work
+                Analyze ($4.99)
               </>
             )}
           </Button>

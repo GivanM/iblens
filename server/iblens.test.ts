@@ -3,11 +3,13 @@ import { appRouter } from "./routers";
 import { COOKIE_NAME } from "../shared/const";
 import type { TrpcContext } from "./_core/context";
 
-// Mock the db module
+// Mock the db module with credit-based model
 vi.mock("./db", () => ({
-  canUserAnalyze: vi.fn().mockResolvedValue({ allowed: true, remaining: 1 }),
+  canUserAnalyzeEssay: vi.fn().mockResolvedValue({ allowed: true, isFree: true, reason: null }),
+  canUserAnalyzeUniversity: vi.fn().mockResolvedValue({ allowed: true, reason: null }),
+  consumeEssayCredit: vi.fn().mockResolvedValue(undefined),
+  consumeUniversityCredit: vi.fn().mockResolvedValue(undefined),
   createAnalysis: vi.fn().mockResolvedValue({ id: 1 }),
-  incrementAnalysisCount: vi.fn().mockResolvedValue(undefined),
   getUserAnalyses: vi.fn().mockResolvedValue([
     {
       id: 1,
@@ -36,14 +38,24 @@ vi.mock("./db", () => ({
     }
     return undefined;
   }),
-  getUserUsageStats: vi.fn().mockResolvedValue({
-    tier: "free",
-    analysisCount: 0,
-    freeAnalysisLimit: 1,
-    stripeSubscriptionId: null,
+  getUserCredits: vi.fn().mockResolvedValue({
+    freeEssayUsed: false,
+    essayCredits: 5,
+    universityCredits: 2,
   }),
-  upgradeUserToPro: vi.fn().mockResolvedValue(undefined),
-  downgradeUserToFree: vi.fn().mockResolvedValue(undefined),
+  getUserPayments: vi.fn().mockResolvedValue([
+    {
+      id: 1,
+      userId: 1,
+      provider: "stripe",
+      productType: "essay_single",
+      amount: 499,
+      status: "completed",
+      createdAt: new Date(),
+    },
+  ]),
+  addCreditsToUser: vi.fn().mockResolvedValue(undefined),
+  recordPayment: vi.fn().mockResolvedValue({ id: 1 }),
 }));
 
 // Mock LLM
@@ -60,8 +72,8 @@ vi.mock("./_core/llm", () => ({
             criteria: [
               { name: "Criterion A", score: 3, max: 4, comment: "Good understanding" },
             ],
-            risks: [{ title: "Weak conclusion", description: "The conclusion needs more depth" }],
-            leverage_zones: [{ title: "Add more data", description: "Include quantitative analysis" }],
+            risks: [{ title: "Weak conclusion", description: "Needs more depth" }],
+            leverage_zones: [{ title: "Add data", description: "Include quantitative analysis" }],
             next_steps: ["Revise conclusion", "Add data tables"],
           }),
         },
@@ -72,7 +84,7 @@ vi.mock("./_core/llm", () => ({
 
 // Mock Stripe
 vi.mock("./stripe/stripe", () => ({
-  createCheckoutSession: vi.fn().mockResolvedValue({
+  createStripeCheckout: vi.fn().mockResolvedValue({
     url: "https://checkout.stripe.com/test",
   }),
   registerStripeWebhook: vi.fn(),
@@ -86,16 +98,19 @@ vi.mock("./lemonsqueezy/lemonsqueezy", () => ({
   registerLemonSqueezyWebhook: vi.fn(),
 }));
 
-type AuthenticatedUser = NonNullable<TrpcContext["user"]>;
+// Mock NOWPayments
+vi.mock("./nowpayments/nowpayments", () => ({
+  createNPInvoice: vi.fn().mockResolvedValue({
+    invoiceUrl: "https://nowpayments.io/payment/test-invoice",
+  }),
+  registerNPWebhook: vi.fn(),
+}));
 
-type CookieCall = {
-  name: string;
-  options: Record<string, unknown>;
-};
+type AuthenticatedUser = NonNullable<TrpcContext["user"]>;
+type CookieCall = { name: string; options: Record<string, unknown> };
 
 function createAuthContext(): { ctx: TrpcContext; clearedCookies: CookieCall[] } {
   const clearedCookies: CookieCall[] = [];
-
   const user: AuthenticatedUser = {
     id: 1,
     openId: "test-user-123",
@@ -107,7 +122,6 @@ function createAuthContext(): { ctx: TrpcContext; clearedCookies: CookieCall[] }
     updatedAt: new Date(),
     lastSignedIn: new Date(),
   };
-
   const ctx: TrpcContext = {
     user,
     req: {
@@ -120,23 +134,18 @@ function createAuthContext(): { ctx: TrpcContext; clearedCookies: CookieCall[] }
       },
     } as TrpcContext["res"],
   };
-
   return { ctx, clearedCookies };
 }
 
 function createUnauthContext(): TrpcContext {
   return {
     user: null,
-    req: {
-      protocol: "https",
-      headers: {},
-    } as TrpcContext["req"],
-    res: {
-      clearCookie: vi.fn(),
-    } as TrpcContext["res"],
+    req: { protocol: "https", headers: {} } as TrpcContext["req"],
+    res: { clearCookie: vi.fn() } as TrpcContext["res"],
   };
 }
 
+// ---- Auth Tests ----
 describe("auth.me", () => {
   it("returns user when authenticated", async () => {
     const { ctx } = createAuthContext();
@@ -166,8 +175,9 @@ describe("auth.logout", () => {
   });
 });
 
+// ---- Essay Analysis Tests ----
 describe("essay.analyze", () => {
-  it("returns analysis result for valid input", async () => {
+  it("returns analysis result with wasFree flag for free analysis", async () => {
     const { ctx } = createAuthContext();
     const caller = appRouter.createCaller(ctx);
 
@@ -180,6 +190,7 @@ describe("essay.analyze", () => {
 
     expect(result).toBeDefined();
     expect(result.id).toBe(1);
+    expect(result.wasFree).toBe(true);
     expect(result.result).toBeDefined();
     expect(result.result.predicted_score).toBe(5);
     expect(result.result.max_score).toBe(7);
@@ -191,7 +202,6 @@ describe("essay.analyze", () => {
   it("rejects when user is not authenticated", async () => {
     const ctx = createUnauthContext();
     const caller = appRouter.createCaller(ctx);
-
     await expect(
       caller.essay.analyze({
         essayType: "IA",
@@ -202,18 +212,18 @@ describe("essay.analyze", () => {
   });
 });
 
-describe("dashboard.usage", () => {
-  it("returns usage stats for authenticated user", async () => {
+// ---- Dashboard Tests ----
+describe("dashboard.credits", () => {
+  it("returns credit info for authenticated user", async () => {
     const { ctx } = createAuthContext();
     const caller = appRouter.createCaller(ctx);
-
-    const result = await caller.dashboard.usage();
+    const result = await caller.dashboard.credits();
     expect(result).toBeDefined();
-    expect(result.tier).toBe("free");
-    expect(result.analysisCount).toBe(0);
-    expect(result.freeAnalysisLimit).toBe(1);
-    expect(result.canAnalyze).toBe(true);
-    expect(result.remaining).toBe(1);
+    expect(result.freeEssayAvailable).toBe(true);
+    expect(result.essayCredits).toBe(5);
+    expect(result.universityCredits).toBe(2);
+    expect(result.canAnalyzeEssay).toBe(true);
+    expect(result.canAnalyzeUniversity).toBe(true);
   });
 });
 
@@ -221,7 +231,6 @@ describe("dashboard.history", () => {
   it("returns analysis history for authenticated user", async () => {
     const { ctx } = createAuthContext();
     const caller = appRouter.createCaller(ctx);
-
     const result = await caller.dashboard.history();
     expect(result).toHaveLength(1);
     expect(result[0].type).toBe("essay");
@@ -233,7 +242,6 @@ describe("dashboard.analysis", () => {
   it("returns specific analysis by id", async () => {
     const { ctx } = createAuthContext();
     const caller = appRouter.createCaller(ctx);
-
     const result = await caller.dashboard.analysis({ id: 1 });
     expect(result).toBeDefined();
     expect(result.id).toBe(1);
@@ -243,20 +251,31 @@ describe("dashboard.analysis", () => {
   it("throws when analysis not found", async () => {
     const { ctx } = createAuthContext();
     const caller = appRouter.createCaller(ctx);
-
     await expect(caller.dashboard.analysis({ id: 999 })).rejects.toThrow("Analysis not found");
   });
 });
 
-describe("stripe.createCheckout", () => {
-  it("returns checkout URL for authenticated user", async () => {
+describe("dashboard.payments", () => {
+  it("returns payment history for authenticated user", async () => {
     const { ctx } = createAuthContext();
     const caller = appRouter.createCaller(ctx);
+    const result = await caller.dashboard.payments();
+    expect(result).toHaveLength(1);
+    expect(result[0].provider).toBe("stripe");
+    expect(result[0].amount).toBe(499);
+    expect(result[0].status).toBe("completed");
+  });
+});
 
-    const result = await caller.stripe.createCheckout({
+// ---- Payment Tests ----
+describe("payment.stripeCheckout", () => {
+  it("returns checkout URL for essay single", async () => {
+    const { ctx } = createAuthContext();
+    const caller = appRouter.createCaller(ctx);
+    const result = await caller.payment.stripeCheckout({
       origin: "https://test.example.com",
+      productKey: "ESSAY_SINGLE",
     });
-
     expect(result).toBeDefined();
     expect(result.url).toBe("https://checkout.stripe.com/test");
   });
@@ -264,32 +283,42 @@ describe("stripe.createCheckout", () => {
   it("rejects when user is not authenticated", async () => {
     const ctx = createUnauthContext();
     const caller = appRouter.createCaller(ctx);
-
     await expect(
-      caller.stripe.createCheckout({ origin: "https://test.example.com" })
+      caller.payment.stripeCheckout({ origin: "https://test.example.com", productKey: "ESSAY_SINGLE" })
     ).rejects.toThrow();
   });
 });
 
-describe("lemonsqueezy.createCheckout", () => {
-  it("returns checkout URL for authenticated user", async () => {
+describe("payment.cryptoCheckout", () => {
+  it("returns crypto invoice URL", async () => {
     const { ctx } = createAuthContext();
     const caller = appRouter.createCaller(ctx);
-
-    const result = await caller.lemonsqueezy.createCheckout({
+    const result = await caller.payment.cryptoCheckout({
       origin: "https://test.example.com",
+      productKey: "ESSAY_PACK_10",
     });
-
     expect(result).toBeDefined();
-    expect(result.url).toBe("https://my-store.lemonsqueezy.com/checkout/test");
+    expect(result.url).toBe("https://nowpayments.io/payment/test-invoice");
   });
 
   it("rejects when user is not authenticated", async () => {
     const ctx = createUnauthContext();
     const caller = appRouter.createCaller(ctx);
-
     await expect(
-      caller.lemonsqueezy.createCheckout({ origin: "https://test.example.com" })
+      caller.payment.cryptoCheckout({ origin: "https://test.example.com", productKey: "ESSAY_SINGLE" })
     ).rejects.toThrow();
+  });
+});
+
+// ---- Pricing Tests ----
+describe("pricing.products", () => {
+  it("returns product info publicly", async () => {
+    const ctx = createUnauthContext();
+    const caller = appRouter.createCaller(ctx);
+    const result = await caller.pricing.products();
+    expect(result).toBeDefined();
+    expect(result.ESSAY_SINGLE.price).toBe(4.99);
+    expect(result.ESSAY_PACK_10.price).toBe(34.99);
+    expect(result.UNIVERSITY_SINGLE.price).toBe(9.99);
   });
 });

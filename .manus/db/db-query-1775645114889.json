@@ -1,0 +1,9 @@
+{
+  "query": "ALTER TABLE `users` ADD `freeEssayUsed` boolean DEFAULT false NOT NULL;\nALTER TABLE `users` ADD `essayCredits` int DEFAULT 0 NOT NULL;\nALTER TABLE `users` ADD `universityCredits` int DEFAULT 0 NOT NULL;\nALTER TABLE `users` DROP COLUMN `tier`;\nALTER TABLE `users` DROP COLUMN `stripeCustomerId`;\nALTER TABLE `users` DROP COLUMN `stripeSubscriptionId`;\nALTER TABLE `users` DROP COLUMN `lsCustomerId`;\nALTER TABLE `users` DROP COLUMN `lsSubscriptionId`;\nALTER TABLE `users` DROP COLUMN `analysisCount`;\nALTER TABLE `users` DROP COLUMN `freeAnalysisLimit`;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 24fXLWCbAf6m8v8.bba070603413 --database fPpXrWUtmpLttw7Fz9wKLE --execute ALTER TABLE `users` ADD `freeEssayUsed` boolean DEFAULT false NOT NULL;\nALTER TABLE `users` ADD `essayCredits` int DEFAULT 0 NOT NULL;\nALTER TABLE `users` ADD `universityCredits` int DEFAULT 0 NOT NULL;\nALTER TABLE `users` DROP COLUMN `tier`;\nALTER TABLE `users` DROP COLUMN `stripeCustomerId`;\nALTER TABLE `users` DROP COLUMN `stripeSubscriptionId`;\nALTER TABLE `users` DROP COLUMN `lsCustomerId`;\nALTER TABLE `users` DROP COLUMN `lsSubscriptionId`;\nALTER TABLE `users` DROP COLUMN `analysisCount`;\nALTER TABLE `users` DROP COLUMN `freeAnalysisLimit`;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 11004
+}

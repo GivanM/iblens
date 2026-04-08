@@ -1,6 +1,7 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
 import { getLoginUrl } from "@/const";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -80,12 +81,16 @@ export default function UniversityStrategy() {
   const [notes, setNotes] = useState("");
   const [result, setResult] = useState<UniResult | null>(null);
 
+  const creditsQuery = trpc.dashboard.credits.useQuery(undefined, { enabled: isAuthenticated });
+  const credits = creditsQuery.data;
+
   const analyzeMutation = trpc.university.analyze.useMutation({
     onSuccess: (data) => {
       setResult(data.result as UniResult);
+      creditsQuery.refetch();
       toast.success("Strategy ready!");
     },
-    onError: (error) => {
+    onError: (error: { message: string }) => {
       toast.error(error.message);
     },
   });
@@ -99,6 +104,10 @@ export default function UniversityStrategy() {
   const handleAnalyze = () => {
     if (!isAuthenticated) {
       window.location.href = getLoginUrl();
+      return;
+    }
+    if (!credits?.canAnalyzeUniversity) {
+      toast.error("No university strategy credits. Purchase credits from your dashboard.");
       return;
     }
     if (!predictedScore || !averageGrade) {
@@ -226,10 +235,24 @@ export default function UniversityStrategy() {
             />
           </div>
 
+          {/* Credit status banner */}
+          {isAuthenticated && credits && (
+            <div className={`text-sm p-3 rounded-lg ${
+              credits.canAnalyzeUniversity
+                ? "bg-blue-50 text-blue-700 border border-blue-200"
+                : "bg-amber-50 text-amber-700 border border-amber-200"
+            }`}>
+              {credits.universityCredits > 0
+                ? `You have ${credits.universityCredits} university strategy credit${credits.universityCredits > 1 ? "s" : ""}.`
+                : <span>No credits remaining. <Link href="/dashboard" className="underline font-medium">Purchase credits ($9.99)</Link> to continue.</span>
+              }
+            </div>
+          )}
+
           <Button
             className="w-full h-11"
             onClick={handleAnalyze}
-            disabled={analyzeMutation.isPending}
+            disabled={analyzeMutation.isPending || (isAuthenticated && !credits?.canAnalyzeUniversity)}
           >
             {analyzeMutation.isPending ? (
               <>
@@ -239,12 +262,17 @@ export default function UniversityStrategy() {
             ) : !isAuthenticated ? (
               <>
                 <Lock className="w-4 h-4 mr-2" />
-                Sign in to Build Strategy
+                Sign in to Build Strategy ($9.99)
+              </>
+            ) : !credits?.canAnalyzeUniversity ? (
+              <>
+                <Lock className="w-4 h-4 mr-2" />
+                Purchase Credits to Build Strategy
               </>
             ) : (
               <>
                 <GraduationCap className="w-4 h-4 mr-2" />
-                Build My University Strategy
+                Build My University Strategy ($9.99)
               </>
             )}
           </Button>

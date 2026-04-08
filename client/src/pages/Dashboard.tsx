@@ -1,216 +1,330 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
-import { getLoginUrl } from "@/const";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Link } from "wouter";
-import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { Link } from "wouter";
+import { getLoginUrl } from "@/const";
 import {
-  FileText, GraduationCap, Crown, BarChart3, Clock,
-  ArrowRight, Loader2, Sparkles, AlertCircle, CreditCard
+  FileText, GraduationCap, CreditCard, Bitcoin, Loader2,
+  Clock, ArrowRight, Gift, Package, ShoppingCart, Wallet
 } from "lucide-react";
+import { useState, useEffect } from "react";
+
+type ProductKey = "ESSAY_SINGLE" | "ESSAY_PACK_5" | "ESSAY_PACK_10" | "UNIVERSITY_SINGLE";
+type PaymentProvider = "stripe" | "crypto";
 
 export default function Dashboard() {
-  const { user, isAuthenticated, loading } = useAuth();
+  const { user, isAuthenticated, loading: authLoading } = useAuth();
+  const [buyingProduct, setBuyingProduct] = useState<string | null>(null);
 
+  // Check for payment success/cancel in URL
   useEffect(() => {
-    if (!loading && !isAuthenticated) {
-      window.location.href = getLoginUrl();
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("payment") === "success") {
+      toast.success("Payment successful! Credits have been added to your account.");
+      window.history.replaceState({}, "", "/dashboard");
+    } else if (params.get("payment") === "cancelled") {
+      toast.info("Payment was cancelled.");
+      window.history.replaceState({}, "", "/dashboard");
     }
-  }, [loading, isAuthenticated]);
+  }, []);
 
-  const usageQuery = trpc.dashboard.usage.useQuery(undefined, {
-    enabled: isAuthenticated,
-  });
+  const creditsQuery = trpc.dashboard.credits.useQuery(undefined, { enabled: isAuthenticated });
+  const historyQuery = trpc.dashboard.history.useQuery(undefined, { enabled: isAuthenticated });
+  const paymentsQuery = trpc.dashboard.payments.useQuery(undefined, { enabled: isAuthenticated });
 
-  const stripeCheckout = trpc.stripe.createCheckout.useMutation({
-    onSuccess: (data) => {
+  const stripeCheckout = trpc.payment.stripeCheckout.useMutation({
+    onSuccess: (data: { url: string | null }) => {
       if (data.url) {
+        window.open(data.url, "_blank");
         toast.info("Redirecting to Stripe checkout...");
-        window.open(data.url, "_blank");
       }
+      setBuyingProduct(null);
     },
-    onError: (error) => {
-      toast.error(error.message || "Failed to start Stripe checkout");
+    onError: (error: { message: string }) => {
+      toast.error(error.message || "Failed to create checkout session");
+      setBuyingProduct(null);
     },
   });
 
-  const lsCheckout = trpc.lemonsqueezy.createCheckout.useMutation({
-    onSuccess: (data) => {
+  const cryptoCheckout = trpc.payment.cryptoCheckout.useMutation({
+    onSuccess: (data: { url: string }) => {
       if (data.url) {
-        toast.info("Redirecting to LemonSqueezy checkout...");
         window.open(data.url, "_blank");
+        toast.info("Redirecting to crypto payment page...");
       }
+      setBuyingProduct(null);
     },
-    onError: (error) => {
-      toast.error(error.message || "Failed to start LemonSqueezy checkout");
+    onError: (error: { message: string }) => {
+      toast.error(error.message || "Failed to create crypto payment");
+      setBuyingProduct(null);
     },
   });
 
-  const handleStripeUpgrade = () => {
-    stripeCheckout.mutate({ origin: window.location.origin });
+  const handleBuy = (productKey: ProductKey, provider: PaymentProvider) => {
+    setBuyingProduct(`${productKey}_${provider}`);
+    const origin = window.location.origin;
+
+    if (provider === "stripe") {
+      stripeCheckout.mutate({ origin, productKey });
+    } else if (provider === "crypto") {
+      cryptoCheckout.mutate({ origin, productKey });
+    }
   };
 
-  const handleLSUpgrade = () => {
-    lsCheckout.mutate({ origin: window.location.origin });
-  };
-
-  const isCheckoutPending = stripeCheckout.isPending || lsCheckout.isPending;
-
-  const historyQuery = trpc.dashboard.history.useQuery(undefined, {
-    enabled: isAuthenticated,
-  });
-
-  if (loading) {
+  if (authLoading) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh]">
+      <div className="min-h-[60vh] flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-primary" />
       </div>
     );
   }
 
-  if (!isAuthenticated) return null;
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <Card className="max-w-md w-full">
+          <CardContent className="p-8 text-center">
+            <h2 className="text-xl font-semibold mb-3">Sign in to access your dashboard</h2>
+            <p className="text-muted-foreground mb-6">View your credits, analysis history, and purchase more analyses.</p>
+            <Button asChild><a href={getLoginUrl()}>Sign In</a></Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
-  const usage = usageQuery.data;
+  const credits = creditsQuery.data;
   const history = historyQuery.data || [];
+  const paymentsList = paymentsQuery.data || [];
 
   return (
-    <div className="container py-8 max-w-5xl mx-auto">
+    <div className="container py-8 max-w-5xl">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight mb-2">Dashboard</h1>
-        <p className="text-muted-foreground">
-          Welcome back{user?.name ? `, ${user.name}` : ""}. Here's your analysis overview.
-        </p>
+        <h1 className="text-2xl font-bold mb-1">Dashboard</h1>
+        <p className="text-muted-foreground text-sm">Welcome back{user?.name ? `, ${user.name}` : ""}.</p>
       </div>
 
-      {/* Usage Stats */}
+      {/* Credits Overview */}
       <div className="grid sm:grid-cols-3 gap-4 mb-8">
         <Card>
           <CardContent className="p-5">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm text-muted-foreground">Plan</span>
-              {usage?.tier === "pro" ? (
-                <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white border-0">
-                  <Crown className="w-3 h-3 mr-1" /> Pro
-                </Badge>
-              ) : (
-                <Badge variant="secondary">Free</Badge>
-              )}
+            <div className="flex items-center gap-3 mb-2">
+              <Gift className="w-5 h-5 text-emerald-500" />
+              <span className="text-sm font-medium text-muted-foreground">Free Essay</span>
             </div>
             <div className="text-2xl font-bold">
-              {usage?.tier === "pro" ? "Unlimited" : `${usage?.remaining ?? 1} left`}
+              {credits?.freeEssayAvailable ? (
+                <span className="text-emerald-500">Available</span>
+              ) : (
+                <span className="text-muted-foreground">Used</span>
+              )}
             </div>
-            <p className="text-xs text-muted-foreground mt-1">
-              {usage?.tier === "pro" ? "Unlimited analyses" : `of ${usage?.freeAnalysisLimit ?? 1} free analyses`}
-            </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardContent className="p-5">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm text-muted-foreground">Total Analyses</span>
-              <BarChart3 className="w-4 h-4 text-muted-foreground" />
+            <div className="flex items-center gap-3 mb-2">
+              <FileText className="w-5 h-5 text-primary" />
+              <span className="text-sm font-medium text-muted-foreground">Essay Credits</span>
             </div>
-            <div className="text-2xl font-bold">{usage?.analysisCount ?? 0}</div>
-            <p className="text-xs text-muted-foreground mt-1">essays & strategies combined</p>
+            <div className="text-2xl font-bold">{credits?.essayCredits ?? 0}</div>
           </CardContent>
         </Card>
 
         <Card>
           <CardContent className="p-5">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm text-muted-foreground">Quick Actions</span>
-              <Sparkles className="w-4 h-4 text-muted-foreground" />
+            <div className="flex items-center gap-3 mb-2">
+              <GraduationCap className="w-5 h-5 text-primary" />
+              <span className="text-sm font-medium text-muted-foreground">University Credits</span>
             </div>
-            <div className="flex gap-2">
-              <Button size="sm" variant="outline" asChild className="flex-1">
-                <Link href="/essay">
-                  <FileText className="w-3.5 h-3.5 mr-1" />
-                  Essay
-                </Link>
-              </Button>
-              <Button size="sm" variant="outline" asChild className="flex-1">
-                <Link href="/university">
-                  <GraduationCap className="w-3.5 h-3.5 mr-1" />
-                  Strategy
-                </Link>
-              </Button>
-            </div>
+            <div className="text-2xl font-bold">{credits?.universityCredits ?? 0}</div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Upgrade CTA for free users */}
-      {usage?.tier === "free" && (
-        <Card className="mb-8 border-primary/30 bg-primary/5">
-          <CardContent className="p-6">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-5">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Crown className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-0.5">Upgrade to Pro</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Get unlimited analyses for $14.99/month. Cancel anytime.
-                  </p>
-                </div>
+      {/* Buy Credits */}
+      <Card className="mb-8">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <ShoppingCart className="w-5 h-5" />
+            Purchase Credits
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* Essay Single */}
+            <div className="border rounded-lg p-4 text-center">
+              <FileText className="w-6 h-6 text-primary mx-auto mb-2" />
+              <h4 className="font-semibold text-sm">1 Essay Analysis</h4>
+              <div className="text-xl font-bold my-1">$4.99</div>
+              <div className="flex flex-col gap-1.5 mt-3">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="w-full text-xs"
+                  disabled={buyingProduct !== null}
+                  onClick={() => handleBuy("ESSAY_SINGLE", "stripe")}
+                >
+                  {buyingProduct === "ESSAY_SINGLE_stripe" ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : <CreditCard className="w-3 h-3 mr-1" />}
+                  Card
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="w-full text-xs"
+                  disabled={buyingProduct !== null}
+                  onClick={() => handleBuy("ESSAY_SINGLE", "crypto")}
+                >
+                  {buyingProduct === "ESSAY_SINGLE_crypto" ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : <Bitcoin className="w-3 h-3 mr-1" />}
+                  Crypto
+                </Button>
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Button
-                className="flex-1"
-                onClick={handleStripeUpgrade}
-                disabled={isCheckoutPending}
-              >
-                {stripeCheckout.isPending ? (
-                  <><Loader2 className="w-4 h-4 mr-1 animate-spin" /> Processing...</>
-                ) : (
-                  <><CreditCard className="w-4 h-4 mr-1" /> Pay with Card (Stripe) <ArrowRight className="w-4 h-4 ml-1" /></>
-                )}
-              </Button>
-              <Button
-                variant="outline"
-                className="flex-1 border-yellow-400 hover:bg-yellow-50 text-yellow-700"
-                onClick={handleLSUpgrade}
-                disabled={isCheckoutPending}
-              >
-                {lsCheckout.isPending ? (
-                  <><Loader2 className="w-4 h-4 mr-1 animate-spin" /> Processing...</>
-                ) : (
-                  <>
-                    <svg className="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 14.17l7.59-7.59L20 8l-9 9z"/>
-                    </svg>
-                    Pay with LemonSqueezy <ArrowRight className="w-4 h-4 ml-1" />
-                  </>
-                )}
-              </Button>
-            </div>
-            <p className="text-xs text-muted-foreground mt-3 text-center">
-              Choose your preferred payment method. Both options provide the same Pro features.
-            </p>
-          </CardContent>
-        </Card>
-      )}
 
-      {/* Free limit warning */}
-      {!usage?.canAnalyze && usage?.tier === "free" && (
-        <Card className="mb-8 border-amber-200 bg-amber-50">
-          <CardContent className="p-4 flex items-center gap-3">
-            <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0" />
-            <p className="text-sm">
-              You've used all your free analyses. Upgrade to Pro above for unlimited access.
-            </p>
+            {/* Essay Pack 5 */}
+            <div className="border rounded-lg p-4 text-center">
+              <Package className="w-6 h-6 text-primary mx-auto mb-2" />
+              <h4 className="font-semibold text-sm">5 Essay Analyses</h4>
+              <div className="text-xl font-bold my-1">$19.99</div>
+              <p className="text-xs text-muted-foreground mb-1">$3.99 each — save 20%</p>
+              <div className="flex flex-col gap-1.5 mt-3">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="w-full text-xs"
+                  disabled={buyingProduct !== null}
+                  onClick={() => handleBuy("ESSAY_PACK_5", "stripe")}
+                >
+                  {buyingProduct === "ESSAY_PACK_5_stripe" ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : <CreditCard className="w-3 h-3 mr-1" />}
+                  Card
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="w-full text-xs"
+                  disabled={buyingProduct !== null}
+                  onClick={() => handleBuy("ESSAY_PACK_5", "crypto")}
+                >
+                  {buyingProduct === "ESSAY_PACK_5_crypto" ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : <Bitcoin className="w-3 h-3 mr-1" />}
+                  Crypto
+                </Button>
+              </div>
+            </div>
+
+            {/* Essay Pack 10 */}
+            <div className="border border-primary rounded-lg p-4 text-center relative">
+              <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-primary text-primary-foreground text-[10px] font-semibold rounded-full">
+                Best Value
+              </div>
+              <Package className="w-6 h-6 text-primary mx-auto mb-2" />
+              <h4 className="font-semibold text-sm">10 Essay Analyses</h4>
+              <div className="text-xl font-bold my-1">$34.99</div>
+              <p className="text-xs text-muted-foreground mb-1">$3.49 each — save 30%</p>
+              <div className="flex flex-col gap-1.5 mt-3">
+                <Button
+                  size="sm"
+                  className="w-full text-xs"
+                  disabled={buyingProduct !== null}
+                  onClick={() => handleBuy("ESSAY_PACK_10", "stripe")}
+                >
+                  {buyingProduct === "ESSAY_PACK_10_stripe" ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : <CreditCard className="w-3 h-3 mr-1" />}
+                  Card
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="w-full text-xs"
+                  disabled={buyingProduct !== null}
+                  onClick={() => handleBuy("ESSAY_PACK_10", "crypto")}
+                >
+                  {buyingProduct === "ESSAY_PACK_10_crypto" ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : <Bitcoin className="w-3 h-3 mr-1" />}
+                  Crypto
+                </Button>
+              </div>
+            </div>
+
+            {/* University Single */}
+            <div className="border rounded-lg p-4 text-center">
+              <GraduationCap className="w-6 h-6 text-primary mx-auto mb-2" />
+              <h4 className="font-semibold text-sm">University Strategy</h4>
+              <div className="text-xl font-bold my-1">$9.99</div>
+              <p className="text-xs text-muted-foreground mb-1">Personalized plan</p>
+              <div className="flex flex-col gap-1.5 mt-3">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="w-full text-xs"
+                  disabled={buyingProduct !== null}
+                  onClick={() => handleBuy("UNIVERSITY_SINGLE", "stripe")}
+                >
+                  {buyingProduct === "UNIVERSITY_SINGLE_stripe" ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : <CreditCard className="w-3 h-3 mr-1" />}
+                  Card
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="w-full text-xs"
+                  disabled={buyingProduct !== null}
+                  onClick={() => handleBuy("UNIVERSITY_SINGLE", "crypto")}
+                >
+                  {buyingProduct === "UNIVERSITY_SINGLE_crypto" ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : <Bitcoin className="w-3 h-3 mr-1" />}
+                  Crypto
+                </Button>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Quick Actions */}
+      <div className="grid sm:grid-cols-2 gap-4 mb-8">
+        <Card className="hover:shadow-md transition-shadow">
+          <CardContent className="p-5">
+            <Link href="/essay" className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                <FileText className="w-5 h-5 text-primary" />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-semibold text-sm">Analyze Essay</h3>
+                <p className="text-xs text-muted-foreground">
+                  {credits?.canAnalyzeEssay
+                    ? credits?.freeEssayAvailable
+                      ? "Your free analysis is waiting!"
+                      : `${credits.essayCredits} credits available`
+                    : "Purchase credits to analyze"}
+                </p>
+              </div>
+              <ArrowRight className="w-4 h-4 text-muted-foreground" />
+            </Link>
           </CardContent>
         </Card>
-      )}
+
+        <Card className="hover:shadow-md transition-shadow">
+          <CardContent className="p-5">
+            <Link href="/university" className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                <GraduationCap className="w-5 h-5 text-primary" />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-semibold text-sm">University Strategy</h3>
+                <p className="text-xs text-muted-foreground">
+                  {credits?.canAnalyzeUniversity
+                    ? `${credits.universityCredits} credits available`
+                    : "Purchase credits to use"}
+                </p>
+              </div>
+              <ArrowRight className="w-4 h-4 text-muted-foreground" />
+            </Link>
+          </CardContent>
+        </Card>
+      </div>
 
       {/* Analysis History */}
-      <Card>
+      <Card className="mb-8">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Clock className="w-5 h-5" />
@@ -219,72 +333,81 @@ export default function Dashboard() {
         </CardHeader>
         <CardContent>
           {historyQuery.isLoading ? (
-            <div className="flex items-center justify-center py-12">
+            <div className="flex items-center justify-center py-8">
               <Loader2 className="w-6 h-6 animate-spin text-muted-foreground" />
             </div>
           ) : history.length === 0 ? (
-            <div className="text-center py-12">
-              <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mx-auto mb-4">
-                <FileText className="w-8 h-8 text-muted-foreground" />
-              </div>
-              <h3 className="font-medium mb-2">No analyses yet</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Start by analyzing an essay or building a university strategy.
-              </p>
-              <div className="flex justify-center gap-3">
-                <Button size="sm" asChild>
-                  <Link href="/essay">Analyze Essay</Link>
-                </Button>
-                <Button size="sm" variant="outline" asChild>
-                  <Link href="/university">University Strategy</Link>
-                </Button>
-              </div>
-            </div>
+            <p className="text-muted-foreground text-sm text-center py-6">No analyses yet. Start with your free essay analysis!</p>
           ) : (
             <div className="space-y-3">
               {history.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-center gap-4 p-4 rounded-lg border hover:bg-muted/50 transition-colors"
-                >
-                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                    item.type === "essay" ? "bg-blue-100" : "bg-emerald-100"
-                  }`}>
-                    {item.type === "essay" ? (
-                      <FileText className="w-5 h-5 text-blue-600" />
-                    ) : (
-                      <GraduationCap className="w-5 h-5 text-emerald-600" />
-                    )}
-                  </div>
+                <div key={item.id} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
+                  {item.type === "essay" ? (
+                    <FileText className="w-5 h-5 text-primary flex-shrink-0" />
+                  ) : (
+                    <GraduationCap className="w-5 h-5 text-primary flex-shrink-0" />
+                  )}
                   <div className="flex-1 min-w-0">
-                    <div className="font-medium text-sm truncate">
+                    <p className="text-sm font-medium truncate">
                       {item.type === "essay"
                         ? `${item.essayType} — ${item.subject || "Unknown"}`
                         : `University Strategy — ${item.fieldOfStudy || "Unknown"}`}
-                    </div>
-                    <div className="text-xs text-muted-foreground mt-0.5">
-                      {new Date(item.createdAt).toLocaleDateString("en-GB", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                    </div>
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {new Date(item.createdAt).toLocaleDateString()}
+                    </p>
                   </div>
-                  <div className="text-right flex-shrink-0">
-                    {item.predictedGrade && (
-                      <Badge variant="secondary" className="text-xs">
-                        {item.predictedGrade}
-                      </Badge>
-                    )}
-                  </div>
+                  {item.predictedGrade && (
+                    <Badge variant="secondary" className="flex-shrink-0">{item.predictedGrade}</Badge>
+                  )}
                 </div>
               ))}
             </div>
           )}
         </CardContent>
       </Card>
+
+      {/* Payment History */}
+      {paymentsList.length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Wallet className="w-5 h-5" />
+              Payment History
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {paymentsList.map((p) => (
+                <div key={p.id} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
+                  {p.provider === "nowpayments" ? (
+                    <Bitcoin className="w-5 h-5 text-orange-500 flex-shrink-0" />
+                  ) : (
+                    <CreditCard className="w-5 h-5 text-primary flex-shrink-0" />
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium">
+                      {p.productType === "essay_single" ? "1 Essay Analysis"
+                        : p.productType === "essay_pack_5" ? "5 Essay Analyses"
+                        : p.productType === "essay_pack_10" ? "10 Essay Analyses"
+                        : "University Strategy"}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {new Date(p.createdAt).toLocaleDateString()} — {p.provider}
+                    </p>
+                  </div>
+                  <div className="text-right flex-shrink-0">
+                    <p className="text-sm font-medium">${(p.amount / 100).toFixed(2)}</p>
+                    <Badge variant={p.status === "completed" ? "default" : p.status === "pending" ? "secondary" : "destructive"} className="text-[10px]">
+                      {p.status}
+                    </Badge>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 }

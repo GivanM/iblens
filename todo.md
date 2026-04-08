@@ -18,3 +18,13 @@
 - [x] LemonSqueezy subscription management (upgrade/downgrade user tier on payment events)
 - [x] Frontend: add LemonSqueezy as payment option alongside Stripe
 - [x] Tests for LemonSqueezy integration (14 tests total passing)
+- [x] Switch from subscription to pay-per-use model (essay $4.99, strategy $9.99, first essay free)
+- [x] Update DB schema: add payments/credits table for tracking purchases
+- [x] Update backend: per-analysis payment check instead of subscription check
+- [x] Integrate NOWPayments API for crypto payments (create invoice, webhook, status check)
+- [x] Update Stripe/LemonSqueezy to create one-time payments instead of subscriptions
+- [x] Update frontend pricing section with new per-use prices
+- [x] Add payment selection flow before each analysis (Stripe/Crypto on Dashboard)
+- [x] Update Dashboard to show purchase history and credit balances
+- [ ] Request NOWPayments API key from user (pending: user needs to register)
+- [x] Write tests for new payment model (16 tests passing)

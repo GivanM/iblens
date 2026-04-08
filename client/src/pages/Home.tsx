@@ -5,7 +5,7 @@ import { Link } from "wouter";
 import { getLoginUrl } from "@/const";
 import {
   FileText, GraduationCap, Shield, Zap, BarChart3, Target,
-  CheckCircle2, ArrowRight, Sparkles, Lock, Brain
+  CheckCircle2, ArrowRight, Sparkles, Lock, Brain, CreditCard, Bitcoin, Gift
 } from "lucide-react";
 
 export default function Home() {
@@ -44,7 +44,7 @@ export default function Home() {
             </div>
             {!isAuthenticated && (
               <p className="text-sm text-muted-foreground mt-4">
-                <a href={getLoginUrl()} className="text-primary hover:underline font-medium">Sign in</a> to get your first analysis free
+                <a href={getLoginUrl()} className="text-primary hover:underline font-medium">Sign in</a> to get your first essay analysis free
               </p>
             )}
           </div>
@@ -79,7 +79,11 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <Button variant="ghost" className="mt-5 group-hover:text-primary" asChild>
+                <div className="mt-5 flex items-center gap-3">
+                  <span className="text-sm font-medium text-primary">First analysis free</span>
+                  <span className="text-xs text-muted-foreground">then $4.99/analysis</span>
+                </div>
+                <Button variant="ghost" className="mt-3 group-hover:text-primary" asChild>
                   <Link href="/essay">
                     Try it now <ArrowRight className="w-4 h-4 ml-1" />
                   </Link>
@@ -104,9 +108,12 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <Button variant="ghost" className="mt-5 group-hover:text-primary" asChild>
+                <div className="mt-5">
+                  <span className="text-sm font-medium text-primary">$9.99/strategy</span>
+                </div>
+                <Button variant="ghost" className="mt-3 group-hover:text-primary" asChild>
                   <Link href="/university">
-                    Try it now <ArrowRight className="w-4 h-4 ml-1" />
+                    Get your strategy <ArrowRight className="w-4 h-4 ml-1" />
                   </Link>
                 </Button>
               </CardContent>
@@ -144,60 +151,88 @@ export default function Home() {
       <section className="py-20 bg-background" id="pricing">
         <div className="container">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold tracking-tight mb-3">Simple pricing</h2>
-            <p className="text-muted-foreground text-lg">Start free, upgrade when you need more.</p>
+            <h2 className="text-3xl font-bold tracking-tight mb-3">Pay only for what you use</h2>
+            <p className="text-muted-foreground text-lg">No subscriptions. No commitments. Your first essay analysis is free.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            <Card className="border-2">
-              <CardContent className="p-8">
-                <h3 className="text-lg font-semibold mb-1">Free</h3>
-                <div className="flex items-baseline gap-1 mb-4">
-                  <span className="text-4xl font-bold">$0</span>
-                </div>
-                <p className="text-muted-foreground text-sm mb-6">Perfect for trying out IBLens</p>
-                <ul className="space-y-3 text-sm mb-8">
-                  {["1 free analysis (essay or university)", "Full detailed feedback", "Criteria breakdown", "Next steps recommendations"].map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button variant="outline" className="w-full" asChild>
-                  <Link href="/essay">Get Started</Link>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
+            {/* Free Essay */}
+            <Card className="border-2 border-emerald-500/30 relative">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-emerald-500 text-white text-xs font-semibold rounded-full">
+                Free
+              </div>
+              <CardContent className="p-6 text-center">
+                <Gift className="w-8 h-8 text-emerald-500 mx-auto mb-3" />
+                <h3 className="font-semibold mb-1">First Essay</h3>
+                <div className="text-3xl font-bold mb-2">$0</div>
+                <p className="text-xs text-muted-foreground mb-4">Full analysis with all features</p>
+                <Button variant="outline" size="sm" className="w-full border-emerald-500/30 text-emerald-600 hover:bg-emerald-50" asChild>
+                  <Link href="/essay">Try Free</Link>
                 </Button>
               </CardContent>
             </Card>
 
+            {/* Single Essay */}
+            <Card className="border-2">
+              <CardContent className="p-6 text-center">
+                <FileText className="w-8 h-8 text-primary mx-auto mb-3" />
+                <h3 className="font-semibold mb-1">Essay Analysis</h3>
+                <div className="text-3xl font-bold mb-2">$4.99</div>
+                <p className="text-xs text-muted-foreground mb-4">Per analysis</p>
+                <Button variant="outline" size="sm" className="w-full" asChild>
+                  <Link href="/essay">Analyze Essay</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Essay Pack */}
             <Card className="border-2 border-primary relative">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">
-                Most Popular
+                Save 30%
               </div>
-              <CardContent className="p-8">
-                <h3 className="text-lg font-semibold mb-1">Pro</h3>
-                <div className="flex items-baseline gap-1 mb-4">
-                  <span className="text-4xl font-bold">$14.99</span>
-                  <span className="text-muted-foreground">/month</span>
-                </div>
-                <p className="text-muted-foreground text-sm mb-6">Unlimited analyses for serious students</p>
-                <ul className="space-y-3 text-sm mb-8">
-                  {["Unlimited essay analyses", "Unlimited university strategies", "Analysis history & dashboard", "Priority AI processing", "Save & compare results"].map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button className="w-full" asChild>
+              <CardContent className="p-6 text-center">
+                <BarChart3 className="w-8 h-8 text-primary mx-auto mb-3" />
+                <h3 className="font-semibold mb-1">Essay Pack (10)</h3>
+                <div className="text-3xl font-bold mb-1">$34.99</div>
+                <p className="text-xs text-muted-foreground mb-4">$3.49 per analysis</p>
+                <Button size="sm" className="w-full" asChild>
                   {isAuthenticated ? (
-                    <Link href="/dashboard">Upgrade to Pro</Link>
+                    <Link href="/dashboard">Buy Pack</Link>
                   ) : (
-                    <a href={getLoginUrl()}>Sign in to Upgrade</a>
+                    <a href={getLoginUrl()}>Sign in</a>
                   )}
                 </Button>
               </CardContent>
             </Card>
+
+            {/* University Strategy */}
+            <Card className="border-2">
+              <CardContent className="p-6 text-center">
+                <GraduationCap className="w-8 h-8 text-primary mx-auto mb-3" />
+                <h3 className="font-semibold mb-1">University Strategy</h3>
+                <div className="text-3xl font-bold mb-2">$9.99</div>
+                <p className="text-xs text-muted-foreground mb-4">Per strategy</p>
+                <Button variant="outline" size="sm" className="w-full" asChild>
+                  <Link href="/university">Get Strategy</Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Payment methods */}
+          <div className="flex items-center justify-center gap-6 mt-10 text-sm text-muted-foreground">
+            <div className="flex items-center gap-1.5">
+              <CreditCard className="w-4 h-4" />
+              <span>Card</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Bitcoin className="w-4 h-4" />
+              <span>Crypto</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Shield className="w-4 h-4" />
+              <span>Secure payments</span>
+            </div>
           </div>
         </div>
       </section>

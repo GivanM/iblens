@@ -1,6 +1,7 @@
 import { Express, Request, Response } from "express";
 import crypto from "crypto";
-import { upgradeUserToProLS, downgradeUserToFreeLS } from "../db";
+import { createPayment, completePayment, getPaymentById } from "../db";
+import { PRODUCTS, ProductKey } from "../stripe/products";
 
 const LS_API_BASE = "https://api.lemonsqueezy.com/v1";
 
@@ -8,26 +9,52 @@ function getConfig() {
   return {
     apiKey: process.env.LEMONSQUEEZY_API_KEY || "",
     storeId: process.env.LEMONSQUEEZY_STORE_ID || "",
-    variantId: process.env.LEMONSQUEEZY_VARIANT_ID || "",
     webhookSecret: process.env.LEMONSQUEEZY_WEBHOOK_SECRET || "",
+    // Variant IDs for each product — set in env
+    essaySingleVariantId: process.env.LEMONSQUEEZY_ESSAY_SINGLE_VARIANT_ID || "",
+    essayPack5VariantId: process.env.LEMONSQUEEZY_ESSAY_PACK5_VARIANT_ID || "",
+    essayPack10VariantId: process.env.LEMONSQUEEZY_ESSAY_PACK10_VARIANT_ID || "",
+    universitySingleVariantId: process.env.LEMONSQUEEZY_UNIVERSITY_SINGLE_VARIANT_ID || "",
   };
 }
 
-/**
- * Create a LemonSqueezy checkout session via their API.
- * Returns the checkout URL to redirect the user to.
- */
+function getVariantId(productKey: ProductKey): string {
+  const config = getConfig();
+  switch (productKey) {
+    case "ESSAY_SINGLE": return config.essaySingleVariantId;
+    case "ESSAY_PACK_5": return config.essayPack5VariantId;
+    case "ESSAY_PACK_10": return config.essayPack10VariantId;
+    case "UNIVERSITY_SINGLE": return config.universitySingleVariantId;
+    default: return "";
+  }
+}
+
 export async function createLSCheckoutSession(params: {
   userId: number;
   userEmail: string | null;
   userName: string | null;
   origin: string;
+  productKey: ProductKey;
 }) {
   const config = getConfig();
+  const variantId = getVariantId(params.productKey);
 
-  if (!config.apiKey || !config.storeId || !config.variantId) {
-    throw new Error("LemonSqueezy is not configured. Please add API keys in Settings → Secrets.");
+  if (!config.apiKey || !config.storeId || !variantId) {
+    throw new Error("LemonSqueezy is not configured for this product. Please add API keys in Settings → Secrets.");
   }
+
+  const product = PRODUCTS[params.productKey];
+
+  // Create a pending payment record
+  const paymentRecord = await createPayment({
+    userId: params.userId,
+    productType: product.productType,
+    creditsGranted: product.credits.essay + product.credits.university,
+    amount: product.priceAmount,
+    currency: product.currency,
+    provider: "lemonsqueezy",
+    status: "pending",
+  });
 
   const body = {
     data: {
@@ -38,6 +65,8 @@ export async function createLSCheckoutSession(params: {
           name: params.userName || undefined,
           custom: {
             user_id: params.userId.toString(),
+            payment_id: paymentRecord.id.toString(),
+            product_key: params.productKey,
           },
         },
         checkout_options: {
@@ -48,18 +77,8 @@ export async function createLSCheckoutSession(params: {
         },
       },
       relationships: {
-        store: {
-          data: {
-            type: "stores",
-            id: config.storeId,
-          },
-        },
-        variant: {
-          data: {
-            type: "variants",
-            id: config.variantId,
-          },
-        },
+        store: { data: { type: "stores", id: config.storeId } },
+        variant: { data: { type: "variants", id: variantId } },
       },
     },
   };
@@ -90,19 +109,12 @@ export async function createLSCheckoutSession(params: {
   return { url: checkoutUrl };
 }
 
-/**
- * Verify LemonSqueezy webhook signature using HMAC-SHA256.
- */
 function verifyWebhookSignature(rawBody: string, signature: string, secret: string): boolean {
   const hmac = crypto.createHmac("sha256", secret);
   const digest = hmac.update(rawBody).digest("hex");
   return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(digest));
 }
 
-/**
- * Register the LemonSqueezy webhook endpoint on Express.
- * Must be called BEFORE express.json() middleware.
- */
 export function registerLemonSqueezyWebhook(app: Express) {
   app.post(
     "/api/lemonsqueezy/webhook",
@@ -112,7 +124,6 @@ export function registerLemonSqueezyWebhook(app: Express) {
       const signature = req.headers["x-signature"] as string;
 
       if (!signature || !config.webhookSecret) {
-        console.warn("[LemonSqueezy Webhook] Missing signature or webhook secret");
         return res.status(400).json({ error: "Missing signature or webhook secret" });
       }
 
@@ -121,7 +132,6 @@ export function registerLemonSqueezyWebhook(app: Express) {
         return res.status(400).json({ error: "Missing request body" });
       }
 
-      // Verify signature
       try {
         const isValid = verifyWebhookSignature(rawBody, signature, config.webhookSecret);
         if (!isValid) {
@@ -136,46 +146,20 @@ export function registerLemonSqueezyWebhook(app: Express) {
       const payload = req.body;
       const eventName = payload?.meta?.event_name;
       const customData = payload?.meta?.custom_data;
-      const subscriptionData = payload?.data?.attributes;
 
       console.log(`[LemonSqueezy Webhook] Event: ${eventName}`);
 
       try {
         switch (eventName) {
-          case "subscription_created":
-          case "subscription_updated": {
-            const userId = parseInt(customData?.user_id || "0");
-            const status = subscriptionData?.status;
-            const lsSubscriptionId = String(payload?.data?.id || "");
-            const lsCustomerId = String(subscriptionData?.customer_id || "");
+          case "order_created": {
+            const paymentId = parseInt(customData?.payment_id || "0");
+            const orderId = String(payload?.data?.id || "");
+            const status = payload?.data?.attributes?.status;
 
-            if (userId && (status === "active" || status === "trialing")) {
-              await upgradeUserToProLS(userId, lsCustomerId, lsSubscriptionId);
-              console.log(`[LemonSqueezy] User ${userId} upgraded to Pro (sub: ${lsSubscriptionId})`);
-            } else if (userId && (status === "cancelled" || status === "expired" || status === "past_due")) {
-              await downgradeUserToFreeLS(lsSubscriptionId);
-              console.log(`[LemonSqueezy] User downgraded (sub: ${lsSubscriptionId}, status: ${status})`);
+            if (paymentId && (status === "paid" || status === "completed")) {
+              await completePayment(paymentId, `ls_order_${orderId}`);
+              console.log(`[LemonSqueezy] Payment ${paymentId} completed via order ${orderId}`);
             }
-            break;
-          }
-
-          case "subscription_cancelled":
-          case "subscription_expired": {
-            const lsSubscriptionId = String(payload?.data?.id || "");
-            if (lsSubscriptionId) {
-              await downgradeUserToFreeLS(lsSubscriptionId);
-              console.log(`[LemonSqueezy] Subscription ${lsSubscriptionId} ended, user downgraded`);
-            }
-            break;
-          }
-
-          case "subscription_payment_success": {
-            console.log(`[LemonSqueezy] Payment success for subscription ${payload?.data?.id}`);
-            break;
-          }
-
-          case "subscription_payment_failed": {
-            console.log(`[LemonSqueezy] Payment failed for subscription ${payload?.data?.id}`);
             break;
           }
 
@@ -191,9 +175,6 @@ export function registerLemonSqueezyWebhook(app: Express) {
   );
 }
 
-/**
- * Raw body middleware for LemonSqueezy webhook signature verification.
- */
 function lsRawMiddleware(req: Request, _res: Response, next: Function) {
   if (req.headers["content-type"] === "application/json") {
     let data = "";

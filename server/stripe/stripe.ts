@@ -1,50 +1,73 @@
 import Stripe from "stripe";
 import { Express, Request, Response } from "express";
-import { upgradeUserToPro, downgradeUserToFree } from "../db";
-import { PRODUCTS } from "./products";
+import { createPayment, completePayment, getPaymentById } from "../db";
+import { PRODUCTS, ProductKey } from "./products";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
 
-export async function createCheckoutSession(params: {
+export async function createStripeCheckout(params: {
   userId: number;
   userEmail: string | null;
   userName: string | null;
   origin: string;
+  productKey: ProductKey;
 }) {
-  // Create or reuse a Stripe price
-  const product = await stripe.products.create({
-    name: PRODUCTS.PRO_MONTHLY.name,
-    description: PRODUCTS.PRO_MONTHLY.description,
-  });
+  const product = PRODUCTS[params.productKey];
 
-  const price = await stripe.prices.create({
-    product: product.id,
-    unit_amount: PRODUCTS.PRO_MONTHLY.priceAmount,
-    currency: PRODUCTS.PRO_MONTHLY.currency,
-    recurring: { interval: PRODUCTS.PRO_MONTHLY.interval },
+  // Create a pending payment record in our DB
+  const paymentRecord = await createPayment({
+    userId: params.userId,
+    productType: product.productType,
+    creditsGranted: product.credits.essay + product.credits.university,
+    amount: product.priceAmount,
+    currency: product.currency,
+    provider: "stripe",
+    status: "pending",
   });
 
   const session = await stripe.checkout.sessions.create({
-    mode: "subscription",
+    mode: "payment",
     payment_method_types: ["card"],
-    line_items: [{ price: price.id, quantity: 1 }],
+    line_items: [{
+      price_data: {
+        currency: product.currency,
+        product_data: {
+          name: product.name,
+          description: product.description,
+        },
+        unit_amount: product.priceAmount,
+      },
+      quantity: 1,
+    }],
     client_reference_id: params.userId.toString(),
     customer_email: params.userEmail || undefined,
     allow_promotion_codes: true,
     metadata: {
       user_id: params.userId.toString(),
-      customer_email: params.userEmail || "",
-      customer_name: params.userName || "",
+      payment_id: paymentRecord.id.toString(),
+      product_key: params.productKey,
     },
     success_url: `${params.origin}/dashboard?payment=success`,
     cancel_url: `${params.origin}/dashboard?payment=cancelled`,
   });
 
+  // Store the Stripe session ID on our payment record
+  if (session.id) {
+    const { getDb } = await import("../db");
+    const db = await getDb();
+    if (db) {
+      const { payments } = await import("../../drizzle/schema");
+      const { eq } = await import("drizzle-orm");
+      await db.update(payments)
+        .set({ providerPaymentId: session.id })
+        .where(eq(payments.id, paymentRecord.id));
+    }
+  }
+
   return session;
 }
 
 export function registerStripeWebhook(app: Express) {
-  // Must be registered BEFORE express.json() middleware
   app.post(
     "/api/stripe/webhook",
     express_raw_middleware,
@@ -80,27 +103,17 @@ export function registerStripeWebhook(app: Express) {
         switch (event.type) {
           case "checkout.session.completed": {
             const session = event.data.object as Stripe.Checkout.Session;
-            const userId = parseInt(session.client_reference_id || session.metadata?.user_id || "0");
-            const customerId = session.customer as string;
-            const subscriptionId = session.subscription as string;
+            const paymentId = parseInt(session.metadata?.payment_id || "0");
 
-            if (userId && customerId && subscriptionId) {
-              await upgradeUserToPro(userId, customerId, subscriptionId);
-              console.log(`[Stripe] User ${userId} upgraded to Pro`);
+            if (paymentId) {
+              await completePayment(paymentId, session.id);
+              console.log(`[Stripe] Payment ${paymentId} completed, credits granted`);
             }
             break;
           }
 
-          case "customer.subscription.deleted": {
-            const subscription = event.data.object as Stripe.Subscription;
-            await downgradeUserToFree(subscription.id);
-            console.log(`[Stripe] Subscription ${subscription.id} cancelled, user downgraded`);
-            break;
-          }
-
-          case "invoice.payment_failed": {
-            const invoice = event.data.object as Stripe.Invoice;
-            console.log(`[Stripe] Payment failed for invoice ${invoice.id}`);
+          case "payment_intent.payment_failed": {
+            console.log(`[Stripe] Payment failed for intent ${(event.data.object as any).id}`);
             break;
           }
 
@@ -116,7 +129,6 @@ export function registerStripeWebhook(app: Express) {
   );
 }
 
-// Raw body middleware for Stripe webhook signature verification
 function express_raw_middleware(req: Request, _res: Response, next: Function) {
   if (req.headers["content-type"] === "application/json") {
     let data = "";

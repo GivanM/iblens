@@ -1,6 +1,6 @@
-import { eq, desc, sql } from "drizzle-orm";
+import { eq, desc, sql, and } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, analyses, InsertAnalysis } from "../drizzle/schema";
+import { InsertUser, users, analyses, InsertAnalysis, payments, InsertPayment } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -84,7 +84,6 @@ export async function getUserByOpenId(openId: string) {
   }
 
   const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
-
   return result.length > 0 ? result[0] : undefined;
 }
 
@@ -117,88 +116,212 @@ export async function getAnalysisById(id: number, userId: number) {
   return result[0];
 }
 
-// ---- Usage / Tier helpers ----
+// ---- Credits / Usage helpers ----
 
-export async function incrementAnalysisCount(userId: number) {
-  const db = await getDb();
-  if (!db) throw new Error("Database not available");
-
-  await db.update(users)
-    .set({ analysisCount: sql`${users.analysisCount} + 1` })
-    .where(eq(users.id, userId));
+export interface UserCredits {
+  freeEssayUsed: boolean;
+  essayCredits: number;
+  universityCredits: number;
 }
 
-export async function canUserAnalyze(userId: number): Promise<{ allowed: boolean; reason?: string; remaining?: number }> {
-  const db = await getDb();
-  if (!db) return { allowed: false, reason: "Database not available" };
-
-  const result = await db.select({
-    tier: users.tier,
-    analysisCount: users.analysisCount,
-    freeAnalysisLimit: users.freeAnalysisLimit,
-  }).from(users).where(eq(users.id, userId)).limit(1);
-
-  if (result.length === 0) return { allowed: false, reason: "User not found" };
-
-  const user = result[0];
-  if (user.tier === "pro") return { allowed: true, remaining: -1 };
-
-  const remaining = user.freeAnalysisLimit - user.analysisCount;
-  if (remaining <= 0) {
-    return { allowed: false, reason: "Free analysis limit reached. Upgrade to Pro for unlimited analyses.", remaining: 0 };
-  }
-
-  return { allowed: true, remaining };
-}
-
-export async function upgradeUserToPro(userId: number, stripeCustomerId: string, stripeSubscriptionId: string) {
-  const db = await getDb();
-  if (!db) throw new Error("Database not available");
-
-  await db.update(users)
-    .set({ tier: "pro", stripeCustomerId, stripeSubscriptionId })
-    .where(eq(users.id, userId));
-}
-
-export async function downgradeUserToFree(stripeSubscriptionId: string) {
-  const db = await getDb();
-  if (!db) throw new Error("Database not available");
-
-  await db.update(users)
-    .set({ tier: "free", stripeSubscriptionId: null })
-    .where(eq(users.stripeSubscriptionId, stripeSubscriptionId));
-}
-
-// ---- LemonSqueezy tier helpers ----
-
-export async function upgradeUserToProLS(userId: number, lsCustomerId: string, lsSubscriptionId: string) {
-  const db = await getDb();
-  if (!db) throw new Error("Database not available");
-
-  await db.update(users)
-    .set({ tier: "pro", lsCustomerId, lsSubscriptionId })
-    .where(eq(users.id, userId));
-}
-
-export async function downgradeUserToFreeLS(lsSubscriptionId: string) {
-  const db = await getDb();
-  if (!db) throw new Error("Database not available");
-
-  await db.update(users)
-    .set({ tier: "free", lsSubscriptionId: null })
-    .where(eq(users.lsSubscriptionId, lsSubscriptionId));
-}
-
-export async function getUserUsageStats(userId: number) {
+export async function getUserCredits(userId: number): Promise<UserCredits | null> {
   const db = await getDb();
   if (!db) return null;
 
   const result = await db.select({
-    tier: users.tier,
-    analysisCount: users.analysisCount,
-    freeAnalysisLimit: users.freeAnalysisLimit,
-    stripeSubscriptionId: users.stripeSubscriptionId,
+    freeEssayUsed: users.freeEssayUsed,
+    essayCredits: users.essayCredits,
+    universityCredits: users.universityCredits,
   }).from(users).where(eq(users.id, userId)).limit(1);
 
   return result.length > 0 ? result[0] : null;
+}
+
+export async function canUserAnalyzeEssay(userId: number): Promise<{ allowed: boolean; reason?: string; isFree?: boolean }> {
+  const credits = await getUserCredits(userId);
+  if (!credits) return { allowed: false, reason: "User not found" };
+
+  // First free essay
+  if (!credits.freeEssayUsed) {
+    return { allowed: true, isFree: true };
+  }
+
+  // Paid credits
+  if (credits.essayCredits > 0) {
+    return { allowed: true, isFree: false };
+  }
+
+  return { allowed: false, reason: "No essay credits remaining. Purchase more to continue." };
+}
+
+export async function canUserAnalyzeUniversity(userId: number): Promise<{ allowed: boolean; reason?: string }> {
+  const credits = await getUserCredits(userId);
+  if (!credits) return { allowed: false, reason: "User not found" };
+
+  if (credits.universityCredits > 0) {
+    return { allowed: true };
+  }
+
+  return { allowed: false, reason: "No university strategy credits. Purchase to use this feature." };
+}
+
+export async function consumeEssayCredit(userId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const credits = await getUserCredits(userId);
+  if (!credits) throw new Error("User not found");
+
+  if (!credits.freeEssayUsed) {
+    // Use the free essay
+    await db.update(users)
+      .set({ freeEssayUsed: true })
+      .where(eq(users.id, userId));
+    return;
+  }
+
+  if (credits.essayCredits <= 0) {
+    throw new Error("No essay credits remaining");
+  }
+
+  await db.update(users)
+    .set({ essayCredits: sql`${users.essayCredits} - 1` })
+    .where(eq(users.id, userId));
+}
+
+export async function consumeUniversityCredit(userId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const credits = await getUserCredits(userId);
+  if (!credits || credits.universityCredits <= 0) {
+    throw new Error("No university credits remaining");
+  }
+
+  await db.update(users)
+    .set({ universityCredits: sql`${users.universityCredits} - 1` })
+    .where(eq(users.id, userId));
+}
+
+export async function addCredits(userId: number, essayCredits: number, universityCredits: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const updateSet: Record<string, any> = {};
+  if (essayCredits > 0) {
+    updateSet.essayCredits = sql`${users.essayCredits} + ${essayCredits}`;
+  }
+  if (universityCredits > 0) {
+    updateSet.universityCredits = sql`${users.universityCredits} + ${universityCredits}`;
+  }
+
+  if (Object.keys(updateSet).length > 0) {
+    await db.update(users).set(updateSet).where(eq(users.id, userId));
+  }
+}
+
+// ---- Payment helpers ----
+
+export async function createPayment(data: InsertPayment) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const [result] = await db.insert(payments).values(data).$returningId();
+  return result;
+}
+
+export async function completePayment(paymentId: number, providerPaymentId: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  // Get payment details
+  const [payment] = await db.select().from(payments).where(eq(payments.id, paymentId)).limit(1);
+  if (!payment) throw new Error("Payment not found");
+
+  // Mark as completed
+  await db.update(payments)
+    .set({ status: "completed", providerPaymentId, completedAt: new Date() })
+    .where(eq(payments.id, paymentId));
+
+  // Grant credits
+  const essayCredits = payment.productType === "essay_single" ? 1
+    : payment.productType === "essay_pack_5" ? 5
+    : payment.productType === "essay_pack_10" ? 10
+    : 0;
+
+  const universityCredits = payment.productType === "university_single" ? 1 : 0;
+
+  await addCredits(payment.userId, essayCredits, universityCredits);
+
+  return payment;
+}
+
+export async function completePaymentByProviderId(providerPaymentId: string, provider: "stripe" | "lemonsqueezy" | "nowpayments") {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const [payment] = await db.select().from(payments)
+    .where(and(eq(payments.providerPaymentId, providerPaymentId), eq(payments.provider, provider)))
+    .limit(1);
+
+  if (!payment) return null;
+  if (payment.status === "completed") return payment; // already processed
+
+  await db.update(payments)
+    .set({ status: "completed", completedAt: new Date() })
+    .where(eq(payments.id, payment.id));
+
+  // Grant credits
+  const essayCredits = payment.productType === "essay_single" ? 1
+    : payment.productType === "essay_pack_5" ? 5
+    : payment.productType === "essay_pack_10" ? 10
+    : 0;
+
+  const universityCredits = payment.productType === "university_single" ? 1 : 0;
+
+  await addCredits(payment.userId, essayCredits, universityCredits);
+
+  return payment;
+}
+
+export async function failPayment(paymentId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  await db.update(payments)
+    .set({ status: "failed" })
+    .where(eq(payments.id, paymentId));
+}
+
+export async function getUserPayments(userId: number, limit = 20) {
+  const db = await getDb();
+  if (!db) return [];
+
+  return db.select().from(payments)
+    .where(eq(payments.userId, userId))
+    .orderBy(desc(payments.createdAt))
+    .limit(limit);
+}
+
+export async function getPaymentById(id: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+
+  const result = await db.select().from(payments).where(eq(payments.id, id)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getPendingPaymentByProviderIdAndProvider(providerPaymentId: string, provider: "stripe" | "lemonsqueezy" | "nowpayments") {
+  const db = await getDb();
+  if (!db) return undefined;
+
+  const result = await db.select().from(payments)
+    .where(and(
+      eq(payments.providerPaymentId, providerPaymentId),
+      eq(payments.provider, provider),
+      eq(payments.status, "pending"),
+    ))
+    .limit(1);
+
+  return result.length > 0 ? result[0] : undefined;
 }

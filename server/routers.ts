@@ -8,12 +8,17 @@ import {
   createAnalysis,
   getUserAnalyses,
   getAnalysisById,
-  incrementAnalysisCount,
-  canUserAnalyze,
-  getUserUsageStats,
+  canUserAnalyzeEssay,
+  canUserAnalyzeUniversity,
+  consumeEssayCredit,
+  consumeUniversityCredit,
+  getUserCredits,
+  getUserPayments,
 } from "./db";
-import { createCheckoutSession } from "./stripe/stripe";
+import { createStripeCheckout } from "./stripe/stripe";
+import { PRODUCTS, ProductKey } from "./stripe/products";
 import { createLSCheckoutSession } from "./lemonsqueezy/lemonsqueezy";
+import { createNPInvoice } from "./nowpayments/nowpayments";
 
 const IB_SUBJECTS = [
   "Business Management", "Economics", "History", "Biology", "Chemistry",
@@ -24,11 +29,7 @@ const IB_SUBJECTS = [
 
 const ESSAY_TYPES = ["IA", "EE", "TOK"] as const;
 
-const FIELDS_OF_STUDY = [
-  "Business / Management", "Sports Management / Hospitality", "Economics",
-  "Law", "Engineering", "Medicine / Pre-med", "Computer Science",
-  "Psychology / Social Sciences", "Humanities / Liberal Arts", "Natural Sciences",
-] as const;
+const productKeySchema = z.enum(["ESSAY_SINGLE", "ESSAY_PACK_5", "ESSAY_PACK_10", "UNIVERSITY_SINGLE"]);
 
 // ---- Essay Analysis Router ----
 const essayRouter = router({
@@ -40,9 +41,9 @@ const essayRouter = router({
       essayText: z.string().min(150, "Please provide at least 200 words for meaningful analysis."),
     }))
     .mutation(async ({ ctx, input }) => {
-      const usage = await canUserAnalyze(ctx.user.id);
+      const usage = await canUserAnalyzeEssay(ctx.user.id);
       if (!usage.allowed) {
-        throw new Error(usage.reason || "Analysis limit reached");
+        throw new Error(usage.reason || "No essay credits remaining");
       }
 
       const systemPrompt = `You are an experienced IB examiner with 12 years of grading experience across multiple subjects. Analyze the student's work strictly according to IB assessment criteria. Be specific, constructive, and honest. Reference actual IB criteria names and descriptors.
@@ -99,9 +100,9 @@ Respond with this exact JSON structure:
           predictedGrade: `${result.predicted_score}/${result.max_score}`,
         });
 
-        await incrementAnalysisCount(ctx.user.id);
+        await consumeEssayCredit(ctx.user.id);
 
-        return { id: analysis.id, result };
+        return { id: analysis.id, result, wasFree: usage.isFree };
       } catch (error: any) {
         console.error("[Essay Analysis] Error:", error);
         throw new Error(error.message || "Analysis failed. Please try again.");
@@ -122,9 +123,9 @@ const universityRouter = router({
       notes: z.string().optional(),
     }))
     .mutation(async ({ ctx, input }) => {
-      const usage = await canUserAnalyze(ctx.user.id);
+      const usage = await canUserAnalyzeUniversity(ctx.user.id);
       if (!usage.allowed) {
-        throw new Error(usage.reason || "Analysis limit reached");
+        throw new Error(usage.reason || "No university strategy credits remaining");
       }
 
       const now = new Date();
@@ -185,7 +186,7 @@ Respond with this exact JSON structure:
           predictedGrade: `${input.predictedScore}/45`,
         });
 
-        await incrementAnalysisCount(ctx.user.id);
+        await consumeUniversityCredit(ctx.user.id);
 
         return { id: analysis.id, result };
       } catch (error: any) {
@@ -211,22 +212,77 @@ const dashboardRouter = router({
       return analysis;
     }),
 
-  usage: protectedProcedure.query(async ({ ctx }) => {
-    const stats = await getUserUsageStats(ctx.user.id);
-    if (!stats) throw new Error("User not found");
-
-    const canAnalyze = stats.tier === "pro" || stats.analysisCount < stats.freeAnalysisLimit;
-    const remaining = stats.tier === "pro" ? -1 : Math.max(0, stats.freeAnalysisLimit - stats.analysisCount);
+  credits: protectedProcedure.query(async ({ ctx }) => {
+    const credits = await getUserCredits(ctx.user.id);
+    if (!credits) throw new Error("User not found");
 
     return {
-      tier: stats.tier,
-      analysisCount: stats.analysisCount,
-      freeAnalysisLimit: stats.freeAnalysisLimit,
-      canAnalyze,
-      remaining,
-      hasSubscription: !!stats.stripeSubscriptionId,
+      freeEssayAvailable: !credits.freeEssayUsed,
+      essayCredits: credits.essayCredits,
+      universityCredits: credits.universityCredits,
+      canAnalyzeEssay: !credits.freeEssayUsed || credits.essayCredits > 0,
+      canAnalyzeUniversity: credits.universityCredits > 0,
     };
   }),
+
+  payments: protectedProcedure
+    .input(z.object({ limit: z.number().min(1).max(50).optional() }).optional())
+    .query(async ({ ctx, input }) => {
+      return getUserPayments(ctx.user.id, input?.limit || 20);
+    }),
+});
+
+// ---- Pricing info (public) ----
+const pricingRouter = router({
+  products: publicProcedure.query(() => {
+    return {
+      ESSAY_SINGLE: { name: PRODUCTS.ESSAY_SINGLE.name, price: PRODUCTS.ESSAY_SINGLE.priceAmount / 100, description: PRODUCTS.ESSAY_SINGLE.description },
+      ESSAY_PACK_5: { name: PRODUCTS.ESSAY_PACK_5.name, price: PRODUCTS.ESSAY_PACK_5.priceAmount / 100, description: PRODUCTS.ESSAY_PACK_5.description },
+      ESSAY_PACK_10: { name: PRODUCTS.ESSAY_PACK_10.name, price: PRODUCTS.ESSAY_PACK_10.priceAmount / 100, description: PRODUCTS.ESSAY_PACK_10.description },
+      UNIVERSITY_SINGLE: { name: PRODUCTS.UNIVERSITY_SINGLE.name, price: PRODUCTS.UNIVERSITY_SINGLE.priceAmount / 100, description: PRODUCTS.UNIVERSITY_SINGLE.description },
+    };
+  }),
+});
+
+// ---- Payment Router ----
+const paymentRouter = router({
+  stripeCheckout: protectedProcedure
+    .input(z.object({ origin: z.string(), productKey: productKeySchema }))
+    .mutation(async ({ ctx, input }) => {
+      const session = await createStripeCheckout({
+        userId: ctx.user.id,
+        userEmail: ctx.user.email,
+        userName: ctx.user.name,
+        origin: input.origin,
+        productKey: input.productKey,
+      });
+      return { url: session.url };
+    }),
+
+  lemonSqueezyCheckout: protectedProcedure
+    .input(z.object({ origin: z.string(), productKey: productKeySchema }))
+    .mutation(async ({ ctx, input }) => {
+      const result = await createLSCheckoutSession({
+        userId: ctx.user.id,
+        userEmail: ctx.user.email,
+        userName: ctx.user.name,
+        origin: input.origin,
+        productKey: input.productKey,
+      });
+      return { url: result.url };
+    }),
+
+  cryptoCheckout: protectedProcedure
+    .input(z.object({ origin: z.string(), productKey: productKeySchema }))
+    .mutation(async ({ ctx, input }) => {
+      const result = await createNPInvoice({
+        userId: ctx.user.id,
+        userEmail: ctx.user.email,
+        origin: input.origin,
+        productKey: input.productKey,
+      });
+      return { url: result.invoiceUrl };
+    }),
 });
 
 export const appRouter = router({
@@ -242,32 +298,8 @@ export const appRouter = router({
   essay: essayRouter,
   university: universityRouter,
   dashboard: dashboardRouter,
-  stripe: router({
-    createCheckout: protectedProcedure
-      .input(z.object({ origin: z.string() }))
-      .mutation(async ({ ctx, input }) => {
-        const session = await createCheckoutSession({
-          userId: ctx.user.id,
-          userEmail: ctx.user.email,
-          userName: ctx.user.name,
-          origin: input.origin,
-        });
-        return { url: session.url };
-      }),
-  }),
-  lemonsqueezy: router({
-    createCheckout: protectedProcedure
-      .input(z.object({ origin: z.string() }))
-      .mutation(async ({ ctx, input }) => {
-        const result = await createLSCheckoutSession({
-          userId: ctx.user.id,
-          userEmail: ctx.user.email,
-          userName: ctx.user.name,
-          origin: input.origin,
-        });
-        return { url: result.url };
-      }),
-  }),
+  pricing: pricingRouter,
+  payment: paymentRouter,
 });
 
 export type AppRouter = typeof appRouter;
