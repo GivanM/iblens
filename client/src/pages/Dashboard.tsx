@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { Link } from "wouter";
 import { getLoginUrl } from "@/const";
+import { PaymentModal } from "@/components/PaymentModal";
 import {
   FileText, GraduationCap, Loader2,
   Clock, ArrowRight, Gift, Package, ShoppingCart, Wallet, CreditCard
@@ -14,15 +15,28 @@ import { useState, useEffect } from "react";
 
 type ProductKey = "ESSAY_SINGLE" | "ESSAY_PACK_5" | "ESSAY_PACK_10" | "UNIVERSITY_SINGLE";
 
+const PRODUCT_LABELS: Record<ProductKey, string> = {
+  ESSAY_SINGLE: "1 Essay Analysis",
+  ESSAY_PACK_5: "5 Essay Analyses",
+  ESSAY_PACK_10: "10 Essay Analyses",
+  UNIVERSITY_SINGLE: "University Strategy",
+};
+
 export default function Dashboard() {
   const { user, isAuthenticated, loading: authLoading } = useAuth();
   const [buyingProduct, setBuyingProduct] = useState<string | null>(null);
+  const [paymentModalOpen, setPaymentModalOpen] = useState(false);
+  const [invoiceUrl, setInvoiceUrl] = useState<string | null>(null);
+  const [currentProductName, setCurrentProductName] = useState("");
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get("payment") === "success") {
       toast.success("Payment successful! Credits have been added to your account.");
       window.history.replaceState({}, "", "/dashboard");
+      // Refetch credits
+      creditsQuery.refetch();
+      paymentsQuery.refetch();
     } else if (params.get("payment") === "cancelled") {
       toast.info("Payment was cancelled.");
       window.history.replaceState({}, "", "/dashboard");
@@ -36,8 +50,8 @@ export default function Dashboard() {
   const checkout = trpc.payment.checkout.useMutation({
     onSuccess: (data: { url: string }) => {
       if (data.url) {
-        window.open(data.url, "_blank");
-        toast.info("Redirecting to payment page — you can pay with card or crypto.");
+        setInvoiceUrl(data.url);
+        setPaymentModalOpen(true);
       }
       setBuyingProduct(null);
     },
@@ -49,7 +63,23 @@ export default function Dashboard() {
 
   const handleBuy = (productKey: ProductKey) => {
     setBuyingProduct(productKey);
+    setCurrentProductName(PRODUCT_LABELS[productKey]);
     checkout.mutate({ origin: window.location.origin, productKey });
+  };
+
+  const handlePaymentComplete = () => {
+    toast.success("Payment completed! Your credits have been added.");
+    creditsQuery.refetch();
+    paymentsQuery.refetch();
+  };
+
+  const handleModalClose = (open: boolean) => {
+    setPaymentModalOpen(open);
+    if (!open) {
+      // Refetch in case payment was completed while modal was open
+      creditsQuery.refetch();
+      paymentsQuery.refetch();
+    }
   };
 
   if (authLoading) {
@@ -80,6 +110,15 @@ export default function Dashboard() {
 
   return (
     <div className="container py-8 max-w-5xl">
+      {/* Payment Modal */}
+      <PaymentModal
+        open={paymentModalOpen}
+        onOpenChange={handleModalClose}
+        invoiceUrl={invoiceUrl}
+        productName={currentProductName}
+        onPaymentComplete={handlePaymentComplete}
+      />
+
       <div className="mb-8">
         <h1 className="text-2xl font-bold mb-1">Dashboard</h1>
         <p className="text-muted-foreground text-sm">Welcome back{user?.name ? `, ${user.name}` : ""}.</p>
@@ -131,7 +170,7 @@ export default function Dashboard() {
             <ShoppingCart className="w-5 h-5" />
             Purchase Credits
           </CardTitle>
-          <p className="text-xs text-muted-foreground">Pay with any card or cryptocurrency — all payments are securely processed.</p>
+          <p className="text-xs text-muted-foreground">Pay with Visa, Mastercard, Apple Pay, Google Pay, or 350+ cryptocurrencies.</p>
         </CardHeader>
         <CardContent>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -270,7 +309,7 @@ export default function Dashboard() {
           ) : history.length === 0 ? (
             <p className="text-muted-foreground text-sm text-center py-6">No analyses yet. Start with your free essay analysis!</p>
           ) : (
-            <div className="space-y-3">
+            <div className="space-y-2">
               {history.map((item) => (
                 <div key={item.id} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
                   {item.type === "essay" ? (

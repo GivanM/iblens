@@ -39,3 +39,6 @@
 - [x] Find and remove ALL remaining Stripe references from entire codebase
 - [x] Remove Stripe-related env vars and package dependencies
 - [x] Verify no Stripe traces remain (confirmed: 0 matches in server/, client/, package.json, schema.ts)
+- [x] Change Buy button to open payment in same page (no new tab/window) — PaymentModal with iframe
+- [x] Support card and Apple Pay payments via NOWPayments (user pays fiat, owner receives crypto)
+- [x] Embed NOWPayments widget/iframe inline on the page — PaymentModal component created
