@@ -64,3 +64,19 @@
 - [x] Update tests for Plisio (16 tests passing)
 - [x] Applied DB migration: provider enum changed, old pending coingate records cleaned up
 - [ ] Request Plisio SECRET_KEY from user (register at plisio.net)
+- [x] SEO: Add comprehensive meta tags (title, description, keywords) to index.html
+- [x] SEO: Add Open Graph and Twitter Card meta tags for social sharing
+- [x] SEO: Add JSON-LD structured data (SoftwareApplication, FAQ, Organization)
+- [x] SEO: Create sitemap.xml
+- [x] SEO: Create robots.txt
+- [x] SEO: Add canonical URLs
+- [x] Landing page: Add social proof section (testimonials, stats counters)
+- [x] Landing page: Add urgency/scarcity elements (exam countdown banner)
+- [x] Landing page: Improve CTA buttons and conversion flow ("Analyze My Essay Free", shadow effects)
+- [x] Landing page: Add FAQ section for SEO and trust (7 questions with accordion)
+- [x] Landing page: Add "How it works" step-by-step section (3 steps)
+- [x] Analytics: Umami analytics already integrated; added conversion event tracking utility
+- [x] Analytics: Add conversion event tracking (essay analysis, university strategy, checkout, sign-in)
+- [x] Landing page: Add SEO-rich footer with subject links and resource links
+- [ ] Monetization: Add referral/share mechanism (share results, invite friends) — future
+- [ ] Monetization: Add email capture for retargeting — future

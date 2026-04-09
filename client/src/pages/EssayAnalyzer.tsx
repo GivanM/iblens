@@ -21,6 +21,7 @@ import {
   FileText, Loader2, AlertTriangle, TrendingUp, ArrowRight,
   CheckCircle2, XCircle, Lock
 } from "lucide-react";
+import { analytics } from "@/lib/analytics";
 
 const IB_SUBJECTS = [
   "Business Management", "Economics", "History", "Biology", "Chemistry",
@@ -67,6 +68,8 @@ export default function EssayAnalyzer() {
     onSuccess: (data) => {
       setResult(data.result as EssayResult);
       creditsQuery.refetch();
+      const r = data.result as EssayResult;
+      analytics.completeEssayAnalysis(subject, `${r.predicted_score}/${r.max_score}`);
       if (data.wasFree) {
         toast.success("Free analysis complete! Future analyses cost $4.99.");
       } else {
@@ -91,6 +94,7 @@ export default function EssayAnalyzer() {
       toast.error("Please paste at least 200 words for meaningful analysis.");
       return;
     }
+    analytics.startEssayAnalysis(subject);
     analyzeMutation.mutate({
       essayType: essayType as "IA" | "EE" | "TOK",
       subject,

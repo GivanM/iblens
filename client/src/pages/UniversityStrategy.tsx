@@ -21,6 +21,7 @@ import {
   GraduationCap, Loader2, Lock, MapPin, Calendar,
   CheckCircle2, AlertTriangle, Quote, Target
 } from "lucide-react";
+import { analytics } from "@/lib/analytics";
 
 const FIELDS_OF_STUDY = [
   "Business / Management", "Sports Management / Hospitality", "Economics",
@@ -88,6 +89,7 @@ export default function UniversityStrategy() {
     onSuccess: (data) => {
       setResult(data.result as UniResult);
       creditsQuery.refetch();
+      analytics.completeUniversityStrategy();
       toast.success("Strategy ready!");
     },
     onError: (error: { message: string }) => {
@@ -114,6 +116,7 @@ export default function UniversityStrategy() {
       toast.error("Please fill in predicted score and average grade.");
       return;
     }
+    analytics.startUniversityStrategy();
     analyzeMutation.mutate({
       predictedScore: Number(predictedScore),
       averageGrade: Number(averageGrade),

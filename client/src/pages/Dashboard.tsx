@@ -12,6 +12,7 @@ import {
   Clock, ArrowRight, Gift, Package, ShoppingCart, Wallet, CreditCard
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import { analytics } from "@/lib/analytics";
 
 type ProductKey = "ESSAY_SINGLE" | "ESSAY_PACK_5" | "ESSAY_PACK_10" | "UNIVERSITY_SINGLE";
 
@@ -73,6 +74,7 @@ export default function Dashboard() {
     setBuyingProduct(productKey);
     setCurrentProductName(PRODUCT_LABELS[productKey]);
     setCurrentPrice(PRODUCT_PRICES[productKey]);
+    analytics.clickCheckout(PRODUCT_LABELS[productKey], parseFloat(PRODUCT_PRICES[productKey].replace('$', '')));
     checkout.mutate({ origin: window.location.origin, productKey });
   };
 

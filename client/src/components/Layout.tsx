@@ -154,9 +154,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <main className="flex-1">{children}</main>
 
-      <footer className="border-t border-border py-8 mt-auto">
+      <footer className="border-t border-border py-6 mt-auto">
         <div className="container text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} IBLens. AI-powered IB performance analysis.</p>
+          <p>&copy; {new Date().getFullYear()} IBLens. AI-powered IB essay analysis and university strategy.</p>
         </div>
       </footer>
     </div>
