@@ -1,0 +1,1 @@
+ALTER TABLE `payments` MODIFY COLUMN `provider` enum('nowpayments') NOT NULL;

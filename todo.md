@@ -36,3 +36,6 @@
 - [x] Update Home.tsx pricing section: clean single-provider flow
 - [x] Update tests: removed Stripe/LS mocks, 16 tests passing
 - [x] Clean up unused stripe/lemonsqueezy directories
+- [x] Find and remove ALL remaining Stripe references from entire codebase
+- [x] Remove Stripe-related env vars and package dependencies
+- [x] Verify no Stripe traces remain (confirmed: 0 matches in server/, client/, package.json, schema.ts)

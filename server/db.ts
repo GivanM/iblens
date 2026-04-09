@@ -256,7 +256,7 @@ export async function completePayment(paymentId: number, providerPaymentId: stri
   return payment;
 }
 
-export async function completePaymentByProviderId(providerPaymentId: string, provider: "stripe" | "lemonsqueezy" | "nowpayments") {
+export async function completePaymentByProviderId(providerPaymentId: string, provider: "nowpayments") {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
 
@@ -311,7 +311,7 @@ export async function getPaymentById(id: number) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-export async function getPendingPaymentByProviderIdAndProvider(providerPaymentId: string, provider: "stripe" | "lemonsqueezy" | "nowpayments") {
+export async function getPendingPaymentByProviderIdAndProvider(providerPaymentId: string, provider: "nowpayments") {
   const db = await getDb();
   if (!db) return undefined;
 
