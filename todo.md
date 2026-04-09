@@ -42,3 +42,4 @@
 - [x] Change Buy button to open payment in same page (no new tab/window) — PaymentModal with iframe
 - [x] Support card and Apple Pay payments via NOWPayments (user pays fiat, owner receives crypto)
 - [x] Embed NOWPayments widget/iframe inline on the page — PaymentModal component created
+- [x] BUG: Payment modal stuck on "loading" — fixed: replaced iframe with redirect-in-same-window approach + confirmation modal

@@ -22,12 +22,20 @@ const PRODUCT_LABELS: Record<ProductKey, string> = {
   UNIVERSITY_SINGLE: "University Strategy",
 };
 
+const PRODUCT_PRICES: Record<ProductKey, string> = {
+  ESSAY_SINGLE: "$4.99",
+  ESSAY_PACK_5: "$19.99",
+  ESSAY_PACK_10: "$34.99",
+  UNIVERSITY_SINGLE: "$9.99",
+};
+
 export default function Dashboard() {
   const { user, isAuthenticated, loading: authLoading } = useAuth();
   const [buyingProduct, setBuyingProduct] = useState<string | null>(null);
   const [paymentModalOpen, setPaymentModalOpen] = useState(false);
   const [invoiceUrl, setInvoiceUrl] = useState<string | null>(null);
   const [currentProductName, setCurrentProductName] = useState("");
+  const [currentPrice, setCurrentPrice] = useState("");
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -64,6 +72,7 @@ export default function Dashboard() {
   const handleBuy = (productKey: ProductKey) => {
     setBuyingProduct(productKey);
     setCurrentProductName(PRODUCT_LABELS[productKey]);
+    setCurrentPrice(PRODUCT_PRICES[productKey]);
     checkout.mutate({ origin: window.location.origin, productKey });
   };
 
@@ -116,6 +125,7 @@ export default function Dashboard() {
         onOpenChange={handleModalClose}
         invoiceUrl={invoiceUrl}
         productName={currentProductName}
+        price={currentPrice}
         onPaymentComplete={handlePaymentComplete}
       />
 
