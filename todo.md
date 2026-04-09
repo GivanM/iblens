@@ -78,5 +78,6 @@
 - [x] Analytics: Umami analytics already integrated; added conversion event tracking utility
 - [x] Analytics: Add conversion event tracking (essay analysis, university strategy, checkout, sign-in)
 - [x] Landing page: Add SEO-rich footer with subject links and resource links
+- [x] Add Google Ads gtag.js conversion tracking (AW-18076829862) to index.html
 - [ ] Monetization: Add referral/share mechanism (share results, invite friends) — future
 - [ ] Monetization: Add email capture for retargeting — future
