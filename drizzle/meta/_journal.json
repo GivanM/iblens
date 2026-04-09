@@ -43,6 +43,13 @@
       "when": 1775742509986,
       "tag": "0005_cheerful_radioactive_man",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1775745352693,
+      "tag": "0006_massive_sandman",
+      "breakpoints": true
     }
   ]
 }

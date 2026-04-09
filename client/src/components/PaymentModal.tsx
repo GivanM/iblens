@@ -6,7 +6,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Loader2, CreditCard, Bitcoin, ShieldCheck } from "lucide-react";
+import { Loader2, Bitcoin, ShieldCheck, Coins } from "lucide-react";
 
 interface PaymentModalProps {
   open: boolean;
@@ -57,23 +57,27 @@ export function PaymentModal({
 
           {/* Payment methods info */}
           <div className="bg-muted/40 rounded-lg p-4 mb-6">
-            <p className="text-xs font-medium text-muted-foreground mb-3 text-center">Accepted payment methods</p>
+            <p className="text-xs font-medium text-muted-foreground mb-3 text-center">Pay with cryptocurrency</p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
               <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                <CreditCard className="w-4 h-4" />
-                <span>Visa / MC</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-                <span>Apple Pay</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.97 14.95c-.18.06-.37.05-.55-.04l-2.72-1.36c-.24-.12-.39-.36-.39-.63V9.08c0-.27.15-.51.39-.63l2.72-1.36c.18-.09.37-.1.55-.04.18.06.33.19.42.36l2.72 5.44c.09.18.1.37.04.55-.06.18-.19.33-.36.42l-2.72 1.36c-.03.01-.07.03-.1.04zm5.22-1.36l-2.72 1.36c-.18.09-.37.1-.55.04-.18-.06-.33-.19-.42-.36l-2.72-5.44c-.09-.18-.1-.37-.04-.55.06-.18.19-.33.36-.42l2.72-1.36c.18-.09.37-.1.55-.04.18.06.33.19.42.36l2.72 5.44c.09.18.1.37.04.55-.06.18-.19.33-.36.42z"/></svg>
-                <span>Google Pay</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <Bitcoin className="w-4 h-4" />
-                <span>70+ Crypto</span>
+                <span>BTC</span>
+              </div>
+              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                <Coins className="w-4 h-4" />
+                <span>ETH</span>
+              </div>
+              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                <Coins className="w-4 h-4" />
+                <span>USDT</span>
+              </div>
+              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                <Coins className="w-4 h-4" />
+                <span>LTC</span>
+              </div>
+              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                <Coins className="w-4 h-4" />
+                <span>20+ more</span>
               </div>
             </div>
           </div>
@@ -99,7 +103,7 @@ export function PaymentModal({
 
           {/* Security note */}
           <p className="text-[10px] text-muted-foreground text-center mt-4">
-            Secure payment powered by CoinGate. You will be redirected to a secure payment page and returned here after completion.
+            Secure crypto payment via Plisio. You will be redirected to a secure payment page and returned here after completion.
           </p>
         </div>
       </DialogContent>

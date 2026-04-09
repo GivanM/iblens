@@ -52,4 +52,15 @@
 - [x] Update frontend PaymentModal for CoinGate flow
 - [x] Update tests for CoinGate (16 tests passing)
 - [x] Update DB schema: provider enum changed from 'nowpayments' to 'coingate', added callbackToken column
-- [ ] Request CoinGate API key from user (pending: user needs to register at coingate.com)
+- [x] CoinGate requires business verification — switched to Plisio
+- [x] Research crypto payment options without business registration — chose Plisio (no KYC, 0.5% fee)
+- [x] Replace CoinGate with Plisio (user chose Plisio — no KYC, 0.5% fee)
+- [x] Create Plisio backend module (create invoice, webhook handler with HMAC-SHA1 verification)
+- [x] Update server/_core/index.ts to register Plisio webhook
+- [x] Update routers.ts to use Plisio instead of CoinGate
+- [x] Update DB schema provider enum from 'coingate' to 'plisio', dropped callbackToken column
+- [x] Update frontend PaymentModal branding for Plisio (crypto-only: BTC, ETH, USDT, LTC, 20+ more)
+- [x] Update Dashboard.tsx payment description for Plisio
+- [x] Update tests for Plisio (16 tests passing)
+- [x] Applied DB migration: provider enum changed, old pending coingate records cleaned up
+- [ ] Request Plisio SECRET_KEY from user (register at plisio.net)

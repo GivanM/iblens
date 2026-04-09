@@ -16,7 +16,7 @@ import {
   getUserPayments,
 } from "./db";
 import { PRODUCTS } from "./products";
-import { createCoinGateOrder } from "./coingate/coingate";
+import { createPlisioInvoice } from "./plisio/plisio";
 
 const IB_SUBJECTS = [
   "Business Management", "Economics", "History", "Biology", "Chemistry",
@@ -242,12 +242,12 @@ const pricingRouter = router({
   }),
 });
 
-// ---- Payment Router (CoinGate) ----
+// ---- Payment Router (Plisio) ----
 const paymentRouter = router({
   checkout: protectedProcedure
     .input(z.object({ origin: z.string(), productKey: productKeySchema }))
     .mutation(async ({ ctx, input }) => {
-      const result = await createCoinGateOrder({
+      const result = await createPlisioInvoice({
         userId: ctx.user.id,
         userEmail: ctx.user.email,
         origin: input.origin,
