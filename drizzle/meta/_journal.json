@@ -36,6 +36,13 @@
       "when": 1775740170802,
       "tag": "0004_lethal_microbe",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1775742509986,
+      "tag": "0005_cheerful_radioactive_man",
+      "breakpoints": true
     }
   ]
 }

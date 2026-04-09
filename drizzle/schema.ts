@@ -43,8 +43,9 @@ export const payments = mysqlTable("payments", {
   // Payment details
   amount: int("amount").notNull(), // in cents (e.g. 499 = $4.99)
   currency: varchar("currency", { length: 10 }).default("usd").notNull(),
-  provider: mysqlEnum("provider", ["nowpayments"]).notNull(),
+  provider: mysqlEnum("provider", ["coingate"]).notNull(),
   providerPaymentId: varchar("providerPaymentId", { length: 255 }),
+  callbackToken: varchar("callbackToken", { length: 255 }),
   status: mysqlEnum("status", ["pending", "completed", "failed", "expired"]).default("pending").notNull(),
   // Metadata
   createdAt: timestamp("createdAt").defaultNow().notNull(),

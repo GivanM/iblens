@@ -16,7 +16,7 @@ import {
   getUserPayments,
 } from "./db";
 import { PRODUCTS } from "./products";
-import { createNPInvoice } from "./nowpayments/nowpayments";
+import { createCoinGateOrder } from "./coingate/coingate";
 
 const IB_SUBJECTS = [
   "Business Management", "Economics", "History", "Biology", "Chemistry",
@@ -242,18 +242,18 @@ const pricingRouter = router({
   }),
 });
 
-// ---- Payment Router (NOWPayments only) ----
+// ---- Payment Router (CoinGate) ----
 const paymentRouter = router({
   checkout: protectedProcedure
     .input(z.object({ origin: z.string(), productKey: productKeySchema }))
     .mutation(async ({ ctx, input }) => {
-      const result = await createNPInvoice({
+      const result = await createCoinGateOrder({
         userId: ctx.user.id,
         userEmail: ctx.user.email,
         origin: input.origin,
         productKey: input.productKey,
       });
-      return { url: result.invoiceUrl };
+      return { url: result.paymentUrl };
     }),
 });
 

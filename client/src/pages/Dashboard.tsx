@@ -180,7 +180,7 @@ export default function Dashboard() {
             <ShoppingCart className="w-5 h-5" />
             Purchase Credits
           </CardTitle>
-          <p className="text-xs text-muted-foreground">Pay with Visa, Mastercard, Apple Pay, Google Pay, or 350+ cryptocurrencies.</p>
+          <p className="text-xs text-muted-foreground">Pay with Visa, Mastercard, Apple Pay, Google Pay, or 70+ cryptocurrencies.</p>
         </CardHeader>
         <CardContent>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">

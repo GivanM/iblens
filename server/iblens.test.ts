@@ -47,7 +47,7 @@ vi.mock("./db", () => ({
     {
       id: 1,
       userId: 1,
-      provider: "nowpayments",
+      provider: "coingate",
       productType: "essay_single",
       amount: 499,
       status: "completed",
@@ -83,12 +83,14 @@ vi.mock("./_core/llm", () => ({
   }),
 }));
 
-// Mock NOWPayments (the only payment provider)
-vi.mock("./nowpayments/nowpayments", () => ({
-  createNPInvoice: vi.fn().mockResolvedValue({
-    invoiceUrl: "https://nowpayments.io/payment/test-invoice",
+// Mock CoinGate (the only payment provider)
+vi.mock("./coingate/coingate", () => ({
+  createCoinGateOrder: vi.fn().mockResolvedValue({
+    paymentUrl: "https://coingate.com/pay/test-order-123",
+    orderId: 12345,
+    paymentId: 1,
   }),
-  registerNowPaymentsWebhook: vi.fn(),
+  registerCoinGateWebhook: vi.fn(),
 }));
 
 type AuthenticatedUser = NonNullable<TrpcContext["user"]>;
@@ -246,13 +248,13 @@ describe("dashboard.payments", () => {
     const caller = appRouter.createCaller(ctx);
     const result = await caller.dashboard.payments();
     expect(result).toHaveLength(1);
-    expect(result[0].provider).toBe("nowpayments");
+    expect(result[0].provider).toBe("coingate");
     expect(result[0].amount).toBe(499);
     expect(result[0].status).toBe("completed");
   });
 });
 
-// ---- Payment Tests (NOWPayments only) ----
+// ---- Payment Tests (CoinGate) ----
 describe("payment.checkout", () => {
   it("returns payment URL for essay single", async () => {
     const { ctx } = createAuthContext();
@@ -262,7 +264,7 @@ describe("payment.checkout", () => {
       productKey: "ESSAY_SINGLE",
     });
     expect(result).toBeDefined();
-    expect(result.url).toBe("https://nowpayments.io/payment/test-invoice");
+    expect(result.url).toBe("https://coingate.com/pay/test-order-123");
   });
 
   it("returns payment URL for essay pack", async () => {
@@ -273,7 +275,7 @@ describe("payment.checkout", () => {
       productKey: "ESSAY_PACK_10",
     });
     expect(result).toBeDefined();
-    expect(result.url).toBe("https://nowpayments.io/payment/test-invoice");
+    expect(result.url).toBe("https://coingate.com/pay/test-order-123");
   });
 
   it("returns payment URL for university strategy", async () => {
@@ -284,7 +286,7 @@ describe("payment.checkout", () => {
       productKey: "UNIVERSITY_SINGLE",
     });
     expect(result).toBeDefined();
-    expect(result.url).toBe("https://nowpayments.io/payment/test-invoice");
+    expect(result.url).toBe("https://coingate.com/pay/test-order-123");
   });
 
   it("rejects when user is not authenticated", async () => {

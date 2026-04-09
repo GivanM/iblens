@@ -43,3 +43,13 @@
 - [x] Support card and Apple Pay payments via NOWPayments (user pays fiat, owner receives crypto)
 - [x] Embed NOWPayments widget/iframe inline on the page — PaymentModal component created
 - [x] BUG: Payment modal stuck on "loading" — fixed: replaced iframe with redirect-in-same-window approach + confirmation modal
+- [x] BUG: NOWPayments min payment too high for $4.99, no card option available — resolved by switching to CoinGate
+- [x] Replace NOWPayments with CoinGate (supports card + crypto, min $0.50)
+- [x] Research CoinGate API (checkout, webhooks, card+crypto)
+- [x] Create CoinGate backend module (create order, webhook handler)
+- [x] Remove NOWPayments backend module and webhook registration
+- [x] Update routers.ts to use CoinGate instead of NOWPayments
+- [x] Update frontend PaymentModal for CoinGate flow
+- [x] Update tests for CoinGate (16 tests passing)
+- [x] Update DB schema: provider enum changed from 'nowpayments' to 'coingate', added callbackToken column
+- [ ] Request CoinGate API key from user (pending: user needs to register at coingate.com)

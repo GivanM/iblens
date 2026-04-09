@@ -73,7 +73,7 @@ export function PaymentModal({
               </div>
               <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <Bitcoin className="w-4 h-4" />
-                <span>350+ Crypto</span>
+                <span>70+ Crypto</span>
               </div>
             </div>
           </div>
@@ -99,7 +99,7 @@ export function PaymentModal({
 
           {/* Security note */}
           <p className="text-[10px] text-muted-foreground text-center mt-4">
-            Secure payment powered by NOWPayments. You will be redirected to a secure payment page and returned here after completion.
+            Secure payment powered by CoinGate. You will be redirected to a secure payment page and returned here after completion.
           </p>
         </div>
       </DialogContent>
