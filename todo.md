@@ -103,4 +103,8 @@
 - [x] TRIBUTE_API_KEY set and validated (29 tests passing)
 - [ ] Set webhook URL in Tribute dashboard: https://iblens.com/api/tribute/webhook
 - [ ] Publish site so Tribute webhook is reachable
-- [ ] Create OG image (og-image.png referenced in meta tags but not yet uploaded)
+- [x] Create OG image (og-image.png uploaded to CDN, meta tags updated)
+- [x] Create OG preview image (1200x630) for link sharing in Telegram/social media
+- [x] Create Instagram/TikTok avatar (square, branded)
+- [x] Upload OG image to CDN and update meta tags in index.html
+- [x] Create Instagram content plan for immediate promotion
