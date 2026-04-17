@@ -108,3 +108,5 @@
 - [x] Create Instagram/TikTok avatar (square, branded)
 - [x] Upload OG image to CDN and update meta tags in index.html
 - [x] Create Instagram content plan for immediate promotion
+- [x] Fix SEO: reduce keywords from 11 to 6 focused keywords
+- [x] Fix SEO: shorten meta description from 219 to 142 characters
