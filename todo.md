@@ -92,4 +92,15 @@
 - [x] Update tests for Tribute (21 tests passing)
 - [x] Applied DB migration: provider enum to tribute, added telegramUsername column
 - [x] Remove old Plisio module
-- [ ] Request TRIBUTE_API_KEY and product link env vars from user
+- [x] Tribute product link env vars set (TRIBUTE_LINK_ESSAY_SINGLE/PACK_5/PACK_10/UNIVERSITY_SINGLE)
+- [x] Update prices: 1 essay $5, 5 essays $20, 10 essays $35, university strategy $15
+- [x] Set Tribute product links via env vars
+- [x] Update frontend pricing display to match new prices
+- [x] Update JSON-LD structured data prices to match new pricing
+- [x] Add tribute.links.test.ts (5 tests validating all product link env vars)
+- [x] Update iblens.test.ts pricing assertions to $5/$20/$35/$15
+- [x] All 26 tests passing (3 test files)
+- [ ] TRIBUTE_API_KEY not yet provided — user needs to get from @tribute bot settings
+- [ ] Set webhook URL in Tribute dashboard: https://iblens.com/api/tribute/webhook
+- [ ] Publish site so Tribute webhook is reachable
+- [ ] Create OG image (og-image.png referenced in meta tags but not yet uploaded)

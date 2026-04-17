@@ -71,7 +71,7 @@ export default function EssayAnalyzer() {
       const r = data.result as EssayResult;
       analytics.completeEssayAnalysis(subject, `${r.predicted_score}/${r.max_score}`);
       if (data.wasFree) {
-        toast.success("Free analysis complete! Future analyses cost $4.99.");
+        toast.success("Free analysis complete! Future analyses cost $5.");
       } else {
         toast.success("Analysis complete!");
       }
@@ -227,7 +227,7 @@ export default function EssayAnalyzer() {
             ) : (
               <>
                 <FileText className="w-4 h-4 mr-2" />
-                Analyze ($4.99)
+                Analyze ($5)
               </>
             )}
           </Button>

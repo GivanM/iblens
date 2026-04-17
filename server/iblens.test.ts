@@ -346,9 +346,9 @@ describe("pricing.products", () => {
     const caller = appRouter.createCaller(ctx);
     const result = await caller.pricing.products();
     expect(result).toBeDefined();
-    expect(result.ESSAY_SINGLE.price).toBe(4.99);
-    expect(result.ESSAY_PACK_5.price).toBe(19.99);
-    expect(result.ESSAY_PACK_10.price).toBe(34.99);
-    expect(result.UNIVERSITY_SINGLE.price).toBe(9.99);
+    expect(result.ESSAY_SINGLE.price).toBe(5);
+    expect(result.ESSAY_PACK_5.price).toBe(20);
+    expect(result.ESSAY_PACK_10.price).toBe(35);
+    expect(result.UNIVERSITY_SINGLE.price).toBe(15);
   });
 });

@@ -247,7 +247,7 @@ export default function UniversityStrategy() {
             }`}>
               {credits.universityCredits > 0
                 ? `You have ${credits.universityCredits} university strategy credit${credits.universityCredits > 1 ? "s" : ""}.`
-                : <span>No credits remaining. <Link href="/dashboard" className="underline font-medium">Purchase credits ($9.99)</Link> to continue.</span>
+                : <span>No credits remaining. <Link href="/dashboard" className="underline font-medium">Purchase credits ($15)</Link> to continue.</span>
               }
             </div>
           )}
@@ -265,7 +265,7 @@ export default function UniversityStrategy() {
             ) : !isAuthenticated ? (
               <>
                 <Lock className="w-4 h-4 mr-2" />
-                Sign in to Build Strategy ($9.99)
+                Sign in to Build Strategy ($15)
               </>
             ) : !credits?.canAnalyzeUniversity ? (
               <>
@@ -275,7 +275,7 @@ export default function UniversityStrategy() {
             ) : (
               <>
                 <GraduationCap className="w-4 h-4 mr-2" />
-                Build My University Strategy ($9.99)
+                Build My University Strategy ($15)
               </>
             )}
           </Button>

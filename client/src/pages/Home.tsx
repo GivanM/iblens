@@ -207,7 +207,7 @@ export default function Home() {
                 </ul>
                 <div className="mt-5 flex items-center gap-3">
                   <span className="text-sm font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">First analysis free</span>
-                  <span className="text-xs text-muted-foreground">then $4.99/analysis</span>
+                  <span className="text-xs text-muted-foreground">then $5/analysis</span>
                 </div>
                 <Button variant="ghost" className="mt-3 group-hover:text-primary" asChild>
                   <Link href="/essay">
@@ -235,7 +235,7 @@ export default function Home() {
                   ))}
                 </ul>
                 <div className="mt-5">
-                  <span className="text-sm font-medium text-primary">$9.99/strategy</span>
+                  <span className="text-sm font-medium text-primary">$15/strategy</span>
                 </div>
                 <Button variant="ghost" className="mt-3 group-hover:text-primary" asChild>
                   <Link href="/university">
@@ -353,7 +353,7 @@ export default function Home() {
               <CardContent className="p-6 text-center">
                 <FileText className="w-8 h-8 text-primary mx-auto mb-3" />
                 <h3 className="font-semibold mb-1">Essay Analysis</h3>
-                <div className="text-3xl font-bold mb-2">$4.99</div>
+                <div className="text-3xl font-bold mb-2">$5</div>
                 <p className="text-xs text-muted-foreground mb-4">Per analysis</p>
                 <Button variant="outline" size="sm" className="w-full" asChild>
                   <Link href="/essay">Analyze Essay</Link>
@@ -364,13 +364,13 @@ export default function Home() {
             {/* Essay Pack */}
             <Card className="border-2 border-primary relative">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">
-                Save 30%
+                Best Value
               </div>
               <CardContent className="p-6 text-center">
                 <BarChart3 className="w-8 h-8 text-primary mx-auto mb-3" />
                 <h3 className="font-semibold mb-1">Essay Pack (10)</h3>
-                <div className="text-3xl font-bold mb-1">$34.99</div>
-                <p className="text-xs text-muted-foreground mb-4">$3.49 per analysis</p>
+                <div className="text-3xl font-bold mb-1">$35</div>
+                <p className="text-xs text-muted-foreground mb-4">$3.50 per analysis</p>
                 <Button size="sm" className="w-full" asChild>
                   {isAuthenticated ? (
                     <Link href="/dashboard">Buy Pack</Link>
@@ -386,7 +386,7 @@ export default function Home() {
               <CardContent className="p-6 text-center">
                 <GraduationCap className="w-8 h-8 text-primary mx-auto mb-3" />
                 <h3 className="font-semibold mb-1">University Strategy</h3>
-                <div className="text-3xl font-bold mb-2">$9.99</div>
+                <div className="text-3xl font-bold mb-2">$15</div>
                 <p className="text-xs text-muted-foreground mb-4">Per strategy</p>
                 <Button variant="outline" size="sm" className="w-full" asChild>
                   <Link href="/university">Get Strategy</Link>
@@ -398,12 +398,12 @@ export default function Home() {
           {/* Payment methods */}
           <div className="flex items-center justify-center gap-6 mt-10 text-sm text-muted-foreground">
             <div className="flex items-center gap-1.5">
-              <Bitcoin className="w-4 h-4" />
-              <span>Crypto (BTC, ETH, USDT)</span>
+              <Shield className="w-4 h-4" />
+              <span>Card, Crypto & Telegram Stars</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Shield className="w-4 h-4" />
-              <span>Secure payments via Plisio</span>
+              <Bitcoin className="w-4 h-4" />
+              <span>Secure payments via Tribute</span>
             </div>
           </div>
         </div>
@@ -439,7 +439,7 @@ export default function Home() {
             />
             <FAQItem
               question="What payment methods do you accept?"
-              answer="We accept cryptocurrency payments (BTC, ETH, USDT, LTC, and 20+ other coins) through Plisio. The payment process is fast and secure."
+              answer="We accept card payments, cryptocurrency (BTC, ETH, USDT, and more), and Telegram Stars through Tribute. The payment process is fast and secure — choose whichever method works best for you."
             />
             <FAQItem
               question="Can I use IBLens for multiple subjects?"

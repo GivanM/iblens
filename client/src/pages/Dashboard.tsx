@@ -25,10 +25,10 @@ const PRODUCT_LABELS: Record<ProductKey, string> = {
 };
 
 const PRODUCT_PRICES: Record<ProductKey, string> = {
-  ESSAY_SINGLE: "$4.99",
-  ESSAY_PACK_5: "$19.99",
-  ESSAY_PACK_10: "$34.99",
-  UNIVERSITY_SINGLE: "$9.99",
+  ESSAY_SINGLE: "$5",
+  ESSAY_PACK_5: "$20",
+  ESSAY_PACK_10: "$35",
+  UNIVERSITY_SINGLE: "$15",
 };
 
 export default function Dashboard() {
@@ -273,7 +273,7 @@ export default function Dashboard() {
             <div className="border rounded-lg p-4 text-center">
               <FileText className="w-6 h-6 text-primary mx-auto mb-2" />
               <h4 className="font-semibold text-sm">1 Essay Analysis</h4>
-              <div className="text-xl font-bold my-2">$4.99</div>
+              <div className="text-xl font-bold my-2">$5</div>
               <Button
                 size="sm"
                 variant="outline"
@@ -290,8 +290,8 @@ export default function Dashboard() {
             <div className="border rounded-lg p-4 text-center">
               <Package className="w-6 h-6 text-primary mx-auto mb-2" />
               <h4 className="font-semibold text-sm">5 Essay Analyses</h4>
-              <div className="text-xl font-bold my-1">$19.99</div>
-              <p className="text-xs text-muted-foreground mb-2">$3.99 each — save 20%</p>
+              <div className="text-xl font-bold my-1">$20</div>
+              <p className="text-xs text-muted-foreground mb-2">$4 each</p>
               <Button
                 size="sm"
                 variant="outline"
@@ -311,8 +311,8 @@ export default function Dashboard() {
               </div>
               <Package className="w-6 h-6 text-primary mx-auto mb-2" />
               <h4 className="font-semibold text-sm">10 Essay Analyses</h4>
-              <div className="text-xl font-bold my-1">$34.99</div>
-              <p className="text-xs text-muted-foreground mb-2">$3.49 each — save 30%</p>
+              <div className="text-xl font-bold my-1">$35</div>
+              <p className="text-xs text-muted-foreground mb-2">$3.50 each — best value</p>
               <Button
                 size="sm"
                 className="w-full"
@@ -328,7 +328,7 @@ export default function Dashboard() {
             <div className="border rounded-lg p-4 text-center">
               <GraduationCap className="w-6 h-6 text-primary mx-auto mb-2" />
               <h4 className="font-semibold text-sm">University Strategy</h4>
-              <div className="text-xl font-bold my-1">$9.99</div>
+              <div className="text-xl font-bold my-1">$15</div>
               <p className="text-xs text-muted-foreground mb-2">Personalized plan</p>
               <Button
                 size="sm"
