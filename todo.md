@@ -100,7 +100,7 @@
 - [x] Add tribute.links.test.ts (5 tests validating all product link env vars)
 - [x] Update iblens.test.ts pricing assertions to $5/$20/$35/$15
 - [x] All 26 tests passing (3 test files)
-- [ ] TRIBUTE_API_KEY not yet provided — user needs to get from @tribute bot settings
+- [x] TRIBUTE_API_KEY set and validated (29 tests passing)
 - [ ] Set webhook URL in Tribute dashboard: https://iblens.com/api/tribute/webhook
 - [ ] Publish site so Tribute webhook is reachable
 - [ ] Create OG image (og-image.png referenced in meta tags but not yet uploaded)
