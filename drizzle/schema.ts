@@ -13,6 +13,7 @@ export const users = mysqlTable("users", {
   universityCredits: int("universityCredits").default(0).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  telegramUsername: varchar("telegramUsername", { length: 100 }),
   lastSignedIn: timestamp("lastSignedIn").defaultNow().notNull(),
 });
 
@@ -43,7 +44,7 @@ export const payments = mysqlTable("payments", {
   // Payment details
   amount: int("amount").notNull(), // in cents (e.g. 499 = $4.99)
   currency: varchar("currency", { length: 10 }).default("usd").notNull(),
-  provider: mysqlEnum("provider", ["plisio"]).notNull(),
+  provider: mysqlEnum("provider", ["tribute"]).notNull(),
   providerPaymentId: varchar("providerPaymentId", { length: 255 }),
   status: mysqlEnum("status", ["pending", "completed", "failed", "expired"]).default("pending").notNull(),
   // Metadata

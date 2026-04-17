@@ -63,7 +63,7 @@
 - [x] Update Dashboard.tsx payment description for Plisio
 - [x] Update tests for Plisio (16 tests passing)
 - [x] Applied DB migration: provider enum changed, old pending coingate records cleaned up
-- [ ] Request Plisio SECRET_KEY from user (register at plisio.net)
+- [x] Plisio replaced by Tribute (user chose Tribute for cards + crypto + Telegram Stars)
 - [x] SEO: Add comprehensive meta tags (title, description, keywords) to index.html
 - [x] SEO: Add Open Graph and Twitter Card meta tags for social sharing
 - [x] SEO: Add JSON-LD structured data (SoftwareApplication, FAQ, Organization)
@@ -81,3 +81,15 @@
 - [x] Add Google Ads gtag.js conversion tracking (AW-18076829862) to index.html
 - [ ] Monetization: Add referral/share mechanism (share results, invite friends) — future
 - [ ] Monetization: Add email capture for retargeting — future
+- [x] Replace Plisio with Tribute payment (cards + crypto + Telegram Stars)
+- [x] Create Tribute backend module (webhook handler with HMAC-SHA256)
+- [x] Update DB schema: provider enum from 'plisio' to 'tribute', add telegramUsername to users
+- [x] Update server/_core/index.ts to register Tribute webhook
+- [x] Update routers.ts: remove Plisio checkout, add Tribute product links + telegram username save
+- [x] Update db.ts: add Tribute provider type, telegram username helpers
+- [x] Update frontend PaymentModal for Tribute (open webLink in new tab)
+- [x] Update Dashboard.tsx: add Telegram username input, update payment branding
+- [x] Update tests for Tribute (21 tests passing)
+- [x] Applied DB migration: provider enum to tribute, added telegramUsername column
+- [x] Remove old Plisio module
+- [ ] Request TRIBUTE_API_KEY and product link env vars from user

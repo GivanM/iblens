@@ -256,7 +256,30 @@ export async function completePayment(paymentId: number, providerPaymentId: stri
   return payment;
 }
 
-export async function completePaymentByProviderId(providerPaymentId: string, provider: "plisio") {
+export async function setTelegramUsername(userId: number, telegramUsername: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const normalized = telegramUsername.toLowerCase().replace("@", "").trim();
+  await db.update(users)
+    .set({ telegramUsername: normalized })
+    .where(eq(users.id, userId));
+  return normalized;
+}
+
+export async function getTelegramUsername(userId: number): Promise<string | null> {
+  const db = await getDb();
+  if (!db) return null;
+
+  const result = await db.select({ telegramUsername: users.telegramUsername })
+    .from(users)
+    .where(eq(users.id, userId))
+    .limit(1);
+
+  return result.length > 0 ? result[0].telegramUsername : null;
+}
+
+export async function completePaymentByProviderId(providerPaymentId: string, provider: "tribute") {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
 
@@ -311,7 +334,7 @@ export async function getPaymentById(id: number) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-export async function getPendingPaymentByProviderIdAndProvider(providerPaymentId: string, provider: "plisio") {
+export async function getPendingPaymentByProviderIdAndProvider(providerPaymentId: string, provider: "tribute") {
   const db = await getDb();
   if (!db) return undefined;
 

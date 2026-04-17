@@ -50,6 +50,13 @@
       "when": 1775745352693,
       "tag": "0006_massive_sandman",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1776414973220,
+      "tag": "0007_daffy_exodus",
+      "breakpoints": true
     }
   ]
 }

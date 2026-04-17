@@ -3,13 +3,14 @@ import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { Link } from "wouter";
 import { getLoginUrl } from "@/const";
 import { PaymentModal } from "@/components/PaymentModal";
 import {
   FileText, GraduationCap, Loader2,
-  Clock, ArrowRight, Gift, Package, ShoppingCart, Wallet, CreditCard
+  Clock, ArrowRight, Gift, Package, ShoppingCart, Wallet, CreditCard, Send, Check
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { analytics } from "@/lib/analytics";
@@ -34,16 +35,17 @@ export default function Dashboard() {
   const { user, isAuthenticated, loading: authLoading } = useAuth();
   const [buyingProduct, setBuyingProduct] = useState<string | null>(null);
   const [paymentModalOpen, setPaymentModalOpen] = useState(false);
-  const [invoiceUrl, setInvoiceUrl] = useState<string | null>(null);
+  const [tributeUrl, setTributeUrl] = useState<string | null>(null);
   const [currentProductName, setCurrentProductName] = useState("");
   const [currentPrice, setCurrentPrice] = useState("");
+  const [tgInput, setTgInput] = useState("");
+  const [savingTg, setSavingTg] = useState(false);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get("payment") === "success") {
       toast.success("Payment successful! Credits have been added to your account.");
       window.history.replaceState({}, "", "/dashboard");
-      // Refetch credits
       creditsQuery.refetch();
       paymentsQuery.refetch();
     } else if (params.get("payment") === "cancelled") {
@@ -55,31 +57,48 @@ export default function Dashboard() {
   const creditsQuery = trpc.dashboard.credits.useQuery(undefined, { enabled: isAuthenticated });
   const historyQuery = trpc.dashboard.history.useQuery(undefined, { enabled: isAuthenticated });
   const paymentsQuery = trpc.dashboard.payments.useQuery(undefined, { enabled: isAuthenticated });
+  const telegramQuery = trpc.payment.getTelegram.useQuery(undefined, { enabled: isAuthenticated });
 
-  const checkout = trpc.payment.checkout.useMutation({
+  const getLink = trpc.payment.getLink.useMutation({
     onSuccess: (data: { url: string }) => {
       if (data.url) {
-        setInvoiceUrl(data.url);
+        setTributeUrl(data.url);
         setPaymentModalOpen(true);
       }
       setBuyingProduct(null);
     },
     onError: (error: { message: string }) => {
-      toast.error(error.message || "Failed to create payment session");
+      toast.error(error.message || "Failed to get payment link");
       setBuyingProduct(null);
     },
   });
 
+  const setTelegram = trpc.payment.setTelegram.useMutation({
+    onSuccess: (data) => {
+      toast.success(`Telegram username set to @${data.username}`);
+      telegramQuery.refetch();
+      setSavingTg(false);
+    },
+    onError: (error: { message: string }) => {
+      toast.error(error.message || "Failed to save Telegram username");
+      setSavingTg(false);
+    },
+  });
+
   const handleBuy = (productKey: ProductKey) => {
+    if (!telegramQuery.data?.username) {
+      toast.error("Please set your Telegram username first to link payments to your account.");
+      return;
+    }
     setBuyingProduct(productKey);
     setCurrentProductName(PRODUCT_LABELS[productKey]);
     setCurrentPrice(PRODUCT_PRICES[productKey]);
     analytics.clickCheckout(PRODUCT_LABELS[productKey], parseFloat(PRODUCT_PRICES[productKey].replace('$', '')));
-    checkout.mutate({ origin: window.location.origin, productKey });
+    getLink.mutate({ productKey });
   };
 
   const handlePaymentComplete = () => {
-    toast.success("Payment completed! Your credits have been added.");
+    toast.success("Payment processing! Credits will be added automatically within a few minutes.");
     creditsQuery.refetch();
     paymentsQuery.refetch();
   };
@@ -87,10 +106,19 @@ export default function Dashboard() {
   const handleModalClose = (open: boolean) => {
     setPaymentModalOpen(open);
     if (!open) {
-      // Refetch in case payment was completed while modal was open
       creditsQuery.refetch();
       paymentsQuery.refetch();
     }
+  };
+
+  const handleSaveTelegram = () => {
+    const username = tgInput.trim().replace("@", "");
+    if (!username) {
+      toast.error("Please enter your Telegram username");
+      return;
+    }
+    setSavingTg(true);
+    setTelegram.mutate({ username });
   };
 
   if (authLoading) {
@@ -118,6 +146,7 @@ export default function Dashboard() {
   const credits = creditsQuery.data;
   const history = historyQuery.data || [];
   const paymentsList = paymentsQuery.data || [];
+  const telegramUsername = telegramQuery.data?.username || null;
 
   return (
     <div className="container py-8 max-w-5xl">
@@ -125,9 +154,10 @@ export default function Dashboard() {
       <PaymentModal
         open={paymentModalOpen}
         onOpenChange={handleModalClose}
-        invoiceUrl={invoiceUrl}
+        tributeUrl={tributeUrl}
         productName={currentProductName}
         price={currentPrice}
+        telegramUsername={telegramUsername}
         onPaymentComplete={handlePaymentComplete}
       />
 
@@ -135,6 +165,59 @@ export default function Dashboard() {
         <h1 className="text-2xl font-bold mb-1">Dashboard</h1>
         <p className="text-muted-foreground text-sm">Welcome back{user?.name ? `, ${user.name}` : ""}.</p>
       </div>
+
+      {/* Telegram Username Card */}
+      <Card className="mb-6">
+        <CardContent className="p-5">
+          <div className="flex items-start gap-3">
+            <Send className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+            <div className="flex-1">
+              <h3 className="text-sm font-semibold mb-1">Telegram Username</h3>
+              <p className="text-xs text-muted-foreground mb-3">
+                Required to link your payments. Use the same username as your Telegram account.
+              </p>
+              {telegramUsername ? (
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/30 rounded-md">
+                    <Check className="w-3.5 h-3.5 text-emerald-500" />
+                    <span className="text-sm font-medium text-emerald-600 dark:text-emerald-400">@{telegramUsername}</span>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-xs"
+                    onClick={() => {
+                      setTgInput(telegramUsername);
+                      // Clear the saved username display to show input
+                      telegramQuery.refetch();
+                    }}
+                  >
+                    Change
+                  </Button>
+                </div>
+              ) : (
+                <div className="flex gap-2">
+                  <Input
+                    placeholder="@your_telegram_username"
+                    value={tgInput}
+                    onChange={(e) => setTgInput(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && handleSaveTelegram()}
+                    className="max-w-xs h-9 text-sm"
+                  />
+                  <Button
+                    size="sm"
+                    onClick={handleSaveTelegram}
+                    disabled={savingTg || !tgInput.trim()}
+                    className="h-9"
+                  >
+                    {savingTg ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : "Save"}
+                  </Button>
+                </div>
+              )}
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Credits Overview */}
       <div className="grid sm:grid-cols-3 gap-4 mb-8">
@@ -182,7 +265,7 @@ export default function Dashboard() {
             <ShoppingCart className="w-5 h-5" />
             Purchase Credits
           </CardTitle>
-          <p className="text-xs text-muted-foreground">Pay with BTC, ETH, USDT, LTC and 20+ other cryptocurrencies via Plisio.</p>
+          <p className="text-xs text-muted-foreground">Pay with card, crypto, or Telegram Stars via Tribute.</p>
         </CardHeader>
         <CardContent>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">

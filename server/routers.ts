@@ -14,9 +14,11 @@ import {
   consumeUniversityCredit,
   getUserCredits,
   getUserPayments,
+  setTelegramUsername,
+  getTelegramUsername,
 } from "./db";
 import { PRODUCTS } from "./products";
-import { createPlisioInvoice } from "./plisio/plisio";
+import { getTributeProductLink } from "./tribute/tribute";
 
 const IB_SUBJECTS = [
   "Business Management", "Economics", "History", "Biology", "Chemistry",
@@ -242,18 +244,29 @@ const pricingRouter = router({
   }),
 });
 
-// ---- Payment Router (Plisio) ----
+// ---- Payment Router (Tribute) ----
 const paymentRouter = router({
-  checkout: protectedProcedure
-    .input(z.object({ origin: z.string(), productKey: productKeySchema }))
+  // Get Tribute product link for a given product
+  getLink: protectedProcedure
+    .input(z.object({ productKey: productKeySchema }))
     .mutation(async ({ ctx, input }) => {
-      const result = await createPlisioInvoice({
-        userId: ctx.user.id,
-        userEmail: ctx.user.email,
-        origin: input.origin,
-        productKey: input.productKey,
-      });
-      return { url: result.paymentUrl };
+      const url = getTributeProductLink(input.productKey);
+      return { url };
+    }),
+
+  // Save/update Telegram username for payment linking
+  setTelegram: protectedProcedure
+    .input(z.object({ username: z.string().min(1).max(100) }))
+    .mutation(async ({ ctx, input }) => {
+      const normalized = await setTelegramUsername(ctx.user.id, input.username);
+      return { username: normalized };
+    }),
+
+  // Get current Telegram username
+  getTelegram: protectedProcedure
+    .query(async ({ ctx }) => {
+      const username = await getTelegramUsername(ctx.user.id);
+      return { username };
     }),
 });
 

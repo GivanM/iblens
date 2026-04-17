@@ -6,36 +6,43 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Loader2, Bitcoin, ShieldCheck, Coins } from "lucide-react";
+import { Loader2, CreditCard, ShieldCheck, Star, Bitcoin, ExternalLink } from "lucide-react";
 
 interface PaymentModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  invoiceUrl: string | null;
+  tributeUrl: string | null;
   productName: string;
   price: string;
+  telegramUsername: string | null;
   onPaymentComplete?: () => void;
 }
 
 export function PaymentModal({
   open,
   onOpenChange,
-  invoiceUrl,
+  tributeUrl,
   productName,
   price,
+  telegramUsername,
   onPaymentComplete,
 }: PaymentModalProps) {
-  const [redirecting, setRedirecting] = useState(false);
+  const [opened, setOpened] = useState(false);
 
   const handlePay = () => {
-    if (!invoiceUrl) return;
-    setRedirecting(true);
-    // Redirect in the same window — user returns to /dashboard?payment=success after paying
-    window.location.href = invoiceUrl;
+    if (!tributeUrl) return;
+    window.open(tributeUrl, "_blank");
+    setOpened(true);
+  };
+
+  const handleDone = () => {
+    onPaymentComplete?.();
+    setOpened(false);
+    onOpenChange(false);
   };
 
   return (
-    <Dialog open={open} onOpenChange={(v) => { if (!redirecting) onOpenChange(v); }}>
+    <Dialog open={open} onOpenChange={(v) => { if (!v) setOpened(false); onOpenChange(v); }}>
       <DialogContent className="max-w-md w-[95vw] sm:w-full p-0 gap-0 overflow-hidden rounded-xl">
         {/* Header */}
         <div className="px-6 pt-6 pb-4 text-center border-b">
@@ -57,54 +64,83 @@ export function PaymentModal({
 
           {/* Payment methods info */}
           <div className="bg-muted/40 rounded-lg p-4 mb-6">
-            <p className="text-xs font-medium text-muted-foreground mb-3 text-center">Pay with cryptocurrency</p>
+            <p className="text-xs font-medium text-muted-foreground mb-3 text-center">Accepted payment methods</p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
               <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                <CreditCard className="w-4 h-4" />
+                <span>Card</span>
+              </div>
+              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <Bitcoin className="w-4 h-4" />
-                <span>BTC</span>
+                <span>Crypto</span>
               </div>
               <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                <Coins className="w-4 h-4" />
-                <span>ETH</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                <Coins className="w-4 h-4" />
-                <span>USDT</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                <Coins className="w-4 h-4" />
-                <span>LTC</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                <Coins className="w-4 h-4" />
-                <span>20+ more</span>
+                <Star className="w-4 h-4" />
+                <span>Telegram Stars</span>
               </div>
             </div>
           </div>
 
-          {/* Pay button */}
-          <Button
-            className="w-full h-12 text-base font-semibold"
-            onClick={handlePay}
-            disabled={!invoiceUrl || redirecting}
-          >
-            {redirecting ? (
-              <>
-                <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                Redirecting to payment...
-              </>
-            ) : (
-              <>
+          {/* Telegram username notice */}
+          {!telegramUsername && (
+            <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-3 mb-4">
+              <p className="text-xs text-amber-600 dark:text-amber-400 text-center">
+                Please set your Telegram username in the dashboard first so we can link your payment to your account.
+              </p>
+            </div>
+          )}
+
+          {telegramUsername && (
+            <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-3 mb-4">
+              <p className="text-xs text-emerald-600 dark:text-emerald-400 text-center">
+                Your Telegram: <span className="font-semibold">@{telegramUsername}</span> — credits will be added automatically after payment.
+              </p>
+            </div>
+          )}
+
+          {!opened ? (
+            <>
+              {/* Pay button */}
+              <Button
+                className="w-full h-12 text-base font-semibold"
+                onClick={handlePay}
+                disabled={!tributeUrl || !telegramUsername}
+              >
                 <ShieldCheck className="w-5 h-5 mr-2" />
                 Pay {price}
-              </>
-            )}
-          </Button>
-
-          {/* Security note */}
-          <p className="text-[10px] text-muted-foreground text-center mt-4">
-            Secure crypto payment via Plisio. You will be redirected to a secure payment page and returned here after completion.
-          </p>
+                <ExternalLink className="w-4 h-4 ml-2" />
+              </Button>
+              <p className="text-[10px] text-muted-foreground text-center mt-3">
+                You will be redirected to Tribute for secure payment. Credits are added automatically.
+              </p>
+            </>
+          ) : (
+            <>
+              {/* After opening payment page */}
+              <div className="text-center space-y-3">
+                <p className="text-sm text-muted-foreground">
+                  Payment page opened in a new tab. Complete the payment there, then click below.
+                </p>
+                <Button
+                  className="w-full h-12 text-base font-semibold"
+                  onClick={handleDone}
+                >
+                  I've Completed Payment
+                </Button>
+                <Button
+                  variant="outline"
+                  className="w-full"
+                  onClick={handlePay}
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Open Payment Page Again
+                </Button>
+              </div>
+              <p className="text-[10px] text-muted-foreground text-center mt-3">
+                Credits are added automatically within a few minutes after payment confirmation.
+              </p>
+            </>
+          )}
         </div>
       </DialogContent>
     </Dialog>
