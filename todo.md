@@ -111,3 +111,6 @@
 - [x] Fix SEO: reduce keywords from 11 to 6 focused keywords
 - [x] Fix SEO: shorten meta description from 219 to 142 characters
 - [x] Add Google site verification meta tag (4rU7fvy5d8iJvWzECcezliwRoMba2VyZ)
+- [x] Create /pricing page with 4 plans ($4.99/$19.99/$34.99/$9.99) and "Most Popular" badge on 5-pack
+- [x] Add GA4 placeholder script to index.html head
+- [x] Add "Pricing" link to main navigation between "University Strategy" and "Sign in"

@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import EssayAnalyzer from "./pages/EssayAnalyzer";
 import UniversityStrategy from "./pages/UniversityStrategy";
 import Dashboard from "./pages/Dashboard";
+import Pricing from "./pages/Pricing";
 import Layout from "./components/Layout";
 
 function Router() {
@@ -17,6 +18,7 @@ function Router() {
       <Route path="/essay" component={EssayAnalyzer} />
       <Route path="/university" component={UniversityStrategy} />
       <Route path="/dashboard" component={Dashboard} />
+      <Route path="/pricing" component={Pricing} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>

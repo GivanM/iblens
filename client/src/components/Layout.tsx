@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Link, useLocation } from "wouter";
-import { FileText, GraduationCap, LayoutDashboard, LogOut, User, Menu, X, Sparkles } from "lucide-react";
+import { FileText, GraduationCap, LayoutDashboard, LogOut, User, Menu, X, Sparkles, DollarSign } from "lucide-react";
 import { useState } from "react";
 
 function NavLink({ href, children, active }: { href: string; children: React.ReactNode; active: boolean }) {
@@ -59,6 +59,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <span className="flex items-center gap-1.5">
                   <GraduationCap className="w-3.5 h-3.5" />
                   University Strategy
+                </span>
+              </NavLink>
+              <NavLink href="/pricing" active={location === "/pricing"}>
+                <span className="flex items-center gap-1.5">
+                  <DollarSign className="w-3.5 h-3.5" />
+                  Pricing
                 </span>
               </NavLink>
               {isAuthenticated && (
@@ -135,6 +141,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             >
               <GraduationCap className="w-4 h-4" />
               University Strategy
+            </Link>
+            <Link
+              href="/pricing"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
+                location === "/pricing" ? "bg-primary/10 text-primary" : "text-muted-foreground"
+              }`}
+            >
+              <DollarSign className="w-4 h-4" />
+              Pricing
             </Link>
             {isAuthenticated && (
               <Link
