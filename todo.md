@@ -115,3 +115,9 @@
 - [x] Add GA4 placeholder script to index.html head
 - [x] Add "Pricing" link to main navigation between "University Strategy" and "Sign in"
 - [x] Update /pricing page cards: exact plan names, descriptions, and button texts per user spec
+- [x] Update orange banner text to "Only {days} days until IB 2026 exams — get your essay scored now →"
+- [x] Add social proof "Joined by 47 IB students this week" below hero buttons
+- [x] Update page title to "IBLens — Free IB Essay Analyzer | Score Your IA, EE & TOK in 60 Seconds"
+- [x] Update meta description to new copy (under 160 chars)
+- [x] GA4 gtag placeholder already exists in index.html (confirmed)
+- [x] Change CTA button from "Analyze My Essay Free" to "Score My Essay Free — Takes 60 Seconds"

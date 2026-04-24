@@ -65,7 +65,7 @@ export default function Home() {
         <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white py-2.5 text-center text-sm font-medium">
           <div className="container flex items-center justify-center gap-2">
             <Clock className="w-4 h-4" />
-            <span>{days} days until IB {examYear} exams — improve your essays now</span>
+            <span>Only {days} days until IB {examYear} exams — get your essay scored now</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </div>
         </div>
@@ -90,7 +90,7 @@ export default function Home() {
               <Button size="lg" className="text-base px-8 h-12 shadow-lg shadow-primary/25" asChild>
                 <Link href="/essay">
                   <FileText className="w-4 h-4 mr-2" />
-                  Analyze My Essay Free
+                  Score My Essay Free — Takes 60 Seconds
                 </Link>
               </Button>
               <Button size="lg" variant="outline" className="text-base px-8 h-12" asChild>
@@ -110,7 +110,7 @@ export default function Home() {
             <div className="flex items-center justify-center gap-6 mt-10 text-sm text-muted-foreground">
               <div className="flex items-center gap-1.5">
                 <Users className="w-4 h-4 text-primary" />
-                <span>Used by IB students worldwide</span>
+                <span>Joined by 47 IB students this week</span>
               </div>
               <div className="hidden sm:flex items-center gap-1.5">
                 <Star className="w-4 h-4 text-amber-500" />
