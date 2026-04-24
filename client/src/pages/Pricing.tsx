@@ -11,12 +11,11 @@ import {
 
 const plans = [
   {
-    name: "1 Essay Analysis",
+    name: "Single Analysis",
     price: "$4.99",
-    priceNote: "per analysis",
+    description: "1 essay analysis",
     icon: FileText,
     popular: false,
-    free: false,
     features: [
       "Predicted score & IB band",
       "Criterion-by-criterion breakdown",
@@ -24,16 +23,16 @@ const plans = [
       "Actionable improvement steps",
       "Supports IA, EE & TOK",
     ],
-    cta: "Analyze Essay",
+    cta: "Get Started",
     href: "/essay",
+    requiresAuth: false,
   },
   {
-    name: "5 Essay Analyses",
+    name: "5 Analyses",
     price: "$19.99",
-    priceNote: "$4.00 per analysis",
+    description: "5 essay analyses",
     icon: BarChart3,
     popular: true,
-    free: false,
     features: [
       "Everything in single analysis",
       "Save 20% vs single price",
@@ -41,17 +40,16 @@ const plans = [
       "No expiration date",
       "Perfect for exam prep",
     ],
-    cta: "Buy 5 Pack",
+    cta: "Get Started",
     href: "/dashboard",
     requiresAuth: true,
   },
   {
-    name: "10 Essay Analyses",
+    name: "10 Analyses",
     price: "$34.99",
-    priceNote: "$3.50 per analysis",
+    description: "10 essay analyses",
     icon: Sparkles,
     popular: false,
-    free: false,
     features: [
       "Everything in single analysis",
       "Save 30% vs single price",
@@ -59,17 +57,16 @@ const plans = [
       "No expiration date",
       "Best value for serious students",
     ],
-    cta: "Buy 10 Pack",
+    cta: "Get Started",
     href: "/dashboard",
     requiresAuth: true,
   },
   {
     name: "University Strategy",
     price: "$9.99",
-    priceNote: "per strategy",
+    description: "Complete university strategy report",
     icon: GraduationCap,
     popular: false,
-    free: false,
     features: [
       "9 universities: safe, match, reach",
       "Admission probability estimates",
@@ -79,6 +76,7 @@ const plans = [
     ],
     cta: "Get Strategy",
     href: "/university",
+    requiresAuth: false,
   },
 ];
 
@@ -140,7 +138,7 @@ export default function Pricing() {
                   <plan.icon className={`w-8 h-8 mx-auto mb-3 ${plan.popular ? "text-primary" : "text-muted-foreground"}`} />
                   <h3 className="font-semibold text-base mb-3">{plan.name}</h3>
                   <div className="text-4xl font-bold tracking-tight mb-1">{plan.price}</div>
-                  <p className="text-xs text-muted-foreground">{plan.priceNote}</p>
+                  <p className="text-sm text-muted-foreground">{plan.description}</p>
                 </div>
 
                 <ul className="space-y-3 text-sm flex-1 mb-6">
@@ -155,12 +153,12 @@ export default function Pricing() {
                 {plan.requiresAuth && !isAuthenticated ? (
                   <Button
                     size="sm"
-                    className={`w-full ${plan.popular ? "" : ""}`}
+                    className="w-full"
                     variant={plan.popular ? "default" : "outline"}
                     asChild
                   >
                     <a href={getLoginUrl()}>
-                      Sign in to Buy <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                      {plan.cta} <ArrowRight className="w-3.5 h-3.5 ml-1" />
                     </a>
                   </Button>
                 ) : (
