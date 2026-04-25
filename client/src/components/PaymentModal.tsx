@@ -6,7 +6,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Loader2, CreditCard, ShieldCheck, Star, Bitcoin, ExternalLink } from "lucide-react";
+import { Loader2, CreditCard, ShieldCheck, Star, Bitcoin, ExternalLink, MessageCircle } from "lucide-react";
 
 interface PaymentModalProps {
   open: boolean;
@@ -93,7 +93,7 @@ export function PaymentModal({
           {telegramUsername && (
             <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-3 mb-4">
               <p className="text-xs text-emerald-600 dark:text-emerald-400 text-center">
-                Your Telegram: <span className="font-semibold">@{telegramUsername}</span> — credits will be added automatically after payment.
+                Your Telegram: <span className="font-semibold">@{telegramUsername}</span> — we'll use this to link your payment.
               </p>
             </div>
           )}
@@ -111,7 +111,7 @@ export function PaymentModal({
                 <ExternalLink className="w-4 h-4 ml-2" />
               </Button>
               <p className="text-[10px] text-muted-foreground text-center mt-3">
-                You will be redirected to Tribute for secure payment. Credits are added automatically.
+                You will be redirected to Tribute for secure payment.
               </p>
             </>
           ) : (
@@ -119,8 +119,24 @@ export function PaymentModal({
               {/* After opening payment page */}
               <div className="text-center space-y-3">
                 <p className="text-sm text-muted-foreground">
-                  Payment page opened in a new tab. Complete the payment there, then click below.
+                  Payment page opened in a new tab. Complete the payment there.
                 </p>
+
+                {/* Manual activation message */}
+                <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4 text-left">
+                  <div className="flex items-start gap-3">
+                    <MessageCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-semibold text-blue-800 dark:text-blue-300 mb-1">
+                        After payment, activate your credits:
+                      </p>
+                      <p className="text-sm text-blue-700 dark:text-blue-400">
+                        Message <a href="https://t.me/iblens_support" target="_blank" rel="noopener noreferrer" className="font-bold underline">@iblens_support</a> on Telegram with your payment confirmation to activate your credits.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
                 <Button
                   className="w-full h-12 text-base font-semibold"
                   onClick={handleDone}
@@ -137,7 +153,7 @@ export function PaymentModal({
                 </Button>
               </div>
               <p className="text-[10px] text-muted-foreground text-center mt-3">
-                Credits are added automatically within a few minutes after payment confirmation.
+                Credits are typically activated within a few minutes after you contact us.
               </p>
             </>
           )}

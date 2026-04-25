@@ -133,3 +133,5 @@
 - [x] Show sign-in CTA only AFTER results are displayed
 - [x] Add prominent "Save Results & Get More Analyses" CTA button on essay result page
 - [x] Add "Share results" buttons (X/Twitter, WhatsApp, Copy Score) on essay result page
+- [x] Set NOWPAYMENTS_API_KEY placeholder env var
+- [x] Update Tribute payment flow: show manual activation message with @iblens_support Telegram contact after payment
