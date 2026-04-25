@@ -128,3 +128,6 @@
 - [x] Login required only for purchasing additional analysis packs
 - [x] Add sign-in CTA card after anonymous results
 - [x] Add anonymous analysis tests (11 tests, 40 total passing across 5 files)
+- [x] BUG FIX: Anonymous analysis not executing — fixed: switched from IP-based to client UUID fingerprint
+- [x] Ensure anonymous users can submit essay and see full analysis result
+- [x] Show sign-in CTA only AFTER results are displayed

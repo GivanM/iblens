@@ -65,8 +65,22 @@ export default function EssayAnalyzer() {
   const credits = creditsQuery.data;
 
   // Check if anonymous user can still analyze (only when not logged in)
-  const anonCheckQuery = trpc.essay.canAnalyzeAnonymous.useQuery(undefined, { enabled: !isAuthenticated });
-  const canAnonAnalyze = anonCheckQuery.data?.canAnalyze ?? true;
+  // Use client fingerprint for the check
+  const [anonFp] = useState(() => {
+    const key = 'iblens_anon_fp';
+    let fp = localStorage.getItem(key);
+    if (!fp) {
+      fp = crypto.randomUUID();
+      localStorage.setItem(key, fp);
+    }
+    return fp;
+  });
+  const anonCheckQuery = trpc.essay.canAnalyzeAnonymous.useQuery(
+    { clientFingerprint: anonFp },
+    { enabled: !isAuthenticated }
+  );
+  // Default to true so the button is enabled on first load (before server responds)
+  const canAnonAnalyze = !isAuthenticated ? (anonCheckQuery.data?.canAnalyze ?? !localStorage.getItem('iblens_anon_used')) : false;
 
   // Authenticated analysis mutation
   const analyzeMutation = trpc.essay.analyze.useMutation({
@@ -90,6 +104,8 @@ export default function EssayAnalyzer() {
   const anonAnalyzeMutation = trpc.essay.analyzeAnonymous.useMutation({
     onSuccess: (data) => {
       setResult(data.result as EssayResult);
+      // Mark locally that free analysis was used
+      localStorage.setItem('iblens_anon_used', 'true');
       anonCheckQuery.refetch();
       const r = data.result as EssayResult;
       analytics.completeEssayAnalysis(subject, `${r.predicted_score}/${r.max_score}`);
@@ -133,6 +149,7 @@ export default function EssayAnalyzer() {
         subject,
         researchQuestion: researchQuestion || undefined,
         essayText,
+        clientFingerprint: anonFp,
       });
     }
   };

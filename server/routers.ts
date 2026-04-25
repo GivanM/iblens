@@ -43,12 +43,11 @@ const essayRouter = router({
       subject: z.string().min(1),
       researchQuestion: z.string().optional(),
       essayText: z.string().min(150, "Please provide at least 200 words for meaningful analysis."),
+      clientFingerprint: z.string().min(1),
     }))
-    .mutation(async ({ ctx, input }) => {
-      // Generate fingerprint from IP + user-agent
-      const ip = ctx.req.headers["x-forwarded-for"]?.toString().split(",")[0]?.trim() || ctx.req.ip || "unknown";
-      const ua = ctx.req.headers["user-agent"] || "unknown";
-      const fingerprint = generateFingerprint(ip, ua);
+    .mutation(async ({ input }) => {
+      // Use client-provided fingerprint (UUID stored in localStorage)
+      const fingerprint = input.clientFingerprint;
 
       // Check if this anonymous user already used their free analysis
       const usage = await canAnonymousAnalyze(fingerprint);
@@ -120,11 +119,9 @@ Respond with this exact JSON structure:
 
   // Check if anonymous user can still analyze
   canAnalyzeAnonymous: publicProcedure
-    .query(async ({ ctx }) => {
-      const ip = ctx.req.headers["x-forwarded-for"]?.toString().split(",")[0]?.trim() || ctx.req.ip || "unknown";
-      const ua = ctx.req.headers["user-agent"] || "unknown";
-      const fingerprint = generateFingerprint(ip, ua);
-      const usage = await canAnonymousAnalyze(fingerprint);
+    .input(z.object({ clientFingerprint: z.string().min(1) }))
+    .query(async ({ input }) => {
+      const usage = await canAnonymousAnalyze(input.clientFingerprint);
       return { canAnalyze: usage.allowed };
     }),
 
