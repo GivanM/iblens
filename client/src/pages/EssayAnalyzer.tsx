@@ -19,7 +19,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import {
   FileText, Loader2, AlertTriangle, TrendingUp, ArrowRight,
-  CheckCircle2, XCircle, Lock
+  CheckCircle2, XCircle, Lock, Share2, Twitter, Copy, BookmarkPlus
 } from "lucide-react";
 import { analytics } from "@/lib/analytics";
 
@@ -427,21 +427,93 @@ export default function EssayAnalyzer() {
               </CardContent>
             </Card>
           )}
-          {/* Sign-in CTA for anonymous users after seeing results */}
-          {!isAuthenticated && (
-            <Card className="border-primary/30 bg-primary/5">
-              <CardContent className="p-6 text-center space-y-3">
-                <h3 className="text-lg font-semibold">Want more analyses?</h3>
-                <p className="text-sm text-muted-foreground">
-                  Sign in to save your results, track progress across essays, and purchase additional analysis credits.
+          {/* Share Results */}
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                  <Share2 className="w-4 h-4" />
+                  Share Your Score
+                </h3>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    const text = `I just scored ${result.predicted_score}/${result.max_score} (Band ${result.band_range}) on my IB ${essayType} in ${subject} using IBLens! 🎓 Get your free analysis at iblens.com`;
+                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
+                  }}
+                >
+                  <Twitter className="w-4 h-4 mr-2" />
+                  Share on X
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    const text = `I just scored ${result.predicted_score}/${result.max_score} (Band ${result.band_range}) on my IB ${essayType} in ${subject} using IBLens! 🎓 Get your free analysis at iblens.com`;
+                    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+                  }}
+                >
+                  <Share2 className="w-4 h-4 mr-2" />
+                  WhatsApp
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    const text = `I scored ${result.predicted_score}/${result.max_score} (Band ${result.band_range}) on my IB ${essayType} in ${subject}. Free analysis at iblens.com`;
+                    navigator.clipboard.writeText(text);
+                    toast.success("Score copied to clipboard!");
+                  }}
+                >
+                  <Copy className="w-4 h-4 mr-2" />
+                  Copy Score
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Save Results & Buy More CTA */}
+          {!isAuthenticated ? (
+            <Card className="border-primary/30 bg-gradient-to-r from-primary/5 to-primary/10">
+              <CardContent className="p-6 text-center space-y-4">
+                <BookmarkPlus className="w-10 h-10 mx-auto text-primary" />
+                <h3 className="text-xl font-bold">Save Results & Get More Analyses</h3>
+                <p className="text-sm text-muted-foreground max-w-md mx-auto">
+                  Sign in to save this analysis to your dashboard, track your progress across essays, and purchase additional analysis credits starting at $4.99.
                 </p>
-                <div className="flex gap-3 justify-center">
-                  <Button asChild>
-                    <a href={getLoginUrl()}>Sign in to Continue</a>
+                <div className="flex gap-3 justify-center pt-2">
+                  <Button size="lg" asChild>
+                    <a href={getLoginUrl()}>
+                      <BookmarkPlus className="w-4 h-4 mr-2" />
+                      Save Results & Sign In
+                    </a>
                   </Button>
-                  <Button variant="outline" asChild>
+                  <Button variant="outline" size="lg" asChild>
                     <Link href="/pricing">View Pricing</Link>
                   </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ) : (
+            <Card className="border-primary/30 bg-gradient-to-r from-primary/5 to-primary/10">
+              <CardContent className="p-6 text-center space-y-4">
+                <h3 className="text-lg font-semibold">Analyze Another Essay</h3>
+                <p className="text-sm text-muted-foreground">
+                  {credits?.essayCredits ? `You have ${credits.essayCredits} credit${credits.essayCredits > 1 ? 's' : ''} remaining.` : 'Purchase more credits to continue analyzing.'}
+                </p>
+                <div className="flex gap-3 justify-center">
+                  <Button onClick={() => { setResult(null); window.scrollTo(0, 0); }}>
+                    <FileText className="w-4 h-4 mr-2" />
+                    Analyze Another Essay
+                  </Button>
+                  {!credits?.essayCredits && (
+                    <Button variant="outline" asChild>
+                      <Link href="/pricing">Buy Credits</Link>
+                    </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>

@@ -131,3 +131,5 @@
 - [x] BUG FIX: Anonymous analysis not executing — fixed: switched from IP-based to client UUID fingerprint
 - [x] Ensure anonymous users can submit essay and see full analysis result
 - [x] Show sign-in CTA only AFTER results are displayed
+- [x] Add prominent "Save Results & Get More Analyses" CTA button on essay result page
+- [x] Add "Share results" buttons (X/Twitter, WhatsApp, Copy Score) on essay result page
