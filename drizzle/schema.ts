@@ -56,5 +56,20 @@ export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 export type Analysis = typeof analyses.$inferSelect;
 export type InsertAnalysis = typeof analyses.$inferInsert;
+// Anonymous analysis tracking (for users who haven't logged in)
+export const anonymousAnalyses = mysqlTable("anonymous_analyses", {
+  id: int("id").autoincrement().primaryKey(),
+  fingerprint: varchar("fingerprint", { length: 64 }).notNull(), // hash of IP + user-agent
+  type: mysqlEnum("type", ["essay", "university"]).notNull(),
+  essayType: varchar("essayType", { length: 10 }),
+  subject: varchar("subject", { length: 100 }),
+  researchQuestion: text("researchQuestion"),
+  resultJson: json("resultJson"),
+  predictedGrade: varchar("predictedGrade", { length: 20 }),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
 export type Payment = typeof payments.$inferSelect;
 export type InsertPayment = typeof payments.$inferInsert;
+export type AnonymousAnalysis = typeof anonymousAnalyses.$inferSelect;
+export type InsertAnonymousAnalysis = typeof anonymousAnalyses.$inferInsert;

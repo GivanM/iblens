@@ -57,6 +57,13 @@
       "when": 1776414973220,
       "tag": "0007_daffy_exodus",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1777134359484,
+      "tag": "0008_lumpy_mysterio",
+      "breakpoints": true
     }
   ]
 }

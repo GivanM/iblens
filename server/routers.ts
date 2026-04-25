@@ -16,6 +16,9 @@ import {
   getUserPayments,
   setTelegramUsername,
   getTelegramUsername,
+  generateFingerprint,
+  canAnonymousAnalyze,
+  createAnonymousAnalysis,
 } from "./db";
 import { PRODUCTS } from "./products";
 import { getTributeProductLink } from "./tribute/tribute";
@@ -33,6 +36,98 @@ const productKeySchema = z.enum(["ESSAY_SINGLE", "ESSAY_PACK_5", "ESSAY_PACK_10"
 
 // ---- Essay Analysis Router ----
 const essayRouter = router({
+  // Anonymous analysis — no login required, 1 free analysis per fingerprint
+  analyzeAnonymous: publicProcedure
+    .input(z.object({
+      essayType: z.enum(ESSAY_TYPES),
+      subject: z.string().min(1),
+      researchQuestion: z.string().optional(),
+      essayText: z.string().min(150, "Please provide at least 200 words for meaningful analysis."),
+    }))
+    .mutation(async ({ ctx, input }) => {
+      // Generate fingerprint from IP + user-agent
+      const ip = ctx.req.headers["x-forwarded-for"]?.toString().split(",")[0]?.trim() || ctx.req.ip || "unknown";
+      const ua = ctx.req.headers["user-agent"] || "unknown";
+      const fingerprint = generateFingerprint(ip, ua);
+
+      // Check if this anonymous user already used their free analysis
+      const usage = await canAnonymousAnalyze(fingerprint);
+      if (!usage.allowed) {
+        throw new Error(usage.reason || "Free analysis already used. Sign in to continue.");
+      }
+
+      const systemPrompt = `You are an experienced IB examiner with 12 years of grading experience across multiple subjects. Analyze the student's work strictly according to IB assessment criteria. Be specific, constructive, and honest. Reference actual IB criteria names and descriptors.
+
+IMPORTANT: Respond with a single valid JSON object. No markdown, no text before or after the JSON.`;
+
+      const userPrompt = `Analyze this IB ${input.essayType} for: ${input.subject}
+Research Question: ${input.researchQuestion || "not provided"}
+
+TEXT:
+${input.essayText.substring(0, 6000)}
+
+Respond with this exact JSON structure:
+{
+  "band_range": "4-5",
+  "predicted_score": 4,
+  "max_score": 7,
+  "overall_comment": "Detailed overall assessment of the work",
+  "criteria": [
+    {"name": "Criterion A: Knowledge and Understanding", "score": 3, "max": 4, "comment": "Specific feedback for this criterion"}
+  ],
+  "risks": [
+    {"title": "Risk title", "description": "What specifically loses marks and why"}
+  ],
+  "leverage_zones": [
+    {"title": "Improvement area", "description": "Specific actionable advice to gain marks"}
+  ],
+  "next_steps": ["Specific step 1", "Specific step 2", "Specific step 3"]
+}`;
+
+      try {
+        const response = await invokeLLM({
+          messages: [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: userPrompt },
+          ],
+        });
+
+        const rawContent = response.choices?.[0]?.message?.content;
+        const content = typeof rawContent === "string" ? rawContent : "";
+        const jsonMatch = content.match(/\{[\s\S]*\}/);
+        if (!jsonMatch) throw new Error("Failed to parse AI response");
+
+        const cleaned = jsonMatch[0].replace(/,\s*([\]\}])/g, '$1');
+        const result = JSON.parse(cleaned);
+
+        // Save anonymous analysis
+        await createAnonymousAnalysis({
+          fingerprint,
+          type: "essay",
+          essayType: input.essayType,
+          subject: input.subject,
+          researchQuestion: input.researchQuestion || null,
+          resultJson: result,
+          predictedGrade: `${result.predicted_score}/${result.max_score}`,
+        });
+
+        return { result, wasAnonymous: true };
+      } catch (error: any) {
+        console.error("[Anonymous Essay Analysis] Error:", error);
+        throw new Error(error.message || "Analysis failed. Please try again.");
+      }
+    }),
+
+  // Check if anonymous user can still analyze
+  canAnalyzeAnonymous: publicProcedure
+    .query(async ({ ctx }) => {
+      const ip = ctx.req.headers["x-forwarded-for"]?.toString().split(",")[0]?.trim() || ctx.req.ip || "unknown";
+      const ua = ctx.req.headers["user-agent"] || "unknown";
+      const fingerprint = generateFingerprint(ip, ua);
+      const usage = await canAnonymousAnalyze(fingerprint);
+      return { canAnalyze: usage.allowed };
+    }),
+
   analyze: protectedProcedure
     .input(z.object({
       essayType: z.enum(ESSAY_TYPES),

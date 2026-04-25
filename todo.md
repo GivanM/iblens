@@ -121,3 +121,10 @@
 - [x] Update meta description to new copy (under 160 chars)
 - [x] GA4 gtag placeholder already exists in index.html (confirmed)
 - [x] Change CTA button from "Analyze My Essay Free" to "Score My Essay Free — Takes 60 Seconds"
+- [x] Allow essay analysis without login (first analysis free for anonymous users)
+- [x] Update backend: create public analyzeAnonymous + canAnalyzeAnonymous procedures (no auth required)
+- [x] Track anonymous usage via IP+UA fingerprint in anonymous_analyses DB table
+- [x] Update frontend: anonymous users see "Score My Essay Free — No Sign-in Needed" button
+- [x] Login required only for purchasing additional analysis packs
+- [x] Add sign-in CTA card after anonymous results
+- [x] Add anonymous analysis tests (11 tests, 40 total passing across 5 files)

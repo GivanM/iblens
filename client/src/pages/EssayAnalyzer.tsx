@@ -64,6 +64,11 @@ export default function EssayAnalyzer() {
   const creditsQuery = trpc.dashboard.credits.useQuery(undefined, { enabled: isAuthenticated });
   const credits = creditsQuery.data;
 
+  // Check if anonymous user can still analyze (only when not logged in)
+  const anonCheckQuery = trpc.essay.canAnalyzeAnonymous.useQuery(undefined, { enabled: !isAuthenticated });
+  const canAnonAnalyze = anonCheckQuery.data?.canAnalyze ?? true;
+
+  // Authenticated analysis mutation
   const analyzeMutation = trpc.essay.analyze.useMutation({
     onSuccess: (data) => {
       setResult(data.result as EssayResult);
@@ -81,26 +86,55 @@ export default function EssayAnalyzer() {
     },
   });
 
+  // Anonymous analysis mutation
+  const anonAnalyzeMutation = trpc.essay.analyzeAnonymous.useMutation({
+    onSuccess: (data) => {
+      setResult(data.result as EssayResult);
+      anonCheckQuery.refetch();
+      const r = data.result as EssayResult;
+      analytics.completeEssayAnalysis(subject, `${r.predicted_score}/${r.max_score}`);
+      toast.success("Free analysis complete! Sign in to save results and get more analyses.");
+    },
+    onError: (error: { message: string }) => {
+      toast.error(error.message);
+    },
+  });
+
+  const isAnalyzing = analyzeMutation.isPending || anonAnalyzeMutation.isPending;
+
   const handleAnalyze = () => {
-    if (!isAuthenticated) {
-      window.location.href = getLoginUrl();
-      return;
-    }
-    if (!credits?.canAnalyzeEssay) {
-      toast.error("No essay credits remaining. Purchase credits from your dashboard.");
-      return;
-    }
     if (essayText.length < 150) {
       toast.error("Please paste at least 200 words for meaningful analysis.");
       return;
     }
+
     analytics.startEssayAnalysis(subject);
-    analyzeMutation.mutate({
-      essayType: essayType as "IA" | "EE" | "TOK",
-      subject,
-      researchQuestion: researchQuestion || undefined,
-      essayText,
-    });
+
+    if (isAuthenticated) {
+      // Logged-in user flow
+      if (!credits?.canAnalyzeEssay) {
+        toast.error("No essay credits remaining. Purchase credits from your dashboard.");
+        return;
+      }
+      analyzeMutation.mutate({
+        essayType: essayType as "IA" | "EE" | "TOK",
+        subject,
+        researchQuestion: researchQuestion || undefined,
+        essayText,
+      });
+    } else {
+      // Anonymous user flow
+      if (!canAnonAnalyze) {
+        toast.error("You've used your free analysis. Sign in to purchase more credits.");
+        return;
+      }
+      anonAnalyzeMutation.mutate({
+        essayType: essayType as "IA" | "EE" | "TOK",
+        subject,
+        researchQuestion: researchQuestion || undefined,
+        essayText,
+      });
+    }
   };
 
   const getScoreColor = (score: number, max: number) => {
@@ -199,21 +233,42 @@ export default function EssayAnalyzer() {
             </div>
           )}
 
+          {/* Anonymous user banner */}
+          {!isAuthenticated && (
+            <div className={`text-sm p-3 rounded-lg ${
+              canAnonAnalyze
+                ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                : "bg-amber-50 text-amber-700 border border-amber-200"
+            }`}>
+              {canAnonAnalyze
+                ? "No sign-in required! Your first essay analysis is completely free."
+                : <span>You've used your free analysis. <a href={getLoginUrl()} className="underline font-medium">Sign in</a> to purchase more credits.</span>
+              }
+            </div>
+          )}
+
           <Button
             className="w-full h-11"
             onClick={handleAnalyze}
-            disabled={analyzeMutation.isPending || (isAuthenticated && !credits?.canAnalyzeEssay)}
+            disabled={isAnalyzing || (isAuthenticated && !credits?.canAnalyzeEssay) || (!isAuthenticated && !canAnonAnalyze)}
           >
-            {analyzeMutation.isPending ? (
+            {isAnalyzing ? (
               <>
                 <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                 Analyzing your {essayType}... (20-40 seconds)
               </>
             ) : !isAuthenticated ? (
-              <>
-                <Lock className="w-4 h-4 mr-2" />
-                Sign in to Analyze (first one free!)
-              </>
+              canAnonAnalyze ? (
+                <>
+                  <FileText className="w-4 h-4 mr-2" />
+                  Score My Essay Free — No Sign-in Needed
+                </>
+              ) : (
+                <>
+                  <Lock className="w-4 h-4 mr-2" />
+                  Sign in to Get More Analyses
+                </>
+              )
             ) : !credits?.canAnalyzeEssay ? (
               <>
                 <Lock className="w-4 h-4 mr-2" />
@@ -352,6 +407,25 @@ export default function EssayAnalyzer() {
                     <p className="text-sm leading-relaxed">{sanitizeText(step)}</p>
                   </div>
                 ))}
+              </CardContent>
+            </Card>
+          )}
+          {/* Sign-in CTA for anonymous users after seeing results */}
+          {!isAuthenticated && (
+            <Card className="border-primary/30 bg-primary/5">
+              <CardContent className="p-6 text-center space-y-3">
+                <h3 className="text-lg font-semibold">Want more analyses?</h3>
+                <p className="text-sm text-muted-foreground">
+                  Sign in to save your results, track progress across essays, and purchase additional analysis credits.
+                </p>
+                <div className="flex gap-3 justify-center">
+                  <Button asChild>
+                    <a href={getLoginUrl()}>Sign in to Continue</a>
+                  </Button>
+                  <Button variant="outline" asChild>
+                    <Link href="/pricing">View Pricing</Link>
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           )}

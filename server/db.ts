@@ -1,6 +1,7 @@
 import { eq, desc, sql, and } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, analyses, InsertAnalysis, payments, InsertPayment } from "../drizzle/schema";
+import { InsertUser, users, analyses, InsertAnalysis, payments, InsertPayment, anonymousAnalyses, InsertAnonymousAnalysis } from "../drizzle/schema";
+import crypto from "crypto";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -347,4 +348,37 @@ export async function getPendingPaymentByProviderIdAndProvider(providerPaymentId
     .limit(1);
 
   return result.length > 0 ? result[0] : undefined;
+}
+
+// ---- Anonymous analysis helpers ----
+
+export function generateFingerprint(ip: string, userAgent: string): string {
+  return crypto.createHash("sha256").update(`${ip}::${userAgent}`).digest("hex").substring(0, 64);
+}
+
+export async function getAnonymousAnalysisCount(fingerprint: string): Promise<number> {
+  const db = await getDb();
+  if (!db) return 0;
+
+  const result = await db.select({ count: sql<number>`count(*)` })
+    .from(anonymousAnalyses)
+    .where(eq(anonymousAnalyses.fingerprint, fingerprint));
+
+  return result[0]?.count ?? 0;
+}
+
+export async function canAnonymousAnalyze(fingerprint: string): Promise<{ allowed: boolean; reason?: string }> {
+  const count = await getAnonymousAnalysisCount(fingerprint);
+  if (count >= 1) {
+    return { allowed: false, reason: "You've used your free analysis. Sign in to purchase more credits." };
+  }
+  return { allowed: true };
+}
+
+export async function createAnonymousAnalysis(data: InsertAnonymousAnalysis) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const [result] = await db.insert(anonymousAnalyses).values(data).$returningId();
+  return result;
 }
