@@ -1,15 +1,31 @@
+import { useState } from "react";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import { getLoginUrl } from "@/const";
+import { trpc } from "@/lib/trpc";
+import { toast } from "sonner";
 import {
   FileText, GraduationCap, BarChart3, CheckCircle2, ArrowRight,
-  Shield, Bitcoin, Gift, Sparkles
+  Shield, Bitcoin, Gift, Sparkles, Loader2
 } from "lucide-react";
 
-const plans = [
+type ProductKey = "ESSAY_SINGLE" | "ESSAY_PACK_5" | "ESSAY_PACK_10" | "UNIVERSITY_SINGLE";
+
+const plans: Array<{
+  name: string;
+  price: string;
+  description: string;
+  icon: typeof FileText;
+  popular: boolean;
+  features: string[];
+  cta: string;
+  href: string;
+  requiresAuth: boolean;
+  productKey: ProductKey;
+}> = [
   {
     name: "Single Analysis",
     price: "$4.99",
@@ -26,6 +42,7 @@ const plans = [
     cta: "Get Started",
     href: "/essay",
     requiresAuth: false,
+    productKey: "ESSAY_SINGLE",
   },
   {
     name: "5 Analyses",
@@ -43,6 +60,7 @@ const plans = [
     cta: "Get Started",
     href: "/dashboard",
     requiresAuth: true,
+    productKey: "ESSAY_PACK_5",
   },
   {
     name: "10 Analyses",
@@ -60,6 +78,7 @@ const plans = [
     cta: "Get Started",
     href: "/dashboard",
     requiresAuth: true,
+    productKey: "ESSAY_PACK_10",
   },
   {
     name: "University Strategy",
@@ -77,11 +96,39 @@ const plans = [
     cta: "Get Strategy",
     href: "/university",
     requiresAuth: false,
+    productKey: "UNIVERSITY_SINGLE",
   },
 ];
 
 export default function Pricing() {
   const { isAuthenticated } = useAuth();
+  const [loadingCrypto, setLoadingCrypto] = useState<string | null>(null);
+
+  const createInvoice = trpc.payment.createCryptoInvoice.useMutation({
+    onSuccess: (data) => {
+      toast.success("Redirecting to crypto checkout...", {
+        description: "A new tab will open with your payment page.",
+      });
+      window.open(data.invoiceUrl, "_blank");
+      setLoadingCrypto(null);
+    },
+    onError: (error) => {
+      toast.error("Payment error", {
+        description: error.message || "Failed to create invoice. Please try again.",
+      });
+      setLoadingCrypto(null);
+    },
+  });
+
+  const handleCryptoPay = (productKey: ProductKey) => {
+    if (!isAuthenticated) {
+      // Redirect to login first
+      window.location.href = getLoginUrl();
+      return;
+    }
+    setLoadingCrypto(productKey);
+    createInvoice.mutate({ productKey });
+  };
 
   return (
     <div className="py-16 md:py-24">
@@ -150,10 +197,11 @@ export default function Pricing() {
                   ))}
                 </ul>
 
+                {/* Primary CTA — navigate to feature page */}
                 {plan.requiresAuth && !isAuthenticated ? (
                   <Button
                     size="sm"
-                    className="w-full"
+                    className="w-full mb-2"
                     variant={plan.popular ? "default" : "outline"}
                     asChild
                   >
@@ -164,7 +212,7 @@ export default function Pricing() {
                 ) : (
                   <Button
                     size="sm"
-                    className="w-full"
+                    className="w-full mb-2"
                     variant={plan.popular ? "default" : "outline"}
                     asChild
                   >
@@ -173,6 +221,27 @@ export default function Pricing() {
                     </Link>
                   </Button>
                 )}
+
+                {/* Pay with Crypto button */}
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="w-full text-xs text-muted-foreground hover:text-foreground"
+                  onClick={() => handleCryptoPay(plan.productKey)}
+                  disabled={loadingCrypto === plan.productKey}
+                >
+                  {loadingCrypto === plan.productKey ? (
+                    <>
+                      <Loader2 className="w-3 h-3 mr-1.5 animate-spin" />
+                      Creating invoice...
+                    </>
+                  ) : (
+                    <>
+                      <Bitcoin className="w-3 h-3 mr-1.5" />
+                      Pay with Crypto
+                    </>
+                  )}
+                </Button>
               </CardContent>
             </Card>
           ))}
@@ -182,11 +251,11 @@ export default function Pricing() {
         <div className="flex items-center justify-center gap-6 mt-12 text-sm text-muted-foreground">
           <div className="flex items-center gap-1.5">
             <Shield className="w-4 h-4" />
-            <span>Card, Crypto & Telegram Stars</span>
+            <span>Card, Crypto & Telegram Stars via Tribute</span>
           </div>
           <div className="flex items-center gap-1.5">
             <Bitcoin className="w-4 h-4" />
-            <span>Secure payments via Tribute</span>
+            <span>Automated crypto via NOWPayments</span>
           </div>
         </div>
 

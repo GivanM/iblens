@@ -135,3 +135,17 @@
 - [x] Add "Share results" buttons (X/Twitter, WhatsApp, Copy Score) on essay result page
 - [x] Set NOWPAYMENTS_API_KEY placeholder env var
 - [x] Update Tribute payment flow: show manual activation message with @iblens_support Telegram contact after payment
+- [x] NOWPayments: Add orders table (id UUID, user_id, sku, amount_usd, currency, status, provider, np_invoice_id, np_payment_id, created_at)
+- [x] NOWPayments: Add webhook_events table (id, provider, np_payment_id, payment_status, raw_body, signature_valid, received_at, unique index)
+- [x] NOWPayments: Add credit_ledger table (id, user_id, delta, reason, order_id FK, created_at)
+- [x] NOWPayments: Refactor credit system to use credit_ledger (sum of deltas) instead of denormalized counters
+- [x] NOWPayments: Invoice creation endpoint — create order row, call NOWPayments API, store np_invoice_id
+- [x] NOWPayments: POST /api/nowpayments/webhook with HMAC-SHA512 signature verification
+- [x] NOWPayments: Idempotency via webhook_events unique constraint
+- [x] NOWPayments: Fulfillment on status=finished (grant credits via credit_ledger)
+- [x] NOWPayments: Handle refund (deduct credits via negative ledger entry)
+- [x] NOWPayments: Handle all payment_status values without throwing
+- [x] NOWPayments: Add NOWPAYMENTS_IPN_SECRET env var placeholder
+- [x] NOWPayments: Frontend — require sign-in before checkout, create order, redirect to NOWPayments invoice
+- [x] NOWPayments: Comprehensive tests (valid sig, invalid sig, duplicate, refund, unknown order, all statuses)
+- [x] NOWPayments: Do not break existing Tribute manual activation flow

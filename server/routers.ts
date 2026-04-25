@@ -19,7 +19,10 @@ import {
   generateFingerprint,
   canAnonymousAnalyze,
   createAnonymousAnalysis,
+  createOrder,
 } from "./db";
+import { createNowPaymentsInvoice } from "./nowpayments/nowpayments";
+import { randomUUID } from "crypto";
 import { PRODUCTS } from "./products";
 import { getTributeProductLink } from "./tribute/tribute";
 
@@ -336,7 +339,7 @@ const pricingRouter = router({
   }),
 });
 
-// ---- Payment Router (Tribute) ----
+// ---- Payment Router (Tribute + NOWPayments) ----
 const paymentRouter = router({
   // Get Tribute product link for a given product
   getLink: protectedProcedure
@@ -359,6 +362,61 @@ const paymentRouter = router({
     .query(async ({ ctx }) => {
       const username = await getTelegramUsername(ctx.user.id);
       return { username };
+    }),
+
+  // Create NOWPayments crypto invoice (requires authentication)
+  createCryptoInvoice: protectedProcedure
+    .input(z.object({
+      productKey: z.enum(["ESSAY_SINGLE", "ESSAY_PACK_5", "ESSAY_PACK_10", "UNIVERSITY_SINGLE"]),
+    }))
+    .mutation(async ({ ctx, input }) => {
+      const product = PRODUCTS[input.productKey];
+      if (!product) throw new Error("Invalid product");
+
+      // Map product key to SKU enum
+      const skuMap: Record<string, string> = {
+        ESSAY_SINGLE: "essay_single",
+        ESSAY_PACK_5: "essay_pack_5",
+        ESSAY_PACK_10: "essay_pack_10",
+        UNIVERSITY_SINGLE: "university_single",
+      };
+      const sku = skuMap[input.productKey] as any;
+
+      // Create order in DB
+      const orderId = randomUUID();
+      await createOrder({
+        id: orderId,
+        userId: ctx.user.id,
+        sku,
+        amountUsd: product.priceAmount,
+        currency: "usd",
+        status: "pending",
+        provider: "nowpayments",
+      });
+
+      // Create NOWPayments invoice
+      const priceUsd = product.priceAmount / 100; // Convert cents to dollars
+      const description = `IBLens: ${product.name} (user:${ctx.user.id}, sku:${sku})`;
+
+      const { invoiceUrl, invoiceId } = await createNowPaymentsInvoice(
+        orderId,
+        priceUsd,
+        description,
+      );
+
+      // Update order with invoice ID
+      const { updateOrderStatus } = await import("./db");
+      await updateOrderStatus(orderId, "pending", undefined);
+      // Store npInvoiceId
+      const { getDb } = await import("./db");
+      const { orders } = await import("../drizzle/schema");
+      const { eq } = await import("drizzle-orm");
+      const db = await getDb();
+      if (db) {
+        await db.update(orders).set({ npInvoiceId: invoiceId }).where(eq(orders.id, orderId));
+      }
+
+      return { invoiceUrl, orderId };
     }),
 });
 

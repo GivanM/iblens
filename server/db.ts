@@ -1,6 +1,11 @@
 import { eq, desc, sql, and } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, analyses, InsertAnalysis, payments, InsertPayment, anonymousAnalyses, InsertAnonymousAnalysis } from "../drizzle/schema";
+import {
+  InsertUser, users, analyses, InsertAnalysis, payments, InsertPayment,
+  anonymousAnalyses, InsertAnonymousAnalysis,
+  orders, InsertOrder, webhookEvents, InsertWebhookEvent,
+  creditLedger, InsertCreditLedgerEntry,
+} from "../drizzle/schema";
 import crypto from "crypto";
 import { ENV } from './_core/env';
 
@@ -280,7 +285,7 @@ export async function getTelegramUsername(userId: number): Promise<string | null
   return result.length > 0 ? result[0].telegramUsername : null;
 }
 
-export async function completePaymentByProviderId(providerPaymentId: string, provider: "tribute") {
+export async function completePaymentByProviderId(providerPaymentId: string, provider: "tribute" | "nowpayments") {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
 
@@ -335,7 +340,7 @@ export async function getPaymentById(id: number) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-export async function getPendingPaymentByProviderIdAndProvider(providerPaymentId: string, provider: "tribute") {
+export async function getPendingPaymentByProviderIdAndProvider(providerPaymentId: string, provider: "tribute" | "nowpayments") {
   const db = await getDb();
   if (!db) return undefined;
 
@@ -381,4 +386,143 @@ export async function createAnonymousAnalysis(data: InsertAnonymousAnalysis) {
 
   const [result] = await db.insert(anonymousAnalyses).values(data).$returningId();
   return result;
+}
+
+// ---- Order helpers (NOWPayments) ----
+
+export async function createOrder(data: InsertOrder) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  await db.insert(orders).values(data);
+  return data;
+}
+
+export async function getOrderById(id: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+
+  const result = await db.select().from(orders).where(eq(orders.id, id)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function updateOrderStatus(id: string, status: string, npPaymentId?: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const updateSet: Record<string, any> = { status };
+  if (npPaymentId) {
+    updateSet.npPaymentId = npPaymentId;
+  }
+
+  await db.update(orders).set(updateSet).where(eq(orders.id, id));
+}
+
+// ---- Webhook event helpers (idempotency) ----
+
+/**
+ * Insert a webhook event. Returns true if inserted (new event), false if duplicate.
+ */
+export async function insertWebhookEvent(data: InsertWebhookEvent): Promise<boolean> {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  try {
+    await db.insert(webhookEvents).values(data);
+    return true; // new event
+  } catch (error: any) {
+    // Duplicate key error (MySQL error code 1062)
+    if (error?.code === "ER_DUP_ENTRY" || error?.errno === 1062 || String(error?.message || "").includes("Duplicate")) {
+      return false; // already processed
+    }
+    throw error;
+  }
+}
+
+// ---- Credit ledger helpers ----
+
+export async function addCreditLedgerEntry(data: InsertCreditLedgerEntry) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  await db.insert(creditLedger).values(data);
+}
+
+/**
+ * Get user credit balance from credit_ledger (sum of deltas by creditType).
+ * This is the source of truth for NOWPayments credits.
+ * For now, we still use denormalized counters on users table for backward compatibility.
+ */
+export async function getUserCreditBalanceFromLedger(userId: number): Promise<{ essay: number; university: number }> {
+  const db = await getDb();
+  if (!db) return { essay: 0, university: 0 };
+
+  const result = await db.select({
+    creditType: creditLedger.creditType,
+    total: sql<number>`COALESCE(SUM(${creditLedger.delta}), 0)`,
+  })
+    .from(creditLedger)
+    .where(eq(creditLedger.userId, userId))
+    .groupBy(creditLedger.creditType);
+
+  let essay = 0;
+  let university = 0;
+  for (const row of result) {
+    if (row.creditType === "essay") essay = Number(row.total);
+    if (row.creditType === "university") university = Number(row.total);
+  }
+
+  return { essay, university };
+}
+
+/**
+ * Grant credits via credit_ledger AND update denormalized counters on users table.
+ * This keeps both systems in sync during the transition.
+ */
+export async function grantCreditsViaLedger(
+  userId: number,
+  essayCredits: number,
+  universityCredits: number,
+  reason: string,
+  orderId?: string,
+) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  // Insert ledger entries
+  if (essayCredits !== 0) {
+    await db.insert(creditLedger).values({
+      userId,
+      delta: essayCredits,
+      reason,
+      orderId: orderId || null,
+      creditType: "essay",
+    });
+  }
+  if (universityCredits !== 0) {
+    await db.insert(creditLedger).values({
+      userId,
+      delta: universityCredits,
+      reason,
+      orderId: orderId || null,
+      creditType: "university",
+    });
+  }
+
+  // Also update denormalized counters for backward compatibility
+  await addCredits(userId, Math.max(0, essayCredits), Math.max(0, universityCredits));
+
+  // For negative deltas (refunds), deduct from denormalized counters too
+  if (essayCredits < 0 || universityCredits < 0) {
+    const updateSet: Record<string, any> = {};
+    if (essayCredits < 0) {
+      updateSet.essayCredits = sql`GREATEST(${users.essayCredits} + ${essayCredits}, 0)`;
+    }
+    if (universityCredits < 0) {
+      updateSet.universityCredits = sql`GREATEST(${users.universityCredits} + ${universityCredits}, 0)`;
+    }
+    if (Object.keys(updateSet).length > 0) {
+      await db.update(users).set(updateSet).where(eq(users.id, userId));
+    }
+  }
 }
