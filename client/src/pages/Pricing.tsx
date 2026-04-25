@@ -7,6 +7,7 @@ import { Link } from "wouter";
 import { getLoginUrl } from "@/const";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
+import { PRICE_LABELS } from "@shared/pricing";
 import {
   FileText, GraduationCap, BarChart3, CheckCircle2, ArrowRight,
   Shield, Bitcoin, Gift, Sparkles, Loader2
@@ -28,7 +29,7 @@ const plans: Array<{
 }> = [
   {
     name: "Single Analysis",
-    price: "$4.99",
+    price: PRICE_LABELS.ESSAY_SINGLE,
     description: "1 essay analysis",
     icon: FileText,
     popular: false,
@@ -46,7 +47,7 @@ const plans: Array<{
   },
   {
     name: "5 Analyses",
-    price: "$19.99",
+    price: PRICE_LABELS.ESSAY_PACK_5,
     description: "5 essay analyses",
     icon: BarChart3,
     popular: true,
@@ -64,7 +65,7 @@ const plans: Array<{
   },
   {
     name: "10 Analyses",
-    price: "$34.99",
+    price: PRICE_LABELS.ESSAY_PACK_10,
     description: "10 essay analyses",
     icon: Sparkles,
     popular: false,
@@ -82,7 +83,7 @@ const plans: Array<{
   },
   {
     name: "University Strategy",
-    price: "$9.99",
+    price: PRICE_LABELS.UNIVERSITY_SINGLE,
     description: "Complete university strategy report",
     icon: GraduationCap,
     popular: false,

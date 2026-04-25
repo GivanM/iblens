@@ -36,10 +36,15 @@ const ESSAY_TYPES = [
   { value: "TOK", label: "TOK Essay" },
 ];
 
-function sanitizeText(text: string): string {
-  const div = document.createElement("div");
-  div.textContent = text;
-  return div.innerHTML;
+/**
+ * Decode HTML entities that the AI may accidentally produce (e.g. &amp; → &).
+ * Then sanitize the result so it's safe to render as text.
+ */
+function decodeAndSanitize(text: string): string {
+  if (!text) return "";
+  const textarea = document.createElement("textarea");
+  textarea.innerHTML = text;          // decode entities
+  return textarea.value;              // plain text, safe for textContent rendering
 }
 
 type EssayResult = {
@@ -51,6 +56,9 @@ type EssayResult = {
   risks: Array<{ title: string; description: string }>;
   leverage_zones: Array<{ title: string; description: string }>;
   next_steps: string[];
+  _rubricAvailable?: boolean;
+  _rubricLabel?: string;
+  _rubricTotalMarks?: number;
 };
 
 export default function EssayAnalyzer() {
@@ -317,6 +325,16 @@ export default function EssayAnalyzer() {
               </CardTitle>
             </CardHeader>
             <CardContent>
+              {/* Rubric badge */}
+              {result._rubricAvailable && (
+                <div className="mb-4 flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700 border border-emerald-200">
+                    <CheckCircle2 className="w-3 h-3" />
+                    Scored against official IB rubric: {result._rubricLabel}
+                  </span>
+                </div>
+              )}
+
               <div className="grid grid-cols-3 gap-4 mb-6">
                 <div className="text-center p-4 bg-muted/50 rounded-lg">
                   <div className={`text-3xl font-bold ${getScoreColor(result.predicted_score, result.max_score)}`}>
@@ -330,12 +348,17 @@ export default function EssayAnalyzer() {
                 </div>
                 <div className="text-center p-4 bg-muted/50 rounded-lg">
                   <div className="text-3xl font-bold">
-                    {Math.round((result.predicted_score / result.max_score) * 100)}%
+                    {(() => {
+                      // Part 2: Transparent percentage = sum(criteria scores) / sum(criteria max) * 100
+                      const sumScores = result.criteria.reduce((a, c) => a + c.score, 0);
+                      const sumMax = result.criteria.reduce((a, c) => a + c.max, 0);
+                      return sumMax > 0 ? Math.round((sumScores / sumMax) * 100) : 0;
+                    })()}%
                   </div>
-                  <div className="text-xs text-muted-foreground mt-1">Of Maximum</div>
+                  <div className="text-xs text-muted-foreground mt-1">Criteria Total</div>
                 </div>
               </div>
-              <p className="text-sm leading-relaxed">{sanitizeText(result.overall_comment)}</p>
+              <p className="text-sm leading-relaxed">{decodeAndSanitize(result.overall_comment)}</p>
             </CardContent>
           </Card>
 
@@ -350,7 +373,7 @@ export default function EssayAnalyzer() {
               {result.criteria.map((c, i) => (
                 <div key={i} className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">{sanitizeText(c.name)}</span>
+                    <span className="text-sm font-medium">{decodeAndSanitize(c.name)}</span>
                     <span className={`text-sm font-semibold ${getScoreColor(c.score, c.max)}`}>
                       {c.score}/{c.max}
                     </span>
@@ -361,7 +384,7 @@ export default function EssayAnalyzer() {
                       style={{ width: `${(c.score / c.max) * 100}%` }}
                     />
                   </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{sanitizeText(c.comment)}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{decodeAndSanitize(c.comment)}</p>
                 </div>
               ))}
             </CardContent>
@@ -379,8 +402,8 @@ export default function EssayAnalyzer() {
               <CardContent className="space-y-3">
                 {result.risks.map((r, i) => (
                   <div key={i} className="p-3 bg-red-50 border-l-3 border-red-500 rounded-r-md">
-                    <div className="text-sm font-medium mb-1">{sanitizeText(r.title)}</div>
-                    <div className="text-xs text-muted-foreground">{sanitizeText(r.description)}</div>
+                    <div className="text-sm font-medium mb-1">{decodeAndSanitize(r.title)}</div>
+                    <div className="text-xs text-muted-foreground">{decodeAndSanitize(r.description)}</div>
                   </div>
                 ))}
               </CardContent>
@@ -399,8 +422,8 @@ export default function EssayAnalyzer() {
               <CardContent className="space-y-3">
                 {result.leverage_zones.map((l, i) => (
                   <div key={i} className="p-3 bg-emerald-50 border-l-3 border-emerald-500 rounded-r-md">
-                    <div className="text-sm font-medium mb-1">{sanitizeText(l.title)}</div>
-                    <div className="text-xs text-muted-foreground">{sanitizeText(l.description)}</div>
+                    <div className="text-sm font-medium mb-1">{decodeAndSanitize(l.title)}</div>
+                    <div className="text-xs text-muted-foreground">{decodeAndSanitize(l.description)}</div>
                   </div>
                 ))}
               </CardContent>
@@ -421,7 +444,7 @@ export default function EssayAnalyzer() {
                     <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <span className="text-xs font-semibold text-primary">{i + 1}</span>
                     </div>
-                    <p className="text-sm leading-relaxed">{sanitizeText(step)}</p>
+                    <p className="text-sm leading-relaxed">{decodeAndSanitize(step)}</p>
                   </div>
                 ))}
               </CardContent>

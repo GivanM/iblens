@@ -105,6 +105,15 @@ function skuToCredits(sku: string): { essay: number; university: number } {
  * Must be registered BEFORE express.json() body parser since we need raw body for HMAC.
  */
 export function registerNowPaymentsWebhook(app: Express) {
+  // Method guard: reject non-POST requests with 405
+  app.all("/api/nowpayments/webhook", (req: Request, res: Response, next) => {
+    if (req.method !== "POST") {
+      res.setHeader("Allow", "POST");
+      return res.status(405).json({ error: "Method Not Allowed" });
+    }
+    next();
+  });
+
   app.post(
     "/api/nowpayments/webhook",
     // Raw body parser for signature verification

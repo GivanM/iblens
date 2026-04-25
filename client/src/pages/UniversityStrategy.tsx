@@ -1,6 +1,7 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
 import { getLoginUrl } from "@/const";
+import { PRICE_LABELS } from "@shared/pricing";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -143,6 +144,55 @@ export default function UniversityStrategy() {
         </p>
       </div>
 
+      {/* Sample Strategy Preview */}
+      {!result && (
+        <Card className="mb-8 border-2 border-dashed border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+              <Target className="w-4 h-4" />
+              Sample Strategy Preview
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-sm text-muted-foreground italic">
+              Here is a condensed preview of what your personalized strategy report looks like. The full report includes 9 universities, detailed admission probabilities, essay positioning, and a timeline roadmap.
+            </p>
+
+            {/* Sample universities */}
+            <div className="grid gap-3">
+              {[
+                { name: "University of Warwick", country: "UK", type: "safe" as const, program: "BSc Management", typical_ib: "32-34", admission_prob: 85, why: "Strong business school with IB-friendly admissions; your predicted score exceeds typical offers." },
+                { name: "University of St Andrews", country: "UK", type: "match" as const, program: "MA Economics", typical_ib: "36-38", admission_prob: 55, why: "Competitive but realistic; your extracurriculars and predicted score align with admitted student profiles." },
+                { name: "London School of Economics", country: "UK", type: "reach" as const, program: "BSc Economics", typical_ib: "38-40", admission_prob: 25, why: "Highly selective, but a strong personal statement focusing on your research experience could differentiate you." },
+              ].map((uni, i) => {
+                const cfg = typeConfig[uni.type];
+                return (
+                  <div key={i} className="p-3 rounded-lg border bg-card/50 opacity-80">
+                    <div className="flex items-center justify-between mb-1">
+                      <div className="flex items-center gap-2">
+                        <Badge variant="outline" className={`text-[10px] ${cfg.color}`}>{cfg.label}</Badge>
+                        <span className="text-sm font-medium">{uni.name}</span>
+                      </div>
+                      <span className="text-xs text-muted-foreground">{uni.country}</span>
+                    </div>
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
+                      <span>{uni.program} &middot; Typical IB: {uni.typical_ib}</span>
+                      <span className="font-medium">{uni.admission_prob}% chance</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-1">{uni.why}</p>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="text-center pt-2">
+              <p className="text-xs text-muted-foreground mb-2">Full report includes 9 universities, essay angle, timeline roadmap, and profile analysis</p>
+              <Badge variant="secondary" className="text-xs">Fill in the form below to get your personalized strategy</Badge>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       <Card className="mb-8">
         <CardContent className="p-6 space-y-5">
           <div className="grid sm:grid-cols-2 gap-4">
@@ -247,7 +297,7 @@ export default function UniversityStrategy() {
             }`}>
               {credits.universityCredits > 0
                 ? `You have ${credits.universityCredits} university strategy credit${credits.universityCredits > 1 ? "s" : ""}.`
-                : <span>No credits remaining. <Link href="/dashboard" className="underline font-medium">Purchase credits ($15)</Link> to continue.</span>
+                : <span>No credits remaining. <Link href="/dashboard" className="underline font-medium">Purchase credits ({PRICE_LABELS.UNIVERSITY_SINGLE})</Link> to continue.</span>
               }
             </div>
           )}
@@ -265,7 +315,7 @@ export default function UniversityStrategy() {
             ) : !isAuthenticated ? (
               <>
                 <Lock className="w-4 h-4 mr-2" />
-                Sign in to Build Strategy ($15)
+                Sign in to Build Strategy ({PRICE_LABELS.UNIVERSITY_SINGLE})
               </>
             ) : !credits?.canAnalyzeUniversity ? (
               <>
@@ -275,7 +325,7 @@ export default function UniversityStrategy() {
             ) : (
               <>
                 <GraduationCap className="w-4 h-4 mr-2" />
-                Build My University Strategy ($15)
+                Build My University Strategy ({PRICE_LABELS.UNIVERSITY_SINGLE})
               </>
             )}
           </Button>

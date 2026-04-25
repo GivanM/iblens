@@ -467,3 +467,99 @@ describe("payment.createCryptoInvoice", () => {
     expect(appRouter._def.procedures).toBeDefined();
   });
 });
+
+// ---- Part 1: Rubric registry tests ----
+
+describe("Rubric registry", () => {
+  it("returns rubric for Business Management IA", async () => {
+    const { getRubric } = await import("../shared/rubrics");
+    const rubric = getRubric("IA", "Business Management");
+    expect(rubric).toBeDefined();
+    expect(rubric!.label).toContain("Business Management");
+    expect(rubric!.criteria.length).toBeGreaterThan(0);
+    // Total marks should sum correctly
+    const total = rubric!.criteria.reduce((sum, c) => sum + c.max, 0);
+    expect(total).toBe(rubric!.totalMarks);
+  });
+
+  it("returns rubric for Extended Essay (any subject)", async () => {
+    const { getRubric } = await import("../shared/rubrics");
+    const rubric = getRubric("EE", "Physics");
+    expect(rubric).toBeDefined();
+    expect(rubric!.label).toContain("Extended Essay");
+    expect(rubric!.totalMarks).toBe(34);
+  });
+
+  it("returns rubric for TOK Essay", async () => {
+    const { getRubric } = await import("../shared/rubrics");
+    const rubric = getRubric("TOK", "Philosophy");
+    expect(rubric).toBeDefined();
+    expect(rubric!.label).toContain("TOK Essay");
+  });
+
+  it("returns undefined for unsupported IA subject", async () => {
+    const { getRubric } = await import("../shared/rubrics");
+    const rubric = getRubric("IA", "Nonexistent Subject 999");
+    expect(rubric).toBeUndefined();
+  });
+
+  it("buildRubricPromptFragment returns non-empty for supported combo", async () => {
+    const { buildRubricPromptFragment } = await import("../shared/rubrics");
+    const fragment = buildRubricPromptFragment("IA", "Economics");
+    expect(fragment.length).toBeGreaterThan(50);
+    expect(fragment).toContain("criterion");
+  });
+
+  it("buildRubricPromptFragment returns empty for unsupported combo", async () => {
+    const { buildRubricPromptFragment } = await import("../shared/rubrics");
+    const fragment = buildRubricPromptFragment("IA", "Nonexistent Subject 999");
+    expect(fragment).toBe("");
+  });
+});
+
+// ---- Part 2: Pricing centralization tests ----
+
+describe("Centralized pricing", () => {
+  it("PRICES are in cents and consistent with PRICE_LABELS", async () => {
+    const { PRICES, PRICE_LABELS } = await import("../shared/pricing");
+    expect(PRICES.ESSAY_SINGLE).toBe(499);
+    expect(PRICES.ESSAY_PACK_5).toBe(1999);
+    expect(PRICES.ESSAY_PACK_10).toBe(3499);
+    expect(PRICES.UNIVERSITY_SINGLE).toBe(2500);
+
+    expect(PRICE_LABELS.ESSAY_SINGLE).toBe("$4.99");
+    expect(PRICE_LABELS.ESSAY_PACK_5).toBe("$19.99");
+    expect(PRICE_LABELS.ESSAY_PACK_10).toBe("$34.99");
+    expect(PRICE_LABELS.UNIVERSITY_SINGLE).toBe("$25");
+  });
+
+  it("PRODUCTS import prices from shared/pricing (not hardcoded)", async () => {
+    const { PRODUCTS } = await import("./products");
+    const { PRICES } = await import("../shared/pricing");
+    expect(PRODUCTS.ESSAY_SINGLE.priceAmount).toBe(PRICES.ESSAY_SINGLE);
+    expect(PRODUCTS.UNIVERSITY_SINGLE.priceAmount).toBe(PRICES.UNIVERSITY_SINGLE);
+  });
+});
+
+// ---- Part 6: NOWPayments webhook method guard ----
+
+describe("NOWPayments webhook method guard", () => {
+  it("registerNowPaymentsWebhook registers both app.all and app.post on /api/nowpayments/webhook", async () => {
+    const { registerNowPaymentsWebhook } = await import("./nowpayments/nowpayments");
+
+    const registeredRoutes: Array<{ method: string; path: string }> = [];
+    const fakeApp = {
+      all: (path: string, ..._handlers: any[]) => { registeredRoutes.push({ method: "all", path }); },
+      post: (path: string, ..._handlers: any[]) => { registeredRoutes.push({ method: "post", path }); },
+    };
+
+    registerNowPaymentsWebhook(fakeApp as any);
+
+    expect(registeredRoutes).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ method: "all", path: "/api/nowpayments/webhook" }),
+        expect.objectContaining({ method: "post", path: "/api/nowpayments/webhook" }),
+      ])
+    );
+  });
+});

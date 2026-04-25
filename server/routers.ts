@@ -25,6 +25,7 @@ import { createNowPaymentsInvoice } from "./nowpayments/nowpayments";
 import { randomUUID } from "crypto";
 import { PRODUCTS } from "./products";
 import { getTributeProductLink } from "./tribute/tribute";
+import { getRubric, buildRubricPromptFragment } from "../shared/rubrics";
 
 const IB_SUBJECTS = [
   "Business Management", "Economics", "History", "Biology", "Chemistry",
@@ -36,6 +37,73 @@ const IB_SUBJECTS = [
 const ESSAY_TYPES = ["IA", "EE", "TOK"] as const;
 
 const productKeySchema = z.enum(["ESSAY_SINGLE", "ESSAY_PACK_5", "ESSAY_PACK_10", "UNIVERSITY_SINGLE"]);
+
+/**
+ * Build the system prompt for essay analysis.
+ * Includes rubric-specific instructions when a rubric is available.
+ */
+function buildEssaySystemPrompt(essayType: string, subject: string): string {
+  const rubric = getRubric(essayType, subject);
+  const rubricFragment = buildRubricPromptFragment(essayType, subject);
+
+  let base = `You are an experienced IB examiner with 12 years of grading experience across multiple subjects. Analyze the student's work strictly according to IB assessment criteria. Be specific, constructive, and honest. Reference actual IB criteria names and descriptors.
+
+IMPORTANT FORMATTING RULES:
+- Respond with a single valid JSON object. No markdown, no text before or after the JSON.
+- Write ALL text in plain text only. NEVER use HTML entities like &amp; &lt; &gt; &quot; — write the actual characters: & < > " instead.
+- Do not use any HTML tags or HTML encoding in your response.`;
+
+  if (rubricFragment) {
+    base += "\n" + rubricFragment;
+  } else {
+    base += `\n\nNOTE: No official IB rubric is available for this specific (${essayType}, ${subject}) combination. Provide generic IB-style feedback. Make it clear in your overall_comment that this is generic feedback, not based on the official subject rubric.`;
+  }
+
+  return base;
+}
+
+/**
+ * Build the user prompt for essay analysis.
+ * Dynamically generates the expected JSON criteria structure from the rubric.
+ */
+function buildEssayUserPrompt(essayType: string, subject: string, researchQuestion: string | undefined, essayText: string): string {
+  const rubric = getRubric(essayType, subject);
+
+  let criteriaExample: string;
+  if (rubric) {
+    // Build criteria array from the rubric
+    const criteriaEntries = rubric.criteria.map(c =>
+      `    {"name": "${c.name}", "score": 0, "max": ${c.max}, "comment": "Specific feedback for this criterion"}`
+    ).join(",\n");
+    criteriaExample = `[\n${criteriaEntries}\n  ]`;
+  } else {
+    criteriaExample = `[
+    {"name": "Criterion name", "score": 0, "max": 4, "comment": "Specific feedback for this criterion"}
+  ]`;
+  }
+
+  return `Analyze this IB ${essayType} for: ${subject}
+Research Question: ${researchQuestion || "not provided"}
+
+TEXT:
+${essayText.substring(0, 6000)}
+
+Respond with this exact JSON structure:
+{
+  "band_range": "4-5",
+  "predicted_score": 4,
+  "max_score": 7,
+  "overall_comment": "Detailed overall assessment of the work",
+  "criteria": ${criteriaExample},
+  "risks": [
+    {"title": "Risk title", "description": "What specifically loses marks and why"}
+  ],
+  "leverage_zones": [
+    {"title": "Improvement area", "description": "Specific actionable advice to gain marks"}
+  ],
+  "next_steps": ["Specific step 1", "Specific step 2", "Specific step 3"]
+}`;
+}
 
 // ---- Essay Analysis Router ----
 const essayRouter = router({
@@ -58,33 +126,8 @@ const essayRouter = router({
         throw new Error(usage.reason || "Free analysis already used. Sign in to continue.");
       }
 
-      const systemPrompt = `You are an experienced IB examiner with 12 years of grading experience across multiple subjects. Analyze the student's work strictly according to IB assessment criteria. Be specific, constructive, and honest. Reference actual IB criteria names and descriptors.
-
-IMPORTANT: Respond with a single valid JSON object. No markdown, no text before or after the JSON.`;
-
-      const userPrompt = `Analyze this IB ${input.essayType} for: ${input.subject}
-Research Question: ${input.researchQuestion || "not provided"}
-
-TEXT:
-${input.essayText.substring(0, 6000)}
-
-Respond with this exact JSON structure:
-{
-  "band_range": "4-5",
-  "predicted_score": 4,
-  "max_score": 7,
-  "overall_comment": "Detailed overall assessment of the work",
-  "criteria": [
-    {"name": "Criterion A: Knowledge and Understanding", "score": 3, "max": 4, "comment": "Specific feedback for this criterion"}
-  ],
-  "risks": [
-    {"title": "Risk title", "description": "What specifically loses marks and why"}
-  ],
-  "leverage_zones": [
-    {"title": "Improvement area", "description": "Specific actionable advice to gain marks"}
-  ],
-  "next_steps": ["Specific step 1", "Specific step 2", "Specific step 3"]
-}`;
+      const systemPrompt = buildEssaySystemPrompt(input.essayType, input.subject);
+      const userPrompt = buildEssayUserPrompt(input.essayType, input.subject, input.researchQuestion, input.essayText);
 
       try {
         const response = await invokeLLM({
@@ -101,6 +144,14 @@ Respond with this exact JSON structure:
 
         const cleaned = jsonMatch[0].replace(/,\s*([\]\}])/g, '$1');
         const result = JSON.parse(cleaned);
+
+        // Attach rubric metadata so frontend knows whether this was rubric-based
+        const rubric = getRubric(input.essayType, input.subject);
+        result._rubricAvailable = !!rubric;
+        if (rubric) {
+          result._rubricLabel = rubric.label;
+          result._rubricTotalMarks = rubric.totalMarks;
+        }
 
         // Save anonymous analysis
         await createAnonymousAnalysis({
@@ -141,33 +192,8 @@ Respond with this exact JSON structure:
         throw new Error(usage.reason || "No essay credits remaining");
       }
 
-      const systemPrompt = `You are an experienced IB examiner with 12 years of grading experience across multiple subjects. Analyze the student's work strictly according to IB assessment criteria. Be specific, constructive, and honest. Reference actual IB criteria names and descriptors.
-
-IMPORTANT: Respond with a single valid JSON object. No markdown, no text before or after the JSON.`;
-
-      const userPrompt = `Analyze this IB ${input.essayType} for: ${input.subject}
-Research Question: ${input.researchQuestion || "not provided"}
-
-TEXT:
-${input.essayText.substring(0, 6000)}
-
-Respond with this exact JSON structure:
-{
-  "band_range": "4-5",
-  "predicted_score": 4,
-  "max_score": 7,
-  "overall_comment": "Detailed overall assessment of the work",
-  "criteria": [
-    {"name": "Criterion A: Knowledge and Understanding", "score": 3, "max": 4, "comment": "Specific feedback for this criterion"}
-  ],
-  "risks": [
-    {"title": "Risk title", "description": "What specifically loses marks and why"}
-  ],
-  "leverage_zones": [
-    {"title": "Improvement area", "description": "Specific actionable advice to gain marks"}
-  ],
-  "next_steps": ["Specific step 1", "Specific step 2", "Specific step 3"]
-}`;
+      const systemPrompt = buildEssaySystemPrompt(input.essayType, input.subject);
+      const userPrompt = buildEssayUserPrompt(input.essayType, input.subject, input.researchQuestion, input.essayText);
 
       try {
         const response = await invokeLLM({
@@ -184,6 +210,14 @@ Respond with this exact JSON structure:
 
         const cleaned = jsonMatch[0].replace(/,\s*([\]\}])/g, '$1');
         const result = JSON.parse(cleaned);
+
+        // Attach rubric metadata
+        const rubric = getRubric(input.essayType, input.subject);
+        result._rubricAvailable = !!rubric;
+        if (rubric) {
+          result._rubricLabel = rubric.label;
+          result._rubricTotalMarks = rubric.totalMarks;
+        }
 
         const analysis = await createAnalysis({
           userId: ctx.user.id,
@@ -229,7 +263,10 @@ const universityRouter = router({
 
       const systemPrompt = `You are an experienced IB university counselor with 15 years of advising students on university admissions worldwide. Give realistic, data-informed advice based on actual IB score requirements and admission statistics. Be honest about chances.
 
-IMPORTANT: Respond with a single valid JSON object. No markdown, no text before or after the JSON.`;
+IMPORTANT FORMATTING RULES:
+- Respond with a single valid JSON object. No markdown, no text before or after the JSON.
+- Write ALL text in plain text only. NEVER use HTML entities like &amp; &lt; &gt; &quot; — write the actual characters: & < > " instead.
+- Do not use any HTML tags or HTML encoding in your response.`;
 
       const userPrompt = `Today is ${currentDate}. Build a university strategy for this IB student:
 Predicted: ${input.predictedScore}/45, Average Grade: ${input.averageGrade}/7
@@ -274,6 +311,8 @@ Respond with this exact JSON structure:
         const analysis = await createAnalysis({
           userId: ctx.user.id,
           type: "university",
+          essayType: null,
+          subject: null,
           predictedScore: input.predictedScore,
           averageGrade: String(input.averageGrade),
           fieldOfStudy: input.fieldOfStudy,

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
 import { getLoginUrl } from "@/const";
+import { PRICE_LABELS } from "@shared/pricing";
 import { useState, useEffect, useMemo } from "react";
 import {
   FileText, GraduationCap, Shield, Zap, BarChart3, Target,
@@ -235,7 +236,7 @@ export default function Home() {
                   ))}
                 </ul>
                 <div className="mt-5">
-                  <span className="text-sm font-medium text-primary">$9.99/strategy</span>
+                  <span className="text-sm font-medium text-primary">{PRICE_LABELS.UNIVERSITY_SINGLE}/strategy</span>
                 </div>
                 <Button variant="ghost" className="mt-3 group-hover:text-primary" asChild>
                   <Link href="/university">
@@ -386,7 +387,7 @@ export default function Home() {
               <CardContent className="p-6 text-center">
                 <GraduationCap className="w-8 h-8 text-primary mx-auto mb-3" />
                 <h3 className="font-semibold mb-1">University Strategy</h3>
-                <div className="text-3xl font-bold mb-2">$9.99</div>
+                <div className="text-3xl font-bold mb-2">{PRICE_LABELS.UNIVERSITY_SINGLE}</div>
                 <p className="text-xs text-muted-foreground mb-4">Per strategy</p>
                 <Button variant="outline" size="sm" className="w-full" asChild>
                   <Link href="/university">Get Strategy</Link>

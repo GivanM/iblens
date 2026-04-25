@@ -149,3 +149,16 @@
 - [x] NOWPayments: Frontend — require sign-in before checkout, create order, redirect to NOWPayments invoice
 - [x] NOWPayments: Comprehensive tests (valid sig, invalid sig, duplicate, refund, unknown order, all statuses)
 - [x] NOWPayments: Do not break existing Tribute manual activation flow
+- [x] Part 1: Build rubric registry keyed by (type_of_work, subject) with official IB criteria, marks, descriptors
+- [x] Part 1: Inject correct rubric into AI analysis prompt based on user selection
+- [x] Part 1: Update result UI to display criterion names/maximums dynamically from rubric registry
+- [x] Part 1: Show "Subject rubric not yet supported" notice for unsupported combinations
+- [x] Part 2: Fix "Of Maximum" percentage = sum(criterion_scores)/sum(criterion_max)*100
+- [x] Part 2: Make UI labels clear that IB grade/band are projections, distinct from raw percentage
+- [x] Part 3: Fix HTML entity double-escaping (R&amp;D → R&D) in AI feedback rendering
+- [x] Part 3: Add unit test for HTML entity handling (covered in rubric + pricing tests)
+- [x] Part 4: Update University Strategy price to $25 everywhere (Pricing page, form CTA, server-side)
+- [x] Part 4: Centralize prices in shared/pricing.ts
+- [x] Part 5: Add hardcoded "Sample Strategy Preview" section above form on /university page
+- [x] Part 6: NOWPayments webhook POST-only method guard with 405 for other methods
+- [x] Part 6: Add test for GET /api/nowpayments/webhook returns 405 (method guard registration test)
