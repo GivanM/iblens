@@ -1,4 +1,5 @@
 import type { Express, Request, Response } from "express";
+import express from "express";
 import crypto from "crypto";
 import { ENV } from "../_core/env";
 import {
@@ -81,32 +82,18 @@ export function registerLemonsqueezyWebhook(app: Express) {
 
   app.post(
     "/api/lemonsqueezy/webhook",
-    // Raw body parser — collects raw bytes BEFORE any JSON parsing
-    (req: Request, res: Response, next) => {
-      const chunks: Buffer[] = [];
-      req.on("data", (chunk: Buffer) => {
-        chunks.push(chunk);
-      });
-      req.on("end", () => {
-        const rawBody = Buffer.concat(chunks);
-        (req as any).rawBodyStr = rawBody.toString("utf-8");
-        try {
-          req.body = JSON.parse((req as any).rawBodyStr);
-        } catch {
-          req.body = {};
-        }
-        next();
-      });
-      req.on("error", (err) => {
-        console.error("[LemonSqueezy Webhook] Stream error:", err);
-        next(err);
-      });
-    },
+    express.raw({ type: "application/json" }),
     async (req: Request, res: Response) => {
-      const rawBodyStr: string = (req as any).rawBodyStr || "";
+      // req.body is a Buffer thanks to express.raw()
+      const rawBodyStr: string = Buffer.isBuffer(req.body) ? req.body.toString("utf-8") : String(req.body || "");
       const signature = (req.headers["x-signature"] as string) || "";
       const eventNameHeader = (req.headers["x-event-name"] as string) || "";
-      const body = req.body;
+      let body: any = {};
+      try {
+        body = JSON.parse(rawBodyStr);
+      } catch {
+        body = {};
+      }
 
       // Extract identifiers for logging (best-effort, even if body is malformed)
       const meta = body?.meta || {};
