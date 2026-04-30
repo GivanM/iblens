@@ -44,7 +44,7 @@ export const payments = mysqlTable("payments", {
   // Payment details
   amount: int("amount").notNull(), // in cents (e.g. 499 = $4.99)
   currency: varchar("currency", { length: 10 }).default("usd").notNull(),
-  provider: mysqlEnum("provider", ["tribute", "nowpayments"]).notNull(),
+  provider: mysqlEnum("provider", ["tribute", "nowpayments", "lemonsqueezy"]).notNull(),
   providerPaymentId: varchar("providerPaymentId", { length: 255 }),
   status: mysqlEnum("status", ["pending", "completed", "failed", "expired"]).default("pending").notNull(),
   // Metadata
@@ -60,7 +60,7 @@ export const orders = mysqlTable("orders", {
   amountUsd: int("amountUsd").notNull(), // in cents
   currency: varchar("currency", { length: 10 }).default("usd").notNull(),
   status: mysqlEnum("status", ["pending", "processing", "partial", "paid", "failed", "expired", "refunded"]).default("pending").notNull(),
-  provider: mysqlEnum("provider", ["nowpayments", "tribute"]).default("nowpayments").notNull(),
+  provider: mysqlEnum("provider", ["nowpayments", "tribute", "lemonsqueezy"]).default("nowpayments").notNull(),
   npInvoiceId: varchar("npInvoiceId", { length: 255 }),
   npPaymentId: varchar("npPaymentId", { length: 255 }),
   createdAt: timestamp("createdAt").defaultNow().notNull(),

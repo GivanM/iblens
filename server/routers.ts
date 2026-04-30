@@ -22,6 +22,8 @@ import {
   createOrder,
 } from "./db";
 import { createNowPaymentsInvoice } from "./nowpayments/nowpayments";
+import { createLemonsqueezyCheckout } from "./lemonsqueezy/lemonsqueezy";
+import { LEMONSQUEEZY_VARIANTS, PRODUCT_KEY_TO_LS_SKU } from "../shared/pricing";
 import { randomUUID } from "crypto";
 import { PRODUCTS } from "./products";
 import { getTributeProductLink } from "./tribute/tribute";
@@ -456,6 +458,50 @@ const paymentRouter = router({
       }
 
       return { invoiceUrl, orderId };
+    }),
+
+  // Create LemonSqueezy card checkout (requires authentication)
+  createLemonsqueezyCheckout: protectedProcedure
+    .input(z.object({
+      productKey: z.enum(["ESSAY_SINGLE", "ESSAY_PACK_5", "ESSAY_PACK_10", "UNIVERSITY_SINGLE"]),
+    }))
+    .mutation(async ({ ctx, input }) => {
+      const product = PRODUCTS[input.productKey];
+      if (!product) throw new Error("Invalid product");
+
+      const lsSku = PRODUCT_KEY_TO_LS_SKU[input.productKey];
+      const variantId = LEMONSQUEEZY_VARIANTS[lsSku];
+      if (!variantId) throw new Error("No LemonSqueezy variant for this product");
+
+      // Map product key to SKU enum
+      const skuMap: Record<string, string> = {
+        ESSAY_SINGLE: "essay_single",
+        ESSAY_PACK_5: "essay_pack_5",
+        ESSAY_PACK_10: "essay_pack_10",
+        UNIVERSITY_SINGLE: "university_single",
+      };
+      const sku = skuMap[input.productKey] as any;
+
+      // Create order in DB
+      const orderId = randomUUID();
+      await createOrder({
+        id: orderId,
+        userId: ctx.user.id,
+        sku,
+        amountUsd: product.priceAmount,
+        currency: "usd",
+        status: "pending",
+        provider: "lemonsqueezy",
+      });
+
+      // Create LemonSqueezy checkout
+      const { checkoutUrl } = await createLemonsqueezyCheckout(
+        orderId,
+        variantId,
+        ctx.user.email || null,
+      );
+
+      return { checkoutUrl, orderId };
     }),
 });
 

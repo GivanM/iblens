@@ -162,3 +162,22 @@
 - [x] Part 5: Add hardcoded "Sample Strategy Preview" section above form on /university page
 - [x] Part 6: NOWPayments webhook POST-only method guard with 405 for other methods
 - [x] Part 6: Add test for GET /api/nowpayments/webhook returns 405 (method guard registration test)
+
+## LemonSqueezy Integration
+- [x] Add LEMONSQUEEZY_API_KEY, LEMONSQUEEZY_WEBHOOK_SECRET, LEMONSQUEEZY_STORE_ID env vars
+- [x] Add variant ID map in shared/pricing.ts (essay_single→1593708, essay_pack_5→1593731, essay_pack_10→1593732, university_strategy→1593734)
+- [x] Update DB provider enum to include 'lemonsqueezy'
+- [x] Backend: tRPC mutation payment.createLemonsqueezyCheckout (creates order, calls LS API, returns checkout URL)
+- [x] Backend: POST /api/lemonsqueezy/webhook with HMAC-SHA256 verification
+- [x] Backend: Webhook idempotency via webhook_events unique constraint
+- [x] Backend: Handle order_created event (grant credits via credit_ledger)
+- [x] Backend: Handle order_refunded event (deduct credits)
+- [x] Backend: 405 method guard for non-POST requests
+- [x] Frontend: "Pay with Card" button on each Pricing card
+- [x] Frontend: "Pay with Card ($25)" on University Strategy form
+- [x] Tests: HMAC verification (valid + invalid)
+- [x] Tests: 405 for GET/PUT/DELETE on webhook
+- [x] Tests: Idempotency (same event_id twice)
+- [x] Tests: order_created grants correct credits for all 4 SKUs
+- [x] Tests: order_refunded reverses credits
+- [x] Tests: Unknown variant_id returns 200 without crashing

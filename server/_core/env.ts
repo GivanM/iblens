@@ -10,4 +10,8 @@ export const ENV = {
   // NOWPayments
   nowpaymentsApiKey: process.env.NOWPAYMENTS_API_KEY ?? "",
   nowpaymentsIpnSecret: process.env.NOWPAYMENTS_IPN_SECRET ?? "",
+  // LemonSqueezy
+  lemonsqueezyApiKey: process.env.LEMONSQUEEZY_API_KEY ?? "",
+  lemonsqueezyWebhookSecret: process.env.LEMONSQUEEZY_WEBHOOK_SECRET ?? "",
+  lemonsqueezyStoreId: process.env.LEMONSQUEEZY_STORE_ID ?? "",
 };

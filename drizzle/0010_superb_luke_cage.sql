@@ -1,0 +1,2 @@
+ALTER TABLE `orders` MODIFY COLUMN `provider` enum('nowpayments','tribute','lemonsqueezy') NOT NULL DEFAULT 'nowpayments';--> statement-breakpoint
+ALTER TABLE `payments` MODIFY COLUMN `provider` enum('tribute','nowpayments','lemonsqueezy') NOT NULL;

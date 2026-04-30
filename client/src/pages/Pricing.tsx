@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import { PRICE_LABELS } from "@shared/pricing";
 import {
   FileText, GraduationCap, BarChart3, CheckCircle2, ArrowRight,
-  Shield, Bitcoin, Gift, Sparkles, Loader2
+  Shield, Bitcoin, Gift, Sparkles, Loader2, CreditCard
 } from "lucide-react";
 
 type ProductKey = "ESSAY_SINGLE" | "ESSAY_PACK_5" | "ESSAY_PACK_10" | "UNIVERSITY_SINGLE";
@@ -104,6 +104,7 @@ const plans: Array<{
 export default function Pricing() {
   const { isAuthenticated } = useAuth();
   const [loadingCrypto, setLoadingCrypto] = useState<string | null>(null);
+  const [loadingCard, setLoadingCard] = useState<string | null>(null);
 
   const createInvoice = trpc.payment.createCryptoInvoice.useMutation({
     onSuccess: (data) => {
@@ -121,14 +122,38 @@ export default function Pricing() {
     },
   });
 
+  const createCardCheckout = trpc.payment.createLemonsqueezyCheckout.useMutation({
+    onSuccess: (data) => {
+      toast.success("Redirecting to card checkout...", {
+        description: "A new tab will open with your payment page.",
+      });
+      window.open(data.checkoutUrl, "_blank");
+      setLoadingCard(null);
+    },
+    onError: (error) => {
+      toast.error("Payment error", {
+        description: error.message || "Failed to create checkout. Please try again.",
+      });
+      setLoadingCard(null);
+    },
+  });
+
   const handleCryptoPay = (productKey: ProductKey) => {
     if (!isAuthenticated) {
-      // Redirect to login first
       window.location.href = getLoginUrl();
       return;
     }
     setLoadingCrypto(productKey);
     createInvoice.mutate({ productKey });
+  };
+
+  const handleCardPay = (productKey: ProductKey) => {
+    if (!isAuthenticated) {
+      window.location.href = getLoginUrl();
+      return;
+    }
+    setLoadingCard(productKey);
+    createCardCheckout.mutate({ productKey });
   };
 
   return (
@@ -223,7 +248,28 @@ export default function Pricing() {
                   </Button>
                 )}
 
-                {/* Pay with Crypto button */}
+                {/* Pay with Card button (LemonSqueezy) */}
+                <Button
+                  size="sm"
+                  variant="secondary"
+                  className="w-full mb-1.5 text-xs"
+                  onClick={() => handleCardPay(plan.productKey)}
+                  disabled={loadingCard === plan.productKey}
+                >
+                  {loadingCard === plan.productKey ? (
+                    <>
+                      <Loader2 className="w-3 h-3 mr-1.5 animate-spin" />
+                      Creating checkout...
+                    </>
+                  ) : (
+                    <>
+                      <CreditCard className="w-3 h-3 mr-1.5" />
+                      Pay with Card
+                    </>
+                  )}
+                </Button>
+
+                {/* Pay with Crypto button (NOWPayments) */}
                 <Button
                   size="sm"
                   variant="ghost"
@@ -249,14 +295,18 @@ export default function Pricing() {
         </div>
 
         {/* Payment methods */}
-        <div className="flex items-center justify-center gap-6 mt-12 text-sm text-muted-foreground">
+        <div className="flex items-center justify-center gap-6 mt-12 text-sm text-muted-foreground flex-wrap">
+          <div className="flex items-center gap-1.5">
+            <CreditCard className="w-4 h-4" />
+            <span>All major cards via LemonSqueezy</span>
+          </div>
           <div className="flex items-center gap-1.5">
             <Shield className="w-4 h-4" />
-            <span>Card, Crypto & Telegram Stars via Tribute</span>
+            <span>Telegram Stars via Tribute</span>
           </div>
           <div className="flex items-center gap-1.5">
             <Bitcoin className="w-4 h-4" />
-            <span>Automated crypto via NOWPayments</span>
+            <span>Crypto via NOWPayments</span>
           </div>
         </div>
 

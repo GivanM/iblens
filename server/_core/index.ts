@@ -9,6 +9,7 @@ import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import { registerTributeWebhook } from "../tribute/tribute";
 import { registerNowPaymentsWebhook } from "../nowpayments/nowpayments";
+import { registerLemonsqueezyWebhook } from "../lemonsqueezy/lemonsqueezy";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -35,6 +36,7 @@ async function startServer() {
   // Payment webhooks must be registered BEFORE body parsers
   registerTributeWebhook(app);
   registerNowPaymentsWebhook(app);
+  registerLemonsqueezyWebhook(app);
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
