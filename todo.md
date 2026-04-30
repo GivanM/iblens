@@ -258,3 +258,11 @@
 - [x] Confirm no Meta Pixel code exists
 - [x] Verify GTM snippet fires on page source (dev server — live site needs re-publish)
 - [x] Run tests — all 120 pass (excl. flaky LS network test)
+
+## Google Ads Conversion IDs — Real Values
+- [x] Replace AW-PLACEHOLDER with AW-18130476377 in config.ts
+- [x] Replace GOOGLE_ADS_PURCHASE_LABEL placeholder with J2VxCIuJqqUcENm6pMVD
+- [x] Add GOOGLE_ADS_LEAD_LABEL = 53NUCIiJqqUcENm6pMVD (for sign_up + essay_submitted)
+- [x] Search entire codebase for remaining AW-PLACEHOLDER references (0 found)
+- [x] Run tests — 120 pass
+- [ ] Publish

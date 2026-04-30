@@ -43,8 +43,9 @@ AI-powered web application for IB students that analyzes essays (IA, EE, TOK) ag
 |----------|-------------|------------|
 | `GA4_MEASUREMENT_ID` | GA4 property ID (default: `G-391DXZEC51`) | Server-side GA4 MP |
 | `GA4_API_SECRET` | GA4 Measurement Protocol API secret | Server-side purchase events |
-| `GOOGLE_ADS_CONVERSION_ID` | Google Ads conversion ID (placeholder: `AW-PLACEHOLDER`) | GTM config |
-| `GOOGLE_ADS_PURCHASE_LABEL` | Google Ads purchase conversion label (placeholder) | GTM config |
+| `GOOGLE_ADS_CONVERSION_ID` | Google Ads conversion ID: `AW-18130476377` | GTM config |
+| `GOOGLE_ADS_LEAD_LABEL` | Google Ads lead/sign-up conversion label: `53NUCIiJqqUcENm6pMVD` | GTM config |
+| `GOOGLE_ADS_PURCHASE_LABEL` | Google Ads purchase conversion label: `J2VxCIuJqqUcENm6pMVD` | GTM config |
 
 ### Email
 
