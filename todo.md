@@ -266,3 +266,13 @@
 - [x] Search entire codebase for remaining AW-PLACEHOLDER references (0 found)
 - [x] Run tests — 120 pass
 - [ ] Publish
+
+## Critical Landing Page Fixes (Pre-Ads)
+- [x] Add 7-day money-back guarantee badge on pricing section
+- [x] Add refund FAQ entry
+- [x] Create /refund-policy page with formal refund policy
+- [x] Replace fake testimonials with anonymous neutral quotes
+- [x] Add Essay Pack 5 ($19.99) pricing card
+- [x] Unify hero CTA to single primary button
+- [x] Fix FAQ accordion (answers expand on click — verified working)
+- [x] Write AUTH_FLOW_INVESTIGATION.md (OAuth white-label + alternatives)

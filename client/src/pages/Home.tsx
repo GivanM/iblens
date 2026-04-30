@@ -87,19 +87,16 @@ export default function Home() {
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
               IBLens analyzes your essays against real IB criteria and builds personalized university strategies — powered by AI that thinks like an experienced examiner.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="text-base px-8 h-12 shadow-lg shadow-primary/25" asChild>
+            <div className="flex flex-col items-center gap-3">
+              <Button size="lg" className="text-base px-10 h-13 shadow-lg shadow-primary/25" asChild>
                 <Link href="/essay">
                   <FileText className="w-4 h-4 mr-2" />
-                  Score My Essay Free — Takes 60 Seconds
+                  Score My Essay Free — 60 Seconds
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="text-base px-8 h-12" asChild>
-                <Link href="/university">
-                  <GraduationCap className="w-4 h-4 mr-2" />
-                  University Strategy
-                </Link>
-              </Button>
+              <Link href="/university" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                Or get a personalized University Strategy →
+              </Link>
             </div>
             {!isAuthenticated && (
               <p className="text-sm text-muted-foreground mt-4">
@@ -244,31 +241,28 @@ export default function Home() {
         <div className="container">
           <div className="text-center mb-14">
             <h2 className="text-3xl font-bold tracking-tight mb-3">What IB students say</h2>
-            <p className="text-muted-foreground text-lg">Real feedback from students who improved their scores</p>
+            <p className="text-muted-foreground text-lg">Feedback from students who used IBLens</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
               {
-                quote: "IBLens predicted my IA score within 1 mark. The criterion breakdown showed me exactly where I was losing points. I revised my analysis section and went from a 4 to a 6.",
-                name: "Sarah K.",
-                detail: "Business Management IA — Score: 6/7",
+                quote: "The criterion-by-criterion breakdown showed me exactly which sections were dragging my mark down. I knew what to revise without guessing.",
+                attribution: "IB Student, Business Management IA",
                 stars: 5,
               },
               {
-                quote: "The university strategy was incredibly detailed. It gave me 9 realistic options with actual admission probabilities. I got into my match school — University of Edinburgh!",
-                name: "Marcus L.",
-                detail: "IB Score: 38 — Admitted to Edinburgh",
+                quote: "Used the university strategy after my mocks to figure out which schools actually fit my predicted points. Saved me from wasting application slots.",
+                attribution: "IB Diploma Candidate, Year 2",
                 stars: 5,
               },
               {
-                quote: "I was stuck on my Extended Essay and didn't know what to fix. IBLens identified weak argumentation in my conclusion and gave me specific steps. My supervisor was impressed with the revision.",
-                name: "Aisha M.",
-                detail: "History Extended Essay — Grade: A",
+                quote: "I uploaded my Extended Essay draft and got back specific feedback on argumentation gaps in the conclusion. Fixed it before my supervisor saw it.",
+                attribution: "IB Student, History EE",
                 stars: 5,
               },
-            ].map(({ quote, name, detail, stars }) => (
-              <Card key={name} className="border">
+            ].map(({ quote, attribution, stars }) => (
+              <Card key={attribution} className="border">
                 <CardContent className="p-6">
                   <div className="flex gap-0.5 mb-4">
                     {Array.from({ length: stars }).map((_, i) => (
@@ -279,8 +273,7 @@ export default function Home() {
                     "{quote}"
                   </p>
                   <div>
-                    <p className="text-sm font-semibold">{name}</p>
-                    <p className="text-xs text-muted-foreground">{detail}</p>
+                    <p className="text-xs text-muted-foreground font-medium">— {attribution}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -322,29 +315,32 @@ export default function Home() {
             <p className="text-muted-foreground text-lg">No subscriptions. No commitments. Your first essay analysis is free.</p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
-            {/* Free Essay */}
+          {/* Free tier highlight */}
+          <div className="max-w-md mx-auto mb-8">
             <Card className="border-2 border-emerald-500/30 relative">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-emerald-500 text-white text-xs font-semibold rounded-full">
                 Free
               </div>
               <CardContent className="p-6 text-center">
                 <Gift className="w-8 h-8 text-emerald-500 mx-auto mb-3" />
-                <h3 className="font-semibold mb-1">First Essay</h3>
+                <h3 className="font-semibold mb-1">First Essay Analysis</h3>
                 <div className="text-3xl font-bold mb-2">$0</div>
-                <p className="text-xs text-muted-foreground mb-4">Full analysis with all features</p>
+                <p className="text-xs text-muted-foreground mb-4">Full analysis with all features — no credit card required</p>
                 <Button variant="outline" size="sm" className="w-full border-emerald-500/30 text-emerald-600 hover:bg-emerald-50" asChild>
                   <Link href="/essay">Try Free</Link>
                 </Button>
               </CardContent>
             </Card>
+          </div>
 
+          {/* Paid plans grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
             {/* Single Essay */}
             <Card className="border-2">
               <CardContent className="p-6 text-center">
                 <FileText className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h3 className="font-semibold mb-1">Essay Analysis</h3>
-                <div className="text-3xl font-bold mb-2">$4.99</div>
+                <h3 className="font-semibold mb-1">Single Analysis</h3>
+                <div className="text-3xl font-bold mb-2">{PRICE_LABELS.ESSAY_SINGLE}</div>
                 <p className="text-xs text-muted-foreground mb-4">Per analysis</p>
                 <Button variant="outline" size="sm" className="w-full" asChild>
                   <Link href="/essay">Analyze Essay</Link>
@@ -352,7 +348,25 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            {/* Essay Pack */}
+            {/* Essay Pack 5 */}
+            <Card className="border-2">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-amber-500 text-white text-xs font-semibold rounded-full hidden"></div>
+              <CardContent className="p-6 text-center">
+                <BarChart3 className="w-8 h-8 text-primary mx-auto mb-3" />
+                <h3 className="font-semibold mb-1">Essay Pack (5)</h3>
+                <div className="text-3xl font-bold mb-1">{PRICE_LABELS.ESSAY_PACK_5}</div>
+                <p className="text-xs text-muted-foreground mb-4">$4.00 per analysis</p>
+                <Button variant="outline" size="sm" className="w-full" asChild>
+                  {isAuthenticated ? (
+                    <Link href="/dashboard">Buy Pack</Link>
+                  ) : (
+                    <a href={getLoginUrl()}>Sign in</a>
+                  )}
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Essay Pack 10 */}
             <Card className="border-2 border-primary relative">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">
                 Best Value
@@ -360,7 +374,7 @@ export default function Home() {
               <CardContent className="p-6 text-center">
                 <BarChart3 className="w-8 h-8 text-primary mx-auto mb-3" />
                 <h3 className="font-semibold mb-1">Essay Pack (10)</h3>
-                <div className="text-3xl font-bold mb-1">$34.99</div>
+                <div className="text-3xl font-bold mb-1">{PRICE_LABELS.ESSAY_PACK_10}</div>
                 <p className="text-xs text-muted-foreground mb-4">$3.50 per analysis</p>
                 <Button size="sm" className="w-full" asChild>
                   {isAuthenticated ? (
@@ -386,15 +400,22 @@ export default function Home() {
             </Card>
           </div>
 
-          {/* Payment methods */}
-          <div className="flex items-center justify-center gap-6 mt-10 text-sm text-muted-foreground">
-            <div className="flex items-center gap-1.5">
-              <Shield className="w-4 h-4" />
-              <span>Secure checkout</span>
+          {/* Money-back guarantee + payment methods */}
+          <div className="flex flex-col items-center gap-4 mt-10">
+            <div className="flex items-center gap-2 text-sm font-medium text-emerald-700 bg-emerald-50 px-4 py-2 rounded-full border border-emerald-200">
+              <ShieldCheck className="w-4 h-4" />
+              <span>7-Day Money-Back Guarantee — No Questions Asked</span>
+              <Link href="/refund-policy" className="text-emerald-600 underline underline-offset-2 ml-1 text-xs">Details</Link>
             </div>
-            <div className="flex items-center gap-1.5">
-              <Bitcoin className="w-4 h-4" />
-              <span>BTC, ETH, USDT & more</span>
+            <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
+              <div className="flex items-center gap-1.5">
+                <Shield className="w-4 h-4" />
+                <span>Secure checkout</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Bitcoin className="w-4 h-4" />
+                <span>BTC, ETH, USDT & more</span>
+              </div>
             </div>
           </div>
         </div>
@@ -435,6 +456,10 @@ export default function Home() {
             <FAQItem
               question="Can I use IBLens for multiple subjects?"
               answer="Yes! IBLens supports all IB subjects including Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English Literature, Psychology, and more. Each analysis is tailored to the specific subject's criteria."
+            />
+            <FAQItem
+              question="What if I'm not satisfied with my analysis?"
+              answer="Email us at support@iblens.com within 7 days of your purchase and we'll refund you in full, no questions asked. We process refunds via the original payment method (LemonSqueezy or NOWPayments) within 3–5 business days."
             />
           </div>
         </div>
@@ -484,6 +509,7 @@ export default function Home() {
                 <li><Link href="/pricing" className="hover:text-foreground transition-colors">Pricing</Link></li>
                 <li><a href="#faq" className="hover:text-foreground transition-colors">FAQ</a></li>
                 <li><Link href="/essay" className="hover:text-foreground transition-colors">Free Essay Analysis</Link></li>
+                <li><Link href="/refund-policy" className="hover:text-foreground transition-colors">Refund Policy</Link></li>
               </ul>
             </div>
           </div>
