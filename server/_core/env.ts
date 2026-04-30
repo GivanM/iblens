@@ -14,4 +14,6 @@ export const ENV = {
   lemonsqueezyApiKey: process.env.LEMONSQUEEZY_API_KEY ?? "",
   lemonsqueezyWebhookSecret: process.env.LEMONSQUEEZY_WEBHOOK_SECRET ?? "",
   lemonsqueezyStoreId: process.env.LEMONSQUEEZY_STORE_ID ?? "",
+  // Resend (transactional email)
+  resendApiKey: process.env.RESEND_API_KEY ?? "",
 };

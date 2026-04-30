@@ -102,7 +102,7 @@
 - [x] All 26 tests passing (3 test files)
 - [x] TRIBUTE_API_KEY set and validated (29 tests passing)
 - [ ] Set webhook URL in Tribute dashboard: https://iblens.com/api/tribute/webhook
-- [ ] Publish site so Tribute webhook is reachable
+- [x] Publish site so Tribute webhook is reachable
 - [x] Create OG image (og-image.png uploaded to CDN, meta tags updated)
 - [x] Create OG preview image (1200x630) for link sharing in Telegram/social media
 - [x] Create Instagram/TikTok avatar (square, branded)
@@ -196,4 +196,37 @@
 - [x] Verify no TRIBUTE_* env vars referenced in source files
 - [x] Write tests for PurchaseModal (SKU+price, card flow, crypto flow, close) — covered by existing lemonsqueezy + nowpayments tests
 - [x] All existing tests pass after removal (99 tests pass)
+- [x] Publish
+
+## Haileybury Launch Polish (5 tasks)
+- [x] Task 1: Remove "Joined by 47 IB students" and "4.8/5 average rating" from landing hero
+- [x] Task 1: Replace with honest one-liner: "Built by an IB parent — scored against the official IB rubric for your subject."
+- [x] Task 2: Add getUserOrders() db helper (orders by userId, DESC)
+- [x] Task 2: Add dashboard.orders tRPC query
+- [x] Task 2: Render Purchase History table in Dashboard (Date, Item, Amount, Method, Status)
+- [x] Task 2: Empty state when no orders
+- [x] Task 3: Install canvas-confetti, show confetti burst on /dashboard?payment=success
+- [x] Task 3: Show toast "Payment confirmed! Your credits are ready to use." (or university variant)
+- [x] Task 3: Clean URL param via history.replaceState after confetti
+- [x] Task 4: Integrate Resend for transactional email (RESEND_API_KEY env var)
+- [x] Task 4: Send confirmation email on LemonSqueezy order_created and NOWPayments finished
+- [x] Task 4: Email is best-effort — log warning if key missing, don't fail webhook
+- [x] Task 5: Add English A: Lang & Lit IA rubric
+- [x] Task 5: Add English A: Literature IA rubric
+- [x] Task 5: Add Visual Arts IA rubric (Comparative Study)
+- [x] Task 5: Add Music IA rubric
+- [x] Task 5: Add Film IA rubric
+- [x] Task 5: Update subject dropdown on /essay to include new subjects
+- [x] Task 5: Unit tests for each new rubric (total marks, criteria non-empty, descriptors)
+- [x] All tests pass after all 5 tasks (108 tests)
+- [ ] Publish
+
+## CRITICAL: LemonSqueezy Webhook Fix
+- [x] DB migration: add headers, rawBody, errorMessage, computedSignature columns to webhook_events
+- [x] Log-first: write every incoming request to webhook_events BEFORE HMAC check
+- [x] Fix HMAC: use raw body string collected via req.on('data') BEFORE any JSON parsing
+- [x] Fix order_created processing: extract custom_data from body.meta.custom_data
+- [x] Always return 200 after initial DB write (except 401 for invalid sig)
+- [x] Fix redirect URL in createLemonsqueezyCheckout to /dashboard?payment=success (already correct)
+- [x] Update tests (112 tests pass)
 - [ ] Publish

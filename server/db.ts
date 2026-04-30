@@ -93,6 +93,14 @@ export async function getUserByOpenId(openId: string) {
   return result.length > 0 ? result[0] : undefined;
 }
 
+export async function getUserById(userId: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+
+  const result = await db.select().from(users).where(eq(users.id, userId)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
 // ---- Analysis helpers ----
 
 export async function createAnalysis(data: InsertAnalysis) {
@@ -418,25 +426,45 @@ export async function updateOrderStatus(id: string, status: string, npPaymentId?
   await db.update(orders).set(updateSet).where(eq(orders.id, id));
 }
 
+export async function getUserOrders(userId: number) {
+  const db = await getDb();
+  if (!db) return [];
+
+  return db.select().from(orders).where(eq(orders.userId, userId)).orderBy(desc(orders.createdAt));
+}
+
 // ---- Webhook event helpers (idempotency) ----
 
 /**
  * Insert a webhook event. Returns true if inserted (new event), false if duplicate.
  */
-export async function insertWebhookEvent(data: InsertWebhookEvent): Promise<boolean> {
+export async function insertWebhookEvent(data: InsertWebhookEvent): Promise<{ isNew: boolean; id?: number }> {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
 
   try {
-    await db.insert(webhookEvents).values(data);
-    return true; // new event
+    const result = await db.insert(webhookEvents).values(data);
+    const insertId = (result as any)[0]?.insertId;
+    return { isNew: true, id: insertId }; // new event
   } catch (error: any) {
     // Duplicate key error (MySQL error code 1062)
     if (error?.code === "ER_DUP_ENTRY" || error?.errno === 1062 || String(error?.message || "").includes("Duplicate")) {
-      return false; // already processed
+      return { isNew: false }; // already processed
     }
     throw error;
   }
+}
+
+/**
+ * Update a webhook event record with additional diagnostic info.
+ */
+export async function updateWebhookEvent(
+  id: number,
+  data: Partial<Pick<InsertWebhookEvent, "signatureValid" | "paymentStatus" | "errorMessage" | "computedSignature">>,
+) {
+  const db = await getDb();
+  if (!db) return;
+  await db.update(webhookEvents).set(data).where(eq(webhookEvents.id, id));
 }
 
 // ---- Credit ledger helpers ----

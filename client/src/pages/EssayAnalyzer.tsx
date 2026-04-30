@@ -27,8 +27,8 @@ import { analytics } from "@/lib/analytics";
 
 const IB_SUBJECTS = [
   "Business Management", "Economics", "History", "Biology", "Chemistry",
-  "Physics", "Mathematics", "English A Literature", "Psychology",
-  "Computer Science", "Geography", "Visual Arts", "Music",
+  "Physics", "Mathematics", "English A: Language and Literature", "English A: Literature",
+  "Psychology", "Computer Science", "Geography", "Visual Arts", "Music", "Film",
   "Environmental Systems and Societies", "Philosophy",
 ];
 

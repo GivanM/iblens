@@ -6,7 +6,10 @@ import {
   updateOrderStatus,
   insertWebhookEvent,
   grantCreditsViaLedger,
+  getUserById,
+  getUserCredits,
 } from "../db";
+import { sendPaymentConfirmationEmail, getSkuHumanName } from "../email";
 import { PRODUCTS, ProductKey } from "../products";
 
 /**
@@ -158,7 +161,7 @@ export function registerNowPaymentsWebhook(app: Express) {
         }
 
         // Idempotency check: try to insert webhook event
-        const isNew = await insertWebhookEvent({
+        const { isNew } = await insertWebhookEvent({
           provider: "nowpayments",
           npPaymentId: paymentId,
           paymentStatus,
@@ -199,6 +202,24 @@ export function registerNowPaymentsWebhook(app: Express) {
               order.id,
             );
             console.log(`[NOWPayments] Credits granted to user ${order.userId}: essay=${credits.essay}, university=${credits.university}`);
+          }
+
+          // Best-effort email notification
+          try {
+            const user = await getUserById(order.userId);
+            if (user?.email) {
+              const userCredits = await getUserCredits(order.userId);
+              await sendPaymentConfirmationEmail({
+                email: user.email,
+                userName: user.name,
+                amountUsd: order.amountUsd,
+                skuHumanName: getSkuHumanName(order.sku),
+                essayCredits: userCredits?.essayCredits || 0,
+                universityCredits: userCredits?.universityCredits || 0,
+              });
+            }
+          } catch (emailErr) {
+            console.warn("[NOWPayments] Email notification failed (non-fatal):", emailErr);
           }
         }
 

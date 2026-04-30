@@ -5,8 +5,12 @@ import {
   getOrderById,
   updateOrderStatus,
   insertWebhookEvent,
+  updateWebhookEvent,
   grantCreditsViaLedger,
+  getUserById,
+  getUserCredits,
 } from "../db";
+import { sendPaymentConfirmationEmail, getSkuHumanName } from "../email";
 
 /**
  * LemonSqueezy webhook handler.
@@ -15,17 +19,17 @@ import {
  * 1. User creates a checkout via tRPC → LS API → checkout URL
  * 2. User pays via card on LemonSqueezy checkout page
  * 3. LemonSqueezy sends webhook to POST /api/lemonsqueezy/webhook
- * 4. We verify HMAC-SHA256 signature, check idempotency, and grant credits on order_created
+ * 4. We LOG first (write to webhook_events), THEN verify HMAC-SHA256, THEN process
  *
  * Webhook security: HMAC-SHA256 of raw body signed with LEMONSQUEEZY_WEBHOOK_SECRET,
- * sent in `X-Signature` header.
+ * sent in `X-Signature` header (lowercase: `x-signature`).
  */
 
 /**
  * Verify LemonSqueezy webhook signature.
  * LS sends HMAC-SHA256 hex digest of raw body in the X-Signature header.
  */
-export function verifyLsSignature(rawBody: Buffer, signature: string, secret: string): boolean {
+export function verifyLsSignature(rawBody: string | Buffer, signature: string, secret: string): boolean {
   if (!signature || !secret) return false;
   const expected = crypto.createHmac("sha256", secret).update(rawBody).digest("hex");
   try {
@@ -33,6 +37,13 @@ export function verifyLsSignature(rawBody: Buffer, signature: string, secret: st
   } catch {
     return false;
   }
+}
+
+/**
+ * Compute HMAC-SHA256 hex digest (for diagnostic logging).
+ */
+function computeHmac(rawBody: string | Buffer, secret: string): string {
+  return crypto.createHmac("sha256", secret).update(rawBody).digest("hex");
 }
 
 /**
@@ -70,77 +81,141 @@ export function registerLemonsqueezyWebhook(app: Express) {
 
   app.post(
     "/api/lemonsqueezy/webhook",
-    // Raw body parser for signature verification
+    // Raw body parser — collects raw bytes BEFORE any JSON parsing
     (req: Request, res: Response, next) => {
-      let rawBody = Buffer.alloc(0);
+      const chunks: Buffer[] = [];
       req.on("data", (chunk: Buffer) => {
-        rawBody = Buffer.concat([rawBody, chunk]);
+        chunks.push(chunk);
       });
       req.on("end", () => {
-        (req as any).rawBody = rawBody;
+        const rawBody = Buffer.concat(chunks);
+        (req as any).rawBodyStr = rawBody.toString("utf-8");
         try {
-          req.body = JSON.parse(rawBody.toString("utf-8"));
+          req.body = JSON.parse((req as any).rawBodyStr);
         } catch {
           req.body = {};
         }
         next();
       });
+      req.on("error", (err) => {
+        console.error("[LemonSqueezy Webhook] Stream error:", err);
+        next(err);
+      });
     },
     async (req: Request, res: Response) => {
+      const rawBodyStr: string = (req as any).rawBodyStr || "";
+      const signature = (req.headers["x-signature"] as string) || "";
+      const eventNameHeader = (req.headers["x-event-name"] as string) || "";
+      const body = req.body;
+
+      // Extract identifiers for logging (best-effort, even if body is malformed)
+      const meta = body?.meta || {};
+      const eventName = meta.event_name || eventNameHeader || "unknown";
+      const dataId = String(body?.data?.id || "unknown");
+      // Use composite key for idempotency: provider + dataId + eventName
+      const eventKey = `${dataId}_${eventName}`;
+
+      console.log(`[LemonSqueezy Webhook] Incoming: event=${eventName}, dataId=${dataId}, bodyLen=${rawBodyStr.length}`);
+
+      // ===== STEP 1: LOG FIRST — write to DB before any validation =====
+      let webhookEventId: number | undefined;
       try {
-        const signature = req.headers["x-signature"] as string;
-        const rawBody: Buffer = (req as any).rawBody;
-        const body = req.body;
-
-        console.log(`[LemonSqueezy Webhook] Received event:`, body?.meta?.event_name || "unknown");
-
-        // Verify HMAC-SHA256 signature
-        if (!verifyLsSignature(rawBody, signature, ENV.lemonsqueezyWebhookSecret)) {
-          console.error("[LemonSqueezy Webhook] HMAC-SHA256 verification failed");
-          return res.status(400).json({ error: "Invalid signature" });
-        }
-
-        const meta = body?.meta || {};
-        const eventName = meta.event_name || "";
-        const eventId = String(body?.data?.id || meta?.webhook_id || "");
-
-        if (!eventId || !eventName) {
-          console.warn("[LemonSqueezy Webhook] Missing event_id or event_name");
-          return res.status(200).json({ ok: true, message: "Missing required fields" });
-        }
-
-        // Idempotency check: try to insert webhook event
-        const isNew = await insertWebhookEvent({
+        const { isNew, id } = await insertWebhookEvent({
           provider: "lemonsqueezy",
-          npPaymentId: eventId, // reuse field for external event ID
-          paymentStatus: eventName,
-          rawBody: JSON.stringify(body),
-          signatureValid: true,
+          npPaymentId: eventKey,
+          paymentStatus: "received", // initial status
+          rawBody: rawBodyStr.substring(0, 65535), // text column limit safety
+          signatureValid: false, // will update after verification
+          requestHeaders: JSON.stringify({
+            "x-signature": signature ? `${signature.substring(0, 16)}...` : "(missing)",
+            "x-event-name": eventNameHeader,
+            "content-type": req.headers["content-type"] || "",
+            "content-length": req.headers["content-length"] || "",
+            "user-agent": req.headers["user-agent"] || "",
+          }),
         });
+        webhookEventId = id;
 
         if (!isNew) {
-          console.log(`[LemonSqueezy Webhook] Duplicate event: id=${eventId}, type=${eventName}`);
+          console.log(`[LemonSqueezy Webhook] Duplicate event: key=${eventKey}`);
           return res.status(200).json({ ok: true, message: "Already processed" });
         }
+      } catch (dbError: any) {
+        // If we can't even write to DB, log and return 200 to prevent infinite retries
+        console.error("[LemonSqueezy Webhook] CRITICAL: Cannot write to webhook_events:", dbError?.message);
+        return res.status(200).json({ ok: true, message: "Internal error (logged)" });
+      }
 
+      // ===== STEP 2: HMAC VERIFICATION using raw body string =====
+      const secret = ENV.lemonsqueezyWebhookSecret;
+      if (!secret) {
+        console.error("[LemonSqueezy Webhook] LEMONSQUEEZY_WEBHOOK_SECRET not configured!");
+        if (webhookEventId) {
+          await updateWebhookEvent(webhookEventId, {
+            signatureValid: false,
+            errorMessage: "LEMONSQUEEZY_WEBHOOK_SECRET not configured",
+          }).catch(() => {});
+        }
+        // Still return 200 — we logged the event, we can investigate
+        return res.status(200).json({ ok: true, message: "Secret not configured" });
+      }
+
+      const computed = computeHmac(rawBodyStr, secret);
+      const isValid = verifyLsSignature(rawBodyStr, signature, secret);
+
+      if (!isValid) {
+        console.error(`[LemonSqueezy Webhook] HMAC verification FAILED. received_sig=${signature?.substring(0, 16)}..., computed=${computed.substring(0, 16)}...`);
+        if (webhookEventId) {
+          await updateWebhookEvent(webhookEventId, {
+            signatureValid: false,
+            paymentStatus: "invalid_signature",
+            errorMessage: `HMAC mismatch. Received: ${signature || "(empty)"}. Computed: ${computed}`,
+            computedSignature: computed,
+          }).catch(() => {});
+        }
+        // Return 401 for invalid signature — LS won't retry 4xx
+        return res.status(401).json({ error: "Invalid signature" });
+      }
+
+      // Signature valid — update record
+      if (webhookEventId) {
+        await updateWebhookEvent(webhookEventId, {
+          signatureValid: true,
+          paymentStatus: "verified",
+          computedSignature: computed,
+        }).catch(() => {});
+      }
+
+      console.log(`[LemonSqueezy Webhook] Signature VALID for event=${eventName}, dataId=${dataId}`);
+
+      // ===== STEP 3: PROCESS EVENT =====
+      try {
         // Extract order_id from custom_data
         const customData = meta.custom_data || {};
         const orderId = customData.order_id || "";
 
         if (eventName === "order_created") {
           if (!orderId) {
-            console.warn("[LemonSqueezy Webhook] order_created without order_id in custom_data");
+            const errMsg = "order_created without order_id in custom_data. meta=" + JSON.stringify(meta);
+            console.warn(`[LemonSqueezy Webhook] ${errMsg}`);
+            if (webhookEventId) {
+              await updateWebhookEvent(webhookEventId, { paymentStatus: "no_order_id", errorMessage: errMsg }).catch(() => {});
+            }
             return res.status(200).json({ ok: true, message: "No order_id in custom_data" });
           }
 
           const order = await getOrderById(orderId);
           if (!order) {
-            console.warn(`[LemonSqueezy Webhook] Order not found: ${orderId}`);
+            const errMsg = `Order not found: ${orderId}`;
+            console.warn(`[LemonSqueezy Webhook] ${errMsg}`);
+            if (webhookEventId) {
+              await updateWebhookEvent(webhookEventId, { paymentStatus: "order_not_found", errorMessage: errMsg }).catch(() => {});
+            }
             return res.status(200).json({ ok: true, message: "Order not found" });
           }
 
           // Mark order as paid
-          await updateOrderStatus(order.id, "paid", eventId);
+          await updateOrderStatus(order.id, "paid", dataId);
 
           // Grant credits
           const credits = lsSkuToCredits(order.sku);
@@ -154,20 +229,49 @@ export function registerLemonsqueezyWebhook(app: Express) {
             );
             console.log(`[LemonSqueezy] Credits granted to user ${order.userId}: essay=${credits.essay}, university=${credits.university}`);
           }
+
+          // Update webhook event status
+          if (webhookEventId) {
+            await updateWebhookEvent(webhookEventId, { paymentStatus: "processed" }).catch(() => {});
+          }
+
+          // Best-effort email notification
+          try {
+            const user = await getUserById(order.userId);
+            if (user?.email) {
+              const userCredits = await getUserCredits(order.userId);
+              await sendPaymentConfirmationEmail({
+                email: user.email,
+                userName: user.name,
+                amountUsd: order.amountUsd,
+                skuHumanName: getSkuHumanName(order.sku),
+                essayCredits: userCredits?.essayCredits || 0,
+                universityCredits: userCredits?.universityCredits || 0,
+              });
+            }
+          } catch (emailErr) {
+            console.warn("[LemonSqueezy] Email notification failed (non-fatal):", emailErr);
+          }
         } else if (eventName === "order_refunded") {
           if (!orderId) {
             console.warn("[LemonSqueezy Webhook] order_refunded without order_id in custom_data");
+            if (webhookEventId) {
+              await updateWebhookEvent(webhookEventId, { paymentStatus: "no_order_id", errorMessage: "order_refunded without order_id" }).catch(() => {});
+            }
             return res.status(200).json({ ok: true, message: "No order_id in custom_data" });
           }
 
           const order = await getOrderById(orderId);
           if (!order) {
             console.warn(`[LemonSqueezy Webhook] Order not found for refund: ${orderId}`);
+            if (webhookEventId) {
+              await updateWebhookEvent(webhookEventId, { paymentStatus: "order_not_found", errorMessage: `Refund order not found: ${orderId}` }).catch(() => {});
+            }
             return res.status(200).json({ ok: true, message: "Order not found" });
           }
 
           // Mark order as refunded
-          await updateOrderStatus(order.id, "refunded", eventId);
+          await updateOrderStatus(order.id, "refunded", dataId);
 
           // Deduct credits
           const credits = lsSkuToCredits(order.sku);
@@ -181,15 +285,29 @@ export function registerLemonsqueezyWebhook(app: Express) {
             );
             console.log(`[LemonSqueezy] Credits deducted from user ${order.userId} (refund): essay=-${credits.essay}, university=-${credits.university}`);
           }
+
+          if (webhookEventId) {
+            await updateWebhookEvent(webhookEventId, { paymentStatus: "processed" }).catch(() => {});
+          }
         } else {
           console.log(`[LemonSqueezy Webhook] Unhandled event: ${eventName}, ignoring`);
+          if (webhookEventId) {
+            await updateWebhookEvent(webhookEventId, { paymentStatus: `ignored:${eventName}` }).catch(() => {});
+          }
         }
 
         return res.status(200).json({ ok: true });
-      } catch (error) {
-        console.error("[LemonSqueezy Webhook] Error:", error);
-        // Return 200 to prevent LS from retrying on our errors
-        return res.status(200).json({ ok: true });
+      } catch (processingError: any) {
+        const errMsg = processingError?.message || String(processingError);
+        console.error(`[LemonSqueezy Webhook] Processing error:`, errMsg);
+        if (webhookEventId) {
+          await updateWebhookEvent(webhookEventId, {
+            paymentStatus: "processing_error",
+            errorMessage: errMsg.substring(0, 1000),
+          }).catch(() => {});
+        }
+        // Return 200 to prevent LS from retrying on our errors — we logged everything
+        return res.status(200).json({ ok: true, message: "Processing error (logged)" });
       }
     }
   );

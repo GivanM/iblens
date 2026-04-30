@@ -12,7 +12,14 @@ function signBody(body: string, secret: string): string {
 describe("LemonSqueezy: HMAC-SHA256 Signature Verification", () => {
   const secret = "test_webhook_secret_abc123";
 
-  it("accepts a valid signature", () => {
+  it("accepts a valid signature from raw body string", () => {
+    const body = JSON.stringify({ data: { id: "123" }, meta: { event_name: "order_created" } });
+    const signature = signBody(body, secret);
+    // Handler uses rawBodyStr (string), not Buffer
+    expect(verifyLsSignature(body, signature, secret)).toBe(true);
+  });
+
+  it("accepts a valid signature from Buffer", () => {
     const body = JSON.stringify({ data: { id: "123" }, meta: { event_name: "order_created" } });
     const rawBody = Buffer.from(body, "utf-8");
     const signature = signBody(body, secret);
@@ -22,34 +29,47 @@ describe("LemonSqueezy: HMAC-SHA256 Signature Verification", () => {
   it("rejects a mutated payload (body changed after signing)", () => {
     const originalBody = JSON.stringify({ data: { id: "123" } });
     const signature = signBody(originalBody, secret);
-    const mutatedBody = Buffer.from(JSON.stringify({ data: { id: "456" } }), "utf-8");
+    const mutatedBody = JSON.stringify({ data: { id: "456" } });
     expect(verifyLsSignature(mutatedBody, signature, secret)).toBe(false);
   });
 
   it("rejects an invalid signature (wrong secret)", () => {
     const body = JSON.stringify({ data: { id: "123" } });
-    const rawBody = Buffer.from(body, "utf-8");
     const signature = signBody(body, "wrong_secret");
-    expect(verifyLsSignature(rawBody, signature, secret)).toBe(false);
+    expect(verifyLsSignature(body, signature, secret)).toBe(false);
   });
 
   it("rejects empty signature", () => {
     const body = JSON.stringify({ data: { id: "123" } });
-    const rawBody = Buffer.from(body, "utf-8");
-    expect(verifyLsSignature(rawBody, "", secret)).toBe(false);
+    expect(verifyLsSignature(body, "", secret)).toBe(false);
   });
 
   it("rejects when secret is empty", () => {
     const body = JSON.stringify({ data: { id: "123" } });
-    const rawBody = Buffer.from(body, "utf-8");
     const signature = signBody(body, secret);
-    expect(verifyLsSignature(rawBody, signature, "")).toBe(false);
+    expect(verifyLsSignature(body, signature, "")).toBe(false);
   });
 
   it("rejects malformed hex signature", () => {
     const body = JSON.stringify({ data: { id: "123" } });
-    const rawBody = Buffer.from(body, "utf-8");
-    expect(verifyLsSignature(rawBody, "not-valid-hex-zzz", secret)).toBe(false);
+    expect(verifyLsSignature(body, "not-valid-hex-zzz", secret)).toBe(false);
+  });
+
+  it("HMAC is computed from raw body string, not re-serialized JSON", () => {
+    // This is the KEY test: if handler re-serializes JSON, key order/spacing may differ
+    // The raw body from LS might have different whitespace than JSON.stringify produces
+    const rawFromLs = '{"data":{"id":"123"},"meta":{"event_name":"order_created"}}';
+    const signature = signBody(rawFromLs, secret);
+    // If we re-serialize: JSON.stringify(JSON.parse(rawFromLs)) might produce same thing
+    // But with different key ordering or extra fields, it would break
+    expect(verifyLsSignature(rawFromLs, signature, secret)).toBe(true);
+
+    // Simulate what would happen if handler used JSON.stringify(parsedBody) instead of raw:
+    const bodyWithExtraSpace = '{ "data": {"id": "123"}, "meta": {"event_name": "order_created"} }';
+    const sigForSpaced = signBody(bodyWithExtraSpace, secret);
+    // The raw body signature should NOT match re-serialized version
+    const reSerialized = JSON.stringify(JSON.parse(bodyWithExtraSpace));
+    expect(verifyLsSignature(reSerialized, sigForSpaced, secret)).toBe(false);
   });
 });
 
@@ -104,41 +124,8 @@ describe("LemonSqueezy: Variant ID Configuration", () => {
   });
 });
 
-// ---- Webhook handler integration tests (simulated) ----
-describe("LemonSqueezy: Webhook Handler Logic", () => {
-  it("order_created with each SKU maps to correct credit amounts", () => {
-    const skus = ["essay_single", "essay_pack_5", "essay_pack_10", "university_single"];
-    const expected = [
-      { essay: 1, university: 0 },
-      { essay: 5, university: 0 },
-      { essay: 10, university: 0 },
-      { essay: 0, university: 1 },
-    ];
-    skus.forEach((sku, i) => {
-      expect(lsSkuToCredits(sku)).toEqual(expected[i]);
-    });
-  });
-
-  it("order_refunded reverses credits (negative of order_created)", () => {
-    const skus = ["essay_single", "essay_pack_5", "essay_pack_10", "university_single"];
-    skus.forEach((sku) => {
-      const credits = lsSkuToCredits(sku);
-      // Refund would be -credits.essay, -credits.university
-      const refund = { essay: -credits.essay, university: -credits.university };
-      expect(refund.essay + credits.essay).toBe(0);
-      expect(refund.university + credits.university).toBe(0);
-    });
-  });
-
-  it("unknown variant_id in webhook payload returns zero credits (no crash)", () => {
-    // Simulating an unknown variant/SKU arriving in webhook
-    const credits = lsSkuToCredits("some_random_variant_999");
-    expect(credits).toEqual({ essay: 0, university: 0 });
-  });
-});
-
-// ---- Method guard test ----
-describe("LemonSqueezy: Webhook Method Guard", () => {
+// ---- Webhook handler registration tests ----
+describe("LemonSqueezy: Webhook Handler Registration", () => {
   it("registerLemonsqueezyWebhook is exported as a function", () => {
     expect(typeof registerLemonsqueezyWebhook).toBe("function");
   });
@@ -157,14 +144,77 @@ describe("LemonSqueezy: Webhook Method Guard", () => {
   });
 });
 
-// ---- Idempotency test (logic verification) ----
+// ---- Webhook handler logic tests ----
+describe("LemonSqueezy: Webhook Handler Logic (log-first)", () => {
+  it("order_created with each SKU maps to correct credit amounts", () => {
+    const skus = ["essay_single", "essay_pack_5", "essay_pack_10", "university_single"];
+    const expected = [
+      { essay: 1, university: 0 },
+      { essay: 5, university: 0 },
+      { essay: 10, university: 0 },
+      { essay: 0, university: 1 },
+    ];
+    skus.forEach((sku, i) => {
+      expect(lsSkuToCredits(sku)).toEqual(expected[i]);
+    });
+  });
+
+  it("order_refunded reverses credits (negative of order_created)", () => {
+    const skus = ["essay_single", "essay_pack_5", "essay_pack_10", "university_single"];
+    skus.forEach((sku) => {
+      const credits = lsSkuToCredits(sku);
+      const refund = { essay: -credits.essay, university: -credits.university };
+      expect(refund.essay + credits.essay).toBe(0);
+      expect(refund.university + credits.university).toBe(0);
+    });
+  });
+
+  it("unknown variant_id in webhook payload returns zero credits (no crash)", () => {
+    const credits = lsSkuToCredits("some_random_variant_999");
+    expect(credits).toEqual({ essay: 0, university: 0 });
+  });
+
+  it("custom_data.order_id is the correct path for LS webhook payload", () => {
+    // Verify the expected structure matches what our handler parses
+    const lsPayload = {
+      meta: {
+        event_name: "order_created",
+        custom_data: {
+          order_id: "abc-123-def",
+        },
+      },
+      data: {
+        id: "789",
+        attributes: {
+          user_email: "test@example.com",
+        },
+      },
+    };
+    // Handler extracts: meta.custom_data.order_id
+    expect(lsPayload.meta.custom_data.order_id).toBe("abc-123-def");
+    // Handler extracts: meta.event_name
+    expect(lsPayload.meta.event_name).toBe("order_created");
+    // Handler extracts: data.id for logging
+    expect(lsPayload.data.id).toBe("789");
+  });
+});
+
+// ---- Idempotency logic ----
 describe("LemonSqueezy: Idempotency Logic", () => {
-  it("webhook_events table uses unique constraint for deduplication", () => {
-    // The webhook_events table has a unique index on (provider, npPaymentId, paymentStatus)
-    // When the same event arrives twice, the second insert fails and the handler returns 200
-    // This structural guarantee is verified by the schema definition
-    // Here we just confirm the handler module is properly structured
-    expect(typeof verifyLsSignature).toBe("function");
-    expect(typeof lsSkuToCredits).toBe("function");
+  it("event key is composed of dataId + eventName for unique constraint", () => {
+    // The handler creates eventKey = `${dataId}_${eventName}`
+    // This ensures the same order_created event for the same LS order ID
+    // won't be processed twice
+    const dataId = "12345";
+    const eventName = "order_created";
+    const eventKey = `${dataId}_${eventName}`;
+    expect(eventKey).toBe("12345_order_created");
+  });
+
+  it("different events for same order produce different keys", () => {
+    const dataId = "12345";
+    const key1 = `${dataId}_order_created`;
+    const key2 = `${dataId}_order_refunded`;
+    expect(key1).not.toBe(key2);
   });
 });

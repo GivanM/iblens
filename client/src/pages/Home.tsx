@@ -8,7 +8,7 @@ import { useState, useEffect, useMemo } from "react";
 import {
   FileText, GraduationCap, Shield, Zap, BarChart3, Target,
   CheckCircle2, ArrowRight, Sparkles, Lock, Brain, Bitcoin, Gift,
-  Clock, Star, Users, ChevronDown, ChevronUp, Upload, Search, TrendingUp
+  Clock, Star, ChevronDown, ChevronUp, Upload, Search, TrendingUp, ShieldCheck
 } from "lucide-react";
 
 function useExamCountdown() {
@@ -107,20 +107,10 @@ export default function Home() {
               </p>
             )}
 
-            {/* Social proof mini-bar */}
-            <div className="flex items-center justify-center gap-6 mt-10 text-sm text-muted-foreground">
-              <div className="flex items-center gap-1.5">
-                <Users className="w-4 h-4 text-primary" />
-                <span>Joined by 47 IB students this week</span>
-              </div>
-              <div className="hidden sm:flex items-center gap-1.5">
-                <Star className="w-4 h-4 text-amber-500" />
-                <span>4.8/5 average rating</span>
-              </div>
-              <div className="hidden md:flex items-center gap-1.5">
-                <Zap className="w-4 h-4 text-emerald-500" />
-                <span>Results in 30 seconds</span>
-              </div>
+            {/* Honest trust line */}
+            <div className="flex items-center justify-center gap-2 mt-10 text-sm text-muted-foreground">
+              <ShieldCheck className="w-4 h-4 text-primary" />
+              <span>Built by an IB parent — scored against the official IB rubric for your subject.</span>
             </div>
           </div>
         </div>

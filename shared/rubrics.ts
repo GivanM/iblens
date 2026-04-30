@@ -152,6 +152,66 @@ const TOK_EXHIBITION: Rubric = {
   ],
 };
 
+// ─── English A: Language and Literature IA (20 marks) ────────────────────────
+const ENGLISH_LANG_LIT_IA: Rubric = {
+  label: "English A: Language and Literature IA (Individual Oral)",
+  totalMarks: 40,
+  criteria: [
+    { name: "Criterion A: Knowledge, understanding, and interpretation", max: 10, descriptor: "Knowledge and understanding of the works and their contexts; interpretation supported by references" },
+    { name: "Criterion B: Analysis and evaluation", max: 10, descriptor: "Analysis of authorial choices and evaluation of how meaning is constructed" },
+    { name: "Criterion C: Focus and organization", max: 10, descriptor: "Focus on the task, logical structure, and coherent development of ideas" },
+    { name: "Criterion D: Language", max: 10, descriptor: "Clear, varied, and precise language appropriate to the task" },
+  ],
+};
+
+// ─── English A: Literature IA (Individual Oral, 40 marks) ────────────────────
+const ENGLISH_LIT_IA: Rubric = {
+  label: "English A: Literature IA (Individual Oral)",
+  totalMarks: 40,
+  criteria: [
+    { name: "Criterion A: Knowledge, understanding, and interpretation", max: 10, descriptor: "Knowledge and understanding of the works and their contexts; interpretation supported by references" },
+    { name: "Criterion B: Analysis and evaluation", max: 10, descriptor: "Analysis of authorial choices and evaluation of how meaning is constructed" },
+    { name: "Criterion C: Focus and organization", max: 10, descriptor: "Focus on the task, logical structure, and coherent development of ideas" },
+    { name: "Criterion D: Language", max: 10, descriptor: "Clear, varied, and precise language appropriate to the task" },
+  ],
+};
+
+// ─── Visual Arts IA — Comparative Study (20 marks) ───────────────────────────
+const VISUAL_ARTS_IA: Rubric = {
+  label: "Visual Arts IA (Comparative Study)",
+  totalMarks: 20,
+  criteria: [
+    { name: "Criterion A: Comparing and contrasting", max: 6, descriptor: "Analysis of formal qualities, comparing and contrasting at least 3 artworks by different artists" },
+    { name: "Criterion B: Cultural significance", max: 6, descriptor: "Examination of cultural contexts and their influence on the artworks" },
+    { name: "Criterion C: Making connections", max: 6, descriptor: "Connections between the studied works and the student's own art-making practice" },
+    { name: "Criterion D: Presentation and subject-specific language", max: 2, descriptor: "Appropriate use of visual arts terminology and effective presentation" },
+  ],
+};
+
+// ─── Music IA — Exploring Music in Context (20 marks) ────────────────────────
+const MUSIC_IA: Rubric = {
+  label: "Music IA (Exploring Music in Context)",
+  totalMarks: 20,
+  criteria: [
+    { name: "Criterion A: Demonstrating knowledge and understanding", max: 6, descriptor: "Knowledge and understanding of musical elements, contexts, and conventions" },
+    { name: "Criterion B: Demonstrating application and musical skills", max: 6, descriptor: "Application of musical skills and techniques in analysis" },
+    { name: "Criterion C: Demonstrating synthesis and evaluation", max: 6, descriptor: "Synthesis of research and evaluation of musical significance" },
+    { name: "Criterion D: Communication", max: 2, descriptor: "Effective communication using musical terminology and presentation" },
+  ],
+};
+
+// ─── Film IA — Textual Analysis (20 marks) ───────────────────────────────────
+const FILM_IA: Rubric = {
+  label: "Film IA (Textual Analysis)",
+  totalMarks: 20,
+  criteria: [
+    { name: "Criterion A: Knowledge and understanding of specified film text", max: 5, descriptor: "Identification and explanation of film elements within the chosen extract" },
+    { name: "Criterion B: Analysis and evaluation of specified film text", max: 5, descriptor: "Analysis of how film elements create meaning and contribute to the film as a whole" },
+    { name: "Criterion C: Focus, organization, and presentation", max: 5, descriptor: "Coherent structure, clear focus, and effective use of supporting evidence" },
+    { name: "Criterion D: Language and film terminology", max: 5, descriptor: "Appropriate and accurate use of film terminology and clear expression" },
+  ],
+};
+
 // ─── Registry ─────────────────────────────────────────────────────────────────
 
 const RUBRIC_REGISTRY: Record<string, Rubric> = {
@@ -177,6 +237,22 @@ const RUBRIC_REGISTRY: Record<string, Rubric> = {
 
   // Computer Science IA
   "IA::Computer Science": CS_IA,
+
+  // English A: Language and Literature IA
+  "IA::English A: Language and Literature": ENGLISH_LANG_LIT_IA,
+  "IA::English A: Lang & Lit": ENGLISH_LANG_LIT_IA,
+
+  // English A: Literature IA
+  "IA::English A: Literature": ENGLISH_LIT_IA,
+
+  // Visual Arts IA
+  "IA::Visual Arts": VISUAL_ARTS_IA,
+
+  // Music IA
+  "IA::Music": MUSIC_IA,
+
+  // Film IA
+  "IA::Film": FILM_IA,
 
   // Extended Essay — same rubric regardless of subject
   "EE::*": EXTENDED_ESSAY,

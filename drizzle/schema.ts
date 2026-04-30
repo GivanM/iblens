@@ -75,6 +75,9 @@ export const webhookEvents = mysqlTable("webhook_events", {
   paymentStatus: varchar("paymentStatus", { length: 50 }).notNull(),
   rawBody: text("rawBody"),
   signatureValid: boolean("signatureValid").default(false).notNull(),
+  requestHeaders: text("requestHeaders"),
+  errorMessage: text("errorMessage"),
+  computedSignature: varchar("computedSignature", { length: 255 }),
   receivedAt: timestamp("receivedAt").defaultNow().notNull(),
 }, (table) => [
   uniqueIndex("uniq_provider_payment_status").on(table.provider, table.npPaymentId, table.paymentStatus),

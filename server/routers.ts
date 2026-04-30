@@ -18,6 +18,7 @@ import {
   canAnonymousAnalyze,
   createAnonymousAnalysis,
   createOrder,
+  getUserOrders,
 } from "./db";
 import { createNowPaymentsInvoice } from "./nowpayments/nowpayments";
 import { createLemonsqueezyCheckout } from "./lemonsqueezy/lemonsqueezy";
@@ -28,8 +29,8 @@ import { getRubric, buildRubricPromptFragment } from "../shared/rubrics";
 
 const IB_SUBJECTS = [
   "Business Management", "Economics", "History", "Biology", "Chemistry",
-  "Physics", "Mathematics", "English A Literature", "Psychology",
-  "Computer Science", "Geography", "Visual Arts", "Music",
+  "Physics", "Mathematics", "English A: Language and Literature", "English A: Literature",
+  "Psychology", "Computer Science", "Geography", "Visual Arts", "Music", "Film",
   "Environmental Systems and Societies", "Philosophy",
 ] as const;
 
@@ -363,6 +364,10 @@ const dashboardRouter = router({
     .query(async ({ ctx, input }) => {
       return getUserPayments(ctx.user.id, input?.limit || 20);
     }),
+
+  orders: protectedProcedure.query(async ({ ctx }) => {
+    return getUserOrders(ctx.user.id);
+  }),
 });
 
 // ---- Pricing info (public) ----

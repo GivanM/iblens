@@ -541,6 +541,101 @@ describe("Centralized pricing", () => {
   });
 });
 
+// ---- Task 5: New rubric tests (English A, Visual Arts, Music, Film) ----
+
+describe("New rubrics (Task 5)", () => {
+  it("English A: Language and Literature IA has 4 criteria totalling 40 marks", async () => {
+    const { getRubric } = await import("../shared/rubrics");
+    const rubric = getRubric("IA", "English A: Language and Literature");
+    expect(rubric).toBeDefined();
+    expect(rubric!.criteria.length).toBe(4);
+    expect(rubric!.totalMarks).toBe(40);
+    const total = rubric!.criteria.reduce((sum, c) => sum + c.max, 0);
+    expect(total).toBe(40);
+  });
+
+  it("English A: Literature IA has 4 criteria totalling 40 marks", async () => {
+    const { getRubric } = await import("../shared/rubrics");
+    const rubric = getRubric("IA", "English A: Literature");
+    expect(rubric).toBeDefined();
+    expect(rubric!.criteria.length).toBe(4);
+    expect(rubric!.totalMarks).toBe(40);
+  });
+
+  it("Visual Arts IA has 4 criteria totalling 20 marks", async () => {
+    const { getRubric } = await import("../shared/rubrics");
+    const rubric = getRubric("IA", "Visual Arts");
+    expect(rubric).toBeDefined();
+    expect(rubric!.criteria.length).toBe(4);
+    expect(rubric!.totalMarks).toBe(20);
+    const total = rubric!.criteria.reduce((sum, c) => sum + c.max, 0);
+    expect(total).toBe(20);
+  });
+
+  it("Music IA has 4 criteria totalling 20 marks", async () => {
+    const { getRubric } = await import("../shared/rubrics");
+    const rubric = getRubric("IA", "Music");
+    expect(rubric).toBeDefined();
+    expect(rubric!.criteria.length).toBe(4);
+    expect(rubric!.totalMarks).toBe(20);
+  });
+
+  it("Film IA has 4 criteria totalling 20 marks", async () => {
+    const { getRubric } = await import("../shared/rubrics");
+    const rubric = getRubric("IA", "Film");
+    expect(rubric).toBeDefined();
+    expect(rubric!.criteria.length).toBe(4);
+    expect(rubric!.totalMarks).toBe(20);
+    const total = rubric!.criteria.reduce((sum, c) => sum + c.max, 0);
+    expect(total).toBe(20);
+  });
+
+  it("all new rubrics have non-empty descriptors for each criterion", async () => {
+    const { getRubric } = await import("../shared/rubrics");
+    const subjects = ["English A: Language and Literature", "English A: Literature", "Visual Arts", "Music", "Film"];
+    for (const subject of subjects) {
+      const rubric = getRubric("IA", subject);
+      expect(rubric).toBeDefined();
+      for (const c of rubric!.criteria) {
+        expect(c.descriptor.length).toBeGreaterThan(5);
+        expect(c.name.length).toBeGreaterThan(5);
+        expect(c.max).toBeGreaterThan(0);
+      }
+    }
+  });
+});
+
+// ---- Task 4: Email helper tests ----
+
+describe("Email helper (Task 4)", () => {
+  it("getSkuHumanName returns human-readable names for known SKUs", async () => {
+    const { getSkuHumanName } = await import("./email");
+    expect(getSkuHumanName("essay_single")).toBe("Single Essay Analysis");
+    expect(getSkuHumanName("essay_pack_5")).toBe("5-Pack Essay Analyses");
+    expect(getSkuHumanName("essay_pack_10")).toBe("10-Pack Essay Analyses");
+    expect(getSkuHumanName("university_single")).toBe("University Strategy Report");
+    expect(getSkuHumanName("university_strategy")).toBe("University Strategy Report");
+  });
+
+  it("getSkuHumanName returns raw sku for unknown SKUs", async () => {
+    const { getSkuHumanName } = await import("./email");
+    expect(getSkuHumanName("unknown_sku_xyz")).toBe("unknown_sku_xyz");
+  });
+
+  it("sendPaymentConfirmationEmail returns false when RESEND_API_KEY is not set", async () => {
+    const { sendPaymentConfirmationEmail } = await import("./email");
+    const result = await sendPaymentConfirmationEmail({
+      email: "test@example.com",
+      userName: "Test User",
+      amountUsd: 499,
+      skuHumanName: "Single Essay Analysis",
+      essayCredits: 1,
+      universityCredits: 0,
+    });
+    expect(result).toBe(false);
+  });
+});
+
 // ---- Part 6: NOWPayments webhook method guard ----
 
 describe("NOWPayments webhook method guard", () => {

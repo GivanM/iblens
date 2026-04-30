@@ -12,20 +12,42 @@ import {
   FileText, GraduationCap, Loader2,
   Clock, ArrowRight, Gift, Package, ShoppingCart, Wallet, CreditCard
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import confetti from "canvas-confetti";
 
 export default function Dashboard() {
   const { user, isAuthenticated, loading: authLoading } = useAuth();
   const [modalOpen, setModalOpen] = useState(false);
   const [modalSku, setModalSku] = useState<ProductKey>("ESSAY_SINGLE");
 
+  const confettiFired = useRef(false);
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    if (params.get("payment") === "success") {
-      toast.success("Payment successful! Credits have been added to your account.");
+    if (params.get("payment") === "success" && !confettiFired.current) {
+      confettiFired.current = true;
+
+      // Fire confetti burst
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { y: 0.6 },
+      });
+
+      // Determine toast message based on SKU (if available)
+      const sku = params.get("sku");
+      const message = sku === "university_single" || sku === "university_strategy"
+        ? "Payment confirmed! You can now build your University Strategy."
+        : "Payment confirmed! Your credits are ready to use.";
+
+      toast.success(message, { duration: 6000 });
+
+      // Clean URL
       window.history.replaceState({}, "", "/dashboard");
+
+      // Refetch data
       creditsQuery.refetch();
-      paymentsQuery.refetch();
+      ordersQuery.refetch();
     } else if (params.get("payment") === "cancelled") {
       toast.info("Payment was cancelled.");
       window.history.replaceState({}, "", "/dashboard");
@@ -35,6 +57,7 @@ export default function Dashboard() {
   const creditsQuery = trpc.dashboard.credits.useQuery(undefined, { enabled: isAuthenticated });
   const historyQuery = trpc.dashboard.history.useQuery(undefined, { enabled: isAuthenticated });
   const paymentsQuery = trpc.dashboard.payments.useQuery(undefined, { enabled: isAuthenticated });
+  const ordersQuery = trpc.dashboard.orders.useQuery(undefined, { enabled: isAuthenticated });
 
   const handleBuy = (productKey: ProductKey) => {
     setModalSku(productKey);
@@ -66,6 +89,7 @@ export default function Dashboard() {
   const credits = creditsQuery.data;
   const history = historyQuery.data || [];
   const paymentsList = paymentsQuery.data || [];
+  const orders = ordersQuery.data || [];
 
   return (
     <div className="container py-8 max-w-5xl">
@@ -290,43 +314,65 @@ export default function Dashboard() {
         </CardContent>
       </Card>
 
-      {/* Payment History */}
-      {paymentsList.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Wallet className="w-5 h-5" />
-              Payment History
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {paymentsList.map((p) => (
-                <div key={p.id} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
-                  <CreditCard className="w-5 h-5 text-primary flex-shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium">
-                      {p.productType === "essay_single" ? "1 Essay Analysis"
-                        : p.productType === "essay_pack_5" ? "5 Essay Analyses"
-                        : p.productType === "essay_pack_10" ? "10 Essay Analyses"
-                        : "University Strategy"}
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      {new Date(p.createdAt).toLocaleDateString()}
-                    </p>
-                  </div>
-                  <div className="text-right flex-shrink-0">
-                    <p className="text-sm font-medium">${(p.amount / 100).toFixed(2)}</p>
-                    <Badge variant={p.status === "completed" ? "default" : p.status === "pending" ? "secondary" : "destructive"} className="text-[10px]">
-                      {p.status}
-                    </Badge>
-                  </div>
-                </div>
-              ))}
+      {/* Purchase History (from orders table) */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Wallet className="w-5 h-5" />
+            Purchase History
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          {ordersQuery.isLoading ? (
+            <div className="flex items-center justify-center py-8">
+              <Loader2 className="w-6 h-6 animate-spin text-muted-foreground" />
             </div>
-          </CardContent>
-        </Card>
-      )}
+          ) : orders.length === 0 ? (
+            <p className="text-muted-foreground text-sm text-center py-6">No purchases yet — your order history will appear here after your first purchase.</p>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b text-left text-muted-foreground">
+                    <th className="pb-2 font-medium">Date</th>
+                    <th className="pb-2 font-medium">Item</th>
+                    <th className="pb-2 font-medium">Amount</th>
+                    <th className="pb-2 font-medium">Method</th>
+                    <th className="pb-2 font-medium">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map((o) => (
+                    <tr key={o.id} className="border-b last:border-0 hover:bg-muted/50">
+                      <td className="py-3 pr-3">{new Date(o.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</td>
+                      <td className="py-3 pr-3 font-medium">
+                        {o.sku === "essay_single" ? "Single Essay Analysis"
+                          : o.sku === "essay_pack_5" ? "5-Pack Essays"
+                          : o.sku === "essay_pack_10" ? "10-Pack Essays"
+                          : "University Strategy Report"}
+                      </td>
+                      <td className="py-3 pr-3">${(o.amountUsd / 100).toFixed(2)}</td>
+                      <td className="py-3 pr-3">
+                        {o.provider === "lemonsqueezy" ? "Card"
+                          : o.provider === "nowpayments" ? "Crypto"
+                          : "Tribute (legacy)"}
+                      </td>
+                      <td className="py-3">
+                        <Badge
+                          variant={o.status === "paid" ? "default" : o.status === "pending" || o.status === "processing" || o.status === "partial" ? "secondary" : "outline"}
+                          className={o.status === "paid" ? "bg-emerald-100 text-emerald-700 border-emerald-200" : o.status === "refunded" ? "bg-gray-100 text-gray-600" : o.status === "pending" || o.status === "processing" || o.status === "partial" ? "bg-amber-100 text-amber-700 border-amber-200" : ""}
+                        >
+                          {o.status === "paid" ? "Paid" : o.status === "pending" || o.status === "processing" || o.status === "partial" ? "Pending" : o.status === "refunded" ? "Refunded" : o.status}
+                        </Badge>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 }
