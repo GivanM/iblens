@@ -249,3 +249,12 @@
 - [x] LemonSqueezy redirect URL includes order/product/value/method query params
 - [x] Write tests for analytics helpers (10 new tests, 122 total passing)
 - [x] Update README with new env vars
+
+## Analytics Config — Real IDs
+- [x] Verify GTM_CONTAINER_ID = GTM-WSLBPQMP in config.ts (already set)
+- [x] Verify GA4_MEASUREMENT_ID = G-391DXZEC51 in config.ts (already set)
+- [x] Set GA4_API_SECRET = RD4myuWXQ6WX_OjNIKw32Q via env var (NOT hardcoded)
+- [x] Confirm Google Ads IDs remain as AW-PLACEHOLDER
+- [x] Confirm no Meta Pixel code exists
+- [x] Verify GTM snippet fires on page source (dev server — live site needs re-publish)
+- [x] Run tests — all 120 pass (excl. flaky LS network test)
