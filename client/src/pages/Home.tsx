@@ -400,11 +400,11 @@ export default function Home() {
           <div className="flex items-center justify-center gap-6 mt-10 text-sm text-muted-foreground">
             <div className="flex items-center gap-1.5">
               <Shield className="w-4 h-4" />
-              <span>Card, Crypto & Telegram Stars</span>
+              <span>Secure checkout</span>
             </div>
             <div className="flex items-center gap-1.5">
               <Bitcoin className="w-4 h-4" />
-              <span>Secure payments via Tribute</span>
+              <span>BTC, ETH, USDT & more</span>
             </div>
           </div>
         </div>
@@ -440,7 +440,7 @@ export default function Home() {
             />
             <FAQItem
               question="What payment methods do you accept?"
-              answer="We accept card payments, cryptocurrency (BTC, ETH, USDT, and more), and Telegram Stars through Tribute. The payment process is fast and secure — choose whichever method works best for you."
+              answer="We accept card payments (Visa, Mastercard, Amex) and cryptocurrency (BTC, ETH, USDT, and more). The payment process is fast and secure — choose whichever method works best for you."
             />
             <FAQItem
               question="Can I use IBLens for multiple subjects?"

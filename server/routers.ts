@@ -14,8 +14,6 @@ import {
   consumeUniversityCredit,
   getUserCredits,
   getUserPayments,
-  setTelegramUsername,
-  getTelegramUsername,
   generateFingerprint,
   canAnonymousAnalyze,
   createAnonymousAnalysis,
@@ -26,7 +24,6 @@ import { createLemonsqueezyCheckout } from "./lemonsqueezy/lemonsqueezy";
 import { LEMONSQUEEZY_VARIANTS, PRODUCT_KEY_TO_LS_SKU } from "../shared/pricing";
 import { randomUUID } from "crypto";
 import { PRODUCTS } from "./products";
-import { getTributeProductLink } from "./tribute/tribute";
 import { getRubric, buildRubricPromptFragment } from "../shared/rubrics";
 
 const IB_SUBJECTS = [
@@ -380,31 +377,8 @@ const pricingRouter = router({
   }),
 });
 
-// ---- Payment Router (Tribute + NOWPayments) ----
+// ---- Payment Router (LemonSqueezy + NOWPayments) ----
 const paymentRouter = router({
-  // Get Tribute product link for a given product
-  getLink: protectedProcedure
-    .input(z.object({ productKey: productKeySchema }))
-    .mutation(async ({ ctx, input }) => {
-      const url = getTributeProductLink(input.productKey);
-      return { url };
-    }),
-
-  // Save/update Telegram username for payment linking
-  setTelegram: protectedProcedure
-    .input(z.object({ username: z.string().min(1).max(100) }))
-    .mutation(async ({ ctx, input }) => {
-      const normalized = await setTelegramUsername(ctx.user.id, input.username);
-      return { username: normalized };
-    }),
-
-  // Get current Telegram username
-  getTelegram: protectedProcedure
-    .query(async ({ ctx }) => {
-      const username = await getTelegramUsername(ctx.user.id);
-      return { username };
-    }),
-
   // Create NOWPayments crypto invoice (requires authentication)
   createCryptoInvoice: protectedProcedure
     .input(z.object({

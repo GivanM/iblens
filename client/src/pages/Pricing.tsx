@@ -5,15 +5,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import { getLoginUrl } from "@/const";
-import { trpc } from "@/lib/trpc";
-import { toast } from "sonner";
-import { PRICE_LABELS } from "@shared/pricing";
+import { PRICE_LABELS, type ProductKey } from "@shared/pricing";
+import { PurchaseModal } from "@/components/PurchaseModal";
 import {
   FileText, GraduationCap, BarChart3, CheckCircle2, ArrowRight,
-  Shield, Bitcoin, Gift, Sparkles, Loader2, CreditCard
+  Shield, Bitcoin, Gift, Sparkles, CreditCard
 } from "lucide-react";
-
-type ProductKey = "ESSAY_SINGLE" | "ESSAY_PACK_5" | "ESSAY_PACK_10" | "UNIVERSITY_SINGLE";
 
 const plans: Array<{
   name: string;
@@ -103,62 +100,28 @@ const plans: Array<{
 
 export default function Pricing() {
   const { isAuthenticated } = useAuth();
-  const [loadingCrypto, setLoadingCrypto] = useState<string | null>(null);
-  const [loadingCard, setLoadingCard] = useState<string | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalSku, setModalSku] = useState<ProductKey>("ESSAY_SINGLE");
 
-  const createInvoice = trpc.payment.createCryptoInvoice.useMutation({
-    onSuccess: (data) => {
-      toast.success("Redirecting to crypto checkout...", {
-        description: "A new tab will open with your payment page.",
-      });
-      window.open(data.invoiceUrl, "_blank");
-      setLoadingCrypto(null);
-    },
-    onError: (error) => {
-      toast.error("Payment error", {
-        description: error.message || "Failed to create invoice. Please try again.",
-      });
-      setLoadingCrypto(null);
-    },
-  });
-
-  const createCardCheckout = trpc.payment.createLemonsqueezyCheckout.useMutation({
-    onSuccess: (data) => {
-      toast.success("Redirecting to card checkout...", {
-        description: "A new tab will open with your payment page.",
-      });
-      window.open(data.checkoutUrl, "_blank");
-      setLoadingCard(null);
-    },
-    onError: (error) => {
-      toast.error("Payment error", {
-        description: error.message || "Failed to create checkout. Please try again.",
-      });
-      setLoadingCard(null);
-    },
-  });
-
-  const handleCryptoPay = (productKey: ProductKey) => {
+  const handleBuyNow = (productKey: ProductKey) => {
     if (!isAuthenticated) {
       window.location.href = getLoginUrl();
       return;
     }
-    setLoadingCrypto(productKey);
-    createInvoice.mutate({ productKey });
-  };
-
-  const handleCardPay = (productKey: ProductKey) => {
-    if (!isAuthenticated) {
-      window.location.href = getLoginUrl();
-      return;
-    }
-    setLoadingCard(productKey);
-    createCardCheckout.mutate({ productKey });
+    setModalSku(productKey);
+    setModalOpen(true);
   };
 
   return (
     <div className="py-16 md:py-24">
       <div className="container">
+        {/* Purchase Modal */}
+        <PurchaseModal
+          open={modalOpen}
+          onOpenChange={setModalOpen}
+          sku={modalSku}
+        />
+
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
@@ -223,71 +186,27 @@ export default function Pricing() {
                   ))}
                 </ul>
 
-                {/* Primary CTA — navigate to feature page */}
-                {plan.requiresAuth && !isAuthenticated ? (
-                  <Button
-                    size="sm"
-                    className="w-full mb-2"
-                    variant={plan.popular ? "default" : "outline"}
-                    asChild
-                  >
-                    <a href={getLoginUrl()}>
-                      {plan.cta} <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                    </a>
-                  </Button>
-                ) : (
-                  <Button
-                    size="sm"
-                    className="w-full mb-2"
-                    variant={plan.popular ? "default" : "outline"}
-                    asChild
-                  >
-                    <Link href={plan.href}>
-                      {plan.cta} <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                    </Link>
-                  </Button>
-                )}
-
-                {/* Pay with Card button (LemonSqueezy) */}
+                {/* Single Buy Now button opens PurchaseModal */}
                 <Button
                   size="sm"
-                  variant="secondary"
-                  className="w-full mb-1.5 text-xs"
-                  onClick={() => handleCardPay(plan.productKey)}
-                  disabled={loadingCard === plan.productKey}
+                  className="w-full mb-2"
+                  variant={plan.popular ? "default" : "outline"}
+                  onClick={() => handleBuyNow(plan.productKey)}
                 >
-                  {loadingCard === plan.productKey ? (
-                    <>
-                      <Loader2 className="w-3 h-3 mr-1.5 animate-spin" />
-                      Creating checkout...
-                    </>
-                  ) : (
-                    <>
-                      <CreditCard className="w-3 h-3 mr-1.5" />
-                      Pay with Card
-                    </>
-                  )}
+                  <CreditCard className="w-3.5 h-3.5 mr-1.5" />
+                  Buy Now
                 </Button>
 
-                {/* Pay with Crypto button (NOWPayments) */}
+                {/* Navigate to feature page */}
                 <Button
                   size="sm"
                   variant="ghost"
-                  className="w-full text-xs text-muted-foreground hover:text-foreground"
-                  onClick={() => handleCryptoPay(plan.productKey)}
-                  disabled={loadingCrypto === plan.productKey}
+                  className="w-full text-xs text-muted-foreground"
+                  asChild
                 >
-                  {loadingCrypto === plan.productKey ? (
-                    <>
-                      <Loader2 className="w-3 h-3 mr-1.5 animate-spin" />
-                      Creating invoice...
-                    </>
-                  ) : (
-                    <>
-                      <Bitcoin className="w-3 h-3 mr-1.5" />
-                      Pay with Crypto
-                    </>
-                  )}
+                  <Link href={plan.href}>
+                    {plan.cta} <ArrowRight className="w-3 h-3 ml-1" />
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
@@ -298,15 +217,15 @@ export default function Pricing() {
         <div className="flex items-center justify-center gap-6 mt-12 text-sm text-muted-foreground flex-wrap">
           <div className="flex items-center gap-1.5">
             <CreditCard className="w-4 h-4" />
-            <span>All major cards via LemonSqueezy</span>
+            <span>Visa, Mastercard, Amex</span>
           </div>
           <div className="flex items-center gap-1.5">
             <Shield className="w-4 h-4" />
-            <span>Telegram Stars via Tribute</span>
+            <span>Secure checkout</span>
           </div>
           <div className="flex items-center gap-1.5">
             <Bitcoin className="w-4 h-4" />
-            <span>Crypto via NOWPayments</span>
+            <span>USDT, BTC, ETH & more</span>
           </div>
         </div>
 

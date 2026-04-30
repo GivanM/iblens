@@ -285,7 +285,7 @@ export async function getTelegramUsername(userId: number): Promise<string | null
   return result.length > 0 ? result[0].telegramUsername : null;
 }
 
-export async function completePaymentByProviderId(providerPaymentId: string, provider: "tribute" | "nowpayments") {
+export async function completePaymentByProviderId(providerPaymentId: string, provider: "nowpayments" | "lemonsqueezy") {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
 
@@ -340,7 +340,7 @@ export async function getPaymentById(id: number) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-export async function getPendingPaymentByProviderIdAndProvider(providerPaymentId: string, provider: "tribute" | "nowpayments") {
+export async function getPendingPaymentByProviderIdAndProvider(providerPaymentId: string, provider: "nowpayments" | "lemonsqueezy") {
   const db = await getDb();
   if (!db) return undefined;
 

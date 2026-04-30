@@ -1,9 +1,10 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
 import { getLoginUrl } from "@/const";
-import { PRICE_LABELS } from "@shared/pricing";
+import { PRICE_LABELS, type ProductKey } from "@shared/pricing";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { PurchaseModal } from "@/components/PurchaseModal";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -20,7 +21,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import {
   GraduationCap, Loader2, Lock, MapPin, Calendar,
-  CheckCircle2, AlertTriangle, Quote, Target, CreditCard, Bitcoin
+  CheckCircle2, AlertTriangle, Quote, Target, CreditCard
 } from "lucide-react";
 import { analytics } from "@/lib/analytics";
 
@@ -83,47 +84,10 @@ export default function UniversityStrategy() {
   const [notes, setNotes] = useState("");
   const [result, setResult] = useState<UniResult | null>(null);
 
-  const [loadingCard, setLoadingCard] = useState(false);
-  const [loadingCrypto, setLoadingCrypto] = useState(false);
+  const [purchaseModalOpen, setPurchaseModalOpen] = useState(false);
 
   const creditsQuery = trpc.dashboard.credits.useQuery(undefined, { enabled: isAuthenticated });
   const credits = creditsQuery.data;
-
-  const createCardCheckout = trpc.payment.createLemonsqueezyCheckout.useMutation({
-    onSuccess: (data) => {
-      toast.success("Redirecting to card checkout...", { description: "A new tab will open with your payment page." });
-      window.open(data.checkoutUrl, "_blank");
-      setLoadingCard(false);
-    },
-    onError: (error) => {
-      toast.error("Payment error", { description: error.message || "Failed to create checkout." });
-      setLoadingCard(false);
-    },
-  });
-
-  const createCryptoInvoice = trpc.payment.createCryptoInvoice.useMutation({
-    onSuccess: (data) => {
-      toast.success("Redirecting to crypto checkout...", { description: "A new tab will open with your payment page." });
-      window.open(data.invoiceUrl, "_blank");
-      setLoadingCrypto(false);
-    },
-    onError: (error) => {
-      toast.error("Payment error", { description: error.message || "Failed to create invoice." });
-      setLoadingCrypto(false);
-    },
-  });
-
-  const handleCardPay = () => {
-    if (!isAuthenticated) { window.location.href = getLoginUrl(); return; }
-    setLoadingCard(true);
-    createCardCheckout.mutate({ productKey: "UNIVERSITY_SINGLE" });
-  };
-
-  const handleCryptoPay = () => {
-    if (!isAuthenticated) { window.location.href = getLoginUrl(); return; }
-    setLoadingCrypto(true);
-    createCryptoInvoice.mutate({ productKey: "UNIVERSITY_SINGLE" });
-  };
 
   const analyzeMutation = trpc.university.analyze.useMutation({
     onSuccess: (data) => {
@@ -369,37 +333,24 @@ export default function UniversityStrategy() {
             )}
           </Button>
 
-          {/* Direct purchase buttons when no credits */}
+          {/* Direct purchase button when no credits */}
           {isAuthenticated && !credits?.canAnalyzeUniversity && (
-            <div className="flex gap-2 mt-3">
-              <Button
-                variant="secondary"
-                size="sm"
-                className="flex-1 text-xs"
-                onClick={handleCardPay}
-                disabled={loadingCard}
-              >
-                {loadingCard ? (
-                  <><Loader2 className="w-3 h-3 mr-1.5 animate-spin" />Creating checkout...</>
-                ) : (
-                  <><CreditCard className="w-3 h-3 mr-1.5" />Pay with Card ({PRICE_LABELS.UNIVERSITY_SINGLE})</>
-                )}
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="flex-1 text-xs text-muted-foreground"
-                onClick={handleCryptoPay}
-                disabled={loadingCrypto}
-              >
-                {loadingCrypto ? (
-                  <><Loader2 className="w-3 h-3 mr-1.5 animate-spin" />Creating invoice...</>
-                ) : (
-                  <><Bitcoin className="w-3 h-3 mr-1.5" />Pay with Crypto</>
-                )}
-              </Button>
-            </div>
+            <Button
+              variant="secondary"
+              size="sm"
+              className="w-full mt-3 text-xs"
+              onClick={() => setPurchaseModalOpen(true)}
+            >
+              <CreditCard className="w-3 h-3 mr-1.5" />
+              Buy Now ({PRICE_LABELS.UNIVERSITY_SINGLE})
+            </Button>
           )}
+
+          <PurchaseModal
+            open={purchaseModalOpen}
+            onOpenChange={setPurchaseModalOpen}
+            sku="UNIVERSITY_SINGLE"
+          />
         </CardContent>
       </Card>
 

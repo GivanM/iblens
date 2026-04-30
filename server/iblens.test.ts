@@ -47,7 +47,7 @@ vi.mock("./db", () => ({
     {
       id: 1,
       userId: 1,
-      provider: "tribute",
+      provider: "lemonsqueezy",
       productType: "essay_single",
       amount: 499,
       status: "completed",
@@ -57,10 +57,6 @@ vi.mock("./db", () => ({
   addCredits: vi.fn().mockResolvedValue(undefined),
   createPayment: vi.fn().mockResolvedValue({ id: 1 }),
   completePayment: vi.fn().mockResolvedValue(undefined),
-  setTelegramUsername: vi.fn().mockImplementation(async (_userId: number, username: string) => {
-    return username.toLowerCase().replace("@", "").trim();
-  }),
-  getTelegramUsername: vi.fn().mockResolvedValue("testuser"),
 }));
 
 // Mock LLM
@@ -87,19 +83,7 @@ vi.mock("./_core/llm", () => ({
   }),
 }));
 
-// Mock Tribute
-vi.mock("./tribute/tribute", () => ({
-  getTributeProductLink: vi.fn().mockImplementation((productKey: string) => {
-    const links: Record<string, string> = {
-      ESSAY_SINGLE: "https://web.tribute.tg/p/essay-single-123",
-      ESSAY_PACK_5: "https://web.tribute.tg/p/essay-pack5-123",
-      ESSAY_PACK_10: "https://web.tribute.tg/p/essay-pack10-123",
-      UNIVERSITY_SINGLE: "https://web.tribute.tg/p/university-123",
-    };
-    return links[productKey] || "";
-  }),
-  registerTributeWebhook: vi.fn(),
-}));
+
 
 type AuthenticatedUser = NonNullable<TrpcContext["user"]>;
 type CookieCall = { name: string; options: Record<string, unknown> };
@@ -256,88 +240,13 @@ describe("dashboard.payments", () => {
     const caller = appRouter.createCaller(ctx);
     const result = await caller.dashboard.payments();
     expect(result).toHaveLength(1);
-    expect(result[0].provider).toBe("tribute");
+    expect(result[0].provider).toBe("lemonsqueezy");
     expect(result[0].amount).toBe(499);
     expect(result[0].status).toBe("completed");
   });
 });
 
-// ---- Payment Tests (Tribute) ----
-describe("payment.getLink", () => {
-  it("returns Tribute product link for essay single", async () => {
-    const { ctx } = createAuthContext();
-    const caller = appRouter.createCaller(ctx);
-    const result = await caller.payment.getLink({ productKey: "ESSAY_SINGLE" });
-    expect(result).toBeDefined();
-    expect(result.url).toBe("https://web.tribute.tg/p/essay-single-123");
-  });
 
-  it("returns Tribute product link for essay pack 10", async () => {
-    const { ctx } = createAuthContext();
-    const caller = appRouter.createCaller(ctx);
-    const result = await caller.payment.getLink({ productKey: "ESSAY_PACK_10" });
-    expect(result).toBeDefined();
-    expect(result.url).toBe("https://web.tribute.tg/p/essay-pack10-123");
-  });
-
-  it("returns Tribute product link for university strategy", async () => {
-    const { ctx } = createAuthContext();
-    const caller = appRouter.createCaller(ctx);
-    const result = await caller.payment.getLink({ productKey: "UNIVERSITY_SINGLE" });
-    expect(result).toBeDefined();
-    expect(result.url).toBe("https://web.tribute.tg/p/university-123");
-  });
-
-  it("rejects when user is not authenticated", async () => {
-    const ctx = createUnauthContext();
-    const caller = appRouter.createCaller(ctx);
-    await expect(
-      caller.payment.getLink({ productKey: "ESSAY_SINGLE" })
-    ).rejects.toThrow();
-  });
-});
-
-describe("payment.setTelegram", () => {
-  it("saves and normalizes telegram username", async () => {
-    const { ctx } = createAuthContext();
-    const caller = appRouter.createCaller(ctx);
-    const result = await caller.payment.setTelegram({ username: "@TestUser" });
-    expect(result).toBeDefined();
-    expect(result.username).toBe("testuser");
-  });
-
-  it("handles username without @ symbol", async () => {
-    const { ctx } = createAuthContext();
-    const caller = appRouter.createCaller(ctx);
-    const result = await caller.payment.setTelegram({ username: "myusername" });
-    expect(result).toBeDefined();
-    expect(result.username).toBe("myusername");
-  });
-
-  it("rejects when user is not authenticated", async () => {
-    const ctx = createUnauthContext();
-    const caller = appRouter.createCaller(ctx);
-    await expect(
-      caller.payment.setTelegram({ username: "test" })
-    ).rejects.toThrow();
-  });
-});
-
-describe("payment.getTelegram", () => {
-  it("returns saved telegram username", async () => {
-    const { ctx } = createAuthContext();
-    const caller = appRouter.createCaller(ctx);
-    const result = await caller.payment.getTelegram();
-    expect(result).toBeDefined();
-    expect(result.username).toBe("testuser");
-  });
-
-  it("rejects when user is not authenticated", async () => {
-    const ctx = createUnauthContext();
-    const caller = appRouter.createCaller(ctx);
-    await expect(caller.payment.getTelegram()).rejects.toThrow();
-  });
-});
 
 // ---- Pricing Tests ----
 describe("pricing.products", () => {

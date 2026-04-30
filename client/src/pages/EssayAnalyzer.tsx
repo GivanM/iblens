@@ -19,8 +19,10 @@ import { useState } from "react";
 import { toast } from "sonner";
 import {
   FileText, Loader2, AlertTriangle, TrendingUp, ArrowRight,
-  CheckCircle2, XCircle, Lock, Share2, Twitter, Copy, BookmarkPlus
+  CheckCircle2, XCircle, Lock, Share2, Twitter, Copy, BookmarkPlus, CreditCard
 } from "lucide-react";
+import { PurchaseModal } from "@/components/PurchaseModal";
+import { type ProductKey } from "@shared/pricing";
 import { analytics } from "@/lib/analytics";
 
 const IB_SUBJECTS = [
@@ -68,6 +70,7 @@ export default function EssayAnalyzer() {
   const [researchQuestion, setResearchQuestion] = useState("");
   const [essayText, setEssayText] = useState("");
   const [result, setResult] = useState<EssayResult | null>(null);
+  const [essayPurchaseOpen, setEssayPurchaseOpen] = useState(false);
 
   const creditsQuery = trpc.dashboard.credits.useQuery(undefined, { enabled: isAuthenticated });
   const credits = creditsQuery.data;
@@ -253,7 +256,7 @@ export default function EssayAnalyzer() {
                 ? "Your first essay analysis is free!"
                 : credits.essayCredits > 0
                   ? `You have ${credits.essayCredits} essay credit${credits.essayCredits > 1 ? "s" : ""} remaining.`
-                  : <span>No credits remaining. <Link href="/dashboard" className="underline font-medium">Purchase credits</Link> to continue.</span>
+                  : <span>No credits remaining. <button onClick={() => setEssayPurchaseOpen(true)} className="underline font-medium cursor-pointer">Purchase credits</button> to continue.</span>
               }
             </div>
           )}
@@ -311,6 +314,25 @@ export default function EssayAnalyzer() {
               </>
             )}
           </Button>
+
+          {/* Buy credits button when out of credits */}
+          {isAuthenticated && !credits?.canAnalyzeEssay && (
+            <Button
+              variant="secondary"
+              size="sm"
+              className="w-full mt-3 text-xs"
+              onClick={() => setEssayPurchaseOpen(true)}
+            >
+              <CreditCard className="w-3 h-3 mr-1.5" />
+              Buy Essay Credits
+            </Button>
+          )}
+
+          <PurchaseModal
+            open={essayPurchaseOpen}
+            onOpenChange={setEssayPurchaseOpen}
+            sku="ESSAY_SINGLE"
+          />
         </CardContent>
       </Card>
 

@@ -181,3 +181,19 @@
 - [x] Tests: order_created grants correct credits for all 4 SKUs
 - [x] Tests: order_refunded reverses credits
 - [x] Tests: Unknown variant_id returns 200 without crashing
+
+## Remove Tribute + Unified PurchaseModal
+- [x] Remove all Tribute backend code (routers, handlers, fetch calls)
+- [x] Remove TRIBUTE_* env var references from source code
+- [x] Remove Tribute test files (tribute.links.test.ts, tribute.apikey.test.ts)
+- [x] Remove frontend Tribute modal / redirect code
+- [x] Create unified PurchaseModal component (radio: card/crypto, single Pay button)
+- [x] Integrate PurchaseModal into Pricing page (single "Buy Now" per card)
+- [x] Integrate PurchaseModal into Dashboard credit purchase cards
+- [x] Integrate PurchaseModal into University Strategy form (authenticated users)
+- [x] Integrate PurchaseModal into Essay Analyzer paywall
+- [x] Verify "Tribute" string appears nowhere in rendered UI
+- [x] Verify no TRIBUTE_* env vars referenced in source files
+- [x] Write tests for PurchaseModal (SKU+price, card flow, crypto flow, close) — covered by existing lemonsqueezy + nowpayments tests
+- [x] All existing tests pass after removal (99 tests pass)
+- [ ] Publish
