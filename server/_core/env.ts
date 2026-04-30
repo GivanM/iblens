@@ -16,4 +16,7 @@ export const ENV = {
   lemonsqueezyStoreId: process.env.LEMONSQUEEZY_STORE_ID ?? "",
   // Resend (transactional email)
   resendApiKey: process.env.RESEND_API_KEY ?? "",
+  // GA4 Measurement Protocol (server-side conversion tracking)
+  ga4MeasurementId: process.env.GA4_MEASUREMENT_ID ?? "G-391DXZEC51",
+  ga4ApiSecret: process.env.GA4_API_SECRET ?? "",
 };

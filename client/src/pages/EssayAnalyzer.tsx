@@ -24,6 +24,7 @@ import {
 import { PurchaseModal } from "@/components/PurchaseModal";
 import { type ProductKey } from "@shared/pricing";
 import { analytics } from "@/lib/analytics";
+import { trackEssaySubmitted, trackEssayUploadStarted } from "@/lib/analytics/track";
 
 const IB_SUBJECTS = [
   "Business Management", "Economics", "History", "Biology", "Chemistry",
@@ -135,6 +136,10 @@ export default function EssayAnalyzer() {
       return;
     }
 
+    const wordCount = essayText.split(/\s+/).filter(Boolean).length;
+    const isFreeFirst = !isAuthenticated ? canAnonAnalyze : (credits?.freeEssayAvailable === true);
+    trackEssayUploadStarted(subject, essayType);
+    trackEssaySubmitted(subject, essayType, wordCount, !!isFreeFirst);
     analytics.startEssayAnalysis(subject);
 
     if (isAuthenticated) {

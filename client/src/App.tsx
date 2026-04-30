@@ -10,6 +10,9 @@ import UniversityStrategy from "./pages/UniversityStrategy";
 import Dashboard from "./pages/Dashboard";
 import Pricing from "./pages/Pricing";
 import Layout from "./components/Layout";
+import { CookieConsent } from "./components/CookieConsent";
+import { usePageTracking } from "./hooks/usePageTracking";
+import { useAuthTracking } from "./hooks/useAuthTracking";
 
 function Router() {
   return (
@@ -26,6 +29,9 @@ function Router() {
 }
 
 function App() {
+  usePageTracking();
+  useAuthTracking();
+
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
@@ -34,6 +40,7 @@ function App() {
           <Layout>
             <Router />
           </Layout>
+          <CookieConsent />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

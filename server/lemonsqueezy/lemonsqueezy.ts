@@ -12,6 +12,7 @@ import {
   getUserCredits,
 } from "../db";
 import { sendPaymentConfirmationEmail, getSkuHumanName } from "../email";
+import { sendGA4PurchaseEvent } from "../ga4mp";
 
 /**
  * LemonSqueezy webhook handler.
@@ -222,6 +223,19 @@ export function registerLemonsqueezyWebhook(app: Express) {
             await updateWebhookEvent(webhookEventId, { paymentStatus: "processed" }).catch(() => {});
           }
 
+          // Best-effort GA4 Measurement Protocol purchase event
+          try {
+            await sendGA4PurchaseEvent({
+              orderId: order.id,
+              productSlug: order.sku,
+              valueUsd: order.amountUsd / 100, // cents → dollars
+              paymentMethod: "lemonsqueezy",
+              userId: String(order.userId),
+            });
+          } catch (ga4Err) {
+            console.warn("[LemonSqueezy] GA4 MP event failed (non-fatal):", ga4Err);
+          }
+
           // Best-effort email notification
           try {
             const user = await getUserById(order.userId);
@@ -308,6 +322,8 @@ export async function createLemonsqueezyCheckout(
   orderId: string,
   variantId: number,
   userEmail: string | null,
+  productSlug?: string,
+  valueUsd?: number,
 ): Promise<{ checkoutUrl: string }> {
   const apiKey = ENV.lemonsqueezyApiKey;
   const storeId = ENV.lemonsqueezyStoreId;
@@ -329,7 +345,7 @@ export async function createLemonsqueezyCheckout(
           },
         },
         product_options: {
-          redirect_url: "https://iblens.com/dashboard?payment=success",
+          redirect_url: `https://iblens.com/dashboard?payment=success&order=${orderId}&product=${productSlug || 'essay_single'}&value=${((valueUsd ?? 0) / 100).toFixed(2)}&method=lemonsqueezy`,
           receipt_thank_you_note: "Thank you for your purchase! Your credits have been added to your IBLens account.",
         },
       },

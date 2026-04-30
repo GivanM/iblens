@@ -478,6 +478,8 @@ const paymentRouter = router({
         orderId,
         variantId,
         ctx.user.email || null,
+        sku, // productSlug for redirect URL tracking
+        product.priceAmount, // valueUsd in cents for redirect URL tracking
       );
 
       return { checkoutUrl, orderId };

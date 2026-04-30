@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -11,7 +11,9 @@ import { Label } from "@/components/ui/label";
 import { CreditCard, Bitcoin, Loader2, Shield } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
-import { PRICE_LABELS, type ProductKey } from "@shared/pricing";
+import { PRICE_LABELS, PRICES, type ProductKey } from "@shared/pricing";
+import { trackBeginCheckout, trackViewItem } from "@/lib/analytics/track";
+import type { ProductSlug, PaymentMethod as AnalyticsPaymentMethod } from "@/lib/analytics/config";
 
 const SKU_LABELS: Record<ProductKey, string> = {
   ESSAY_SINGLE: "1 Essay Analysis",
@@ -28,9 +30,24 @@ interface PurchaseModalProps {
   sku: ProductKey;
 }
 
+// Map ProductKey to analytics ProductSlug
+const SKU_TO_SLUG: Record<ProductKey, ProductSlug> = {
+  ESSAY_SINGLE: "essay_single",
+  ESSAY_PACK_5: "essay_pack_5",
+  ESSAY_PACK_10: "essay_pack_10",
+  UNIVERSITY_SINGLE: "university_strategy",
+};
+
 export function PurchaseModal({ open, onOpenChange, sku }: PurchaseModalProps) {
   const [method, setMethod] = useState<PaymentMethod>("card");
   const [loading, setLoading] = useState(false);
+
+  // Fire view_item when modal opens
+  useEffect(() => {
+    if (open) {
+      trackViewItem(SKU_TO_SLUG[sku], PRICES[sku] / 100);
+    }
+  }, [open, sku]);
 
   const createCardCheckout = trpc.payment.createLemonsqueezyCheckout.useMutation({
     onSuccess: (data) => {
@@ -58,6 +75,8 @@ export function PurchaseModal({ open, onOpenChange, sku }: PurchaseModalProps) {
 
   const handlePay = () => {
     setLoading(true);
+    const analyticsMethod: AnalyticsPaymentMethod = method === "card" ? "lemonsqueezy" : "nowpayments";
+    trackBeginCheckout(SKU_TO_SLUG[sku], PRICES[sku] / 100, analyticsMethod);
     if (method === "card") {
       createCardCheckout.mutate({ productKey: sku });
     } else {

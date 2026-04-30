@@ -1,7 +1,9 @@
 /**
- * Lightweight analytics helper for tracking conversion events.
+ * Legacy analytics helper — kept for backward compatibility.
+ * New code should import from "@/lib/analytics/track" directly.
+ *
  * Uses Umami (already configured in index.html) for event tracking.
- * Also supports Google Analytics 4 if gtag is loaded.
+ * GTM/GA4 events now flow through dataLayer via the new analytics module.
  */
 
 declare global {
@@ -24,11 +26,10 @@ export function trackEvent(eventName: string, data?: Record<string, string | num
     // silently fail
   }
 
-  // Google Analytics 4 tracking (if configured)
+  // Push to dataLayer for GTM
   try {
-    if (window.gtag) {
-      window.gtag("event", eventName, data);
-    }
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: eventName, ...data });
   } catch {
     // silently fail
   }

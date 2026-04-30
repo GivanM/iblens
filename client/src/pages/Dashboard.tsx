@@ -14,6 +14,8 @@ import {
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import confetti from "canvas-confetti";
+import { trackPurchase, sha256 } from "@/lib/analytics/track";
+import type { ProductSlug, PaymentMethod as AnalyticsPaymentMethod } from "@/lib/analytics/config";
 
 export default function Dashboard() {
   const { user, isAuthenticated, loading: authLoading } = useAuth();
@@ -41,6 +43,20 @@ export default function Dashboard() {
         : "Payment confirmed! Your credits are ready to use.";
 
       toast.success(message, { duration: 6000 });
+
+      // Fire purchase tracking event
+      const orderId = params.get("order") || "unknown";
+      const product = (params.get("product") || "essay_single") as ProductSlug;
+      const value = parseFloat(params.get("value") || "0");
+      const method = (params.get("method") || "lemonsqueezy") as AnalyticsPaymentMethod;
+      if (user?.email) {
+        sha256(user.email).then((emailHashed) => {
+          const userIdHashed = user.openId || "";
+          trackPurchase(orderId, product, value, method, userIdHashed, emailHashed);
+        });
+      } else {
+        trackPurchase(orderId, product, value, method, "", "");
+      }
 
       // Clean URL
       window.history.replaceState({}, "", "/dashboard");

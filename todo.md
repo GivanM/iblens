@@ -230,3 +230,22 @@
 - [x] Fix redirect URL in createLemonsqueezyCheckout to /dashboard?payment=success (already correct)
 - [x] Update tests (112 tests pass)
 - [ ] Publish
+
+## Conversion Tracking Infrastructure
+- [x] Create client/src/lib/analytics/config.ts with GTM, GA4, placeholder IDs
+- [x] Create client/src/lib/analytics/track.ts with typed dataLayer event helpers
+- [x] Create cookie consent banner component with Google Consent Mode v2
+- [x] Inject GTM snippet into client/index.html (head + body noscript)
+- [x] Remove old GA4/Google Ads direct snippets from index.html (GTM handles them)
+- [x] Wire trackPageView on route changes
+- [x] Wire trackSignUp/trackLogin in auth flow (useAuthTracking hook)
+- [x] Wire trackEssayUploadStarted + trackEssaySubmitted in EssayAnalyzer
+- [x] Wire trackViewItem on PurchaseModal open
+- [x] Wire trackBeginCheckout in PurchaseModal Pay button
+- [x] Wire trackPurchase on /dashboard?payment=success with SHA-256 hashed email
+- [x] Server-side GA4 Measurement Protocol in LemonSqueezy webhook
+- [x] Server-side GA4 Measurement Protocol in NOWPayments webhook
+- [x] Add GA4_MEASUREMENT_ID and GA4_API_SECRET to server env.ts
+- [x] LemonSqueezy redirect URL includes order/product/value/method query params
+- [x] Write tests for analytics helpers (10 new tests, 122 total passing)
+- [x] Update README with new env vars

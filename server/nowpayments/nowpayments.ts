@@ -11,6 +11,7 @@ import {
 } from "../db";
 import { sendPaymentConfirmationEmail, getSkuHumanName } from "../email";
 import { PRODUCTS, ProductKey } from "../products";
+import { sendGA4PurchaseEvent } from "../ga4mp";
 
 /**
  * NOWPayments IPN (Instant Payment Notification) webhook handler.
@@ -202,6 +203,19 @@ export function registerNowPaymentsWebhook(app: Express) {
               order.id,
             );
             console.log(`[NOWPayments] Credits granted to user ${order.userId}: essay=${credits.essay}, university=${credits.university}`);
+          }
+
+          // Best-effort GA4 Measurement Protocol purchase event
+          try {
+            await sendGA4PurchaseEvent({
+              orderId: order.id,
+              productSlug: order.sku,
+              valueUsd: order.amountUsd / 100, // cents → dollars
+              paymentMethod: "nowpayments",
+              userId: String(order.userId),
+            });
+          } catch (ga4Err) {
+            console.warn("[NOWPayments] GA4 MP event failed (non-fatal):", ga4Err);
           }
 
           // Best-effort email notification
