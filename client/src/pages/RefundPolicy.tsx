@@ -18,7 +18,7 @@ export default function RefundPolicy() {
           <section>
             <h2 className="text-xl font-semibold mb-3">How to Request a Refund</h2>
             <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
-              <li>Email us at <a href="mailto:support@iblens.com" className="text-primary hover:underline font-medium">support@iblens.com</a> within 7 days of your purchase.</li>
+              <li>Email us at <a href="mailto:glushkovim@gmail.com" className="text-primary hover:underline font-medium">glushkovim@gmail.com</a> within 7 days of your purchase.</li>
               <li>Include your account email address and the product you purchased.</li>
               <li>We will process your refund within 3–5 business days via the original payment method.</li>
             </ol>
@@ -49,7 +49,7 @@ export default function RefundPolicy() {
           <section>
             <h2 className="text-xl font-semibold mb-3">Contact Us</h2>
             <p className="text-muted-foreground leading-relaxed">
-              If you have any questions about our refund policy, please reach out to <a href="mailto:support@iblens.com" className="text-primary hover:underline font-medium">support@iblens.com</a>. We typically respond within 24 hours.
+              If you have any questions about our refund policy, please reach out to <a href="mailto:glushkovim@gmail.com" className="text-primary hover:underline font-medium">glushkovim@gmail.com</a>. We typically respond within 24 hours.
             </p>
           </section>
         </div>

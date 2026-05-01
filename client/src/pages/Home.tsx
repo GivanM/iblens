@@ -459,7 +459,7 @@ export default function Home() {
             />
             <FAQItem
               question="What if I'm not satisfied with my analysis?"
-              answer="Email us at support@iblens.com within 7 days of your purchase and we'll refund you in full, no questions asked. We process refunds via the original payment method (LemonSqueezy or NOWPayments) within 3–5 business days."
+              answer="Email us at glushkovim@gmail.com within 7 days of your purchase and we'll refund you in full, no questions asked. We process refunds via the original payment method within 3–5 business days."
             />
           </div>
         </div>

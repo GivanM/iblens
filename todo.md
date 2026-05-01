@@ -276,3 +276,56 @@
 - [x] Unify hero CTA to single primary button
 - [x] Fix FAQ accordion (answers expand on click — verified working)
 - [x] Write AUTH_FLOW_INVESTIGATION.md (OAuth white-label + alternatives)
+
+## Task: Replace Support Email
+- [ ] Replace all support@iblens.com with iblens.app@gmail.com across entire codebase
+- [ ] Update tests if they reference old email
+- [ ] Verify no occurrences remain
+
+## Task: Direct Google OAuth
+- [ ] Add google_sub column to users table (nullable, unique index)
+- [ ] Add GOOGLE_OAUTH_CLIENT_ID and GOOGLE_OAUTH_CLIENT_SECRET env vars
+- [ ] Create POST /api/auth/google/callback endpoint (verify ID token, sign in or create user)
+- [ ] Write tests for Google OAuth callback (valid token, expired, invalid sig, existing user, new user)
+- [ ] Frontend: Replace Sign In button with 'Continue with Google' using Google Identity Services
+- [ ] Add VITE_GOOGLE_OAUTH_CLIENT_ID env var
+- [ ] Ensure existing Manus OAuth users still work
+- [ ] Run full test suite
+- [ ] Publish
+
+## Task: Replace Support Email
+- [ ] Replace all support@iblens.com with iblens.app@gmail.com across entire codebase
+- [ ] Update tests if they reference old email
+- [ ] Verify no occurrences remain
+
+## Task: Direct Google OAuth
+- [ ] Add google_sub column to users table (nullable, unique index)
+- [ ] Add GOOGLE_OAUTH_CLIENT_ID and GOOGLE_OAUTH_CLIENT_SECRET env vars
+- [ ] Create POST /api/auth/google/callback endpoint (verify ID token, sign in or create user)
+- [ ] Write tests for Google OAuth callback (valid token, expired, invalid sig, existing user, new user)
+- [ ] Frontend: Replace Sign In button with 'Continue with Google' using Google Identity Services
+- [ ] Add VITE_GOOGLE_OAUTH_CLIENT_ID env var
+- [ ] Keep Manus OAuth as fallback ('Existing user? Sign in with Manus' text link)
+- [ ] Create AUTH_GOOGLE_SETUP.md with setup instructions
+- [ ] Create AUTH_DECISIONS.md documenting ambiguous decisions
+- [ ] Ensure existing Manus OAuth users still work
+- [ ] Run full test suite
+- [ ] Publish
+
+## Task: Fix Support Email (Correction)
+- [x] Replace iblens.app@gmail.com with glushkovim@gmail.com in support/refund context only
+- [x] Do NOT touch iblens.app@gmail.com in analytics/GTM/ads context
+- [x] Verify changes (0 remaining occurrences in client/server source)
+
+## Task: Brand Manus OAuth Sign-In
+- [x] Read AUTH_FLOW_INVESTIGATION.md for options
+- [x] Implement branded interstitial at /auth/signin
+- [x] Create AUTH_BRANDING_SETUP.md (no owner DNS actions required)
+- [x] Create AUTH_DECISIONS.md documenting all judgment calls
+- [x] Keep Manus OAuth as auth backend (no new providers)
+
+## Task: SEO Foundations
+- [x] Update sitemap.xml with all 5 public pages + current date
+- [x] Create SEO_SETUP.md with Google Search Console + Bing verification instructions
+- [x] Verify robots.txt references sitemap correctly
+- [x] Verify HTML meta verification tag already present in index.html
