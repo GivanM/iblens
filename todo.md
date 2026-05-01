@@ -329,3 +329,25 @@
 - [x] Create SEO_SETUP.md with Google Search Console + Bing verification instructions
 - [x] Verify robots.txt references sitemap correctly
 - [x] Verify HTML meta verification tag already present in index.html
+
+## SEO Maximization Round 2
+- [x] Create /resources/ib-extended-essay-guide (2000+ words)
+- [x] Create /resources/ib-internal-assessment-guide (2000+ words)
+- [x] Create /resources/tok-essay-guide (2000+ words)
+- [x] Create /resources/ib-grade-boundaries (2000+ words)
+- [x] Create /resources/ib-essay-criteria-explained (2000+ words)
+- [x] Create /resources/how-iblens-works (2000+ words)
+- [x] Create /resources/ib-university-admissions (2000+ words) — bonus 7th article
+- [x] Create /resources/ index page
+- [x] Per-page meta tags (SEOHead component with react-helmet-async)
+- [x] JSON-LD: Organization, SoftwareApplication, FAQPage, BreadcrumbList, Article
+- [x] Server-side SEO pre-rendering for crawlers (seo-prerender.ts)
+- [x] OG default image (1200x630) — already on CDN
+- [x] Update sitemap.xml with all 13 pages
+- [x] robots.txt already correct
+- [x] Internal linking: footer resources column, nav Resources link, cross-article links
+- [x] Core Web Vitals: font preconnect, async GTM, code-split routes
+- [x] Write BACKLINK_STRATEGY.md
+- [x] Update SEO_SETUP.md
+- [x] Run tests — 120 pass
+- [ ] Publish

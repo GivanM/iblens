@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Link, useLocation } from "wouter";
-import { FileText, GraduationCap, LayoutDashboard, LogOut, User, Menu, X, Sparkles, DollarSign } from "lucide-react";
+import { FileText, GraduationCap, LayoutDashboard, LogOut, User, Menu, X, Sparkles, DollarSign, BookOpen } from "lucide-react";
 import { useState } from "react";
 
 function NavLink({ href, children, active }: { href: string; children: React.ReactNode; active: boolean }) {
@@ -59,6 +59,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <span className="flex items-center gap-1.5">
                   <GraduationCap className="w-3.5 h-3.5" />
                   University Strategy
+                </span>
+              </NavLink>
+              <NavLink href="/resources" active={location.startsWith("/resources")}>
+                <span className="flex items-center gap-1.5">
+                  <BookOpen className="w-3.5 h-3.5" />
+                  Resources
                 </span>
               </NavLink>
               <NavLink href="/pricing" active={location === "/pricing"}>
@@ -141,6 +147,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             >
               <GraduationCap className="w-4 h-4" />
               University Strategy
+            </Link>
+            <Link
+              href="/resources"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
+                location.startsWith("/resources") ? "bg-primary/10 text-primary" : "text-muted-foreground"
+              }`}
+            >
+              <BookOpen className="w-4 h-4" />
+              Resources
             </Link>
             <Link
               href="/pricing"

@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
 import { getLoginUrl } from "@/const";
 import { PRICE_LABELS } from "@shared/pricing";
+import { SEOHead } from "@/components/SEOHead";
 import { useState, useEffect, useMemo } from "react";
 import {
   FileText, GraduationCap, Shield, Zap, BarChart3, Target,
@@ -60,7 +61,108 @@ export default function Home() {
   const { days, examYear } = useExamCountdown();
 
   return (
-    <div>
+    <>
+      <SEOHead
+        title="IBLens — AI-Powered IB Essay Feedback & Score Prediction"
+        description="Upload your IB Extended Essay, Internal Assessment, or TOK essay and get criterion-by-criterion feedback with a predicted score in 60 seconds. First analysis free."
+        canonical="/"
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "IBLens",
+            url: "https://iblens.com",
+            description: "AI-powered IB essay analysis tool providing criterion-based feedback and predicted scores for Extended Essays, Internal Assessments, and TOK essays.",
+            sameAs: [],
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: "IBLens",
+            applicationCategory: "EducationalApplication",
+            operatingSystem: "Web",
+            url: "https://iblens.com",
+            offers: {
+              "@type": "AggregateOffer",
+              lowPrice: "0",
+              highPrice: "34.99",
+              priceCurrency: "USD",
+            },
+            description: "AI-powered IB essay analysis providing criterion-by-criterion feedback and predicted scores.",
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "How does IBLens analyze my IB essay?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "IBLens uses advanced AI trained on IB marking criteria to analyze your essay. It evaluates each criterion (e.g., Knowledge and Understanding, Application, Analysis) and provides a predicted score, identifies risk areas that could lose marks, and suggests specific improvements.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Which IB essay types does IBLens support?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "IBLens supports Internal Assessments (IA) for all IB subjects, Extended Essays (EE), and Theory of Knowledge (TOK) essays. Each type is analyzed against its specific IB criteria.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Is my first essay analysis really free?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes! Every new user gets their first essay analysis completely free with all features included \u2014 predicted score, criterion breakdown, risk areas, leverage zones, and actionable next steps. No credit card required.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How accurate is the predicted IB score?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "IBLens provides a predicted score band based on IB marking criteria analysis. While no tool can guarantee exact scores, our AI is trained on IB standards and provides reliable estimates to help you understand where your essay stands and how to improve it.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Is my essay data kept private and secure?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Absolutely. Your essays are processed securely through our backend and are never stored permanently or shared with third parties. All AI processing happens through encrypted API calls.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What payment methods do you accept?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "We accept card payments (Visa, Mastercard, Amex) and cryptocurrency (BTC, ETH, USDT, and more). The payment process is fast and secure.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Can I use IBLens for multiple subjects?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes! IBLens supports all IB subjects including Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English Literature, Psychology, and more. Each analysis is tailored to the specific subject's criteria.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What if I'm not satisfied with my analysis?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Email us at glushkovim@gmail.com within 7 days of your purchase and we'll refund you in full, no questions asked. We process refunds via the original payment method within 3\u20135 business days.",
+                },
+              },
+            ],
+          },
+        ]}
+      />
+      <div>
       {/* Exam Countdown Banner */}
       {days > 0 && days < 200 && (
         <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white py-2.5 text-center text-sm font-medium">
@@ -506,9 +608,13 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-3">Resources</h4>
               <ul className="space-y-2 text-muted-foreground">
+                <li><Link href="/resources" className="hover:text-foreground transition-colors">All Guides</Link></li>
+                <li><Link href="/resources/ib-extended-essay-guide" className="hover:text-foreground transition-colors">Extended Essay Guide</Link></li>
+                <li><Link href="/resources/ib-internal-assessment-guide" className="hover:text-foreground transition-colors">IA Guide</Link></li>
+                <li><Link href="/resources/tok-essay-guide" className="hover:text-foreground transition-colors">TOK Essay Guide</Link></li>
+                <li><Link href="/resources/ib-grade-boundaries" className="hover:text-foreground transition-colors">Grade Boundaries</Link></li>
+                <li><Link href="/resources/ib-university-admissions" className="hover:text-foreground transition-colors">University Admissions</Link></li>
                 <li><Link href="/pricing" className="hover:text-foreground transition-colors">Pricing</Link></li>
-                <li><a href="#faq" className="hover:text-foreground transition-colors">FAQ</a></li>
-                <li><Link href="/essay" className="hover:text-foreground transition-colors">Free Essay Analysis</Link></li>
                 <li><Link href="/refund-policy" className="hover:text-foreground transition-colors">Refund Policy</Link></li>
               </ul>
             </div>
@@ -516,5 +622,6 @@ export default function Home() {
         </div>
       </section>
     </div>
+    </>
   );
 }

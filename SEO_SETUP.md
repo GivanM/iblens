@@ -47,7 +47,15 @@ The sitemap at `https://iblens.com/sitemap.xml` includes these pages:
 - `/essay` (essay analyzer) — priority 0.9
 - `/university` (university strategy) — priority 0.8
 - `/pricing` (pricing page) — priority 0.8
-- `/refund-policy` — priority 0.4
+- `/resources` (resource hub) — priority 0.8
+- `/resources/ib-extended-essay-guide` — priority 0.7
+- `/resources/ib-internal-assessment-guide` — priority 0.7
+- `/resources/tok-essay-guide` — priority 0.7
+- `/resources/ib-grade-boundaries` — priority 0.7
+- `/resources/ib-essay-criteria-explained` — priority 0.7
+- `/resources/how-iblens-works` — priority 0.6
+- `/resources/ib-university-admissions` — priority 0.7
+- `/refund-policy` — priority 0.3
 
 The sitemap is also referenced in `robots.txt`.
 
@@ -63,6 +71,11 @@ After sitemap submission, manually request indexing for your most important page
    - `https://iblens.com/essay`
    - `https://iblens.com/university`
    - `https://iblens.com/pricing`
+   - `https://iblens.com/resources`
+   - `https://iblens.com/resources/ib-extended-essay-guide`
+   - `https://iblens.com/resources/ib-internal-assessment-guide`
+   - `https://iblens.com/resources/tok-essay-guide`
+   - `https://iblens.com/resources/ib-grade-boundaries`
 
 This tells Google to prioritize crawling these pages. Indexing typically happens within 1–7 days after requesting.
 
@@ -99,7 +112,12 @@ These are already live on iblens.com:
 | JSON-LD: Organization | Done | `index.html` |
 | Google Site Verification meta tag | Done | `index.html` |
 | robots.txt (blocks /api/, /dashboard) | Done | `public/robots.txt` |
-| sitemap.xml (5 pages) | Done | `public/sitemap.xml` |
+| sitemap.xml (13 pages) | Done | `public/sitemap.xml` |
+| Server-side SEO pre-rendering | Done | `server/seo-prerender.ts` |
+| Per-page meta tags (react-helmet-async) | Done | `SEOHead` component |
+| 7 long-form resource articles (1500-2500 words each) | Done | `client/src/pages/resources/` |
+| Internal linking (footer, nav, cross-article) | Done | All resource pages |
+| BreadcrumbList JSON-LD on articles | Done | `ResourceArticle` component |
 | Mobile-responsive design | Done | Tailwind CSS |
 | HTTPS | Done | Manus hosting |
 | Fast load time (SPA with code splitting) | Done | Vite build |
