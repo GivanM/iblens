@@ -381,4 +381,10 @@
 - [x] data-seo="route" attribute distinguishes our tags from CDN-injected ones
 - [x] Build verified: 14 route files with 2 title tags each (placeholder + real)
 - [x] All 123 tests pass
-- [ ] Publish dual-tag version and verify with curl
+- [x] Dual-tag approach failed: CDN replaces ALL occurrences of title/desc/og/twitter tags
+- [x] Pivoted to JSON-LD strategy: CDN does NOT touch <script type="application/ld+json">
+- [x] Added per-route WebPage/Article JSON-LD with correct name, headline, description, url
+- [x] Added per-route BreadcrumbList JSON-LD for navigation context
+- [x] All 14 routes verified with correct per-route JSON-LD headlines
+- [x] All 123 tests pass, 0 TypeScript errors
+- [ ] Publish JSON-LD version and verify with curl on live site
