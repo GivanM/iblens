@@ -1,5 +1,6 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
+import { SEOHead } from "@/components/SEOHead";
 import { getLoginUrl } from "@/const";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
@@ -186,6 +187,11 @@ export default function EssayAnalyzer() {
 
   return (
     <div className="container py-8 max-w-4xl mx-auto">
+      <SEOHead
+        title="IB Essay Analyzer — Get AI Feedback on Your IA, EE, or TOK Essay | IBLens"
+        description="Upload your IB essay and receive instant criterion-based feedback with a predicted score. Supports all IB subjects: Business Management, Economics, History, Sciences, and more."
+        canonical="/essay"
+      />
       <div className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight mb-2">Essay Analyzer</h1>
         <p className="text-muted-foreground">

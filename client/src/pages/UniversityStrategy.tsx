@@ -1,5 +1,6 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
+import { SEOHead } from "@/components/SEOHead";
 import { getLoginUrl } from "@/const";
 import { PRICE_LABELS, type ProductKey } from "@shared/pricing";
 import { Link } from "wouter";
@@ -140,6 +141,11 @@ export default function UniversityStrategy() {
 
   return (
     <div className="container py-8 max-w-4xl mx-auto">
+      <SEOHead
+        title="IB University Strategy — AI Application Plan | IBLens"
+        description="Get personalized university recommendations based on your IB predicted grades, subject combination, and preferences. Covers UK, US, Canada, Europe, and Asia-Pacific."
+        canonical="/university"
+      />
       <div className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight mb-2">University Strategy</h1>
         <p className="text-muted-foreground">

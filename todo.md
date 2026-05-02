@@ -387,4 +387,12 @@
 - [x] Added per-route BreadcrumbList JSON-LD for navigation context
 - [x] All 14 routes verified with correct per-route JSON-LD headlines
 - [x] All 123 tests pass, 0 TypeScript errors
-- [ ] Publish JSON-LD version and verify with curl on live site
+- [x] Published JSON-LD version — CDN also replaces JSON-LD content (not just meta tags)
+- [x] Root cause confirmed: CDN serves root index.html for ALL routes (SPA fallback), ignoring per-route static files
+- [x] CDN replaces ALL SEO-related content: title, description, og:*, twitter:*, JSON-LD name/headline/description/url
+- [x] CDN DOES correctly set: og:url (per-route), canonical (per-route)
+- [x] Solution: React Helmet (client-side JS) sets per-route titles/descriptions after page load
+- [x] Added SEOHead to all 5 missing pages: Essay, University, Pricing, RefundPolicy, SignIn
+- [x] All 14 routes now have SEOHead with per-route title, description, canonical
+- [x] Googlebot renders JavaScript — will see correct per-route titles from React Helmet
+- [x] All 123 tests pass, 0 TypeScript errors

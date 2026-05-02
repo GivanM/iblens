@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getManusOAuthUrl } from "@/const";
 import { Link } from "wouter";
+import { SEOHead } from "@/components/SEOHead";
 import { Sparkles, Shield, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -41,6 +42,11 @@ export default function SignIn() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50/50 to-white">
+      <SEOHead
+        title="Sign In — IBLens"
+        description="Sign in to IBLens to access your IB essay analyses, purchase history, and personalized university strategies."
+        canonical="/auth/signin"
+      />
       <div className="max-w-md w-full mx-4">
         <div className="bg-white rounded-2xl shadow-lg border border-border/50 p-8 space-y-6">
           {/* IBLens branding */}

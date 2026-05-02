@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "@/_core/hooks/useAuth";
+import { SEOHead } from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -114,6 +115,11 @@ export default function Pricing() {
 
   return (
     <div className="py-16 md:py-24">
+      <SEOHead
+        title="Pricing — IB Essay Analysis from $4.99 | IBLens"
+        description="Affordable IB essay feedback: first analysis free, single essays from $4.99, packs of 5 for $19.99, packs of 10 for $34.99. 7-day money-back guarantee."
+        canonical="/pricing"
+      />
       <div className="container">
         {/* Purchase Modal */}
         <PurchaseModal

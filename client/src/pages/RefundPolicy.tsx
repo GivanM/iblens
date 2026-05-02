@@ -1,8 +1,14 @@
 import { Link } from "wouter";
+import { SEOHead } from "@/components/SEOHead";
 
 export default function RefundPolicy() {
   return (
     <div className="py-16 bg-background">
+      <SEOHead
+        title="Refund Policy — 7-Day Money-Back Guarantee | IBLens"
+        description="IBLens offers a 7-day no-questions-asked money-back guarantee on all purchases. Email us within 7 days for a full refund."
+        canonical="/refund-policy"
+      />
       <div className="container max-w-3xl">
         <h1 className="text-3xl font-bold tracking-tight mb-2">Refund Policy</h1>
         <p className="text-sm text-muted-foreground mb-8">Last updated: April 30, 2026</p>
