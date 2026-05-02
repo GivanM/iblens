@@ -363,3 +363,11 @@
 - [x] Verify with curl -A Googlebot on all 14 pages — exactly 1 canonical each ✔
 - [x] Run tests — 120 pass
 - [ ] Deploy
+
+## Critical SEO Fix — Platform CDN Tag Override
+- [x] Diagnosed: Manus platform CDN appends og/twitter tags at end of head, overriding ours
+- [x] Fix: Move our tag injection to right before closing head (last wins)
+- [x] Fix: Strip ALL existing title/description/og/twitter/canonical before injecting
+- [x] Verified on dev server: all 14 routes have exactly 1 canonical, correct per-route titles
+- [x] All 120 tests pass
+- [ ] Publish and verify on live site with curl

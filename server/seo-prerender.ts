@@ -1,22 +1,26 @@
 /**
  * SEO Pre-rendering Middleware
  * 
- * Injects route-specific meta tags, Open Graph data, and JSON-LD structured data
- * into the HTML template before serving to crawlers. This ensures search engines
+ * Injects route-specific meta tags, Open Graph data, and structured data
+ * into the HTML template before serving. This ensures search engines
  * see full SEO content even though the app is a client-side SPA.
  * 
- * For regular users, react-helmet-async handles meta tags after hydration.
- * For crawlers (Googlebot, Bingbot, etc.), this middleware pre-populates the HTML.
+ * CRITICAL: The Manus platform CDN appends its own og / twitter meta tags
+ * at the end of head AFTER our server code runs. To ensure our per-route
+ * tags take precedence, we inject them right before closing head so they
+ * appear LAST in the document. Browsers and crawlers use the last occurrence
+ * of duplicate meta tags, so our tags win.
+ * 
+ * Additionally, we strip ALL existing title, description, og, twitter,
+ * and canonical tags from the template before injecting ours, to minimize
+ * duplicates.
  */
-
-import { type Express, type Request, type Response, type NextFunction } from "express";
 
 interface PageMeta {
   title: string;
   description: string;
   canonical: string;
   ogType?: string;
-  jsonLd?: object | object[];
 }
 
 const SITE_URL = "https://iblens.com";
@@ -37,7 +41,7 @@ const routeMeta: Record<string, PageMeta> = {
     canonical: "/essay",
   },
   "/university": {
-    title: "IB University Strategy — Find Universities That Match Your Predicted Grades | IBLens",
+    title: "IB University Strategy — AI Application Plan | IBLens",
     description: "Get personalized university recommendations based on your IB predicted grades, subject combination, and preferences. Covers UK, US, Canada, Europe, and Asia-Pacific.",
     canonical: "/university",
   },
@@ -128,27 +132,13 @@ function generateMetaTags(meta: PageMeta): string {
   `;
 }
 
-function isCrawler(userAgent: string): boolean {
-  const crawlerPatterns = [
-    /googlebot/i,
-    /bingbot/i,
-    /slurp/i,
-    /duckduckbot/i,
-    /baiduspider/i,
-    /yandexbot/i,
-    /facebookexternalhit/i,
-    /twitterbot/i,
-    /linkedinbot/i,
-    /whatsapp/i,
-    /telegrambot/i,
-    /discordbot/i,
-  ];
-  return crawlerPatterns.some((pattern) => pattern.test(userAgent));
-}
-
 /**
  * Injects SEO meta tags into the HTML template.
  * Called from the Vite middleware (dev) or static serving (prod).
+ * 
+ * Strategy: Strip ALL existing title/description/og/twitter/canonical tags,
+ * then inject our per-route tags right before </head> so they appear LAST
+ * in the document (after any platform CDN-injected tags).
  */
 export function injectSeoMeta(html: string, url: string, userAgent: string): string {
   // Clean URL of query params and hash for route matching
@@ -159,16 +149,19 @@ export function injectSeoMeta(html: string, url: string, userAgent: string): str
 
   const metaTags = generateMetaTags(meta);
 
-  // Remove any existing canonical, title, description, og:*, twitter:* tags from the template
-  // to avoid duplicates with the per-route tags we're injecting
-  html = html.replace(/<title>[^<]*<\/title>/, "");
-  html = html.replace(/<link\s+rel="canonical"[^>]*>/gi, "");
-  html = html.replace(/<meta\s+name="description"[^>]*>/gi, "");
-  html = html.replace(/<meta\s+name="title"[^>]*>/gi, "");
-  html = html.replace(/<meta\s+property="og:[^"]*"[^>]*>/gi, "");
-  html = html.replace(/<meta\s+name="twitter:[^"]*"[^>]*>/gi, "");
-  // Inject per-route meta tags after <head>
-  html = html.replace("<head>", `<head>${metaTags}`);
+  // Strip ALL existing SEO-related tags from the template to prevent duplicates.
+  // This catches tags from index.html AND any platform-injected tags.
+  html = html.replace(/<title>[^<]*<\/title>/gi, "");
+  html = html.replace(/<link\s+rel=["']canonical["'][^>]*>/gi, "");
+  html = html.replace(/<meta\s+name=["']description["'][^>]*>/gi, "");
+  html = html.replace(/<meta\s+name=["']title["'][^>]*>/gi, "");
+  html = html.replace(/<meta\s+property=["']og:[^"']*["'][^>]*>/gi, "");
+  html = html.replace(/<meta\s+name=["']twitter:[^"']*["'][^>]*>/gi, "");
+
+  // Inject our per-route tags right before </head> so they are the LAST tags
+  // in the head section. This ensures they override any platform CDN tags
+  // that might be appended after our server code runs.
+  html = html.replace("</head>", `${metaTags}\n</head>`);
 
   return html;
 }
