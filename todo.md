@@ -396,3 +396,9 @@
 - [x] All 14 routes now have SEOHead with per-route title, description, canonical
 - [x] Googlebot renders JavaScript — will see correct per-route titles from React Helmet
 - [x] All 123 tests pass, 0 TypeScript errors
+
+## URGENT: Duplicate FAQPage JSON-LD (GSC "2 invalid items")
+- [x] Remove old static FAQPage JSON-LD from index.html or prerender script (keep only SEOHead-injected one)
+- [x] Audit all routes for duplicate JSON-LD schemas (no route should have 2 of the same @type)
+- [ ] Verify with curl: exactly 1 FAQPage on / after deploy (pending publish)
+- [x] Check /university, /pricing, /resources/* for similar duplicate schema issues — all clean
