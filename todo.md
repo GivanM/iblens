@@ -375,4 +375,10 @@
 - [x] Integrated into build pipeline: vite build + esbuild + prerender-seo.mjs
 - [x] Verified: all 14 dist/public/{route}/index.html files have correct per-route meta tags
 - [x] All 123 tests pass, 0 TypeScript errors
-- [ ] Publish and verify on live site with curl
+- [x] Published — CDN still replaces FIRST occurrence of all SEO tags
+- [x] Discovered: CDN replaces FIRST occurrence but leaves ADDITIONAL occurrences untouched
+- [x] Implemented dual-tag strategy: placeholder tags (CDN target) + real tags before </head> (survive CDN)
+- [x] data-seo="route" attribute distinguishes our tags from CDN-injected ones
+- [x] Build verified: 14 route files with 2 title tags each (placeholder + real)
+- [x] All 123 tests pass
+- [ ] Publish dual-tag version and verify with curl
