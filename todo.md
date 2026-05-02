@@ -351,3 +351,15 @@
 - [x] Update SEO_SETUP.md
 - [x] Run tests — 120 pass
 - [ ] Publish
+
+## Critical SEO Bug Fix — Duplicate Canonical Tags
+- [x] Remove hard-coded canonical from index.html (was line 16)
+- [x] Remove duplicate title, description, OG, Twitter tags from index.html template
+- [x] Keep only per-page canonical from seo-prerender.ts (crawlers) + react-helmet-async (users)
+- [x] Fix server-side pre-render: now strips existing canonical/OG/Twitter before injecting per-route tags
+- [x] Added /auth/signin to seo-prerender route map (was missing)
+- [x] Fix JSON-LD: University Strategy price $9.99 → $25
+- [x] Verify all JSON-LD prices: $0, $4.99, $19.99, $34.99, $25 — all correct
+- [x] Verify with curl -A Googlebot on all 14 pages — exactly 1 canonical each ✔
+- [x] Run tests — 120 pass
+- [ ] Deploy

@@ -98,6 +98,11 @@ const routeMeta: Record<string, PageMeta> = {
     canonical: "/resources/ib-university-admissions",
     ogType: "article",
   },
+  "/auth/signin": {
+    title: "Sign In — IBLens",
+    description: "Sign in to IBLens to access your IB essay analyses, purchase history, and personalized university strategies.",
+    canonical: "/auth/signin",
+  },
 };
 
 function generateMetaTags(meta: PageMeta): string {
@@ -154,10 +159,15 @@ export function injectSeoMeta(html: string, url: string, userAgent: string): str
 
   const metaTags = generateMetaTags(meta);
 
-  // Replace the placeholder title and inject meta tags after <head>
-  // Remove the default title first
+  // Remove any existing canonical, title, description, og:*, twitter:* tags from the template
+  // to avoid duplicates with the per-route tags we're injecting
   html = html.replace(/<title>[^<]*<\/title>/, "");
-  // Inject after <head>
+  html = html.replace(/<link\s+rel="canonical"[^>]*>/gi, "");
+  html = html.replace(/<meta\s+name="description"[^>]*>/gi, "");
+  html = html.replace(/<meta\s+name="title"[^>]*>/gi, "");
+  html = html.replace(/<meta\s+property="og:[^"]*"[^>]*>/gi, "");
+  html = html.replace(/<meta\s+name="twitter:[^"]*"[^>]*>/gi, "");
+  // Inject per-route meta tags after <head>
   html = html.replace("<head>", `<head>${metaTags}`);
 
   return html;
