@@ -370,4 +370,9 @@
 - [x] Fix: Strip ALL existing title/description/og/twitter/canonical before injecting
 - [x] Verified on dev server: all 14 routes have exactly 1 canonical, correct per-route titles
 - [x] All 120 tests pass
+- [x] Diagnosed: CDN completely replaces title and strips description/og/twitter even with last-position injection
+- [x] Created scripts/prerender-seo.mjs — post-build script generates 14 per-route static HTML files
+- [x] Integrated into build pipeline: vite build + esbuild + prerender-seo.mjs
+- [x] Verified: all 14 dist/public/{route}/index.html files have correct per-route meta tags
+- [x] All 123 tests pass, 0 TypeScript errors
 - [ ] Publish and verify on live site with curl
