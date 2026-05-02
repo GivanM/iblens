@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function UniversityAdmissionsGuide() {
   return (
     <ResourceArticle
-      title="IB to University — How IB Scores Translate to University Admissions"
-      description="Comprehensive guide on how universities evaluate IB Diploma scores: UK UCAS points, US holistic admissions, Canadian equivalencies, and how to choose universities based on your predicted grades."
+      title="IB University Admissions — UK, US, EU Guide | IBLens"
+      description="How IB Diploma scores translate to university offers in the UK, US, EU and beyond. Typical IB requirements at top universities."
       canonical="/resources/ib-university-admissions"
       datePublished="2026-05-01"
       dateModified="2026-05-01"

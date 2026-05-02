@@ -87,14 +87,14 @@ const routeMeta: Record<string, PageMeta> = {
     ogType: "article",
   },
   "/resources/how-iblens-works": {
-    title: "How IBLens Works — AI Essay Analysis Explained | IBLens",
-    description: "Learn how IBLens uses AI to analyze IB essays against official rubrics, what the output looks like, accuracy limitations, privacy protections, and comparison to tutors.",
+    title: "How IBLens Works — AI-Powered IB Essay Analysis",
+    description: "How the IBLens AI analyzes IB essays against official criteria, predicts scores, and generates personalized feedback in under 60 seconds.",
     canonical: "/resources/how-iblens-works",
     ogType: "article",
   },
   "/resources/ib-university-admissions": {
-    title: "IB to University — How Scores Translate to Admissions Worldwide | IBLens",
-    description: "How UK, US, Canadian, European, and Asia-Pacific universities evaluate IB Diploma scores. Typical offers, UCAS points, credit policies, and strategic application decisions.",
+    title: "IB University Admissions — UK, US, EU Guide | IBLens",
+    description: "How IB Diploma scores translate to university offers in the UK, US, EU and beyond. Typical IB requirements at top universities.",
     canonical: "/resources/ib-university-admissions",
     ogType: "article",
   },
