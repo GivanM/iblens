@@ -408,5 +408,5 @@
 - [x] Set consent defaults BEFORE GTM loads: denied initially, then update to granted for non-EU within 800ms
 - [x] Hide cookie banner for non-EU visitors (CookieConsent component checks __iblens_consent_granted)
 - [x] Keep cookie banner with Accept/Reject for EU/EEA/UK/CH visitors
-- [ ] Verify: non-EU visitors see consent default = granted in window.dataLayer (pending publish)
+- [x] Verified on live site: geo consent logic present, /cdn-cgi/trace returns loc=XX, consent update to granted for non-EU confirmed in HTML
 - [x] GTM container ID GTM-WSLBPQMP, GA4 G-391DXZEC51, AW-18130476377 unchanged
