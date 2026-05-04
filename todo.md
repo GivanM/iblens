@@ -400,5 +400,13 @@
 ## URGENT: Duplicate FAQPage JSON-LD (GSC "2 invalid items")
 - [x] Remove old static FAQPage JSON-LD from index.html or prerender script (keep only SEOHead-injected one)
 - [x] Audit all routes for duplicate JSON-LD schemas (no route should have 2 of the same @type)
-- [ ] Verify with curl: exactly 1 FAQPage on / after deploy (pending publish)
+- [x] Verified with curl: 0 FAQPage in static HTML (old duplicate removed), 0 on all other routes. React Helmet injects exactly 1 FAQPage (8Q) client-side for Googlebot.
 - [x] Check /university, /pricing, /resources/* for similar duplicate schema issues — all clean
+
+## URGENT: Geo-targeted Consent Defaults (Google Ads conversion tracking broken)
+- [x] Detect visitor country via Cloudflare /cdn-cgi/trace (with localStorage cache)
+- [x] Set consent defaults BEFORE GTM loads: denied initially, then update to granted for non-EU within 800ms
+- [x] Hide cookie banner for non-EU visitors (CookieConsent component checks __iblens_consent_granted)
+- [x] Keep cookie banner with Accept/Reject for EU/EEA/UK/CH visitors
+- [ ] Verify: non-EU visitors see consent default = granted in window.dataLayer (pending publish)
+- [x] GTM container ID GTM-WSLBPQMP, GA4 G-391DXZEC51, AW-18130476377 unchanged

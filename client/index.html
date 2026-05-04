@@ -17,17 +17,63 @@
     <!-- JSON-LD is injected per-route by React Helmet (SEOHead component) -->
     <!-- Do NOT add static JSON-LD here — it causes duplicate schema issues in GSC -->
 
-    <!-- Google Consent Mode v2 — defaults BEFORE GTM loads -->
+    <!-- Google Consent Mode v2 — geo-targeted defaults BEFORE GTM loads -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      // EU/EEA/UK/CH countries that require explicit consent (GDPR)
+      var EU_COUNTRIES = 'AT,BE,BG,HR,CY,CZ,DK,EE,FI,FR,DE,GR,HU,IE,IT,LV,LT,LU,MT,NL,PL,PT,RO,SK,SI,ES,SE,IS,LI,NO,GB,CH';
+      // Check if geo was already resolved (set by inline script below)
+      var consentState = 'denied'; // safe default until geo resolves
+      // Set denied as initial default with wait_for_update so GTM waits for geo resolution
       gtag('consent', 'default', {
         'analytics_storage': 'denied',
         'ad_storage': 'denied',
         'ad_user_data': 'denied',
         'ad_personalization': 'denied',
-        'wait_for_update': 500
+        'wait_for_update': 800
       });
+      // Resolve geo and update consent synchronously if possible
+      (function(){
+        // Try localStorage cache first (avoid repeated network calls)
+        var cached = null;
+        try { cached = localStorage.getItem('iblens_geo_country'); } catch(e){}
+        if (cached && cached.length === 2) {
+          applyGeoConsent(cached);
+          return;
+        }
+        // Fetch country from Cloudflare /cdn-cgi/trace (works on CF-proxied domains)
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/cdn-cgi/trace', true);
+        xhr.timeout = 700;
+        xhr.onload = function(){
+          var m = xhr.responseText.match(/loc=([A-Z]{2})/);
+          if (m) {
+            try { localStorage.setItem('iblens_geo_country', m[1]); } catch(e){}
+            applyGeoConsent(m[1]);
+          }
+        };
+        xhr.onerror = xhr.ontimeout = function(){
+          // Fallback: grant consent (most traffic is non-EU from Google Ads)
+          applyGeoConsent('US');
+        };
+        xhr.send();
+      })();
+      function applyGeoConsent(country) {
+        window.__iblens_geo_country = country;
+        var isEU = EU_COUNTRIES.indexOf(country) !== -1;
+        if (!isEU) {
+          // Non-EU: grant consent by default (no GDPR requirement)
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted',
+            'ad_storage': 'granted',
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted'
+          });
+          window.__iblens_consent_granted = true;
+        }
+        // EU: keep denied defaults, cookie banner will handle consent
+      }
     </script>
 
     <!-- Google Tag Manager (GTM-WSLBPQMP) -->

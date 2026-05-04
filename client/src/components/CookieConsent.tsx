@@ -4,21 +4,53 @@ import { CONSENT_STORAGE_KEY } from "@/lib/analytics/config";
 
 /**
  * Cookie consent banner implementing Google Consent Mode v2.
- * Shows on first visit; accept/reject updates consent state.
+ * 
+ * Geo-targeted behavior:
+ * - EU/EEA/UK/CH visitors: Shows Accept/Reject banner (GDPR compliance)
+ * - Non-EU visitors: Banner is NOT shown; consent is granted by default
+ *   via the inline script in index.html (geo detection via /cdn-cgi/trace)
+ * 
  * Consent state is persisted in localStorage and pushed to dataLayer.
  */
+
+// EU/EEA/UK/CH country codes (must match the list in index.html)
+const EU_COUNTRIES = new Set([
+  "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR",
+  "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL",
+  "PL", "PT", "RO", "SK", "SI", "ES", "SE", "IS", "LI", "NO",
+  "GB", "CH",
+]);
+
 export function CookieConsent() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem(CONSENT_STORAGE_KEY);
-    if (!stored) {
-      // First visit — show banner after short delay
-      const timer = setTimeout(() => setVisible(true), 1500);
-      return () => clearTimeout(timer);
+    // If consent was already granted by geo-detection (non-EU), skip banner entirely
+    if ((window as any).__iblens_consent_granted) {
+      // Also persist in localStorage so future visits don't re-check
+      localStorage.setItem(CONSENT_STORAGE_KEY, "granted");
+      return;
     }
-    // Already consented/rejected — push stored state
-    pushConsentUpdate(stored === "granted");
+
+    const stored = localStorage.getItem(CONSENT_STORAGE_KEY);
+    if (stored) {
+      // Already consented/rejected previously — push stored state
+      pushConsentUpdate(stored === "granted");
+      return;
+    }
+
+    // Check geo country (set by inline script in index.html)
+    const country = (window as any).__iblens_geo_country as string | undefined;
+    if (country && !EU_COUNTRIES.has(country)) {
+      // Non-EU: auto-grant, no banner needed
+      localStorage.setItem(CONSENT_STORAGE_KEY, "granted");
+      pushConsentUpdate(true);
+      return;
+    }
+
+    // EU or unknown country: show consent banner after short delay
+    const timer = setTimeout(() => setVisible(true), 1500);
+    return () => clearTimeout(timer);
   }, []);
 
   function handleAccept() {
