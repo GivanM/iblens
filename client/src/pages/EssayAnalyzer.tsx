@@ -102,6 +102,11 @@ export default function EssayAnalyzer() {
       creditsQuery.refetch();
       const r = data.result as EssayResult;
       analytics.completeEssayAnalysis(subject, `${r.predicted_score}/${r.max_score}`);
+      // Push conversion events for Google Ads
+      const wordCount = essayText.split(/\s+/).filter(Boolean).length;
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'essay_submit', essay_type: essayType, subject, word_count: wordCount });
+      window.dataLayer.push({ event: 'sign_up', method: 'free_essay_analysis' });
       if (data.wasFree) {
         toast.success("Free analysis complete! Future analyses cost $5.");
       } else {
@@ -122,6 +127,11 @@ export default function EssayAnalyzer() {
       anonCheckQuery.refetch();
       const r = data.result as EssayResult;
       analytics.completeEssayAnalysis(subject, `${r.predicted_score}/${r.max_score}`);
+      // Push conversion events for Google Ads
+      const wordCount = essayText.split(/\s+/).filter(Boolean).length;
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'essay_submit', essay_type: essayType, subject, word_count: wordCount });
+      window.dataLayer.push({ event: 'sign_up', method: 'free_essay_analysis' });
       toast.success("Free analysis complete! Sign in to save results and get more analyses.");
     },
     onError: (error: { message: string }) => {

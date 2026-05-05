@@ -7,49 +7,50 @@ import { CONSENT_STORAGE_KEY } from "@/lib/analytics/config";
  * 
  * Geo-targeted behavior:
  * - EU/EEA/UK/CH visitors: Shows Accept/Reject banner (GDPR compliance)
- * - Non-EU visitors: Banner is NOT shown; consent is granted by default
+ * - Non-EU visitors: Banner is NEVER shown; consent is granted by default
  *   via the inline script in index.html (geo detection via /cdn-cgi/trace)
  * 
- * Consent state is persisted in localStorage and pushed to dataLayer.
+ * The inline script in index.html sets:
+ *   window.__iblens_show_banner = true  (EU)
+ *   window.__iblens_show_banner = false (non-EU)
+ *   window.__iblens_consent_granted = true (non-EU)
+ * 
+ * This component checks __iblens_show_banner and returns null for non-EU.
  */
-
-// EU/EEA/UK/CH country codes (must match the list in index.html)
-const EU_COUNTRIES = new Set([
-  "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR",
-  "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL",
-  "PL", "PT", "RO", "SK", "SI", "ES", "SE", "IS", "LI", "NO",
-  "GB", "CH",
-]);
 
 export function CookieConsent() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    // If consent was already granted by geo-detection (non-EU), skip banner entirely
-    if ((window as any).__iblens_consent_granted) {
-      // Also persist in localStorage so future visits don't re-check
+    // Non-EU: never show banner. The inline script already granted consent.
+    if ((window as any).__iblens_consent_granted === true) {
       localStorage.setItem(CONSENT_STORAGE_KEY, "granted");
       return;
     }
 
+    // If geo script explicitly says don't show banner, bail out
+    if ((window as any).__iblens_show_banner === false) {
+      localStorage.setItem(CONSENT_STORAGE_KEY, "granted");
+      return;
+    }
+
+    // Check localStorage — user already made a choice previously
     const stored = localStorage.getItem(CONSENT_STORAGE_KEY);
     if (stored) {
-      // Already consented/rejected previously — push stored state
       pushConsentUpdate(stored === "granted");
       return;
     }
 
-    // Check geo country (set by inline script in index.html)
-    const country = (window as any).__iblens_geo_country as string | undefined;
-    if (country && !EU_COUNTRIES.has(country)) {
-      // Non-EU: auto-grant, no banner needed
-      localStorage.setItem(CONSENT_STORAGE_KEY, "granted");
-      pushConsentUpdate(true);
-      return;
-    }
-
-    // EU or unknown country: show consent banner after short delay
-    const timer = setTimeout(() => setVisible(true), 1500);
+    // EU or geo not yet resolved: show banner after short delay
+    // (wait for geo script to finish — it has 700ms timeout + 800ms wait_for_update)
+    const timer = setTimeout(() => {
+      // Re-check after delay in case geo resolved during the wait
+      if ((window as any).__iblens_show_banner === false || (window as any).__iblens_consent_granted === true) {
+        localStorage.setItem(CONSENT_STORAGE_KEY, "granted");
+        return;
+      }
+      setVisible(true);
+    }, 1000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -98,7 +99,6 @@ export function CookieConsent() {
 
 function pushConsentUpdate(granted: boolean) {
   window.dataLayer = window.dataLayer || [];
-  // Push consent update via gtag command (GTM reads this)
   function gtag(...args: unknown[]) {
     window.dataLayer!.push(args as unknown as Record<string, unknown>);
   }

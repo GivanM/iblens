@@ -15,6 +15,7 @@ declare global {
     dataLayer?: unknown[];
     __iblens_geo_country?: string;
     __iblens_consent_granted?: boolean;
+    __iblens_show_banner?: boolean;
   }
 }
 

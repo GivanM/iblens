@@ -62,6 +62,7 @@
       function applyGeoConsent(country) {
         window.__iblens_geo_country = country;
         var isEU = EU_COUNTRIES.indexOf(country) !== -1;
+        window.__iblens_show_banner = isEU;
         if (!isEU) {
           // Non-EU: grant consent by default (no GDPR requirement)
           gtag('consent', 'update', {

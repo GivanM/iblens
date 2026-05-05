@@ -410,3 +410,10 @@
 - [x] Keep cookie banner with Accept/Reject for EU/EEA/UK/CH visitors
 - [x] Verified on live site: geo consent logic present, /cdn-cgi/trace returns loc=XX, consent update to granted for non-EU confirmed in HTML
 - [x] GTM container ID GTM-WSLBPQMP, GA4 G-391DXZEC51, AW-18130476377 unchanged
+
+## URGENT: Google Ads Conversion Blockers (2 fixes)
+- [x] Fix 1: Hide cookie banner for non-EU users (add __iblens_show_banner = isEU flag, CookieConsent returns null if !show_banner)
+- [x] Fix 2: On successful /api/analyze, push BOTH 'essay_submit' AND 'sign_up' (method:'free_essay_analysis') to dataLayer
+- [x] Keep existing sign_up event on actual auth/signin completion unchanged
+- [ ] Verify on live site: non-EU user sees no banner, EU user sees banner
+- [ ] Verify on live site: essay submission pushes essay_submit event to dataLayer
