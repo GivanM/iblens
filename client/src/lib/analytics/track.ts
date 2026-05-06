@@ -8,6 +8,7 @@
  */
 
 import type { ProductSlug, PaymentMethod, AuthMethod } from "./config";
+import { GOOGLE_ADS_CONVERSION_ID, GOOGLE_ADS_PURCHASE_LABEL } from "./config";
 
 // Uses the existing Window.dataLayer declaration from analytics.ts
 // dataLayer is initialized in index.html before GTM loads
@@ -155,6 +156,17 @@ export function trackPurchase(
       user_id: userIdHashed,
     },
   });
+
+  // Direct Google Ads conversion — fires in parallel with GTM dataLayer push.
+  // Required because GTM is not yet configured with a Google Ads conversion tag.
+  if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+    (window as any).gtag("event", "conversion", {
+      send_to: `${GOOGLE_ADS_CONVERSION_ID}/${GOOGLE_ADS_PURCHASE_LABEL}`,
+      value: priceUsd,
+      currency: "USD",
+      transaction_id: orderId,
+    });
+  }
 }
 
 // ─── Consent Mode ───────────────────────────────────────────────────────────
