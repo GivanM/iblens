@@ -63,8 +63,8 @@ export default function Home() {
   return (
     <>
       <SEOHead
-        title="IBLens — AI-Powered IB Essay Feedback & Score Prediction"
-        description="Upload your IB Extended Essay, Internal Assessment, or TOK essay and get criterion-by-criterion feedback with a predicted score in 60 seconds. First analysis free."
+        title="IBLens — Free IB Essay Grader & Feedback Tool"
+        description="Free IB essay grader — upload your Extended Essay, IA, or TOK and get AI feedback with a predicted grade in 60 seconds. No credit card required."
         canonical="/"
         jsonLd={[
           {
@@ -72,7 +72,7 @@ export default function Home() {
             "@type": "Organization",
             name: "IBLens",
             url: "https://iblens.com",
-            description: "AI-powered IB essay analysis tool providing criterion-based feedback and predicted scores for Extended Essays, Internal Assessments, and TOK essays.",
+            description: "AI-powered IB essay grader providing criterion-based feedback and predicted grades for Extended Essays, Internal Assessments, and TOK essays.",
             sameAs: [],
           },
           {
@@ -88,7 +88,7 @@ export default function Home() {
               highPrice: "34.99",
               priceCurrency: "USD",
             },
-            description: "AI-powered IB essay analysis providing criterion-by-criterion feedback and predicted scores.",
+            description: "AI-powered IB essay grader providing criterion-by-criterion feedback and predicted grades.",
           },
           {
             "@context": "https://schema.org",
@@ -168,7 +168,7 @@ export default function Home() {
         <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white py-2.5 text-center text-sm font-medium">
           <div className="container flex items-center justify-center gap-2">
             <Clock className="w-4 h-4" />
-            <span>Only {days} days until IB {examYear} exams — get your essay scored now</span>
+            <span>Only {days} days until IB {examYear} exams — get your essay graded now</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </div>
         </div>
@@ -193,7 +193,7 @@ export default function Home() {
               <Button size="lg" className="text-base px-10 h-13 shadow-lg shadow-primary/25" asChild>
                 <Link href="/essay">
                   <FileText className="w-4 h-4 mr-2" />
-                  Score My Essay Free — 60 Seconds
+                  Grade My Essay Free — 60 Seconds
                 </Link>
               </Button>
               <Link href="/university" className="text-sm text-muted-foreground hover:text-primary transition-colors">
@@ -240,8 +240,8 @@ export default function Home() {
               {
                 step: "3",
                 icon: TrendingUp,
-                title: "Get your predicted score",
-                desc: "See your predicted band, detailed criterion scores, risk areas, and specific steps to improve your grade.",
+                title: "Get your AI grade & feedback",
+                desc: "See your AI grade and band, detailed criterion scores, risk areas, and actionable steps to improve.",
               },
             ].map(({ step, icon: Icon, title, desc }) => (
               <div key={step} className="text-center relative">
@@ -590,7 +590,7 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-3">Tools</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li><Link href="/essay" className="hover:text-foreground transition-colors">IB Essay Analyzer</Link></li>
+                <li><Link href="/essay" className="hover:text-foreground transition-colors">IB Essay Grader</Link></li>
                 <li><Link href="/university" className="hover:text-foreground transition-colors">University Strategy</Link></li>
                 <li><Link href="/essay" className="hover:text-foreground transition-colors">IB IA Checker</Link></li>
                 <li><Link href="/essay" className="hover:text-foreground transition-colors">Extended Essay Feedback</Link></li>
