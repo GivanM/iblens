@@ -1,0 +1,19 @@
+{
+  "query": "\nSELECT * FROM credit_ledger ORDER BY createdAt DESC;\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 24fXLWCbAf6m8v8.bba070603413 --database fPpXrWUtmpLttw7Fz9wKLE --execute \nSELECT * FROM credit_ledger ORDER BY createdAt DESC;\n",
+  "rows": [
+    {
+      "id": "1",
+      "userId": "1",
+      "delta": "10",
+      "reason": "lemonsqueezy:essay_pack_10",
+      "orderId": "1a18cccb-d977-42b6-959d-0e2875db6f0d",
+      "creditType": "essay",
+      "createdAt": "2026-04-30 14:19:58"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tuserId\tdelta\treason\torderId\tcreditType\tcreatedAt\n1\t1\t10\tlemonsqueezy:essay_pack_10\t1a18cccb-d977-42b6-959d-0e2875db6f0d\tessay\t2026-04-30 14:19:58\n",
+  "stderr": "",
+  "execution_time_ms": 564
+}

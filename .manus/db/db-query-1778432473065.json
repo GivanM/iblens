@@ -1,0 +1,109 @@
+{
+  "query": "\nSELECT id, fingerprint, type, essayType, subject, predictedGrade, createdAt FROM anonymous_analyses ORDER BY createdAt DESC;\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 24fXLWCbAf6m8v8.bba070603413 --database fPpXrWUtmpLttw7Fz9wKLE --execute \nSELECT id, fingerprint, type, essayType, subject, predictedGrade, createdAt FROM anonymous_analyses ORDER BY createdAt DESC;\n",
+  "rows": [
+    {
+      "id": "300001",
+      "fingerprint": "10aad2a4-b05e-407b-b403-b9db52d74f07",
+      "type": "essay",
+      "essayType": "IA",
+      "subject": "Economics",
+      "predictedGrade": "10/14",
+      "createdAt": "2026-05-10 13:34:23"
+    },
+    {
+      "id": "270001",
+      "fingerprint": "587e0b53-434a-4764-92f9-e258b2e427f9",
+      "type": "essay",
+      "essayType": "IA",
+      "subject": "English A: Language and Literature",
+      "predictedGrade": "28/40",
+      "createdAt": "2026-05-10 04:49:35"
+    },
+    {
+      "id": "240001",
+      "fingerprint": "719ae6dc-e9c8-4adf-9526-6a011b81d9cb",
+      "type": "essay",
+      "essayType": "IA",
+      "subject": "English A: Language and Literature",
+      "predictedGrade": "25/40",
+      "createdAt": "2026-05-09 03:53:27"
+    },
+    {
+      "id": "210001",
+      "fingerprint": "8d2adf13-d039-4daf-b45f-2f5d2ec1f33a",
+      "type": "essay",
+      "essayType": "IA",
+      "subject": "English A: Language and Literature",
+      "predictedGrade": "27/40",
+      "createdAt": "2026-05-07 13:39:10"
+    },
+    {
+      "id": "180001",
+      "fingerprint": "6e51eff6-a65c-4db3-976f-f3d8736f2f7c",
+      "type": "essay",
+      "essayType": "EE",
+      "subject": "Philosophy",
+      "predictedGrade": "14/34",
+      "createdAt": "2026-05-06 20:16:16"
+    },
+    {
+      "id": "150001",
+      "fingerprint": "f65b85a3-fd60-42fb-8834-2730af286292",
+      "type": "essay",
+      "essayType": "TOK",
+      "subject": "English A: Language and Literature",
+      "predictedGrade": "5/7",
+      "createdAt": "2026-05-06 14:26:09"
+    },
+    {
+      "id": "120001",
+      "fingerprint": "8bea3406-edfd-4db4-83e7-c020b2f78aef",
+      "type": "essay",
+      "essayType": "IA",
+      "subject": "Business Management",
+      "predictedGrade": "0/25",
+      "createdAt": "2026-05-05 18:02:11"
+    },
+    {
+      "id": "90001",
+      "fingerprint": "6e1c8b61-d9db-497c-8bde-b3b8ab196546",
+      "type": "essay",
+      "essayType": "IA",
+      "subject": "Business Management",
+      "predictedGrade": "22/25",
+      "createdAt": "2026-05-05 15:54:57"
+    },
+    {
+      "id": "60001",
+      "fingerprint": "a61125f4-fdc4-4a00-a960-4e746683f3fb",
+      "type": "essay",
+      "essayType": "IA",
+      "subject": "Business Management",
+      "predictedGrade": "15/25",
+      "createdAt": "2026-04-25 20:16:27"
+    },
+    {
+      "id": "30001",
+      "fingerprint": "3fb42549-18e7-4782-9a8a-ce88d595ebac",
+      "type": "essay",
+      "essayType": "IA",
+      "subject": "Business Management",
+      "predictedGrade": "4/7",
+      "createdAt": "2026-04-25 18:10:47"
+    },
+    {
+      "id": "1",
+      "fingerprint": "cf4017285f39281bf9722ab6a8e1cc6655c6d9c0356898df884de223efccfa90",
+      "type": "essay",
+      "essayType": "IA",
+      "subject": "Business Management",
+      "predictedGrade": "2/7",
+      "createdAt": "2026-04-25 16:34:17"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tfingerprint\ttype\tessayType\tsubject\tpredictedGrade\tcreatedAt\n300001\t10aad2a4-b05e-407b-b403-b9db52d74f07\tessay\tIA\tEconomics\t10/14\t2026-05-10 13:34:23\n270001\t587e0b53-434a-4764-92f9-e258b2e427f9\tessay\tIA\tEnglish A: Language and Literature\t28/40\t2026-05-10 04:49:35\n240001\t719ae6dc-e9c8-4adf-9526-6a011b81d9cb\tessay\tIA\tEnglish A: Language and Literature\t25/40\t2026-05-09 03:53:27\n210001\t8d2adf13-d039-4daf-b45f-2f5d2ec1f33a\tessay\tIA\tEnglish A: Language and Literature\t27/40\t2026-05-07 13:39:10\n180001\t6e51eff6-a65c-4db3-976f-f3d8736f2f7c\tessay\tEE\tPhilosophy\t14/34\t2026-05-06 20:16:16\n150001\tf65b85a3-fd60-42fb-8834-2730af286292\tessay\tTOK\tEnglish A: Language and Literature\t5/7\t2026-05-06 14:26:09\n120001\t8bea3406-edfd-4db4-83e7-c020b2f78aef\tessay\tIA\tBusiness Management\t0/25\t2026-05-05 18:02:11\n90001\t6e1c8b61-d9db-497c-8bde-b3b8ab196546\tessay\tIA\tBusiness Management\t22/25\t2026-05-05 15:54:57\n60001\ta61125f4-fdc4-4a00-a960-4e746683f3fb\tessay\tIA\tBusiness Management\t15/25\t2026-04-25 20:16:27\n30001\t3fb42549-18e7-4782-9a8a-ce88d595ebac\tessay\tIA\tBusiness Management\t4/7\t2026-04-25 18:10:47\n1\tcf4017285f39281bf9722ab6a8e1cc6655c6d9c0356898df884de223efccfa90\tessay\tIA\tBusiness Management\t2/7\t2026-04-25 16:34:17\n",
+  "stderr": "",
+  "execution_time_ms": 654
+}

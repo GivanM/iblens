@@ -1,0 +1,22 @@
+{
+  "query": "SELECT * FROM webhook_events WHERE npPaymentId LIKE '%1a18cccb%' OR rawBody LIKE '%1a18cccb%' ORDER BY receivedAt DESC;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 24fXLWCbAf6m8v8.bba070603413 --database fPpXrWUtmpLttw7Fz9wKLE --execute SELECT * FROM webhook_events WHERE npPaymentId LIKE '%1a18cccb%' OR rawBody LIKE '%1a18cccb%' ORDER BY receivedAt DESC;",
+  "rows": [
+    {
+      "id": "30001",
+      "provider": "lemonsqueezy",
+      "npPaymentId": "999999001_order_created",
+      "paymentStatus": "processed",
+      "rawBody": "{\"meta\":{\"test_mode\":false,\"event_name\":\"order_created\",\"custom_data\":{\"order_id\":\"1a18cccb-d977-42b6-959d-0e2875db6f0d\"}},\"data\":{\"type\":\"orders\",\"id\":\"999999001\",\"attributes\":{\"store_id\":327324,\"customer_id\":999001,\"identifier\":\"test-curl-fake-order-001\",\"order_number\":99999001,\"user_name\":\"Test Curl User\",\"user_email\":\"curl-test@iblens.com\",\"currency\":\"USD\",\"currency_rate\":\"1.0000\",\"subtotal\":3499,\"discount_total\":0,\"tax\":0,\"total\":3499,\"subtotal_usd\":3499,\"discount_total_usd\":0,\"tax_usd\":0,\"total_usd\":3499,\"tax_name\":null,\"tax_rate\":\"0.00\",\"status\":\"paid\",\"status_formatted\":\"Paid\",\"refunded\":false,\"refunded_at\":null,\"subtotal_formatted\":\"$34.99\",\"discount_total_formatted\":\"$0.00\",\"tax_formatted\":\"$0.00\",\"total_formatted\":\"$34.99\",\"first_order_item\":{\"id\":1,\"order_id\":999999001,\"product_id\":1593732,\"variant_id\":1593732,\"product_name\":\"Essay Analysis Pack of 10\",\"variant_name\":\"Default\",\"price\":3499}}}}",
+      "signatureValid": "1",
+      "receivedAt": "2026-04-30 14:19:58",
+      "requestHeaders": "{\"x-signature\":\"610b8a4fcc199bc7...\",\"x-event-name\":\"order_created\",\"content-type\":\"application/json\",\"content-length\":\"918\",\"user-agent\":\"Lemon-Squeezy-Webhook/1.0\"}",
+      "errorMessage": "NULL",
+      "computedSignature": "610b8a4fcc199bc76c8ad25e5cee483f1743066b756008c34c1fa855214aad2c"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tprovider\tnpPaymentId\tpaymentStatus\trawBody\tsignatureValid\treceivedAt\trequestHeaders\terrorMessage\tcomputedSignature\n30001\tlemonsqueezy\t999999001_order_created\tprocessed\t{\"meta\":{\"test_mode\":false,\"event_name\":\"order_created\",\"custom_data\":{\"order_id\":\"1a18cccb-d977-42b6-959d-0e2875db6f0d\"}},\"data\":{\"type\":\"orders\",\"id\":\"999999001\",\"attributes\":{\"store_id\":327324,\"customer_id\":999001,\"identifier\":\"test-curl-fake-order-001\",\"order_number\":99999001,\"user_name\":\"Test Curl User\",\"user_email\":\"curl-test@iblens.com\",\"currency\":\"USD\",\"currency_rate\":\"1.0000\",\"subtotal\":3499,\"discount_total\":0,\"tax\":0,\"total\":3499,\"subtotal_usd\":3499,\"discount_total_usd\":0,\"tax_usd\":0,\"total_usd\":3499,\"tax_name\":null,\"tax_rate\":\"0.00\",\"status\":\"paid\",\"status_formatted\":\"Paid\",\"refunded\":false,\"refunded_at\":null,\"subtotal_formatted\":\"$34.99\",\"discount_total_formatted\":\"$0.00\",\"tax_formatted\":\"$0.00\",\"total_formatted\":\"$34.99\",\"first_order_item\":{\"id\":1,\"order_id\":999999001,\"product_id\":1593732,\"variant_id\":1593732,\"product_name\":\"Essay Analysis Pack of 10\",\"variant_name\":\"Default\",\"price\":3499}}}}\t1\t2026-04-30 14:19:58\t{\"x-signature\":\"610b8a4fcc199bc7...\",\"x-event-name\":\"order_created\",\"content-type\":\"application/json\",\"content-length\":\"918\",\"user-agent\":\"Lemon-Squeezy-Webhook/1.0\"}\tNULL\t610b8a4fcc199bc76c8ad25e5cee483f1743066b756008c34c1fa855214aad2c\n",
+  "stderr": "",
+  "execution_time_ms": 708
+}

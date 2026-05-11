@@ -1,0 +1,40 @@
+{
+  "query": "\nSELECT id, userId, sku, amountUsd, status, provider, createdAt, updatedAt FROM orders ORDER BY createdAt DESC;\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 24fXLWCbAf6m8v8.bba070603413 --database fPpXrWUtmpLttw7Fz9wKLE --execute \nSELECT id, userId, sku, amountUsd, status, provider, createdAt, updatedAt FROM orders ORDER BY createdAt DESC;\n",
+  "rows": [
+    {
+      "id": "59254b58-01ed-4639-bffe-dd6d0c85ffd2",
+      "userId": "1",
+      "sku": "university_single",
+      "amountUsd": "2500",
+      "status": "pending",
+      "provider": "lemonsqueezy",
+      "createdAt": "2026-05-03 05:49:08",
+      "updatedAt": "2026-05-03 05:49:08"
+    },
+    {
+      "id": "8fe9ffdc-26bb-4d58-a1e4-9048204ee3ab",
+      "userId": "1260034",
+      "sku": "essay_pack_10",
+      "amountUsd": "3499",
+      "status": "pending",
+      "provider": "lemonsqueezy",
+      "createdAt": "2026-04-30 11:54:50",
+      "updatedAt": "2026-04-30 11:54:50"
+    },
+    {
+      "id": "1a18cccb-d977-42b6-959d-0e2875db6f0d",
+      "userId": "1",
+      "sku": "essay_pack_10",
+      "amountUsd": "3499",
+      "status": "paid",
+      "provider": "lemonsqueezy",
+      "createdAt": "2026-04-30 11:43:39",
+      "updatedAt": "2026-04-30 14:19:58"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tuserId\tsku\tamountUsd\tstatus\tprovider\tcreatedAt\tupdatedAt\n59254b58-01ed-4639-bffe-dd6d0c85ffd2\t1\tuniversity_single\t2500\tpending\tlemonsqueezy\t2026-05-03 05:49:08\t2026-05-03 05:49:08\n8fe9ffdc-26bb-4d58-a1e4-9048204ee3ab\t1260034\tessay_pack_10\t3499\tpending\tlemonsqueezy\t2026-04-30 11:54:50\t2026-04-30 11:54:50\n1a18cccb-d977-42b6-959d-0e2875db6f0d\t1\tessay_pack_10\t3499\tpaid\tlemonsqueezy\t2026-04-30 11:43:39\t2026-04-30 14:19:58\n",
+  "stderr": "",
+  "execution_time_ms": 651
+}

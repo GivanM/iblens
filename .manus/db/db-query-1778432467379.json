@@ -1,0 +1,26 @@
+{
+  "query": "\nSELECT 'anonymous_analyses' as tbl, COUNT(*) as cnt FROM anonymous_analyses\nUNION ALL\nSELECT 'orders', COUNT(*) FROM orders\nUNION ALL\nSELECT 'payments', COUNT(*) FROM payments\nUNION ALL\nSELECT 'credit_ledger', COUNT(*) FROM credit_ledger;\n",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 24fXLWCbAf6m8v8.bba070603413 --database fPpXrWUtmpLttw7Fz9wKLE --execute \nSELECT 'anonymous_analyses' as tbl, COUNT(*) as cnt FROM anonymous_analyses\nUNION ALL\nSELECT 'orders', COUNT(*) FROM orders\nUNION ALL\nSELECT 'payments', COUNT(*) FROM payments\nUNION ALL\nSELECT 'credit_ledger', COUNT(*) FROM credit_ledger;\n",
+  "rows": [
+    {
+      "tbl": "orders",
+      "cnt": "3"
+    },
+    {
+      "tbl": "credit_ledger",
+      "cnt": "1"
+    },
+    {
+      "tbl": "anonymous_analyses",
+      "cnt": "11"
+    },
+    {
+      "tbl": "payments",
+      "cnt": "1"
+    }
+  ],
+  "messages": [],
+  "stdout": "tbl\tcnt\norders\t3\ncredit_ledger\t1\nanonymous_analyses\t11\npayments\t1\n",
+  "stderr": "",
+  "execution_time_ms": 575
+}

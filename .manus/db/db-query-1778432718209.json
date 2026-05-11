@@ -1,0 +1,28 @@
+{
+  "query": "SELECT id, provider, npPaymentId, paymentStatus, signatureValid, receivedAt, errorMessage FROM webhook_events ORDER BY receivedAt DESC;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 24fXLWCbAf6m8v8.bba070603413 --database fPpXrWUtmpLttw7Fz9wKLE --execute SELECT id, provider, npPaymentId, paymentStatus, signatureValid, receivedAt, errorMessage FROM webhook_events ORDER BY receivedAt DESC;",
+  "rows": [
+    {
+      "id": "30001",
+      "provider": "lemonsqueezy",
+      "npPaymentId": "999999001_order_created",
+      "paymentStatus": "processed",
+      "signatureValid": "1",
+      "receivedAt": "2026-04-30 14:19:58",
+      "errorMessage": "NULL"
+    },
+    {
+      "id": "1",
+      "provider": "lemonsqueezy",
+      "npPaymentId": "test-event-fake-id",
+      "paymentStatus": "order_created",
+      "signatureValid": "1",
+      "receivedAt": "2026-04-30 11:14:30",
+      "errorMessage": "NULL"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tprovider\tnpPaymentId\tpaymentStatus\tsignatureValid\treceivedAt\terrorMessage\n30001\tlemonsqueezy\t999999001_order_created\tprocessed\t1\t2026-04-30 14:19:58\tNULL\n1\tlemonsqueezy\ttest-event-fake-id\torder_created\t1\t2026-04-30 11:14:30\tNULL\n",
+  "stderr": "",
+  "execution_time_ms": 684
+}
