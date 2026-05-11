@@ -21,6 +21,7 @@ import HowIBLensWorks from "./pages/resources/HowIBLensWorks";
 import UniversityAdmissionsGuide from "./pages/resources/UniversityAdmissionsGuide";
 import Layout from "./components/Layout";
 import { CookieConsent } from "./components/CookieConsent";
+import LandingPage from "./pages/LandingPage";
 import { usePageTracking } from "./hooks/usePageTracking";
 import { useAuthTracking } from "./hooks/useAuthTracking";
 
@@ -57,9 +58,14 @@ function App() {
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
-          <Layout>
-            <Router />
-          </Layout>
+          <Switch>
+            <Route path="/grade" component={LandingPage} />
+            <Route>
+              <Layout>
+                <Router />
+              </Layout>
+            </Route>
+          </Switch>
           <CookieConsent />
         </TooltipProvider>
       </ThemeProvider>
