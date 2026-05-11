@@ -554,3 +554,36 @@ export async function grantCreditsViaLedger(
     }
   }
 }
+
+export async function findOrCreateGuestUserByEmail(email: string): Promise<{ id: number }> {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const guestOpenId = `guest:${email}`;
+
+  // Check for existing guest user
+  const existing = await db.select({ id: users.id })
+    .from(users)
+    .where(eq(users.openId, guestOpenId))
+    .limit(1);
+
+  if (existing.length > 0) return { id: existing[0].id };
+
+  // Create new guest user (onDuplicateKeyUpdate handles race conditions)
+  await db.insert(users).values({
+    openId: guestOpenId,
+    email,
+    loginMethod: "guest",
+  }).onDuplicateKeyUpdate({
+    set: { email, loginMethod: "guest" },
+  });
+
+  // Fetch the newly created user
+  const created = await db.select({ id: users.id })
+    .from(users)
+    .where(eq(users.openId, guestOpenId))
+    .limit(1);
+
+  if (!created.length) throw new Error("Failed to create guest user");
+  return { id: created[0].id };
+}
