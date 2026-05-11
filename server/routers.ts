@@ -19,6 +19,7 @@ import {
   createAnonymousAnalysis,
   createOrder,
   getUserOrders,
+  findOrCreateGuestUserByEmail,
 } from "./db";
 import { createNowPaymentsInvoice } from "./nowpayments/nowpayments";
 import { createLemonsqueezyCheckout } from "./lemonsqueezy/lemonsqueezy";
@@ -437,6 +438,55 @@ const paymentRouter = router({
       }
 
       return { invoiceUrl, orderId };
+    }),
+
+  // Create LemonSqueezy card checkout for guest (unauthenticated) users
+  createGuestCheckout: publicProcedure
+    .input(z.object({
+      productKey: z.enum(["ESSAY_SINGLE", "ESSAY_PACK_5", "ESSAY_PACK_10", "UNIVERSITY_SINGLE"]),
+      email: z.string().email("Please enter a valid email address"),
+    }))
+    .mutation(async ({ input }) => {
+      const product = PRODUCTS[input.productKey];
+      if (!product) throw new Error("Invalid product");
+
+      const lsSku = PRODUCT_KEY_TO_LS_SKU[input.productKey];
+      const variantId = LEMONSQUEEZY_VARIANTS[lsSku];
+      if (!variantId) throw new Error("No LemonSqueezy variant for this product");
+
+      const skuMap: Record<string, string> = {
+        ESSAY_SINGLE: "essay_single",
+        ESSAY_PACK_5: "essay_pack_5",
+        ESSAY_PACK_10: "essay_pack_10",
+        UNIVERSITY_SINGLE: "university_single",
+      };
+      const sku = skuMap[input.productKey] as any;
+
+      // Find or create a guest user account by email
+      const { id: userId } = await findOrCreateGuestUserByEmail(input.email);
+
+      // Create order in DB
+      const orderId = randomUUID();
+      await createOrder({
+        id: orderId,
+        userId,
+        sku,
+        amountUsd: product.priceAmount,
+        currency: "usd",
+        status: "pending",
+        provider: "lemonsqueezy",
+      });
+
+      // Create LemonSqueezy checkout with email pre-filled
+      const { checkoutUrl } = await createLemonsqueezyCheckout(
+        orderId,
+        variantId,
+        input.email,
+        sku,
+        product.priceAmount,
+      );
+
+      return { checkoutUrl, orderId };
     }),
 
   // Create LemonSqueezy card checkout (requires authentication)
