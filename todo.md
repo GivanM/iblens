@@ -417,3 +417,12 @@
 - [x] Keep existing sign_up event on actual auth/signin completion unchanged
 - [ ] Verify on live site: non-EU user sees no banner, EU user sees banner
 - [ ] Verify on live site: essay submission pushes essay_submit event to dataLayer
+
+## Sample Reports Section on Homepage
+- [x] Create SampleReports.tsx with Essay + University PDF-like previews
+- [x] Essay preview: score 24/34, Grade B, criteria table, strengths/weaknesses, SAMPLE watermark
+- [x] University preview: strategy cards, university list with color-coded borders, SAMPLE watermark
+- [x] Integrate into Home.tsx above pricing section
+- [x] Responsive: grid-cols-2 desktop, stacked mobile
+- [x] CTA buttons under each preview
+- [ ] Publish

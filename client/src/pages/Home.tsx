@@ -11,6 +11,7 @@ import {
   CheckCircle2, ArrowRight, Sparkles, Lock, Brain, Bitcoin, Gift,
   Clock, Star, ChevronDown, ChevronUp, Upload, Search, TrendingUp, ShieldCheck
 } from "lucide-react";
+import { SampleReports } from "@/components/SampleReports";
 
 function useExamCountdown() {
   // IB exams typically start first week of May
@@ -408,6 +409,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Sample Reports Section */}
+      <SampleReports />
 
       {/* Pricing Section */}
       <section className="py-20 bg-background" id="pricing">
