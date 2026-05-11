@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { useAuth } from "@/_core/hooks/useAuth";
 import { SEOHead } from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
-import { getLoginUrl } from "@/const";
 import { PRICE_LABELS, type ProductKey } from "@shared/pricing";
 import { PurchaseModal } from "@/components/PurchaseModal";
 import {
@@ -100,15 +98,10 @@ const plans: Array<{
 ];
 
 export default function Pricing() {
-  const { isAuthenticated } = useAuth();
   const [modalOpen, setModalOpen] = useState(false);
   const [modalSku, setModalSku] = useState<ProductKey>("ESSAY_SINGLE");
 
   const handleBuyNow = (productKey: ProductKey) => {
-    if (!isAuthenticated) {
-      window.location.href = getLoginUrl();
-      return;
-    }
     setModalSku(productKey);
     setModalOpen(true);
   };
