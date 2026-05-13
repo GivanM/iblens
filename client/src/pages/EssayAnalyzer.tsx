@@ -209,6 +209,95 @@ export default function EssayAnalyzer() {
         </p>
       </div>
 
+      {/* ── Sample Report Preview ─────────────────────────────────── */}
+      <div className="mb-8 rounded-xl border border-primary/20 bg-primary/5 overflow-hidden">
+        <div className="px-6 py-4 bg-primary/10 flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-0.5">Sample Report</p>
+            <h2 className="text-lg font-bold">This is what you'll get for your essay</h2>
+          </div>
+          <span className="text-xs text-muted-foreground bg-white px-2.5 py-1 rounded-full border">
+            Example · Business Management IA
+          </span>
+        </div>
+
+        <div className="p-6 space-y-5">
+          {/* Score summary */}
+          <div className="grid grid-cols-3 gap-3">
+            {[
+              { label: "Predicted Score", value: "28/36", color: "text-amber-600" },
+              { label: "IB Band", value: "Band 6", color: "text-foreground" },
+              { label: "Criteria Total", value: "78%", color: "text-foreground" },
+            ].map((s) => (
+              <div key={s.label} className="text-center p-4 bg-white rounded-lg border">
+                <div className={`text-2xl font-bold ${s.color}`}>{s.value}</div>
+                <div className="text-xs text-muted-foreground mt-1">{s.label}</div>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Your IA demonstrates solid understanding of business concepts with good use of primary research.
+            The main areas for improvement are the depth of analysis in Criterion D and the connection
+            between your research question and conclusions.
+          </p>
+
+          {/* Criteria bars */}
+          <div className="space-y-3">
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Criteria Breakdown</p>
+            {[
+              { name: "Criterion A: Research Proposal", score: 5, max: 5, color: "bg-emerald-500" },
+              { name: "Criterion B: Theoretical Framework", score: 6, max: 8, color: "bg-amber-500" },
+              { name: "Criterion C: Research Methods", score: 5, max: 6, color: "bg-emerald-500" },
+              { name: "Criterion D: Analysis & Discussion", score: 7, max: 11, color: "bg-amber-500" },
+              { name: "Criterion E: Conclusions", score: 5, max: 6, color: "bg-emerald-500" },
+            ].map((c) => (
+              <div key={c.name}>
+                <div className="flex justify-between text-sm mb-1">
+                  <span>{c.name}</span>
+                  <span className="font-semibold">{c.score}/{c.max}</span>
+                </div>
+                <div className="h-2 bg-gray-100 rounded-full">
+                  <div className={`h-full rounded-full ${c.color}`} style={{ width: `${(c.score / c.max) * 100}%` }} />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Risks & wins */}
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-red-600 mb-2">Losing Marks</p>
+              <div className="space-y-2">
+                <div className="p-3 bg-red-50 border-l-2 border-red-400 rounded-r text-sm">
+                  <strong>Weak analysis depth</strong> — Criterion D needs more application of business models to your data.
+                </div>
+                <div className="p-3 bg-red-50 border-l-2 border-red-400 rounded-r text-sm">
+                  <strong>Conclusion gap</strong> — Your conclusions don't fully answer the research question.
+                </div>
+              </div>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-emerald-600 mb-2">Quick Wins</p>
+              <div className="space-y-2">
+                <div className="p-3 bg-emerald-50 border-l-2 border-emerald-400 rounded-r text-sm">
+                  <strong>+2 marks possible</strong> — Add comparative analysis using one more business tool.
+                </div>
+                <div className="p-3 bg-emerald-50 border-l-2 border-emerald-400 rounded-r text-sm">
+                  <strong>Easy fix</strong> — Restate your research question explicitly in the conclusion.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-3 border-t text-center">
+            <p className="text-sm font-medium mb-1">↑ This is the depth of feedback you'll get for YOUR essay</p>
+            <p className="text-xs text-muted-foreground">Paste your essay below → analysis costs $5</p>
+          </div>
+        </div>
+      </div>
+      {/* ────────────────────────────────────────────────────────────── */}
+
       <Card className="mb-8">
         <CardContent className="p-6 space-y-5">
           <div className="grid sm:grid-cols-2 gap-4">
@@ -284,69 +373,66 @@ export default function EssayAnalyzer() {
 
           {/* Anonymous user banner */}
           {!isAuthenticated && (
-            <div className={`text-sm p-3 rounded-lg ${
-              canAnonAnalyze
-                ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
-                : "bg-amber-50 text-amber-700 border border-amber-200"
-            }`}>
-              {canAnonAnalyze
-                ? "No sign-in required! Your first essay analysis is completely free."
-                : <span>You've used your free analysis. <a href={getLoginUrl()} className="underline font-medium">Sign in</a> to purchase more credits.</span>
-              }
+            <div className="text-sm p-3 rounded-lg bg-blue-50 text-blue-700 border border-blue-200">
+              <span>
+                <a href={getLoginUrl()} className="underline font-medium">Sign in</a> to analyze your essay — $5 per analysis, first one free for new accounts.
+              </span>
             </div>
           )}
 
-          <Button
-            className="w-full h-11"
-            onClick={handleAnalyze}
-            disabled={isAnalyzing || (isAuthenticated && !credits?.canAnalyzeEssay) || (!isAuthenticated && !canAnonAnalyze)}
-          >
-            {isAnalyzing ? (
-              <>
-                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                Analyzing your {essayType}... (20-40 seconds)
-              </>
-            ) : !isAuthenticated ? (
-              canAnonAnalyze ? (
-                <>
-                  <FileText className="w-4 h-4 mr-2" />
-                  Score My Essay Free — No Sign-in Needed
-                </>
-              ) : (
-                <>
-                  <Lock className="w-4 h-4 mr-2" />
-                  Sign in to Get More Analyses
-                </>
-              )
-            ) : !credits?.canAnalyzeEssay ? (
-              <>
+          {/* Anonymous: redirect to sign-in */}
+          {!isAuthenticated && (
+            <Button className="w-full h-11" asChild>
+              <a href={getLoginUrl()}>
                 <Lock className="w-4 h-4 mr-2" />
-                Purchase Credits to Analyze
-              </>
-            ) : credits?.freeEssayAvailable ? (
-              <>
-                <FileText className="w-4 h-4 mr-2" />
-                Analyze Free
-              </>
-            ) : (
-              <>
-                <FileText className="w-4 h-4 mr-2" />
-                Analyze ($5)
-              </>
-            )}
-          </Button>
-
-          {/* Buy credits button when out of credits */}
-          {isAuthenticated && !credits?.canAnalyzeEssay && (
-            <Button
-              variant="secondary"
-              size="sm"
-              className="w-full mt-3 text-xs"
-              onClick={() => setEssayPurchaseOpen(true)}
-            >
-              <CreditCard className="w-3 h-3 mr-1.5" />
-              Buy Essay Credits
+                Sign In to Analyze Your Essay
+              </a>
             </Button>
+          )}
+
+          {/* Authenticated: run analysis or buy credits */}
+          {isAuthenticated && (
+            <>
+              <Button
+                className="w-full h-11"
+                onClick={handleAnalyze}
+                disabled={isAnalyzing || !credits?.canAnalyzeEssay}
+              >
+                {isAnalyzing ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Analyzing your {essayType}... (20-40 seconds)
+                  </>
+                ) : !credits?.canAnalyzeEssay ? (
+                  <>
+                    <Lock className="w-4 h-4 mr-2" />
+                    Purchase Credits to Analyze
+                  </>
+                ) : credits?.freeEssayAvailable ? (
+                  <>
+                    <FileText className="w-4 h-4 mr-2" />
+                    Analyze Free (First Essay)
+                  </>
+                ) : (
+                  <>
+                    <FileText className="w-4 h-4 mr-2" />
+                    Analyze ($5)
+                  </>
+                )}
+              </Button>
+
+              {!credits?.canAnalyzeEssay && (
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  className="w-full mt-3 text-xs"
+                  onClick={() => setEssayPurchaseOpen(true)}
+                >
+                  <CreditCard className="w-3 h-3 mr-1.5" />
+                  Buy Essay Credits
+                </Button>
+              )}
+            </>
           )}
 
           <PurchaseModal
