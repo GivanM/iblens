@@ -185,10 +185,10 @@ export default function Home() {
               AI-Powered IB Analysis
             </div>
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text">
-              Get the IB score<br />you deserve
+              Free IB Essay Grader<br />&amp; University Strategy
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-              IBLens analyzes your essays against real IB criteria and builds personalized university strategies — powered by AI that thinks like an experienced examiner.
+              AI-powered feedback on your Extended Essay, IA, or TOK — criterion by criterion, with a predicted score. Plus a personalised university shortlist with real admission chances.
             </p>
             <div className="flex flex-col items-center gap-3">
               <Button size="lg" className="text-base px-10 h-13 shadow-lg shadow-primary/25" asChild>

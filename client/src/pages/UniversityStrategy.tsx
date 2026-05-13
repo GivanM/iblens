@@ -142,8 +142,8 @@ export default function UniversityStrategy() {
   return (
     <div className="container py-8 max-w-4xl mx-auto">
       <SEOHead
-        title="IB University Strategy — AI Application Plan | IBLens"
-        description="Get personalized university recommendations based on your IB predicted grades, subject combination, and preferences. Covers UK, US, Canada, Europe, and Asia-Pacific."
+        title="IB University Strategy — Know Your Real Chances at 9 Universities | IBLens"
+        description="AI-powered IB university strategy: 9 personalised picks (Safe/Match/Reach) with admission probabilities, your essay angle, and application timeline. IB consultants charge $300+ — we do it in 2 minutes."
         canonical="/university"
       />
       <div className="mb-8">

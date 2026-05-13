@@ -198,14 +198,14 @@ export default function EssayAnalyzer() {
   return (
     <div className="container py-8 max-w-4xl mx-auto">
       <SEOHead
-        title="IB Essay Analyzer — Get AI Feedback on Your IA, EE, or TOK Essay | IBLens"
-        description="Upload your IB essay and receive instant criterion-based feedback with a predicted score. Supports all IB subjects: Business Management, Economics, History, Sciences, and more."
+        title="IB Essay Analyzer — AI Feedback & Score Prediction for IA, EE, TOK | IBLens"
+        description="Get instant AI feedback on your IB essay with criterion-by-criterion scoring. First analysis free. Supports Extended Essay, Internal Assessment, TOK — all subjects."
         canonical="/essay"
       />
       <div className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight mb-2">Essay Analyzer</h1>
+        <h1 className="text-3xl font-bold tracking-tight mb-2">IB Essay Analyzer</h1>
         <p className="text-muted-foreground">
-          Get detailed AI feedback on your IB essay with predicted scores and actionable improvements.
+          Instant AI feedback on your Extended Essay, IA, or TOK — criterion by criterion, with a predicted score.
         </p>
       </div>
 
