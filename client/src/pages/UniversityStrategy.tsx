@@ -147,10 +147,23 @@ export default function UniversityStrategy() {
         canonical="/university"
       />
       <div className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight mb-2">University Strategy</h1>
-        <p className="text-muted-foreground">
-          Get a personalized university list with admission probabilities and an action roadmap.
+        <h1 className="text-3xl font-bold tracking-tight mb-2">Don't apply blind.</h1>
+        <p className="text-xl text-muted-foreground mb-4">
+          Know your real chances at 9 universities — before you write a single word.
         </p>
+        <div className="flex flex-wrap gap-x-5 gap-y-1.5 text-sm text-muted-foreground">
+          {[
+            "9 universities (Safe / Match / Reach)",
+            "Admission probability per school",
+            "Your personal essay angle",
+            "Step-by-step application timeline",
+          ].map((item) => (
+            <span key={item} className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+              {item}
+            </span>
+          ))}
+        </div>
       </div>
 
       {/* Sample Strategy Preview */}
@@ -194,9 +207,37 @@ export default function UniversityStrategy() {
               })}
             </div>
 
+            {/* Essay Angle preview */}
+            <div>
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5 mb-2">
+                <Quote className="w-3.5 h-3.5" /> Essay Positioning Angle
+              </p>
+              <div className="p-3 bg-primary/5 border-l-2 border-primary rounded-r-md italic text-xs text-muted-foreground leading-relaxed opacity-80">
+                "Frame your personal statement around the tension between economic theory and real-world market failures — use your experience with your family business to show you've seen this gap first-hand. Mention your HL Economics grade early to signal academic depth."
+              </div>
+            </div>
+
+            {/* Roadmap preview */}
+            <div>
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5 mb-2">
+                <Calendar className="w-3.5 h-3.5" /> Application Timeline (excerpt)
+              </p>
+              <div className="space-y-1.5 opacity-80">
+                {[
+                  { period: "June – July", action: "Finalise university shortlist. Request predicted grade letters from IB coordinator. Open UCAS account." },
+                  { period: "August", action: "Draft personal statement. Focus on your essay angle above — get two rounds of feedback from teachers." },
+                ].map((r, i) => (
+                  <div key={i} className="flex gap-3 py-1.5 border-b last:border-b-0 text-xs text-muted-foreground">
+                    <span className="font-semibold text-foreground min-w-[90px] flex-shrink-0">{r.period}</span>
+                    <span>{r.action}</span>
+                  </div>
+                ))}
+                <p className="text-[11px] text-muted-foreground/60 pt-1">+ more steps through Deadline Day in your full report…</p>
+              </div>
+            </div>
+
             <div className="text-center pt-2">
-              <p className="text-xs text-muted-foreground mb-2">Full report includes 9 universities, essay angle, timeline roadmap, and profile analysis</p>
-              <Badge variant="secondary" className="text-xs">Fill in the form below to get your personalized strategy</Badge>
+              <Badge variant="secondary" className="text-xs">Fill in the form below to get your personalised strategy</Badge>
             </div>
           </CardContent>
         </Card>
@@ -338,6 +379,11 @@ export default function UniversityStrategy() {
               </>
             )}
           </Button>
+
+          {/* Price comparison */}
+          <p className="text-center text-xs text-muted-foreground/70">
+            IB consultants charge $300–500 for this. We do it in 2 minutes.
+          </p>
 
           {/* Direct purchase button when no credits */}
           {isAuthenticated && !credits?.canAnalyzeUniversity && (
