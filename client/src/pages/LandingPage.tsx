@@ -1,12 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { SEOHead } from "@/components/SEOHead";
 import {
   FileText, ArrowRight, CheckCircle2, Star, ChevronDown, ChevronUp,
-  Shield, Zap, Lock, ShieldCheck
+  Shield, Zap, Lock, ShieldCheck, Clock
 } from "lucide-react";
+
+function useExamCountdown() {
+  const [now, setNow] = useState(new Date());
+  const examDate = useMemo(() => {
+    const current = new Date();
+    let year = current.getFullYear();
+    const may1 = new Date(year, 4, 1);
+    if (current > may1) year++;
+    return new Date(year, 4, 1);
+  }, []);
+  useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), 60000);
+    return () => clearInterval(timer);
+  }, []);
+  const diff = examDate.getTime() - now.getTime();
+  const days = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
+  return { days, examYear: examDate.getFullYear() };
+}
 
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
@@ -38,6 +56,7 @@ const SAMPLE_CRITERIA = [
 ];
 
 export default function LandingPage() {
+  const { days, examYear } = useExamCountdown();
   return (
     <>
       <SEOHead
@@ -68,13 +87,13 @@ export default function LandingPage() {
         <section className="bg-gradient-to-b from-primary/5 to-background py-16 md:py-24">
           <div className="container max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold mb-6 uppercase tracking-wide">
-              ✓ First analysis free — no credit card
+              ✓ First analysis free — no account, no credit card
             </div>
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-5 leading-tight">
               Grade Your IB Essay<br />in 60 Seconds
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">
-              Upload your IA, Extended Essay, or TOK. Get a full criterion-by-criterion AI grade, risk areas, and exactly what to fix — free.
+              Paste your IA, Extended Essay, or TOK. Get a criterion-by-criterion score, the exact marks you're losing, and how to fix them — free, instantly.
             </p>
             <Button size="lg" className="text-base px-10 h-13 shadow-lg shadow-primary/25 mb-4" asChild>
               <Link href="/essay">
@@ -82,7 +101,29 @@ export default function LandingPage() {
                 Grade My Essay Free
               </Link>
             </Button>
-            <p className="text-xs text-muted-foreground">No account needed · Results in 60 seconds · All IB subjects</p>
+            <p className="text-xs text-muted-foreground">No account needed · Results in 60 seconds · All IB subjects · 7-day money-back guarantee</p>
+          </div>
+        </section>
+
+        {/* How It Works */}
+        <section className="py-12 bg-background border-b">
+          <div className="container max-w-3xl mx-auto">
+            <h2 className="text-xl font-bold text-center mb-8 text-muted-foreground uppercase tracking-wider text-sm">How it works</h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                { step: "1", icon: "📋", title: "Paste your essay", desc: "Copy-paste your IA, EE, or TOK text. No file upload needed." },
+                { step: "2", icon: "⚡", title: "AI grades it in 60s", desc: "Scored against the official IB rubric for your subject and type." },
+                { step: "3", icon: "🎯", title: "See exactly what to fix", desc: "Criterion scores, marks you're losing, and a specific action plan." },
+              ].map(({ step, icon, title, desc }) => (
+                <div key={step} className="flex flex-col items-center text-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-2xl">{icon}</div>
+                  <div>
+                    <p className="font-semibold mb-1">{title}</p>
+                    <p className="text-sm text-muted-foreground">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -185,21 +226,35 @@ export default function LandingPage() {
                 question="How accurate is the AI grade?"
                 answer="IBLens evaluates your essay against official IB marking criteria for your subject. The predicted band gives you a reliable signal of where you stand and exactly which criteria to improve — the same way a real examiner would assess it."
               />
+              <FAQItem
+                question="I don't have a credit card — can I still pay?"
+                answer="Yes. IBLens accepts cryptocurrency (USDT, BTC, ETH) in addition to Visa, Mastercard, and Amex. Just select 'Pay with crypto' at checkout. Credits activate automatically after payment."
+              />
+              <FAQItem
+                question="Is my essay private?"
+                answer="Yes. Essays are processed for analysis only and never stored or shared. Your work stays yours."
+              />
             </div>
           </div>
         </section>
 
-        {/* Final CTA */}
+        {/* Urgency + Final CTA */}
         <section className="py-20 bg-gradient-to-b from-primary/5 to-background text-center">
           <div className="container max-w-xl mx-auto">
+            {days > 0 && days < 180 && (
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 text-amber-800 text-sm font-semibold mb-6">
+                <Clock className="w-4 h-4" />
+                {days} days until IB {examYear} exams — don't submit ungraded
+              </div>
+            )}
             <h2 className="text-3xl font-bold tracking-tight mb-4">Ready to see your IB grade?</h2>
-            <p className="text-muted-foreground mb-8">Upload your essay now — free, instant, no account needed.</p>
+            <p className="text-muted-foreground mb-8">Paste your essay now — free, instant, no account needed.</p>
             <Button size="lg" className="text-base px-10 shadow-lg shadow-primary/25" asChild>
               <Link href="/essay">
                 Grade My Essay Free <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
-            <p className="text-xs text-muted-foreground mt-4">7-day money-back guarantee on all paid plans</p>
+            <p className="text-xs text-muted-foreground mt-4">No account needed · 7-day money-back guarantee on paid plans</p>
           </div>
         </section>
       </main>

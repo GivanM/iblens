@@ -292,7 +292,7 @@ export default function EssayAnalyzer() {
 
           <div className="pt-3 border-t text-center">
             <p className="text-sm font-medium mb-1">↑ This is the depth of feedback you'll get for YOUR essay</p>
-            <p className="text-xs text-muted-foreground">Paste your essay below → analysis costs $5</p>
+            <p className="text-xs text-muted-foreground">Paste your essay below → <strong>first one free</strong>, then $4.99/analysis</p>
           </div>
         </div>
       </div>
@@ -371,21 +371,49 @@ export default function EssayAnalyzer() {
             </div>
           )}
 
-          {/* Anonymous user banner */}
-          {!isAuthenticated && (
-            <div className="text-sm p-3 rounded-lg bg-blue-50 text-blue-700 border border-blue-200">
-              <span>
-                <a href={getLoginUrl()} className="underline font-medium">Sign in</a> to analyze your essay — $5 per analysis, first one free for new accounts.
-              </span>
+          {/* Anonymous: first-time free analysis banner */}
+          {!isAuthenticated && canAnonAnalyze && (
+            <div className="text-sm p-3 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
+              <span>Your first analysis is <strong>completely free</strong> — no account or credit card needed.</span>
             </div>
           )}
 
-          {/* Anonymous: redirect to sign-in */}
-          {!isAuthenticated && (
+          {/* Anonymous: already used free analysis */}
+          {!isAuthenticated && !canAnonAnalyze && (
+            <div className="text-sm p-3 rounded-lg bg-amber-50 text-amber-700 border border-amber-200">
+              You've used your free analysis.{" "}
+              <a href={getLoginUrl()} className="underline font-medium">Sign in</a> to get more — starting at $4.99.
+            </div>
+          )}
+
+          {/* Anonymous: analyze button (first-time) */}
+          {!isAuthenticated && canAnonAnalyze && (
+            <Button
+              className="w-full h-11"
+              onClick={handleAnalyze}
+              disabled={isAnalyzing}
+            >
+              {isAnalyzing ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Analyzing your {essayType}… (20–40 seconds)
+                </>
+              ) : (
+                <>
+                  <FileText className="w-4 h-4 mr-2" />
+                  Analyze Free — No Account Needed
+                </>
+              )}
+            </Button>
+          )}
+
+          {/* Anonymous: sign-in after free used */}
+          {!isAuthenticated && !canAnonAnalyze && (
             <Button className="w-full h-11" asChild>
               <a href={getLoginUrl()}>
                 <Lock className="w-4 h-4 mr-2" />
-                Sign In to Analyze Your Essay
+                Sign In to Analyze Again ($4.99)
               </a>
             </Button>
           )}
@@ -561,23 +589,55 @@ export default function EssayAnalyzer() {
 
           {/* Next Steps */}
           {result.next_steps?.length > 0 && (
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-                  Next Steps
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                {result.next_steps.map((step, i) => (
-                  <div key={i} className="flex items-start gap-3">
+            !isAuthenticated ? (
+              <Card className="border-primary/20 overflow-hidden">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                    <Lock className="w-4 h-4 text-primary" />
+                    Next Steps ({result.next_steps.length} personalized actions)
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {/* First step shown blurred as teaser */}
+                  <div className="flex items-start gap-3 blur-sm select-none pointer-events-none">
                     <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-xs font-semibold text-primary">{i + 1}</span>
+                      <span className="text-xs font-semibold text-primary">1</span>
                     </div>
-                    <p className="text-sm leading-relaxed">{decodeAndSanitize(step)}</p>
+                    <p className="text-sm leading-relaxed">{decodeAndSanitize(result.next_steps[0])}</p>
                   </div>
-                ))}
-              </CardContent>
-            </Card>
+                  <div className="p-4 rounded-lg bg-primary/5 border border-primary/20 text-center">
+                    <p className="text-sm font-semibold mb-1">Unlock your full action plan</p>
+                    <p className="text-xs text-muted-foreground mb-3">
+                      Sign in free to save this report and see all {result.next_steps.length} specific steps to raise your score.
+                    </p>
+                    <Button size="sm" asChild>
+                      <a href={getLoginUrl()}>
+                        <BookmarkPlus className="w-3.5 h-3.5 mr-1.5" />
+                        Save Report & Unlock Steps
+                      </a>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ) : (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                    Next Steps
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {result.next_steps.map((step, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="text-xs font-semibold text-primary">{i + 1}</span>
+                      </div>
+                      <p className="text-sm leading-relaxed">{decodeAndSanitize(step)}</p>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+            )
           )}
           {/* Share Results */}
           <Card>
@@ -629,24 +689,34 @@ export default function EssayAnalyzer() {
 
           {/* Save Results & Buy More CTA */}
           {!isAuthenticated ? (
-            <Card className="border-primary/30 bg-gradient-to-r from-primary/5 to-primary/10">
-              <CardContent className="p-6 text-center space-y-4">
-                <BookmarkPlus className="w-10 h-10 mx-auto text-primary" />
-                <h3 className="text-xl font-bold">Save Results & Get More Analyses</h3>
-                <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                  Sign in to save this analysis to your dashboard, track your progress across essays, and purchase additional analysis credits starting at $4.99.
-                </p>
-                <div className="flex gap-3 justify-center pt-2">
-                  <Button size="lg" asChild>
+            <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10">
+              <CardContent className="p-6 space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <BookmarkPlus className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg mb-1">Save this report & analyze Draft 2</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Sign in free to save your results and unlock your full action plan. Next analysis is <strong>$4.99</strong> — or a 5-pack for $19.99 ($4 each).
+                    </p>
+                  </div>
+                </div>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  <Button size="lg" asChild className="h-12">
                     <a href={getLoginUrl()}>
                       <BookmarkPlus className="w-4 h-4 mr-2" />
-                      Save Results & Sign In
+                      Save Report — Free
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" asChild>
-                    <Link href="/pricing">View Pricing</Link>
+                  <Button variant="outline" size="lg" asChild className="h-12">
+                    <Link href="/pricing">
+                      <CreditCard className="w-4 h-4 mr-2" />
+                      Buy Credits ($4.99)
+                    </Link>
                   </Button>
                 </div>
+                <p className="text-xs text-center text-muted-foreground">7-day money-back guarantee · Crypto accepted</p>
               </CardContent>
             </Card>
           ) : (
