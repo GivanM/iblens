@@ -339,52 +339,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Social Proof / Testimonials */}
-      <section className="py-20 bg-background">
-        <div className="container">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold tracking-tight mb-3">What IB students say</h2>
-            <p className="text-muted-foreground text-lg">Feedback from students who used IBLens</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {[
-              {
-                quote: "The criterion-by-criterion breakdown showed me exactly which sections were dragging my mark down. I knew what to revise without guessing.",
-                attribution: "IB Student, Business Management IA",
-                stars: 5,
-              },
-              {
-                quote: "Used the university strategy after my mocks to figure out which schools actually fit my predicted points. Saved me from wasting application slots.",
-                attribution: "IB Diploma Candidate, Year 2",
-                stars: 5,
-              },
-              {
-                quote: "I uploaded my Extended Essay draft and got back specific feedback on argumentation gaps in the conclusion. Fixed it before my supervisor saw it.",
-                attribution: "IB Student, History EE",
-                stars: 5,
-              },
-            ].map(({ quote, attribution, stars }) => (
-              <Card key={attribution} className="border">
-                <CardContent className="p-6">
-                  <div className="flex gap-0.5 mb-4">
-                    {Array.from({ length: stars }).map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                    ))}
-                  </div>
-                  <p className="text-sm leading-relaxed mb-4 text-muted-foreground italic">
-                    "{quote}"
-                  </p>
-                  <div>
-                    <p className="text-xs text-muted-foreground font-medium">— {attribution}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Why IBLens Section */}
       <section className="py-20 bg-muted/30">
         <div className="container">

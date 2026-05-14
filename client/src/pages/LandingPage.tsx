@@ -168,39 +168,6 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Testimonials */}
-        <section className="py-16 bg-background">
-          <div className="container max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold text-center mb-10">What IB students say</h2>
-            <div className="grid md:grid-cols-3 gap-5">
-              {[
-                {
-                  quote: "The criterion breakdown showed me exactly which sections were dragging my mark down. I knew what to revise without guessing.",
-                  name: "IB Student, Business Management IA",
-                },
-                {
-                  quote: "I uploaded my EE draft and got back specific feedback on argumentation gaps. Fixed it before my supervisor saw it.",
-                  name: "IB Student, History EE",
-                },
-                {
-                  quote: "Way faster than waiting for teacher feedback. Got a Band 6 on my final IA after using IBLens on every draft.",
-                  name: "IB Diploma Candidate, Year 2",
-                },
-              ].map(({ quote, name }) => (
-                <Card key={name} className="border">
-                  <CardContent className="p-5">
-                    <div className="flex gap-0.5 mb-3">
-                      {[1,2,3,4,5].map(i => <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}
-                    </div>
-                    <p className="text-sm italic text-muted-foreground mb-3 leading-relaxed">"{quote}"</p>
-                    <p className="text-xs font-medium text-muted-foreground">— {name}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* FAQ */}
         <section className="py-16 bg-muted/30">
           <div className="container max-w-xl mx-auto">
