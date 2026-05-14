@@ -42,7 +42,7 @@ export async function setupVite(app: Express, server: Server) {
       let page = await vite.transformIndexHtml(url, template);
       const userAgent = req.headers["user-agent"] || "";
       page = injectSeoMeta(page, url, userAgent);
-      res.status(200).set({ "Content-Type": "text/html" }).end(page);
+      res.status(200).set({ "Content-Type": "text/html", "Cache-Control": "no-cache, no-store, must-revalidate" }).end(page);
     } catch (e) {
       vite.ssrFixStacktrace(e as Error);
       next(e);
@@ -61,7 +61,15 @@ export function serveStatic(app: Express) {
     );
   }
 
-  app.use(express.static(distPath));
+  // Serve static assets (JS/CSS with hashed names) with long-term cache
+  // but serve index.html with no-cache so CDN always fetches the latest version
+  app.use(express.static(distPath, {
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith(".html")) {
+        res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+      }
+    },
+  }));
 
   // fall through to index.html if the file doesn't exist (with SEO injection)
   app.use("*", (req, res) => {
@@ -69,6 +77,6 @@ export function serveStatic(app: Express) {
     let html = fs.readFileSync(indexPath, "utf-8");
     const userAgent = req.headers["user-agent"] || "";
     html = injectSeoMeta(html, req.originalUrl, userAgent);
-    res.status(200).set({ "Content-Type": "text/html" }).end(html);
+    res.status(200).set({ "Content-Type": "text/html", "Cache-Control": "no-cache, no-store, must-revalidate" }).end(html);
   });
 }
