@@ -166,81 +166,204 @@ export default function UniversityStrategy() {
         </div>
       </div>
 
-      {/* Sample Strategy Preview */}
+      {/* Sample Strategy Preview — full locked report */}
       {!result && (
-        <Card className="mb-8 border-2 border-dashed border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-              <Target className="w-4 h-4" />
-              Sample Strategy Preview
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <p className="text-sm text-muted-foreground italic">
-              Here is a condensed preview of what your personalized strategy report looks like. The full report includes 9 universities, detailed admission probabilities, essay positioning, and a timeline roadmap.
-            </p>
+        <div className="mb-8 space-y-4">
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Example Report</p>
+              <p className="text-sm text-muted-foreground">Aiden C. · IB Year 2 · Economics · UK/NL · Predicted: 37</p>
+            </div>
+            <Badge variant="outline" className="text-xs border-amber-300 text-amber-700 bg-amber-50">Sample</Badge>
+          </div>
 
-            {/* Sample universities */}
-            <div className="grid gap-3">
+          {/* Profile Assessment */}
+          <Card>
+            <CardHeader className="pb-2 pt-4 px-5">
+              <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Profile Assessment</CardTitle>
+            </CardHeader>
+            <CardContent className="px-5 pb-4">
+              <p className="text-sm leading-relaxed text-foreground">
+                A solid IB profile with a 37 predicted, strong HL Economics (7) and HL Mathematics (6), and clear academic direction toward Economics and Finance. The extracurricular portfolio — competitive debating and an economics research project — provides genuine differentiation. The main vulnerability is a limited international experience section, which top LSE and UCL selectors weight heavily. Realistically competitive for Russell Group; a stretch for LSE without a carefully constructed personal statement.
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* University List */}
+          <Card>
+            <CardHeader className="pb-2 pt-4 px-5">
+              <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">University List — 9 Picks</CardTitle>
+            </CardHeader>
+            <CardContent className="px-5 pb-4 space-y-3">
+              {/* 3 visible universities */}
               {[
-                { name: "University of Warwick", country: "UK", type: "safe" as const, program: "BSc Management", typical_ib: "32-34", admission_prob: 85, why: "Strong business school with IB-friendly admissions; your predicted score exceeds typical offers." },
-                { name: "University of St Andrews", country: "UK", type: "match" as const, program: "MA Economics", typical_ib: "36-38", admission_prob: 55, why: "Competitive but realistic; your extracurriculars and predicted score align with admitted student profiles." },
-                { name: "London School of Economics", country: "UK", type: "reach" as const, program: "BSc Economics", typical_ib: "38-40", admission_prob: 25, why: "Highly selective, but a strong personal statement focusing on your research experience could differentiate you." },
+                { name: "University of Warwick", country: "UK", type: "safe" as const, program: "BSc Economics", typical_ib: "33-35", admission_prob: 88, why: "Your 37 predicted clears the typical offer comfortably. Warwick Economics is highly regarded; debate experience maps well to their analytical focus." },
+                { name: "University of Edinburgh", country: "UK", type: "match" as const, program: "MA Economics", typical_ib: "36-38", admission_prob: 62, why: "Competitive but realistic given your HL Economics grade. Edinburgh values research-oriented students — your economics project is a strong fit." },
+                { name: "University of Amsterdam", country: "NL", type: "match" as const, program: "BSc Economics & Business", typical_ib: "35-37", admission_prob: 71, why: "Strong English-language programme with lower selectivity than Russell Group equivalents. A near-certain offer at your profile level." },
               ].map((uni, i) => {
                 const cfg = typeConfig[uni.type];
+                const prob = uni.admission_prob;
                 return (
-                  <div key={i} className="p-3 rounded-lg border bg-card/50 opacity-80">
-                    <div className="flex items-center justify-between mb-1">
-                      <div className="flex items-center gap-2">
-                        <Badge variant="outline" className={`text-[10px] ${cfg.color}`}>{cfg.label}</Badge>
-                        <span className="text-sm font-medium">{uni.name}</span>
+                  <div key={i} className="flex items-start gap-4 py-3 border-b last:border-b-0">
+                    <Badge variant="outline" className={`${cfg.color} flex-shrink-0 mt-0.5 text-xs`}>{cfg.label}</Badge>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium text-sm">{uni.name} <span className="font-normal text-muted-foreground">{uni.country}</span></div>
+                      <div className="text-xs text-muted-foreground mt-0.5">{uni.program} · Typical IB: {uni.typical_ib}</div>
+                      <p className="text-xs mt-1 text-muted-foreground">{uni.why}</p>
+                    </div>
+                    <div className="text-right flex-shrink-0 min-w-[52px]">
+                      <div className="text-base font-semibold">{prob}%</div>
+                      <div className="text-[10px] text-muted-foreground">chance</div>
+                      <div className="h-1.5 bg-muted rounded-full mt-1.5 w-12 overflow-hidden">
+                        <div className={`h-full rounded-full ${cfg.barColor}`} style={{ width: `${prob}%` }} />
                       </div>
-                      <span className="text-xs text-muted-foreground">{uni.country}</span>
                     </div>
-                    <div className="flex items-center justify-between text-xs text-muted-foreground">
-                      <span>{uni.program} &middot; Typical IB: {uni.typical_ib}</span>
-                      <span className="font-medium">{uni.admission_prob}% chance</span>
-                    </div>
-                    <p className="text-xs text-muted-foreground mt-1">{uni.why}</p>
                   </div>
                 );
               })}
-            </div>
 
-            {/* Essay Angle preview */}
-            <div>
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5 mb-2">
-                <Quote className="w-3.5 h-3.5" /> Essay Positioning Angle
-              </p>
-              <div className="p-3 bg-primary/5 border-l-2 border-primary rounded-r-md italic text-xs text-muted-foreground leading-relaxed opacity-80">
-                "Frame your personal statement around the tension between economic theory and real-world market failures — use your experience with your family business to show you've seen this gap first-hand. Mention your HL Economics grade early to signal academic depth."
-              </div>
-            </div>
-
-            {/* Roadmap preview */}
-            <div>
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5 mb-2">
-                <Calendar className="w-3.5 h-3.5" /> Application Timeline (excerpt)
-              </p>
-              <div className="space-y-1.5 opacity-80">
-                {[
-                  { period: "June – July", action: "Finalise university shortlist. Request predicted grade letters from IB coordinator. Open UCAS account." },
-                  { period: "August", action: "Draft personal statement. Focus on your essay angle above — get two rounds of feedback from teachers." },
-                ].map((r, i) => (
-                  <div key={i} className="flex gap-3 py-1.5 border-b last:border-b-0 text-xs text-muted-foreground">
-                    <span className="font-semibold text-foreground min-w-[90px] flex-shrink-0">{r.period}</span>
-                    <span>{r.action}</span>
+              {/* 6 locked universities */}
+              <div className="relative">
+                <div className="space-y-2 blur-sm select-none pointer-events-none">
+                  {[
+                    { type: "match" as const, label: "University of Bristol · UK · BSc Economics" },
+                    { type: "match" as const, label: "University of Glasgow · UK · MA Economics" },
+                    { type: "reach" as const, label: "London School of Economics · UK · BSc Economics" },
+                    { type: "reach" as const, label: "UCL · UK · BSc Economics" },
+                    { type: "safe" as const, label: "Maastricht University · NL · BSc Economics & Business Economics" },
+                    { type: "safe" as const, label: "University of Groningen · NL · BSc Economics" },
+                  ].map((u, i) => {
+                    const cfg = typeConfig[u.type];
+                    return (
+                      <div key={i} className="flex items-center gap-3 py-2.5 border-b last:border-b-0">
+                        <Badge variant="outline" className={`${cfg.color} flex-shrink-0 text-xs`}>{cfg.label}</Badge>
+                        <span className="text-sm text-muted-foreground">{u.label}</span>
+                        <span className="ml-auto text-sm font-semibold text-muted-foreground">??%</span>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-background/90 border rounded-lg px-4 py-3 flex items-center gap-2 shadow-sm">
+                    <Lock className="w-4 h-4 text-muted-foreground" />
+                    <span className="text-sm font-medium">6 more universities in your report</span>
                   </div>
-                ))}
-                <p className="text-[11px] text-muted-foreground/60 pt-1">+ more steps through Deadline Day in your full report…</p>
+                </div>
               </div>
-            </div>
+            </CardContent>
+          </Card>
 
-            <div className="text-center pt-2">
-              <Badge variant="secondary" className="text-xs">Fill in the form below to get your personalised strategy</Badge>
-            </div>
-          </CardContent>
-        </Card>
+          {/* Essay Angle — fully visible (best hook) */}
+          <Card>
+            <CardHeader className="pb-2 pt-4 px-5">
+              <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                <Quote className="w-3.5 h-3.5" /> Your Essay Positioning Angle
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="px-5 pb-4">
+              <div className="p-4 bg-primary/5 border-l-4 border-primary rounded-r-md italic text-sm leading-relaxed">
+                "Lead with the moment your economics textbook failed you — when theory predicted one outcome and the market did the opposite. Your research project gives you a real example of this. Open every personal statement draft with that tension, then use your HL Economics grade and debate background to show you've built the tools to resolve it. Admissions tutors at Warwick and Edinburgh read 3,000+ statements; almost none open with intellectual vulnerability. Yours should."
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Action Roadmap — partial */}
+          <Card>
+            <CardHeader className="pb-2 pt-4 px-5">
+              <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                <Calendar className="w-3.5 h-3.5" /> Application Timeline
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="px-5 pb-4 space-y-0">
+              {[
+                { period: "May – June", action: "Finalise your 9-university shortlist from this report. Request official predicted grade letter from your IB coordinator." },
+                { period: "July", action: "Draft personal statement v1 using the essay angle above. Aim for 600 words before editing down. Share with your economics teacher for subject-specific feedback." },
+                { period: "August", action: "Research UCAS deadlines per university. UCL and LSE close early — mark 15 October in your calendar now." },
+              ].map((r, i) => (
+                <div key={i} className="flex gap-4 py-3 border-b">
+                  <div className="text-sm font-semibold text-primary min-w-[110px] flex-shrink-0">{r.period}</div>
+                  <p className="text-sm text-muted-foreground">{r.action}</p>
+                </div>
+              ))}
+              {/* Blurred remaining steps */}
+              <div className="relative">
+                <div className="blur-sm select-none pointer-events-none space-y-0">
+                  {[
+                    { period: "September", action: "Complete UCAS form. Ask two teachers for references — brief them on your essay angle so their reference reinforces your narrative." },
+                    { period: "October", action: "Submit UCAS application before 15 October for LSE/UCL. Other universities: 31 January deadline but earlier is always better." },
+                    { period: "Nov – Jan", action: "Prepare for any interviews (Edinburgh, Warwick sometimes invite). Review your research project — interviewers often probe the topic in your PS." },
+                    { period: "Deadline Day", action: "Ensure all documents submitted. Check email daily for offers and any requests for additional information." },
+                  ].map((r, i) => (
+                    <div key={i} className="flex gap-4 py-3 border-b last:border-b-0">
+                      <div className="text-sm font-semibold min-w-[110px] flex-shrink-0">{r.period}</div>
+                      <p className="text-sm">{r.action}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-background/90 border rounded-lg px-4 py-2.5 flex items-center gap-2 shadow-sm">
+                    <Lock className="w-3.5 h-3.5 text-muted-foreground" />
+                    <span className="text-sm font-medium">4 more steps through Deadline Day</span>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Strengths — partial */}
+          <Card>
+            <CardHeader className="pb-2 pt-4 px-5">
+              <CardTitle className="text-xs font-semibold text-emerald-600 uppercase tracking-wider flex items-center gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5" /> Profile Strengths
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="px-5 pb-4 space-y-2">
+              <div className="p-3 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-md text-sm">HL Economics grade 7 is a direct signal to Economics departments — it removes the biggest admissions doubt before they reach your personal statement.</div>
+              <div className="p-3 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-md text-sm">Competitive debating demonstrates structured argumentation — exactly what Economics personal statements claim but rarely prove.</div>
+              <div className="relative">
+                <div className="blur-sm select-none pointer-events-none space-y-2">
+                  <div className="p-3 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-md text-sm">Independent economics research project sets you apart from 80% of applicants who list only classroom activities.</div>
+                  <div className="p-3 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-md text-sm">Multilingual background adds diversity signal valued by Amsterdam and other continental programmes.</div>
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-background/90 border rounded-lg px-3 py-2 flex items-center gap-1.5 shadow-sm">
+                    <Lock className="w-3.5 h-3.5 text-muted-foreground" />
+                    <span className="text-sm font-medium">2 more strengths</span>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Red Flags — fully locked */}
+          <Card>
+            <CardHeader className="pb-2 pt-4 px-5">
+              <CardTitle className="text-xs font-semibold text-red-600 uppercase tracking-wider flex items-center gap-2">
+                <AlertTriangle className="w-3.5 h-3.5" /> Concerns to Address
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="px-5 pb-4">
+              <div className="relative">
+                <div className="blur-sm select-none pointer-events-none space-y-2">
+                  <div className="p-3 bg-red-50 border-l-4 border-red-500 rounded-r-md text-sm">HL Mathematics grade (6) is the weak spot for LSE and UCL — address this by emphasising your quantitative research project rather than raw grades.</div>
+                  <div className="p-3 bg-red-50 border-l-4 border-red-500 rounded-r-md text-sm">No work experience in economics or finance contexts — difficult to fix now, but a brief mention of any exposure (even informal) helps.</div>
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-background/90 border rounded-lg px-3 py-2.5 flex items-center gap-2 shadow-sm">
+                    <Lock className="w-3.5 h-3.5 text-muted-foreground" />
+                    <span className="text-sm font-medium">Concerns to address — in your report</span>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* CTA */}
+          <div className="text-center py-2 text-sm text-muted-foreground">
+            ↑ This is a sample report. Fill in the form below to get yours.
+          </div>
+        </div>
       )}
 
       <Card className="mb-8">
