@@ -33,6 +33,25 @@ export function SEOHead({
 
   const jsonLdArray: object[] = [];
 
+  // Auto-generate WebPage JSON-LD (CDN replaces <title> / og: but NOT <script> tags)
+  // This is the primary mechanism for per-route title/description to reach Google
+  if (!article) {
+    const isHomepage = canonical === "/" || canonical === "https://iblens.com" || canonical === "https://iblens.com/";
+    jsonLdArray.push({
+      "@context": "https://schema.org",
+      "@type": isHomepage ? "WebSite" : "WebPage",
+      name: title,
+      headline: title,
+      description: description,
+      url: fullCanonical,
+      isPartOf: {
+        "@type": "WebSite",
+        name: "IBLens",
+        url: "https://iblens.com",
+      },
+    });
+  }
+
   // BreadcrumbList
   if (breadcrumbs && breadcrumbs.length > 0) {
     jsonLdArray.push({
