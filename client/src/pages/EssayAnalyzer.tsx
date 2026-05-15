@@ -709,11 +709,9 @@ export default function EssayAnalyzer() {
                       Save Report — Free
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" asChild className="h-12">
-                    <Link href="/pricing">
-                      <CreditCard className="w-4 h-4 mr-2" />
-                      Buy Credits ($4.99)
-                    </Link>
+                  <Button variant="outline" size="lg" className="h-12" onClick={() => setEssayPurchaseOpen(true)}>
+                    <CreditCard className="w-4 h-4 mr-2" />
+                    Buy Credits ($4.99)
                   </Button>
                 </div>
                 <p className="text-xs text-center text-muted-foreground">7-day money-back guarantee · Crypto accepted</p>
@@ -732,8 +730,8 @@ export default function EssayAnalyzer() {
                     Analyze Another Essay
                   </Button>
                   {!credits?.essayCredits && (
-                    <Button variant="outline" asChild>
-                      <Link href="/pricing">Buy Credits</Link>
+                    <Button variant="outline" onClick={() => setEssayPurchaseOpen(true)}>
+                      Buy Credits
                     </Button>
                   )}
                 </div>

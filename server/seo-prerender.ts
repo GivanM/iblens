@@ -198,17 +198,30 @@ ${JSON.stringify(breadcrumbs, null, 6)}
   `;
 }
 
-// Injects per-route JSON-LD structured data right before </head>.
-// The CDN does NOT touch script tags, so Google can read the correct
-// per-route title and description from JSON-LD.
+// Injects per-route <title>, meta description, og tags, canonical, and JSON-LD.
+// Runs server-side so crawlers and social bots see the correct tags without JS.
 export function injectSeoMeta(html: string, url: string, _userAgent: string): string {
   const cleanPath = url.split("?")[0].split("#")[0].replace(/\/$/, "") || "/";
   const meta = routeMeta[cleanPath];
 
   if (!meta) return html;
 
+  // Replace <title>
+  html = html.replace(/<title>[^<]*<\/title>/, `<title>${meta.title}</title>`);
+
+  // Inject/replace description, og:title, og:description, canonical before </head>
+  const canonicalUrl = `${SITE_URL}${meta.canonical}`;
+  const metaTags = `
+    <meta name="description" content="${meta.description}" />
+    <link rel="canonical" href="${canonicalUrl}" />
+    <meta property="og:title" content="${meta.title}" />
+    <meta property="og:description" content="${meta.description}" />
+    <meta property="og:url" content="${canonicalUrl}" />
+    <meta name="twitter:title" content="${meta.title}" />
+    <meta name="twitter:description" content="${meta.description}" />`;
+
   const jsonLd = generateJsonLd(meta);
-  html = html.replace("</head>", `${jsonLd}\n</head>`);
+  html = html.replace("</head>", `${metaTags}\n${jsonLd}\n</head>`);
 
   return html;
 }

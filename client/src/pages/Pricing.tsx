@@ -142,7 +142,7 @@ export default function Pricing() {
               <div className="flex-1">
                 <h3 className="font-semibold text-emerald-800">First essay analysis is free</h3>
                 <p className="text-sm text-emerald-700/70">
-                  Sign in and get a full AI analysis with predicted score, criterion breakdown, and improvement tips — no credit card required.
+                  Paste your essay — no sign-in, no credit card required. Get criterion scores and feedback instantly.
                 </p>
               </div>
               <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700 flex-shrink-0" asChild>
