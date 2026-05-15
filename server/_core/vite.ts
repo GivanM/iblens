@@ -42,7 +42,7 @@ export async function setupVite(app: Express, server: Server) {
       let page = await vite.transformIndexHtml(url, template);
       const userAgent = req.headers["user-agent"] || "";
       page = injectSeoMeta(page, url, userAgent);
-      res.status(200).set({ "Content-Type": "text/html", "Cache-Control": "no-cache, no-store, must-revalidate" }).end(page);
+      res.status(200).set({ "Content-Type": "text/html", "Cache-Control": "no-cache, no-store, must-revalidate", "CDN-Cache-Control": "no-store", "Surrogate-Control": "no-store" }).end(page);
     } catch (e) {
       vite.ssrFixStacktrace(e as Error);
       next(e);
@@ -67,6 +67,8 @@ export function serveStatic(app: Express) {
     setHeaders: (res, filePath) => {
       if (filePath.endsWith(".html")) {
         res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        res.setHeader("CDN-Cache-Control", "no-store");
+        res.setHeader("Surrogate-Control", "no-store");
       }
     },
   }));
@@ -77,6 +79,6 @@ export function serveStatic(app: Express) {
     let html = fs.readFileSync(indexPath, "utf-8");
     const userAgent = req.headers["user-agent"] || "";
     html = injectSeoMeta(html, req.originalUrl, userAgent);
-    res.status(200).set({ "Content-Type": "text/html", "Cache-Control": "no-cache, no-store, must-revalidate" }).end(html);
+    res.status(200).set({ "Content-Type": "text/html", "Cache-Control": "no-cache, no-store, must-revalidate", "CDN-Cache-Control": "no-store", "Surrogate-Control": "no-store" }).end(html);
   });
 }
