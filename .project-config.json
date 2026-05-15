@@ -1,0 +1,58 @@
+{
+  "build_command": "pnpm run build",
+  "capabilities": [
+    "server",
+    "db",
+    "user"
+  ],
+  "dev_command": "pnpm run dev",
+  "env_vars": {
+    "DATABASE_URL": "mysql://24fXLWCbAf6m8v8.bba070603413:dYRAzg5Jr13d2h25KcLT@gateway04.us-east-1.prod.aws.tidbcloud.com:4000/fPpXrWUtmpLttw7Fz9wKLE?ssl={\"rejectUnauthorized\":true}"
+  },
+  "experiments": [
+    "no_db_push"
+  ],
+  "git_remote": {
+    "repo_url": "s3://vida-prod-gitrepo/webdev-git/310519663456034410/fPpXrWUtmpLttw7Fz9wKLE",
+    "access_key_id": "ASIAZV3A2ECZJZOWRSC5",
+    "secret_access_key": "1KZiKAskEPQ8xIeswNMsSaMHREmeEMJxTa6jbcDf",
+    "session_token": "IQoJb3JpZ2luX2VjELD//////////wEaCXVzLWVhc3QtMSJGMEQCIHJXQyEhEx9cO9GIYSvTsNmB5oirtqEU03xAlmLAmuDWAiB3gPrn64PAv7i+oJ+U4Py0fj7bso0jy3mMSIT5KiqsKSr2Awh4EAQaDDY2NTM4NjA5ODg2NiIMN9ifIMvjexfzXktVKtMDNT+LSatWwqN/YTdCd7QBHuKniSgqDIIU0xAbRaqo2kr4OZM3AvIOzoaAhK2ygw5qnaQqGOx8WB1gWDrOTTBheww4PWURzEpJOr4D4R6uHh1nnbWrZKjgI0034t38SMqI4hNpVLE7JQu9gx9hEuGTiJHe8MvjDXUQDqcybiq2e+3o44se6LoWLzBlc0HQwlbIegFmcsS7oasul5y2OM4zkqLkVkIfUvURI62oiEnsDTr16t41bk1NEe/Dp04LTiHDSARO/XjPT+og6X3aR3LfSfyDX1XdajJTvKimfbP26CB6KM/yoOq6vm5IHTlxO36jlHhvdI9fgJXaY1Q+Qhoq/o4dCy31xvDLwCBZnt0nSMqjblfXKHl6d9TmRnzxEGpmNwzCk2w4LgA4z2/PwBAaJet6/Fn+5nCdX2TL2NQxEbpsQqueQPwossY7KVhhx5z2y5HF7NiEUr+b2Yk2C1lUUMkHKEu7cguX1BbiMvg/rYo+QGIqJoCBrb3AEGJJGfSsWr6C6NnTGUktlQZtNec+1hm534k/4KmjVI/E7hc/aD1BM1B0NvEBa2pmjq5A/ch0wMcWIq3H8HgA0lIe6Fpz5KNfvZYUrDvMLNvvzMlbEfsK5tEwqu+c0AY6ngEsr5FobpaLyvO9J1KTHsuyxS10oNVrJ8qNhuaNSDy5st11rjq38ROyqCnTVBJwjESY6fE+tnAa0oM25ybId2ril9MNhfER7MRazRa1aGiqFuqpvGD0whyRfcFENDlqjA56lJ+HO+zoibpcupoE2y5WMRdLyvujbmEQ2FIbvFnQuxNFBd5Qk/joH3SG8cyvKcdlbsU+nxk2XM2HoG+IIQ==",
+    "expiration": "2026-05-16T03:11:38.000Z"
+  },
+  "name": "iblens",
+  "path": "/home/ubuntu/iblens",
+  "port": 3000,
+  "secrets": {
+    "BUILT_IN_FORGE_API_KEY": "9Pp5ecexoTFjvdbkfUBr3w",
+    "BUILT_IN_FORGE_API_URL": "https://forge.manus.ai",
+    "GA4_API_SECRET": "RD4myuWXQ6WX_OjNIKw32Q",
+    "JWT_SECRET": "GehQDkEFK7JpLZMaf7n9yk",
+    "LEMONSQUEEZY_API_KEY": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5NGQ1OWNlZi1kYmI4LTRlYTUtYjE3OC1kMjU0MGZjZDY5MTkiLCJqdGkiOiIxMzcwOWE4MDdiMTU3ZmI2Yjc5MDdhYzE3NDc5YmM5NWE2MGMyZDk5ZDM4MTI5MTMzOTZiOWZjZDlkNDMyOWU3YjZkYTdkZDU0ZjdlNDVmNSIsImlhdCI6MTc3NzQ4MjYyOC44Nzk3NjEsIm5iZiI6MTc3NzQ4MjYyOC44Nzk3NjQsImV4cCI6MTc5MzIzMjAwMC4wMzEwMDksInN1YiI6IjY3NzkzMzAiLCJzY29wZXMiOltdfQ.Ekvpn3o_mu0cItOuf1hrh6pZdOlcV0_JfePdeLlZ6QpXmPNIt6Ug-EdwBfq4oSDdJ-sFCfqbgBTRlizXPgK5YWwK_Il6ek_jMNQUYtCqFpt-IsgVv6N0iYqDXsZJUHzWZpz_DqOtvtOMXeX6GnRlsKCv4zmsTpT8CJl9AZGsZyUjVRfft-oDQd9sxbcL_eJJmCd4ObzTFBYxyrTVRstPcmOnSjK89JWpzsx_Cjly1c82kFJvAuLcVIapOCM1N-ZpnFyzL7Dck-UK3nMJhYtSaEfyMpKcrn6DeeFbHHmR2q7vFd85GCmAAz_93CVzIQNT_7VuS-o27hj82QmPaRMUsYF161gzHstPWd5BLqPKRky9zafDIRZzLqfSHtPrj4BaP8lPuaY1og2r-h5Sej2Y5vNSm4h-l12ibctuNW8mQeu3mC16Z3j3wxvVkrQM9xnuYiqvqJv1peM4h1q0LrTJcWRgiviAueHLmeTenTP62amnPIKDv6BHc0TkzixRUmNjf66T-iz_YGh0_j82XH7Vub-YxcEHT2UGmAHIUug0zc6VIUpP1rDOtUzikGWhB3mjZ2Qb76d3CkbK5Jeu5GFXceuHh8glEJBKbxDXU148t2tg-0Ly03cEFEdUaneqc03xpHdxV4xL3RacVlIBYzT5iNTlHx2exmGg3xTjWzTOKaY",
+    "LEMONSQUEEZY_STORE_ID": "327324",
+    "LEMONSQUEEZY_WEBHOOK_SECRET": "a7f3c9e2b5d8f1a4c6e9b2d5f8a1c4e7",
+    "NOWPAYMENTS_API_KEY": "8BKHT4-BWAMH4G-PXB9WWV-0FCF21Q",
+    "NOWPAYMENTS_IPN_SECRET": "l4dpur5hPYtefgVkZLjlnVP66PpQDuxU",
+    "OAUTH_SERVER_URL": "https://api.manus.im",
+    "OWNER_NAME": "Иван Глушков",
+    "OWNER_OPEN_ID": "GUH7ZP9HxpJUVj4brJzj2F",
+    "PLISIO_SECRET_KEY": "spPYCJdWdNJRSOy7I9Gd3JsMbxq6gAK0DxGXCJHgY9UYUJLQCIaxYDmEMTNT8poM",
+    "STRIPE_SECRET_KEY": "sk_test_51TBzZRAG1fLSu0kFhVYHqYLjzuhHFlw8tJs2A2kU9TVemMbVIWNDKPuFgHZxVpqLTEWYIkEcMKsAvi6UIV0wZqSB00tPz7Kn9P",
+    "STRIPE_WEBHOOK_SECRET": "whsec_yxpsugjwzg0nr7R95mv9aq2H11BHXWeh",
+    "TRIBUTE_API_KEY": "793e9043-24d9-4e0a-b549-f784615b",
+    "TRIBUTE_LINK_ESSAY_PACK_10": "https://web.tribute.tg/p/uyg",
+    "TRIBUTE_LINK_ESSAY_PACK_5": "https://web.tribute.tg/p/uye",
+    "TRIBUTE_LINK_ESSAY_SINGLE": "https://web.tribute.tg/p/uyb",
+    "TRIBUTE_LINK_UNIVERSITY_SINGLE": "https://web.tribute.tg/p/uyh",
+    "VITE_ANALYTICS_ENDPOINT": "https://manus-analytics.com",
+    "VITE_ANALYTICS_WEBSITE_ID": "b7cb1ecc-b9d9-4f2a-be30-4cab58736ac2",
+    "VITE_APP_ID": "fPpXrWUtmpLttw7Fz9wKLE",
+    "VITE_APP_LOGO": "https://files.manuscdn.com/user_upload_by_module/web_dev_logo/310519663456034410/SvuiYXeVCoNowNgI.png",
+    "VITE_APP_TITLE": "IBLens — AI IB Essay Score Predictor \u0026 University Strategy",
+    "VITE_FRONTEND_FORGE_API_KEY": "UZFqvLYCzThCipQwzZNPiy",
+    "VITE_FRONTEND_FORGE_API_URL": "https://forge.manus.ai",
+    "VITE_OAUTH_PORTAL_URL": "https://manus.im",
+    "VITE_STRIPE_PUBLISHABLE_KEY": "pk_test_51TBzZRAG1fLSu0kFqwTvOLF4SP22WrBLSORGnUcFbGVTugEMI9hHUy7DsrHG3JDnuHfLvW7hBXbp89bmubJ236m900gtTd2WII"
+  },
+  "template_id": "web-db-user",
+  "test_command": "pnpm test"
+}
