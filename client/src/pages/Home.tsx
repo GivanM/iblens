@@ -3,8 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
 import { getLoginUrl } from "@/const";
-import { PRICE_LABELS } from "@shared/pricing";
+import { PRICE_LABELS, type ProductKey } from "@shared/pricing";
 import { SEOHead } from "@/components/SEOHead";
+import { PurchaseModal } from "@/components/PurchaseModal";
 import { useState, useEffect, useMemo } from "react";
 import {
   FileText, GraduationCap, Shield, Zap, BarChart3, Target,
@@ -60,9 +61,17 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 export default function Home() {
   const { isAuthenticated } = useAuth();
   const { days, examYear } = useExamCountdown();
+  const [purchaseModalOpen, setPurchaseModalOpen] = useState(false);
+  const [purchaseSku, setPurchaseSku] = useState<ProductKey>("ESSAY_PACK_5");
+
+  const openPurchase = (sku: ProductKey) => {
+    setPurchaseSku(sku);
+    setPurchaseModalOpen(true);
+  };
 
   return (
     <>
+      <PurchaseModal open={purchaseModalOpen} onOpenChange={setPurchaseModalOpen} sku={purchaseSku} />
       <SEOHead
         title="IBLens — Free IB Essay Grader & Feedback Tool"
         description="Free IB essay grader — upload your Extended Essay, IA, or TOK and get AI feedback with a predicted grade in 60 seconds. No credit card required."
@@ -203,7 +212,7 @@ export default function Home() {
             </div>
             {!isAuthenticated && (
               <p className="text-sm text-muted-foreground mt-4">
-                <a href={getLoginUrl()} className="text-primary hover:underline font-medium">Sign in</a> to get your first essay analysis free — no credit card required
+                No account needed — paste your essay and get results instantly.
               </p>
             )}
 
@@ -416,11 +425,11 @@ export default function Home() {
                 <h3 className="font-semibold mb-1">Essay Pack (5)</h3>
                 <div className="text-3xl font-bold mb-1">{PRICE_LABELS.ESSAY_PACK_5}</div>
                 <p className="text-xs text-muted-foreground mb-4">$4.00 per analysis</p>
-                <Button variant="outline" size="sm" className="w-full" asChild>
+                <Button variant="outline" size="sm" className="w-full" onClick={() => isAuthenticated ? undefined : openPurchase("ESSAY_PACK_5")} asChild={isAuthenticated}>
                   {isAuthenticated ? (
                     <Link href="/dashboard">Buy Pack</Link>
                   ) : (
-                    <a href={getLoginUrl()}>Sign in</a>
+                    <span>Buy Pack</span>
                   )}
                 </Button>
               </CardContent>
@@ -436,11 +445,11 @@ export default function Home() {
                 <h3 className="font-semibold mb-1">Essay Pack (10)</h3>
                 <div className="text-3xl font-bold mb-1">{PRICE_LABELS.ESSAY_PACK_10}</div>
                 <p className="text-xs text-muted-foreground mb-4">$3.50 per analysis</p>
-                <Button size="sm" className="w-full" asChild>
+                <Button size="sm" className="w-full" onClick={() => isAuthenticated ? undefined : openPurchase("ESSAY_PACK_10")} asChild={isAuthenticated}>
                   {isAuthenticated ? (
                     <Link href="/dashboard">Buy Pack</Link>
                   ) : (
-                    <a href={getLoginUrl()}>Sign in</a>
+                    <span>Buy Pack</span>
                   )}
                 </Button>
               </CardContent>
