@@ -228,7 +228,7 @@ export default function LandingPage() {
               />
               <FAQItem
                 question="I don't have a credit card — can I still pay?"
-                answer="Yes. IBLens accepts cryptocurrency (USDT, BTC, ETH) in addition to Visa, Mastercard, and Amex. Just select 'Pay with crypto' at checkout. Credits activate automatically after payment."
+                answer="Yes. Signed-in users can pay with cryptocurrency (USDT, BTC, ETH) — create a free account, then the crypto option appears at checkout alongside Visa, Mastercard, and Amex. Credits activate automatically after payment."
               />
               <FAQItem
                 question="Is my essay private?"

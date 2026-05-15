@@ -156,7 +156,7 @@ export default function EssayAnalyzer() {
     if (isAuthenticated) {
       // Logged-in user flow
       if (!credits?.canAnalyzeEssay) {
-        toast.error("No essay credits remaining. Purchase credits from your dashboard.");
+        setEssayPurchaseOpen(true);
         return;
       }
       analyzeMutation.mutate({
@@ -168,7 +168,7 @@ export default function EssayAnalyzer() {
     } else {
       // Anonymous user flow
       if (!canAnonAnalyze) {
-        toast.error("You've used your free analysis. Sign in to purchase more credits.");
+        setEssayPurchaseOpen(true);
         return;
       }
       anonAnalyzeMutation.mutate({
@@ -408,13 +408,11 @@ export default function EssayAnalyzer() {
             </Button>
           )}
 
-          {/* Anonymous: sign-in after free used */}
+          {/* Anonymous: buy credits after free used */}
           {!isAuthenticated && !canAnonAnalyze && (
-            <Button className="w-full h-11" asChild>
-              <a href={getLoginUrl()}>
-                <Lock className="w-4 h-4 mr-2" />
-                Sign In to Analyze Again ($4.99)
-              </a>
+            <Button className="w-full h-11" onClick={() => setEssayPurchaseOpen(true)}>
+              <CreditCard className="w-4 h-4 mr-2" />
+              Buy Credits to Analyze ($4.99)
             </Button>
           )}
 
@@ -424,7 +422,7 @@ export default function EssayAnalyzer() {
               <Button
                 className="w-full h-11"
                 onClick={handleAnalyze}
-                disabled={isAnalyzing || !credits?.canAnalyzeEssay}
+                disabled={isAnalyzing}
               >
                 {isAnalyzing ? (
                   <>
