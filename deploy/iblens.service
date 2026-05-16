@@ -1,0 +1,21 @@
+[Unit]
+Description=IBLens application
+After=network.target mysql.service
+Wants=mysql.service
+
+[Service]
+Type=simple
+User=deploy
+WorkingDirectory=/opt/iblens
+ExecStart=/usr/bin/node dist/index.js
+Restart=always
+RestartSec=5
+EnvironmentFile=/opt/iblens/.env
+Environment=NODE_ENV=production
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=iblens
+
+[Install]
+WantedBy=multi-user.target
