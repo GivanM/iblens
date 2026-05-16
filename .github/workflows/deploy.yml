@@ -1,0 +1,64 @@
+name: Deploy to production
+
+on:
+  push:
+      branches: [main]
+        workflow_dispatch:
+
+        concurrency:
+          group: deploy-production
+            cancel-in-progress: false
+
+            jobs:
+              deploy:
+                  name: SSH deploy to iblens.com
+                      runs-on: ubuntu-24.04
+                          timeout-minutes: 20
+
+                              steps:
+                                    - name: Setup SSH
+                                            run: |
+                                                      mkdir -p ~/.ssh
+                                                                echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+                                                                          chmod 600 ~/.ssh/deploy_key
+                                                                                    ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
+
+                                                                                          - name: Pull, build, restart
+                                                                                                  run: |
+                                                                                                            ssh -i ~/.ssh/deploy_key -o ServerAliveInterval=30 \
+                                                                                                                          ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+                                                                                                                                        "set -e
+                                                                                                                                                       cd /opt/iblens
+                                                                                                                                                       
+                                                                                                                                                                      echo '==> git pull'
+                                                                                                                                                                                     git fetch --prune origin main
+                                                                                                                                                                                                    git reset --hard origin/main
+                                                                                                                                                                                                    
+                                                                                                                                                                                                                   echo '==> pnpm install'
+                                                                                                                                                                                                                                  pnpm install
+                                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                                 echo '==> pnpm build'
+                                                                                                                                                                                                                                                                pnpm build
+                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                               echo '==> drizzle migrate'
+                                                                                                                                                                                                                                                                                              pnpm db:push
+                                                                                                                                                                                                                                                                                              
+                                                                                                                                                                                                                                                                                                             echo '==> restart service'
+                                                                                                                                                                                                                                                                                                                            sudo systemctl restart iblens
+                                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                                           echo '==> done'"
+                                                                                                                                                                                                                                                                                                                                           
+                                                                                                                                                                                                                                                                                                                                                 - name: Smoke test
+                                                                                                                                                                                                                                                                                                                                                         run: |
+                                                                                                                                                                                                                                                                                                                                                                   sleep 5
+                                                                                                                                                                                                                                                                                                                                                                             for i in {1..12}; do
+                                                                                                                                                                                                                                                                                                                                                                                         code=$(curl -sk -o /dev/null -w '%{http_code}' https://iblens.com/ || echo 000)
+                                                                                                                                                                                                                                                                                                                                                                                                     echo "attempt $i: / => $code"
+                                                                                                                                                                                                                                                                                                                                                                                                                 if [ "$code" = "200" ]; then
+                                                                                                                                                                                                                                                                                                                                                                                                                               echo "smoke test passed"
+                                                                                                                                                                                                                                                                                                                                                                                                                                             exit 0
+                                                                                                                                                                                                                                                                                                                                                                                                                                                         fi
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                     sleep 5
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                               done
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo "smoke test failed"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   exit 1
