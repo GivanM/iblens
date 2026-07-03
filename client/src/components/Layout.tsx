@@ -9,8 +9,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Link, useLocation } from "wouter";
-import { FileText, GraduationCap, LayoutDashboard, LogOut, User, Menu, X, Sparkles, DollarSign, BookOpen } from "lucide-react";
+import { FileText, GraduationCap, LayoutDashboard, LogOut, User, Menu, X, DollarSign, BookOpen } from "lucide-react";
 import { useState } from "react";
+
+const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
 function NavLink({ href, children, active }: { href: string; children: React.ReactNode; active: boolean }) {
   return (
@@ -18,8 +20,8 @@ function NavLink({ href, children, active }: { href: string; children: React.Rea
       href={href}
       className={`text-sm font-medium transition-colors px-3 py-2 rounded-md ${
         active
-          ? "bg-primary/10 text-primary"
-          : "text-muted-foreground hover:text-foreground hover:bg-accent"
+          ? "text-primary"
+          : "text-muted-foreground hover:text-foreground"
       }`}
     >
       {children}
@@ -40,51 +42,23 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="container flex items-center justify-between h-16">
           <div className="flex items-center gap-8">
             <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-primary-foreground" />
-              </div>
-              <span className="text-lg font-bold tracking-tight">
+              <span style={SERIF} className="text-xl font-bold">
                 IB<span className="text-primary">Lens</span>
               </span>
             </Link>
 
             <nav className="hidden md:flex items-center gap-1">
-              <NavLink href="/essay" active={location === "/essay"}>
-                <span className="flex items-center gap-1.5">
-                  <FileText className="w-3.5 h-3.5" />
-                  Essay Analyzer
-                </span>
-              </NavLink>
-              <NavLink href="/university" active={location === "/university"}>
-                <span className="flex items-center gap-1.5">
-                  <GraduationCap className="w-3.5 h-3.5" />
-                  University Strategy
-                </span>
-              </NavLink>
-              <NavLink href="/resources" active={location.startsWith("/resources")}>
-                <span className="flex items-center gap-1.5">
-                  <BookOpen className="w-3.5 h-3.5" />
-                  Resources
-                </span>
-              </NavLink>
-              <NavLink href="/pricing" active={location === "/pricing"}>
-                <span className="flex items-center gap-1.5">
-                  <DollarSign className="w-3.5 h-3.5" />
-                  Pricing
-                </span>
-              </NavLink>
+              <NavLink href="/essay" active={location === "/essay"}>Essay Analyzer</NavLink>
+              <NavLink href="/university" active={location === "/university"}>University Strategy</NavLink>
+              <NavLink href="/resources" active={location.startsWith("/resources")}>Resources</NavLink>
+              <NavLink href="/pricing" active={location === "/pricing"}>Pricing</NavLink>
               {isAuthenticated && (
-                <NavLink href="/dashboard" active={location === "/dashboard"}>
-                  <span className="flex items-center gap-1.5">
-                    <LayoutDashboard className="w-3.5 h-3.5" />
-                    Dashboard
-                  </span>
-                </NavLink>
+                <NavLink href="/dashboard" active={location === "/dashboard"}>Dashboard</NavLink>
               )}
             </nav>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             {isAuthenticated ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -110,9 +84,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button size="sm" asChild>
-                <a href={getLoginUrl()}>Sign in</a>
-              </Button>
+              <>
+                <Button size="sm" variant="default" className="hidden sm:flex" asChild>
+                  <Link href="/essay">Grade Free</Link>
+                </Button>
+                <Button size="sm" variant="ghost" asChild>
+                  <a href={getLoginUrl()}>Sign in</a>
+                </Button>
+              </>
             )}
 
             <Button
@@ -186,9 +165,29 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <main className="flex-1">{children}</main>
 
-      <footer className="border-t border-border py-6 mt-auto">
-        <div className="container text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} IBLens. AI-powered IB essay analysis and university strategy.</p>
+      <footer className="border-t border-border py-12 mt-auto bg-background">
+        <div className="container">
+          <div className="grid md:grid-cols-2 gap-8 items-start">
+            <div>
+              <span style={SERIF} className="text-xl font-bold block mb-2">
+                IB<span className="text-primary">Lens</span>
+              </span>
+              <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
+                AI-powered IB essay grader and university strategy. Criterion-by-criterion feedback in 60 seconds.
+              </p>
+            </div>
+            <nav className="flex flex-wrap gap-x-6 gap-y-2 md:justify-end">
+              <Link href="/essay" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Essay Analyzer</Link>
+              <Link href="/university" className="text-sm text-muted-foreground hover:text-foreground transition-colors">University Strategy</Link>
+              <Link href="/resources" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Resources</Link>
+              <Link href="/pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Pricing</Link>
+              <Link href="/refund-policy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Refund Policy</Link>
+              <Link href="/resources/academic-integrity" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Academic Integrity</Link>
+            </nav>
+          </div>
+          <div className="mt-8 pt-6 border-t border-border text-xs text-muted-foreground">
+            &copy; {new Date().getFullYear()} IBLens. All rights reserved.
+          </div>
         </div>
       </footer>
     </div>

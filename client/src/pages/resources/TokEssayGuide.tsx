@@ -4,7 +4,7 @@ import { Link } from "wouter";
 export default function TokEssayGuide() {
   return (
     <ResourceArticle
-      title="IB TOK Essay Guide — Prescribed Titles, Knowledge Claims & How to Write It"
+      title="IB TOK Essay Guide — Prescribed Titles, Knowledge Claims & How to Write It | IBLens"
       description="Complete guide to the IB Theory of Knowledge essay: prescribed titles, knowledge claims and counter-claims, areas of knowledge, assessment criteria, and common errors to avoid."
       canonical="/resources/tok-essay-guide"
       datePublished="2026-05-01"
@@ -190,7 +190,7 @@ export default function TokEssayGuide() {
       </ul>
 
       <p>
-        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <Link href="/essay" className="text-primary hover:underline">IBLens can provide criterion-based feedback</Link> on your draft. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">IB Grade Boundaries</Link> guide. For a broader look at how IB criteria work across essay types, read our <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB Essay Criteria Explained</Link> article.
+        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <Link href="/essay/tok-essay" className="text-primary hover:underline">IBLens can provide criterion-based feedback on your TOK essay</Link> — scored against the official IB TOK rubric in 60 seconds. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">IB Grade Boundaries</Link> guide. For a broader look at how IB criteria work across essay types, read our <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB Essay Criteria Explained</Link> article.
       </p>
     </ResourceArticle>
   );

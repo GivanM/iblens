@@ -31,6 +31,32 @@ const SITE_NAME = "IBLens";
 const DEFAULT_OG_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663456034410/fPpXrWUtmpLttw7Fz9wKLE/og-image-CS5C2Vq6Jk92bXNFNMwCXg.png";
 
 const routeMeta = {
+  "/remark": {
+    title: "IB Remark 2026 — Is an EUR Worth It? Check Before You Pay | IBLens",
+    description: "An IB remark costs around $100–120, your grade can go down, and the deadline is mid-September. Grade your EE or TOK essay with a strict AI first — know if you are near a boundary before you pay.",
+    ogType: "website",
+    canonical: "/remark",
+    schemaType: "WebPage",
+    faq: [
+      { question: "How much does an IB remark cost in 2026?", answer: "An EUR Category 1 re-mark typically costs around $100–120 per subject, depending on your school and region. The fee is refunded only if your grade changes." },
+      { question: "Can my grade go down after an IB remark?", answer: "Yes. On a remark your grade can move up or down, and the new grade is final. Only remark when you have evidence you are close to a grade boundary." },
+      { question: "What is the IB remark deadline?", answer: "Around September 15 for the May session. Requests are submitted by your school, and coordinators often set earlier internal deadlines — ask yours as soon as results are out." },
+      { question: "Should I remark or retake?", answer: "Remark if your externally-marked essay (EE or TOK) reads close to a boundary. Retake in November if you are several marks off — registration between July 6–29 has the lowest fees." },
+    ],
+  },
+  "/resources/academic-integrity": {
+    title: "AI Feedback and IB Academic Integrity — Is It Allowed? | IBLens",
+    description: "What the IB academic integrity policy means for AI feedback on your EE, TOK essay or IA — and how IBLens handles your data: no training on your essays, no sharing, deletion on request.",
+    ogType: "article",
+    canonical: "/resources/academic-integrity",
+    schemaType: "Article",
+    faq: [
+      { question: "Is it against IB rules to get AI feedback on my essay?", answer: "The IB integrity policy targets submitting work that is not your own. Feedback on writing you produced yourself — like a supervisor or tutor gives — is study support. Your school may have stricter rules, so check with your coordinator, and never paste AI-generated text into your submission." },
+      { question: "Does IBLens store my essay or train AI on it?", answer: "No. Essays are graded and returned — they are not used to train models, not shared or published, and anonymous analyses are not stored permanently. You can request deletion at any time." },
+      { question: "Will Turnitin flag me for using AI feedback?", answer: "No. Reading feedback about your essay adds nothing to any similarity database. What gets flagged is AI-generated prose inside your submission — which is why IBLens returns feedback, never rewritten text." },
+    ],
+  },
+
   "/": {
     title: "IBLens \u2014 AI-Powered IB Essay Feedback & Score Prediction",
     description: "Upload your IB Extended Essay, Internal Assessment, or TOK essay and get criterion-by-criterion feedback with a predicted score in 60 seconds. First analysis free.",
@@ -109,9 +135,254 @@ const routeMeta = {
     ogType: "article",
     schemaType: "Article",
   },
+  "/resources/ib-extended-essay-examples": {
+    title: "IB Extended Essay Examples — High-Scoring EE Samples by Subject | IBLens",
+    description: "Real IB Extended Essay examples with examiner commentary. Understand what a 7-scoring EE looks like and how to structure yours.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/ib-ia-score-predictor": {
+    title: "IB IA Score Predictor — Estimate Your Internal Assessment Grade | IBLens",
+    description: "Understand how IB Internal Assessment grades work, how moderation affects your score, and how to predict your IA grade before submission.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/ib-score-calculator": {
+    title: "IB Score Calculator — Points, Grade Boundaries and Diploma Requirements | IBLens",
+    description: "Calculate your IB Diploma total, understand grade boundaries, bonus points matrix, and what different scores mean for university admissions.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/ib-university-admissions-strategy": {
+    title: "IB University Admissions Strategy — How to Choose Universities | IBLens",
+    description: "A practical guide to IB university admissions: build your school list, decode score requirements by country, and avoid common application mistakes.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/ib-math-ia-examples": {
+    title: "IB Math IA Examples — High-Scoring Topics and Structures | IBLens",
+    description: "Real IB Math IA examples with examiner commentary. Learn which topics score 7s and what common mistakes cost marks on every criterion.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/ib-biology-ia-examples": {
+    title: "IB Biology IA Examples — Topics, Data, and How to Score a 7 | IBLens",
+    description: "High-scoring IB Biology IA examples with analysis of what makes them work. Avoid the mistakes that drop competent students from a 6 to a 4.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/ib-economics-ia": {
+    title: "IB Economics IA — How to Write All Three Commentaries and Score a 7 | IBLens",
+    description: "Complete guide to the IB Economics Internal Assessment: how to choose articles, structure each commentary, use diagrams correctly, and avoid mark-losing mistakes.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/ib-extended-essay-word-count": {
+    title: "IB Extended Essay Word Count — The 4000-Word Limit Explained | IBLens",
+    description: "What counts toward the 4000-word limit, what does not, how close to the limit to aim, and what happens if you go over.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/ib-extended-essay-help": {
+    title: "Struggling With Your IB Extended Essay? Here's What Actually Helps | IBLens",
+    description: "If you are stuck on your Extended Essay, this guide covers what you can do yourself, what your supervisor helps with, and how to get examiner-level feedback.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/ib-chemistry-ia-examples": {
+    title: "IB Chemistry IA Examples — Topics, Methods, and How to Score a 7 | IBLens",
+    description: "High-scoring IB Chemistry IA examples with examiner analysis. Learn which investigation types earn top marks and how to handle uncertainty and evaluation.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/ib-physics-ia-examples": {
+    title: "IB Physics IA Examples — Investigation Ideas and How to Score a 7 | IBLens",
+    description: "High-scoring IB Physics IA examples with examiner commentary. Discover which investigations earn top marks and how to handle uncertainty propagation.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/ib-psychology-ia": {
+    title: "IB Psychology IA — How to Design Your Replication Study and Score a 7 | IBLens",
+    description: "Complete guide to the IB Psychology Internal Assessment: choose a study to replicate, design an ethical experiment, analyse results statistically.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/ib-history-ia": {
+    title: "IB History IA — How to Write Your Historical Investigation and Score a 7 | IBLens",
+    description: "Complete guide to the IB History Internal Assessment: how to choose a research question, structure the three sections, evaluate sources with OPCVL.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/ib-ee-examples-by-subject": {
+    title: "IB Extended Essay Examples by Subject — What a 7-Scoring EE Looks Like | IBLens",
+    description: "Concrete IB Extended Essay examples across Economics, History, Biology, English, Psychology, Mathematics, and Physics. Understand what separates a grade 7 EE.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/ib-ia-grader": {
+    title: "IB IA Grader — Free AI Internal Assessment Grader for All Subjects | IBLens",
+    description: "Free IB IA grader powered by AI. Grade your Internal Assessment against official IB rubrics for Biology, Chemistry, Physics, Maths, History, Economics, Psychology and more.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/tok-essay-format": {
+    title: "IB TOK Essay Format — Word Count, Structure & Formatting Rules | IBLens",
+    description: "Official IB TOK essay format: 1,600-word limit, introduction and body structure, citation requirements, what counts towards the word count, and examiner formatting expectations.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/tok-essay-structure": {
+    title: "IB TOK Essay Structure 2026 — How to Structure Your Theory of Knowledge Essay | IBLens",
+    description: "Step-by-step IB TOK essay structure: introduction, knowledge claims, counter-claims, conclusion. Paragraph-by-paragraph guide and examiner tips for 2026.",
+    ogType: "website",
+    canonical: "/resources/tok-essay-structure",
+    schemaType: "Article",
+    faq: [
+      { question: "What is the structure of a TOK essay?", answer: "A TOK essay has an introduction (150–200 words), two body sections each covering one Area of Knowledge using claim/counter-claim structure (500–600 words each), and a conclusion (200–250 words). Total: 1,600 words maximum." },
+      { question: "How many Areas of Knowledge should a TOK essay cover?", answer: "Two Areas of Knowledge. Covering three or more AOKs means insufficient depth in each. Choose two that create a meaningful contrast — for example, Natural Sciences and Arts, or History and Mathematics." },
+      { question: "What is a knowledge claim in TOK?", answer: "A knowledge claim is an assertion about how knowledge works in a specific Area of Knowledge. It must be arguable — not a fact or opinion — and must be supported by a specific real-world example and challenged by a counter-claim." },
+    ],
+  },
+  "/resources/ib-university-consultant-cost": {
+    title: "IB University Consultant Cost 2026 — Are They Worth $5,000? | IBLens",
+    description: "What IB university admissions consultants cost ($3,000–$15,000+), what they do, which parts an AI tool replicates for $25, and when you genuinely need a human.",
+    ogType: "article",
+    canonical: "/resources/ib-university-consultant-cost",
+    schemaType: "Article",
+    faq: [
+      { question: "How much do IB university consultants cost?", answer: "Typically $3,000–$8,000 for a standard application-season package, $150–$400 per hour for hourly work, and $10,000–$15,000+ for premium Ivy-focused packages. Some boutique firms charge $30,000 or more." },
+      { question: "Are university admissions consultants worth it?", answer: "For multi-draft essay editing and interview coaching, a good consultant earns their fee. But the strategic core — a balanced Safe/Match/Reach list, admission-chance estimates, an essay angle, and a timeline — can be generated by IBLens for $25." },
+      { question: "What is a cheaper alternative to a university consultant?", answer: "IBLens generates a personalised 9-university Safe/Match/Reach shortlist with admission probabilities, a personal-statement angle, and an application timeline for $25 — the strategic core of a $5,000 consultant package." },
+    ],
+  },
+  "/resources/ib-university-chances": {
+    title: "IB University Chances Checker — What Can My IB Score Get Me? | IBLens",
+    description: "Free IB university chances checker. Set your predicted IB score and see realistic Safe, Match, and Reach universities across the UK, US, Canada, Europe and Australia.",
+    ogType: "article",
+    canonical: "/resources/ib-university-chances",
+    schemaType: "Article",
+    faq: [
+      { question: "What universities can I get into with my IB score?", answer: "40–45 points is competitive for Oxbridge, the Ivy League, LSE and Imperial; 36–39 for the Russell Group and top Canadian and Dutch universities; 32–35 for a wide range of UK, EU and Australian universities; 28–31 for many direct-entry programs and foundation pathways." },
+      { question: "Is the IB university chances checker free?", answer: "Yes. The checker gives a free directional estimate based on published IB entry requirements. For a personalised 9-university shortlist with real admission odds tailored to your subjects, the full IB University Strategy costs $25." },
+      { question: "How many IB points do you need for university?", answer: "Most universities require 30–36 IB points for direct entry, with the most selective courses requiring 38–42. Foundation pathways accept lower scores." },
+    ],
+  },
+  "/resources/ib-biology-extended-essay": {
+    title: "IB Biology Extended Essay — Research Questions, Examples & Score an A | IBLens",
+    description: "Complete guide to the IB Biology Extended Essay: choosing a research question, EE vs IA differences, assessment criteria A-E, structure, high-scoring topics, and RPPF guidance.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/ib-chemistry-extended-essay": {
+    title: "IB Chemistry Extended Essay — Research Questions, Topics & Score an A | IBLens",
+    description: "Full guide to the IB Chemistry Extended Essay: research question examples, assessment criteria, structure, high-scoring topics (kinetics, electrochemistry, colorimetry), and common pitfalls.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/essay/computer-science-ia": {
+    title: "IB Computer Science IA Grader — Free AI Feedback | IBLens",
+    description: "AI feedback on your IB Computer Science Internal Assessment. Criterion-by-criterion scoring against the official IB CS IA rubric. First analysis free — no account needed.",
+    ogType: "website",
+    canonical: "/essay/computer-science-ia",
+    schemaType: "WebPage",
+  },
+  "/essay/tok-exhibition": {
+    title: "IB TOK Exhibition Grader — Free AI Feedback on All 3 Objects | IBLens",
+    description: "AI feedback on your IB Theory of Knowledge Exhibition. Check if your objects make convincing links to the IA prompt and to TOK concepts — scored against the official IB rubric. Free first check.",
+    ogType: "website",
+    canonical: "/essay/tok-exhibition",
+    schemaType: "WebPage",
+  },
+  "/essay/maths-aa-ia": {
+    title: "IB Math AA IA Grader — Free AI Feedback on Analysis & Approaches | IBLens",
+    description: "AI feedback on your IB Mathematics: Analysis and Approaches IA. Communication, mathematical presentation, personal engagement — all scored against the official IB criteria.",
+    ogType: "website",
+    canonical: "/essay/maths-aa-ia",
+    schemaType: "WebPage",
+  },
+  "/essay/maths-ai-ia": {
+    title: "IB Math AI IA Grader — Free AI Feedback on Applications & Interpretation | IBLens",
+    description: "AI feedback on your IB Mathematics: Applications and Interpretation IA. Communication, personal engagement, use of mathematics — all scored against official IB criteria.",
+    ogType: "website",
+    canonical: "/essay/maths-ai-ia",
+    schemaType: "WebPage",
+  },
+  "/grade": {
+    title: "IBLens \u2014 AI-Powered IB Essay Feedback & Score Prediction",
+    description: "Upload your IB Extended Essay, Internal Assessment, or TOK essay and get criterion-by-criterion feedback with a predicted score in 60 seconds. First analysis free.",
+    ogType: "website",
+    schemaType: "WebPage",
+  },
   "/auth/signin": {
     title: "Sign In \u2014 IBLens",
     description: "Sign in to IBLens to access your IB essay analyses, purchase history, and personalized university strategies.",
+    ogType: "website",
+    schemaType: "WebPage",
+  },
+  // Programmatic subject pages
+  "/essay/business-management-ia": {
+    title: "IB Business Management IA Grader \u2014 Free AI Feedback | IBLens",
+    description: "Get instant AI feedback on your IB Business Management Internal Assessment. Criterion-by-criterion scoring against the official IB rubric. First analysis free \u2014 no account needed.",
+    ogType: "website",
+    schemaType: "WebPage",
+  },
+  "/essay/economics-ia": {
+    title: "IB Economics IA Grader \u2014 Free AI Feedback on Commentary | IBLens",
+    description: "AI feedback on your IB Economics IA commentary. Checks diagrams, economic analysis, and evaluation against official IB Economics criteria. Free first check.",
+    ogType: "website",
+    schemaType: "WebPage",
+  },
+  "/essay/history-ia": {
+    title: "IB History IA Grader \u2014 Free AI Feedback & Score Prediction | IBLens",
+    description: "AI-powered feedback on your IB History Internal Assessment. Source evaluation, investigation quality, and reflection \u2014 all scored against official IB History criteria.",
+    ogType: "website",
+    schemaType: "WebPage",
+  },
+  "/essay/biology-ia": {
+    title: "IB Biology IA Grader \u2014 Free AI Feedback on Lab Report | IBLens",
+    description: "Instant AI feedback on your IB Biology Internal Assessment. Exploration, analysis, evaluation, and communication scored against official IB criteria. Free.",
+    ogType: "website",
+    schemaType: "WebPage",
+  },
+  "/essay/chemistry-ia": {
+    title: "IB Chemistry IA Grader \u2014 Free AI Feedback on Lab Report | IBLens",
+    description: "Get AI feedback on your IB Chemistry Internal Assessment. All 5 criteria scored against the official IB Chemistry rubric. First analysis free.",
+    ogType: "website",
+    schemaType: "WebPage",
+  },
+  "/essay/physics-ia": {
+    title: "IB Physics IA Grader \u2014 Free AI Feedback on Investigation | IBLens",
+    description: "AI-powered feedback on your IB Physics Internal Assessment. All 5 criteria: personal engagement, exploration, analysis, evaluation, communication. Free.",
+    ogType: "website",
+    schemaType: "WebPage",
+  },
+  "/essay/math-ia": {
+    title: "IB Math IA Grader \u2014 Free AI Feedback on Exploration | IBLens",
+    description: "Get instant AI feedback on your IB Mathematics IA exploration. Communication, mathematical presentation, personal engagement \u2014 all scored against official IB Math criteria.",
+    ogType: "website",
+    schemaType: "WebPage",
+  },
+  "/essay/psychology-ia": {
+    title: "IB Psychology IA Grader \u2014 Free AI Feedback on Research Report | IBLens",
+    description: "AI feedback on your IB Psychology Internal Assessment. Introduction, method, results, discussion, and conclusion scored against official IB Psychology criteria.",
+    ogType: "website",
+    schemaType: "WebPage",
+  },
+  "/essay/english-essay": {
+    title: "IB English Essay Grader \u2014 Free AI Feedback on HL Essay & IA | IBLens",
+    description: "AI feedback on IB English Language & Literature essays and HL essays. Knowledge, analysis, focus, and language scored against official IB English criteria. Free.",
+    ogType: "website",
+    schemaType: "WebPage",
+  },
+  "/essay/extended-essay": {
+    title: "IB Extended Essay Grader \u2014 Free AI Feedback on Your EE | IBLens",
+    description: "AI-powered feedback on your IB Extended Essay. All 5 criteria scored: focus & method, knowledge, critical thinking, presentation, engagement. Free first check.",
+    ogType: "website",
+    schemaType: "WebPage",
+  },
+  "/essay/tok-essay": {
+    title: "IB TOK Essay Grader \u2014 Free AI Feedback on Theory of Knowledge | IBLens",
+    description: "AI feedback on your IB Theory of Knowledge essay. Knowledge claims, counter-claims, Areas of Knowledge \u2014 all scored against the official IB TOK criteria. Free first check.",
     ogType: "website",
     schemaType: "WebPage",
   },
@@ -197,11 +468,39 @@ ${JSON.stringify(breadcrumbs, null, 6)}
     </script>`;
 }
 
+function escapeAttr(str) {
+  return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+}
+
 function processHtml(template, routePath, meta) {
   let html = template;
 
+  // Replace <title> with per-route title (since we are NOT behind Manus CDN,
+  // real <title> tags are served directly to Google and matter for ranking)
+  html = html.replace(/<title>[^<]*<\/title>/, `<title>${meta.title}<\/title>`);
+
+  // Build canonical URL
+  const canonicalUrl = routePath === '/' ? SITE_URL + '/' : `${SITE_URL}${routePath}`;
+
+  // Inject description, canonical, OG and Twitter tags right after </title>
+  const seoInjection = [
+    `<meta name="description" content="${escapeAttr(meta.description)}" />`,
+    `<link rel="canonical" href="${canonicalUrl}" />`,
+    `<meta property="og:type" content="${meta.ogType}" />`,
+    `<meta property="og:title" content="${escapeAttr(meta.title)}" />`,
+    `<meta property="og:description" content="${escapeAttr(meta.description)}" />`,
+    `<meta property="og:url" content="${canonicalUrl}" />`,
+    `<meta property="og:site_name" content="IBLens" />`,
+    `<meta property="og:image" content="${DEFAULT_OG_IMAGE}" />`,
+    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:title" content="${escapeAttr(meta.title)}" />`,
+    `<meta name="twitter:description" content="${escapeAttr(meta.description)}" />`,
+    `<meta name="twitter:image" content="${DEFAULT_OG_IMAGE}" />`,
+  ].join('\n    ');
+
+  html = html.replace('<\/title>', `<\/title>\n    ${seoInjection}`);
+
   // Inject per-route JSON-LD right before </head>
-  // The CDN will NOT touch these script tags
   const jsonLd = generateJsonLd(routePath, meta);
   html = html.replace("</head>", `${jsonLd}\n  </head>`);
 

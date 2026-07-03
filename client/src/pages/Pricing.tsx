@@ -7,27 +7,25 @@ import { Link } from "wouter";
 import { PRICE_LABELS, type ProductKey } from "@shared/pricing";
 import { PurchaseModal } from "@/components/PurchaseModal";
 import {
-  FileText, GraduationCap, BarChart3, CheckCircle2, ArrowRight,
-  Shield, Bitcoin, Gift, Sparkles, CreditCard
+  CheckCircle2, ArrowRight, Shield, Gift, CreditCard
 } from "lucide-react";
+
+const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
 const plans: Array<{
   name: string;
   price: string;
   description: string;
-  icon: typeof FileText;
   popular: boolean;
   features: string[];
   cta: string;
   href: string;
-  requiresAuth: boolean;
   productKey: ProductKey;
 }> = [
   {
     name: "Single Analysis",
     price: PRICE_LABELS.ESSAY_SINGLE,
     description: "1 essay analysis",
-    icon: FileText,
     popular: false,
     features: [
       "Predicted score & IB band",
@@ -38,14 +36,12 @@ const plans: Array<{
     ],
     cta: "Get Started",
     href: "/essay",
-    requiresAuth: false,
     productKey: "ESSAY_SINGLE",
   },
   {
     name: "5 Analyses",
     price: PRICE_LABELS.ESSAY_PACK_5,
     description: "5 essay analyses",
-    icon: BarChart3,
     popular: true,
     features: [
       "Everything in single analysis",
@@ -56,14 +52,12 @@ const plans: Array<{
     ],
     cta: "Get Started",
     href: "/dashboard",
-    requiresAuth: true,
     productKey: "ESSAY_PACK_5",
   },
   {
     name: "10 Analyses",
     price: PRICE_LABELS.ESSAY_PACK_10,
     description: "10 essay analyses",
-    icon: Sparkles,
     popular: false,
     features: [
       "Everything in single analysis",
@@ -74,14 +68,12 @@ const plans: Array<{
     ],
     cta: "Get Started",
     href: "/dashboard",
-    requiresAuth: true,
     productKey: "ESSAY_PACK_10",
   },
   {
     name: "University Strategy",
     price: PRICE_LABELS.UNIVERSITY_SINGLE,
     description: "Complete university strategy report",
-    icon: GraduationCap,
     popular: false,
     features: [
       "9 universities: safe, match, reach",
@@ -92,7 +84,6 @@ const plans: Array<{
     ],
     cta: "Get Strategy",
     href: "/university",
-    requiresAuth: false,
     productKey: "UNIVERSITY_SINGLE",
   },
 ];
@@ -123,9 +114,11 @@ export default function Pricing() {
 
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
-            Simple, transparent pricing
+          <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3">Pricing</p>
+          <h1 style={SERIF} className="text-4xl md:text-5xl font-bold mb-4">
+            Simple, transparent pricing.
           </h1>
+          <p className="text-sm text-muted-foreground mt-2">No subscription. Credits never expire. No ads.</p>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             No subscriptions. No hidden fees. Pay only for what you use.
             Your first essay analysis is always free.
@@ -134,31 +127,29 @@ export default function Pricing() {
 
         {/* Free tier highlight */}
         <div className="max-w-2xl mx-auto mb-12">
-          <Card className="border-2 border-emerald-500/30 bg-emerald-50/50">
-            <CardContent className="p-6 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
-                <Gift className="w-6 h-6 text-emerald-600" />
-              </div>
-              <div className="flex-1">
-                <h3 className="font-semibold text-emerald-800">First essay analysis is free</h3>
-                <p className="text-sm text-emerald-700/70">
-                  Paste your essay — no sign-in, no credit card required. Get criterion scores and feedback instantly.
-                </p>
-              </div>
-              <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700 flex-shrink-0" asChild>
-                <Link href="/essay">Try Free</Link>
-              </Button>
-            </CardContent>
-          </Card>
+          <div className="rounded-xl border border-border bg-card p-6 flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <Gift className="w-6 h-6 text-primary" />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold">First essay analysis is free</h3>
+              <p className="text-sm text-muted-foreground mt-0.5">
+                Paste your essay — no sign-in, no credit card required. Get criterion scores and feedback instantly.
+              </p>
+            </div>
+            <Button size="sm" asChild className="flex-shrink-0">
+              <Link href="/essay">Try Free</Link>
+            </Button>
+          </div>
         </div>
 
         {/* Pricing cards */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {plans.map((plan) => (
-            <Card
+            <div
               key={plan.name}
-              className={`relative flex flex-col border-2 transition-all duration-300 hover:shadow-lg ${
-                plan.popular ? "border-primary shadow-md" : "border-border"
+              className={`relative flex flex-col rounded-xl border bg-card p-6 ${
+                plan.popular ? "border-2 border-primary shadow-md" : "border border-border"
               }`}
             >
               {plan.popular && (
@@ -168,47 +159,43 @@ export default function Pricing() {
                   </Badge>
                 </div>
               )}
-              <CardContent className="p-6 flex flex-col flex-1">
-                <div className="text-center mb-6">
-                  <plan.icon className={`w-8 h-8 mx-auto mb-3 ${plan.popular ? "text-primary" : "text-muted-foreground"}`} />
-                  <h3 className="font-semibold text-base mb-3">{plan.name}</h3>
-                  <div className="text-4xl font-bold tracking-tight mb-1">{plan.price}</div>
-                  <p className="text-sm text-muted-foreground">{plan.description}</p>
-                </div>
 
-                <ul className="space-y-3 text-sm flex-1 mb-6">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="mb-5">
+                <h3 style={SERIF} className="text-lg font-bold mb-1">{plan.name}</h3>
+                <div style={SERIF} className="text-3xl font-bold mb-1">{plan.price}</div>
+                <p className="text-sm text-muted-foreground">{plan.description}</p>
+              </div>
 
-                {/* Single Buy Now button opens PurchaseModal */}
-                <Button
-                  size="sm"
-                  className="w-full mb-2"
-                  variant={plan.popular ? "default" : "outline"}
-                  onClick={() => handleBuyNow(plan.productKey)}
-                >
-                  <CreditCard className="w-3.5 h-3.5 mr-1.5" />
-                  Buy Now
-                </Button>
+              <ul className="space-y-2.5 text-sm flex-1 mb-6">
+                {plan.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
 
-                {/* Navigate to feature page */}
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  className="w-full text-xs text-muted-foreground"
-                  asChild
-                >
-                  <Link href={plan.href}>
-                    {plan.cta} <ArrowRight className="w-3 h-3 ml-1" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
+              <Button
+                size="sm"
+                className="w-full mb-2"
+                variant={plan.popular ? "default" : "outline"}
+                onClick={() => handleBuyNow(plan.productKey)}
+              >
+                <CreditCard className="w-3.5 h-3.5 mr-1.5" />
+                Buy Now
+              </Button>
+
+              <Button
+                size="sm"
+                variant="ghost"
+                className="w-full text-xs text-muted-foreground"
+                asChild
+              >
+                <Link href={plan.href}>
+                  {plan.cta} <ArrowRight className="w-3 h-3 ml-1" />
+                </Link>
+              </Button>
+            </div>
           ))}
         </div>
 
@@ -223,15 +210,15 @@ export default function Pricing() {
             <span>Secure checkout</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <Bitcoin className="w-4 h-4" />
-            <span>USDT, BTC, ETH & more</span>
+            <CreditCard className="w-4 h-4" />
+            <span>Instant credit activation</span>
           </div>
         </div>
 
         {/* Bottom CTA */}
         <div className="text-center mt-16">
           <p className="text-muted-foreground mb-4">Not sure yet? Try your first analysis for free.</p>
-          <Button size="lg" className="shadow-lg shadow-primary/25" asChild>
+          <Button size="lg" asChild>
             <Link href="/essay">
               Start Free Analysis <ArrowRight className="w-4 h-4 ml-2" />
             </Link>

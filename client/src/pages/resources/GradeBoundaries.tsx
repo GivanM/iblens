@@ -4,7 +4,7 @@ import { Link } from "wouter";
 export default function GradeBoundaries() {
   return (
     <ResourceArticle
-      title="IB Grade Boundaries Explained — How IB Scoring Works"
+      title="IB Grade Boundaries Explained — How IB Scoring Works | IBLens"
       description="Understand how IB grade boundaries work: the 7-point scale, how subject scores combine, bonus points from EE/TOK, and what different total scores mean for university admissions."
       canonical="/resources/ib-grade-boundaries"
       datePublished="2026-05-01"

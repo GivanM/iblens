@@ -21,7 +21,6 @@ import {
   getUserOrders,
   findOrCreateGuestUserByEmail,
 } from "./db";
-import { createNowPaymentsInvoice } from "./nowpayments/nowpayments";
 import { createLemonsqueezyCheckout } from "./lemonsqueezy/lemonsqueezy";
 import { LEMONSQUEEZY_VARIANTS, PRODUCT_KEY_TO_LS_SKU } from "../shared/pricing";
 import { randomUUID } from "crypto";
@@ -87,7 +86,7 @@ function buildEssayUserPrompt(essayType: string, subject: string, researchQuesti
 Research Question: ${researchQuestion || "not provided"}
 
 TEXT:
-${essayText.substring(0, 6000)}
+${essayText.substring(0, 30000)}
 
 Respond with this exact JSON structure:
 {
@@ -108,13 +107,22 @@ Respond with this exact JSON structure:
 
 // ---- Essay Analysis Router ----
 const essayRouter = router({
+  // Capture email of anonymous users who want their report + tips (remarketing list)
+  saveReportEmail: publicProcedure
+    .input(z.object({ email: z.string().email(), fingerprint: z.string().optional() }))
+    .mutation(async ({ input }) => {
+      await findOrCreateGuestUserByEmail(input.email.toLowerCase().trim());
+      console.log(`[Report Email] captured for fp=${input.fingerprint || "n/a"}`);
+      return { ok: true } as const;
+    }),
+
   // Anonymous analysis — no login required, 1 free analysis per fingerprint
   analyzeAnonymous: publicProcedure
     .input(z.object({
       essayType: z.enum(ESSAY_TYPES),
       subject: z.string().min(1),
       researchQuestion: z.string().optional(),
-      essayText: z.string().min(150, "Please provide at least 200 words for meaningful analysis."),
+      essayText: z.string().min(300, "Please provide at least 200 words for meaningful analysis."),
       clientFingerprint: z.string().min(1),
     }))
     .mutation(async ({ input }) => {
@@ -185,7 +193,7 @@ const essayRouter = router({
       essayType: z.enum(ESSAY_TYPES),
       subject: z.string().min(1),
       researchQuestion: z.string().optional(),
-      essayText: z.string().min(150, "Please provide at least 200 words for meaningful analysis."),
+      essayText: z.string().min(300, "Please provide at least 200 words for meaningful analysis."),
     }))
     .mutation(async ({ ctx, input }) => {
       const usage = await canUserAnalyzeEssay(ctx.user.id);
@@ -383,63 +391,8 @@ const pricingRouter = router({
   }),
 });
 
-// ---- Payment Router (LemonSqueezy + NOWPayments) ----
+// ---- Payment Router (LemonSqueezy) ----
 const paymentRouter = router({
-  // Create NOWPayments crypto invoice (requires authentication)
-  createCryptoInvoice: protectedProcedure
-    .input(z.object({
-      productKey: z.enum(["ESSAY_SINGLE", "ESSAY_PACK_5", "ESSAY_PACK_10", "UNIVERSITY_SINGLE"]),
-    }))
-    .mutation(async ({ ctx, input }) => {
-      const product = PRODUCTS[input.productKey];
-      if (!product) throw new Error("Invalid product");
-
-      // Map product key to SKU enum
-      const skuMap: Record<string, string> = {
-        ESSAY_SINGLE: "essay_single",
-        ESSAY_PACK_5: "essay_pack_5",
-        ESSAY_PACK_10: "essay_pack_10",
-        UNIVERSITY_SINGLE: "university_single",
-      };
-      const sku = skuMap[input.productKey] as any;
-
-      // Create order in DB
-      const orderId = randomUUID();
-      await createOrder({
-        id: orderId,
-        userId: ctx.user.id,
-        sku,
-        amountUsd: product.priceAmount,
-        currency: "usd",
-        status: "pending",
-        provider: "nowpayments",
-      });
-
-      // Create NOWPayments invoice
-      const priceUsd = product.priceAmount / 100; // Convert cents to dollars
-      const description = `IBLens: ${product.name} (user:${ctx.user.id}, sku:${sku})`;
-
-      const { invoiceUrl, invoiceId } = await createNowPaymentsInvoice(
-        orderId,
-        priceUsd,
-        description,
-      );
-
-      // Update order with invoice ID
-      const { updateOrderStatus } = await import("./db");
-      await updateOrderStatus(orderId, "pending", undefined);
-      // Store npInvoiceId
-      const { getDb } = await import("./db");
-      const { orders } = await import("../drizzle/schema");
-      const { eq } = await import("drizzle-orm");
-      const db = await getDb();
-      if (db) {
-        await db.update(orders).set({ npInvoiceId: invoiceId }).where(eq(orders.id, orderId));
-      }
-
-      return { invoiceUrl, orderId };
-    }),
-
   // Create LemonSqueezy card checkout for guest (unauthenticated) users
   createGuestCheckout: publicProcedure
     .input(z.object({

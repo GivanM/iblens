@@ -4,7 +4,7 @@ import { Link } from "wouter";
 export default function InternalAssessmentGuide() {
   return (
     <ResourceArticle
-      title="IB Internal Assessment Guide — Criteria, Structure & How to Score a 7"
+      title="IB Internal Assessment Guide — Criteria, Structure & How to Score a 7 | IBLens"
       description="Complete guide to IB Internal Assessments: how IAs differ by subject, assessment criteria explained, common pitfalls, examiner marking process, and strategies for top marks."
       canonical="/resources/ib-internal-assessment-guide"
       datePublished="2026-05-01"
@@ -210,6 +210,10 @@ export default function InternalAssessmentGuide() {
 
       <p>
         For a deeper understanding of how criterion-based marking works across all IB essay types, see our <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB Essay Criteria Explained</Link> guide. If you are working on your Extended Essay alongside your IA, our <Link href="/resources/ib-extended-essay-guide" className="text-primary hover:underline">Extended Essay Guide</Link> covers the specific requirements for that component. For understanding how your IA mark contributes to your overall IB score, check our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">IB Grade Boundaries</Link> explainer.
+      </p>
+
+      <p>
+        Get instant AI feedback on your IA: <Link href="/essay/biology-ia" className="text-primary hover:underline">Biology IA</Link>, <Link href="/essay/chemistry-ia" className="text-primary hover:underline">Chemistry IA</Link>, <Link href="/essay/physics-ia" className="text-primary hover:underline">Physics IA</Link>, <Link href="/essay/economics-ia" className="text-primary hover:underline">Economics IA</Link>, <Link href="/essay/history-ia" className="text-primary hover:underline">History IA</Link>, <Link href="/essay/business-management-ia" className="text-primary hover:underline">Business Management IA</Link>, <Link href="/essay/math-ia" className="text-primary hover:underline">Mathematics IA</Link>, or <Link href="/essay/psychology-ia" className="text-primary hover:underline">Psychology IA</Link> — each graded against the official IB rubric in 60 seconds.
       </p>
     </ResourceArticle>
   );

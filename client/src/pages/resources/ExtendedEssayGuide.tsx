@@ -4,7 +4,7 @@ import { Link } from "wouter";
 export default function ExtendedEssayGuide() {
   return (
     <ResourceArticle
-      title="IB Extended Essay Guide — Structure, Criteria & How to Score an A"
+      title="IB Extended Essay Guide — Structure, Criteria & How to Score an A | IBLens"
       description="Complete guide to the IB Extended Essay: word count, structure, research question, assessment criteria A-E, common mistakes, and strategies for scoring an A."
       canonical="/resources/ib-extended-essay-guide"
       datePublished="2026-05-01"
@@ -212,7 +212,7 @@ export default function ExtendedEssayGuide() {
       </ul>
 
       <p>
-        If you want objective, criterion-based feedback on your Extended Essay before submission, <Link href="/essay" className="text-primary hover:underline">IBLens can analyze your draft</Link> against the official IB criteria and identify specific areas for improvement. Getting a predicted score and seeing which criteria need work can help you focus your revision efforts in the final weeks before the deadline.
+        If you want objective, criterion-based feedback on your Extended Essay before submission, <Link href="/essay/extended-essay" className="text-primary hover:underline">IBLens can grade your Extended Essay</Link> against the official IB EE criteria — focus &amp; method, knowledge, critical thinking, presentation, and engagement — in under 60 seconds.
       </p>
 
       <p>

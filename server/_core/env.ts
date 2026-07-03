@@ -9,6 +9,7 @@ export const ENV = {
   // Anthropic
   anthropicApiKey: process.env.ANTHROPIC_API_KEY ?? "",
   anthropicModel: process.env.ANTHROPIC_MODEL ?? "claude-opus-4-5-20251001",
+  anthropicBaseUrl: process.env.ANTHROPIC_BASE_URL ?? "https://api.anthropic.com",
   // Local file storage
   uploadsDir: process.env.UPLOADS_DIR ?? "./uploads",
   uploadsBaseUrl: process.env.UPLOADS_BASE_URL ?? "",

@@ -259,6 +259,9 @@ const RUBRIC_REGISTRY: Record<string, Rubric> = {
 
   // TOK Essay — same rubric regardless of subject
   "TOK::*": TOK_ESSAY,
+
+  // TOK Exhibition — separate assessment (objects + IA prompt links)
+  "TOK::Exhibition": TOK_EXHIBITION,
 };
 
 /**

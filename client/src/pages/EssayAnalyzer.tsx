@@ -16,7 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import {
   FileText, Loader2, AlertTriangle, TrendingUp, ArrowRight,
@@ -26,6 +26,8 @@ import { PurchaseModal } from "@/components/PurchaseModal";
 import { type ProductKey } from "@shared/pricing";
 import { analytics } from "@/lib/analytics";
 import { trackEssaySubmitted, trackEssayUploadStarted } from "@/lib/analytics/track";
+
+const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
 const IB_SUBJECTS = [
   "Business Management", "Economics", "History", "Biology", "Chemistry",
@@ -38,7 +40,15 @@ const ESSAY_TYPES = [
   { value: "IA", label: "Internal Assessment (IA)" },
   { value: "EE", label: "Extended Essay (EE)" },
   { value: "TOK", label: "TOK Essay" },
+  { value: "TOK Exhibition", label: "TOK Exhibition" },
 ];
+
+function getApiEssayParams(essayType: string, subject: string) {
+  if (essayType === "TOK Exhibition") {
+    return { essayType: "TOK" as const, subject: "Exhibition" };
+  }
+  return { essayType: essayType as "IA" | "EE" | "TOK", subject };
+}
 
 /**
  * Decode HTML entities that the AI may accidentally produce (e.g. &amp; → &).
@@ -65,6 +75,15 @@ type EssayResult = {
   _rubricTotalMarks?: number;
 };
 
+const ANALYZING_STEPS = [
+  "Reading your essay\u2026",
+  "Checking it against the official IB rubric\u2026",
+  "Scoring each criterion like a strict examiner\u2026",
+  "Finding the exact marks you\u2019re losing\u2026",
+  "Writing your improvement plan\u2026",
+  "Formatting your report \u2014 almost there\u2026",
+];
+
 export default function EssayAnalyzer() {
   const { isAuthenticated } = useAuth();
   const [essayType, setEssayType] = useState("IA");
@@ -77,8 +96,6 @@ export default function EssayAnalyzer() {
   const creditsQuery = trpc.dashboard.credits.useQuery(undefined, { enabled: isAuthenticated });
   const credits = creditsQuery.data;
 
-  // Check if anonymous user can still analyze (only when not logged in)
-  // Use client fingerprint for the check
   const [anonFp] = useState(() => {
     const key = 'iblens_anon_fp';
     let fp = localStorage.getItem(key);
@@ -92,17 +109,14 @@ export default function EssayAnalyzer() {
     { clientFingerprint: anonFp },
     { enabled: !isAuthenticated }
   );
-  // Default to true so the button is enabled on first load (before server responds)
   const canAnonAnalyze = !isAuthenticated ? (anonCheckQuery.data?.canAnalyze ?? !localStorage.getItem('iblens_anon_used')) : false;
 
-  // Authenticated analysis mutation
   const analyzeMutation = trpc.essay.analyze.useMutation({
     onSuccess: (data) => {
       setResult(data.result as EssayResult);
       creditsQuery.refetch();
       const r = data.result as EssayResult;
       analytics.completeEssayAnalysis(subject, `${r.predicted_score}/${r.max_score}`);
-      // Push conversion events for Google Ads
       const wordCount = essayText.split(/\s+/).filter(Boolean).length;
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'essay_submit', essay_type: essayType, subject, word_count: wordCount });
@@ -118,16 +132,13 @@ export default function EssayAnalyzer() {
     },
   });
 
-  // Anonymous analysis mutation
   const anonAnalyzeMutation = trpc.essay.analyzeAnonymous.useMutation({
     onSuccess: (data) => {
       setResult(data.result as EssayResult);
-      // Mark locally that free analysis was used
       localStorage.setItem('iblens_anon_used', 'true');
       anonCheckQuery.refetch();
       const r = data.result as EssayResult;
       analytics.completeEssayAnalysis(subject, `${r.predicted_score}/${r.max_score}`);
-      // Push conversion events for Google Ads
       const wordCount = essayText.split(/\s+/).filter(Boolean).length;
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'essay_submit', essay_type: essayType, subject, word_count: wordCount });
@@ -140,6 +151,21 @@ export default function EssayAnalyzer() {
   });
 
   const isAnalyzing = analyzeMutation.isPending || anonAnalyzeMutation.isPending;
+
+  const [reportEmail, setReportEmail] = useState("");
+  const [reportEmailSaved, setReportEmailSaved] = useState(false);
+  const saveEmailMutation = trpc.essay.saveReportEmail.useMutation({
+    onSuccess: () => setReportEmailSaved(true),
+    onError: () => toast.error("Could not save your email \u2014 please try again."),
+  });
+
+  const [analyzingStep, setAnalyzingStep] = useState(0);
+  useEffect(() => {
+    if (!isAnalyzing) { setAnalyzingStep(0); return; }
+    const id = setInterval(() => setAnalyzingStep((s) => s + 1), 6000);
+    return () => clearInterval(id);
+  }, [isAnalyzing]);
+  const analyzingLabel = ANALYZING_STEPS[Math.min(analyzingStep, ANALYZING_STEPS.length - 1)];
 
   const handleAnalyze = () => {
     if (essayText.length < 150) {
@@ -154,26 +180,26 @@ export default function EssayAnalyzer() {
     analytics.startEssayAnalysis(subject);
 
     if (isAuthenticated) {
-      // Logged-in user flow
       if (!credits?.canAnalyzeEssay) {
         setEssayPurchaseOpen(true);
         return;
       }
+      const authParams = getApiEssayParams(essayType, subject);
       analyzeMutation.mutate({
-        essayType: essayType as "IA" | "EE" | "TOK",
-        subject,
+        essayType: authParams.essayType,
+        subject: authParams.subject,
         researchQuestion: researchQuestion || undefined,
         essayText,
       });
     } else {
-      // Anonymous user flow
       if (!canAnonAnalyze) {
         setEssayPurchaseOpen(true);
         return;
       }
+      const anonParams = getApiEssayParams(essayType, subject);
       anonAnalyzeMutation.mutate({
-        essayType: essayType as "IA" | "EE" | "TOK",
-        subject,
+        essayType: anonParams.essayType,
+        subject: anonParams.subject,
         researchQuestion: researchQuestion || undefined,
         essayText,
         clientFingerprint: anonFp,
@@ -196,27 +222,28 @@ export default function EssayAnalyzer() {
   };
 
   return (
-    <div className="container py-8 max-w-4xl mx-auto">
+    <div className="container py-12 max-w-4xl mx-auto">
       <SEOHead
-        title="IB Essay Analyzer — AI Feedback & Score Prediction for IA, EE, TOK | IBLens"
-        description="Get instant AI feedback on your IB essay with criterion-by-criterion scoring. First analysis free. Supports Extended Essay, Internal Assessment, TOK — all subjects."
+        title="IB Essay Grader & Checker — AI Feedback for IA, EE & TOK | IBLens"
+        description="Free IB essay grader and checker. AI scores your IA, Extended Essay, or TOK against official IB rubrics — criterion by criterion, with a predicted grade. First analysis free."
         canonical="/essay"
       />
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight mb-2">IB Essay Analyzer</h1>
-        <p className="text-muted-foreground">
+      <div className="mb-10">
+        <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3">Essay Analyzer</p>
+        <h1 style={SERIF} className="text-4xl font-bold mb-3">IB Essay Analyzer</h1>
+        <p className="text-muted-foreground text-lg max-w-2xl">
           Instant AI feedback on your Extended Essay, IA, or TOK — criterion by criterion, with a predicted score.
         </p>
       </div>
 
       {/* ── Sample Report Preview ─────────────────────────────────── */}
-      <div className="mb-8 rounded-xl border border-primary/20 bg-primary/5 overflow-hidden">
-        <div className="px-6 py-4 bg-primary/10 flex flex-wrap items-center justify-between gap-2">
+      <div className="mb-10 rounded-xl border border-border bg-card overflow-hidden">
+        <div className="px-6 py-4 border-b border-border flex flex-wrap items-center justify-between gap-2">
           <div>
             <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-0.5">Sample Report</p>
-            <h2 className="text-lg font-bold">This is what you'll get for your essay</h2>
+            <h2 style={SERIF} className="text-lg font-bold">This is what you'll get for your essay</h2>
           </div>
-          <span className="text-xs text-muted-foreground bg-white px-2.5 py-1 rounded-full border">
+          <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-full border">
             Example · Business Management IA
           </span>
         </div>
@@ -229,8 +256,8 @@ export default function EssayAnalyzer() {
               { label: "IB Band", value: "Band 6", color: "text-foreground" },
               { label: "Criteria Total", value: "78%", color: "text-foreground" },
             ].map((s) => (
-              <div key={s.label} className="text-center p-4 bg-white rounded-lg border">
-                <div className={`text-2xl font-bold ${s.color}`}>{s.value}</div>
+              <div key={s.label} className="text-center p-4 bg-muted/50 rounded-lg border border-border">
+                <div style={SERIF} className={`text-2xl font-bold ${s.color}`}>{s.value}</div>
                 <div className="text-xs text-muted-foreground mt-1">{s.label}</div>
               </div>
             ))}
@@ -254,10 +281,10 @@ export default function EssayAnalyzer() {
             ].map((c) => (
               <div key={c.name}>
                 <div className="flex justify-between text-sm mb-1">
-                  <span>{c.name}</span>
+                  <span className="font-medium">{c.name}</span>
                   <span className="font-semibold">{c.score}/{c.max}</span>
                 </div>
-                <div className="h-2 bg-gray-100 rounded-full">
+                <div className="h-2 bg-muted rounded-full">
                   <div className={`h-full rounded-full ${c.color}`} style={{ width: `${(c.score / c.max) * 100}%` }} />
                 </div>
               </div>
@@ -314,19 +341,21 @@ export default function EssayAnalyzer() {
                 </SelectContent>
               </Select>
             </div>
-            <div className="space-y-2">
-              <Label>Subject</Label>
-              <Select value={subject} onValueChange={setSubject}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {IB_SUBJECTS.map((s) => (
-                    <SelectItem key={s} value={s}>{s}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+            {essayType !== "TOK Exhibition" && (
+              <div className="space-y-2">
+                <Label>Subject</Label>
+                <Select value={subject} onValueChange={setSubject}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {IB_SUBJECTS.map((s) => (
+                      <SelectItem key={s} value={s}>{s}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -397,7 +426,7 @@ export default function EssayAnalyzer() {
               {isAnalyzing ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Analyzing your {essayType}… (20–40 seconds)
+                  {analyzingLabel}
                 </>
               ) : (
                 <>
@@ -427,7 +456,7 @@ export default function EssayAnalyzer() {
                 {isAnalyzing ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    Analyzing your {essayType}... (20-40 seconds)
+                    {analyzingLabel}
                   </>
                 ) : !credits?.canAnalyzeEssay ? (
                   <>
@@ -472,6 +501,26 @@ export default function EssayAnalyzer() {
       {/* Results */}
       {result && (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          {!isAuthenticated && (
+            <Card className="border-primary/30 bg-primary/5">
+              <CardContent className="pt-6">
+                {reportEmailSaved ? (
+                  <p className="text-sm font-medium flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> Saved — we’ll email your report link and improvement tips.</p>
+                ) : (
+                  <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
+                    <div className="flex-1">
+                      <p className="text-sm font-semibold mb-1">Keep this report</p>
+                      <p className="text-xs text-muted-foreground">Get your criterion breakdown and targeted improvement tips by email.</p>
+                    </div>
+                    <div className="flex gap-2 w-full sm:w-auto">
+                      <Input type="email" placeholder="you@email.com" value={reportEmail} onChange={(e) => setReportEmail(e.target.value)} className="sm:w-56 bg-background" />
+                      <Button size="sm" disabled={!reportEmail.includes("@") || saveEmailMutation.isPending} onClick={() => saveEmailMutation.mutate({ email: reportEmail, fingerprint: anonFp })}>Save</Button>
+                    </div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          )}
           {/* Overall Score */}
           <Card>
             <CardHeader>
@@ -492,19 +541,18 @@ export default function EssayAnalyzer() {
 
               <div className="grid grid-cols-3 gap-4 mb-6">
                 <div className="text-center p-4 bg-muted/50 rounded-lg">
-                  <div className={`text-3xl font-bold ${getScoreColor(result.predicted_score, result.max_score)}`}>
+                  <div style={SERIF} className={`text-3xl font-bold ${getScoreColor(result.predicted_score, result.max_score)}`}>
                     {result.predicted_score}/{result.max_score}
                   </div>
                   <div className="text-xs text-muted-foreground mt-1">Predicted Score</div>
                 </div>
                 <div className="text-center p-4 bg-muted/50 rounded-lg">
-                  <div className="text-3xl font-bold">{result.band_range}</div>
+                  <div style={SERIF} className="text-3xl font-bold">{result.band_range}</div>
                   <div className="text-xs text-muted-foreground mt-1">IB Band</div>
                 </div>
                 <div className="text-center p-4 bg-muted/50 rounded-lg">
-                  <div className="text-3xl font-bold">
+                  <div style={SERIF} className="text-3xl font-bold">
                     {(() => {
-                      // Part 2: Transparent percentage = sum(criteria scores) / sum(criteria max) * 100
                       const sumScores = result.criteria.reduce((a, c) => a + c.score, 0);
                       const sumMax = result.criteria.reduce((a, c) => a + c.max, 0);
                       return sumMax > 0 ? Math.round((sumScores / sumMax) * 100) : 0;
@@ -528,8 +576,8 @@ export default function EssayAnalyzer() {
               {result.criteria.map((c, i) => (
                 <div key={i} className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">{decodeAndSanitize(c.name)}</span>
-                    <span className={`text-sm font-semibold ${getScoreColor(c.score, c.max)}`}>
+                    <span className="text-sm font-semibold">{decodeAndSanitize(c.name)}</span>
+                    <span className={`text-sm font-bold ${getScoreColor(c.score, c.max)}`}>
                       {c.score}/{c.max}
                     </span>
                   </div>
@@ -556,8 +604,8 @@ export default function EssayAnalyzer() {
               </CardHeader>
               <CardContent className="space-y-3">
                 {result.risks.map((r, i) => (
-                  <div key={i} className="p-3 bg-red-50 border-l-3 border-red-500 rounded-r-md">
-                    <div className="text-sm font-medium mb-1">{decodeAndSanitize(r.title)}</div>
+                  <div key={i} className="p-3 bg-red-50 border-l-2 border-red-400 rounded-r-md">
+                    <div className="text-sm font-semibold mb-1">{decodeAndSanitize(r.title)}</div>
                     <div className="text-xs text-muted-foreground">{decodeAndSanitize(r.description)}</div>
                   </div>
                 ))}
@@ -576,8 +624,8 @@ export default function EssayAnalyzer() {
               </CardHeader>
               <CardContent className="space-y-3">
                 {result.leverage_zones.map((l, i) => (
-                  <div key={i} className="p-3 bg-emerald-50 border-l-3 border-emerald-500 rounded-r-md">
-                    <div className="text-sm font-medium mb-1">{decodeAndSanitize(l.title)}</div>
+                  <div key={i} className="p-3 bg-emerald-50 border-l-2 border-emerald-500 rounded-r-md">
+                    <div className="text-sm font-semibold mb-1">{decodeAndSanitize(l.title)}</div>
                     <div className="text-xs text-muted-foreground">{decodeAndSanitize(l.description)}</div>
                   </div>
                 ))}
@@ -588,7 +636,7 @@ export default function EssayAnalyzer() {
           {/* Next Steps */}
           {result.next_steps?.length > 0 && (
             !isAuthenticated ? (
-              <Card className="border-primary/20 overflow-hidden">
+              <Card className="border-border overflow-hidden">
                 <CardHeader className="pb-3">
                   <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
                     <Lock className="w-4 h-4 text-primary" />
@@ -596,7 +644,6 @@ export default function EssayAnalyzer() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  {/* First step shown blurred as teaser */}
                   <div className="flex items-start gap-3 blur-sm select-none pointer-events-none">
                     <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <span className="text-xs font-semibold text-primary">1</span>
@@ -687,14 +734,14 @@ export default function EssayAnalyzer() {
 
           {/* Save Results & Buy More CTA */}
           {!isAuthenticated ? (
-            <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10">
+            <Card className="border-primary/30 bg-primary/5">
               <CardContent className="p-6 space-y-4">
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <BookmarkPlus className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg mb-1">Save this report & analyze Draft 2</h3>
+                    <h3 style={SERIF} className="font-bold text-xl mb-1">Save this report & analyze Draft 2</h3>
                     <p className="text-sm text-muted-foreground">
                       Sign in free to save your results and unlock your full action plan. Next analysis is <strong>$4.99</strong> — or a 5-pack for $19.99 ($4 each).
                     </p>
@@ -712,13 +759,13 @@ export default function EssayAnalyzer() {
                     Buy Credits ($4.99)
                   </Button>
                 </div>
-                <p className="text-xs text-center text-muted-foreground">7-day money-back guarantee · Crypto accepted</p>
+                <p className="text-xs text-center text-muted-foreground">7-day money-back guarantee · Secure checkout</p>
               </CardContent>
             </Card>
           ) : (
-            <Card className="border-primary/30 bg-gradient-to-r from-primary/5 to-primary/10">
+            <Card className="border-primary/30 bg-primary/5">
               <CardContent className="p-6 text-center space-y-4">
-                <h3 className="text-lg font-semibold">Analyze Another Essay</h3>
+                <h3 style={SERIF} className="text-xl font-bold">Analyze Another Essay</h3>
                 <p className="text-sm text-muted-foreground">
                   {credits?.essayCredits ? `You have ${credits.essayCredits} credit${credits.essayCredits > 1 ? 's' : ''} remaining.` : 'Purchase more credits to continue analyzing.'}
                 </p>

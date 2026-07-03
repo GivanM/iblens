@@ -7,6 +7,10 @@ import { createServer as createViteServer } from "vite";
 import viteConfig from "../../vite.config";
 import { injectSeoMeta } from "../seo-prerender";
 
+// Valid HTML routes (keep in sync with client/src/App.tsx). Unknown paths -> 404 (no soft-404).
+const VALID_ROUTES = new Set(["/","/essay","/essay/biology-ia","/essay/chemistry-ia","/essay/physics-ia","/essay/math-ia","/essay/economics-ia","/essay/history-ia","/essay/psychology-ia","/essay/english-essay","/essay/extended-essay","/essay/tok-essay","/essay/business-management-ia","/essay/computer-science-ia","/essay/tok-exhibition","/essay/maths-aa-ia","/essay/maths-ai-ia","/university","/dashboard","/pricing","/refund-policy","/auth/signin","/grade","/remark","/resources/academic-integrity","/resources","/resources/ib-extended-essay-guide","/resources/ib-internal-assessment-guide","/resources/tok-essay-guide","/resources/ib-grade-boundaries","/resources/ib-essay-criteria-explained","/resources/how-iblens-works","/resources/ib-university-admissions","/resources/ib-extended-essay-examples","/resources/ib-ia-score-predictor","/resources/ib-score-calculator","/resources/ib-university-admissions-strategy","/resources/ib-math-ia-examples","/resources/ib-biology-ia-examples","/resources/ib-economics-ia","/resources/ib-extended-essay-word-count","/resources/ib-extended-essay-help","/resources/ib-chemistry-ia-examples","/resources/ib-physics-ia-examples","/resources/ib-psychology-ia","/resources/ib-history-ia","/resources/ib-ee-examples-by-subject","/resources/ib-ia-grader","/resources/tok-essay-format","/resources/tok-essay-structure","/resources/ib-university-consultant-cost","/resources/ib-university-chances","/resources/ib-biology-extended-essay","/resources/ib-chemistry-extended-essay"]);
+
+
 export async function setupVite(app: Express, server: Server) {
   const serverOptions = {
     middlewareMode: true,
@@ -61,24 +65,23 @@ export function serveStatic(app: Express) {
     );
   }
 
-  // Serve static assets (JS/CSS with hashed names) with long-term cache
-  // but serve index.html with no-cache so CDN always fetches the latest version
-  app.use(express.static(distPath, {
-    setHeaders: (res, filePath) => {
-      if (filePath.endsWith(".html")) {
-        res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-        res.setHeader("CDN-Cache-Control", "no-store");
-        res.setHeader("Surrogate-Control", "no-store");
-      }
-    },
-  }));
+  // Serve non-HTML static assets (JS, CSS, images, fonts) with default caching
+  // HTML files are excluded (index:false) so they go through injectSeoMeta below
+  app.use(express.static(distPath, { index: false, redirect: false }));
 
-  // fall through to index.html if the file doesn't exist (with SEO injection)
+  // Serve all HTML routes with SEO meta injection.
+  // Tries route-specific pre-rendered HTML first, falls back to index.html (SPA).
   app.use("*", (req, res) => {
-    const indexPath = path.resolve(distPath, "index.html");
-    let html = fs.readFileSync(indexPath, "utf-8");
+    const noCache = { "Cache-Control": "no-cache, no-store, must-revalidate", "CDN-Cache-Control": "no-store", "Surrogate-Control": "no-store" };
+    const cleanPath = req.originalUrl.split("?")[0].replace(/\/+$/, "") || "/";
+    const isValid = VALID_ROUTES.has(cleanPath);
+    const status = isValid ? 200 : 404;
+    const routeHtml = path.resolve(distPath, cleanPath.slice(1), "index.html");
+    const indexHtml = path.resolve(distPath, "index.html");
+    const htmlPath = (isValid && fs.existsSync(routeHtml)) ? routeHtml : indexHtml;
+    let html = fs.readFileSync(htmlPath, "utf-8");
     const userAgent = req.headers["user-agent"] || "";
     html = injectSeoMeta(html, req.originalUrl, userAgent);
-    res.status(200).set({ "Content-Type": "text/html", "Cache-Control": "no-cache, no-store, must-revalidate", "CDN-Cache-Control": "no-store", "Surrogate-Control": "no-store" }).end(html);
+    res.status(status).set({ "Content-Type": "text/html", ...noCache }).end(html);
   });
 }

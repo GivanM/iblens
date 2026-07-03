@@ -8,7 +8,6 @@ import { registerOAuthRoutes } from "./oauth";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
-import { registerNowPaymentsWebhook } from "../nowpayments/nowpayments";
 import { registerLemonsqueezyWebhook } from "../lemonsqueezy/lemonsqueezy";
 import { ENV } from "./env";
 
@@ -35,7 +34,6 @@ async function startServer() {
   const app = express();
   const server = createServer(app);
   // Payment webhooks must be registered BEFORE body parsers
-  registerNowPaymentsWebhook(app);
   registerLemonsqueezyWebhook(app);
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));

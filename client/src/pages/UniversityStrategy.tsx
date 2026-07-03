@@ -146,25 +146,178 @@ export default function UniversityStrategy() {
         description="AI-powered IB university strategy: 9 personalised picks (Safe/Match/Reach) with admission probabilities, your essay angle, and application timeline. IB consultants charge $300+ — we do it in 2 minutes."
         canonical="/university"
       />
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight mb-2">Don't apply blind.</h1>
-        <p className="text-xl text-muted-foreground mb-4">
-          Know your real chances at 9 universities — before you write a single word.
-        </p>
-        <div className="flex flex-wrap gap-x-5 gap-y-1.5 text-sm text-muted-foreground">
-          {[
-            "9 universities (Safe / Match / Reach)",
-            "Admission probability per school",
-            "Your personal essay angle",
-            "Step-by-step application timeline",
-          ].map((item) => (
-            <span key={item} className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-              {item}
-            </span>
-          ))}
-        </div>
+      <div className="mb-6">
+        {Date.now() < new Date("2026-07-15T00:00:00Z").getTime() && (
+          <div className="mb-6 rounded-lg border-2 border-primary bg-primary/5 p-4">
+            <p className="font-semibold text-sm mb-1">Results didn’t match your offer?</p>
+            <p className="text-sm text-muted-foreground">IB students enter UK Clearing six weeks before A-level results — while courses still have places. Get a same-day game plan: 9 realistic universities for your actual score, with entry requirements. $25, ready in 2 minutes.</p>
+          </div>
+        )}
+        <h1 className="text-3xl font-bold tracking-tight mb-1">Don’t apply blind.</h1>
+        <p className="text-muted-foreground">Know your real chances at 9 universities — before you write a single word.</p>
       </div>
+      <Card className="mb-8">
+        <CardContent className="p-6 space-y-5">
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label>Predicted total (out of 45)</Label>
+              <Input
+                type="number"
+                min={24}
+                max={45}
+                placeholder="e.g. 34"
+                value={predictedScore}
+                onChange={(e) => setPredictedScore(e.target.value)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Average grade (1-7 scale)</Label>
+              <Input
+                type="number"
+                min={1}
+                max={7}
+                step={0.1}
+                placeholder="e.g. 5.2"
+                value={averageGrade}
+                onChange={(e) => setAverageGrade(e.target.value)}
+              />
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label>Intended field of study</Label>
+              <Select value={fieldOfStudy} onValueChange={setFieldOfStudy}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {FIELDS_OF_STUDY.map((f) => (
+                    <SelectItem key={f} value={f}>{f}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <Label>Budget sensitivity</Label>
+              <Select value={budget} onValueChange={setBudget}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {BUDGET_OPTIONS.map((b) => (
+                    <SelectItem key={b.value} value={b.value}>{b.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label>Preferred regions</Label>
+            <div className="flex flex-wrap gap-2">
+              {REGIONS.map((r) => (
+                <button
+                  key={r.value}
+                  onClick={() => toggleRegion(r.value)}
+                  className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-all ${
+                    selectedRegions.includes(r.value)
+                      ? "bg-primary/10 text-primary border-primary/30"
+                      : "bg-background text-muted-foreground border-border hover:border-primary/30"
+                  }`}
+                >
+                  {r.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label>Extracurricular activities</Label>
+            <Textarea
+              placeholder="e.g. Captain of school football team, Model UN, photography..."
+              rows={3}
+              value={extracurriculars}
+              onChange={(e) => setExtracurriculars(e.target.value)}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label>Anything else to consider? (optional)</Label>
+            <Input
+              placeholder="e.g. want strong sports scene, prefer smaller class sizes..."
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+            />
+          </div>
+
+          {/* Credit status banner */}
+          {isAuthenticated && credits && (
+            <div className={`text-sm p-3 rounded-lg ${
+              credits.canAnalyzeUniversity
+                ? "bg-blue-50 text-blue-700 border border-blue-200"
+                : "bg-amber-50 text-amber-700 border border-amber-200"
+            }`}>
+              {credits.universityCredits > 0
+                ? `You have ${credits.universityCredits} university strategy credit${credits.universityCredits > 1 ? "s" : ""}.`
+                : <span>No credits remaining. <Link href="/dashboard" className="underline font-medium">Purchase credits ({PRICE_LABELS.UNIVERSITY_SINGLE})</Link> to continue.</span>
+              }
+            </div>
+          )}
+
+          <Button
+            className="w-full h-11"
+            onClick={handleAnalyze}
+            disabled={analyzeMutation.isPending || (isAuthenticated && !credits?.canAnalyzeUniversity)}
+          >
+            {analyzeMutation.isPending ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                Building your strategy... (20-40 seconds)
+              </>
+            ) : !isAuthenticated ? (
+              <>
+                <Lock className="w-4 h-4 mr-2" />
+                Sign in to Build Strategy ({PRICE_LABELS.UNIVERSITY_SINGLE})
+              </>
+            ) : !credits?.canAnalyzeUniversity ? (
+              <>
+                <Lock className="w-4 h-4 mr-2" />
+                Purchase Credits to Build Strategy
+              </>
+            ) : (
+              <>
+                <GraduationCap className="w-4 h-4 mr-2" />
+                Build My University Strategy ({PRICE_LABELS.UNIVERSITY_SINGLE})
+              </>
+            )}
+          </Button>
+
+          {/* Price comparison */}
+          <p className="text-center text-xs text-muted-foreground/70">
+            IB consultants charge $300–500 for this. We do it in 2 minutes.
+          </p>
+
+          {/* Direct purchase button when no credits */}
+          {isAuthenticated && !credits?.canAnalyzeUniversity && (
+            <Button
+              variant="secondary"
+              size="sm"
+              className="w-full mt-3 text-xs"
+              onClick={() => setPurchaseModalOpen(true)}
+            >
+              <CreditCard className="w-3 h-3 mr-1.5" />
+              Buy Now ({PRICE_LABELS.UNIVERSITY_SINGLE})
+            </Button>
+          )}
+
+          <PurchaseModal
+            open={purchaseModalOpen}
+            onOpenChange={setPurchaseModalOpen}
+            sku="UNIVERSITY_SINGLE"
+          />
+        </CardContent>
+      </Card>
 
       {/* Sample Strategy Preview — full locked report */}
       {!result && (
@@ -365,169 +518,6 @@ export default function UniversityStrategy() {
           </div>
         </div>
       )}
-
-      <Card className="mb-8">
-        <CardContent className="p-6 space-y-5">
-          <div className="grid sm:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label>Predicted total (out of 45)</Label>
-              <Input
-                type="number"
-                min={24}
-                max={45}
-                placeholder="e.g. 34"
-                value={predictedScore}
-                onChange={(e) => setPredictedScore(e.target.value)}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label>Average grade (1-7 scale)</Label>
-              <Input
-                type="number"
-                min={1}
-                max={7}
-                step={0.1}
-                placeholder="e.g. 5.2"
-                value={averageGrade}
-                onChange={(e) => setAverageGrade(e.target.value)}
-              />
-            </div>
-          </div>
-
-          <div className="grid sm:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label>Intended field of study</Label>
-              <Select value={fieldOfStudy} onValueChange={setFieldOfStudy}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {FIELDS_OF_STUDY.map((f) => (
-                    <SelectItem key={f} value={f}>{f}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-2">
-              <Label>Budget sensitivity</Label>
-              <Select value={budget} onValueChange={setBudget}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {BUDGET_OPTIONS.map((b) => (
-                    <SelectItem key={b.value} value={b.value}>{b.label}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <Label>Preferred regions</Label>
-            <div className="flex flex-wrap gap-2">
-              {REGIONS.map((r) => (
-                <button
-                  key={r.value}
-                  onClick={() => toggleRegion(r.value)}
-                  className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-all ${
-                    selectedRegions.includes(r.value)
-                      ? "bg-primary/10 text-primary border-primary/30"
-                      : "bg-background text-muted-foreground border-border hover:border-primary/30"
-                  }`}
-                >
-                  {r.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <Label>Extracurricular activities</Label>
-            <Textarea
-              placeholder="e.g. Captain of school football team, Model UN, photography..."
-              rows={3}
-              value={extracurriculars}
-              onChange={(e) => setExtracurriculars(e.target.value)}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label>Anything else to consider? (optional)</Label>
-            <Input
-              placeholder="e.g. want strong sports scene, prefer smaller class sizes..."
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-            />
-          </div>
-
-          {/* Credit status banner */}
-          {isAuthenticated && credits && (
-            <div className={`text-sm p-3 rounded-lg ${
-              credits.canAnalyzeUniversity
-                ? "bg-blue-50 text-blue-700 border border-blue-200"
-                : "bg-amber-50 text-amber-700 border border-amber-200"
-            }`}>
-              {credits.universityCredits > 0
-                ? `You have ${credits.universityCredits} university strategy credit${credits.universityCredits > 1 ? "s" : ""}.`
-                : <span>No credits remaining. <Link href="/dashboard" className="underline font-medium">Purchase credits ({PRICE_LABELS.UNIVERSITY_SINGLE})</Link> to continue.</span>
-              }
-            </div>
-          )}
-
-          <Button
-            className="w-full h-11"
-            onClick={handleAnalyze}
-            disabled={analyzeMutation.isPending || (isAuthenticated && !credits?.canAnalyzeUniversity)}
-          >
-            {analyzeMutation.isPending ? (
-              <>
-                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                Building your strategy... (20-40 seconds)
-              </>
-            ) : !isAuthenticated ? (
-              <>
-                <Lock className="w-4 h-4 mr-2" />
-                Sign in to Build Strategy ({PRICE_LABELS.UNIVERSITY_SINGLE})
-              </>
-            ) : !credits?.canAnalyzeUniversity ? (
-              <>
-                <Lock className="w-4 h-4 mr-2" />
-                Purchase Credits to Build Strategy
-              </>
-            ) : (
-              <>
-                <GraduationCap className="w-4 h-4 mr-2" />
-                Build My University Strategy ({PRICE_LABELS.UNIVERSITY_SINGLE})
-              </>
-            )}
-          </Button>
-
-          {/* Price comparison */}
-          <p className="text-center text-xs text-muted-foreground/70">
-            IB consultants charge $300–500 for this. We do it in 2 minutes.
-          </p>
-
-          {/* Direct purchase button when no credits */}
-          {isAuthenticated && !credits?.canAnalyzeUniversity && (
-            <Button
-              variant="secondary"
-              size="sm"
-              className="w-full mt-3 text-xs"
-              onClick={() => setPurchaseModalOpen(true)}
-            >
-              <CreditCard className="w-3 h-3 mr-1.5" />
-              Buy Now ({PRICE_LABELS.UNIVERSITY_SINGLE})
-            </Button>
-          )}
-
-          <PurchaseModal
-            open={purchaseModalOpen}
-            onOpenChange={setPurchaseModalOpen}
-            sku="UNIVERSITY_SINGLE"
-          />
-        </CardContent>
-      </Card>
 
       {/* Results */}
       {result && (

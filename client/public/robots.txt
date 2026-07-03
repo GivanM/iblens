@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /dashboard
+Disallow: /auth/
 
 Sitemap: https://iblens.com/sitemap.xml

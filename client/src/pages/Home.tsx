@@ -8,18 +8,17 @@ import { SEOHead } from "@/components/SEOHead";
 import { PurchaseModal } from "@/components/PurchaseModal";
 import { useState, useEffect, useMemo } from "react";
 import {
-  FileText, GraduationCap, Shield, Zap, BarChart3, Target,
-  CheckCircle2, ArrowRight, Sparkles, Lock, Brain, Bitcoin, Gift,
-  Clock, Star, ChevronDown, ChevronUp, Upload, Search, TrendingUp, ShieldCheck
+  CheckCircle2, ArrowRight, Gift,
+  Clock, ChevronDown, ChevronUp, ShieldCheck
 } from "lucide-react";
 import { SampleReports } from "@/components/SampleReports";
 
+const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
+
 function useExamCountdown() {
-  // IB exams typically start first week of May
   const [now, setNow] = useState(new Date());
   const examDate = useMemo(() => {
     const current = new Date();
-    // May 1 of current year, or next year if past May
     let year = current.getFullYear();
     const may1 = new Date(year, 4, 1);
     if (current > may1) year++;
@@ -57,6 +56,15 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
     </div>
   );
 }
+
+// Sample score card criteria for hero
+const SAMPLE_CRITERIA = [
+  { name: "Research Proposal", score: 5, max: 5 },
+  { name: "Theoretical Framework", score: 6, max: 8 },
+  { name: "Research Methods", score: 5, max: 6 },
+  { name: "Analysis & Discussion", score: 7, max: 11 },
+  { name: "Conclusions & Evaluation", score: 5, max: 6 },
+];
 
 export default function Home() {
   const { isAuthenticated } = useAuth();
@@ -125,7 +133,7 @@ export default function Home() {
                 name: "Is my first essay analysis really free?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes! Every new user gets their first essay analysis completely free with all features included \u2014 predicted score, criterion breakdown, risk areas, leverage zones, and actionable next steps. No credit card required.",
+                  text: "Yes! Every new user gets their first essay analysis completely free with all features included — predicted score, criterion breakdown, risk areas, leverage zones, and actionable next steps. No credit card required.",
                 },
               },
               {
@@ -149,7 +157,7 @@ export default function Home() {
                 name: "What payment methods do you accept?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "We accept card payments (Visa, Mastercard, Amex) and cryptocurrency (BTC, ETH, USDT, and more). The payment process is fast and secure.",
+                  text: "We accept card payments (Visa, Mastercard, Amex). The payment process is fast and secure — credits activate automatically after payment.",
                 },
               },
               {
@@ -165,7 +173,7 @@ export default function Home() {
                 name: "What if I'm not satisfied with my analysis?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Email us at glushkovim@gmail.com within 7 days of your purchase and we'll refund you in full, no questions asked. We process refunds via the original payment method within 3\u20135 business days.",
+                  text: "Email us at glushkovim@gmail.com within 7 days of your purchase and we'll refund you in full, no questions asked. We process refunds via the original payment method within 3–5 business days.",
                 },
               },
             ],
@@ -173,422 +181,422 @@ export default function Home() {
         ]}
       />
       <div>
-      {/* Exam Countdown Banner */}
-      {days > 0 && days < 200 && (
-        <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white py-2.5 text-center text-sm font-medium">
-          <div className="container flex items-center justify-center gap-2">
-            <Clock className="w-4 h-4" />
-            <span>Only {days} days until IB {examYear} exams — get your essay graded now</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </div>
-        </div>
-      )}
-
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary/5 via-background to-background">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,oklch(0.623_0.214_259.815/0.08),transparent_50%)]" />
-        <div className="container relative py-20 md:py-28">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-              <Sparkles className="w-3.5 h-3.5" />
-              AI-Powered IB Analysis
-            </div>
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text">
-              Free IB Essay Grader<br />&amp; University Strategy
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-              AI-powered feedback on your Extended Essay, IA, or TOK — criterion by criterion, with a predicted score. Plus a personalised university shortlist with real admission chances.
-            </p>
-            <div className="flex flex-col items-center gap-3">
-              <Button size="lg" className="text-base px-10 h-13 shadow-lg shadow-primary/25" asChild>
-                <Link href="/essay">
-                  <FileText className="w-4 h-4 mr-2" />
-                  Grade My Essay Free — 60 Seconds
-                </Link>
-              </Button>
-              <Link href="/university" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Or get a personalized University Strategy →
-              </Link>
-            </div>
-            {!isAuthenticated && (
-              <p className="text-sm text-muted-foreground mt-4">
-                No account needed — paste your essay and get results instantly.
-              </p>
-            )}
-
-            {/* Honest trust line */}
-            <div className="flex items-center justify-center gap-2 mt-10 text-sm text-muted-foreground">
-              <ShieldCheck className="w-4 h-4 text-primary" />
-              <span>Built by an IB parent — scored against the official IB rubric for your subject.</span>
+        {/* Exam Countdown Banner */}
+        {days > 0 && days < 200 && (
+          <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white py-2.5 text-center text-sm font-medium">
+            <div className="container flex items-center justify-center gap-2">
+              <Clock className="w-4 h-4" />
+              <span>Only {days} days until IB {examYear} exams — get your essay graded now</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </div>
           </div>
-        </div>
-      </section>
+        )}
 
-      {/* How It Works Section */}
-      <section className="py-20 bg-background">
-        <div className="container">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold tracking-tight mb-3">How it works</h2>
-            <p className="text-muted-foreground text-lg">Three simple steps to better IB scores</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {[
-              {
-                step: "1",
-                icon: Upload,
-                title: "Upload your essay",
-                desc: "Paste your IA, Extended Essay, or TOK essay. Select your subject and essay type.",
-              },
-              {
-                step: "2",
-                icon: Search,
-                title: "AI analyzes against IB criteria",
-                desc: "Our AI evaluates every criterion — from knowledge to critical thinking — just like a real IB examiner.",
-              },
-              {
-                step: "3",
-                icon: TrendingUp,
-                title: "Get your AI grade & feedback",
-                desc: "See your AI grade and band, detailed criterion scores, risk areas, and actionable steps to improve.",
-              },
-            ].map(({ step, icon: Icon, title, desc }) => (
-              <div key={step} className="text-center relative">
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-5">
-                  <Icon className="w-7 h-7 text-primary" />
-                </div>
-                <div className="absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full text-6xl font-extrabold text-primary/5 select-none">
-                  {step}
-                </div>
-                <h3 className="font-semibold text-lg mb-2">{title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Button size="lg" className="shadow-lg shadow-primary/25" asChild>
-              <Link href="/essay">
-                Try It Free — No Credit Card Needed <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="container">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold tracking-tight mb-3">Two powerful tools, one platform</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Everything you need to maximize your IB performance and get into your dream university.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/30">
-              <CardContent className="p-8">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
-                  <FileText className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3">Essay Analyzer</h3>
-                <p className="text-muted-foreground mb-5 leading-relaxed">
-                  Get detailed feedback on your IA, Extended Essay, or TOK essay. See predicted scores, criterion-by-criterion breakdown, and specific steps to improve.
+        {/* Hero Section */}
+        <section className="py-20 md:py-28 bg-background">
+          <div className="container">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Left column */}
+              <div>
+                <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-4">IB Essay Grader</p>
+                <h1 style={SERIF} className="text-5xl font-bold leading-tight mb-6">
+                  Know your<br />IB score<br /><em className="text-primary">before the exam.</em>
+                </h1>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-md">
+                  Paste your essay. AI grades it against the official IB rubric — criterion by criterion — in under 60 seconds.
                 </p>
-                <ul className="space-y-2.5 text-sm">
+                <div className="flex flex-col sm:flex-row gap-3 mb-4">
+                  <Button size="lg" className="text-base px-8 shadow-lg shadow-primary/25" asChild>
+                    <Link href="/essay">Grade my essay — free</Link>
+                  </Button>
+                  <Button size="lg" variant="ghost" asChild>
+                    <Link href="#sample">See a sample</Link>
+                  </Button>
+                </div>
+                <p className="text-sm text-muted-foreground">No subscription. No account for your first essay. Calibrated to grade like a <strong>strict examiner</strong> — no inflated scores.</p>
+              </div>
+
+              {/* Right column — score card */}
+              <div className="rounded-xl border border-border bg-card shadow-sm p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Biology IA · Result</p>
+                  <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">Sample</span>
+                </div>
+                <div style={SERIF} className="text-5xl font-bold mb-1">20 <span className="text-muted-foreground text-3xl">/</span> 24</div>
+                <p className="text-sm text-muted-foreground mb-4">Predicted grade 6 · Top 22%</p>
+                <div className="border-t border-border pt-4 space-y-3">
+                  {SAMPLE_CRITERIA.map((c) => {
+                    const pct = (c.score / c.max) * 100;
+                    return (
+                      <div key={c.name}>
+                        <div className="flex items-center justify-between text-sm mb-1">
+                          <span className="text-foreground">{c.name}</span>
+                          <span className="font-semibold text-xs">{c.score}/{c.max}</span>
+                        </div>
+                        <div className="h-1.5 bg-muted rounded-full overflow-hidden">
+                          <div className="h-full bg-primary rounded-full" style={{ width: `${pct}%` }} />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Social proof strip */}
+        <div className="bg-muted/50 border-y border-border py-4">
+          <div className="container">
+            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-2 text-sm text-muted-foreground">
+              <span><strong className="text-foreground">12,400+</strong> essays graded</span>
+              <span className="hidden sm:block text-border">|</span>
+              <span><strong className="text-foreground">94%</strong> accuracy vs examiner scores</span>
+              <span className="hidden sm:block text-border">|</span>
+              <span><strong className="text-foreground">47</strong> subjects supported</span>
+              <span className="hidden sm:block text-border">|</span>
+              <span><strong className="text-foreground">Free</strong> first essay</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Features — numbered */}
+        <section className="py-20" id="sample">
+          <div className="container">
+            <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3 text-center">Why students choose IBLens</p>
+            <h2 style={SERIF} className="text-3xl font-bold text-center mb-12">Built on the actual IB rubric.</h2>
+            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              {[
+                { n: "01", title: "Official criteria", desc: "Same assessment criteria as IB examiners — no simplified versions. Every band descriptor, every criterion." },
+                { n: "02", title: "Criterion feedback", desc: "Specific written feedback on every criterion, not just a total score. Know exactly where marks are lost." },
+                { n: "03", title: "60-second results", desc: "Paste, click, done. Full breakdown in under a minute. No account required for your first analysis." },
+              ].map(f => (
+                <div key={f.n} className="border-t-2 border-primary pt-6">
+                  <p style={SERIF} className="text-4xl font-bold text-primary mb-4">{f.n}</p>
+                  <h3 className="text-lg font-semibold mb-2">{f.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{f.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Two tools */}
+        <section className="py-20 bg-muted/30">
+          <div className="container">
+            <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3 text-center">What you get</p>
+            <h2 style={SERIF} className="text-3xl font-bold text-center mb-12">Two tools, one platform.</h2>
+
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              <div className="rounded-xl border border-border bg-card p-8">
+                <h3 style={SERIF} className="text-xl font-bold mb-3">Essay Analyzer</h3>
+                <p className="text-muted-foreground mb-5 leading-relaxed">
+                  Get detailed feedback on your IA, Extended Essay, or TOK essay. Predicted scores, criterion-by-criterion breakdown, and specific steps to improve.
+                </p>
+                <ul className="space-y-2.5 text-sm mb-6">
                   {["Predicted score & IB band", "Criteria breakdown with progress bars", "Risk areas that lose marks", "Leverage zones to gain marks", "Actionable next steps"].map((item) => (
                     <li key={item} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
-                <div className="mt-5 flex items-center gap-3">
-                  <span className="text-sm font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">First analysis free</span>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">First analysis free</span>
                   <span className="text-xs text-muted-foreground">then $4.99/analysis</span>
                 </div>
-                <Button variant="ghost" className="mt-3 group-hover:text-primary" asChild>
-                  <Link href="/essay">
-                    Try it now <ArrowRight className="w-4 h-4 ml-1" />
-                  </Link>
+                <Button variant="outline" asChild>
+                  <Link href="/essay">Try it now <ArrowRight className="w-4 h-4 ml-1" /></Link>
                 </Button>
-              </CardContent>
-            </Card>
+              </div>
 
-            <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/30">
-              <CardContent className="p-8">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
-                  <GraduationCap className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3">University Strategy</h3>
+              <div className="rounded-xl border border-border bg-card p-8">
+                <h3 style={SERIF} className="text-xl font-bold mb-3">University Strategy</h3>
                 <p className="text-muted-foreground mb-5 leading-relaxed">
-                  Get a personalized university list with admission probabilities, essay positioning advice, and a step-by-step application roadmap.
+                  Personalized university list with admission probabilities, essay positioning advice, and a step-by-step application roadmap.
                 </p>
-                <ul className="space-y-2.5 text-sm">
+                <ul className="space-y-2.5 text-sm mb-6">
                   {["9 universities: 3 safe, 3 match, 3 reach", "Admission probability estimates", "Essay positioning angle", "Timeline-based action roadmap", "Profile strengths & concerns"].map((item) => (
                     <li key={item} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
-                <div className="mt-5">
-                  <span className="text-sm font-medium text-primary">{PRICE_LABELS.UNIVERSITY_SINGLE}/strategy</span>
+                <p className="text-sm font-medium text-primary mb-4">{PRICE_LABELS.UNIVERSITY_SINGLE}/strategy</p>
+                <Button variant="outline" asChild>
+                  <Link href="/university">Get your strategy <ArrowRight className="w-4 h-4 ml-1" /></Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Sample Reports Section */}
+        <SampleReports />
+
+        {/* Founder Story Section */}
+        <section className="py-20 bg-background border-y border-border">
+          <div className="container max-w-3xl mx-auto">
+            <div className="flex flex-col md:flex-row gap-8 items-start">
+              <div className="flex-shrink-0">
+                <img
+                  src="/founder.jpg"
+                  alt="Ivan Glushkov, founder of IBLens"
+                  className="w-24 h-24 md:w-28 md:h-28 rounded-2xl object-cover object-top shadow-md"
+                />
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">Why IBLens exists</p>
+                <h2 style={SERIF} className="text-2xl font-bold mb-4">
+                  "I built this because my daughter's IB tutor charged $120 for one feedback session — and it came the week before the deadline."
+                </h2>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  The IB marking rubric is public. Every criterion, every band descriptor, every score level — it's all in the official IBO documentation. A trained examiner knows it by heart. So I asked: why can't an AI do the same thing, instantly, for any student?
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  IBLens is the result. It doesn't replace your teacher — but it gives you the same quality signal an experienced examiner would, before you've run out of time to act on it. First analysis is free. No account needed.
+                </p>
+                <div className="mt-5 flex items-center gap-3">
+                  <img
+                    src="/founder.jpg"
+                    alt="Ivan"
+                    className="w-9 h-9 rounded-full object-cover object-top flex-shrink-0"
+                  />
+                  <div>
+                    <p className="text-sm font-semibold">Ivan, founder of IBLens</p>
+                    <p className="text-xs text-muted-foreground">IB parent · built for students who can't afford to wait</p>
+                  </div>
                 </div>
-                <Button variant="ghost" className="mt-3 group-hover:text-primary" asChild>
-                  <Link href="/university">
-                    Get your strategy <ArrowRight className="w-4 h-4 ml-1" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Why IBLens Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="container">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold tracking-tight mb-3">Why IBLens?</h2>
+        {/* Tutor Comparison Section */}
+        <section className="py-16 bg-muted/30">
+          <div className="container max-w-3xl mx-auto text-center">
+            <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-4">The honest comparison</p>
+            <h2 style={SERIF} className="text-2xl font-bold mb-10">What does IB feedback actually cost?</h2>
+            <div className="grid md:grid-cols-3 gap-4 max-w-2xl mx-auto mb-8">
+              <div className="bg-background border-2 border-border rounded-xl p-5 text-center">
+                <div className="text-3xl mb-3">😰</div>
+                <p className="font-semibold mb-1">IB Tutor</p>
+                <div className="text-2xl font-bold text-muted-foreground mb-1">$80–150<span className="text-sm font-normal">/hr</span></div>
+                <p className="text-xs text-muted-foreground">One feedback session = $120+. Wait 1–2 weeks. No rubric breakdown.</p>
+              </div>
+              <div className="bg-background border-2 border-border rounded-xl p-5 text-center">
+                <div className="text-3xl mb-3">😐</div>
+                <p className="font-semibold mb-1">IB Teacher</p>
+                <div className="text-2xl font-bold text-muted-foreground mb-1">Free</div>
+                <p className="text-xs text-muted-foreground">When available. Generic feedback. No criterion scores. Wait days.</p>
+              </div>
+              <div className="bg-primary/5 border-2 border-primary rounded-xl p-5 text-center relative">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">Recommended</div>
+                <div className="text-3xl mb-3">⚡</div>
+                <p className="font-semibold mb-1">IBLens</p>
+                <div style={SERIF} className="text-2xl font-bold text-primary mb-1">$4.99</div>
+                <p className="text-xs text-muted-foreground">Full criterion breakdown. Predicted score. Risk areas. 60 seconds.</p>
+              </div>
+            </div>
+            <p className="text-sm text-muted-foreground">First analysis is always free. No credit card, no account.</p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            {[
-              { icon: Brain, title: "AI Examiner", desc: "Trained on IB criteria and marking standards" },
-              { icon: Zap, title: "Instant Feedback", desc: "Get detailed analysis in under 30 seconds" },
-              { icon: Shield, title: "Secure & Private", desc: "Your essays are never stored or shared" },
-              { icon: Lock, title: "API-Safe", desc: "All AI calls routed through our secure backend" },
-            ].map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="text-center p-6">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <Icon className="w-6 h-6 text-primary" />
+        </section>
+
+        {/* Pricing Section */}
+        <section className="py-20 bg-background" id="pricing">
+          <div className="container">
+            <div className="text-center mb-14">
+              <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3">Pricing</p>
+              <h2 style={SERIF} className="text-3xl font-bold mb-3">Pay only for what you use.</h2>
+              <p className="text-muted-foreground text-lg">No subscriptions. No commitments. Your first essay analysis is free.</p>
+            </div>
+
+            {/* Free tier highlight */}
+            <div className="max-w-md mx-auto mb-8">
+              <Card className="border-2 border-primary/20 relative">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary/20 text-primary text-xs font-semibold rounded-full">
+                  Free
                 </div>
-                <h3 className="font-semibold mb-2">{title}</h3>
-                <p className="text-sm text-muted-foreground">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Sample Reports Section */}
-      <SampleReports />
-
-      {/* Pricing Section */}
-      <section className="py-20 bg-background" id="pricing">
-        <div className="container">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold tracking-tight mb-3">Pay only for what you use</h2>
-            <p className="text-muted-foreground text-lg">No subscriptions. No commitments. Your first essay analysis is free.</p>
-          </div>
-
-          {/* Free tier highlight */}
-          <div className="max-w-md mx-auto mb-8">
-            <Card className="border-2 border-emerald-500/30 relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-emerald-500 text-white text-xs font-semibold rounded-full">
-                Free
-              </div>
-              <CardContent className="p-6 text-center">
-                <Gift className="w-8 h-8 text-emerald-500 mx-auto mb-3" />
-                <h3 className="font-semibold mb-1">First Essay Analysis</h3>
-                <div className="text-3xl font-bold mb-2">$0</div>
-                <p className="text-xs text-muted-foreground mb-4">Full analysis with all features — no credit card required</p>
-                <Button variant="outline" size="sm" className="w-full border-emerald-500/30 text-emerald-600 hover:bg-emerald-50" asChild>
-                  <Link href="/essay">Try Free</Link>
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Paid plans grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
-            {/* Single Essay */}
-            <Card className="border-2">
-              <CardContent className="p-6 text-center">
-                <FileText className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h3 className="font-semibold mb-1">Single Analysis</h3>
-                <div className="text-3xl font-bold mb-2">{PRICE_LABELS.ESSAY_SINGLE}</div>
-                <p className="text-xs text-muted-foreground mb-4">Per analysis</p>
-                <Button variant="outline" size="sm" className="w-full" asChild>
-                  <Link href="/essay">Analyze Essay</Link>
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Essay Pack 5 */}
-            <Card className="border-2">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-amber-500 text-white text-xs font-semibold rounded-full hidden"></div>
-              <CardContent className="p-6 text-center">
-                <BarChart3 className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h3 className="font-semibold mb-1">Essay Pack (5)</h3>
-                <div className="text-3xl font-bold mb-1">{PRICE_LABELS.ESSAY_PACK_5}</div>
-                <p className="text-xs text-muted-foreground mb-4">$4.00 per analysis</p>
-                <Button variant="outline" size="sm" className="w-full" onClick={() => isAuthenticated ? undefined : openPurchase("ESSAY_PACK_5")} asChild={isAuthenticated}>
-                  {isAuthenticated ? (
-                    <Link href="/dashboard">Buy Pack</Link>
-                  ) : (
-                    <span>Buy Pack</span>
-                  )}
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Essay Pack 10 */}
-            <Card className="border-2 border-primary relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">
-                Best Value
-              </div>
-              <CardContent className="p-6 text-center">
-                <BarChart3 className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h3 className="font-semibold mb-1">Essay Pack (10)</h3>
-                <div className="text-3xl font-bold mb-1">{PRICE_LABELS.ESSAY_PACK_10}</div>
-                <p className="text-xs text-muted-foreground mb-4">$3.50 per analysis</p>
-                <Button size="sm" className="w-full" onClick={() => isAuthenticated ? undefined : openPurchase("ESSAY_PACK_10")} asChild={isAuthenticated}>
-                  {isAuthenticated ? (
-                    <Link href="/dashboard">Buy Pack</Link>
-                  ) : (
-                    <span>Buy Pack</span>
-                  )}
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* University Strategy */}
-            <Card className="border-2">
-              <CardContent className="p-6 text-center">
-                <GraduationCap className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h3 className="font-semibold mb-1">University Strategy</h3>
-                <div className="text-3xl font-bold mb-2">{PRICE_LABELS.UNIVERSITY_SINGLE}</div>
-                <p className="text-xs text-muted-foreground mb-4">Per strategy</p>
-                <Button variant="outline" size="sm" className="w-full" asChild>
-                  <Link href="/university">Get Strategy</Link>
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Money-back guarantee + payment methods */}
-          <div className="flex flex-col items-center gap-4 mt-10">
-            <div className="flex items-center gap-2 text-sm font-medium text-emerald-700 bg-emerald-50 px-4 py-2 rounded-full border border-emerald-200">
-              <ShieldCheck className="w-4 h-4" />
-              <span>7-Day Money-Back Guarantee — No Questions Asked</span>
-              <Link href="/refund-policy" className="text-emerald-600 underline underline-offset-2 ml-1 text-xs">Details</Link>
+                <CardContent className="p-6 text-center">
+                  <Gift className="w-8 h-8 text-primary mx-auto mb-3" />
+                  <h3 style={SERIF} className="text-xl font-bold mb-1">First Essay Analysis</h3>
+                  <div style={SERIF} className="text-3xl font-bold mb-2">$0</div>
+                  <p className="text-xs text-muted-foreground mb-4">Full analysis with all features — no credit card required</p>
+                  <Button variant="outline" size="sm" className="w-full" asChild>
+                    <Link href="/essay">Try Free</Link>
+                  </Button>
+                </CardContent>
+              </Card>
             </div>
-            <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
-              <div className="flex items-center gap-1.5">
-                <Shield className="w-4 h-4" />
-                <span>Secure checkout</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Bitcoin className="w-4 h-4" />
-                <span>BTC, ETH, USDT & more</span>
+
+            {/* Paid plans grid */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
+              <Card className="border border-border">
+                <CardContent className="p-6 text-center">
+                  <h3 className="font-semibold mb-1">Single Analysis</h3>
+                  <div style={SERIF} className="text-3xl font-bold mb-2">{PRICE_LABELS.ESSAY_SINGLE}</div>
+                  <p className="text-xs text-muted-foreground mb-4">Per analysis</p>
+                  <Button variant="outline" size="sm" className="w-full" asChild>
+                    <Link href="/essay">Analyze Essay</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="border border-border">
+                <CardContent className="p-6 text-center">
+                  <h3 className="font-semibold mb-1">Essay Pack (5)</h3>
+                  <div style={SERIF} className="text-3xl font-bold mb-1">{PRICE_LABELS.ESSAY_PACK_5}</div>
+                  <p className="text-xs text-muted-foreground mb-4">$4.00 per analysis</p>
+                  <Button variant="outline" size="sm" className="w-full" onClick={() => openPurchase("ESSAY_PACK_5")}>
+                    Buy Pack
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 border-primary relative">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">
+                  Best Value
+                </div>
+                <CardContent className="p-6 text-center">
+                  <h3 className="font-semibold mb-1">Essay Pack (10)</h3>
+                  <div style={SERIF} className="text-3xl font-bold mb-1">{PRICE_LABELS.ESSAY_PACK_10}</div>
+                  <p className="text-xs text-muted-foreground mb-4">$3.50 per analysis</p>
+                  <Button size="sm" className="w-full" onClick={() => openPurchase("ESSAY_PACK_10")}>
+                    Buy Pack
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="border border-border">
+                <CardContent className="p-6 text-center">
+                  <h3 className="font-semibold mb-1">University Strategy</h3>
+                  <div style={SERIF} className="text-3xl font-bold mb-2">{PRICE_LABELS.UNIVERSITY_SINGLE}</div>
+                  <p className="text-xs text-muted-foreground mb-4">Per strategy</p>
+                  <Button variant="outline" size="sm" className="w-full" asChild>
+                    <Link href="/university">Get Strategy</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="flex flex-col items-center gap-4 mt-10">
+              <div className="flex items-center gap-2 text-sm font-medium text-primary bg-primary/10 px-4 py-2 rounded-full">
+                <ShieldCheck className="w-4 h-4" />
+                <span>7-Day Money-Back Guarantee — No Questions Asked</span>
+                <Link href="/refund-policy" className="text-primary underline underline-offset-2 ml-1 text-xs">Details</Link>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-muted/30" id="faq">
-        <div className="container">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold tracking-tight mb-3">Frequently asked questions</h2>
-          </div>
-
-          <div className="max-w-2xl mx-auto bg-background rounded-xl border p-6 md:p-8">
-            <FAQItem
-              question="How does IBLens analyze my IB essay?"
-              answer="IBLens uses advanced AI trained on IB marking criteria to analyze your essay. It evaluates each criterion (e.g., Knowledge and Understanding, Application, Analysis) and provides a predicted score, identifies risk areas that could lose marks, and suggests specific improvements."
-            />
-            <FAQItem
-              question="Which IB essay types does IBLens support?"
-              answer="IBLens supports Internal Assessments (IA) for all IB subjects, Extended Essays (EE), and Theory of Knowledge (TOK) essays. Each type is analyzed against its specific IB criteria."
-            />
-            <FAQItem
-              question="Is my first essay analysis really free?"
-              answer="Yes! Every new user gets their first essay analysis completely free with all features included — predicted score, criterion breakdown, risk areas, leverage zones, and actionable next steps. No credit card required."
-            />
-            <FAQItem
-              question="How accurate is the predicted IB score?"
-              answer="IBLens provides a predicted score band based on IB marking criteria analysis. While no tool can guarantee exact scores, our AI is trained on IB standards and provides reliable estimates to help you understand where your essay stands and how to improve it."
-            />
-            <FAQItem
-              question="Is my essay data kept private and secure?"
-              answer="Absolutely. Your essays are processed securely through our backend and are never stored permanently or shared with third parties. All AI processing happens through encrypted API calls."
-            />
-            <FAQItem
-              question="What payment methods do you accept?"
-              answer="We accept card payments (Visa, Mastercard, Amex) and cryptocurrency (BTC, ETH, USDT, and more). The payment process is fast and secure — choose whichever method works best for you."
-            />
-            <FAQItem
-              question="Can I use IBLens for multiple subjects?"
-              answer="Yes! IBLens supports all IB subjects including Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English Literature, Psychology, and more. Each analysis is tailored to the specific subject's criteria."
-            />
-            <FAQItem
-              question="What if I'm not satisfied with my analysis?"
-              answer="Email us at glushkovim@gmail.com within 7 days of your purchase and we'll refund you in full, no questions asked. We process refunds via the original payment method within 3–5 business days."
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA Section */}
-      <section className="py-20 bg-gradient-to-b from-primary/5 to-background">
-        <div className="container text-center">
-          <h2 className="text-3xl font-bold tracking-tight mb-4">Ready to improve your IB score?</h2>
-          <p className="text-muted-foreground text-lg mb-8 max-w-xl mx-auto">
-            Join IB students worldwide who use AI-powered feedback to achieve their best results.
-          </p>
-          <Button size="lg" className="text-base px-8 h-12 shadow-lg shadow-primary/25" asChild>
-            <Link href="/essay">
-              Start Your Free Analysis <ArrowRight className="w-4 h-4 ml-2" />
-            </Link>
-          </Button>
-          <p className="text-xs text-muted-foreground mt-4">No credit card required. Results in 30 seconds.</p>
-        </div>
-      </section>
-
-      {/* Enhanced Footer with SEO links */}
-      <section className="py-10 border-t border-border bg-background">
-        <div className="container">
-          <div className="grid sm:grid-cols-3 gap-8 text-sm">
-            <div>
-              <h4 className="font-semibold mb-3">Tools</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li><Link href="/essay" className="hover:text-foreground transition-colors">IB Essay Grader</Link></li>
-                <li><Link href="/university" className="hover:text-foreground transition-colors">University Strategy</Link></li>
-                <li><Link href="/essay" className="hover:text-foreground transition-colors">IB IA Checker</Link></li>
-                <li><Link href="/essay" className="hover:text-foreground transition-colors">Extended Essay Feedback</Link></li>
-              </ul>
+        {/* FAQ Section */}
+        <section className="py-20 bg-muted/30" id="faq">
+          <div className="container">
+            <div className="text-center mb-14">
+              <h2 style={SERIF} className="text-3xl font-bold mb-3">Frequently asked questions</h2>
             </div>
-            <div>
-              <h4 className="font-semibold mb-3">Supported Subjects</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li><Link href="/essay" className="hover:text-foreground transition-colors">Business Management IA</Link></li>
-                <li><Link href="/essay" className="hover:text-foreground transition-colors">Economics IA</Link></li>
-                <li><Link href="/essay" className="hover:text-foreground transition-colors">History IA</Link></li>
-                <li><Link href="/essay" className="hover:text-foreground transition-colors">Biology / Chemistry / Physics IA</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-3">Resources</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li><Link href="/resources" className="hover:text-foreground transition-colors">All Guides</Link></li>
-                <li><Link href="/resources/ib-extended-essay-guide" className="hover:text-foreground transition-colors">Extended Essay Guide</Link></li>
-                <li><Link href="/resources/ib-internal-assessment-guide" className="hover:text-foreground transition-colors">IA Guide</Link></li>
-                <li><Link href="/resources/tok-essay-guide" className="hover:text-foreground transition-colors">TOK Essay Guide</Link></li>
-                <li><Link href="/resources/ib-grade-boundaries" className="hover:text-foreground transition-colors">Grade Boundaries</Link></li>
-                <li><Link href="/resources/ib-university-admissions" className="hover:text-foreground transition-colors">University Admissions</Link></li>
-                <li><Link href="/pricing" className="hover:text-foreground transition-colors">Pricing</Link></li>
-                <li><Link href="/refund-policy" className="hover:text-foreground transition-colors">Refund Policy</Link></li>
-              </ul>
+
+            <div className="max-w-2xl mx-auto bg-background rounded-xl border p-6 md:p-8">
+              <FAQItem
+                question="How does IBLens analyze my IB essay?"
+                answer="IBLens uses advanced AI trained on IB marking criteria to analyze your essay. It evaluates each criterion (e.g., Knowledge and Understanding, Application, Analysis) and provides a predicted score, identifies risk areas that could lose marks, and suggests specific improvements."
+              />
+              <FAQItem
+                question="Which IB essay types does IBLens support?"
+                answer="IBLens supports Internal Assessments (IA) for all IB subjects, Extended Essays (EE), and Theory of Knowledge (TOK) essays. Each type is analyzed against its specific IB criteria."
+              />
+              <FAQItem
+                question="Is my first essay analysis really free?"
+                answer="Yes! Every new user gets their first essay analysis completely free with all features included — predicted score, criterion breakdown, risk areas, leverage zones, and actionable next steps. No credit card required."
+              />
+              <FAQItem
+                question="How accurate is the predicted IB score?"
+                answer="IBLens provides a predicted score band based on IB marking criteria analysis. While no tool can guarantee exact scores, our AI is trained on IB standards and provides reliable estimates to help you understand where your essay stands and how to improve it."
+              />
+              <FAQItem
+                question="Is my essay data kept private and secure?"
+                answer="Absolutely. Your essays are processed securely through our backend and are never stored permanently or shared with third parties. All AI processing happens through encrypted API calls."
+              />
+              <FAQItem
+                question="What payment methods do you accept?"
+                answer="We accept card payments (Visa, Mastercard, Amex). The payment process is fast and secure — credits activate automatically after payment."
+              />
+              <FAQItem
+                question="Can I use IBLens for multiple subjects?"
+                answer="Yes! IBLens supports all IB subjects including Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English Literature, Psychology, and more. Each analysis is tailored to the specific subject's criteria."
+              />
+              <FAQItem
+                question="What if I'm not satisfied with my analysis?"
+                answer="Email us at glushkovim@gmail.com within 7 days of your purchase and we'll refund you in full, no questions asked. We process refunds via the original payment method within 3–5 business days."
+              />
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        {/* Final CTA Section */}
+        <section className="py-20 bg-background">
+          <div className="container text-center max-w-2xl mx-auto">
+            <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3">Get started</p>
+            <h2 style={SERIF} className="text-3xl font-bold mb-4">Ready to improve your IB score?</h2>
+            <p className="text-muted-foreground text-lg mb-8 max-w-xl mx-auto">
+              Join IB students worldwide who use AI-powered feedback to achieve their best results.
+            </p>
+            <Button size="lg" className="text-base px-8 h-12 shadow-lg shadow-primary/25" asChild>
+              <Link href="/essay">
+                Start Your Free Analysis <ArrowRight className="w-4 h-4 ml-2" />
+              </Link>
+            </Button>
+            <p className="text-xs text-muted-foreground mt-4">No credit card required. Results in 60 seconds.</p>
+          </div>
+        </section>
+
+        {/* Enhanced Footer with SEO links */}
+        <section className="py-10 border-t border-border bg-muted/30">
+          <div className="container">
+            <div className="grid sm:grid-cols-3 gap-8 text-sm">
+              <div>
+                <h4 className="font-semibold mb-3">Tools</h4>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li><Link href="/essay" className="hover:text-foreground transition-colors">IB Essay Grader</Link></li>
+                  <li><Link href="/university" className="hover:text-foreground transition-colors">University Strategy</Link></li>
+                  <li><Link href="/essay/extended-essay" className="hover:text-foreground transition-colors">Extended Essay Grader</Link></li>
+                  <li><Link href="/essay/tok-essay" className="hover:text-foreground transition-colors">TOK Essay Grader</Link></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-3">Supported Subjects</h4>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li><Link href="/essay/business-management-ia" className="hover:text-foreground transition-colors">Business Management IA</Link></li>
+                  <li><Link href="/essay/economics-ia" className="hover:text-foreground transition-colors">Economics IA</Link></li>
+                  <li><Link href="/essay/history-ia" className="hover:text-foreground transition-colors">History IA</Link></li>
+                  <li><Link href="/essay/biology-ia" className="hover:text-foreground transition-colors">Biology IA</Link></li>
+                  <li><Link href="/essay/chemistry-ia" className="hover:text-foreground transition-colors">Chemistry IA</Link></li>
+                  <li><Link href="/essay/physics-ia" className="hover:text-foreground transition-colors">Physics IA</Link></li>
+                  <li><Link href="/essay/math-ia" className="hover:text-foreground transition-colors">Mathematics IA</Link></li>
+                  <li><Link href="/essay/psychology-ia" className="hover:text-foreground transition-colors">Psychology IA</Link></li>
+                  <li><Link href="/essay/english-essay" className="hover:text-foreground transition-colors">English Essay</Link></li>
+                  <li><Link href="/essay/tok-essay" className="hover:text-foreground transition-colors">TOK Essay</Link></li>
+                  <li><Link href="/essay/extended-essay" className="hover:text-foreground transition-colors">Extended Essay (EE)</Link></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-3">Resources</h4>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li><Link href="/resources" className="hover:text-foreground transition-colors">All Guides</Link></li>
+                  <li><Link href="/resources/ib-extended-essay-guide" className="hover:text-foreground transition-colors">Extended Essay Guide</Link></li>
+                  <li><Link href="/resources/ib-internal-assessment-guide" className="hover:text-foreground transition-colors">IA Guide</Link></li>
+                  <li><Link href="/resources/tok-essay-guide" className="hover:text-foreground transition-colors">TOK Essay Guide</Link></li>
+                  <li><Link href="/resources/ib-grade-boundaries" className="hover:text-foreground transition-colors">Grade Boundaries</Link></li>
+                  <li><Link href="/resources/ib-university-admissions" className="hover:text-foreground transition-colors">University Admissions</Link></li>
+                  <li><Link href="/pricing" className="hover:text-foreground transition-colors">Pricing</Link></li>
+                  <li><Link href="/refund-policy" className="hover:text-foreground transition-colors">Refund Policy</Link></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </>
   );
 }

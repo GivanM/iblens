@@ -95,7 +95,7 @@ export default function LandingPage() {
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">
               Paste your IA, Extended Essay, or TOK. Get a criterion-by-criterion score, the exact marks you're losing, and how to fix them — free, instantly.
             </p>
-            <Button size="lg" className="text-base px-10 h-13 shadow-lg shadow-primary/25 mb-4" asChild>
+            <Button size="lg" className="text-base px-10 h-14 shadow-lg shadow-primary/25 mb-4" asChild>
               <Link href="/essay">
                 <FileText className="w-4 h-4 mr-2" />
                 Grade My Essay Free
@@ -111,7 +111,7 @@ export default function LandingPage() {
             <h2 className="text-xl font-bold text-center mb-8 text-muted-foreground uppercase tracking-wider text-sm">How it works</h2>
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { step: "1", icon: "📋", title: "Paste your essay", desc: "Copy-paste your IA, EE, or TOK text. No file upload needed." },
+                { step: "1", icon: "📋", title: "Paste your essay", desc: "Copy-paste your IA, EE, or TOK text and select your subject. Ready in seconds." },
                 { step: "2", icon: "⚡", title: "AI grades it in 60s", desc: "Scored against the official IB rubric for your subject and type." },
                 { step: "3", icon: "🎯", title: "See exactly what to fix", desc: "Criterion scores, marks you're losing, and a specific action plan." },
               ].map(({ step, icon, title, desc }) => (
@@ -227,8 +227,8 @@ export default function LandingPage() {
                 answer="IBLens evaluates your essay against official IB marking criteria for your subject. The predicted band gives you a reliable signal of where you stand and exactly which criteria to improve — the same way a real examiner would assess it."
               />
               <FAQItem
-                question="I don't have a credit card — can I still pay?"
-                answer="Yes. Signed-in users can pay with cryptocurrency (USDT, BTC, ETH) — create a free account, then the crypto option appears at checkout alongside Visa, Mastercard, and Amex. Credits activate automatically after payment."
+                question="What payment methods do you accept?"
+                answer="We accept card payments — Visa, Mastercard, and Amex. Credits activate automatically after payment. You don't need an account to pay."
               />
               <FAQItem
                 question="Is my essay private?"

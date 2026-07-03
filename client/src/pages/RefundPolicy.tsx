@@ -34,7 +34,6 @@ export default function RefundPolicy() {
             <h2 className="text-xl font-semibold mb-3">Refund Methods</h2>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground">
               <li><strong className="text-foreground">Card payments (via LemonSqueezy):</strong> Refunded to the original card. Please allow 5–10 business days for the refund to appear on your statement.</li>
-              <li><strong className="text-foreground">Cryptocurrency payments (via NOWPayments):</strong> Refunded in the original cryptocurrency to the wallet address you provide. Processing time depends on network confirmation speed (typically 1–3 business days).</li>
             </ul>
           </section>
 

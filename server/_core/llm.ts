@@ -321,23 +321,51 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
 
   normalizeResponseFormat({ responseFormat, response_format, outputSchema, output_schema });
 
-  const response = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-      "x-api-key": ENV.anthropicApiKey,
-      "anthropic-version": "2023-06-01",
-    },
-    body: JSON.stringify(payload),
-  });
+  // Retry on transient network failures (ETIMEDOUT/ECONNRESET on the RU->FI proxy route)
+  // and on retryable upstream statuses. The request is a single idempotent completion.
+  const MAX_ATTEMPTS = 3;
+  const RETRY_DELAYS_MS = [2000, 5000];
+  let lastError: unknown;
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(
-      `LLM invoke failed: ${response.status} ${response.statusText} – ${errorText}`
-    );
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    let response: Response;
+    try {
+      response = await fetch(`${ENV.anthropicBaseUrl}/v1/messages`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "x-api-key": ENV.anthropicApiKey,
+          "anthropic-version": "2023-06-01",
+        },
+        body: JSON.stringify(payload),
+        signal: AbortSignal.timeout(180_000),
+      });
+    } catch (networkError) {
+      lastError = networkError;
+      if (attempt < MAX_ATTEMPTS) {
+        console.warn(`[LLM] network error on attempt ${attempt}/${MAX_ATTEMPTS}, retrying:`, (networkError as Error)?.message);
+        await new Promise((r) => setTimeout(r, RETRY_DELAYS_MS[attempt - 1]));
+        continue;
+      }
+      throw networkError;
+    }
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      const retryable = response.status === 429 || response.status === 529 || response.status >= 500;
+      if (retryable && attempt < MAX_ATTEMPTS) {
+        console.warn(`[LLM] upstream ${response.status} on attempt ${attempt}/${MAX_ATTEMPTS}, retrying`);
+        await new Promise((r) => setTimeout(r, RETRY_DELAYS_MS[attempt - 1]));
+        continue;
+      }
+      throw new Error(
+        `LLM invoke failed: ${response.status} ${response.statusText} – ${errorText}`
+      );
+    }
+
+    const data = (await response.json()) as Record<string, unknown>;
+    return fromAnthropicResponse(data);
   }
 
-  const data = (await response.json()) as Record<string, unknown>;
-  return fromAnthropicResponse(data);
+  throw lastError instanceof Error ? lastError : new Error("LLM invoke failed after retries");
 }

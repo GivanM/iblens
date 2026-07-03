@@ -17,6 +17,8 @@ import confetti from "canvas-confetti";
 import { trackPurchase, sha256 } from "@/lib/analytics/track";
 import type { ProductSlug, PaymentMethod as AnalyticsPaymentMethod } from "@/lib/analytics/config";
 
+const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
+
 export default function Dashboard() {
   const { user, isAuthenticated, loading: authLoading } = useAuth();
   const [modalOpen, setModalOpen] = useState(false);
@@ -29,14 +31,12 @@ export default function Dashboard() {
     if (params.get("payment") === "success" && !confettiFired.current) {
       confettiFired.current = true;
 
-      // Fire confetti burst
       confetti({
         particleCount: 120,
         spread: 80,
         origin: { y: 0.6 },
       });
 
-      // Determine toast message based on SKU (if available)
       const sku = params.get("sku");
       const message = sku === "university_single" || sku === "university_strategy"
         ? "Payment confirmed! You can now build your University Strategy."
@@ -44,7 +44,6 @@ export default function Dashboard() {
 
       toast.success(message, { duration: 6000 });
 
-      // Fire purchase tracking event
       const orderId = params.get("order") || "unknown";
       const product = (params.get("product") || "essay_single") as ProductSlug;
       const value = parseFloat(params.get("value") || "0");
@@ -58,10 +57,8 @@ export default function Dashboard() {
         trackPurchase(orderId, product, value, method, "", "");
       }
 
-      // Clean URL
       window.history.replaceState({}, "", "/dashboard");
 
-      // Refetch data
       creditsQuery.refetch();
       ordersQuery.refetch();
     } else if (params.get("payment") === "cancelled") {
@@ -93,8 +90,8 @@ export default function Dashboard() {
       <div className="min-h-[60vh] flex items-center justify-center">
         <Card className="max-w-md w-full">
           <CardContent className="p-8 text-center">
-            <h2 className="text-xl font-semibold mb-3">Sign in to access your dashboard</h2>
-            <p className="text-muted-foreground mb-6">View your credits, analysis history, and purchase more analyses.</p>
+            <h2 style={SERIF} className="text-xl font-bold mb-3">Sign in to access your dashboard</h2>
+            <p className="text-muted-foreground mb-6 text-sm">View your credits, analysis history, and purchase more analyses.</p>
             <Button asChild><a href={getLoginUrl()}>Sign In</a></Button>
           </CardContent>
         </Card>
@@ -108,7 +105,7 @@ export default function Dashboard() {
   const orders = ordersQuery.data || [];
 
   return (
-    <div className="container py-8 max-w-5xl">
+    <div className="container py-10 max-w-5xl">
       {/* Purchase Modal */}
       <PurchaseModal
         open={modalOpen}
@@ -116,8 +113,8 @@ export default function Dashboard() {
         sku={modalSku}
       />
 
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold mb-1">Dashboard</h1>
+      <div className="mb-10">
+        <h1 style={SERIF} className="text-3xl font-bold mb-1">Dashboard</h1>
         <p className="text-muted-foreground text-sm">Welcome back{user?.name ? `, ${user.name}` : ""}.</p>
       </div>
 
@@ -125,13 +122,10 @@ export default function Dashboard() {
       <div className="grid sm:grid-cols-3 gap-4 mb-8">
         <Card>
           <CardContent className="p-5">
-            <div className="flex items-center gap-3 mb-2">
-              <Gift className="w-5 h-5 text-emerald-500" />
-              <span className="text-sm font-medium text-muted-foreground">Free Essay</span>
-            </div>
+            <p className="text-xs text-muted-foreground font-medium mb-1">Free Essay</p>
             <div className="text-2xl font-bold">
               {credits?.freeEssayAvailable ? (
-                <span className="text-emerald-500">Available</span>
+                <span className="text-primary">Available</span>
               ) : (
                 <span className="text-muted-foreground">Used</span>
               )}
@@ -141,21 +135,15 @@ export default function Dashboard() {
 
         <Card>
           <CardContent className="p-5">
-            <div className="flex items-center gap-3 mb-2">
-              <FileText className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium text-muted-foreground">Essay Credits</span>
-            </div>
-            <div className="text-2xl font-bold">{credits?.essayCredits ?? 0}</div>
+            <p className="text-xs text-muted-foreground font-medium mb-1">Essay Credits</p>
+            <div style={SERIF} className="text-2xl font-bold">{credits?.essayCredits ?? 0}</div>
           </CardContent>
         </Card>
 
         <Card>
           <CardContent className="p-5">
-            <div className="flex items-center gap-3 mb-2">
-              <GraduationCap className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium text-muted-foreground">University Credits</span>
-            </div>
-            <div className="text-2xl font-bold">{credits?.universityCredits ?? 0}</div>
+            <p className="text-xs text-muted-foreground font-medium mb-1">University Credits</p>
+            <div style={SERIF} className="text-2xl font-bold">{credits?.universityCredits ?? 0}</div>
           </CardContent>
         </Card>
       </div>
@@ -163,19 +151,17 @@ export default function Dashboard() {
       {/* Buy Credits */}
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <ShoppingCart className="w-5 h-5" />
+          <CardTitle className="flex items-center gap-2 text-base">
+            <ShoppingCart className="w-4 h-4" />
             Purchase Credits
           </CardTitle>
-          <p className="text-xs text-muted-foreground">Pay with card or crypto. Credits activate automatically.</p>
+          <p className="text-xs text-muted-foreground">Pay with card. Credits activate automatically.</p>
         </CardHeader>
         <CardContent>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* Essay Single */}
-            <div className="border rounded-lg p-4 text-center">
-              <FileText className="w-6 h-6 text-primary mx-auto mb-2" />
-              <h4 className="font-semibold text-sm">1 Essay Analysis</h4>
-              <div className="text-xl font-bold my-2">{PRICE_LABELS.ESSAY_SINGLE}</div>
+            <div className="border border-border rounded-lg p-4 text-center">
+              <h4 className="font-semibold text-sm mb-1">1 Essay Analysis</h4>
+              <div style={SERIF} className="text-xl font-bold my-2">{PRICE_LABELS.ESSAY_SINGLE}</div>
               <Button
                 size="sm"
                 variant="outline"
@@ -187,11 +173,9 @@ export default function Dashboard() {
               </Button>
             </div>
 
-            {/* Essay Pack 5 */}
-            <div className="border rounded-lg p-4 text-center">
-              <Package className="w-6 h-6 text-primary mx-auto mb-2" />
-              <h4 className="font-semibold text-sm">5 Essay Analyses</h4>
-              <div className="text-xl font-bold my-1">{PRICE_LABELS.ESSAY_PACK_5}</div>
+            <div className="border border-border rounded-lg p-4 text-center">
+              <h4 className="font-semibold text-sm mb-1">5 Essay Analyses</h4>
+              <div style={SERIF} className="text-xl font-bold my-1">{PRICE_LABELS.ESSAY_PACK_5}</div>
               <p className="text-xs text-muted-foreground mb-2">$4 each</p>
               <Button
                 size="sm"
@@ -204,15 +188,13 @@ export default function Dashboard() {
               </Button>
             </div>
 
-            {/* Essay Pack 10 */}
-            <div className="border border-primary rounded-lg p-4 text-center relative">
+            <div className="border-2 border-primary rounded-lg p-4 text-center relative">
               <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-primary text-primary-foreground text-[10px] font-semibold rounded-full">
                 Best Value
               </div>
-              <Package className="w-6 h-6 text-primary mx-auto mb-2" />
-              <h4 className="font-semibold text-sm">10 Essay Analyses</h4>
-              <div className="text-xl font-bold my-1">{PRICE_LABELS.ESSAY_PACK_10}</div>
-              <p className="text-xs text-muted-foreground mb-2">$3.50 each — best value</p>
+              <h4 className="font-semibold text-sm mb-1">10 Essay Analyses</h4>
+              <div style={SERIF} className="text-xl font-bold my-1">{PRICE_LABELS.ESSAY_PACK_10}</div>
+              <p className="text-xs text-muted-foreground mb-2">$3.50 each</p>
               <Button
                 size="sm"
                 className="w-full"
@@ -223,11 +205,9 @@ export default function Dashboard() {
               </Button>
             </div>
 
-            {/* University Single */}
-            <div className="border rounded-lg p-4 text-center">
-              <GraduationCap className="w-6 h-6 text-primary mx-auto mb-2" />
-              <h4 className="font-semibold text-sm">University Strategy</h4>
-              <div className="text-xl font-bold my-1">{PRICE_LABELS.UNIVERSITY_SINGLE}</div>
+            <div className="border border-border rounded-lg p-4 text-center">
+              <h4 className="font-semibold text-sm mb-1">University Strategy</h4>
+              <div style={SERIF} className="text-xl font-bold my-1">{PRICE_LABELS.UNIVERSITY_SINGLE}</div>
               <p className="text-xs text-muted-foreground mb-2">Personalized plan</p>
               <Button
                 size="sm"
@@ -248,12 +228,9 @@ export default function Dashboard() {
         <Card className="hover:shadow-md transition-shadow">
           <CardContent className="p-5">
             <Link href="/essay" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                <FileText className="w-5 h-5 text-primary" />
-              </div>
               <div className="flex-1">
                 <h3 className="font-semibold text-sm">Analyze Essay</h3>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-muted-foreground mt-0.5">
                   {credits?.canAnalyzeEssay
                     ? credits?.freeEssayAvailable
                       ? "Your free analysis is waiting!"
@@ -269,12 +246,9 @@ export default function Dashboard() {
         <Card className="hover:shadow-md transition-shadow">
           <CardContent className="p-5">
             <Link href="/university" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                <GraduationCap className="w-5 h-5 text-primary" />
-              </div>
               <div className="flex-1">
                 <h3 className="font-semibold text-sm">University Strategy</h3>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-muted-foreground mt-0.5">
                   {credits?.canAnalyzeUniversity
                     ? `${credits.universityCredits} credits available`
                     : "Purchase credits to use"}
@@ -289,8 +263,8 @@ export default function Dashboard() {
       {/* Analysis History */}
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Clock className="w-5 h-5" />
+          <CardTitle className="flex items-center gap-2 text-base">
+            <Clock className="w-4 h-4" />
             Analysis History
           </CardTitle>
         </CardHeader>
@@ -304,12 +278,7 @@ export default function Dashboard() {
           ) : (
             <div className="space-y-2">
               {history.map((item) => (
-                <div key={item.id} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
-                  {item.type === "essay" ? (
-                    <FileText className="w-5 h-5 text-primary flex-shrink-0" />
-                  ) : (
-                    <GraduationCap className="w-5 h-5 text-primary flex-shrink-0" />
-                  )}
+                <div key={item.id} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors border-b border-border last:border-0">
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium truncate">
                       {item.type === "essay"
@@ -330,11 +299,11 @@ export default function Dashboard() {
         </CardContent>
       </Card>
 
-      {/* Purchase History (from orders table) */}
+      {/* Purchase History */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Wallet className="w-5 h-5" />
+          <CardTitle className="flex items-center gap-2 text-base">
+            <Wallet className="w-4 h-4" />
             Purchase History
           </CardTitle>
         </CardHeader>
@@ -371,7 +340,7 @@ export default function Dashboard() {
                       <td className="py-3 pr-3">
                         {o.provider === "lemonsqueezy" ? "Card"
                           : o.provider === "nowpayments" ? "Crypto"
-                          : "Tribute (legacy)"}
+                          : "Other"}
                       </td>
                       <td className="py-3">
                         <Badge

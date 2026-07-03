@@ -2,6 +2,7 @@ import type { Express, Request, Response } from "express";
 import express from "express";
 import crypto from "crypto";
 import { ENV } from "../_core/env";
+import { LEMONSQUEEZY_BUY_URLS } from "../../shared/pricing";
 import {
   getOrderById,
   updateOrderStatus,
@@ -315,8 +316,9 @@ export function registerLemonsqueezyWebhook(app: Express) {
 }
 
 /**
- * Create a LemonSqueezy checkout via their API.
- * Returns the checkout URL for the user to complete payment.
+ * Build a LemonSqueezy direct checkout URL without any API call.
+ * Uses pre-configured buy_now_url UUIDs from LEMONSQUEEZY_BUY_URLS.
+ * Passes order_id and email as query parameters so the webhook can track the order.
  */
 export async function createLemonsqueezyCheckout(
   orderId: string,
@@ -325,76 +327,25 @@ export async function createLemonsqueezyCheckout(
   productSlug?: string,
   valueUsd?: number,
 ): Promise<{ checkoutUrl: string }> {
-  const apiKey = ENV.lemonsqueezyApiKey;
-  const storeId = ENV.lemonsqueezyStoreId;
+  const slug = productSlug || "essay_single";
+  const baseUrl = LEMONSQUEEZY_BUY_URLS[slug];
 
-  if (!apiKey) {
-    throw new Error("LEMONSQUEEZY_API_KEY not configured");
-  }
-  if (!storeId) {
-    throw new Error("LEMONSQUEEZY_STORE_ID not configured");
+  if (!baseUrl) {
+    throw new Error(`No checkout URL configured for product: ${slug}`);
   }
 
-  const payload: any = {
-    data: {
-      type: "checkouts",
-      attributes: {
-        checkout_data: {
-          custom: {
-            order_id: orderId,
-          },
-        },
-        product_options: {
-          redirect_url: `https://iblens.com/dashboard?payment=success&order=${orderId}&product=${productSlug || 'essay_single'}&value=${((valueUsd ?? 0) / 100).toFixed(2)}&method=lemonsqueezy`,
-          receipt_thank_you_note: "Thank you for your purchase! Your credits have been added to your IBLens account.",
-        },
-      },
-      relationships: {
-        store: {
-          data: {
-            type: "stores",
-            id: storeId,
-          },
-        },
-        variant: {
-          data: {
-            type: "variants",
-            id: String(variantId),
-          },
-        },
-      },
-    },
-  };
-
-  // Add email if available
+  const url = new URL(baseUrl);
+  url.searchParams.set("checkout[custom][order_id]", orderId);
   if (userEmail) {
-    payload.data.attributes.checkout_data.email = userEmail;
+    url.searchParams.set("checkout[email]", userEmail);
   }
+  url.searchParams.set(
+    "checkout[redirect_url]",
+    `https://iblens.com/dashboard?payment=success&order=${orderId}&product=${slug}&value=${((valueUsd ?? 0) / 100).toFixed(2)}&method=lemonsqueezy`,
+  );
 
-  const response = await fetch("https://api.lemonsqueezy.com/v1/checkouts", {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${apiKey}`,
-      "Accept": "application/vnd.api+json",
-      "Content-Type": "application/vnd.api+json",
-    },
-    body: JSON.stringify(payload),
-  });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    console.error(`[LemonSqueezy] Checkout creation failed: ${response.status} ${errorText}`);
-    throw new Error(`LemonSqueezy checkout creation failed: ${response.status}`);
-  }
-
-  const result = await response.json();
-  const checkoutUrl = result?.data?.attributes?.url;
-
-  if (!checkoutUrl) {
-    throw new Error("LemonSqueezy did not return a checkout URL");
-  }
-
-  return { checkoutUrl };
+  console.log(`[LemonSqueezy] Direct checkout URL built for order ${orderId}, product ${slug}`);
+  return { checkoutUrl: url.toString() };
 }
 
 // Export for testing
