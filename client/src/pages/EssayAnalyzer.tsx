@@ -732,6 +732,28 @@ export default function EssayAnalyzer() {
             </CardContent>
           </Card>
 
+          {(() => {
+            const weakest = [...(result.criteria || [])]
+              .filter((c: any) => c.max > 0 && c.score < c.max)
+              .sort((a: any, b: any) => a.score / a.max - b.score / b.max)
+              .slice(0, 2);
+            const potential = weakest.reduce((s: number, c: any) => s + (c.max - c.score), 0);
+            if (!weakest.length) return null;
+            return (
+              <Card>
+                <CardContent className="p-6">
+                  <h3 style={SERIF} className="text-xl font-bold mb-2">Your fastest wins: +{potential} marks on the table</h3>
+                  <ul className="space-y-1.5 mb-3">
+                    {weakest.map((c: any) => (
+                      <li key={c.name} className="text-sm text-muted-foreground"><strong className="text-foreground">{c.name}</strong> — {c.score}/{c.max} now, +{c.max - c.score} available</li>
+                    ))}
+                  </ul>
+                  <p className="text-sm text-muted-foreground">Fix these in your draft using the comments above, then run a <strong>re-check</strong> — you will see exactly which criteria moved and by how much. That before/after delta is what an $80/hr tutor charges for.</p>
+                </CardContent>
+              </Card>
+            );
+          })()}
+
           {/* Save Results & Buy More CTA */}
           {!isAuthenticated ? (
             <Card className="border-primary/30 bg-primary/5">
@@ -754,7 +776,7 @@ export default function EssayAnalyzer() {
                       Save Report — Free
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" className="h-12" onClick={() => setEssayPurchaseOpen(true)}>
+                  <Button variant="outline" size="lg" className="h-12" onClick={() => { (window as any).dataLayer?.push({ event: "recheck_cta_click", auth: "anon" }); setEssayPurchaseOpen(true); }}>
                     <CreditCard className="w-4 h-4 mr-2" />
                     Buy Credits ($4.99)
                   </Button>

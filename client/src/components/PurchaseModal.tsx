@@ -166,6 +166,9 @@ export function PurchaseModal({ open, onOpenChange, sku }: PurchaseModalProps) {
             <Shield className="w-3 h-3" />
             Secure checkout. Credits activate automatically after payment.
           </p>
+          <p className="text-xs text-center text-muted-foreground">
+            7-day money-back guarantee · <a href="/resources/sample-reports" target="_blank" rel="noopener" className="underline hover:text-foreground">see a real sample report</a>
+          </p>
         </div>
       </DialogContent>
     </Dialog>

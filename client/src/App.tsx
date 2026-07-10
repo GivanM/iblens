@@ -43,6 +43,10 @@ import IBUniversityConsultantCost from "./pages/resources/IBUniversityConsultant
 import IBUniversityChances from "./pages/resources/IBUniversityChances";
 import IBBiologyExtendedEssay from "./pages/resources/IBBiologyExtendedEssay";
 import IBChemistryExtendedEssay from "./pages/resources/IBChemistryExtendedEssay";
+import IBHistoryExtendedEssay from "./pages/resources/IBHistoryExtendedEssay";
+import IBEnglishExtendedEssay from "./pages/resources/IBEnglishExtendedEssay";
+import IBEconomicsExtendedEssay from "./pages/resources/IBEconomicsExtendedEssay";
+import IBPsychologyExtendedEssay from "./pages/resources/IBPsychologyExtendedEssay";
 import Layout from "./components/Layout";
 import { CookieConsent } from "./components/CookieConsent";
 import BiologyIA from "./pages/essay/BiologyIA";
@@ -121,6 +125,10 @@ function Router() {
       <Route path="/resources/ib-university-chances" component={IBUniversityChances} />
       <Route path="/resources/ib-biology-extended-essay" component={IBBiologyExtendedEssay} />
       <Route path="/resources/ib-chemistry-extended-essay" component={IBChemistryExtendedEssay} />
+      <Route path="/resources/ib-history-extended-essay" component={IBHistoryExtendedEssay} />
+      <Route path="/resources/ib-english-extended-essay" component={IBEnglishExtendedEssay} />
+      <Route path="/resources/ib-economics-extended-essay" component={IBEconomicsExtendedEssay} />
+      <Route path="/resources/ib-psychology-extended-essay" component={IBPsychologyExtendedEssay} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
