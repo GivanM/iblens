@@ -47,6 +47,17 @@ const routeMeta: Record<string, PageMeta> = {
       { question: "Should I remark or retake?", answer: "Remark if your externally-marked essay (EE or TOK) reads close to a boundary. Retake in November if you are several marks off — registration between July 6–29 has the lowest fees." },
     ],
   },
+  "/resources/sample-reports": {
+    title: "Sample IBLens Reports \u2014 Three Essays, Three Honest Grades | IBLens",
+    description: "Real, unedited IBLens output: the same TOK title at three quality levels, graded 3/10, 4/10 and 7/10 with criterion-level feedback. This is what calibrated strictness looks like.",
+    ogType: "article",
+    canonical: "/resources/sample-reports",
+    schemaType: "Article",
+    faq: [
+      { question: "Are the sample reports real IBLens output?", answer: "Yes. The three demo essays were written by our team at deliberately different quality levels, then run through the live grader. The scores and every word of feedback are unedited IBLens output." },
+      { question: "Does IBLens give everyone a similar score?", answer: "No \u2014 that is the point of the demonstration. The weak essay scored 3/10, the developing one 4/10, the strong one 7/10. The grader is calibrated to spread scores the way a strict examiner does." },
+    ],
+  },
   "/resources/academic-integrity": {
     title: "AI Feedback and IB Academic Integrity — Is It Allowed? | IBLens",
     description: "What the IB academic integrity policy means for AI feedback on your EE, TOK essay or IA — and how IBLens handles your data: no training on your essays, no sharing, deletion on request.",

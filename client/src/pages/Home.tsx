@@ -210,7 +210,7 @@ export default function Home() {
                     <Link href="/essay">Grade my essay — free</Link>
                   </Button>
                   <Button size="lg" variant="ghost" asChild>
-                    <Link href="#sample">See a sample</Link>
+                    <Link href="/resources/sample-reports">See real sample reports</Link>
                   </Button>
                 </div>
                 <p className="text-sm text-muted-foreground">No subscription. No account for your first essay. Calibrated to grade like a <strong>strict examiner</strong> — no inflated scores.</p>

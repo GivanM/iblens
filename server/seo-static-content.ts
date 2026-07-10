@@ -2495,7 +2495,7 @@ export const staticContent: Record<string, string> = {
 </main>`,
 
   "/resources/ib-math-ia-examples": `<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Math IA Examples</nav>
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Math IA Examples</nav>\n      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Math IA Examples</h1>
   <p>
         The IB Mathematics Internal Assessment is worth 20% of your final grade — and
         it is the one component where you control the topic, the approach, and the
@@ -2862,7 +2862,7 @@ export const staticContent: Record<string, string> = {
 </main>`,
 
   "/resources/ib-extended-essay-help": `<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Extended Essay Help</nav>
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Extended Essay Help</nav>\n      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Extended Essay Help</h1>
   <p>
         If you have typed "write my extended essay" or "help with IB extended essay"
         into a search bar at 11pm, you are not alone. The Extended Essay is the longest
@@ -3008,7 +3008,7 @@ export const staticContent: Record<string, string> = {
 </main>`,
 
   "/resources/ib-chemistry-ia-examples": `<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Chemistry IA Examples</nav>
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Chemistry IA Examples</nav>\n      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Chemistry IA Examples</h1>
   <p>
         The IB Chemistry Internal Assessment is a 10-hour scientific investigation
         worth 20% of your final grade. It is marked on the same five criteria as
@@ -3170,7 +3170,7 @@ export const staticContent: Record<string, string> = {
 </main>`,
 
   "/resources/ib-physics-ia-examples": `<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Physics IA Examples</nav>
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Physics IA Examples</nav>\n      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Physics IA Examples</h1>
   <p>
         The IB Physics Internal Assessment is a practical investigation worth 20%
         of your final grade. Physics IAs are particularly unforgiving on data
@@ -3318,7 +3318,7 @@ export const staticContent: Record<string, string> = {
 </main>`,
 
   "/resources/ib-psychology-ia": `<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Psychology IA</nav>
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Psychology IA</nav>\n      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Psychology IA</h1>
   <p>
         The IB Psychology Internal Assessment is a replication study: you choose an
         existing published psychological study, adapt it for an ethical school setting,
@@ -3456,7 +3456,7 @@ export const staticContent: Record<string, string> = {
 </main>`,
 
   "/resources/ib-university-admissions-strategy": `<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB University Admissions Strategy</nav>
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB University Admissions Strategy</nav>\n      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB University Admissions Strategy</h1>
   <p>
         Getting into a great university as an IB student is not just about hitting a
         number. Admissions offices in the UK, US, Canada, the Netherlands, Australia,
@@ -3862,7 +3862,7 @@ export const staticContent: Record<string, string> = {
 </main>`,
 
   "/resources/ib-ee-examples-by-subject": `<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB EE Examples by Subject</nav>
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB EE Examples by Subject</nav>\n      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB EE Examples by Subject</h1>
   <p>
         The IB Extended Essay is a 4000-word independent research project that every
         Diploma candidate must complete. It is one of the most significant pieces of
@@ -4053,7 +4053,7 @@ export const staticContent: Record<string, string> = {
 </main>`,
 
   "/resources/ib-biology-ia-examples": `<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Biology IA Examples</nav>
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Biology IA Examples</nav>\n      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Biology IA Examples</h1>
   <p>
         The IB Biology Internal Assessment is a scientific investigation worth 20% of
         your final grade. Unlike a lab practical in class, the IA asks you to design,

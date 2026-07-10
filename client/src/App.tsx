@@ -38,6 +38,7 @@ import TokEssayFormat from "./pages/resources/TokEssayFormat";
 import TokEssayStructure from "./pages/resources/TokEssayStructure";
 import RemarkChecker from "./pages/RemarkChecker";
 import AcademicIntegrity from "./pages/resources/AcademicIntegrity";
+import SampleReports from "./pages/resources/SampleReports";
 import IBUniversityConsultantCost from "./pages/resources/IBUniversityConsultantCost";
 import IBUniversityChances from "./pages/resources/IBUniversityChances";
 import IBBiologyExtendedEssay from "./pages/resources/IBBiologyExtendedEssay";
@@ -115,6 +116,7 @@ function Router() {
       <Route path="/resources/tok-essay-structure" component={TokEssayStructure} />
       <Route path="/remark" component={RemarkChecker} />
       <Route path="/resources/academic-integrity" component={AcademicIntegrity} />
+      <Route path="/resources/sample-reports" component={SampleReports} />
       <Route path="/resources/ib-university-consultant-cost" component={IBUniversityConsultantCost} />
       <Route path="/resources/ib-university-chances" component={IBUniversityChances} />
       <Route path="/resources/ib-biology-extended-essay" component={IBBiologyExtendedEssay} />

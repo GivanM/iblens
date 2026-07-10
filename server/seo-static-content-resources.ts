@@ -1,4 +1,66 @@
 export const staticContentResources: Record<string, string> = {
+  "/resources/ib-chemistry-extended-essay": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Chemistry Extended Essay</nav>
+      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Chemistry Extended Essay</h1>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">The IB Chemistry Extended Essay (EE) is a 4,000-word independent research paper that requires original investigation of a chemistry topic. Done well, it earns up to three bonus points toward your Diploma score and demonstrates the kind of analytical thinking that university chemistry programs value. This guide covers how to choose a research question that works, what each assessment criterion requires, and which topic areas consistently produce high-scoring Chemistry EEs.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">Chemistry lends itself naturally to the EE because it produces measurable, quantitative data and connects directly to existing peer-reviewed literature. Unlike subjects where the research question is more open-ended (such as history or literature), a Chemistry EE research question has a clear experimental design and a specific dependent variable to measure. This makes Criterion A (Focus and Method) and Criterion C (Critical Thinking) more straightforward to address — if you design your experiment rigorously and compare your results to published values.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">A strong Chemistry EE research question specifies the system being studied, the variable being manipulated, the variable being measured, and the conditions under which the experiment is conducted. It should be narrow enough to be answered in 4,000 words, but significant enough to justify investigation.</p>
+      <p style="margin-top:20px"><a href="/essay" style="color:#7B1D2E;font-weight:600">Grade your IB essay free →</a></p>
+    </main>`,
+
+  "/resources/how-iblens-works": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › How IBLens Works</nav>
+      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">How IBLens Works</h1>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">IBLens is an AI-powered essay analysis tool designed specifically for IB Diploma Programme students. It provides criterion-by-criterion feedback on Internal Assessments, Extended Essays, and Theory of Knowledge essays — the same type of detailed assessment that an experienced IB examiner would provide, delivered in approximately 60 seconds.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">This page explains exactly how IBLens works: what happens when you upload an essay, how the AI generates its feedback, what the output looks like, what the tool can and cannot do, and how it compares to alternatives like private tutors or peer review. We believe in transparency about our technology so you can make an informed decision about whether it is useful for your preparation.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">When you upload an essay to IBLens, the system performs a comprehensive analysis that includes:</p>
+      <p style="margin-top:20px"><a href="/essay" style="color:#7B1D2E;font-weight:600">Grade your IB essay free →</a></p>
+    </main>`,
+
+  "/resources": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › IB Resources</nav>
+      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Resources</h1>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">Free in-depth guides for IB Diploma students: how to write an Extended Essay, Internal Assessment criteria by subject, TOK essay structure, IB grade boundaries, and university admissions tips.</p>
+      <h2 style="font-size:20px;font-weight:600;margin:24px 0 12px">All guides</h2>
+      <ul style="line-height:2;padding-left:20px"><li><a href="/resources/sample-reports">Sample IBLens Reports</a></li><li><a href="/resources/academic-integrity">AI Feedback and IB Academic Integrity</a></li><li><a href="/resources/ib-extended-essay-guide">IB Extended Essay (EE) Guide</a></li><li><a href="/resources/ib-internal-assessment-guide">IB Internal Assessment Guide 2026</a></li><li><a href="/resources/tok-essay-guide">IB TOK Essay Format & Help</a></li><li><a href="/resources/ib-grade-boundaries">IB Grade Boundaries 2026</a></li><li><a href="/resources/ib-essay-criteria-explained">IB Essay Criteria Explained</a></li><li><a href="/resources/how-iblens-works">How IBLens Works</a></li><li><a href="/resources/ib-university-admissions">IB University Admissions 2026</a></li><li><a href="/resources/ib-extended-essay-examples">IB Extended Essay Examples</a></li><li><a href="/resources/ib-ia-score-predictor">IB IA Score Predictor</a></li><li><a href="/resources/ib-score-calculator">IB Score Calculator</a></li><li><a href="/resources/ib-university-admissions-strategy">IB University Admissions Strategy</a></li><li><a href="/resources/ib-math-ia-examples">IB Math IA Examples</a></li><li><a href="/resources/ib-biology-ia-examples">IB Biology IA Examples</a></li><li><a href="/resources/ib-economics-ia">IB Economics IA</a></li><li><a href="/resources/ib-extended-essay-word-count">IB Extended Essay Word Count</a></li><li><a href="/resources/ib-extended-essay-help">IB Extended Essay Help</a></li><li><a href="/resources/ib-chemistry-ia-examples">IB Chemistry IA Examples</a></li><li><a href="/resources/ib-physics-ia-examples">IB Physics IA Examples</a></li><li><a href="/resources/ib-psychology-ia">IB Psychology IA</a></li><li><a href="/resources/ib-history-ia">IB History IA</a></li><li><a href="/resources/ib-ee-examples-by-subject">IB EE Examples by Subject</a></li><li><a href="/resources/ib-ia-grader">IB IA Grader</a></li><li><a href="/resources/tok-essay-format">IB TOK Essay Format</a></li><li><a href="/resources/tok-essay-structure">IB TOK Essay Structure 2026</a></li><li><a href="/resources/ib-university-consultant-cost">IB University Consultant Cost 2026</a></li><li><a href="/resources/ib-university-chances">IB University Chances Checker</a></li><li><a href="/resources/ib-biology-extended-essay">IB Biology Extended Essay</a></li><li><a href="/resources/ib-chemistry-extended-essay">IB Chemistry Extended Essay</a></li></ul>
+      <p style="margin-top:20px"><a href="/essay" style="color:#7B1D2E;font-weight:600">Grade your IB essay free →</a></p>
+    </main>`,
+
+  "/refund-policy": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › Refund Policy</nav>
+      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">Refund Policy</h1>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">IBLens offers a 7-day no-questions-asked money-back guarantee on all purchases. Email us within 7 days for a full refund to your original payment method.</p>
+      <p style="margin-top:20px"><a href="/essay" style="color:#7B1D2E;font-weight:600">Grade your IB essay free →</a></p>
+    </main>`,
+
+  "/grade": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › Grade Your IB Essayin 60 Seconds</nav>
+      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">Grade Your IB Essayin 60 Seconds</h1>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">Paste your IB essay and get a predicted grade in 60 seconds. AI feedback on every criterion \u2014 Extended Essay, IA, or TOK. No account, no credit card required.</p>
+      <p style="margin-top:20px"><a href="/essay" style="color:#7B1D2E;font-weight:600">Grade your IB essay free →</a></p>
+    </main>`,
+
+  "/resources/sample-reports": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › Sample Reports</nav>
+      <h1>Three essays. Three honest grades.</h1>
+      <p>Most AI graders give everything a comfortable 6.5. We wrote three demo essays on the same TOK-style title at deliberately different quality levels and ran each through IBLens. The analyses are real, unedited grader output: the weak essay scored 3/10, the developing one 4/10, the strong one 7/10.</p>
+      <h2>What a weak essay looks like — 3/10 (band 1-3)</h2>
+      <p><em>How we wrote it: Opinion-based claims (“in my opinion”, “my teacher says”), anecdotes instead of examples, no genuine counterclaims, key terms never defined.</em></p>
+      <p>Excerpt: “Can we ever be certain about anything in science and math? This is a really interesting question that many people have thought about. In my opinion, certainty is possible in math but not really in science, and I will explain why I think this. First of all, mat”</p>
+      <ul><li><strong>Understanding knowledge questions — 1/3:</strong> The student identifies the central knowledge question implied by the title — whether certainty is achievable in mathematics and natural sciences — but does not articulate it as a genuine knowledge question (e.g., 'What d…</li><li><strong>Quality of analysis of knowledge questions — 1/3:</strong> The analysis is superficial throughout. Arguments are asserted rather than developed — for example, '2+2=4 is always true' is stated without engaging with the foundational question of why mathematical truths hold (axioms…</li><li><strong>Quality of overall essay — 1/4:</strong> The essay has a recognizable five-paragraph structure (introduction, two body paragraphs, concession, conclusion), which is a basic strength. However, quality is undermined across multiple dimensions. Factual accuracy is…</li></ul>
+      <h2>What a developing essay looks like — 4/10 (band 4-6)</h2>
+      <p><em>How we wrote it: Clear structure, terms defined, standard examples — but the analysis stays descriptive, counterclaims are thin, and examples don’t do real argumentative work.</em></p>
+      <p>Excerpt: “To what extent is certainty attainable in the natural sciences and mathematics? In this essay I will define certainty as knowledge that cannot be doubted, and I will look at mathematics first and then the natural sciences. In mathematics, knowledge comes from ”</p>
+      <ul><li><strong>Understanding knowledge questions — 1/3:</strong> The student implicitly engages with the knowledge question embedded in the title — namely, whether certainty is attainable — but never explicitly articulates this as a knowledge question (KQ) in TOK terms. The essay does…</li><li><strong>Quality of analysis of knowledge questions — 1/3:</strong> The analysis is minimal and largely descriptive. The Popper example is correctly identified but not analyzed — the student states that theories can be falsified without exploring what this means epistemologically (e.g., …</li><li><strong>Quality of overall essay — 2/4:</strong> The essay has a clear and logical structure — introduction, body paragraphs organized by AOK, a counter-consideration section, and a conclusion. The writing is clear, grammatically correct, and easy to follow. These are …</li></ul>
+      <h2>What a strong essay looks like — 7/10 (band 7-8)</h2>
+      <p><em>How we wrote it: Precise conditional claims, examples that carry the argument (Gödel, the four-colour theorem), a genuine counterclaim taken seriously, and synthesis — not summary — in the conclusion.</em></p>
+      <p>Excerpt: “To what extent is certainty attainable in the natural sciences and mathematics? This essay argues that certainty operates differently across these two areas of knowledge. In mathematics, certainty appears attainable through deductive proof. Once the Pythagorea”</p>
+      <ul><li><strong>Understanding knowledge questions — 2/3:</strong> The student clearly identifies the central knowledge question — to what extent certainty is attainable in mathematics and the natural sciences — and maintains focus on it throughout. The distinction between conditional/i…</li><li><strong>Quality of analysis of knowledge questions — 2/3:</strong> The analysis is clear and makes good use of relevant examples: the Pythagorean theorem illustrates conditional mathematical certainty, Newtonian mechanics illustrates the revisability of scientific knowledge, and Gödel's…</li><li><strong>Quality of overall essay — 3/4:</strong> The essay is well-organized, clearly written, and logically sequenced. The thesis is stated early and the conclusion follows coherently from the argument, which is a genuine strength. The closing formulation — 'the knowe…</li></ul>
+      <h2>Why the spread matters</h2>
+      <p>Feedback is only useful if the grade moves when quality moves. IBLens is calibrated to read like a strict examiner — if it says 7, we mean it.</p>
+      <p><a href="/essay">Get this exact report for your own essay — first analysis free →</a></p>
+    </main>`,
+
   "/resources/academic-integrity": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › Academic Integrity</nav>
       <h1>AI Feedback and IB Academic Integrity</h1>
@@ -176,7 +238,7 @@ export const staticContentResources: Record<string, string> = {
     
   </main>`,
   "/resources/ib-biology-extended-essay": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Biology Extended Essay</nav>
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Biology Extended Essay</nav>\n      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Biology Extended Essay</h1>
       <p>
         The IB Biology Extended Essay (EE) is a 4,000-word independent research
         project that can earn up to three bonus points toward your Diploma score.
@@ -1178,7 +1240,7 @@ export const staticContentResources: Record<string, string> = {
     
   </main>`,
   "/resources/ib-extended-essay-word-count": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Extended Essay Word Count</nav>
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Extended Essay Word Count</nav>\n      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Extended Essay Word Count</h1>
       <p>
         The IB Extended Essay has a maximum word count of 4000 words. This is one of
         the most misunderstood rules in the entire IB programme — students frequently
@@ -1354,7 +1416,7 @@ export const staticContentResources: Record<string, string> = {
     
   </main>`,
   "/resources/ib-economics-ia": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Economics IA</nav>
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Economics IA</nav>\n      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Economics IA</h1>
       <p>
         The IB Economics Internal Assessment consists of three commentaries — one each
         on Microeconomics, Macroeconomics, and International Economics — each written
@@ -1530,7 +1592,7 @@ export const staticContentResources: Record<string, string> = {
     
   </main>`,
   "/resources/ib-history-ia": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB History IA</nav>
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB History IA</nav>\n      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB History IA</h1>
       <p>
         The IB History Internal Assessment is a Historical Investigation of 2200 words
         that requires you to investigate a historical question using primary and

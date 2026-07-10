@@ -323,6 +323,54 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
 
   // Retry on transient network failures (ETIMEDOUT/ECONNRESET on the RU->FI proxy route)
   // and on retryable upstream statuses. The request is a single idempotent completion.
+  // Relay mode: the RU->FI route kills long-lived connections (DPI), but short
+  // requests pass reliably. Submit the job to the Helsinki relay, then poll with
+  // short GETs every 3s. The relay calls Anthropic locally and buffers the result.
+  if (ENV.anthropicRelayUrl) {
+    const relayBase = ENV.anthropicRelayUrl.replace(/\/$/, "");
+    let jobId = "";
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        const sub = await fetch(relayBase + "/submit", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ apiKey: ENV.anthropicApiKey, anthropicVersion: "2023-06-01", payload }),
+          signal: AbortSignal.timeout(15_000),
+        });
+        if (!sub.ok) throw new Error("relay submit failed: " + sub.status);
+        jobId = ((await sub.json()) as { id: string }).id;
+        break;
+      } catch (e) {
+        if (attempt === 3) throw e;
+        await new Promise((r) => setTimeout(r, 1500 * attempt));
+      }
+    }
+    const deadline = Date.now() + 240_000;
+    while (Date.now() < deadline) {
+      await new Promise((r) => setTimeout(r, 3000));
+      let poll: Response | null = null;
+      try {
+        poll = await fetch(relayBase + "/result/" + jobId, { signal: AbortSignal.timeout(15_000) });
+      } catch {
+        continue; // transient poll failure - keep polling
+      }
+      if (poll.status === 202) continue;
+      if (poll.status === 200) {
+        const j = (await poll.json()) as { code: number; body: string };
+        if (j.code !== 200) throw new Error("LLM invoke failed: " + j.code + " - " + String(j.body).slice(0, 300));
+        return fromAnthropicResponse(JSON.parse(j.body) as Record<string, unknown>);
+      }
+      if (poll.status === 404) throw new Error("relay lost the job");
+      if (poll.status === 502) {
+        const j = (await poll.json().catch(() => ({}))) as { error?: string };
+        throw new Error("relay upstream error: " + (j.error || "unknown"));
+      }
+    }
+    throw new Error("relay poll timeout after 240s");
+  }
+
+  payload.stream = true;
+
   const MAX_ATTEMPTS = 3;
   const RETRY_DELAYS_MS = [2000, 5000];
   let lastError: unknown;
@@ -363,7 +411,74 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
       );
     }
 
-    const data = (await response.json()) as Record<string, unknown>;
+    let data: Record<string, unknown>;
+    try {
+      // Streamed read: continuous bytes keep the RU->FI route alive.
+      // A buffered (non-stream) response means 40-60s of wire silence, which
+      // middleboxes on this route kill with ETIMEDOUT/terminated.
+      const reader = (response.body as ReadableStream<Uint8Array>).getReader();
+      const decoder = new TextDecoder();
+      let buf = "";
+      let msgId = "";
+      let msgModel = String(payload.model);
+      let inputTokens = 0;
+      let outputTokens = 0;
+      let stopReason: string | null = null;
+      const blocks: Array<{ type: string; text: string; id?: string; name?: string; json: string }> = [];
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buf += decoder.decode(value, { stream: true });
+        let nl: number;
+        while ((nl = buf.indexOf("\n")) !== -1) {
+          const line = buf.slice(0, nl).trim();
+          buf = buf.slice(nl + 1);
+          if (!line.startsWith("data:")) continue;
+          const evStr = line.slice(5).trim();
+          if (!evStr) continue;
+          let ev: any;
+          try { ev = JSON.parse(evStr); } catch { continue; }
+          if (ev.type === "message_start") {
+            msgId = ev.message?.id ?? "";
+            msgModel = ev.message?.model ?? msgModel;
+            inputTokens = ev.message?.usage?.input_tokens ?? 0;
+          } else if (ev.type === "content_block_start") {
+            blocks[ev.index] = { type: ev.content_block?.type ?? "text", text: ev.content_block?.text ?? "", id: ev.content_block?.id, name: ev.content_block?.name, json: "" };
+          } else if (ev.type === "content_block_delta") {
+            if (!blocks[ev.index]) blocks[ev.index] = { type: "text", text: "", json: "" };
+            if (ev.delta?.type === "text_delta") blocks[ev.index].text += ev.delta.text ?? "";
+            else if (ev.delta?.type === "input_json_delta") blocks[ev.index].json += ev.delta.partial_json ?? "";
+          } else if (ev.type === "message_delta") {
+            stopReason = ev.delta?.stop_reason ?? stopReason;
+            outputTokens = ev.usage?.output_tokens ?? outputTokens;
+          } else if (ev.type === "error") {
+            throw new Error("LLM stream error: " + JSON.stringify(ev.error));
+          }
+        }
+      }
+
+      data = {
+        id: msgId,
+        model: msgModel,
+        stop_reason: stopReason,
+        usage: { input_tokens: inputTokens, output_tokens: outputTokens },
+        content: blocks.filter(Boolean).map((b) =>
+          b.type === "tool_use"
+            ? { type: "tool_use", id: b.id, name: b.name, input: b.json ? JSON.parse(b.json) : {} }
+            : { type: "text", text: b.text }
+        ),
+      } as Record<string, unknown>;
+    } catch (bodyError) {
+      // Connection dropped mid-body ("TypeError: terminated") — retry like a network error
+      lastError = bodyError;
+      if (attempt < MAX_ATTEMPTS) {
+        console.warn(`[LLM] body read failed on attempt ${attempt}/${MAX_ATTEMPTS}, retrying:`, (bodyError as Error)?.message);
+        await new Promise((r) => setTimeout(r, RETRY_DELAYS_MS[attempt - 1]));
+        continue;
+      }
+      throw bodyError;
+    }
     return fromAnthropicResponse(data);
   }
 
