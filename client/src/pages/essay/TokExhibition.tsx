@@ -12,9 +12,7 @@ const config: SubjectConfig = {
   heroSubline:
     "Paste your TOK Exhibition commentary and get criterion-by-criterion feedback against the official IB rubric — in 60 seconds. Find out if your object justifications are strong enough to score 9–10/10.",
   criteria: [
-    { name: "Links between objects and the selected IA prompt", max: 4, sampleScore: 3 },
-    { name: "Links between objects and TOK", max: 3, sampleScore: 2 },
-    { name: "Quality of justification", max: 3, sampleScore: 2 },
+    { name: "Holistic assessment: how well the exhibition shows TOK in the world", max: 10, sampleScore: 6 },
   ],
   relatedSubjects: [
     { label: "TOK Essay", href: "/essay/tok-essay" },

@@ -25,7 +25,7 @@ export default function IBBiologyIAExamples() {
         The IA is marked out of 24 across five criteria:
       </p>
       <ul>
-        <li><strong>Personal Engagement (2 marks):</strong> Evidence that the student chose and shaped the investigation themselves. Examiners look for a genuine question, not a reformatted class lab.</li>
+        <li><strong>Research design (6 marks):</strong> A focused research question in a genuine context, with an appropriate and safe methodology — the criterion where most marks are won or lost.</li>
         <li><strong>Exploration (6 marks):</strong> Clear research question, appropriate methodology, identified variables (independent, dependent, controlled), and sufficient background theory.</li>
         <li><strong>Analysis (6 marks):</strong> Correctly processed data, appropriate statistical tests, graphs with error bars, and a conclusion drawn from the data.</li>
         <li><strong>Evaluation (6 marks):</strong> Honest assessment of the methodology: what are the weaknesses? What systematic errors exist? How could the investigation be improved?</li>
@@ -48,10 +48,10 @@ export default function IBBiologyIAExamples() {
         1/concentration (Lineweaver-Burk), discusses why the curve deviates from
         the Michaelis-Menten model at very high substrate concentrations, and
         reflects on whether enzyme concentration was truly controlled across trials.
-        The Personal Engagement mark typically comes from choosing an enzyme or
+        A convincing personal context typically comes from choosing an enzyme or
         substrate with a personal connection — a student who works in a kitchen
         and investigates pineapple juice (bromelain) inhibiting gelatin setting
-        scores Personal Engagement almost automatically.
+        makes the research question feel genuinely yours, which strengthens Research design.
       </p>
 
       <h3>2. Osmosis in plant tissue across a concentration gradient</h3>

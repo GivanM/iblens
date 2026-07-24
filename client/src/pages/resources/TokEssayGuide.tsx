@@ -85,7 +85,7 @@ export default function TokEssayGuide() {
         The evaluation step is crucial. Weak essays present claims and counter-claims but never resolve the tension between them. Strong essays show <strong>nuanced judgment</strong> — perhaps the claim holds in one context but not another, or perhaps the truth lies in a synthesis of both perspectives.
       </p>
 
-      <h2>Areas of Knowledge and Ways of Knowing</h2>
+      <h2>Areas of Knowledge</h2>
 
       <p>
         The TOK framework organizes knowledge into <strong>Areas of Knowledge (AOKs)</strong> — broad disciplines that produce knowledge using characteristic methods:
@@ -101,7 +101,7 @@ export default function TokEssayGuide() {
       </ul>
 
       <p>
-        <strong>Ways of Knowing (WOKs)</strong> are the tools or faculties through which we acquire knowledge: reason, sense perception, language, emotion, imagination, faith, intuition, and memory. While the 2022 curriculum de-emphasized the formal WOK framework, these concepts remain useful for analyzing how knowledge is produced and justified.
+        The pre-2022 TOK course also used a framework of <strong>Ways of Knowing</strong> — reason, sense perception, language, emotion, imagination, faith, intuition and memory. These were <strong>removed</strong> in the 2022 syllabus and are no longer part of the course or the assessment, so you should not build your essay around them. The underlying ideas can still inform how you discuss the way knowledge is produced and justified within an area of knowledge.
       </p>
 
       <p>
@@ -152,7 +152,7 @@ export default function TokEssayGuide() {
       </table>
 
       <p>
-        The essay is marked out of 10, with the following approximate boundaries: 9–10 = Excellent (A), 7–8 = Good (B), 5–6 = Satisfactory (C), 3–4 = Mediocre (D), 0–2 = Elementary (E).
+        The essay is marked holistically out of 10 against a single instrument, with no sub-criteria and no letter-grade mapping. Marks fall in five two-mark bands: Excellent (9–10), Good (7–8), Satisfactory (5–6), Basic (3–4), and Rudimentary (1–2).
       </p>
 
       <h2>Worked Example: Strong vs. Weak Argumentation</h2>
@@ -184,7 +184,7 @@ export default function TokEssayGuide() {
         <li><strong>Treating TOK as a subject essay:</strong> Writing about the content of a subject (e.g., explaining how photosynthesis works) rather than about knowledge questions related to that subject</li>
         <li><strong>Generic examples:</strong> Using "2+2=4" as the only example of mathematical knowledge, or "the Holocaust" as the only example of historical knowledge. Examiners have read these thousands of times</li>
         <li><strong>False balance:</strong> Presenting claim and counter-claim as equally valid without evaluation, ending with "it depends on the person" rather than a reasoned conclusion</li>
-        <li><strong>Excessive use of WOK/AOK jargon:</strong> Forcing every sentence through the WOK/AOK framework rather than using these concepts naturally where they illuminate the argument</li>
+        <li><strong>Excessive use of areas-of-knowledge jargon:</strong> Forcing every sentence through the AOK framework rather than using these concepts naturally where they illuminate the argument</li>
         <li><strong>Exceeding word count:</strong> The 1,600-word limit is strict. Examiners stop reading at the limit</li>
         <li><strong>No personal voice:</strong> Essays that read like they were assembled from TOK textbook passages rather than reflecting genuine personal thinking</li>
       </ul>

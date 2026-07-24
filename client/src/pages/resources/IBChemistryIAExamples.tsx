@@ -13,7 +13,7 @@ export default function IBChemistryIAExamples() {
       <p>
         The IB Chemistry Internal Assessment is a 10-hour scientific investigation
         worth 20% of your final grade. It is marked on the same five criteria as
-        other Group 4 IAs — Personal Engagement, Exploration, Analysis, Evaluation,
+        other Group 4 IAs — Research design, Data analysis, Conclusion and Evaluation,
         and Communication — but Chemistry brings specific challenges: quantitative
         data is expected, error calculations are required, and examiners have a low
         tolerance for vague methodology. This guide covers what high-scoring IB
@@ -23,7 +23,7 @@ export default function IBChemistryIAExamples() {
 
       <h2>How the IB Chemistry IA Is Marked</h2>
       <ul>
-        <li><strong>Personal Engagement (2 marks):</strong> Evidence that the student shaped the investigation. A genuine question from their own experience, a non-standard variable, or an original data source earns this.</li>
+        <li><strong>Research design (6 marks):</strong> A focused research question in a genuine context — a non-standard variable or an original data source makes the design convincingly your own.</li>
         <li><strong>Exploration (6 marks):</strong> Clear research question, relevant background theory, correct identification of variables (independent, dependent, controlled), and a reproducible methodology.</li>
         <li><strong>Analysis (6 marks):</strong> Quantitative data processing (means, uncertainties, graphs), correct use of units, and a conclusion supported by the data. Error propagation is expected at HL.</li>
         <li><strong>Evaluation (6 marks):</strong> Specific assessment of methodological limitations, systematic and random errors, and concrete improvements. The most under-scored criterion.</li>
@@ -51,7 +51,7 @@ export default function IBChemistryIAExamples() {
       <h3>2. Titration-based investigations</h3>
       <p>
         Acid-base or redox titrations are reliable but need a non-textbook angle to
-        score Personal Engagement. Strong examples include: determining the vitamin C
+        make the context convincingly personal, strengthening Research design. Strong examples include: determining the vitamin C
         content of different apple varieties across a ripening period; comparing
         acidity of commercial kombucha brands; measuring iron(II) content in iron
         supplement tablets before and after air exposure. The methodology is

@@ -14,9 +14,9 @@ const config: SubjectConfig = {
   criteria: [
     { name: "Criterion A: Diagrams", max: 3, sampleScore: 2 },
     { name: "Criterion B: Terminology", max: 2, sampleScore: 2 },
-    { name: "Criterion C: Application", max: 3, sampleScore: 2 },
-    { name: "Criterion D: Analysis", max: 3, sampleScore: 1 },
-    { name: "Criterion E: Evaluation", max: 4, sampleScore: 2 },
+    { name: "Criterion C: Application and analysis", max: 3, sampleScore: 2 },
+    { name: "Criterion D: Key concept", max: 3, sampleScore: 2 },
+    { name: "Criterion E: Evaluation", max: 3, sampleScore: 2 },
   ],
   relatedSubjects: [
     { label: "Business Management IA", href: "/essay/business-management-ia" },

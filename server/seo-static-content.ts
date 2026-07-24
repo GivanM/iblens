@@ -113,21 +113,20 @@ export const staticContent: Record<string, string> = {
   <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Biology Internal Assessment against the official IB Biology IA rubric — criterion by criterion — and gives you a predicted score in 60 seconds. Paste your lab report, get specific, actionable feedback on every criterion. A free preview is included; the full report is $4.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Biology IA rubric: what examiners look for (24 marks)</h2>
-  <p style="color:#374151;line-height:1.75;margin-bottom:16px">The Biology IA is worth 20% of your final IB grade. Examiners assess five criteria:</p>
+  <p style="color:#374151;line-height:1.75;margin-bottom:16px">The Biology IA is worth 20% of your final IB grade. Under the current (first assessment 2025) scientific investigation, examiners assess four criteria worth 6 marks each, and the same rubric applies at SL and HL. The report has a maximum of 3,000 words.</p>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
-    <li><strong>Personal Engagement (PE) — 2 marks</strong>: Your individual connection to the topic, evidence of genuine curiosity beyond generic statements. IBLens checks whether your introduction demonstrates authentic, specific personal engagement.</li>
-    <li><strong>Exploration (Ex) — 6 marks</strong>: Research question, hypothesis, variables, methodology, safety and ethical considerations. IBLens checks whether your research question is focused, your variables are correctly identified, and your method is reproducible.</li>
-    <li><strong>Analysis (A) — 6 marks</strong>: Raw data, data processing, graphs, and statistical analysis. IBLens checks for correct uncertainty analysis, appropriate statistical tests, and whether your data presentation supports your research question.</li>
-    <li><strong>Evaluation (Ev) — 6 marks</strong>: Conclusions, comparison to literature, evaluation of weaknesses, and suggested improvements. IBLens checks whether your conclusion follows from your data and whether your improvements are specific and realistic.</li>
-    <li><strong>Communication (C) — 4 marks</strong>: Structure, scientific language, referencing, and presentation. IBLens checks for precise scientific vocabulary and whether your report meets IB format requirements.</li>
+    <li><strong>Research design — 6 marks</strong>: Research question within a broader context, methodology, variables and controls, and safety, ethical and environmental considerations. IBLens checks whether your research question is focused, your variables are correctly identified, and your method is reproducible.</li>
+    <li><strong>Data analysis — 6 marks</strong>: Recording, processing and presenting data, including the treatment of uncertainties, in ways relevant to the research question. IBLens checks for correct uncertainty analysis, appropriate statistical tests, and whether your data presentation supports your research question.</li>
+    <li><strong>Conclusion — 6 marks</strong>: A conclusion justified by your analysis, answering the research question and compared with the accepted scientific context. IBLens checks whether your conclusion follows from your data and is interpreted against the wider scientific literature.</li>
+    <li><strong>Evaluation — 6 marks</strong>: Evaluation of methodological weaknesses and limitations, with realistic, specific improvements. IBLens checks whether your improvements are specific and realistic rather than generic.</li>
   </ul>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Common IB Biology IA mistakes IBLens catches</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
-    <li><strong>Missing uncertainty analysis</strong>: Not including absolute or percentage uncertainties in data tables, or failing to propagate uncertainties through calculations. This alone can drop your Analysis score from 6 to 3.</li>
-    <li><strong>Vague personal engagement</strong>: Writing "I chose this topic because biology interests me" — examiners need a specific personal experience or connection to award both PE marks.</li>
+    <li><strong>Missing uncertainty analysis</strong>: Not including absolute or percentage uncertainties in data tables, or failing to propagate uncertainties through calculations. This alone can drop your Data analysis score from 6 to 3.</li>
+    <li><strong>Unfocused research question</strong>: A broad or descriptive question with no methodological rationale weakens Research design — examiners want a specific question set in a clear scientific context, with justified variables and controls.</li>
     <li><strong>Weak evaluation section</strong>: Listing limitations without analysing their impact on your results, or proposing impractical improvements like "use better equipment".</li>
-    <li><strong>Non-scientific language</strong>: Using "amount" instead of "concentration", or "things" instead of "variables". The Communication criterion is easy to lose through imprecise language.</li>
+    <li><strong>Conclusion not linked to the science</strong>: Stating a result without comparing it to accepted scientific context or literature values loses marks on the Conclusion criterion.</li>
     <li><strong>Insufficient statistical processing</strong>: Not using t-tests or chi-squared tests when the data type requires them.</li>
   </ul>
 
@@ -147,16 +146,16 @@ export const staticContent: Record<string, string> = {
   "/essay/economics-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Economics IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Economics IA Grader — Free AI Feedback on Your Commentary</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Economics Internal Assessment commentary against the official IB Economics IA rubric. Get criterion-by-criterion feedback on Diagrams, Terminology, Application, Analysis, and Evaluation in 60 seconds. First analysis free — no account needed.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Economics Internal Assessment commentary against the official IB Economics IA rubric. Get criterion-by-criterion feedback on Diagrams, Terminology, Application and analysis, Key concept, and Evaluation in 60 seconds. First analysis free — no account needed.</p>
 
-  <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Economics IA rubric: five criteria (45 marks total)</h2>
-  <p style="color:#374151;line-height:1.75;margin-bottom:16px">Each IB Economics IA commentary is marked out of 45 marks across five criteria. You submit three commentaries, each on a different section of the syllabus (Microeconomics, Macroeconomics, International Economics, or Development Economics).</p>
+  <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Economics IA rubric: five criteria per commentary (14 marks each)</h2>
+  <p style="color:#374151;line-height:1.75;margin-bottom:16px">You submit a portfolio of three commentaries, one for each unit — Microeconomics, Macroeconomics, and The global economy — and each commentary must be built around a different key concept. Each commentary is marked out of 14 across five criteria (A–E). The whole portfolio is marked out of 45: three commentaries at 14 marks each (42) plus Criterion F — Rubric requirements (3 marks), which rewards using different units, different sources and articles published within one year of writing.</p>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
     <li><strong>Criterion A — Diagrams (3 marks)</strong>: Correct, clearly labelled diagrams that are directly relevant to the article and fully explained in the text. IBLens checks whether your diagrams are accurate, have all axes and curves labelled, and are genuinely integrated into your analysis.</li>
-    <li><strong>Criterion B — Terminology (3 marks)</strong>: Accurate use of economic terminology throughout. IBLens checks for misused terms, vague language, and missing technical vocabulary.</li>
-    <li><strong>Criterion C — Application (3 marks)</strong>: Effective application of economic concepts to the real-world article. IBLens checks whether your analysis stays focused on the article rather than drifting into generic theory.</li>
-    <li><strong>Criterion D — Analysis (5 marks)</strong>: Depth and accuracy of economic analysis including relevant theory, models, and cause-and-effect chains. IBLens checks whether your analysis explains mechanisms (why and how) rather than just describing what happens.</li>
-    <li><strong>Criterion E — Evaluation (5 marks)</strong>: Balanced, well-supported evaluation with short-run/long-run distinctions, stakeholder analysis, and limitations. IBLens checks for genuine two-sided evaluation — not just listing pros and cons.</li>
+    <li><strong>Criterion B — Terminology (2 marks)</strong>: Accurate use of economic terminology throughout. IBLens checks for misused terms, vague language, and missing technical vocabulary.</li>
+    <li><strong>Criterion C — Application and analysis (3 marks)</strong>: Relevant economic theory applied to the article with developed, accurate analysis. IBLens checks whether your analysis explains mechanisms (why and how) and stays focused on the article rather than drifting into generic theory.</li>
+    <li><strong>Criterion D — Key concept (3 marks)</strong>: Identification of one key concept and effective linkage of it to the article. IBLens checks whether a single key concept genuinely frames the commentary.</li>
+    <li><strong>Criterion E — Evaluation (3 marks)</strong>: Judgments supported by reasoned argument — short-run/long-run distinctions, stakeholders, and assumptions. IBLens checks for genuine two-sided evaluation, not just listing pros and cons.</li>
   </ul>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Common IB Economics IA mistakes IBLens catches</h2>
@@ -164,7 +163,7 @@ export const staticContent: Record<string, string> = {
     <li><strong>Unlabelled or incorrect diagrams</strong>: Missing price/quantity labels, curves not named (e.g., "D1", "D2"), or shifts drawn incorrectly. These mistakes cost marks in every commentary.</li>
     <li><strong>Describing instead of analysing</strong>: Explaining what happened in the article without using economic models to explain why or how. Analysis requires you to work through the chain of causation using a diagram.</li>
     <li><strong>One-sided evaluation</strong>: Only discussing benefits or only drawbacks. Examiners expect consideration of different stakeholders, time horizons, and limitations of the policy or event.</li>
-    <li><strong>Going over the word limit</strong>: Each commentary has a 750-word limit (excluding references and diagrams). IBLens checks approximate word count and flags content that should be cut.</li>
+    <li><strong>Going over the word limit</strong>: Each commentary has an 800-word limit (excluding references and diagrams); moderators stop reading at 800 words. IBLens checks approximate word count and flags content that should be cut.</li>
     <li><strong>Weak article-concept link</strong>: Using a concept that only loosely relates to the article. The article must be central to your commentary, not just a brief mention in the introduction.</li>
   </ul>
 
@@ -175,7 +174,7 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Can I grade all three of my Economics IA commentaries?</dt>
     <dd style="margin-top:4px">Yes — each commentary is graded separately. Run one analysis per commentary to get specific feedback on each.</dd>
     <dt style="font-weight:600;margin-top:16px">Does the grader check my word count?</dt>
-    <dd style="margin-top:4px">IBLens counts the words in your pasted text and will flag if you are over or near the 750-word limit.</dd>
+    <dd style="margin-top:4px">IBLens counts the words in your pasted text and will flag if you are over or near the 800-word limit.</dd>
   </dl>
 </main>`),
 
@@ -186,9 +185,9 @@ export const staticContent: Record<string, string> = {
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB History IA rubric: three sections (25 marks)</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
-    <li><strong>Section A — Identification and Evaluation of Sources (9 marks)</strong>: You select two primary or secondary sources and evaluate their origin, purpose, value, and limitation (OPVL). IBLens checks whether your OPVL analysis goes beyond surface-level description and genuinely connects to your investigation's question.</li>
-    <li><strong>Section B — Investigation (13 marks)</strong>: Your historical argument, supported by evidence from a range of sources. IBLens checks whether your argument is consistently analytical rather than narrative, whether counter-arguments are addressed, and whether evidence directly supports your claims.</li>
-    <li><strong>Section C — Reflection (3 marks)</strong>: Your reflection on the methods and challenges historians face. IBLens checks whether your reflection is specific to your investigation and demonstrates genuine understanding of historical methodology.</li>
+    <li><strong>Section A — Identification and Evaluation of Sources (6 marks)</strong>: You select two primary or secondary sources and evaluate their origin, purpose, value, and limitation (OPVL). IBLens checks whether your OPVL analysis goes beyond surface-level description and genuinely connects to your investigation's question.</li>
+    <li><strong>Section B — Investigation (15 marks)</strong>: Your historical argument, supported by evidence from a range of sources. IBLens checks whether your argument is consistently analytical rather than narrative, whether counter-arguments are addressed, and whether evidence directly supports your claims.</li>
+    <li><strong>Section C — Reflection (4 marks)</strong>: Your reflection on the methods and challenges historians face. IBLens checks whether your reflection is specific to your investigation and demonstrates genuine understanding of historical methodology.</li>
   </ul>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Common IB History IA mistakes IBLens catches</h2>
@@ -250,11 +249,14 @@ export const staticContent: Record<string, string> = {
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB TOK Essay Grader — Free AI Feedback on Theory of Knowledge</h1>
   <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Theory of Knowledge essay against the official IB TOK rubric and gives you criterion-by-criterion feedback in 60 seconds. Find out if your knowledge claims are developed enough, whether your counter-claims are genuinely addressed, and whether your essay actually answers the prescribed title. A free preview is included; the full report is $4.99.</p>
 
-  <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB TOK Essay rubric: what examiners look for (10 marks)</h2>
+  <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB TOK Essay rubric: how it is marked (holistic, out of 10)</h2>
+  <p style="color:#374151;line-height:1.75;margin-bottom:16px">Since the 2022 syllabus the TOK essay is marked holistically against a single global-impression instrument, scored out of 10. There are no sub-criteria. The examiner works from one guiding question — "Does the student provide a clear, coherent and critical exploration of the essay title?" — and places your 1,600-word essay in one of five bands:</p>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
-    <li><strong>Understanding Knowledge Questions (0–5 marks)</strong>: How well you identify, develop, and analyse genuine knowledge questions related to the prescribed title. IBLens checks whether your knowledge claims go beyond personal opinions and genuinely engage with epistemological questions.</li>
-    <li><strong>Quality of Analysis of Knowledge Questions (0–5 marks)</strong>: The depth, nuance, and rigour of your analysis. IBLens checks whether you explore multiple perspectives, acknowledge limitations, and build a coherent argument rather than simply listing examples.</li>
-    <li><strong>Connections Across Areas of Knowledge (0–5 marks — included in newer IB frameworks)</strong>: Whether you make genuine, illuminating connections across different Areas of Knowledge or Ways of Knowing. IBLens checks whether your connections are substantive or merely cosmetic.</li>
+    <li><strong>Excellent (9–10)</strong>: A clear, coherent and critical exploration of the title, sustained throughout, with convincing and well-developed points. IBLens checks whether every part of your essay advances a focused exploration of the exact title.</li>
+    <li><strong>Good (7–8)</strong>: A focused and mostly convincing exploration, with points that are developed and supported but not fully sustained. IBLens flags where argument or support thins out.</li>
+    <li><strong>Satisfactory (5–6)</strong>: An exploration that is on topic but only partly developed, with some points asserted rather than argued. IBLens shows which claims need evidence and analysis.</li>
+    <li><strong>Basic (3–4)</strong>: A largely descriptive response with limited exploration of the title. IBLens highlights where you describe rather than analyse knowledge.</li>
+    <li><strong>Rudimentary (1–2)</strong>: Little or no relevant exploration of the title; unsupported assertions. IBLens shows the gap between your draft and a genuine knowledge exploration.</li>
   </ul>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Common TOK Essay mistakes IBLens catches</h2>
@@ -262,7 +264,7 @@ export const staticContent: Record<string, string> = {
     <li><strong>Not answering the prescribed title</strong>: Writing a good essay on a TOK topic that does not directly engage with the specific wording of the title. Every paragraph must connect back to the prescribed title.</li>
     <li><strong>Examples as evidence without analysis</strong>: Presenting examples (a historical event, a scientific discovery) without using them to build or challenge a knowledge claim. Examples must do epistemic work in your argument.</li>
     <li><strong>Unaddressed counter-claims</strong>: Presenting only one side of a knowledge question. Examiners expect you to engage with perspectives that challenge your position and explain why you ultimately hold your view.</li>
-    <li><strong>Vague Ways of Knowing references</strong>: Mentioning "emotion" or "reason" as Ways of Knowing without explaining how they specifically function in the context of your knowledge claim.</li>
+    <li><strong>Ignoring the areas of knowledge</strong>: Making broad claims about knowledge without grounding them in specific areas of knowledge (such as the natural sciences, history or mathematics), where "evidence" and "certainty" actually mean different things.</li>
     <li><strong>Personal opinion as argument</strong>: "I think mathematics is universal" is not a knowledge claim — it must be developed and tested against counter-examples and alternative perspectives.</li>
   </ul>
 
@@ -282,17 +284,20 @@ export const staticContent: Record<string, string> = {
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB TOK Exhibition Grader — Free AI Feedback on All 3 Objects</h1>
   <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Theory of Knowledge Exhibition commentary against the official IB TOK Exhibition rubric — all three criteria — and gives you specific feedback in 60 seconds. Find out if your object justifications make convincing links to the IA prompt and to TOK concepts. A free preview is included; the full report is $4.99.</p>
 
-  <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB TOK Exhibition rubric: three criteria (10 marks)</h2>
+  <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB TOK Exhibition rubric: how it is marked (holistic, out of 10)</h2>
+  <p style="color:#374151;line-height:1.75;margin-bottom:16px">Since the 2022 syllabus the TOK exhibition is marked holistically against a single global-impression instrument, out of 10, with no sub-criteria. The examiner works from one guiding question — "Does the exhibition successfully show how TOK manifests in the world around us?" — and places your commentary in one of five bands: Excellent (9–10), Good (7–8), Satisfactory (5–6), Basic (3–4), Rudimentary (1–2).</p>
+  <p style="color:#374151;line-height:1.75;margin-bottom:16px">Your exhibition must present exactly three objects with a commentary of about 950 words in total. The number of objects caps your possible mark: with only two objects the maximum is 6, and with a single object the maximum is 3.</p>
+  <p style="color:#374151;line-height:1.75;margin-bottom:16px">A high-scoring exhibition therefore does three things well, and IBLens checks each:</p>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
-    <li><strong>Links between objects and the selected IA prompt (0–4 marks)</strong>: How clearly and specifically each object connects to your chosen IA prompt. IBLens checks whether your objects are concrete and specific (not generic or symbolic), and whether each object is justified in terms of the exact prompt wording.</li>
-    <li><strong>Links between objects and TOK (0–3 marks)</strong>: Whether each object connects to genuine TOK concepts — knowledge questions, Ways of Knowing, or Areas of Knowledge — with sufficient depth. IBLens checks whether you are naming TOK concepts or actually engaging with them.</li>
-    <li><strong>Quality of justification (0–3 marks)</strong>: How convincing, coherent, and developed your justification is for each object. IBLens checks whether you build an argument or simply make assertions, and whether the three objects work together as a coherent whole.</li>
+    <li><strong>Specific, real objects tied to the prompt</strong>: Each object is concrete and particular (not a generic or symbolic stand-in), and its link to the exact wording of the chosen IA prompt is made explicit.</li>
+    <li><strong>Genuine TOK content</strong>: Each object is used to explore how knowledge works — not merely named — with enough depth to illuminate the prompt.</li>
+    <li><strong>A coherent, justified whole</strong>: The commentary argues rather than asserts, and the three objects work together to answer the prompt.</li>
   </ul>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Common TOK Exhibition mistakes IBLens catches</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
     <li><strong>Generic or symbolic objects</strong>: Choosing abstract symbols ("a book representing knowledge") rather than specific, real-world objects with a concrete epistemic connection to the prompt.</li>
-    <li><strong>Naming TOK concepts without engaging with them</strong>: Writing "this connects to emotion as a Way of Knowing" without explaining how emotion specifically operates in this object's context.</li>
+    <li><strong>Naming TOK concepts without engaging with them</strong>: Asserting that an object "connects to knowledge" without explaining how the object actually shows knowledge being produced, shared or valued in the world.</li>
     <li><strong>Objects that do not work together</strong>: Three disconnected objects that each make separate points, rather than building a coherent, cumulative argument about knowledge in the context of the prompt.</li>
     <li><strong>Weak justification length</strong>: Each object commentary should be roughly 100 words of substantive argument. Brief, superficial justifications score in the lowest mark band.</li>
     <li><strong>Ignoring the IA prompt wording</strong>: Your justification must address the specific language of the chosen IA prompt — not just the general topic of knowledge.</li>
@@ -316,11 +321,11 @@ export const staticContent: Record<string, string> = {
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Math IA rubric: five criteria (20 marks)</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
-    <li><strong>Communication (0–4 marks)</strong>: The clarity, organisation, and coherence of your exploration. IBLens checks whether your exploration has a clear aim, is logically structured, and uses mathematical notation correctly throughout.</li>
-    <li><strong>Mathematical Presentation (0–3 marks)</strong>: Correct use of mathematical language, notation, and representation. IBLens checks for correct use of variables, functions, equations, graphs, and tables.</li>
-    <li><strong>Personal Engagement (0–3 marks)</strong>: Evidence that you personally explored the mathematics — your own conjectures, unexpected directions, and genuine curiosity. IBLens checks for signs of personal mathematical thinking rather than reproducing textbook content.</li>
-    <li><strong>Reflection (0–3 marks)</strong>: Critical reflection on the significance of your results, limitations of your approach, and possible extensions. IBLens checks whether your reflection is genuinely critical or merely descriptive.</li>
-    <li><strong>Use of Mathematics (0–6 marks)</strong>: The sophistication, accuracy, and relevance of the mathematics used. IBLens checks whether the mathematics is correct, whether it is at an appropriate level of complexity, and whether it is relevant to your aim.</li>
+    <li><strong>Criterion A — Presentation (0–4 marks)</strong>: The organisation and coherence of your exploration. IBLens checks whether your exploration has a clear aim, is logically structured, and reads as a coherent whole.</li>
+    <li><strong>Criterion B — Mathematical communication (0–4 marks)</strong>: Correct and consistent mathematical language, notation and representation — variables, functions, equations, graphs and tables, with key terms defined. IBLens checks your notation throughout.</li>
+    <li><strong>Criterion C — Personal engagement (0–3 marks)</strong>: Evidence of independent thinking, creativity and genuine personal interest — your own conjectures and unexpected directions rather than reproduced textbook content.</li>
+    <li><strong>Criterion D — Reflection (0–3 marks)</strong>: Critical reflection on the significance of your results, the limitations of your approach, and possible extensions. IBLens checks whether your reflection is genuinely critical or merely descriptive.</li>
+    <li><strong>Criterion E — Use of mathematics (0–6 marks)</strong>: Relevant mathematics commensurate with the level of the course, used correctly; the top levels of this criterion have separate SL and HL descriptor ladders, with HL additionally demanding sophistication and rigour.</li>
   </ul>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Common IB Math IA mistakes IBLens catches</h2>
@@ -346,9 +351,9 @@ export const staticContent: Record<string, string> = {
   "/essay/psychology-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Psychology IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Psychology IA Grader — Free AI Feedback on Your Experimental Report</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Psychology Internal Assessment experimental report against the official IB Psychology IA rubric — all six criteria — in 60 seconds. Get specific feedback on your Introduction, Exploration, Analysis, Evaluation, and more. A free preview is included; the full report is $4.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Psychology Internal Assessment experimental report against the official IB Psychology IA rubric — all four criteria — in 60 seconds. Get specific feedback on your Introduction, Exploration, Analysis, and Evaluation. A free preview is included; the full report is $4.99.</p>
 
-  <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Psychology IA rubric: six criteria (22 marks)</h2>
+  <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Psychology IA rubric: four criteria (22 marks)</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
     <li><strong>Introduction (6 marks)</strong>: Background theory, aim, and hypothesis. IBLens checks whether your introduction clearly links the psychological theory to your experimental design and whether your hypothesis is directional and operationalised.</li>
     <li><strong>Exploration (4 marks)</strong>: Research design, sampling method, materials, and ethical considerations. IBLens checks whether your design choices are justified and whether you explain how you controlled for confounding variables.</li>
@@ -376,22 +381,21 @@ export const staticContent: Record<string, string> = {
   "/essay/chemistry-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Chemistry IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Chemistry IA Grader — Free AI Feedback on Your Lab Report</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Chemistry Internal Assessment against the official IB Chemistry IA rubric — all five criteria — in 60 seconds. Get feedback on Personal Engagement, Exploration, Analysis, Evaluation, and Communication. A free preview is included; the full report is $4.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Chemistry Internal Assessment against the official IB Chemistry IA rubric — all four criteria — in 60 seconds. Get feedback on Research design, Data analysis, Conclusion, and Evaluation. A free preview is included; the full report is $4.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Chemistry IA rubric (24 marks)</h2>
-  <p style="color:#374151;line-height:1.75;margin-bottom:16px">The Chemistry IA uses the same five criteria as other science IAs, but Chemistry-specific expectations apply:</p>
+  <p style="color:#374151;line-height:1.75;margin-bottom:16px">The Chemistry IA uses the current (first assessment 2025) scientific investigation rubric — four criteria worth 6 marks each, identical at SL and HL, with a 3,000-word maximum — but Chemistry-specific expectations apply:</p>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
-    <li><strong>Personal Engagement (2 marks)</strong>: Specific personal connection to the chemistry topic, not generic interest statements.</li>
-    <li><strong>Exploration (6 marks)</strong>: Focused research question with clearly identified independent, dependent, and controlled variables. Safety and ethical considerations for chemical procedures.</li>
-    <li><strong>Analysis (6 marks)</strong>: Correct propagation of uncertainties through calculations, appropriate significant figures, and correct chemical equations where relevant.</li>
+    <li><strong>Research design (6 marks)</strong>: Focused research question set in a scientific context, with clearly identified independent, dependent, and controlled variables and appropriate safety and ethical considerations for chemical procedures.</li>
+    <li><strong>Data analysis (6 marks)</strong>: Correct propagation of uncertainties through calculations, appropriate significant figures, and correct processing and presentation of data.</li>
+    <li><strong>Conclusion (6 marks)</strong>: A conclusion justified by the analysis, answering the research question and compared with accepted chemical theory, including correct chemical equations where relevant.</li>
     <li><strong>Evaluation (6 marks)</strong>: Discussion of systematic and random errors, their effect on your result, and realistic improvements specific to your method.</li>
-    <li><strong>Communication (4 marks)</strong>: Correct chemical notation, SI units, and clear labelling of all apparatus diagrams.</li>
   </ul>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Common IB Chemistry IA mistakes</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
     <li><strong>Incorrect uncertainty propagation</strong>: Not using the correct rules (addition/subtraction vs multiplication/division) when propagating uncertainties through multi-step calculations.</li>
-    <li><strong>Too few repeats</strong>: Chemistry IAs require at minimum 5 data points to demonstrate a trend. Fewer data points significantly limits your Analysis score.</li>
+    <li><strong>Too few repeats</strong>: Chemistry IAs need enough data (typically at least 5 values of the independent variable) to demonstrate a trend. Fewer data points significantly limits your Data analysis score.</li>
     <li><strong>Confusing systematic and random errors</strong>: Listing "human reaction time" as a systematic error rather than a random one, or vice versa. IBLens checks whether your error analysis uses correct terminology.</li>
     <li><strong>Missing or incorrect chemical equations</strong>: If your investigation involves a chemical reaction, the balanced equation must be present and correct.</li>
   </ul>
@@ -411,12 +415,12 @@ export const staticContent: Record<string, string> = {
   <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Physics Internal Assessment against the official IB Physics IA rubric — criterion by criterion — in 60 seconds. Get feedback on your exploration, data analysis, uncertainty propagation, and evaluation. A free preview is included; the full report is $4.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Physics IA rubric (24 marks)</h2>
+  <p style="color:#374151;line-height:1.75;margin-bottom:16px">The Physics IA uses the current (first assessment 2025) scientific investigation rubric: four criteria worth 6 marks each, identical at SL and HL, with a 3,000-word maximum.</p>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
-    <li><strong>Personal Engagement (2 marks)</strong>: A specific personal connection to the physics investigation — not a generic statement about enjoying physics.</li>
-    <li><strong>Exploration (6 marks)</strong>: A focused, measurable research question; clearly identified variables; a sound, safe experimental design.</li>
-    <li><strong>Analysis (6 marks)</strong>: Correct data presentation with appropriate significant figures, uncertainty analysis, and linearisation of graphs where required.</li>
-    <li><strong>Evaluation (6 marks)</strong>: Critical evaluation of your method and results, comparison to accepted theoretical values, and specific, realistic improvements.</li>
-    <li><strong>Communication (4 marks)</strong>: Correct use of SI units, scientific notation, and clear diagram labels.</li>
+    <li><strong>Research design (6 marks)</strong>: A focused, measurable research question set in a scientific context; clearly identified variables; a sound, safe experimental design.</li>
+    <li><strong>Data analysis (6 marks)</strong>: Correct data presentation with appropriate significant figures, uncertainty analysis, and linearisation of graphs where required.</li>
+    <li><strong>Conclusion (6 marks)</strong>: A conclusion justified by the analysis, answering the research question and compared to accepted theoretical or literature values.</li>
+    <li><strong>Evaluation (6 marks)</strong>: Critical evaluation of your method and results, and specific, realistic improvements.</li>
   </ul>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Common IB Physics IA mistakes IBLens catches</h2>
@@ -439,15 +443,18 @@ export const staticContent: Record<string, string> = {
   "/essay/business-management-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Business Management IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Business Management IA Grader — Free AI Feedback on Your IA</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Business Management Internal Assessment against the official IB BM IA rubric. Get criterion-by-criterion feedback in 60 seconds on your research proposal, findings, and analysis. A free preview is included; the full report is $4.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Business Management Internal Assessment (the Business research project, first assessment 2024) against the official IB BM IA rubric. Get criterion-by-criterion feedback in 60 seconds on your key concept, supporting documents, and analysis. A free preview is included; the full report is $4.99.</p>
 
-  <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Business Management IA rubric (25 marks)</h2>
+  <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Business Management IA rubric: seven criteria (25 marks)</h2>
+  <p style="color:#374151;line-height:1.75;margin-bottom:16px">The current Business research project is a business report of up to 1,800 words, supported by 3–5 supporting documents published within three years, and built around one key concept — change, creativity, ethics or sustainability. It is marked out of 25 across seven criteria (A–G):</p>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
-    <li><strong>Research Proposal (5 marks)</strong>: A clear business research question, statement of intent, and identification of primary and secondary sources. IBLens checks whether your RQ is specific enough for investigation and whether your sources are appropriate.</li>
-    <li><strong>Theoretical framework and sources (5 marks)</strong>: Application of relevant business concepts and theories. IBLens checks whether you correctly apply BM tools (SWOT, Porter's Five Forces, financial ratios, etc.) and whether your sources are evaluated.</li>
-    <li><strong>Primary and secondary research (5 marks)</strong>: Quality and relevance of evidence gathered. IBLens checks whether your primary data (interviews, surveys) is analysed critically rather than just summarised.</li>
-    <li><strong>Results and analysis (5 marks)</strong>: Depth of analysis linking evidence to your research question. IBLens checks whether you draw substantiated conclusions from your data.</li>
-    <li><strong>Conclusions and evaluation (5 marks)</strong>: Balanced conclusions, recommendations, and limitations. IBLens checks whether your recommendations are realistic and supported by your research.</li>
+    <li><strong>Criterion A — Integration of a key concept (5 marks)</strong>: How well your chosen key concept (change, creativity, ethics or sustainability) is integrated throughout the project and linked to the research question. IBLens checks whether the concept genuinely frames your report.</li>
+    <li><strong>Criterion B — Supporting documents (4 marks)</strong>: Relevance, depth and breadth of your 3–5 supporting documents and how well you use them. IBLens checks whether your documents are appropriate and current.</li>
+    <li><strong>Criterion C — Selection and application of tools and theories (4 marks)</strong>: Appropriate selection and accurate application of business tools and theories (SWOT, Porter's Five Forces, financial ratios, etc.) to the research question.</li>
+    <li><strong>Criterion D — Analysis and evaluation (5 marks)</strong>: Quality of analysis, synthesis of findings, and evaluation leading to substantiated judgments. IBLens checks whether evidence is analysed critically rather than summarised.</li>
+    <li><strong>Criterion E — Conclusions (3 marks)</strong>: Conclusions consistent with the evidence and the research question. IBLens checks whether your conclusions are supported by your findings.</li>
+    <li><strong>Criterion F — Structure (2 marks)</strong>: A logical structure for the project.</li>
+    <li><strong>Criterion G — Presentation (2 marks)</strong>: The required presentation elements (title page, table of contents, references, appendices).</li>
   </ul>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Common IB Business Management IA mistakes</h2>
@@ -463,7 +470,7 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Is the Business Management IA grader free?</dt>
     <dd style="margin-top:4px">Every essay gets a free preview (band range, weakest criterion, top risks). The full report is $4.99.</dd>
     <dt style="font-weight:600;margin-top:16px">What is the word limit for the IB Business Management IA?</dt>
-    <dd style="margin-top:4px">1,500–2,000 words for the main body. IBLens checks your approximate word count and will flag if you are significantly over.</dd>
+    <dd style="margin-top:4px">The Business research project has a maximum of 1,800 words for the report, plus 3–5 supporting documents. IBLens checks your approximate word count and will flag if you are significantly over.</dd>
   </dl>
 </main>`),
 
@@ -536,11 +543,11 @@ export const staticContent: Record<string, string> = {
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Math AA IA: how the rubric works (20 marks)</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">The IB Math AA IA uses the same five criteria as Math AI. However, examiners apply them with an expectation of more abstract, proof-oriented, or algebraic mathematics for AA students — especially at HL.</p>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
-    <li><strong>Communication (4 marks)</strong>: Coherent structure, clear aim, and consistent mathematical notation. Examiners expect AA students to present rigorous mathematical arguments.</li>
-    <li><strong>Mathematical Presentation (3 marks)</strong>: Correct use of variables, formal notation, and mathematical language. For AA, this includes formal proof notation where relevant.</li>
-    <li><strong>Personal Engagement (3 marks)</strong>: Evidence of genuine exploration — your own conjectures, creative approaches, and original insights into the mathematics.</li>
+    <li><strong>Presentation (4 marks)</strong>: Coherent structure, a clear aim, and an organised, self-contained exploration. Examiners expect AA students to present rigorous mathematical arguments.</li>
+    <li><strong>Mathematical communication (4 marks)</strong>: Correct and consistent use of variables, formal notation, symbols and mathematical language, with key terms defined. For AA, this includes formal proof notation where relevant.</li>
+    <li><strong>Personal engagement (3 marks)</strong>: Evidence of genuine exploration — your own conjectures, creative approaches, and original insights into the mathematics.</li>
     <li><strong>Reflection (3 marks)</strong>: Critical evaluation of your mathematical approach, limitations, and possible extensions or generalisations.</li>
-    <li><strong>Use of Mathematics (6 marks)</strong>: For AA, examiners typically expect calculus, proof by induction, complex numbers, or similarly advanced content for HL, and functions, statistics, or geometry for SL.</li>
+    <li><strong>Use of mathematics (6 marks)</strong>: Relevant mathematics commensurate with the course, used correctly; this criterion has separate SL and HL descriptor ladders. For AA, examiners typically expect calculus, proof by induction, complex numbers, or similarly advanced content at HL, and functions, statistics, or geometry at SL.</li>
   </ul>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Frequently asked questions</h2>
@@ -560,11 +567,11 @@ export const staticContent: Record<string, string> = {
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Math AI IA: what examiners look for (20 marks)</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">Math AI students are expected to apply mathematics to real-world contexts. Examiners look for meaningful data collection, statistical modelling, and genuine mathematical analysis of a real-world phenomenon.</p>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
-    <li><strong>Communication (4 marks)</strong>: Clear aim, logical structure, and consistent notation. For AI, this includes clear explanation of your real-world context and why it is mathematically interesting.</li>
-    <li><strong>Mathematical Presentation (3 marks)</strong>: Correct use of statistical notation, labelled graphs, regression models, and mathematical vocabulary appropriate to your investigation.</li>
-    <li><strong>Personal Engagement (3 marks)</strong>: Evidence of genuine curiosity about the real-world data or problem — original data collection, unexpected findings you pursued, or creative modelling choices.</li>
+    <li><strong>Presentation (4 marks)</strong>: A clear aim, logical structure, and organised exploration. For AI, this includes a clear explanation of your real-world context and why it is mathematically interesting.</li>
+    <li><strong>Mathematical communication (4 marks)</strong>: Correct and consistent use of statistical notation, labelled graphs, regression models, and mathematical vocabulary appropriate to your investigation, with key terms defined.</li>
+    <li><strong>Personal engagement (3 marks)</strong>: Evidence of genuine curiosity about the real-world data or problem — original data collection, unexpected findings you pursued, or creative modelling choices.</li>
     <li><strong>Reflection (3 marks)</strong>: Critical evaluation of your model's fit, limitations of your data, and what a more sophisticated approach would look like.</li>
-    <li><strong>Use of Mathematics (6 marks)</strong>: For AI, examiners expect regression analysis, statistical hypothesis testing, differential equations in context, or similar applied techniques appropriate to your level.</li>
+    <li><strong>Use of mathematics (6 marks)</strong>: Relevant mathematics commensurate with the course, used correctly; this criterion has separate SL and HL descriptor ladders. For AI, examiners expect regression analysis, statistical hypothesis testing, differential equations in context, or similar applied techniques appropriate to your level.</li>
   </ul>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Frequently asked questions</h2>
@@ -902,15 +909,15 @@ export const staticContent: Record<string, string> = {
       <p>IBLens grades Internal Assessments for all major IB subjects, each evaluated against the specific rubric for that subject:</p>
 
       <ul>
-        <li><strong><a href="/essay/biology-ia">IB Biology IA</a></strong> — Science IA rubric: Personal Engagement, Exploration, Analysis, Evaluation, Communication (total 24 marks)</li>
-        <li><strong><a href="/essay/chemistry-ia">IB Chemistry IA</a></strong> — Science IA rubric: same five criteria as Biology (24 marks)</li>
-        <li><strong><a href="/essay/physics-ia">IB Physics IA</a></strong> — Science IA rubric: same five criteria (24 marks)</li>
-        <li><strong><a href="/essay/math-ia">IB Mathematics IA (Exploration)</a></strong> — Math IA rubric: Communication, Mathematical Presentation, Personal Engagement, Reflection, Use of Mathematics (20 marks)</li>
-        <li><strong><a href="/essay/economics-ia">IB Economics IA</a></strong> — Per-commentary rubric: Diagrams, Terminology, Application, Analysis, Evaluation (14 marks per commentary)</li>
-        <li><strong>IB Business Management IA</strong> — Research Question, Methodology, Analysis, Conclusions, Evaluation, Structure (25 marks)</li>
-        <li><strong><a href="/essay/history-ia">IB History IA</a></strong> — Historical Investigation: Identification, Investigation, Reflection, Citation, Presentation (25 marks)</li>
-        <li><strong><a href="/essay/psychology-ia">IB Psychology IA</a></strong> — Introduction, Exploration, Analysis, Evaluation, Presentation (22 marks)</li>
-        <li><strong>IB Computer Science IA</strong> — Planning, Solution Overview, Development, Functionality, Evaluation (34 marks)</li>
+        <li><strong><a href="/essay/biology-ia">IB Biology IA</a></strong> — Sciences IA (2025 scientific investigation): Research design, Data analysis, Conclusion, Evaluation (24 marks; SL and HL)</li>
+        <li><strong><a href="/essay/chemistry-ia">IB Chemistry IA</a></strong> — Sciences IA: same four criteria as Biology (24 marks)</li>
+        <li><strong><a href="/essay/physics-ia">IB Physics IA</a></strong> — Sciences IA: same four criteria (24 marks)</li>
+        <li><strong><a href="/essay/math-ia">IB Mathematics IA (Exploration)</a></strong> — Math IA rubric: Presentation, Mathematical communication, Personal engagement, Reflection, Use of mathematics (20 marks)</li>
+        <li><strong><a href="/essay/economics-ia">IB Economics IA</a></strong> — Per-commentary rubric: Diagrams, Terminology, Application and analysis, Key concept, Evaluation (14 per commentary; portfolio 45)</li>
+        <li><strong><a href="/essay/business-management-ia">IB Business Management IA</a></strong> — Business research project: Integration of a key concept, Supporting documents, Tools and theories, Analysis and evaluation, Conclusions, Structure, Presentation (25 marks)</li>
+        <li><strong><a href="/essay/history-ia">IB History IA</a></strong> — Historical Investigation: Identification and evaluation of sources (6), Investigation (15), Reflection (4) — 25 marks</li>
+        <li><strong><a href="/essay/psychology-ia">IB Psychology IA</a></strong> — Introduction, Exploration, Analysis, Evaluation (22 marks)</li>
+        <li><strong><a href="/essay/computer-science-ia">IB Computer Science IA</a></strong> — Planning, Solution overview, Development, Functionality and extensibility, Evaluation (34 marks)</li>
         <li><strong>IB English A IA (Literature / Language & Literature)</strong> — assessed against the subject-specific oral or written commentary rubric</li>
         <li><strong>IB Visual Arts IA, Music IA, Film IA</strong> — assessed against subject-specific criteria</li>
       </ul>
@@ -1465,7 +1472,7 @@ export const staticContent: Record<string, string> = {
         The evaluation step is crucial. Weak essays present claims and counter-claims but never resolve the tension between them. Strong essays show <strong>nuanced judgment</strong> — perhaps the claim holds in one context but not another, or perhaps the truth lies in a synthesis of both perspectives.
       </p>
 
-      <h2>Areas of Knowledge and Ways of Knowing</h2>
+      <h2>Areas of Knowledge</h2>
 
       <p>
         The TOK framework organizes knowledge into <strong>Areas of Knowledge (AOKs)</strong> — broad disciplines that produce knowledge using characteristic methods:
@@ -1481,7 +1488,7 @@ export const staticContent: Record<string, string> = {
       </ul>
 
       <p>
-        <strong>Ways of Knowing (WOKs)</strong> are the tools or faculties through which we acquire knowledge: reason, sense perception, language, emotion, imagination, faith, intuition, and memory. While the 2022 curriculum de-emphasized the formal WOK framework, these concepts remain useful for analyzing how knowledge is produced and justified.
+        The pre-2022 TOK course also used a framework of <strong>Ways of Knowing</strong> — reason, sense perception, language, emotion, imagination, faith, intuition and memory. These were <strong>removed</strong> in the 2022 syllabus and are no longer part of the course or the assessment, so you should not build your essay around them. The underlying ideas can still inform how you discuss the way knowledge is produced and justified within an area of knowledge.
       </p>
 
       <p>
@@ -1532,7 +1539,7 @@ export const staticContent: Record<string, string> = {
       </table>
 
       <p>
-        The essay is marked out of 10, with the following approximate boundaries: 9–10 = Excellent (A), 7–8 = Good (B), 5–6 = Satisfactory (C), 3–4 = Mediocre (D), 0–2 = Elementary (E).
+        The essay is marked holistically out of 10 against a single instrument, with no sub-criteria and no letter-grade mapping. Marks fall in five two-mark bands: Excellent (9–10), Good (7–8), Satisfactory (5–6), Basic (3–4), and Rudimentary (1–2).
       </p>
 
       <h2>Worked Example: Strong vs. Weak Argumentation</h2>
@@ -1564,7 +1571,7 @@ export const staticContent: Record<string, string> = {
         <li><strong>Treating TOK as a subject essay:</strong> Writing about the content of a subject (e.g., explaining how photosynthesis works) rather than about knowledge questions related to that subject</li>
         <li><strong>Generic examples:</strong> Using "2+2=4" as the only example of mathematical knowledge, or "the Holocaust" as the only example of historical knowledge. Examiners have read these thousands of times</li>
         <li><strong>False balance:</strong> Presenting claim and counter-claim as equally valid without evaluation, ending with "it depends on the person" rather than a reasoned conclusion</li>
-        <li><strong>Excessive use of WOK/AOK jargon:</strong> Forcing every sentence through the WOK/AOK framework rather than using these concepts naturally where they illuminate the argument</li>
+        <li><strong>Excessive use of areas-of-knowledge jargon:</strong> Forcing every sentence through the AOK framework rather than using these concepts naturally where they illuminate the argument</li>
         <li><strong>Exceeding word count:</strong> The 1,600-word limit is strict. Examiners stop reading at the limit</li>
         <li><strong>No personal voice:</strong> Essays that read like they were assembled from TOK textbook passages rather than reflecting genuine personal thinking</li>
       </ul>
@@ -1947,7 +1954,7 @@ export const staticContent: Record<string, string> = {
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Economics IA</nav>
       <p>
         The IB Economics Internal Assessment consists of three commentaries — one each
-        on Microeconomics, Macroeconomics, and International Economics — each written
+        on Microeconomics, Macroeconomics, and The global economy — each written
         in response to a real news article published after the start of your IB course.
         Each commentary is worth a third of the overall IA mark, which contributes 20%
         to your final grade. Most students find the IA easier to score well on than
@@ -1957,20 +1964,24 @@ export const staticContent: Record<string, string> = {
 
       <h2>How the IB Economics IA Is Marked</h2>
       <p>
-        Each commentary is marked on four criteria, for a maximum of 14 marks per
-        commentary (42 total, converted to 20%):
+        Each commentary is marked on five criteria (A–E), for a maximum of 14 marks per
+        commentary. The portfolio of three commentaries is marked out of 45: 42 across
+        the commentaries plus 3 for Criterion F (Rubric requirements — different units,
+        different sources, and articles published within a year of writing). Each
+        commentary must also use a different key concept.
       </p>
       <ul>
         <li><strong>Criterion A — Diagrams (3 marks):</strong> Are diagrams used? Are they accurately labelled? Do they directly illustrate the economics being discussed?</li>
         <li><strong>Criterion B — Terminology (2 marks):</strong> Is economic terminology used correctly and consistently throughout?</li>
-        <li><strong>Criterion C — Application and Analysis (4 marks):</strong> Does the commentary correctly explain the economics of the situation described in the article? Is the analysis developed and accurate?</li>
-        <li><strong>Criterion D — Evaluation (5 marks):</strong> Does the student weigh up different perspectives, consider short-run versus long-run effects, or analyse who gains and who loses? Is the evaluation balanced and well-reasoned?</li>
+        <li><strong>Criterion C — Application and analysis (3 marks):</strong> Is relevant economic theory applied to the article, with developed and accurate analysis?</li>
+        <li><strong>Criterion D — Key concept (3 marks):</strong> Is one key concept identified and effectively linked to the article?</li>
+        <li><strong>Criterion E — Evaluation (3 marks):</strong> Are judgments supported by reasoned argument — short-run versus long-run, who gains and who loses, and underlying assumptions?</li>
       </ul>
       <p>
-        The most common mark distribution for a student who gets a 6 rather than a 7 is:
-        Criterion A = 2, B = 2, C = 3, D = 3. The 2 marks typically lost are one on
-        Diagrams (usually a labelling error) and two on Evaluation (surface-level
-        rather than developed evaluation).
+        A common profile for a strong-but-not-top commentary is Criterion A = 2, B = 2,
+        C = 2, D = 3, E = 2 (11 out of 14). The marks are usually lost on a diagram
+        labelling slip, on analysis that is not fully developed, and on evaluation that
+        describes rather than judges.
       </p>
 
       <h2>How to Choose a Good Article</h2>
@@ -1991,7 +2002,7 @@ export const staticContent: Record<string, string> = {
         different units. An article about rent control in a city gives you a clean
         price ceiling analysis. An article about a trade war that also involves
         currency depreciation and domestic unemployment is too complex to analyse
-        well in 750 words.
+        well in 800 words.
       </p>
       <h3>3. It is recent and sourced from a reliable outlet</h3>
       <p>
@@ -2042,7 +2053,7 @@ export const staticContent: Record<string, string> = {
         can actually be addressed by demand-side monetary policy.
       </p>
 
-      <h3>International Economics Commentary</h3>
+      <h3>The Global Economy Commentary</h3>
       <p>
         Strong topics: tariffs, quotas, trade agreements, exchange rate changes
         and their effect on trade, current account deficits, protectionism vs
@@ -2076,7 +2087,7 @@ export const staticContent: Record<string, string> = {
 
       <h2>Evaluation: The Hardest Marks to Get</h2>
       <p>
-        Criterion D (Evaluation) is 5 marks and is where most students fall short.
+        Criterion E (Evaluation) is 3 marks and is where most students fall short.
         There are four reliable evaluation frameworks that work across almost any
         Economics article:
       </p>
@@ -2093,8 +2104,9 @@ export const staticContent: Record<string, string> = {
 
       <h2>Word Count and Structure</h2>
       <p>
-        Each commentary has a 750-word limit (not including diagrams, references, or
-        the article itself). Every word counts. The structure that works best:
+        Each commentary has an 800-word limit (not including diagrams, references, or
+        the article itself); moderators stop reading at 800 words. The structure that
+        works best:
       </p>
       <ul>
         <li><strong>Opening context (50–80 words):</strong> Briefly describe what the article is about and identify the main economic concept. Do not summarise the article — you are analysing it.</li>
@@ -2504,8 +2516,8 @@ export const staticContent: Record<string, string> = {
       <ul>
         <li><strong>Criterion A — Presentation (4 marks):</strong> Is the work well-organized, clearly written, and appropriately concise? Is there a table of contents and a bibliography?</li>
         <li><strong>Criterion B — Mathematical Communication (4 marks):</strong> Are mathematical symbols, notation, and diagrams used correctly and consistently?</li>
-        <li><strong>Criterion C — Personal Engagement (4 marks):</strong> Does the exploration reflect your genuine curiosity? Is the approach original rather than a textbook rehash?</li>
-        <li><strong>Criterion D — Reflection (4 marks):</strong> Do you discuss limitations, surprises, and what you would do differently? Is your thinking visible throughout?</li>
+        <li><strong>Criterion C — Personal engagement (3 marks):</strong> Does the exploration reflect your genuine curiosity? Is the approach original rather than a textbook rehash?</li>
+        <li><strong>Criterion D — Reflection (3 marks):</strong> Do you discuss limitations, surprises, and what you would do differently? Is your thinking visible throughout?</li>
         <li><strong>Criterion E — Use of Mathematics (6 marks):</strong> Is the mathematics relevant to the aim? Is it commensurate with the level of the course? Is it applied correctly?</li>
       </ul>
       <p>
@@ -2523,7 +2535,7 @@ export const staticContent: Record<string, string> = {
         This classic exploration uses a logistic differential equation to model how
         information spreads through a population. A student who chooses a real
         data source — for instance, tweet counts from a viral news event — scores
-        highly on Personal Engagement because the context is self-selected and
+        highly on the personal-context element of Research design because the context is self-selected and
         the data is original. The mathematics involves solving the logistic equation,
         fitting parameters to data, and comparing the model against observed values.
         At HL, this can be extended to include a delayed-response model (a delay
@@ -2896,7 +2908,7 @@ export const staticContent: Record<string, string> = {
 
       <h3>You don't know what the examiner wants</h3>
       <p>
-        The IB Extended Essay is marked on six criteria. Most students do not study
+        The IB Extended Essay is marked on five criteria. Most students do not study
         these criteria carefully, which means they cannot calibrate their writing to
         meet the examiner's expectations. The criteria are:
       </p>
@@ -2997,7 +3009,7 @@ export const staticContent: Record<string, string> = {
   <p>
         The IB Chemistry Internal Assessment is a 10-hour scientific investigation
         worth 20% of your final grade. It is marked on the same five criteria as
-        other Group 4 IAs — Personal Engagement, Exploration, Analysis, Evaluation,
+        other Group 4 IAs — Research design, Data analysis, Conclusion and Evaluation,
         and Communication — but Chemistry brings specific challenges: quantitative
         data is expected, error calculations are required, and examiners have a low
         tolerance for vague methodology. This guide covers what high-scoring IB
@@ -3007,7 +3019,7 @@ export const staticContent: Record<string, string> = {
 
       <h2>How the IB Chemistry IA Is Marked</h2>
       <ul>
-        <li><strong>Personal Engagement (2 marks):</strong> Evidence that the student shaped the investigation. A genuine question from their own experience, a non-standard variable, or an original data source earns this.</li>
+        <li><strong>Research design (6 marks):</strong> A focused research question in a genuine context — a non-standard variable or an original data source makes the design convincingly your own.</li>
         <li><strong>Exploration (6 marks):</strong> Clear research question, relevant background theory, correct identification of variables (independent, dependent, controlled), and a reproducible methodology.</li>
         <li><strong>Analysis (6 marks):</strong> Quantitative data processing (means, uncertainties, graphs), correct use of units, and a conclusion supported by the data. Error propagation is expected at HL.</li>
         <li><strong>Evaluation (6 marks):</strong> Specific assessment of methodological limitations, systematic and random errors, and concrete improvements. The most under-scored criterion.</li>
@@ -3035,7 +3047,7 @@ export const staticContent: Record<string, string> = {
       <h3>2. Titration-based investigations</h3>
       <p>
         Acid-base or redox titrations are reliable but need a non-textbook angle to
-        score Personal Engagement. Strong examples include: determining the vitamin C
+        make the context convincingly personal, strengthening Research design. Strong examples include: determining the vitamin C
         content of different apple varieties across a ripening period; comparing
         acidity of commercial kombucha brands; measuring iron(II) content in iron
         supplement tablets before and after air exposure. The methodology is
@@ -3169,7 +3181,7 @@ export const staticContent: Record<string, string> = {
 
       <h2>Marking Criteria Overview</h2>
       <ul>
-        <li><strong>Personal Engagement (2 marks):</strong> A genuine personal motivation for the investigation. The most credible evidence is a non-standard choice of variable, a context from the student's own life, or an original approach to a known phenomenon.</li>
+        <li><strong>Research design (6 marks):</strong> A focused research question in a genuine context — a non-standard variable, a context from the student's own life, or an original approach strengthens the design.</li>
         <li><strong>Exploration (6 marks):</strong> Research question, background theory, identified variables (IV, DV, controlled), and a methodology detailed enough to be reproduced.</li>
         <li><strong>Analysis (6 marks):</strong> Processed data with uncertainties, appropriate graphs (often linearised), and a conclusion with a comparison to expected values or theory.</li>
         <li><strong>Evaluation (6 marks):</strong> Specific, directional assessment of limitations and improvements. Random vs systematic error distinction. This is where most marks are lost.</li>
@@ -3794,7 +3806,7 @@ export const staticContent: Record<string, string> = {
       <h2>What Affects Your IA Score: Criteria by Subject</h2>
 
       <h3>Biology and Chemistry IA</h3>
-      <p>Science IAs are assessed on five criteria: Personal Engagement (2 marks), Exploration (6), Analysis (6), Evaluation (6), and Communication (4). Exploration is where most students lose points — a weak research question cascades into problems in every subsequent criterion. Evaluation is the other common weak point: students frequently describe limitations without quantifying their impact or suggesting realistic improvements.</p>
+      <p>Science IAs are assessed on four criteria (2025 syllabus): Research design (6), Data analysis (6), Conclusion (6) and Evaluation (6) — 24 marks total. Research design is where most students lose points — a weak research question cascades into problems in every subsequent criterion. Evaluation is the other common weak point: students frequently describe limitations without quantifying their impact or suggesting realistic improvements.</p>
 
       <h3>Economics IA</h3>
       <p>Students submit three commentaries assessed on Diagrams, Terminology, Application, Analysis, and Evaluation. Many students draw supply-and-demand diagrams and never explicitly explain what the shifts represent in terms of the article — this costs marks in both Diagrams and Analysis. Genuine evaluation requires considering different perspectives and stakeholder impacts, not simply restating analysis with "however" in front of it.</p>
@@ -3806,7 +3818,7 @@ export const staticContent: Record<string, string> = {
       <p>Psychology IAs replicate a cognitive psychology study. The Introduction must include a clearly operationalised hypothesis. Discussion is where marks are most frequently dropped: students either fail to relate findings back to the original study or write conclusions that go far beyond what their small sample can support.</p>
 
       <h3>Mathematics IA</h3>
-      <p>Assessed on Presentation, Mathematical Communication, Personal Engagement, Reflection, and Use of Mathematics. The Use of Mathematics criterion differentiates grades most sharply — the mathematics must be "precise, elegant, and demonstrates sophistication," meaning a genuinely non-trivial approach for your level.</p>
+      <p>Assessed on Presentation, Mathematical communication, Personal engagement, Reflection, and Use of mathematics. The Use of Mathematics criterion differentiates grades most sharply — the mathematics must be "precise, elegant, and demonstrates sophistication," meaning a genuinely non-trivial approach for your level.</p>
 
       <h2>How to Self-Assess Your IA: A Practical Method</h2>
 
@@ -4054,7 +4066,7 @@ export const staticContent: Record<string, string> = {
         The IA is marked out of 24 across five criteria:
       </p>
       <ul>
-        <li><strong>Personal Engagement (2 marks):</strong> Evidence that the student chose and shaped the investigation themselves. Examiners look for a genuine question, not a reformatted class lab.</li>
+        <li><strong>Research design (6 marks):</strong> A focused research question in a genuine context, with an appropriate and safe methodology — the criterion where most marks are won or lost.</li>
         <li><strong>Exploration (6 marks):</strong> Clear research question, appropriate methodology, identified variables (independent, dependent, controlled), and sufficient background theory.</li>
         <li><strong>Analysis (6 marks):</strong> Correctly processed data, appropriate statistical tests, graphs with error bars, and a conclusion drawn from the data.</li>
         <li><strong>Evaluation (6 marks):</strong> Honest assessment of the methodology: what are the weaknesses? What systematic errors exist? How could the investigation be improved?</li>
@@ -4077,10 +4089,10 @@ export const staticContent: Record<string, string> = {
         1/concentration (Lineweaver-Burk), discusses why the curve deviates from
         the Michaelis-Menten model at very high substrate concentrations, and
         reflects on whether enzyme concentration was truly controlled across trials.
-        The Personal Engagement mark typically comes from choosing an enzyme or
+        A convincing personal context typically comes from choosing an enzyme or
         substrate with a personal connection — a student who works in a kitchen
         and investigates pineapple juice (bromelain) inhibiting gelatin setting
-        scores Personal Engagement almost automatically.
+        makes the research question feel genuinely yours, which strengthens Research design.
       </p>
 
       <h3>2. Osmosis in plant tissue across a concentration gradient</h3>

@@ -58,7 +58,7 @@ export default function WriteMyIBExtendedEssay() {
 
       <h3>You don't know what the examiner wants</h3>
       <p>
-        The IB Extended Essay is marked on six criteria. Most students do not study
+        The IB Extended Essay is marked on five criteria. Most students do not study
         these criteria carefully, which means they cannot calibrate their writing to
         meet the examiner's expectations. The criteria are:
       </p>

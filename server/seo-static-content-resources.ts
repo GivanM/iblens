@@ -416,15 +416,15 @@ export const staticContentResources: Record<string, string> = {
       <p>IBLens grades Internal Assessments for all major IB subjects, each evaluated against the specific rubric for that subject:</p>
 
       <ul>
-        <li><strong><a href="/essay/biology-ia">IB Biology IA</a></strong> — Science IA rubric: Personal Engagement, Exploration, Analysis, Evaluation, Communication (total 24 marks)</li>
-        <li><strong><a href="/essay/chemistry-ia">IB Chemistry IA</a></strong> — Science IA rubric: same five criteria as Biology (24 marks)</li>
-        <li><strong><a href="/essay/physics-ia">IB Physics IA</a></strong> — Science IA rubric: same five criteria (24 marks)</li>
-        <li><strong><a href="/essay/math-ia">IB Mathematics IA (Exploration)</a></strong> — Math IA rubric: Communication, Mathematical Presentation, Personal Engagement, Reflection, Use of Mathematics (20 marks)</li>
-        <li><strong><a href="/essay/economics-ia">IB Economics IA</a></strong> — Per-commentary rubric: Diagrams, Terminology, Application, Analysis, Evaluation (14 marks per commentary)</li>
-        <li><strong>IB Business Management IA</strong> — Research Question, Methodology, Analysis, Conclusions, Evaluation, Structure (25 marks)</li>
-        <li><strong><a href="/essay/history-ia">IB History IA</a></strong> — Historical Investigation: Identification, Investigation, Reflection, Citation, Presentation (25 marks)</li>
-        <li><strong><a href="/essay/psychology-ia">IB Psychology IA</a></strong> — Introduction, Exploration, Analysis, Evaluation, Presentation (22 marks)</li>
-        <li><strong>IB Computer Science IA</strong> — Planning, Solution Overview, Development, Functionality, Evaluation (34 marks)</li>
+        <li><strong><a href="/essay/biology-ia">IB Biology IA</a></strong> — Sciences IA (2025 scientific investigation): Research design, Data analysis, Conclusion, Evaluation (24 marks; SL and HL)</li>
+        <li><strong><a href="/essay/chemistry-ia">IB Chemistry IA</a></strong> — Sciences IA: same four criteria as Biology (24 marks)</li>
+        <li><strong><a href="/essay/physics-ia">IB Physics IA</a></strong> — Sciences IA: same four criteria (24 marks)</li>
+        <li><strong><a href="/essay/math-ia">IB Mathematics IA (Exploration)</a></strong> — Math IA rubric: Presentation, Mathematical communication, Personal engagement, Reflection, Use of mathematics (20 marks)</li>
+        <li><strong><a href="/essay/economics-ia">IB Economics IA</a></strong> — Per-commentary rubric: Diagrams, Terminology, Application and analysis, Key concept, Evaluation (14 per commentary; portfolio 45)</li>
+        <li><strong><a href="/essay/business-management-ia">IB Business Management IA</a></strong> — Business research project: Integration of a key concept, Supporting documents, Tools and theories, Analysis and evaluation, Conclusions, Structure, Presentation (25 marks)</li>
+        <li><strong><a href="/essay/history-ia">IB History IA</a></strong> — Historical Investigation: Identification and evaluation of sources (6), Investigation (15), Reflection (4) — 25 marks</li>
+        <li><strong><a href="/essay/psychology-ia">IB Psychology IA</a></strong> — Introduction, Exploration, Analysis, Evaluation (22 marks)</li>
+        <li><strong><a href="/essay/computer-science-ia">IB Computer Science IA</a></strong> — Planning, Solution overview, Development, Functionality and extensibility, Evaluation (34 marks)</li>
         <li><strong>IB English A IA (Literature / Language & Literature)</strong> — assessed against the subject-specific oral or written commentary rubric</li>
         <li><strong>IB Visual Arts IA, Music IA, Film IA</strong> — assessed against subject-specific criteria</li>
       </ul>
@@ -979,7 +979,7 @@ export const staticContentResources: Record<string, string> = {
         The evaluation step is crucial. Weak essays present claims and counter-claims but never resolve the tension between them. Strong essays show <strong>nuanced judgment</strong> — perhaps the claim holds in one context but not another, or perhaps the truth lies in a synthesis of both perspectives.
       </p>
 
-      <h2>Areas of Knowledge and Ways of Knowing</h2>
+      <h2>Areas of Knowledge</h2>
 
       <p>
         The TOK framework organizes knowledge into <strong>Areas of Knowledge (AOKs)</strong> — broad disciplines that produce knowledge using characteristic methods:
@@ -995,7 +995,7 @@ export const staticContentResources: Record<string, string> = {
       </ul>
 
       <p>
-        <strong>Ways of Knowing (WOKs)</strong> are the tools or faculties through which we acquire knowledge: reason, sense perception, language, emotion, imagination, faith, intuition, and memory. While the 2022 curriculum de-emphasized the formal WOK framework, these concepts remain useful for analyzing how knowledge is produced and justified.
+        The pre-2022 TOK course also used a framework of <strong>Ways of Knowing</strong> — reason, sense perception, language, emotion, imagination, faith, intuition and memory. These were <strong>removed</strong> in the 2022 syllabus and are no longer part of the course or the assessment, so you should not build your essay around them. The underlying ideas can still inform how you discuss the way knowledge is produced and justified within an area of knowledge.
       </p>
 
       <p>
@@ -1046,7 +1046,7 @@ export const staticContentResources: Record<string, string> = {
       </table>
 
       <p>
-        The essay is marked out of 10, with the following approximate boundaries: 9–10 = Excellent (A), 7–8 = Good (B), 5–6 = Satisfactory (C), 3–4 = Mediocre (D), 0–2 = Elementary (E).
+        The essay is marked holistically out of 10 against a single instrument, with no sub-criteria and no letter-grade mapping. Marks fall in five two-mark bands: Excellent (9–10), Good (7–8), Satisfactory (5–6), Basic (3–4), and Rudimentary (1–2).
       </p>
 
       <h2>Worked Example: Strong vs. Weak Argumentation</h2>
@@ -1078,7 +1078,7 @@ export const staticContentResources: Record<string, string> = {
         <li><strong>Treating TOK as a subject essay:</strong> Writing about the content of a subject (e.g., explaining how photosynthesis works) rather than about knowledge questions related to that subject</li>
         <li><strong>Generic examples:</strong> Using "2+2=4" as the only example of mathematical knowledge, or "the Holocaust" as the only example of historical knowledge. Examiners have read these thousands of times</li>
         <li><strong>False balance:</strong> Presenting claim and counter-claim as equally valid without evaluation, ending with "it depends on the person" rather than a reasoned conclusion</li>
-        <li><strong>Excessive use of WOK/AOK jargon:</strong> Forcing every sentence through the WOK/AOK framework rather than using these concepts naturally where they illuminate the argument</li>
+        <li><strong>Excessive use of areas-of-knowledge jargon:</strong> Forcing every sentence through the AOK framework rather than using these concepts naturally where they illuminate the argument</li>
         <li><strong>Exceeding word count:</strong> The 1,600-word limit is strict. Examiners stop reading at the limit</li>
         <li><strong>No personal voice:</strong> Essays that read like they were assembled from TOK textbook passages rather than reflecting genuine personal thinking</li>
       </ul>
@@ -1461,7 +1461,7 @@ export const staticContentResources: Record<string, string> = {
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Economics IA</nav>\n      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Economics IA</h1>
       <p>
         The IB Economics Internal Assessment consists of three commentaries — one each
-        on Microeconomics, Macroeconomics, and International Economics — each written
+        on Microeconomics, Macroeconomics, and The global economy — each written
         in response to a real news article published after the start of your IB course.
         Each commentary is worth a third of the overall IA mark, which contributes 20%
         to your final grade. Most students find the IA easier to score well on than
@@ -1471,20 +1471,24 @@ export const staticContentResources: Record<string, string> = {
 
       <h2>How the IB Economics IA Is Marked</h2>
       <p>
-        Each commentary is marked on four criteria, for a maximum of 14 marks per
-        commentary (42 total, converted to 20%):
+        Each commentary is marked on five criteria (A–E), for a maximum of 14 marks per
+        commentary. The portfolio of three commentaries is marked out of 45: 42 across
+        the commentaries plus 3 for Criterion F (Rubric requirements — different units,
+        different sources, and articles published within a year of writing). Each
+        commentary must also use a different key concept.
       </p>
       <ul>
         <li><strong>Criterion A — Diagrams (3 marks):</strong> Are diagrams used? Are they accurately labelled? Do they directly illustrate the economics being discussed?</li>
         <li><strong>Criterion B — Terminology (2 marks):</strong> Is economic terminology used correctly and consistently throughout?</li>
-        <li><strong>Criterion C — Application and Analysis (4 marks):</strong> Does the commentary correctly explain the economics of the situation described in the article? Is the analysis developed and accurate?</li>
-        <li><strong>Criterion D — Evaluation (5 marks):</strong> Does the student weigh up different perspectives, consider short-run versus long-run effects, or analyse who gains and who loses? Is the evaluation balanced and well-reasoned?</li>
+        <li><strong>Criterion C — Application and analysis (3 marks):</strong> Is relevant economic theory applied to the article, with developed and accurate analysis?</li>
+        <li><strong>Criterion D — Key concept (3 marks):</strong> Is one key concept identified and effectively linked to the article?</li>
+        <li><strong>Criterion E — Evaluation (3 marks):</strong> Are judgments supported by reasoned argument — short-run versus long-run, who gains and who loses, and underlying assumptions?</li>
       </ul>
       <p>
-        The most common mark distribution for a student who gets a 6 rather than a 7 is:
-        Criterion A = 2, B = 2, C = 3, D = 3. The 2 marks typically lost are one on
-        Diagrams (usually a labelling error) and two on Evaluation (surface-level
-        rather than developed evaluation).
+        A common profile for a strong-but-not-top commentary is Criterion A = 2, B = 2,
+        C = 2, D = 3, E = 2 (11 out of 14). The marks are usually lost on a diagram
+        labelling slip, on analysis that is not fully developed, and on evaluation that
+        describes rather than judges.
       </p>
 
       <h2>How to Choose a Good Article</h2>
@@ -1505,7 +1509,7 @@ export const staticContentResources: Record<string, string> = {
         different units. An article about rent control in a city gives you a clean
         price ceiling analysis. An article about a trade war that also involves
         currency depreciation and domestic unemployment is too complex to analyse
-        well in 750 words.
+        well in 800 words.
       </p>
       <h3>3. It is recent and sourced from a reliable outlet</h3>
       <p>
@@ -1556,7 +1560,7 @@ export const staticContentResources: Record<string, string> = {
         can actually be addressed by demand-side monetary policy.
       </p>
 
-      <h3>International Economics Commentary</h3>
+      <h3>The Global Economy Commentary</h3>
       <p>
         Strong topics: tariffs, quotas, trade agreements, exchange rate changes
         and their effect on trade, current account deficits, protectionism vs
@@ -1590,7 +1594,7 @@ export const staticContentResources: Record<string, string> = {
 
       <h2>Evaluation: The Hardest Marks to Get</h2>
       <p>
-        Criterion D (Evaluation) is 5 marks and is where most students fall short.
+        Criterion E (Evaluation) is 3 marks and is where most students fall short.
         There are four reliable evaluation frameworks that work across almost any
         Economics article:
       </p>
@@ -1607,8 +1611,9 @@ export const staticContentResources: Record<string, string> = {
 
       <h2>Word Count and Structure</h2>
       <p>
-        Each commentary has a 750-word limit (not including diagrams, references, or
-        the article itself). Every word counts. The structure that works best:
+        Each commentary has an 800-word limit (not including diagrams, references, or
+        the article itself); moderators stop reading at 800 words. The structure that
+        works best:
       </p>
       <ul>
         <li><strong>Opening context (50–80 words):</strong> Briefly describe what the article is about and identify the main economic concept. Do not summarise the article — you are analysing it.</li>
@@ -1808,7 +1813,7 @@ export const staticContentResources: Record<string, string> = {
       <ul>
         <li><strong>Three or more AOKs:</strong> You cannot give adequate depth to three AOKs in 1,600 words.</li>
         <li><strong>Claims without examples:</strong> Abstract claims with no concrete illustration score below 6.</li>
-        <li><strong>No counter-claims:</strong> A claim without a counter-claim scores maximum Level 3 on the rubric.</li>
+        <li><strong>No counter-claims:</strong> A claim without a counter-claim keeps the essay in the lower bands of the holistic rubric.</li>
         <li><strong>Using subheadings:</strong> TOK essays should be continuous prose — subheadings signal a formulaic approach.</li>
       </ul>
       <p><a href="/essay/tok-essay">Check your TOK essay structure with IBLens →</a></p>

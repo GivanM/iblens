@@ -12,11 +12,10 @@ const config: SubjectConfig = {
   heroSubline:
     "Paste your Chemistry IA and find out how you'd score on every criterion, plus exactly what to improve before submission.",
   criteria: [
-    { name: "Personal Engagement", max: 2, sampleScore: 1 },
-    { name: "Exploration", max: 6, sampleScore: 4 },
-    { name: "Analysis", max: 6, sampleScore: 3 },
+    { name: "Research design", max: 6, sampleScore: 4 },
+    { name: "Data analysis", max: 6, sampleScore: 4 },
+    { name: "Conclusion", max: 6, sampleScore: 3 },
     { name: "Evaluation", max: 6, sampleScore: 3 },
-    { name: "Communication", max: 4, sampleScore: 3 },
   ],
   relatedSubjects: [
     { label: "Biology IA", href: "/essay/biology-ia" },

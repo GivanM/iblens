@@ -10,13 +10,13 @@ const config: SubjectConfig = {
   canonicalPath: "/essay/maths-aa-ia",
   heroHeadline: "Is your IB Math AA exploration heading for a 6 or a 4?",
   heroSubline:
-    "Paste your Mathematics: Analysis and Approaches IA and get criterion-by-criterion feedback — including Use of Mathematics and Personal Engagement — in 60 seconds. Free first check.",
+    "Paste your Mathematics: Analysis and Approaches IA and get criterion-by-criterion feedback — including Use of mathematics and Personal engagement — in 60 seconds. Free first check.",
   criteria: [
-    { name: "Communication", max: 4, sampleScore: 3 },
-    { name: "Mathematical Presentation", max: 3, sampleScore: 2 },
-    { name: "Personal Engagement", max: 3, sampleScore: 2 },
+    { name: "Presentation", max: 4, sampleScore: 3 },
+    { name: "Mathematical communication", max: 4, sampleScore: 3 },
+    { name: "Personal engagement", max: 3, sampleScore: 2 },
     { name: "Reflection", max: 3, sampleScore: 2 },
-    { name: "Use of Mathematics", max: 6, sampleScore: 4 },
+    { name: "Use of mathematics", max: 6, sampleScore: 4 },
   ],
   relatedSubjects: [
     { label: "Math AI IA", href: "/essay/maths-ai-ia" },

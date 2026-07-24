@@ -12,11 +12,11 @@ const config: SubjectConfig = {
   heroSubline:
     "Paste your Mathematics: Applications and Interpretation IA and get criterion-by-criterion feedback in 60 seconds — including Use of Mathematics and Reflection. Free first check.",
   criteria: [
-    { name: "Communication", max: 4, sampleScore: 3 },
-    { name: "Mathematical Presentation", max: 3, sampleScore: 2 },
-    { name: "Personal Engagement", max: 3, sampleScore: 2 },
+    { name: "Presentation", max: 4, sampleScore: 3 },
+    { name: "Mathematical communication", max: 4, sampleScore: 3 },
+    { name: "Personal engagement", max: 3, sampleScore: 2 },
     { name: "Reflection", max: 3, sampleScore: 2 },
-    { name: "Use of Mathematics", max: 6, sampleScore: 4 },
+    { name: "Use of mathematics", max: 6, sampleScore: 4 },
   ],
   relatedSubjects: [
     { label: "Math AA IA", href: "/essay/maths-aa-ia" },

@@ -59,12 +59,13 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
 // Sample score card criteria for hero
 const SAMPLE_CRITERIA = [
-  { name: "A: Research question", score: 2, max: 3 },
-  { name: "B: Methodology", score: 3, max: 4 },
-  { name: "C: Analysis & discussion", score: 7, max: 10 },
-  { name: "D: Conclusions", score: 2, max: 3 },
-  { name: "E: Evaluation", score: 2, max: 3 },
-  { name: "F: Structure & presentation", score: 2, max: 2 },
+  { name: "A: Integration of a key concept", score: 3, max: 5 },
+  { name: "B: Supporting documents", score: 3, max: 4 },
+  { name: "C: Tools and theories", score: 3, max: 4 },
+  { name: "D: Analysis and evaluation", score: 4, max: 5 },
+  { name: "E: Conclusions", score: 2, max: 3 },
+  { name: "F: Structure", score: 2, max: 2 },
+  { name: "G: Presentation", score: 1, max: 2 },
 ];
 
 export default function Home() {

@@ -23,7 +23,7 @@ export default function IBPhysicsIAExamples() {
 
       <h2>Marking Criteria Overview</h2>
       <ul>
-        <li><strong>Personal Engagement (2 marks):</strong> A genuine personal motivation for the investigation. The most credible evidence is a non-standard choice of variable, a context from the student's own life, or an original approach to a known phenomenon.</li>
+        <li><strong>Research design (6 marks):</strong> A focused research question in a genuine context — a non-standard variable, a context from the student's own life, or an original approach strengthens the design.</li>
         <li><strong>Exploration (6 marks):</strong> Research question, background theory, identified variables (IV, DV, controlled), and a methodology detailed enough to be reproduced.</li>
         <li><strong>Analysis (6 marks):</strong> Processed data with uncertainties, appropriate graphs (often linearised), and a conclusion with a comparison to expected values or theory.</li>
         <li><strong>Evaluation (6 marks):</strong> Specific, directional assessment of limitations and improvements. Random vs systematic error distinction. This is where most marks are lost.</li>

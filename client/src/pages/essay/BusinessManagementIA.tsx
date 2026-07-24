@@ -12,11 +12,13 @@ const config: SubjectConfig = {
   heroSubline:
     "Paste your IA text and get a full criterion-by-criterion grade report in 60 seconds — scored against the official IB Business Management rubric.",
   criteria: [
-    { name: "Criterion A: Setting the scene", max: 2, sampleScore: 1 },
-    { name: "Criterion B: Stakeholder analysis", max: 3, sampleScore: 2 },
-    { name: "Criterion C: Analysis", max: 6, sampleScore: 4 },
-    { name: "Criterion D: Discussion & evaluation", max: 6, sampleScore: 3 },
-    { name: "Criterion E: Conclusion & recommendations", max: 3, sampleScore: 2 },
+    { name: "Criterion A: Integration of a key concept", max: 5, sampleScore: 3 },
+    { name: "Criterion B: Supporting documents", max: 4, sampleScore: 3 },
+    { name: "Criterion C: Selection and application of tools and theories", max: 4, sampleScore: 2 },
+    { name: "Criterion D: Analysis and evaluation", max: 5, sampleScore: 3 },
+    { name: "Criterion E: Conclusions", max: 3, sampleScore: 2 },
+    { name: "Criterion F: Structure", max: 2, sampleScore: 1 },
+    { name: "Criterion G: Presentation", max: 2, sampleScore: 2 },
   ],
   relatedSubjects: [
     { label: "Economics IA", href: "/essay/economics-ia" },

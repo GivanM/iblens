@@ -29,15 +29,15 @@ export default function IBIAGrader() {
       <p>IBLens grades Internal Assessments for all major IB subjects, each evaluated against the specific rubric for that subject:</p>
 
       <ul>
-        <li><strong><Link href="/essay/biology-ia">IB Biology IA</Link></strong> — Science IA rubric: Personal Engagement, Exploration, Analysis, Evaluation, Communication (total 24 marks)</li>
-        <li><strong><Link href="/essay/chemistry-ia">IB Chemistry IA</Link></strong> — Science IA rubric: same five criteria as Biology (24 marks)</li>
-        <li><strong><Link href="/essay/physics-ia">IB Physics IA</Link></strong> — Science IA rubric: same five criteria (24 marks)</li>
-        <li><strong><Link href="/essay/math-ia">IB Mathematics IA (Exploration)</Link></strong> — Math IA rubric: Communication, Mathematical Presentation, Personal Engagement, Reflection, Use of Mathematics (20 marks)</li>
-        <li><strong><Link href="/essay/economics-ia">IB Economics IA</Link></strong> — Per-commentary rubric: Diagrams, Terminology, Application, Analysis, Evaluation (14 marks per commentary)</li>
-        <li><strong>IB Business Management IA</strong> — Research Question, Methodology, Analysis, Conclusions, Evaluation, Structure (25 marks)</li>
-        <li><strong><Link href="/essay/history-ia">IB History IA</Link></strong> — Historical Investigation: Identification, Investigation, Reflection, Citation, Presentation (25 marks)</li>
-        <li><strong><Link href="/essay/psychology-ia">IB Psychology IA</Link></strong> — Introduction, Exploration, Analysis, Evaluation, Presentation (22 marks)</li>
-        <li><strong>IB Computer Science IA</strong> — Planning, Solution Overview, Development, Functionality, Evaluation (34 marks)</li>
+        <li><strong><Link href="/essay/biology-ia">IB Biology IA</Link></strong> — Sciences IA (2025 scientific investigation): Research design, Data analysis, Conclusion, Evaluation (24 marks; SL and HL)</li>
+        <li><strong><Link href="/essay/chemistry-ia">IB Chemistry IA</Link></strong> — Sciences IA: same four criteria as Biology (24 marks)</li>
+        <li><strong><Link href="/essay/physics-ia">IB Physics IA</Link></strong> — Sciences IA: same four criteria (24 marks)</li>
+        <li><strong><Link href="/essay/math-ia">IB Mathematics IA (Exploration)</Link></strong> — Math IA rubric: Presentation, Mathematical communication, Personal engagement, Reflection, Use of mathematics (20 marks)</li>
+        <li><strong><Link href="/essay/economics-ia">IB Economics IA</Link></strong> — Per-commentary rubric: Diagrams, Terminology, Application and analysis, Key concept, Evaluation (14 per commentary; portfolio 45)</li>
+        <li><strong><Link href="/essay/business-management-ia">IB Business Management IA</Link></strong> — Business research project: Integration of a key concept, Supporting documents, Tools and theories, Analysis and evaluation, Conclusions, Structure, Presentation (25 marks)</li>
+        <li><strong><Link href="/essay/history-ia">IB History IA</Link></strong> — Historical Investigation: Identification and evaluation of sources (6), Investigation (15), Reflection (4) — 25 marks</li>
+        <li><strong><Link href="/essay/psychology-ia">IB Psychology IA</Link></strong> — Introduction, Exploration, Analysis, Evaluation (22 marks)</li>
+        <li><strong><Link href="/essay/computer-science-ia">IB Computer Science IA</Link></strong> — Planning, Solution overview, Development, Functionality and extensibility, Evaluation (34 marks)</li>
         <li><strong>IB English A IA (Literature / Language & Literature)</strong> — assessed against the subject-specific oral or written commentary rubric</li>
         <li><strong>IB Visual Arts IA, Music IA, Film IA</strong> — assessed against subject-specific criteria</li>
       </ul>

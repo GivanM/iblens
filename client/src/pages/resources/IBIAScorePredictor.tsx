@@ -24,7 +24,7 @@ export default function IBIAScorePredictor() {
       <h2>What Affects Your IA Score: Criteria by Subject</h2>
 
       <h3>Biology and Chemistry IA</h3>
-      <p>Science IAs are assessed on five criteria: Personal Engagement (2 marks), Exploration (6), Analysis (6), Evaluation (6), and Communication (4). Exploration is where most students lose points — a weak research question cascades into problems in every subsequent criterion. Evaluation is the other common weak point: students frequently describe limitations without quantifying their impact or suggesting realistic improvements.</p>
+      <p>Science IAs are assessed on four criteria (2025 syllabus): Research design (6), Data analysis (6), Conclusion (6) and Evaluation (6) — 24 marks total. Research design is where most students lose points — a weak research question cascades into problems in every subsequent criterion. Evaluation is the other common weak point: students frequently describe limitations without quantifying their impact or suggesting realistic improvements.</p>
 
       <h3>Economics IA</h3>
       <p>Students submit three commentaries assessed on Diagrams, Terminology, Application, Analysis, and Evaluation. Many students draw supply-and-demand diagrams and never explicitly explain what the shifts represent in terms of the article — this costs marks in both Diagrams and Analysis. Genuine evaluation requires considering different perspectives and stakeholder impacts, not simply restating analysis with "however" in front of it.</p>
@@ -36,7 +36,7 @@ export default function IBIAScorePredictor() {
       <p>Psychology IAs replicate a cognitive psychology study. The Introduction must include a clearly operationalised hypothesis. Discussion is where marks are most frequently dropped: students either fail to relate findings back to the original study or write conclusions that go far beyond what their small sample can support.</p>
 
       <h3>Mathematics IA</h3>
-      <p>Assessed on Presentation, Mathematical Communication, Personal Engagement, Reflection, and Use of Mathematics. The Use of Mathematics criterion differentiates grades most sharply — the mathematics must be "precise, elegant, and demonstrates sophistication," meaning a genuinely non-trivial approach for your level.</p>
+      <p>Assessed on Presentation, Mathematical communication, Personal engagement, Reflection, and Use of mathematics. The Use of Mathematics criterion differentiates grades most sharply — the mathematics must be "precise, elegant, and demonstrates sophistication," meaning a genuinely non-trivial approach for your level.</p>
 
       <h2>How to Self-Assess Your IA: A Practical Method</h2>
 

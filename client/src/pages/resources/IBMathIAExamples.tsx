@@ -28,8 +28,8 @@ export default function IBMathIAExamples() {
       <ul>
         <li><strong>Criterion A — Presentation (4 marks):</strong> Is the work well-organized, clearly written, and appropriately concise? Is there a table of contents and a bibliography?</li>
         <li><strong>Criterion B — Mathematical Communication (4 marks):</strong> Are mathematical symbols, notation, and diagrams used correctly and consistently?</li>
-        <li><strong>Criterion C — Personal Engagement (4 marks):</strong> Does the exploration reflect your genuine curiosity? Is the approach original rather than a textbook rehash?</li>
-        <li><strong>Criterion D — Reflection (4 marks):</strong> Do you discuss limitations, surprises, and what you would do differently? Is your thinking visible throughout?</li>
+        <li><strong>Criterion C — Personal engagement (3 marks):</strong> Does the exploration reflect your genuine curiosity? Is the approach original rather than a textbook rehash?</li>
+        <li><strong>Criterion D — Reflection (3 marks):</strong> Do you discuss limitations, surprises, and what you would do differently? Is your thinking visible throughout?</li>
         <li><strong>Criterion E — Use of Mathematics (6 marks):</strong> Is the mathematics relevant to the aim? Is it commensurate with the level of the course? Is it applied correctly?</li>
       </ul>
       <p>
@@ -47,7 +47,7 @@ export default function IBMathIAExamples() {
         This classic exploration uses a logistic differential equation to model how
         information spreads through a population. A student who chooses a real
         data source — for instance, tweet counts from a viral news event — scores
-        highly on Personal Engagement because the context is self-selected and
+        highly on the personal-context element of Research design because the context is self-selected and
         the data is original. The mathematics involves solving the logistic equation,
         fitting parameters to data, and comparing the model against observed values.
         At HL, this can be extended to include a delayed-response model (a delay

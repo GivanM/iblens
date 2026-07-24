@@ -12,9 +12,7 @@ const config: SubjectConfig = {
   heroSubline:
     "Paste your TOK essay and get criterion-by-criterion feedback against the official IB TOK rubric — free in 60 seconds. See if your knowledge claims are developed enough to score top marks.",
   criteria: [
-    { name: "Understanding Knowledge Questions", max: 10, sampleScore: 6 },
-    { name: "Quality of Analysis of Knowledge Questions", max: 10, sampleScore: 5 },
-    { name: "Connections Across Areas of Knowledge", max: 5, sampleScore: 3 },
+    { name: "Holistic assessment: clear, coherent, critical exploration of the title", max: 10, sampleScore: 6 },
   ],
   relatedSubjects: [
     { label: "Extended Essay", href: "/essay/extended-essay" },

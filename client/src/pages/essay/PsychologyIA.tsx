@@ -13,10 +13,9 @@ const config: SubjectConfig = {
     "Paste your Psychology IA research report and find out exactly where you're losing marks — criterion by criterion, in 60 seconds.",
   criteria: [
     { name: "Introduction", max: 6, sampleScore: 4 },
-    { name: "Method", max: 4, sampleScore: 3 },
-    { name: "Results & Discussion", max: 6, sampleScore: 3 },
-    { name: "Conclusion", max: 2, sampleScore: 1 },
-    { name: "Presentation", max: 2, sampleScore: 2 },
+    { name: "Exploration", max: 4, sampleScore: 3 },
+    { name: "Analysis", max: 6, sampleScore: 3 },
+    { name: "Evaluation", max: 6, sampleScore: 3 },
   ],
   relatedSubjects: [
     { label: "Biology IA", href: "/essay/biology-ia" },

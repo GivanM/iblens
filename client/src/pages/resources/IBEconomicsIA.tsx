@@ -12,7 +12,7 @@ export default function IBEconomicsIA() {
     >
       <p>
         The IB Economics Internal Assessment consists of three commentaries — one each
-        on Microeconomics, Macroeconomics, and International Economics — each written
+        on Microeconomics, Macroeconomics, and The global economy — each written
         in response to a real news article published after the start of your IB course.
         Each commentary is worth a third of the overall IA mark, which contributes 20%
         to your final grade. Most students find the IA easier to score well on than
@@ -22,20 +22,24 @@ export default function IBEconomicsIA() {
 
       <h2>How the IB Economics IA Is Marked</h2>
       <p>
-        Each commentary is marked on four criteria, for a maximum of 14 marks per
-        commentary (42 total, converted to 20%):
+        Each commentary is marked on five criteria (A–E), for a maximum of 14 marks per
+        commentary. The portfolio of three commentaries is marked out of 45: 42 across the
+        commentaries plus 3 for Criterion F (Rubric requirements — different units, different
+        sources, and articles published within a year of writing). Each commentary must also
+        use a different key concept.
       </p>
       <ul>
         <li><strong>Criterion A — Diagrams (3 marks):</strong> Are diagrams used? Are they accurately labelled? Do they directly illustrate the economics being discussed?</li>
         <li><strong>Criterion B — Terminology (2 marks):</strong> Is economic terminology used correctly and consistently throughout?</li>
-        <li><strong>Criterion C — Application and Analysis (4 marks):</strong> Does the commentary correctly explain the economics of the situation described in the article? Is the analysis developed and accurate?</li>
-        <li><strong>Criterion D — Evaluation (5 marks):</strong> Does the student weigh up different perspectives, consider short-run versus long-run effects, or analyse who gains and who loses? Is the evaluation balanced and well-reasoned?</li>
+        <li><strong>Criterion C — Application and analysis (3 marks):</strong> Is relevant economic theory applied to the article, with developed and accurate analysis?</li>
+        <li><strong>Criterion D — Key concept (3 marks):</strong> Is one key concept identified and effectively linked to the article?</li>
+        <li><strong>Criterion E — Evaluation (3 marks):</strong> Are judgments supported by reasoned argument — short-run versus long-run, who gains and who loses, and underlying assumptions?</li>
       </ul>
       <p>
-        The most common mark distribution for a student who gets a 6 rather than a 7 is:
-        Criterion A = 2, B = 2, C = 3, D = 3. The 2 marks typically lost are one on
-        Diagrams (usually a labelling error) and two on Evaluation (surface-level
-        rather than developed evaluation).
+        A common profile for a strong-but-not-top commentary is Criterion A = 2, B = 2,
+        C = 2, D = 3, E = 2 (11 out of 14). The marks are usually lost on a diagram
+        labelling slip, on analysis that is not fully developed, and on evaluation that
+        describes rather than judges.
       </p>
 
       <h2>How to Choose a Good Article</h2>
@@ -56,7 +60,7 @@ export default function IBEconomicsIA() {
         different units. An article about rent control in a city gives you a clean
         price ceiling analysis. An article about a trade war that also involves
         currency depreciation and domestic unemployment is too complex to analyse
-        well in 750 words.
+        well in 800 words.
       </p>
       <h3>3. It is recent and sourced from a reliable outlet</h3>
       <p>
@@ -107,7 +111,7 @@ export default function IBEconomicsIA() {
         can actually be addressed by demand-side monetary policy.
       </p>
 
-      <h3>International Economics Commentary</h3>
+      <h3>The Global Economy Commentary</h3>
       <p>
         Strong topics: tariffs, quotas, trade agreements, exchange rate changes
         and their effect on trade, current account deficits, protectionism vs
@@ -141,7 +145,7 @@ export default function IBEconomicsIA() {
 
       <h2>Evaluation: The Hardest Marks to Get</h2>
       <p>
-        Criterion D (Evaluation) is 5 marks and is where most students fall short.
+        Criterion E (Evaluation) is 3 marks and is where most students fall short.
         There are four reliable evaluation frameworks that work across almost any
         Economics article:
       </p>
@@ -158,8 +162,8 @@ export default function IBEconomicsIA() {
 
       <h2>Word Count and Structure</h2>
       <p>
-        Each commentary has a 750-word limit (not including diagrams, references, or
-        the article itself). Every word counts. The structure that works best:
+        Each commentary has an 800-word limit (not including diagrams, references, or
+        the article itself); moderators stop reading at 800 words. The structure that works best:
       </p>
       <ul>
         <li><strong>Opening context (50–80 words):</strong> Briefly describe what the article is about and identify the main economic concept. Do not summarise the article — you are analysing it.</li>

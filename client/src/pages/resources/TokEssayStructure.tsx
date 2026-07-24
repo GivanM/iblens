@@ -19,11 +19,11 @@ export default function TokEssayStructure() {
       <h2>Why Structure Matters in TOK</h2>
 
       <p>
-        The TOK essay is graded on the quality of your knowledge claims, counter-claims, and examples — but poor structure prevents examiners from seeing that quality. An essay that jumps between Areas of Knowledge without a clear logical thread, or that buries its thesis in the third paragraph, loses marks on "Understanding Knowledge Questions" even if the individual ideas are good.
+        The TOK essay is graded on the quality of your knowledge claims, counter-claims, and examples — but poor structure prevents examiners from seeing that quality. An essay that jumps between Areas of Knowledge without a clear logical thread, or that buries its thesis in the third paragraph, loses marks against the holistic rubric even if the individual ideas are good.
       </p>
 
       <p>
-        The official IB rubric rewards essays where the argument is "coherent and well-structured" and where "claims and counter-claims are clearly identified." Structure is the mechanism that makes your argument visible.
+        The holistic TOK rubric rewards a clear, coherent and critical exploration of the title — and structure is the mechanism that makes that exploration visible.
       </p>
 
       <h2>The Standard TOK Essay Structure (1,600 words)</h2>
@@ -104,7 +104,7 @@ export default function TokEssayStructure() {
       <ul>
         <li><strong>Three or more AOKs:</strong> You cannot give adequate depth to three AOKs in 1,600 words. Stick to two.</li>
         <li><strong>Claims without examples:</strong> Abstract claims with no concrete illustration are the most common reason for a score below 6.</li>
-        <li><strong>No counter-claims:</strong> A claim without a counter-claim scores maximum Level 3 on the rubric (Understanding Knowledge Questions).</li>
+        <li><strong>No counter-claims:</strong> A claim without a counter-claim keeps the essay in the lower bands of the holistic rubric.</li>
         <li><strong>Restating the title as the conclusion:</strong> Your conclusion must go beyond the introduction — it should represent the outcome of your analysis, not a rephrasing of your starting position.</li>
         <li><strong>Using subheadings:</strong> TOK essays should be continuous prose. Subheadings like "Claim 1:" or "Natural Sciences:" are discouraged and signal a formulaic approach.</li>
       </ul>

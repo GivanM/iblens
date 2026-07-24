@@ -362,12 +362,13 @@ export default function EssayAnalyzer() {
           <div className="space-y-3">
             <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Criteria Breakdown</p>
             {[
-              { name: "Criterion A: Research question", score: 2, max: 3, color: "bg-amber-500" },
-              { name: "Criterion B: Methodology", score: 3, max: 4, color: "bg-emerald-500" },
-              { name: "Criterion C: Analysis & discussion", score: 7, max: 10, color: "bg-amber-500" },
-              { name: "Criterion D: Conclusions", score: 2, max: 3, color: "bg-amber-500" },
-              { name: "Criterion E: Evaluation", score: 2, max: 3, color: "bg-emerald-500" },
-              { name: "Criterion F: Structure & presentation", score: 2, max: 2, color: "bg-emerald-500" },
+              { name: "Criterion A: Integration of a key concept", score: 3, max: 5, color: "bg-amber-500" },
+              { name: "Criterion B: Supporting documents", score: 3, max: 4, color: "bg-emerald-500" },
+              { name: "Criterion C: Tools and theories", score: 3, max: 4, color: "bg-amber-500" },
+              { name: "Criterion D: Analysis and evaluation", score: 4, max: 5, color: "bg-amber-500" },
+              { name: "Criterion E: Conclusions", score: 2, max: 3, color: "bg-emerald-500" },
+              { name: "Criterion F: Structure", score: 2, max: 2, color: "bg-emerald-500" },
+              { name: "Criterion G: Presentation", score: 1, max: 2, color: "bg-amber-500" },
             ].map((c) => (
               <div key={c.name}>
                 <div className="flex justify-between text-sm mb-1">
