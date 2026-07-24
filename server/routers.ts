@@ -118,9 +118,14 @@ Respond with this exact JSON structure:
 function buildTeaser(result: any) {
   const criteria: any[] = Array.isArray(result?.criteria) ? result.criteria : [];
   const scored = criteria.filter((c) => typeof c?.score === "number" && c?.max > 0);
-  const weakest = scored.length
+  let weakest = scored.length
     ? [...scored].sort((a, b) => a.score / a.max - b.score / b.max)[0]
     : null;
+  // Holistic instruments have a single criterion whose comment IS the whole verdict —
+  // truncate it in the teaser so the full reasoning stays behind the unlock.
+  if (weakest && criteria.length === 1 && typeof weakest.comment === "string" && weakest.comment.length > 220) {
+    weakest = { ...weakest, comment: weakest.comment.slice(0, 220).replace(/\s+\S*$/, "") + "\u2026" };
+  }
   let nearEdge: boolean | null = null;
   const m = String(result?.band_range || "").match(/(\d+)\s*[-\u2013\u2014]\s*(\d+)/);
   if (m && typeof result?.predicted_score === "number") {

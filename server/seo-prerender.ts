@@ -64,13 +64,13 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/sample-reports": {
     title: "Sample IBLens Reports \u2014 Three Essays, Three Honest Grades | IBLens",
-    description: "Real, unedited IBLens output: the same TOK title at three quality levels, graded 3/10, 4/10 and 7/10 with criterion-level feedback. This is what calibrated strictness looks like.",
+    description: "Real, unedited IBLens output: the same TOK title at three quality levels, graded 2/10, 4/10 and 5/10 with criterion-level feedback. This is what calibrated strictness looks like.",
     ogType: "article",
     canonical: "/resources/sample-reports",
     schemaType: "Article",
     faq: [
       { question: "Are the sample reports real IBLens output?", answer: "Yes. The three demo essays were written by our team at deliberately different quality levels, then run through the live grader. The scores and every word of feedback are unedited IBLens output." },
-      { question: "Does IBLens give everyone a similar score?", answer: "No \u2014 that is the point of the demonstration. The weak essay scored 3/10, the developing one 4/10, the strong one 7/10. The grader is calibrated to spread scores the way a strict examiner does." },
+      { question: "Does IBLens give everyone a similar score?", answer: "No \u2014 that is the point of the demonstration. The weak essay scored 2/10, the developing one 4/10, the strong one 5/10. The grader is calibrated to spread scores the way a strict examiner does." },
     ],
   },
   "/resources/academic-integrity": {

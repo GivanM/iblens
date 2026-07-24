@@ -1,11 +1,15 @@
 /**
- * IB Rubric Registry
+ * IB Rubric Registry — VERIFIED against official IB subject guides (July 2026).
  *
  * Each entry is keyed by `${essayType}::${subject}` (case-insensitive lookup).
  * For EE and TOK the key is just `EE::*` or `TOK::*` because the rubric
- * is the same regardless of subject.
+ * is subject-agnostic.
  *
- * Sources: IB Subject Guides (first assessment 2024/2025 cycle).
+ * Sources: official IB guides (verbatim assessment instruments). Every mark
+ * allocation below was cross-checked against the guide for the syllabus in
+ * force for the 2026 exam sessions. Where a new syllabus takes over at
+ * first assessment May 2027, it is flagged in `notes` — TODO: session-aware
+ * dual rubrics for EE / Psychology / CS / Visual Arts (M27 cohorts).
  */
 
 export interface RubricCriterion {
@@ -24,263 +28,283 @@ export interface Rubric {
   totalMarks: number;
   /** Ordered list of criteria */
   criteria: RubricCriterion[];
+  /** True when the official instrument is a single holistic (global impression) scale */
+  holistic?: boolean;
+  /** Extra official rules the grader must know (word limits, band labels, caps) */
+  notes?: string;
 }
 
-// ─── Business Management IA (25 marks) ───────────────────────────────────────
+// ─── Business Management IA — "Business research project" (first assessment May 2024) ──
+// SL and HL identical. Max 1,800 words; 3–5 supporting documents (≤3 years old);
+// key concept must be one of: change, creativity, ethics, sustainability.
 const BM_IA: Rubric = {
-  label: "Business Management IA",
+  label: "Business Management IA (Business research project, 2024 syllabus)",
   totalMarks: 25,
   criteria: [
-    { name: "Criterion A: Research question", max: 3, descriptor: "Suitability and development of the research question" },
-    { name: "Criterion B: Methodology", max: 4, descriptor: "Appropriateness and application of research methods" },
-    { name: "Criterion C: Analysis and discussion of findings", max: 10, descriptor: "Depth and quality of analysis and discussion" },
-    { name: "Criterion D: Conclusions", max: 3, descriptor: "Validity and appropriateness of conclusions" },
-    { name: "Criterion E: Evaluation", max: 3, descriptor: "Evaluation of research and its limitations" },
-    { name: "Criterion F: Structure and presentation", max: 2, descriptor: "Structure, layout, and presentation quality" },
+    { name: "Criterion A: Integration of a key concept", max: 5, descriptor: "How well one chosen key concept (change, creativity, ethics or sustainability) is integrated throughout the project and linked to the research question" },
+    { name: "Criterion B: Supporting documents", max: 4, descriptor: "Relevance, depth and breadth of the 3–5 supporting documents and how well they are used" },
+    { name: "Criterion C: Selection and application of tools and theories", max: 4, descriptor: "Appropriate selection and accurate application of business management tools and theories to the research question" },
+    { name: "Criterion D: Analysis and evaluation", max: 5, descriptor: "Quality of analysis, synthesis of findings, and evaluation leading to substantiated judgments" },
+    { name: "Criterion E: Conclusions", max: 3, descriptor: "Consistency of conclusions with the evidence and the research question" },
+    { name: "Criterion F: Structure", max: 2, descriptor: "Logical structure of the project" },
+    { name: "Criterion G: Presentation", max: 2, descriptor: "Required presentation elements (title page, table of contents, references, appendices)" },
   ],
+  notes: "Word limit 1,800 (moderators do not read beyond it). Requires 3–5 supporting documents no older than 3 years. The key concept must be one of: change, creativity, ethics, sustainability.",
 };
 
-// ─── Economics IA (per commentary, 3 commentaries × 14 marks = 45 total, but single commentary is 14) ──
-// The IB Economics IA is assessed per commentary. Each commentary is marked /14.
-// For a single-commentary analysis we use the per-commentary rubric.
+// ─── Economics IA (2022 syllabus) — per commentary ───────────────────────────
+// Portfolio = 3 commentaries × 14 marks + Criterion F: Rubric requirements (3) = 45.
+// Each commentary max 800 words; each uses a DIFFERENT unit and a DIFFERENT key concept.
 const ECONOMICS_IA: Rubric = {
-  label: "Economics IA (per commentary)",
+  label: "Economics IA (per commentary, 2022 syllabus)",
   totalMarks: 14,
   criteria: [
-    { name: "Criterion A: Diagrams", max: 3, descriptor: "Relevant, accurate, and correctly labelled diagrams" },
-    { name: "Criterion B: Terminology", max: 2, descriptor: "Appropriate use of economic terminology" },
-    { name: "Criterion C: Application", max: 2, descriptor: "Application of economic concepts to real-world examples" },
-    { name: "Criterion D: Analysis", max: 3, descriptor: "Depth of economic analysis using theory and models" },
-    { name: "Criterion E: Evaluation", max: 4, descriptor: "Balanced evaluation with synthesis and judgement" },
+    { name: "Criterion A: Diagrams", max: 3, descriptor: "Relevant, accurate and correctly labelled diagrams with full explanation" },
+    { name: "Criterion B: Terminology", max: 2, descriptor: "Relevant economic terminology used appropriately throughout" },
+    { name: "Criterion C: Application and analysis", max: 3, descriptor: "Relevant economic theory applied to the article with an effective economic analysis" },
+    { name: "Criterion D: Key concept", max: 3, descriptor: "Identification and effective linkage of ONE key concept (e.g. scarcity, efficiency, intervention, equity) to the article" },
+    { name: "Criterion E: Evaluation", max: 3, descriptor: "Judgments supported by reasoned arguments considering short/long run, stakeholders, assumptions" },
   ],
+  notes: "Word limit 800 per commentary — moderators will not read beyond 800 words. The full portfolio is marked out of 45: three commentaries (14 each) + Criterion F: Rubric requirements (3): different units, different sources, articles no older than one year. Each commentary must use a different key concept.",
 };
 
-// ─── History IA (25 marks) ───────────────────────────────────────────────────
+// ─── History IA (current guide, first assessment 2017/2020 print) ────────────
 const HISTORY_IA: Rubric = {
   label: "History IA",
   totalMarks: 25,
   criteria: [
-    { name: "Section 1: Identification and evaluation of sources", max: 6, descriptor: "Analysis of two sources with explicit reference to origin, purpose, value, and limitations" },
-    { name: "Section 2: Investigation", max: 15, descriptor: "Critical analysis using evidence, different perspectives, and evaluation of interpretations" },
-    { name: "Section 3: Reflection", max: 4, descriptor: "Reflection on methods used and their effect on the investigation" },
+    { name: "Criterion A: Identification and evaluation of sources", max: 6, descriptor: "Analysis of two relevant sources with explicit reference to origin, purpose, value and limitations" },
+    { name: "Criterion B: Investigation", max: 15, descriptor: "Critical analysis using a range of evidence, awareness of different perspectives, and a reasoned argued conclusion" },
+    { name: "Criterion C: Reflection", max: 4, descriptor: "Reflection on the methods used by historians and the limitations encountered" },
   ],
+  notes: "Word limit 2,200. SL and HL identical.",
 };
 
-// ─── Sciences IA — Biology / Chemistry / Physics (24 marks) ──────────────────
+// ─── Sciences IA — "Scientific investigation" (first assessment May 2025) ────
+// Applies to ALL current candidates (M25 onward). SL and HL identical; report max 3,000 words.
 const SCIENCES_IA: Rubric = {
-  label: "Sciences IA (Biology / Chemistry / Physics)",
+  label: "Sciences IA — Scientific investigation (Biology / Chemistry / Physics, 2025 syllabus)",
   totalMarks: 24,
   criteria: [
-    { name: "Personal engagement", max: 2, descriptor: "Evidence of personal engagement with the exploration" },
-    { name: "Exploration", max: 6, descriptor: "Topic, research question, background information, and methodology" },
-    { name: "Analysis", max: 6, descriptor: "Recording, processing, and interpreting data" },
-    { name: "Evaluation", max: 6, descriptor: "Evaluation of procedures, results, and impact of uncertainties" },
-    { name: "Communication", max: 4, descriptor: "Presentation, structure, and academic honesty" },
+    { name: "Research design", max: 6, descriptor: "Research question within a broader context, methodology (variables/controls or database/model choices), and consideration of safety, ethical and environmental issues" },
+    { name: "Data analysis", max: 6, descriptor: "Recording, processing and presentation of data, including consideration of uncertainties, in ways relevant to the research question" },
+    { name: "Conclusion", max: 6, descriptor: "Conclusion justified by the analysis, answering the research question and compared with the accepted scientific context" },
+    { name: "Evaluation", max: 6, descriptor: "Evaluation of methodological weaknesses and limitations, with realistic improvements" },
   ],
+  notes: "Report maximum 3,000 words. SL and HL use the same criteria. (The pre-2025 rubric — Personal engagement / Exploration / Analysis / Evaluation / Communication — no longer applies to any current candidate.)",
 };
 
-// ─── Mathematics IA (20 marks) ───────────────────────────────────────────────
+// ─── Mathematics AA & AI IA — "Exploration" (first assessment 2021) ──────────
 const MATH_IA: Rubric = {
-  label: "Mathematics IA",
+  label: "Mathematics IA — Exploration (AA & AI)",
   totalMarks: 20,
   criteria: [
-    { name: "Criterion A: Presentation", max: 4, descriptor: "Organization, coherence, and conciseness of the exploration" },
-    { name: "Criterion B: Mathematical communication", max: 4, descriptor: "Appropriate use of mathematical language, notation, and representations" },
-    { name: "Criterion C: Personal engagement", max: 3, descriptor: "Evidence of independent thinking, creativity, and personal interest" },
-    { name: "Criterion D: Reflection", max: 3, descriptor: "Meaningful reflection on results and the exploration process" },
-    { name: "Criterion E: Use of mathematics", max: 6, descriptor: "Relevant, sophisticated, and correct mathematics commensurate with the level" },
+    { name: "Criterion A: Presentation", max: 4, descriptor: "Organization and coherence of the exploration" },
+    { name: "Criterion B: Mathematical communication", max: 4, descriptor: "Appropriate mathematical language, notation, symbols and terminology; definitions of key terms; appropriate use of technology" },
+    { name: "Criterion C: Personal engagement", max: 3, descriptor: "Evidence of independent thinking, creativity and personal interest" },
+    { name: "Criterion D: Reflection", max: 3, descriptor: "Critical reflection on the exploration linked to the aim, and on the significance of results" },
+    { name: "Criterion E: Use of mathematics", max: 6, descriptor: "Relevant mathematics commensurate with the level of the course, used correctly; at HL the top levels additionally require sophistication and rigour" },
   ],
+  notes: "Criterion E has separate SL and HL level descriptors (same maximum): HL top marks require sophistication/rigour; SL requires correct mathematics commensurate with the course level, demonstrating thorough understanding.",
 };
 
-// ─── Psychology IA (22 marks) ────────────────────────────────────────────────
+// ─── Psychology IA (guide first assessment 2019 — LAST assessment Nov 2026) ──
+// TODO(M27): new research-proposal IA from May 2027: A Introduction 6 / B Research
+// methodology 6 / C Data collection 6 / D Discussion 6 = 24, max 2,200 words.
 const PSYCHOLOGY_IA: Rubric = {
-  label: "Psychology IA",
+  label: "Psychology IA (experimental report, through Nov 2026)",
   totalMarks: 22,
   criteria: [
-    { name: "Introduction", max: 6, descriptor: "Identification of the study, aim, and relevance of the replication" },
-    { name: "Exploration", max: 4, descriptor: "Description and justification of the methodology" },
-    { name: "Analysis", max: 6, descriptor: "Application of appropriate descriptive and inferential statistics" },
-    { name: "Evaluation", max: 6, descriptor: "Discussion of results, limitations, and suggestions for modification" },
+    { name: "I. Introduction", max: 6, descriptor: "Aim, link to the background theory or model, and operationalized variables" },
+    { name: "II. Exploration", max: 4, descriptor: "Research design, sampling, participant characteristics, controlled variables, materials — sufficient for replication" },
+    { name: "III. Analysis", max: 6, descriptor: "Correct descriptive and inferential statistics, appropriately graphed, with statistical significance addressed" },
+    { name: "IV. Evaluation", max: 6, descriptor: "Findings discussed in the context of the background theory; strengths, limitations and improvements" },
   ],
+  notes: "Report 1,800–2,200 words. This rubric applies through November 2026; the May 2027 syllabus replaces it with a research proposal (24 marks).",
 };
 
-// ─── Computer Science IA (34 marks) ──────────────────────────────────────────
+// ─── Computer Science IA (2014 syllabus — LAST assessment Nov 2026) ──────────
+// TODO(M27): new "computational solution" from May 2027: A Problem specification 4 /
+// B Planning 4 / C System overview 6 / D Development 12 / E Evaluation 4 = 30.
 const CS_IA: Rubric = {
-  label: "Computer Science IA",
+  label: "Computer Science IA (solution, through Nov 2026)",
   totalMarks: 34,
   criteria: [
-    { name: "Criterion A: Planning", max: 6, descriptor: "Definition of the problem, rationale, and success criteria" },
-    { name: "Criterion B: Solution overview", max: 6, descriptor: "Record of tasks, design, and structure of the solution" },
-    { name: "Criterion C: Development", max: 12, descriptor: "Techniques, existing tools, and structure of the product" },
-    { name: "Criterion D: Functionality and extensibility", max: 4, descriptor: "Product functionality, impact, and extensibility" },
-    { name: "Criterion E: Evaluation", max: 6, descriptor: "Evaluation against success criteria and recommendations" },
+    { name: "Criterion A: Planning", max: 6, descriptor: "Problem definition, rationale for the proposed solution, and success criteria" },
+    { name: "Criterion B: Solution overview", max: 6, descriptor: "Record of tasks and design overview including test plan" },
+    { name: "Criterion C: Development", max: 12, descriptor: "Use of appropriate techniques demonstrating complexity and ingenuity, with sources acknowledged" },
+    { name: "Criterion D: Functionality and extensibility of product", max: 4, descriptor: "A functional product with evidence (video) and maintainable design" },
+    { name: "Criterion E: Evaluation", max: 6, descriptor: "Evaluation against success criteria, client/adviser feedback, and recommendations for further development" },
   ],
+  notes: "This 34-mark rubric applies through November 2026; the May 2027 syllabus replaces it with a 30-mark computational solution.",
 };
 
-// ─── Extended Essay (34 marks) ───────────────────────────────────────────────
+// ─── Extended Essay (guide first assessment 2018 — applies through Nov 2026) ─
+// TODO(M27): students who began the DP in Aug/Sep 2025 (May 2027 session) use the NEW
+// 30-mark EE: A Framework for the essay 6 / B Knowledge and understanding 6 /
+// C Analysis and line of argument 6 / D Discussion and evaluation 8 / E Reflection 4.
 const EXTENDED_ESSAY: Rubric = {
-  label: "Extended Essay",
+  label: "Extended Essay (through Nov 2026)",
   totalMarks: 34,
   criteria: [
-    { name: "Criterion A: Focus and method", max: 6, descriptor: "Topic, research question, and methodology" },
-    { name: "Criterion B: Knowledge and understanding", max: 6, descriptor: "Context, subject-specific terminology, and concepts" },
-    { name: "Criterion C: Critical thinking", max: 12, descriptor: "Research, analysis, discussion, and evaluation" },
-    { name: "Criterion D: Presentation", max: 4, descriptor: "Structure, layout, and formal presentation elements" },
-    { name: "Criterion E: Engagement", max: 6, descriptor: "Intellectual initiative and reflective process (RPPF)" },
+    { name: "Criterion A: Focus and method", max: 6, descriptor: "Topic, research question and methodology: clear, focused and appropriate" },
+    { name: "Criterion B: Knowledge and understanding", max: 6, descriptor: "Context, subject-specific terminology and concepts used accurately" },
+    { name: "Criterion C: Critical thinking", max: 12, descriptor: "Research, analysis, discussion and evaluation building a reasoned argument" },
+    { name: "Criterion D: Presentation", max: 4, descriptor: "Structure and layout following expected conventions" },
+    { name: "Criterion E: Engagement", max: 6, descriptor: "Intellectual engagement and reflection on the process and its focus (assessed with the RPPF)" },
   ],
+  notes: "Word limit 4,000: examiners do not read or assess beyond it (no separate deduction). There is NO minimum word count. Citations/references, bibliography, contents page, tables, equations, maps/charts/diagrams and the RPPF are excluded from the count; quotations and substantive (non-reference) footnotes are included. The abstract was abolished in 2018 and must not be included.",
 };
 
-// ─── TOK Essay (10 marks) ────────────────────────────────────────────────────
+// ─── TOK Essay (first assessment May 2022) — HOLISTIC, single instrument /10 ─
 const TOK_ESSAY: Rubric = {
-  label: "TOK Essay",
+  label: "TOK Essay (2022 assessment instrument)",
   totalMarks: 10,
+  holistic: true,
   criteria: [
-    { name: "Understanding knowledge questions", max: 3, descriptor: "Identification and exploration of knowledge questions connected to the prescribed title" },
-    { name: "Quality of analysis of knowledge questions", max: 3, descriptor: "Arguments and counter-arguments with effective use of examples" },
-    { name: "Quality of overall essay", max: 4, descriptor: "Structure, clarity, factual accuracy, and insightfulness" },
+    { name: "Holistic assessment — global impression", max: 10, descriptor: "Does the student provide a clear, coherent and critical exploration of the essay title?" },
   ],
+  notes: "Marked holistically against ONE instrument (no sub-criteria), guided by: \"Does the student provide a clear, coherent and critical exploration of the essay title?\" Bands: Excellent 9–10 (sustained focus on the title, effectively linked to areas of knowledge; clear, coherent arguments effectively supported by specific examples; implications considered; different points of view evaluated). Good 7–8 (focused on the title, linked to AOKs; clear coherent arguments supported by examples; awareness and some evaluation of points of view). Satisfactory 5–6 (focused with some AOK links; arguments offered with examples; some awareness of points of view). Basic 3–4 (connected to the title but largely descriptive; limited or unclear arguments without effective examples). Rudimentary 1–2 (weakly connected; descriptive or unsupported assertions). 0 = below standard or not a response to a prescribed title. Word limit 1,600.",
 };
 
-// ─── TOK Exhibition (10 marks) ───────────────────────────────────────────────
+// ─── TOK Exhibition (first assessment May 2022) — HOLISTIC, single instrument /10 ─
 const TOK_EXHIBITION: Rubric = {
-  label: "TOK Exhibition",
+  label: "TOK Exhibition (2022 assessment instrument)",
   totalMarks: 10,
+  holistic: true,
   criteria: [
-    { name: "Links between objects and the selected IA prompt", max: 4, descriptor: "Specific, real-world objects clearly connected to the chosen IA prompt" },
-    { name: "Links between objects and TOK", max: 3, descriptor: "Effective connections to TOK concepts and knowledge questions" },
-    { name: "Quality of justification", max: 3, descriptor: "Coherent, convincing justification of each object's significance" },
+    { name: "Holistic assessment — global impression", max: 10, descriptor: "Does the exhibition successfully show how TOK manifests in the world around us?" },
   ],
+  notes: "Marked holistically against ONE instrument (no sub-criteria), guided by: \"Does the exhibition successfully show how TOK manifests in the world around us?\" Bands: Excellent 9–10 (three objects with specific real-world contexts; links to the ONE selected IA prompt clearly made and well explained; strong justification of each object\u2019s contribution; points supported by evidence and explicit references to the prompt). Good 7–8; Satisfactory 5–6; Basic 3–4; Rudimentary 1–2; 0 = below standard or not using an official IA prompt. Commentary max 950 words total. Rules of thumb: only two objects — max 6 marks; only one object — max 3 marks.",
 };
 
-// ─── English A: Language and Literature IA (20 marks) ────────────────────────
+// ─── English A: Individual Oral (IA, both Language A courses, FA 2021) ───────
 const ENGLISH_LANG_LIT_IA: Rubric = {
-  label: "English A: Language and Literature IA (Individual Oral)",
+  label: "English A: Language and Literature — Individual Oral",
   totalMarks: 40,
   criteria: [
-    { name: "Criterion A: Knowledge, understanding, and interpretation", max: 10, descriptor: "Knowledge and understanding of the works and their contexts; interpretation supported by references" },
-    { name: "Criterion B: Analysis and evaluation", max: 10, descriptor: "Analysis of authorial choices and evaluation of how meaning is constructed" },
-    { name: "Criterion C: Focus and organization", max: 10, descriptor: "Focus on the task, logical structure, and coherent development of ideas" },
-    { name: "Criterion D: Language", max: 10, descriptor: "Clear, varied, and precise language appropriate to the task" },
+    { name: "Criterion A: Knowledge, understanding and interpretation", max: 10, descriptor: "Knowledge and understanding of the extracts and works/texts, and interpretation of their implications in relation to the global issue" },
+    { name: "Criterion B: Analysis and evaluation", max: 10, descriptor: "Analysis and evaluation of how authorial/textual choices present the global issue" },
+    { name: "Criterion C: Focus and organization", max: 10, descriptor: "Structured, balanced and focused delivery with connected ideas" },
+    { name: "Criterion D: Language", max: 10, descriptor: "Clear, accurate and effective language appropriate to the task" },
   ],
 };
 
-// ─── English A: Literature IA (Individual Oral, 40 marks) ────────────────────
 const ENGLISH_LIT_IA: Rubric = {
-  label: "English A: Literature IA (Individual Oral)",
+  label: "English A: Literature — Individual Oral",
   totalMarks: 40,
   criteria: [
-    { name: "Criterion A: Knowledge, understanding, and interpretation", max: 10, descriptor: "Knowledge and understanding of the works and their contexts; interpretation supported by references" },
-    { name: "Criterion B: Analysis and evaluation", max: 10, descriptor: "Analysis of authorial choices and evaluation of how meaning is constructed" },
-    { name: "Criterion C: Focus and organization", max: 10, descriptor: "Focus on the task, logical structure, and coherent development of ideas" },
-    { name: "Criterion D: Language", max: 10, descriptor: "Clear, varied, and precise language appropriate to the task" },
+    { name: "Criterion A: Knowledge, understanding and interpretation", max: 10, descriptor: "Knowledge and understanding of the extracts and works, and interpretation of their implications in relation to the global issue" },
+    { name: "Criterion B: Analysis and evaluation", max: 10, descriptor: "Analysis and evaluation of how authorial choices present the global issue" },
+    { name: "Criterion C: Focus and organization", max: 10, descriptor: "Structured, balanced and focused delivery with connected ideas" },
+    { name: "Criterion D: Language", max: 10, descriptor: "Clear, accurate and effective language appropriate to the task" },
   ],
 };
 
-// ─── Visual Arts IA — Comparative Study (20 marks) ───────────────────────────
+// ─── Visual Arts — Comparative Study (external; LAST assessment Nov 2026) ────
+// SL instrument (30). HL adds Criterion F: Making connections to own art-making practice (12) = 42.
+// TODO(M27): component ABOLISHED in the new VA syllabus (first assessment 2027).
 const VISUAL_ARTS_IA: Rubric = {
-  label: "Visual Arts IA (Comparative Study)",
-  totalMarks: 20,
+  label: "Visual Arts — Comparative Study (SL instrument, through Nov 2026)",
+  totalMarks: 30,
   criteria: [
-    { name: "Criterion A: Comparing and contrasting", max: 6, descriptor: "Analysis of formal qualities, comparing and contrasting at least 3 artworks by different artists" },
-    { name: "Criterion B: Cultural significance", max: 6, descriptor: "Examination of cultural contexts and their influence on the artworks" },
-    { name: "Criterion C: Making connections", max: 6, descriptor: "Connections between the studied works and the student's own art-making practice" },
-    { name: "Criterion D: Presentation and subject-specific language", max: 2, descriptor: "Appropriate use of visual arts terminology and effective presentation" },
+    { name: "Criterion A: Analysis of formal qualities", max: 6, descriptor: "Analysis of the formal qualities of the selected artworks" },
+    { name: "Criterion B: Interpretation of function and purpose", max: 6, descriptor: "Interpretation of function and purpose within the cultural context" },
+    { name: "Criterion C: Evaluation of cultural significance", max: 6, descriptor: "Evaluation of the cultural significance of the selected pieces" },
+    { name: "Criterion D: Making comparisons and connections", max: 6, descriptor: "Critical comparison and connections between the selected pieces" },
+    { name: "Criterion E: Presentation and subject-specific language", max: 6, descriptor: "Structured presentation using appropriate subject-specific language" },
   ],
+  notes: "This is the SL instrument (30). HL is additionally assessed on Criterion F: Making connections to own art-making practice (12), total 42 — state which level the work is for. The comparative study is abolished in the 2027 syllabus.",
 };
 
-// ─── Music IA — Exploring Music in Context (20 marks) ────────────────────────
+// ─── Music — Exploring music in context (portfolio, FA 2022) ─────────────────
 const MUSIC_IA: Rubric = {
-  label: "Music IA (Exploring Music in Context)",
-  totalMarks: 20,
+  label: "Music — Exploring music in context",
+  totalMarks: 24,
   criteria: [
-    { name: "Criterion A: Demonstrating knowledge and understanding", max: 6, descriptor: "Knowledge and understanding of musical elements, contexts, and conventions" },
-    { name: "Criterion B: Demonstrating application and musical skills", max: 6, descriptor: "Application of musical skills and techniques in analysis" },
-    { name: "Criterion C: Demonstrating synthesis and evaluation", max: 6, descriptor: "Synthesis of research and evaluation of musical significance" },
-    { name: "Criterion D: Communication", max: 2, descriptor: "Effective communication using musical terminology and presentation" },
+    { name: "Criterion A: Selection of evidence", max: 6, descriptor: "Appropriate selection of musical material and evidence for the portfolio" },
+    { name: "Criterion B1: Conducting musical research", max: 9, descriptor: "Quality and depth of musical research into the selected material" },
+    { name: "Criterion B2: Implications", max: 3, descriptor: "Implications drawn from the research for the student\u2019s own music-making" },
+    { name: "Criterion C1: Understanding creating conventions", max: 3, descriptor: "Understanding of creating conventions demonstrated in the practical exercises" },
+    { name: "Criterion C2: Understanding performing practices", max: 3, descriptor: "Understanding of performing practices demonstrated in the practical exercises" },
   ],
+  notes: "Portfolio maximum 2,400 words.",
 };
 
-// ─── Film IA — Textual Analysis (20 marks) ───────────────────────────────────
+// ─── Film — Textual Analysis (external, FA 2019 / 2nd edition FA 2023) ───────
 const FILM_IA: Rubric = {
-  label: "Film IA (Textual Analysis)",
-  totalMarks: 20,
+  label: "Film — Textual Analysis",
+  totalMarks: 28,
   criteria: [
-    { name: "Criterion A: Knowledge and understanding of specified film text", max: 5, descriptor: "Identification and explanation of film elements within the chosen extract" },
-    { name: "Criterion B: Analysis and evaluation of specified film text", max: 5, descriptor: "Analysis of how film elements create meaning and contribute to the film as a whole" },
-    { name: "Criterion C: Focus, organization, and presentation", max: 5, descriptor: "Coherent structure, clear focus, and effective use of supporting evidence" },
-    { name: "Criterion D: Language and film terminology", max: 5, descriptor: "Appropriate and accurate use of film terminology and clear expression" },
+    { name: "Criterion A: Cultural context", max: 8, descriptor: "Understanding of the film\u2019s cultural context and its influence on the extract" },
+    { name: "Criterion B: Film elements", max: 12, descriptor: "Analysis of how film elements construct meaning in the extract" },
+    { name: "Criterion C: Relationships within the film text", max: 8, descriptor: "How the extract relates to the film as a whole" },
   ],
+  notes: "1,750 words plus a list of sources.",
 };
-
-// ─── Registry ─────────────────────────────────────────────────────────────────
 
 const RUBRIC_REGISTRY: Record<string, Rubric> = {
   // Business Management IA
   "IA::Business Management": BM_IA,
 
-  // Economics IA
+  // Economics IA (per commentary)
   "IA::Economics": ECONOMICS_IA,
 
   // History IA
   "IA::History": HISTORY_IA,
 
-  // Sciences IA (shared rubric)
+  // Sciences IA — common 2025 instrument
   "IA::Biology": SCIENCES_IA,
   "IA::Chemistry": SCIENCES_IA,
   "IA::Physics": SCIENCES_IA,
 
-  // Mathematics IA
+  // Mathematics IA (AA & AI)
   "IA::Mathematics": MATH_IA,
 
-  // Psychology IA
+  // Psychology IA (through Nov 2026)
   "IA::Psychology": PSYCHOLOGY_IA,
 
-  // Computer Science IA
+  // Computer Science IA (through Nov 2026)
   "IA::Computer Science": CS_IA,
 
-  // English A: Language and Literature IA
+  // English A Individual Oral
   "IA::English A: Language and Literature": ENGLISH_LANG_LIT_IA,
   "IA::English A: Lang & Lit": ENGLISH_LANG_LIT_IA,
 
-  // English A: Literature IA
   "IA::English A: Literature": ENGLISH_LIT_IA,
 
-  // Visual Arts IA
+  // Visual Arts comparative study (SL instrument)
   "IA::Visual Arts": VISUAL_ARTS_IA,
 
-  // Music IA
+  // Music portfolio
   "IA::Music": MUSIC_IA,
 
-  // Film IA
+  // Film textual analysis
   "IA::Film": FILM_IA,
 
-  // Extended Essay — same rubric regardless of subject
+  // Extended Essay — same rubric regardless of subject (through Nov 2026)
   "EE::*": EXTENDED_ESSAY,
 
-  // TOK Essay — same rubric regardless of subject
+  // TOK Essay — holistic instrument
   "TOK::*": TOK_ESSAY,
 
-  // TOK Exhibition — separate assessment (objects + IA prompt links)
+  // TOK Exhibition — holistic instrument
   "TOK::Exhibition": TOK_EXHIBITION,
 };
 
 /**
- * Look up the IB rubric for a given (essayType, subject) combination.
- *
- * Returns `undefined` if no rubric is registered for the combination.
- *
- * Lookup order:
+ * Look up a rubric:
  * 1. Exact match: `${type}::${subject}`
  * 2. Wildcard match: `${type}::*` (for EE and TOK which are subject-agnostic)
  */
 export function getRubric(essayType: string, subject: string): Rubric | undefined {
   const exactKey = `${essayType}::${subject}`;
-  if (RUBRIC_REGISTRY[exactKey]) return RUBRIC_REGISTRY[exactKey];
+  const exact = Object.entries(RUBRIC_REGISTRY).find(([k]) => k.toLowerCase() === exactKey.toLowerCase());
+  if (exact) return exact[1];
 
   const wildcardKey = `${essayType}::*`;
-  if (RUBRIC_REGISTRY[wildcardKey]) return RUBRIC_REGISTRY[wildcardKey];
-
-  return undefined;
+  const wildcard = Object.entries(RUBRIC_REGISTRY).find(([k]) => k.toLowerCase() === wildcardKey.toLowerCase());
+  return wildcard ? wildcard[1] : undefined;
 }
 
 /**
@@ -291,6 +315,21 @@ export function buildRubricPromptFragment(essayType: string, subject: string): s
   const rubric = getRubric(essayType, subject);
   if (!rubric) return "";
 
+  if (rubric.holistic) {
+    const c = rubric.criteria[0];
+    return `
+OFFICIAL IB ASSESSMENT INSTRUMENT for ${rubric.label} (holistic, total: ${rubric.totalMarks} marks):
+This component is marked by GLOBAL IMPRESSION against a single holistic instrument — there are NO sub-criteria.
+Guiding question: ${c.descriptor}
+${rubric.notes ?? ""}
+
+CRITICAL INSTRUCTIONS:
+- Award ONE holistic mark from 0 to ${c.max} according to the band descriptors above.
+- The "criteria" array in your JSON response must contain EXACTLY 1 object with name "${c.name}", your holistic score, max ${c.max}, and a comment justifying the band placement using the band language.
+- Do NOT invent sub-criteria. Set band_range to the official band you placed the work in (e.g. "7-8").
+`;
+  }
+
   const criteriaLines = rubric.criteria
     .map((c, i) => `  ${i + 1}. ${c.name} (max ${c.max} marks): ${c.descriptor}`)
     .join("\n");
@@ -298,6 +337,7 @@ export function buildRubricPromptFragment(essayType: string, subject: string): s
   return `
 OFFICIAL IB RUBRIC for ${rubric.label} (total: ${rubric.totalMarks} marks):
 ${criteriaLines}
+${rubric.notes ? "\nOFFICIAL RULES: " + rubric.notes : ""}
 
 CRITICAL INSTRUCTIONS:
 - You MUST score the work against EXACTLY these criteria, using the EXACT criterion names and mark allocations shown above.

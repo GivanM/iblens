@@ -6,31 +6,19 @@ const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 const REPORTS = [
   {
     "tier": "weak",
-    "bandLabel": "Band 1–3",
+    "bandLabel": "Band 1–2 · Rudimentary",
     "heading": "What a weak essay looks like",
     "designNote": "Opinion-based claims (“in my opinion”, “my teacher says”), anecdotes instead of examples, no genuine counterclaims, key terms never defined.",
-    "score": 3,
+    "score": 2,
     "max": 10,
-    "band": "1-3",
-    "comment": "This essay demonstrates a basic understanding of the prescribed title topic but falls significantly short of IB TOK standards. The student identifies a surface-level distinction between mathematics and natural sciences regarding certainty, but fails to engage with genuine knowledge questions at the epistemological level required. The essay reads more like a personal opinion piece than a TOK essay — it lacks the vocabulary of TOK (ways of knowing, areas of knowledge, knowledge claims vs. knowledge questions), uses anecdotal authority ('my math teacher says'), and employs examples that are historically inaccurate or oversimplified. There is no substantive engagement with counter-arguments, no real exploration of what 'certainty' means as an epistemological concept, and no reference to relevant thinkers, perspectives, or real-world situations beyond common knowledge. The structure is recognizable but mechanical, and the conclusion simply restates the opening thesis without synthesis or insight.",
+    "band": "1-2",
+    "comment": "This essay represents a rudimentary attempt at a TOK essay. While the student has identified a genuine epistemological tension — the question of certainty in mathematics versus natural sciences — the treatment remains almost entirely at the level of everyday assertion and anecdote. There is no engagement with TOK terminology, no use of Areas of Knowledge (AOK) or Ways of Knowing (WOK) as analytical tools, no named real-world examples of genuine epistemic weight, and no meaningful evaluation of different perspectives. The essay reads as a personal opinion piece written in a conversational register rather than a philosophical inquiry. It falls squarely in the Rudimentary band (1-2): the claims are weakly connected to the essay title's underlying epistemological demands, rest almost entirely on unsupported assertions ('my math teacher says...'), and demonstrate no awareness of the complexity the prescribed title invites. The student has a workable intuition about the deductive vs. inductive distinction but never names or develops it. Structural coherence is present at a surface level, but coherence of argument — the hallmark of higher-band TOK writing — is absent.",
     "criteria": [
       {
-        "name": "Understanding knowledge questions",
-        "score": 1,
-        "max": 3,
-        "comment": "The student identifies the central knowledge question implied by the title — whether certainty is achievable in mathematics and natural sciences — but does not articulate it as a genuine knowledge question (e.g., 'What does it mean to claim certainty in a domain of knowledge?'). The essay treats the question as a debate about facts rather than an epistemological inquiry. There is no unpacking of the concept of 'certainty' itself: no distinction is made between deductive certainty, empirical confidence, intersubjective agreement, or psychological certainty. The student does not connect to subsidiary knowledge questions such as the role of axioms in mathematics, the nature of falsifiability in science, or the difference between formal and empirical systems. The mark of 1 is awarded because a rudimentary recognition of the knowledge question is present, but exploration is absent."
-      },
-      {
-        "name": "Quality of analysis of knowledge questions",
-        "score": 1,
-        "max": 3,
-        "comment": "The analysis is superficial throughout. Arguments are asserted rather than developed — for example, '2+2=4 is always true' is stated without engaging with the foundational question of why mathematical truths hold (axioms, logical deduction, Godel's incompleteness theorems are entirely absent). The counter-argument about imaginary numbers is immediately dismissed without genuine engagement. The science examples (flat earth, Pluto, smoking) are historically inaccurate or oversimplified: the flat earth claim was not widely held by educated people in the medieval period, and the Pluto reclassification reflects definitional refinement rather than empirical falsification. The essay does not use any TOK-specific analytical tools: no ways of knowing are named, no distinction between 'truth' and 'certainty' is drawn, and no perspectives (e.g., Popper's falsifiability, Kuhn's paradigm shifts) are referenced. The single mark reflects that the student makes an attempt at argument and counter-argument, but neither is developed with intellectual rigor."
-      },
-      {
-        "name": "Quality of overall essay",
-        "score": 1,
-        "max": 4,
-        "comment": "The essay has a recognizable five-paragraph structure (introduction, two body paragraphs, concession, conclusion), which is a basic strength. However, quality is undermined across multiple dimensions. Factual accuracy is compromised: the flat earth example is a common historical myth; the Pluto example misrepresents scientific revision. The language is informal and colloquial ('which is crazy to think about now,' 'people will probably keep debating about it forever'), inappropriate for a formal academic essay. There is no use of TOK terminology, no engagement with scholars or theorists, and no real-world situations developed with nuance. The conclusion adds no new insight and simply restates the thesis. The essay lacks the coherence and depth expected at IB level and does not demonstrate independent critical thinking. One mark is awarded for the presence of a basic organizational structure and for addressing both areas of knowledge named in the title."
+        "name": "Holistic assessment — global impression",
+        "score": 2,
+        "max": 10,
+        "comment": "Placed in the Rudimentary band (1-2). The essay is weakly connected to the epistemological demands of the prescribed title. Arguments are largely descriptive and rest on unsupported assertions rather than reasoned analysis. Examples cited (flat earth, Pluto, smoking) are superficially mentioned without epistemological unpacking — they are used as illustrations of 'scientists changing their minds' without any discussion of what this reveals about the nature of scientific knowledge, falsifiability, or induction. The claim that math is certain because '2+2=4 and everyone agrees' conflates consensus with logical necessity and ignores debates within the philosophy of mathematics (e.g., Gödel's incompleteness theorems, the foundations crisis, formalism vs. Platonism). There is no use of TOK concepts or vocabulary (e.g., deductive reasoning, empirical verification, falsifiability, paradigm shifts, axioms). No thinkers, scholars, or theorists are cited. The counterclaim about imaginary numbers is dismissed in one sentence without genuine engagement. There is no consideration of implications or of what it would mean — epistemologically — for certainty to be or not be attainable. The tone and register ('which is crazy to think about now', 'my math teacher always says') are inappropriate for a TOK essay. A score of 2 reflects that a response exists and has a loose connection to the title, but it does not rise to the Basic band because arguments are not developed and examples do not effectively support any analytical claim."
       }
     ],
     "excerpt": "Can we ever be certain about anything in science and math? This is a really interesting question that many people have thought about. In my opinion, certainty is possible in math but not really in science, and I will explain why I think this. First of all, math is certain because it is based on…",
@@ -38,31 +26,19 @@ const REPORTS = [
   },
   {
     "tier": "mid",
-    "bandLabel": "Band 4–6",
+    "bandLabel": "Band 3–4 · Basic",
     "heading": "What a developing essay looks like",
     "designNote": "Clear structure, terms defined, standard examples — but the analysis stays descriptive, counterclaims are thin, and examples don’t do real argumentative work.",
     "score": 4,
     "max": 10,
-    "band": "4-6",
-    "comment": "This essay addresses the prescribed title in a recognizable way and shows a basic understanding of the distinction between mathematics and the natural sciences as areas of knowledge. The student correctly identifies key epistemological ideas such as Popper's falsifiability and the role of axioms in non-Euclidean geometry. However, the essay remains largely descriptive and surface-level. Knowledge questions are not clearly articulated as questions — they are embedded in statements rather than foregrounded as genuine epistemological problems. Analysis is underdeveloped: examples are used illustratively rather than analytically, and there is little exploration of competing perspectives or genuine conceptual tension. The essay reads more like a well-structured comparison exercise than a TOK essay that grapples with the nature and limits of knowledge. The conclusion is reasonable but adds no new insight beyond summarizing what was already said. To improve significantly, the student needs to explicitly frame and interrogate knowledge questions, develop real arguments rather than assertions, and engage more deeply with at least one or two examples.",
+    "band": "3-4",
+    "comment": "This essay addresses the prescribed title in a recognizable way and demonstrates basic understanding of the two areas of knowledge selected. However, it is largely descriptive and survey-like rather than genuinely analytical or argumentative. The response moves through familiar touchstones — Euclid's prime number proof, non-Euclidean geometry, Popper's falsifiability, and Newtonian physics — but treats them as illustrative facts rather than tools for genuine epistemological reasoning. There is little evidence of sustained critical exploration, evaluation of competing perspectives, or engagement with the nuances the title demands. The essay does not develop a clear knowledge question or demonstrate the kind of rigorous TOK thinking expected at the higher bands. It sits solidly in the Basic band (3–4), earning a 4 for connecting meaningfully to the title and offering some recognizable examples, but falling short of the Satisfactory band due to the absence of genuine argument development, limited awareness of points of view, and no real consideration of implications.",
     "criteria": [
       {
-        "name": "Understanding knowledge questions",
-        "score": 1,
-        "max": 3,
-        "comment": "The student implicitly engages with the knowledge question embedded in the title — namely, whether certainty is attainable — but never explicitly articulates this as a knowledge question (KQ) in TOK terms. The essay does not ask or explore second-order questions such as 'What do we mean by certainty as a type of knowledge?' or 'How does the method of justification in an AOK determine its epistemic status?' The definition of certainty offered ('knowledge that cannot be doubted') is not interrogated or problematized; it is simply stated and applied. The mention of non-Euclidean geometry and Popper hints at deeper KQs but these are not developed. To reach the higher descriptors, the student must show that they understand what a knowledge question is, explicitly formulate KQs connected to the title, and explore them rather than answer them directly."
-      },
-      {
-        "name": "Quality of analysis of knowledge questions",
-        "score": 1,
-        "max": 3,
-        "comment": "The analysis is minimal and largely descriptive. The Popper example is correctly identified but not analyzed — the student states that theories can be falsified without exploring what this means epistemologically (e.g., the problem of induction, the distinction between empirical and analytic knowledge). The Newton-Einstein example is appropriate but handled superficially: it is used only to say 'science can be wrong,' not to explore what provisional knowledge implies for the concept of certainty. Counter-arguments are present in structure (the 'on the other hand' and 'some people argue' paragraphs) but they are underdeveloped and dismissed quickly rather than genuinely engaged. There are no real perspectives from distinct knowers or communities. The essay lacks the genuine back-and-forth of analytical reasoning that the higher descriptors require. Examples serve as illustrations rather than analytical tools."
-      },
-      {
-        "name": "Quality of overall essay",
-        "score": 2,
-        "max": 4,
-        "comment": "The essay has a clear and logical structure — introduction, body paragraphs organized by AOK, a counter-consideration section, and a conclusion. The writing is clear, grammatically correct, and easy to follow. These are genuine strengths. However, the essay is factually accurate but not insightful: it says things that are true (e.g., proofs are permanent within an axiomatic system, Newtonian mechanics was revised by Einstein) but does not push beyond the obvious or generate any genuine intellectual surprise. The conclusion simply restates the argument rather than offering a nuanced or conditional answer to the title. There is no engagement with the complexity of the word 'extent' in the title — the student reaches a conclusion without genuinely weighing degrees of certainty against each other in a sophisticated way. The prescribed title is addressed, but the essay reads more like a competent student summary than a TOK essay characterized by independent thought."
+        "name": "Holistic assessment — global impression",
+        "score": 4,
+        "max": 10,
+        "comment": "The essay falls within the Basic band (3–4). It is connected to the title and the two areas of knowledge (mathematics and natural sciences) are identifiable, but the treatment is largely descriptive. Arguments are stated rather than developed: for instance, the claim that mathematical knowledge is certain because 'proofs are permanent' is asserted but not interrogated — what makes a proof valid? What role does human cognition play? The mention of non-Euclidean geometry is a promising move but is quickly dismissed without genuine exploration of its epistemological implications. Popper's falsifiability is introduced correctly but used superficially, and there is no engagement with critiques of Popper or alternative philosophies of science (e.g., Kuhn, Lakatos). Examples such as Newtonian physics are textbook-standard and are not used to build a nuanced argument. There is minimal awareness of different points of view — the essay briefly acknowledges that 'some people argue' humans make mistakes, but this is not meaningfully evaluated. No real-world context, personal insight, or ethical/practical implication is explored with depth. The conclusion restates the introduction without adding new analytical weight. To move into the Satisfactory band (5–6), the essay would need to develop genuine arguments with examples that are analysed rather than merely listed, show awareness of multiple perspectives, and begin to consider the implications of its claims."
       }
     ],
     "excerpt": "To what extent is certainty attainable in the natural sciences and mathematics? In this essay I will define certainty as knowledge that cannot be doubted, and I will look at mathematics first and then the natural sciences. In mathematics, knowledge comes from proofs. Once something is proven, it stays proven. For example, Euclid proved that…",
@@ -70,31 +46,19 @@ const REPORTS = [
   },
   {
     "tier": "strong",
-    "bandLabel": "Band 7–8",
-    "heading": "What a strong essay looks like",
-    "designNote": "Precise conditional claims, examples that carry the argument (Gödel, the four-colour theorem), a genuine counterclaim taken seriously, and synthesis — not summary — in the conclusion.",
-    "score": 7,
+    "bandLabel": "Band 5–6 · Satisfactory",
+    "heading": "What a solid essay looks like",
+    "designNote": "Precise conditional claims, examples that carry the argument (Gödel, the four-colour theorem), a genuine counterclaim — concise, but the reasoning holds together.",
+    "score": 5,
     "max": 10,
-    "band": "7-8",
-    "comment": "This is a competent and well-structured TOK essay that demonstrates genuine philosophical engagement with the prescribed title. The student correctly identifies the core knowledge question — the nature and limits of certainty across two AOKs — and pursues it with intellectual seriousness. The use of Gödel's incompleteness theorems, Popper's falsificationism, and the Newtonian mechanics example are all appropriate and reasonably well deployed. The concluding distinction between 'internal and conditional' certainty in mathematics and 'asymptotic' certainty in the natural sciences is genuinely insightful and shows original thinking. However, the essay is notably short and reads more like a strong outline than a fully developed essay. Analysis frequently stops just before it becomes truly rigorous: claims are asserted with confidence but not always substantiated through careful reasoning. The counterclaim about human cognition is underdeveloped and the four-color theorem example, while interesting, is dropped without being connected back to the central argument. Real-world applications and personal perspectives are largely absent, which limits the essay's ability to score in the upper bands. To reach the 8-10 range, the student would need to deepen their analysis, integrate more perspectives, and develop their examples more fully.",
+    "band": "5-6",
+    "comment": "This essay demonstrates a reasonably focused and coherent exploration of the prescribed title, engaging with both mathematics and the natural sciences as areas of knowledge. The student correctly identifies the central tension between deductive certainty in mathematics and the inductive, falsifiable nature of scientific knowledge. References to Gödel, Popper, Newtonian mechanics, the Pythagorean theorem, and the four-color theorem show some intellectual range. However, the essay reads more as a confident survey of well-known philosophical positions than as a genuinely critical, personal exploration. The arguments are competent but underexplored, the examples function as illustrations rather than as evidence that genuinely tests or complicates the claims, and the awareness of different perspectives — while present — is superficial. Crucially, the essay is extremely short (approximately 320 words) relative to the 1,600-word limit, which severely limits the depth and development that the higher bands require. The conclusion offers a neat but underdeveloped resolution ('asymptotic certainty') that is asserted rather than argued through. At the Satisfactory band (5–6), the essay is focused with some AOK links and arguments offered with examples, but lacks the sustained critical development, effective evaluation of perspectives, and consideration of implications characteristic of the Good or Excellent bands.",
     "criteria": [
       {
-        "name": "Understanding knowledge questions",
-        "score": 2,
-        "max": 3,
-        "comment": "The student clearly identifies the central knowledge question — to what extent certainty is attainable in mathematics and the natural sciences — and maintains focus on it throughout. The distinction between conditional/internal certainty and asymptotic certainty is an authentic TOK-level insight rather than a surface-level description. The essay correctly situates certainty as an epistemic concept tied to method (deduction vs. induction), which shows understanding of how AOKs generate knowledge differently. However, the essay does not sufficiently explore subsidiary knowledge questions that would enrich the inquiry — for example, 'What do we mean by certainty?' is never explicitly unpacked, nor is the question of whether certainty is a property of knowledge claims or of knowers' attitudes. The essay would benefit from distinguishing between logical certainty, psychological certainty, and practical certainty more rigorously. A score of 3 requires nuanced exploration of multiple connected KQs; here the single central KQ is handled well but not richly branched."
-      },
-      {
-        "name": "Quality of analysis of knowledge questions",
-        "score": 2,
-        "max": 3,
-        "comment": "The analysis is clear and makes good use of relevant examples: the Pythagorean theorem illustrates conditional mathematical certainty, Newtonian mechanics illustrates the revisability of scientific knowledge, and Gödel's theorems are invoked correctly (though their implications deserve more careful unpacking — the incompleteness theorems concern provability within a system, not truth per se, and this distinction matters). Popper's falsificationism is applied appropriately. A counterclaim is offered (human cognitive fallibility affects both AOKs), which shows awareness of the need for dialectical structure. However, the counterclaim is underexplored and its implications are not fully integrated into the essay's conclusion. The four-color theorem example raises the interesting question of machine-verifiable vs. human-verifiable proof, but this thread is dropped. Arguments would benefit from deeper development: why does predictive success confer 'practical certainty'? What are its limits? The analysis is competent and relevant but rarely reaches beyond the immediately obvious, stopping short of the evaluative depth needed for a 3."
-      },
-      {
-        "name": "Quality of overall essay",
-        "score": 3,
-        "max": 4,
-        "comment": "The essay is well-organized, clearly written, and logically sequenced. The thesis is stated early and the conclusion follows coherently from the argument, which is a genuine strength. The closing formulation — 'the knower's task is not to demand absolute certainty but to calibrate confidence to the strength of the method' — is articulate and shows philosophical maturity. Factual claims are accurate: Gödel, Popper, and the examples used are all correctly represented. However, the essay is very brief for a TOK essay, which means the quality of overall development is limited. There is no personal voice or first-person perspective meaningfully integrated (the 'I argue' near the end is minimal). Real-life situations beyond textbook examples are absent. The essay does not acknowledge the perspectives of different communities of knowers or consider how cultural, historical, or personal factors shape judgments about certainty. To reach a 4, the essay would need to demonstrate a more consistently insightful, personal, and wide-ranging engagement with the question, with fuller development of each move in the argument."
+        "name": "Holistic assessment — global impression",
+        "score": 5,
+        "max": 10,
+        "comment": "Placed in the Satisfactory band (5–6). The essay is focused on the title and makes recognizable links to mathematics and natural sciences as AOKs. Arguments are offered and examples are cited (Gödel's incompleteness theorems, Popper's falsificationism, Newtonian mechanics, the four-color theorem). There is some awareness of different points of view — the counterclaim about human cognitive fallibility is briefly raised. However, the essay falls short of the Good band (7–8) for several reasons: the examples are not developed with sufficient specificity or personal engagement; the evaluation of perspectives is thin rather than genuine; and the implications of the arguments (e.g., what it actually means for a knower that mathematical certainty is 'conditional' or that scientific certainty is 'asymptotic') are stated rather than explored. The word count is drastically below the 1,600-word limit, which is the single most significant structural problem — the essay cannot demonstrate sustained focus, coherent argument, or effective support when it is roughly one-fifth of the permitted length. A score of 5 reflects focused but underdeveloped work that sits at the lower end of the Satisfactory band."
       }
     ],
     "excerpt": "To what extent is certainty attainable in the natural sciences and mathematics? This essay argues that certainty operates differently across these two areas of knowledge. In mathematics, certainty appears attainable through deductive proof. Once the Pythagorean theorem is proven within Euclidean axioms, it holds with complete certainty inside that system. However, this certainty is conditional:…",
@@ -117,7 +81,7 @@ export default function SampleReports() {
         Most AI graders have one failure mode: everything gets a comfortable 6.5. To show you how
         IBLens actually behaves, we wrote three demo essays on the same TOK-style title —
         <em> “To what extent is certainty attainable in the natural sciences and mathematics?”</em> —
-        at deliberately different quality levels, and ran each through the grader.
+        at deliberately different quality levels, and ran each through the grader, which marks TOK holistically against the official 2022 instrument — one global-impression score out of 10, exactly as IB examiners do.
       </p>
       <p>
         <strong>The three analyses below are real, unedited IBLens output.</strong> The essays are ours
@@ -164,7 +128,7 @@ export default function SampleReports() {
 
       <h2>Why the spread matters</h2>
       <p>
-        The weak essay scored 3, the developing one 4, the strong one 7. That spread is the whole
+        The weak essay scored 2, the developing one 4, the strong one 5 — each landing in a different official band (Rudimentary, Basic, Satisfactory). That spread is the whole
         point: feedback is only useful if the grade moves when the quality moves. IBLens is calibrated
         to read like a strict examiner — if it says 7, we mean it, and if it says 3, you found out
         before an examiner did.
