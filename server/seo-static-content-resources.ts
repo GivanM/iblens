@@ -1293,8 +1293,7 @@ export const staticContentResources: Record<string, string> = {
       <p>
         The IB Extended Essay has a maximum word count of 4000 words. This is one of
         the most misunderstood rules in the entire IB programme — students frequently
-        ask whether footnotes count, whether the bibliography counts, whether their
-        abstract counts, and what happens if they go over by fifty words. This guide
+        ask whether footnotes count, whether the bibliography counts, and what happens if they go over by fifty words. This guide
         answers all of those questions and explains the strategy behind hitting the
         word count effectively.
       </p>
@@ -1318,7 +1317,7 @@ export const staticContentResources: Record<string, string> = {
       <ul>
         <li><strong>The title page</strong></li>
         <li><strong>The contents page / table of contents</strong></li>
-        <li><strong>The abstract</strong> (the abstract has its own separate limit of 300 words)</li>
+        <li><strong></li>
         <li><strong>Acknowledgements</strong></li>
         <li><strong>The bibliography / references list</strong></li>
         <li><strong>Footnotes and endnotes</strong> (if used purely for citations)</li>
@@ -1375,7 +1374,7 @@ export const staticContentResources: Record<string, string> = {
         structure and findings.
       </p>
       <p>
-        From the May 2018 exam session onward, the abstract is no longer formally
+        From the May 2018 exam session onward, the abstract is abolished and must not be included; previously it was formally
         assessed as part of the IB criteria. However, it is still required and will
         be read by your supervisor and potentially by the examiner to orient
         themselves before reading the full essay. A clear, accurate abstract makes
