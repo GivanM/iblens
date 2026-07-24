@@ -67,7 +67,7 @@ export default function UniversityAdmissionsGuide() {
       </table>
 
       <p>
-        <strong>UCAS Tariff Points:</strong> The IB Diploma converts to UCAS tariff points (used by some universities for entry calculations). A score of 45 = 720 UCAS points; 38 = 547 points; 30 = 395 points. However, most selective universities make offers in IB points rather than UCAS tariff points.
+        <strong>UCAS Tariff Points:</strong> Since 2017 UCAS has awarded tariff points per subject grade (HL and SL separately, plus TOK/EE bands) rather than for the overall IB total — the old “45 = 720 points” scale is long obsolete. Most selective universities make offers in IB points anyway; when a tariff number is needed, use the official UCAS calculator.
       </p>
 
       <h2>United States: Holistic Admissions</h2>

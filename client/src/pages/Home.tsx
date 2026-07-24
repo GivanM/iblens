@@ -365,7 +365,7 @@ export default function Home() {
               <div className="bg-background border-2 border-border rounded-xl p-5 text-center">
                 <div className="text-3xl mb-3">😰</div>
                 <p className="font-semibold mb-1">IB Tutor</p>
-                <div className="text-2xl font-bold text-muted-foreground mb-1">$80–150<span className="text-sm font-normal">/hr</span></div>
+                <div className="text-2xl font-bold text-muted-foreground mb-1">$50–150<span className="text-sm font-normal">/hr</span></div>
                 <p className="text-xs text-muted-foreground">One feedback session = $120+. Wait 1–2 weeks. No rubric breakdown.</p>
               </div>
               <div className="bg-background border-2 border-border rounded-xl p-5 text-center">
@@ -405,7 +405,7 @@ export default function Home() {
                   <Gift className="w-8 h-8 text-primary mx-auto mb-3" />
                   <h3 style={SERIF} className="text-xl font-bold mb-1">First Essay Analysis</h3>
                   <div style={SERIF} className="text-3xl font-bold mb-2">$0</div>
-                  <p className="text-xs text-muted-foreground mb-4">Full analysis with all features — no credit card required</p>
+                  <p className="text-xs text-muted-foreground mb-4">Free preview: band range, weakest criterion, top risks — no credit card required</p>
                   <Button variant="outline" size="sm" className="w-full" asChild>
                     <Link href="/essay">Try Free</Link>
                   </Button>

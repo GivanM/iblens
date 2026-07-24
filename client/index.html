@@ -54,8 +54,8 @@
           }
         };
         xhr.onerror = xhr.ontimeout = function(){
-          // Fallback: grant consent (most traffic is non-EU from Google Ads)
-          applyGeoConsent('US');
+          // Fallback: region unknown — keep consent DENIED and show the banner (safe default)
+          window.__iblens_show_banner = true;
         };
         xhr.send();
       })();

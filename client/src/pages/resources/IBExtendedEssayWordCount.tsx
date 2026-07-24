@@ -14,7 +14,7 @@ export default function IBExtendedEssayWordCount() {
         The IB Extended Essay has a maximum word count of 4000 words. This is one of
         the most misunderstood rules in the entire IB programme — students frequently
         ask whether footnotes count, whether the bibliography counts, whether their
-        abstract counts, and what happens if they go over by fifty words. This guide
+        whether the (long-abolished) abstract counts, and what happens if they go over by fifty words. This guide
         answers all of those questions and explains the strategy behind hitting the
         word count effectively.
       </p>
@@ -28,7 +28,7 @@ export default function IBExtendedEssayWordCount() {
         <li>The body of the essay (all sections)</li>
         <li>The conclusion</li>
         <li>Quotations embedded in the text</li>
-        <li>In-text citations (e.g., "(Smith, 2019)" counts toward word count)</li>
+        <li>Footnotes used for anything other than referencing (substantive commentary counts)</li>
       </ul>
 
       <h2>What Does NOT Count Toward the 4000-Word Limit</h2>
@@ -38,7 +38,7 @@ export default function IBExtendedEssayWordCount() {
       <ul>
         <li><strong>The title page</strong></li>
         <li><strong>The contents page / table of contents</strong></li>
-        <li><strong>The abstract</strong> (the abstract has its own separate limit of 300 words)</li>
+        
         <li><strong>Acknowledgements</strong></li>
         <li><strong>The bibliography / references list</strong></li>
         <li><strong>Footnotes and endnotes</strong> (if used purely for citations)</li>
@@ -86,21 +86,13 @@ export default function IBExtendedEssayWordCount() {
         <li><strong>Over 4000 words:</strong> Never acceptable. Cut until you are under the limit, then review once more.</li>
       </ul>
 
-      <h2>The Abstract Word Count</h2>
+      <h2>Do Not Write an Abstract</h2>
       <p>
-        The EE abstract has a separate limit of 300 words and is not included in the
-        4000-word count. The abstract must state: the research question, the scope of
-        the investigation, and the conclusion reached. It should not include personal
-        opinion or extensive background — it is a concise summary of the essay's
-        structure and findings.
-      </p>
-      <p>
-        From the May 2018 exam session onward, the abstract is no longer formally
-        assessed as part of the IB criteria. However, it is still required and will
-        be read by your supervisor and potentially by the examiner to orient
-        themselves before reading the full essay. A clear, accurate abstract makes
-        a good first impression and helps the examiner locate your research question
-        and argument quickly.
+        The abstract was abolished from the Extended Essay in the May 2018 session and has
+        not been required — or assessed — since. If a template or an older guide tells you
+        to include a 300-word abstract, it is out of date: submitting one today only
+        signals an outdated structure and wastes effort. Orient the examiner with a clear
+        introduction and a table of contents instead.
       </p>
 
       <h2>Subject-Specific Word Count Guidance</h2>

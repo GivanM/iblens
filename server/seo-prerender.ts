@@ -122,7 +122,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/pricing": {
     title: "IB Essay Analysis from $4.99 \u2014 Cheaper Than 3 Minutes With a Tutor | IBLens",
-    description: "First IB essay analysis free. Single analysis $4.99, pack of 5 for $19.99, pack of 10 for $34.99. No subscription. 7-day money-back guarantee. IB tutors charge $80\u2013150/hr \u2014 IBLens is instant.",
+    description: "First IB essay analysis free. Single analysis $4.99, pack of 5 for $19.99, pack of 10 for $34.99. No subscription. 7-day money-back guarantee. IB tutors charge $50\u2013150/hr \u2014 IBLens is instant.",
     ogType: "website",
     canonical: "/pricing",
     schemaType: "WebPage",
@@ -130,7 +130,7 @@ const routeMeta: Record<string, PageMeta> = {
       { question: "How much does IBLens cost?", answer: "Every essay gets a free preview. The full report costs $4.99, a pack of 5 is $19.99, and a pack of 10 is $34.99. There is no subscription \u2014 you pay only for what you use." },
       { question: "Is there a money-back guarantee?", answer: "Yes. IBLens offers a 7-day no-questions-asked money-back guarantee on all purchases. Email glushkovim@gmail.com within 7 days and you will receive a full refund to your original payment method." },
       { question: "Do credits expire?", answer: "No. Analysis credits do not expire. You can buy a pack now and use the analyses whenever you need them \u2014 for your IA, Extended Essay, or TOK essay." },
-      { question: "How does IBLens compare to an IB tutor?", answer: "IB tutors charge $80\u2013150 per hour. A single IBLens analysis costs $4.99 and takes 60 seconds. IBLens gives you criterion-by-criterion feedback against the official IB rubric, a predicted score, and specific improvement suggestions \u2014 available 24/7." },
+      { question: "How does IBLens compare to an IB tutor?", answer: "IB tutors charge $50\u2013150 per hour. A single IBLens analysis costs $4.99 and takes 60 seconds. IBLens gives you criterion-by-criterion feedback against the official IB rubric, a predicted score, and specific improvement suggestions \u2014 available 24/7." },
     ],
   },
   "/refund-policy": {

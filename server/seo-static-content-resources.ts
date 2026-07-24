@@ -62,7 +62,7 @@ export const staticContentResources: Record<string, string> = {
       <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">How IBLens Works</h1>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">IBLens is an AI-powered essay analysis tool designed specifically for IB Diploma Programme students. It provides criterion-by-criterion feedback on Internal Assessments, Extended Essays, and Theory of Knowledge essays — the same type of detailed assessment that an experienced IB examiner would provide, delivered in approximately 60 seconds.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">This page explains exactly how IBLens works: what happens when you upload an essay, how the AI generates its feedback, what the output looks like, what the tool can and cannot do, and how it compares to alternatives like private tutors or peer review. We believe in transparency about our technology so you can make an informed decision about whether it is useful for your preparation.</p>
-      <p style="color:#374151;line-height:1.75;margin-bottom:16px">When you upload an essay to IBLens, the system performs a comprehensive analysis that includes:</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">When you upload an essay to IBLens, the system performs a comprehensive analysis that includes a predicted band, criterion-level comments, and prioritised next steps.</p>
       <p style="margin-top:20px"><a href="/essay" style="color:#7B1D2E;font-weight:600">Grade your IB essay free →</a></p>
     </main>`,
 
@@ -83,8 +83,8 @@ export const staticContentResources: Record<string, string> = {
     </main>`,
 
   "/grade": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › Grade Your IB Essayin 60 Seconds</nav>
-      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">Grade Your IB Essayin 60 Seconds</h1>
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › Grade Your IB Essay in 60 Seconds</nav>
+      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">Grade Your IB Essay in 60 Seconds</h1>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">Paste your IB essay and get a predicted grade in 60 seconds. AI feedback on every criterion \u2014 Extended Essay, IA, or TOK. No account, no credit card required.</p>
       <p style="margin-top:20px"><a href="/essay" style="color:#7B1D2E;font-weight:600">Grade your IB essay free →</a></p>
     </main>`,
@@ -1308,7 +1308,7 @@ export const staticContentResources: Record<string, string> = {
         <li>The body of the essay (all sections)</li>
         <li>The conclusion</li>
         <li>Quotations embedded in the text</li>
-        <li>In-text citations (e.g., "(Smith, 2019)" counts toward word count)</li>
+        <li>Substantive footnote commentary (referencing itself is excluded)</li>
       </ul>
 
       <h2>What Does NOT Count Toward the 4000-Word Limit</h2>

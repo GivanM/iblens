@@ -81,7 +81,7 @@ export const staticContent: Record<string, string> = {
     <li>You get a predicted score, per-criterion feedback, and specific fixes.</li>
   </ol>
   <h2 style="font-size:22px;font-weight:700;margin:28px 0 12px">Why IB students use IBLens</h2>
-  <p style="color:#374151;line-height:1.7;margin-bottom:20px">IB tutors charge $80–150 per hour. A single IBLens analysis costs $4.99 and takes 60 seconds — with feedback based on the official IB marking criteria, available 24/7. Your first essay is graded free.</p>
+  <p style="color:#374151;line-height:1.7;margin-bottom:20px">IB tutors charge $50–150 per hour. A single IBLens analysis costs $4.99 and takes 60 seconds — with feedback based on the official IB marking criteria, available 24/7. Your first essay is graded free.</p>
   <p style="line-height:2"><a href="/essay">Grade my IB essay free →</a> &nbsp;·&nbsp; <a href="/pricing">See pricing</a> &nbsp;·&nbsp; <a href="/resources">Free IB study guides</a></p>
 </main>`),
 
@@ -97,7 +97,7 @@ export const staticContent: Record<string, string> = {
     <li><strong>Pack of 10 — $34.99</strong> — ten analyses, best value per essay.</li>
   </ul>
   <h2 style="font-size:20px;font-weight:700;margin:28px 0 12px">How IBLens compares to an IB tutor</h2>
-  <p style="color:#374151;line-height:1.7;margin-bottom:20px">IB tutors charge $80–150 per hour. A single IBLens analysis costs $4.99 and returns criterion-by-criterion feedback against the official IB rubric in 60 seconds, any time of day. Credits never expire, and every purchase is covered by a 7-day money-back guarantee.</p>
+  <p style="color:#374151;line-height:1.7;margin-bottom:20px">IB tutors charge $50–150 per hour. A single IBLens analysis costs $4.99 and returns criterion-by-criterion feedback against the official IB rubric in 60 seconds, any time of day. Credits never expire, and every purchase is covered by a 7-day money-back guarantee.</p>
   <p><a href="/essay">Start free →</a></p>
 </main>`),
 
@@ -221,7 +221,7 @@ export const staticContent: Record<string, string> = {
     <li><strong>Criterion A — Focus and Method (6 marks)</strong>: The clarity and focus of your research question, the appropriateness of your methodology, and how well you demonstrate awareness of your approach. IBLens checks whether your research question is arguable, specific, and suitable for an extended investigation.</li>
     <li><strong>Criterion B — Knowledge and Understanding (6 marks)</strong>: Depth of subject-specific knowledge, correct use of terminology, and understanding of the academic context. IBLens checks whether you use subject-specific vocabulary accurately and whether your engagement with existing research is genuine.</li>
     <li><strong>Criterion C — Critical Thinking (12 marks)</strong>: The quality of your argument, the strength of your analysis, the handling of counter-arguments, and the logical structure of your reasoning. This is the highest-weighted criterion — IBLens gives detailed feedback on argument quality.</li>
-    <li><strong>Criterion D — Presentation (4 marks)</strong>: Adherence to the required structure (title page, table of contents, introduction, body, conclusion, bibliography), word count (3,500–4,000 words), and formatting. IBLens checks structure and approximate word count.</li>
+    <li><strong>Criterion D — Presentation (4 marks)</strong>: Adherence to the required structure (title page, table of contents, introduction, body, conclusion, bibliography), the 4,000-word limit, and formatting. IBLens checks structure and approximate word count.</li>
     <li><strong>Criterion E — Engagement (6 marks)</strong>: Assessed through your Reflections on Planning and Progress (RPPF). IBLens evaluates the depth of your intellectual engagement and self-reflection demonstrated in your written work.</li>
   </ul>
 
@@ -231,7 +231,7 @@ export const staticContent: Record<string, string> = {
     <li><strong>Descriptive body sections</strong>: Summarising sources instead of building an analytical argument. Every paragraph in the body should advance your answer to the research question.</li>
     <li><strong>Weak conclusion</strong>: Conclusions that introduce new evidence or simply restate the introduction. Your conclusion must directly and specifically answer your research question based on your argument.</li>
     <li><strong>Unbalanced criterion C</strong>: Having good analysis but no counter-argument, or good counter-arguments but no sustained position. IBLens checks for both.</li>
-    <li><strong>Over or under the word count</strong>: Essays below 3,500 or above 4,000 words are penalised. IBLens checks your word count and flags if you need to cut or expand.</li>
+    <li><strong>Over the 4,000-word limit</strong>: examiners stop reading at 4,000 words — anything beyond is not assessed. There is no official minimum, but very short essays rarely sustain enough analysis. IBLens checks your word count.</li>
   </ul>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Frequently asked questions</h2>
@@ -615,7 +615,7 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Is my essay stored or used to train AI?</dt>
     <dd style="margin-top:4px">No — your essay is sent to the AI for analysis and not stored permanently. IBLens does not use student essays to train AI models.</dd>
     <dt style="font-weight:600;margin-top:16px">Can I grade my essay more than once?</dt>
-    <dd style="margin-top:4px">Yes — many students grade a draft, then revise and grade again. Each analysis uses one credit. A pack of five analyses ($14.99) is designed for iterative improvement across drafts.</dd>
+    <dd style="margin-top:4px">Yes — many students grade a draft, then revise and grade again. Each analysis uses one credit. A pack of five analyses ($19.99) is designed for iterative improvement across drafts.</dd>
   </dl>
 </main>`),
 
@@ -947,7 +947,7 @@ export const staticContent: Record<string, string> = {
       <ul>
         <li><strong>vs. RevisionDojo:</strong> RevisionDojo bundles IA grading inside a $19/month subscription that also includes videos and practice papers. IBLens is pay-per-analysis — $4.99 for a single analysis, $19.99 for 5. No subscription required. If you just need feedback on one or two IAs, IBLens is significantly cheaper.</li>
         <li><strong>vs. ChatGPT / Claude directly:</strong> Generic AI models don't know the specific IB rubric for your subject. IBLens is built on the official IBO marking criteria and formats the feedback to match how real IB examiners score work.</li>
-        <li><strong>vs. a tutor:</strong> A tutor charges $50–120 per hour and may give you subjective feedback. IBLens applies the rubric mechanically — the same way an examiner does — and identifies specific mark losses by criterion.</li>
+        <li><strong>vs. a tutor:</strong> A tutor commonly charges $50–150 per hour and may give you subjective feedback. IBLens applies the rubric mechanically — the same way an examiner does — and identifies specific mark losses by criterion.</li>
       </ul>
 
       <h2>Is the First IB IA Analysis Really Free?</h2>
@@ -1794,7 +1794,7 @@ export const staticContent: Record<string, string> = {
         <li>The body of the essay (all sections)</li>
         <li>The conclusion</li>
         <li>Quotations embedded in the text</li>
-        <li>In-text citations (e.g., "(Smith, 2019)" counts toward word count)</li>
+        <li>Substantive footnote commentary (referencing itself is excluded)</li>
       </ul>
 
       <h2>What Does NOT Count Toward the 4000-Word Limit</h2>
@@ -2342,7 +2342,7 @@ export const staticContent: Record<string, string> = {
       </table>
 
       <p>
-        <strong>UCAS Tariff Points:</strong> The IB Diploma converts to UCAS tariff points (used by some universities for entry calculations). A score of 45 = 720 UCAS points; 38 = 547 points; 30 = 395 points. However, most selective universities make offers in IB points rather than UCAS tariff points.
+        <strong>UCAS Tariff Points:</strong> Since 2017 UCAS has awarded tariff points per subject grade (HL and SL separately, plus TOK/EE bands) rather than for the overall IB total — the old “45 = 720 points” scale is long obsolete. Most selective universities make offers in IB points anyway; when a tariff number is needed, use the official UCAS calculator.
       </p>
 
       <h2>United States: Holistic Admissions</h2>
@@ -2795,12 +2795,7 @@ export const staticContent: Record<string, string> = {
             </tr>
           </thead>
           <tbody>
-            {[["A","3","3","2","2","Fail"],["B","3","2","2","1","Fail"],["C","2","2","1","1","Fail"],["D","2","1","1","0","Fail"],["E","Fail","Fail","Fail","Fail","Fail"]].map(([ee,...cells]) => (
-              <tr>
-                <td></td>
-                {cells.map((cell,i) => (
-                  <td></td>
-                ))}
+            <table style="border-collapse:collapse;width:100%"><tr><th>EE \\ TOK</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr><tr><td>A</td><td>3</td><td>3</td><td>2</td><td>2</td><td>Fail</td></tr><tr><td>B</td><td>3</td><td>2</td><td>2</td><td>1</td><td>Fail</td></tr><tr><td>C</td><td>2</td><td>2</td><td>1</td><td>0</td><td>Fail</td></tr><tr><td>D</td><td>2</td><td>1</td><td>0</td><td>0</td><td>Fail</td></tr><tr><td>E</td><td>Fail</td><td>Fail</td><td>Fail</td><td>Fail</td><td>Fail</td></tr></table>
               </tr>
             ))}
           </tbody>
@@ -2848,7 +2843,7 @@ export const staticContent: Record<string, string> = {
         <li><strong>CAS not completed</strong> — diploma failure regardless of academic scores.</li>
         <li><strong>Grade 1 in any subject</strong> — automatic failure.</li>
         <li><strong>Grade 2 in three or more subjects</strong> (HL or SL) — automatic failure.</li>
-        <li><strong>Grade 3 or below in two or more HL subjects</strong> — automatic failure.</li>
+        <li><strong>A grade of 3 or lower awarded more than three times</strong> across the diploma — automatic failure.</li>
         <li><strong>Total subject score below 24 points</strong> — automatic failure.</li>
         <li><strong>Malpractice finding</strong> — diploma withdrawal.</li>
       </ul>

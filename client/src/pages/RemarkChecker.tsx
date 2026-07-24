@@ -97,7 +97,7 @@ function RemarkQuickCheck() {
             placeholder={essayType === "TOK" ? "Paste your full TOK essay (the version you submitted to IB)\u2026" : "Paste your full Extended Essay (the version you submitted to IB)\u2026"}
             className="mb-2 bg-background" />
           <div className="flex items-center justify-between gap-3 flex-wrap">
-            <span className="text-xs text-muted-foreground">{essayText.trim() ? essayText.trim().split(/\s+/).length + " words" : "No account needed. Your essay is not stored. Free preview. Full report $4.99."}</span>
+            <span className="text-xs text-muted-foreground">{essayText.trim() ? essayText.trim().split(/\s+/).length + " words" : "No account needed. Never used to train AI. Free preview — full report $4.99."}</span>
             <Button disabled={essayText.trim().length < 300 || analyze.isPending}
               onClick={() => analyze.mutate({ essayType, subject: essayType === "TOK" ? "Theory of Knowledge" : subject, essayText, clientFingerprint: fp })}>
               {analyze.isPending ? QUICK_STEPS[Math.min(step, QUICK_STEPS.length - 1)] : "Get my remark verdict"}

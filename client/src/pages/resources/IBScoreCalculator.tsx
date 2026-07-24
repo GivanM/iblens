@@ -40,7 +40,7 @@ export default function IBScoreCalculator() {
             </tr>
           </thead>
           <tbody>
-            {[["A","3","3","2","2","Fail"],["B","3","2","2","1","Fail"],["C","2","2","1","1","Fail"],["D","2","1","1","0","Fail"],["E","Fail","Fail","Fail","Fail","Fail"]].map(([ee,...cells]) => (
+            {[["A","3","3","2","2","Fail"],["B","3","2","2","1","Fail"],["C","2","2","1","0","Fail"],["D","2","1","0","0","Fail"],["E","Fail","Fail","Fail","Fail","Fail"]].map(([ee,...cells]) => (
               <tr key={ee}>
                 <td style={{border:"1px solid #ddd",padding:"10px 14px",fontWeight:600,background:"var(--muted,#f5f5f5)"}}>{`EE ${ee}`}</td>
                 {cells.map((cell,i) => (
@@ -93,7 +93,7 @@ export default function IBScoreCalculator() {
         <li><strong>CAS not completed</strong> — diploma failure regardless of academic scores.</li>
         <li><strong>Grade 1 in any subject</strong> — automatic failure.</li>
         <li><strong>Grade 2 in three or more subjects</strong> (HL or SL) — automatic failure.</li>
-        <li><strong>Grade 3 or below in two or more HL subjects</strong> — automatic failure.</li>
+        <li><strong>A grade of 3 or lower awarded more than three times</strong> across the diploma — automatic failure.</li>
         <li><strong>Total subject score below 24 points</strong> — automatic failure.</li>
         <li><strong>Malpractice finding</strong> — diploma withdrawal.</li>
       </ul>
