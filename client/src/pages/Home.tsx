@@ -311,24 +311,6 @@ export default function Home() {
                 </Button>
               </div>
 
-              <div className="rounded-xl border border-border bg-card p-8">
-                <h3 style={SERIF} className="text-xl font-bold mb-3">University Strategy</h3>
-                <p className="text-muted-foreground mb-5 leading-relaxed">
-                  Personalized university list with admission probabilities, essay positioning advice, and a step-by-step application roadmap.
-                </p>
-                <ul className="space-y-2.5 text-sm mb-6">
-                  {["9 universities: 3 safe, 3 match, 3 reach", "Admission probability estimates", "Essay positioning angle", "Timeline-based action roadmap", "Profile strengths & concerns"].map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="text-sm font-medium text-primary mb-4">{PRICE_LABELS.UNIVERSITY_SINGLE}/strategy</p>
-                <Button variant="outline" asChild>
-                  <Link href="/university">Get your strategy <ArrowRight className="w-4 h-4 ml-1" /></Link>
-                </Button>
-              </div>
             </div>
           </div>
         </section>
@@ -469,16 +451,6 @@ export default function Home() {
                 </CardContent>
               </Card>
 
-              <Card className="border border-border">
-                <CardContent className="p-6 text-center">
-                  <h3 className="font-semibold mb-1">University Strategy</h3>
-                  <div style={SERIF} className="text-3xl font-bold mb-2">{PRICE_LABELS.UNIVERSITY_SINGLE}</div>
-                  <p className="text-xs text-muted-foreground mb-4">Per strategy</p>
-                  <Button variant="outline" size="sm" className="w-full" asChild>
-                    <Link href="/university">Get Strategy</Link>
-                  </Button>
-                </CardContent>
-              </Card>
             </div>
 
             <div className="flex flex-col items-center gap-4 mt-10">
@@ -560,7 +532,6 @@ export default function Home() {
                 <h4 className="font-semibold mb-3">Tools</h4>
                 <ul className="space-y-2 text-muted-foreground">
                   <li><Link href="/essay" className="hover:text-foreground transition-colors">IB Essay Grader</Link></li>
-                  <li><Link href="/university" className="hover:text-foreground transition-colors">University Strategy</Link></li>
                   <li><Link href="/essay/extended-essay" className="hover:text-foreground transition-colors">Extended Essay Grader</Link></li>
                   <li><Link href="/essay/tok-essay" className="hover:text-foreground transition-colors">TOK Essay Grader</Link></li>
                 </ul>
