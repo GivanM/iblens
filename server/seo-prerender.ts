@@ -102,7 +102,7 @@ const routeMeta: Record<string, PageMeta> = {
     faq: [
       { question: "Which IB essay types can IBLens grade?", answer: "IBLens grades all IB essay types: Internal Assessments (IA) for all subjects, Extended Essays (EE), and Theory of Knowledge (TOK) essays. Each is scored against the official IB rubric for that specific essay type." },
       { question: "How accurate is the AI grade prediction?", answer: "IBLens is trained on official IB marking criteria and provides reliable score predictions. It evaluates each criterion individually and identifies specific areas where marks are being lost, giving you actionable feedback to improve before submission." },
-      { question: "Is the first analysis really free?", answer: "Yes. Your first IB essay analysis is completely free \u2014 no credit card, no account required. You get the full criterion-by-criterion breakdown, predicted score, and improvement suggestions." },
+      { question: "Is the first analysis really free?", answer: "Yes — every essay gets a free preview: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments, and a ranked fix list — unlocks for $4.99." },
       { question: "How long does it take to get feedback?", answer: "Results are ready in under 60 seconds. Paste your essay text, select your subject and essay type, and the AI delivers a complete grade report within a minute." },
     ],
   },
@@ -127,7 +127,7 @@ const routeMeta: Record<string, PageMeta> = {
     canonical: "/pricing",
     schemaType: "WebPage",
     faq: [
-      { question: "How much does IBLens cost?", answer: "Your first essay analysis is completely free. After that: a single analysis costs $4.99, a pack of 5 costs $19.99, and a pack of 10 costs $34.99. There is no subscription \u2014 you pay only for what you use." },
+      { question: "How much does IBLens cost?", answer: "Every essay gets a free preview. The full report costs $4.99, a pack of 5 is $19.99, and a pack of 10 is $34.99. There is no subscription \u2014 you pay only for what you use." },
       { question: "Is there a money-back guarantee?", answer: "Yes. IBLens offers a 7-day no-questions-asked money-back guarantee on all purchases. Email glushkovim@gmail.com within 7 days and you will receive a full refund to your original payment method." },
       { question: "Do credits expire?", answer: "No. Analysis credits do not expire. You can buy a pack now and use the analyses whenever you need them \u2014 for your IA, Extended Essay, or TOK essay." },
       { question: "How does IBLens compare to an IB tutor?", answer: "IB tutors charge $80\u2013150 per hour. A single IBLens analysis costs $4.99 and takes 60 seconds. IBLens gives you criterion-by-criterion feedback against the official IB rubric, a predicted score, and specific improvement suggestions \u2014 available 24/7." },

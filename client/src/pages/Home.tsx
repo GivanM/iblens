@@ -134,7 +134,7 @@ export default function Home() {
                 name: "Is my first essay analysis really free?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes! Every new user gets their first essay analysis completely free with all features included — predicted score, criterion breakdown, risk areas, leverage zones, and actionable next steps. No credit card required.",
+                  text: "Yes — every essay gets a free preview: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments, and a ranked fix list — unlocks for $4.99.",
                 },
               },
               {
@@ -481,7 +481,7 @@ export default function Home() {
               />
               <FAQItem
                 question="Is my first essay analysis really free?"
-                answer="Yes! Every new user gets their first essay analysis completely free with all features included — predicted score, criterion breakdown, risk areas, leverage zones, and actionable next steps. No credit card required."
+                answer="Yes — every essay gets a free preview: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments, and a ranked fix list — unlocks for $4.99."
               />
               <FAQItem
                 question="How accurate is the predicted IB score?"

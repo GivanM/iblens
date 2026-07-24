@@ -216,7 +216,7 @@ export default function LandingPage() {
             <div className="bg-background rounded-xl border p-5">
               <FAQItem
                 question="Is the first essay grade really free?"
-                answer="Yes — every new user gets one full analysis free with all features: criterion scores, risk areas, leverage zones, and next steps. No credit card required."
+                answer="Yes — every essay gets a free preview: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments, and a ranked fix list — unlocks for $4.99."
               />
               <FAQItem
                 question="Which essay types and subjects does IBLens support?"

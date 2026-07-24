@@ -75,6 +75,83 @@ type EssayResult = {
   _rubricTotalMarks?: number;
 };
 
+
+function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, analysisId, onUnlocked, onBuy }: any) {
+  const unlock = trpc.essay.unlockAnalysis.useMutation({
+    onSuccess: (d: any) => onUnlocked(d.result),
+    onError: (e: any) => toast.error(e.message || "Unlock failed"),
+  });
+  const weakest = result.weakest_criterion;
+  const others = (result.criteria_names || []).filter((c: any) => c?.name !== weakest?.name);
+  const doUnlock = () => unlock.mutate(analysisId ? { analysisId } : { fingerprint });
+  return (
+    <Card className="border-primary/40">
+      <CardHeader>
+        <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+          Free preview
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-5">
+        <div className="flex items-baseline gap-3">
+          <span style={SERIF} className="text-4xl font-bold">Band {result.band_range}</span>
+          <span className="text-sm text-muted-foreground">out of {result.max_score}</span>
+        </div>
+        {weakest && (
+          <div className="rounded-lg border border-amber-300 bg-amber-50 p-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-1.5">Your weakest criterion — full feedback</p>
+            <div className="flex justify-between text-sm font-semibold mb-1 text-foreground"><span>{weakest.name}</span><span>{weakest.score}/{weakest.max}</span></div>
+            <p className="text-sm text-muted-foreground leading-relaxed">{weakest.comment}</p>
+          </div>
+        )}
+        {(result.risks || []).length > 0 && (
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Top risks in this draft</p>
+            <ul className="space-y-2">
+              {result.risks.map((r: any, i: number) => (
+                <li key={i} className="text-sm"><strong className="text-foreground">{r.title}</strong>{r.description ? <span className="text-muted-foreground"> — {r.description}</span> : null}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Locked in the full report</p>
+          <ul className="space-y-2">
+            {others.map((c: any) => (
+              <li key={c.name} className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Lock className="w-3.5 h-3.5 shrink-0" />
+                <span className="truncate">{c.name}</span>
+                <span className="ml-auto inline-block h-2 w-20 rounded bg-muted-foreground/20 blur-[2px]" />
+                <span className="text-xs whitespace-nowrap">?/{c.max}</span>
+              </li>
+            ))}
+            <li className="flex items-center gap-2 text-sm text-muted-foreground"><Lock className="w-3.5 h-3.5 shrink-0" /> Exact predicted score</li>
+            <li className="flex items-center gap-2 text-sm text-muted-foreground"><Lock className="w-3.5 h-3.5 shrink-0" /> Examiner-style overall comment</li>
+            <li className="flex items-center gap-2 text-sm text-muted-foreground"><Lock className="w-3.5 h-3.5 shrink-0" /> Step-by-step fixes, ranked by marks gained</li>
+          </ul>
+        </div>
+        <div className="rounded-lg bg-primary/5 border border-primary/30 p-4">
+          {!isAuthenticated ? (
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report — $4.99.</strong> Sign in first so the report is saved to your account.</p>
+              <Button asChild><a href={getLoginUrl()}>Sign in to unlock</a></Button>
+            </div>
+          ) : hasPaidCredit ? (
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              <p className="text-sm flex-1"><strong className="text-foreground">You have a credit.</strong> Open the full report now.</p>
+              <Button disabled={unlock.isPending} onClick={doUnlock}>{unlock.isPending ? "Unlocking…" : "Unlock full report (1 credit)"}</Button>
+            </div>
+          ) : (
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report — $4.99.</strong> Exact score, every criterion with comments, and your ranked fix list.</p>
+              <Button onClick={onBuy}>Buy &amp; unlock — $4.99</Button>
+            </div>
+          )}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
 const ANALYZING_STEPS = [
   "Reading your essay\u2026",
   "Checking it against the official IB rubric\u2026",
@@ -114,6 +191,7 @@ export default function EssayAnalyzer() {
   const analyzeMutation = trpc.essay.analyze.useMutation({
     onSuccess: (data) => {
       setResult(data.result as EssayResult);
+      setLastAnalysisId((data as any).id ?? null);
       creditsQuery.refetch();
       const r = data.result as EssayResult;
       analytics.completeEssayAnalysis(subject, `${r.predicted_score}/${r.max_score}`);
@@ -135,6 +213,7 @@ export default function EssayAnalyzer() {
   const anonAnalyzeMutation = trpc.essay.analyzeAnonymous.useMutation({
     onSuccess: (data) => {
       setResult(data.result as EssayResult);
+      setLastAnalysisId(null);
       localStorage.setItem('iblens_anon_used', 'true');
       anonCheckQuery.refetch();
       const r = data.result as EssayResult;
@@ -157,6 +236,16 @@ export default function EssayAnalyzer() {
   const saveEmailMutation = trpc.essay.saveReportEmail.useMutation({
     onSuccess: () => setReportEmailSaved(true),
     onError: () => toast.error("Could not save your email \u2014 please try again."),
+  });
+
+  const [lastAnalysisId, setLastAnalysisId] = useState<number | null>(null);
+  const lockedQ = trpc.essay.lockedReport.useQuery(
+    { fingerprint: anonFp },
+    { enabled: isAuthenticated && !result }
+  );
+  const pageUnlock = trpc.essay.unlockAnalysis.useMutation({
+    onSuccess: (d: any) => { setResult(d.result as EssayResult); lockedQ.refetch(); },
+    onError: (e: any) => toast.error(e.message || "Unlock failed"),
   });
 
   const [analyzingStep, setAnalyzingStep] = useState(0);
@@ -405,7 +494,7 @@ export default function EssayAnalyzer() {
           {!isAuthenticated && canAnonAnalyze && (
             <div className="text-sm p-3 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
-              <span>Your first analysis is <strong>completely free</strong> — no account or credit card needed.</span>
+              <span>Every essay gets a <strong>free preview</strong> — the full report unlocks for $4.99.</span>
             </div>
           )}
 
@@ -500,8 +589,29 @@ export default function EssayAnalyzer() {
       </Card>
 
       {/* Results */}
+      {isAuthenticated && !result && lockedQ.data?.exists && !lockedQ.data.unlocked && (
+        <Card className="border-primary/40 bg-primary/5">
+          <CardContent className="pt-6 flex flex-col sm:flex-row items-center gap-3">
+            <div className="flex-1">
+              <p className="text-sm font-semibold">You have a locked report from this device</p>
+              <p className="text-xs text-muted-foreground">{lockedQ.data.essayType} · {lockedQ.data.subject} · Band {lockedQ.data.band}</p>
+            </div>
+            {(credits?.essayCredits ?? 0) > 0 ? (
+              <Button size="sm" disabled={pageUnlock.isPending} onClick={() => pageUnlock.mutate({ fingerprint: anonFp })}>
+                {pageUnlock.isPending ? "Unlocking…" : "Unlock full report (1 credit)"}
+              </Button>
+            ) : (
+              <Button size="sm" onClick={() => setEssayPurchaseOpen(true)}>Buy &amp; unlock — $4.99</Button>
+            )}
+          </CardContent>
+        </Card>
+      )}
+
       {result && (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          {(result as any).locked ? (
+            <LockedTeaser result={result} isAuthenticated={isAuthenticated} hasPaidCredit={(credits?.essayCredits ?? 0) > 0} fingerprint={anonFp} analysisId={lastAnalysisId} onUnlocked={(full: any) => setResult(full as EssayResult)} onBuy={() => setEssayPurchaseOpen(true)} />
+          ) : (<>
           {!isAuthenticated && (
             <Card className="border-primary/30 bg-primary/5">
               <CardContent className="pt-6">
@@ -806,6 +916,7 @@ export default function EssayAnalyzer() {
               </CardContent>
             </Card>
           )}
+          </>)}
         </div>
       )}
     </div>

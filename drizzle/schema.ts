@@ -32,7 +32,8 @@ export const analyses = mysqlTable("analyses", {
   // Results
   resultJson: json("resultJson"),
   predictedGrade: varchar("predictedGrade", { length: 20 }),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
+    unlocked: boolean("unlocked").notNull().default(true),
+createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
 
 export const payments = mysqlTable("payments", {
@@ -108,7 +109,8 @@ export const anonymousAnalyses = mysqlTable("anonymous_analyses", {
   researchQuestion: text("researchQuestion"),
   resultJson: json("resultJson"),
   predictedGrade: varchar("predictedGrade", { length: 20 }),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
+    unlocked: boolean("unlocked").notNull().default(false),
+createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
 
 export type Payment = typeof payments.$inferSelect;

@@ -194,7 +194,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
                 { text: "Criterion-by-criterion breakdown, not just a single score" },
                 { text: "Identifies exactly which marks you're losing and why" },
                 { text: "Prioritised action plan to improve before submission" },
-                { text: "First analysis completely free — no sign-up required" },
+                { text: "Free preview for every essay — no sign-up required" },
                 { text: "Results in under 60 seconds, any time of day" },
               ].map(({ text }) => (
                 <div key={text} className="flex items-start gap-3">

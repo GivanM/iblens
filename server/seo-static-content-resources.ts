@@ -107,7 +107,7 @@ export const staticContentResources: Record<string, string> = {
       <ul><li><strong>Understanding knowledge questions — 2/3:</strong> The student clearly identifies the central knowledge question — to what extent certainty is attainable in mathematics and the natural sciences — and maintains focus on it throughout. The distinction between conditional/i…</li><li><strong>Quality of analysis of knowledge questions — 2/3:</strong> The analysis is clear and makes good use of relevant examples: the Pythagorean theorem illustrates conditional mathematical certainty, Newtonian mechanics illustrates the revisability of scientific knowledge, and Gödel's…</li><li><strong>Quality of overall essay — 3/4:</strong> The essay is well-organized, clearly written, and logically sequenced. The thesis is stated early and the conclusion follows coherently from the argument, which is a genuine strength. The closing formulation — 'the knowe…</li></ul>
       <h2>Why the spread matters</h2>
       <p>Feedback is only useful if the grade moves when quality moves. IBLens is calibrated to read like a strict examiner — if it says 7, we mean it.</p>
-      <p><a href="/essay">Get this exact report for your own essay — first analysis free →</a></p>
+      <p><a href="/essay">Get this exact report for your own essay — free preview included →</a></p>
     </main>`,
 
   "/resources/academic-integrity": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">

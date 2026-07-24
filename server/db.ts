@@ -587,3 +587,41 @@ export async function findOrCreateGuestUserByEmail(email: string): Promise<{ id:
   if (!created.length) throw new Error("Failed to create guest user");
   return { id: created[0].id };
 }
+
+
+/** Consume strictly a PAID essay credit (never the free slot). Used by report unlock. */
+export async function consumePaidEssayCredit(userId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const credits = await getUserCredits(userId);
+  if (!credits) throw new Error("User not found");
+  if (credits.essayCredits <= 0) {
+    throw new Error("Unlocking the full report requires a paid credit. Buy one for $4.99.");
+  }
+  await db.update(users)
+    .set({ essayCredits: sql`${users.essayCredits} - 1` })
+    .where(eq(users.id, userId));
+}
+
+/** Latest anonymous essay analysis for a fingerprint (with stored full result). */
+export async function getLatestAnonymousEssay(fingerprint: string) {
+  const db = await getDb();
+  if (!db) return null;
+  const rows = await db.select().from(anonymousAnalyses)
+    .where(and(eq(anonymousAnalyses.fingerprint, fingerprint), eq(anonymousAnalyses.type, "essay")))
+    .orderBy(desc(anonymousAnalyses.id))
+    .limit(1);
+  return rows[0] ?? null;
+}
+
+export async function setAnonymousUnlocked(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.update(anonymousAnalyses).set({ unlocked: true }).where(eq(anonymousAnalyses.id, id));
+}
+
+export async function setAnalysisUnlocked(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.update(analyses).set({ unlocked: true }).where(eq(analyses.id, id));
+}

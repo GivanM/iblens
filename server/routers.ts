@@ -20,6 +20,10 @@ import {
   createOrder,
   getUserOrders,
   findOrCreateGuestUserByEmail,
+  consumePaidEssayCredit,
+  getLatestAnonymousEssay,
+  setAnonymousUnlocked,
+  setAnalysisUnlocked,
 } from "./db";
 import { createLemonsqueezyCheckout } from "./lemonsqueezy/lemonsqueezy";
 import { LEMONSQUEEZY_VARIANTS, PRODUCT_KEY_TO_LS_SKU } from "../shared/pricing";
@@ -105,6 +109,44 @@ Respond with this exact JSON structure:
 }`;
 }
 
+
+/**
+ * Server-side gate: the free tier returns a TEASER only. The full report
+ * (exact score, all criteria, comments, fix lists) never leaves the server
+ * until it is unlocked with a paid credit. Do not widen this shape.
+ */
+function buildTeaser(result: any) {
+  const criteria: any[] = Array.isArray(result?.criteria) ? result.criteria : [];
+  const scored = criteria.filter((c) => typeof c?.score === "number" && c?.max > 0);
+  const weakest = scored.length
+    ? [...scored].sort((a, b) => a.score / a.max - b.score / b.max)[0]
+    : null;
+  let nearEdge: boolean | null = null;
+  const m = String(result?.band_range || "").match(/(\d+)\s*[-\u2013\u2014]\s*(\d+)/);
+  if (m && typeof result?.predicted_score === "number") {
+    const lo = parseInt(m[1], 10);
+    const hi = parseInt(m[2], 10);
+    nearEdge = result.predicted_score <= lo || result.predicted_score >= hi;
+  }
+  const risks = (Array.isArray(result?.risks) ? result.risks : []).slice(0, 3).map((r: any) => ({
+    title: typeof r === "string" ? r : r?.title || "",
+    description: typeof r === "string" ? "" : String(r?.description || "").slice(0, 220),
+  }));
+  return {
+    locked: true as const,
+    band_range: result?.band_range ?? null,
+    max_score: result?.max_score ?? null,
+    weakest_criterion: weakest,
+    risks,
+    criteria_names: criteria.map((c) => ({ name: c?.name, max: c?.max })),
+    near_band_edge: nearEdge,
+    criteria_count: criteria.length,
+    _rubricAvailable: result?._rubricAvailable,
+    _rubricLabel: result?._rubricLabel,
+    _rubricTotalMarks: result?._rubricTotalMarks,
+  };
+}
+
 // ---- Essay Analysis Router ----
 const essayRouter = router({
   // Capture email of anonymous users who want their report + tips (remarketing list)
@@ -114,6 +156,61 @@ const essayRouter = router({
       await findOrCreateGuestUserByEmail(input.email.toLowerCase().trim());
       console.log(`[Report Email] captured for fp=${input.fingerprint || "n/a"}`);
       return { ok: true } as const;
+    }),
+
+  // Paid unlock of a previously generated (teaser-gated) report.
+  unlockAnalysis: protectedProcedure
+    .input(z.object({
+      fingerprint: z.string().optional(),
+      analysisId: z.number().optional(),
+    }))
+    .mutation(async ({ ctx, input }) => {
+      if (input.analysisId) {
+        const rec = await getAnalysisById(input.analysisId);
+        if (!rec || rec.userId !== ctx.user.id || !rec.resultJson) throw new Error("Report not found");
+        if (!(rec as any).unlocked) {
+          await consumePaidEssayCredit(ctx.user.id);
+          await setAnalysisUnlocked(rec.id);
+        }
+        return { result: rec.resultJson };
+      }
+      if (input.fingerprint) {
+        const rec = await getLatestAnonymousEssay(input.fingerprint);
+        if (!rec || !rec.resultJson) throw new Error("No report found for this device");
+        if (!(rec as any).unlocked) {
+          await consumePaidEssayCredit(ctx.user.id);
+          await setAnonymousUnlocked(rec.id);
+          // Keep a copy in the user's dashboard history
+          await createAnalysis({
+            userId: ctx.user.id,
+            type: "essay",
+            essayType: rec.essayType,
+            subject: rec.subject,
+            researchQuestion: rec.researchQuestion,
+            resultJson: rec.resultJson,
+            predictedGrade: rec.predictedGrade,
+            unlocked: true,
+          });
+        }
+        return { result: rec.resultJson };
+      }
+      throw new Error("Nothing to unlock");
+    }),
+
+  // Lightweight status for the "you have a locked report" banner. Leaks no scores.
+  lockedReport: publicProcedure
+    .input(z.object({ fingerprint: z.string().min(1) }))
+    .query(async ({ input }) => {
+      const rec = await getLatestAnonymousEssay(input.fingerprint);
+      if (!rec || !rec.resultJson) return { exists: false as const };
+      const rj: any = rec.resultJson;
+      return {
+        exists: true as const,
+        unlocked: !!(rec as any).unlocked,
+        essayType: rec.essayType,
+        subject: rec.subject,
+        band: rj?.band_range ?? null,
+      };
     }),
 
   // Anonymous analysis — no login required, 1 free analysis per fingerprint
@@ -173,7 +270,7 @@ const essayRouter = router({
           predictedGrade: `${result.predicted_score}/${result.max_score}`,
         });
 
-        return { result, wasAnonymous: true };
+        return { result: buildTeaser(result), wasAnonymous: true };
       } catch (error: any) {
         console.error("[Anonymous Essay Analysis] Error:", error);
         throw new Error(error.message || "Analysis failed. Please try again.");
@@ -236,11 +333,16 @@ const essayRouter = router({
           researchQuestion: input.researchQuestion || null,
           resultJson: result,
           predictedGrade: `${result.predicted_score}/${result.max_score}`,
+          unlocked: !usage.isFree,
         });
 
         await consumeEssayCredit(ctx.user.id);
 
-        return { id: analysis.id, result, wasFree: usage.isFree };
+        // Free tier gets a teaser; paid credits get the full report immediately.
+        if (usage.isFree) {
+          return { id: analysis.id, result: buildTeaser(result), wasFree: true };
+        }
+        return { id: analysis.id, result, wasFree: false };
       } catch (error: any) {
         console.error("[Essay Analysis] Error:", error);
         throw new Error(error.message || "Analysis failed. Please try again.");

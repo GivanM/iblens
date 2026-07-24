@@ -97,7 +97,7 @@ function RemarkQuickCheck() {
             placeholder={essayType === "TOK" ? "Paste your full TOK essay (the version you submitted to IB)\u2026" : "Paste your full Extended Essay (the version you submitted to IB)\u2026"}
             className="mb-2 bg-background" />
           <div className="flex items-center justify-between gap-3 flex-wrap">
-            <span className="text-xs text-muted-foreground">{essayText.trim() ? essayText.trim().split(/\s+/).length + " words" : "No account needed. Your essay is not stored. First check free."}</span>
+            <span className="text-xs text-muted-foreground">{essayText.trim() ? essayText.trim().split(/\s+/).length + " words" : "No account needed. Your essay is not stored. Free preview. Full report $4.99."}</span>
             <Button disabled={essayText.trim().length < 300 || analyze.isPending}
               onClick={() => analyze.mutate({ essayType, subject: essayType === "TOK" ? "Theory of Knowledge" : subject, essayText, clientFingerprint: fp })}>
               {analyze.isPending ? QUICK_STEPS[Math.min(step, QUICK_STEPS.length - 1)] : "Get my remark verdict"}
@@ -118,39 +118,39 @@ function RemarkQuickCheck() {
       {result && (
         <div>
           <div className="flex items-baseline gap-3 mb-2">
-            <span style={SERIF} className="text-4xl font-bold text-primary">{result.predicted_score}<span className="text-lg text-muted-foreground"> / {result.max_score}</span></span>
-            <span className="text-sm text-muted-foreground">band {result.band_range}</span>
+            <span style={SERIF} className="text-3xl font-bold text-primary">Band {result.band_range}</span>
+            <span className="text-sm text-muted-foreground">out of {result.max_score}</span>
           </div>
-          {verdict && (
-            <div className={"rounded-lg p-4 mb-4 border " + (verdict.near ? "border-amber-400 bg-amber-50" : "border-emerald-300 bg-emerald-50")}>
-              <p className="font-semibold text-sm mb-1 text-foreground">{verdict.title}</p>
-              <p className="text-sm text-muted-foreground">{verdict.text}</p>
+          {typeof result.near_band_edge === "boolean" && (
+            <div className={"rounded-lg p-4 mb-4 border " + (result.near_band_edge ? "border-amber-400 bg-amber-50" : "border-emerald-300 bg-emerald-50")}>
+              <p className="font-semibold text-sm mb-1 text-foreground">{result.near_band_edge ? "Near a band edge — a remark has genuine upside" : "Solidly mid-band — a remark likely changes nothing"}</p>
+              <p className="text-sm text-muted-foreground">{result.near_band_edge ? "Your essay reads at the edge of its band. This is exactly the profile where a fresh examiner read can land differently — in either direction. If this grade matters for your offer, a remark is a rational bet." : "Your essay reads comfortably inside its band. A second examiner would most likely arrive at the same grade — this is the profile where remark fees get spent and nothing moves."}</p>
             </div>
           )}
-          <div className="space-y-3 mb-4">
-            {(result.criteria || []).map((c: any) => (
-              <div key={c.name}>
-                <div className="flex justify-between text-sm font-medium mb-1"><span>{c.name}</span><span>{c.score}/{c.max}</span></div>
-                <div className="h-1.5 bg-muted rounded-full overflow-hidden"><div className="h-full bg-primary rounded-full" style={{ width: ((c.score / c.max) * 100) + "%" }} /></div>
-              </div>
-            ))}
-          </div>
-          <details className="mb-4">
-            <summary className="text-sm font-semibold text-primary cursor-pointer">Full examiner-style comments</summary>
-            <div className="mt-2 space-y-2">
-              {(result.criteria || []).map((c: any) => <p key={c.name} className="text-sm text-muted-foreground"><strong className="text-foreground">{c.name}:</strong> {c.comment}</p>)}
-              {result.overall_comment ? <p className="text-sm text-muted-foreground">{result.overall_comment}</p> : null}
+          {result.weakest_criterion && (
+            <div className="rounded-lg border border-border bg-muted/40 p-4 mb-4">
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">Your weakest criterion — full feedback</p>
+              <div className="flex justify-between text-sm font-semibold mb-1"><span>{result.weakest_criterion.name}</span><span>{result.weakest_criterion.score}/{result.weakest_criterion.max}</span></div>
+              <p className="text-sm text-muted-foreground leading-relaxed">{result.weakest_criterion.comment}</p>
             </div>
-          </details>
+          )}
+          {(result.risks || []).length > 0 && (
+            <ul className="space-y-1.5 mb-4">
+              {result.risks.map((r: any, i: number) => (
+                <li key={i} className="text-sm"><strong className="text-foreground">{r.title}</strong></li>
+              ))}
+            </ul>
+          )}
+          <p className="text-sm text-muted-foreground mb-3">The full report — exact score, every criterion with comments, and a ranked fix list — unlocks for $4.99 on the analyzer page.</p>
+          <Button asChild><Link href="/essay">Unlock the full report — $4.99</Link></Button>
           {emailSaved ? (
-            <p className="text-sm font-medium mb-3">Saved — your report link and improvement tips are on the way.</p>
+            <p className="text-sm font-medium mt-4">Saved — your report link and improvement tips are on the way.</p>
           ) : (
-            <div className="flex gap-2 mb-3">
-              <Input type="email" placeholder="you@email.com \u2014 email me this report" value={reportEmail} onChange={(e) => setReportEmail(e.target.value)} className="bg-background" />
+            <div className="flex gap-2 mt-4">
+              <Input type="email" placeholder="you@email.com — email me this report" value={reportEmail} onChange={(e) => setReportEmail(e.target.value)} className="bg-background" />
               <Button size="sm" variant="outline" disabled={!reportEmail.includes("@") || saveEmail.isPending} onClick={() => saveEmail.mutate({ email: reportEmail, fingerprint: fp })}>Save</Button>
             </div>
           )}
-          <p className="text-xs text-muted-foreground">Want more? The <Link href="/essay" className="text-primary underline">full analyzer</Link> covers subject-specific IA rubrics too — $4.99 per essay after your free one.</p>
         </div>
       )}
     </div>
