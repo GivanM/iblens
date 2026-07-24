@@ -1820,41 +1820,16 @@ export const staticContentResources: Record<string, string> = {
       </ul>
       <p><a href="/essay/tok-essay">Check your TOK essay structure with IBLens →</a></p>
     </main>`,
-  "/resources/ib-university-consultant-cost": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB University Consultant Cost</nav>
-      <h1>IB University Consultants: Are They Worth $5,000?</h1>
-      <p>IB families are told that getting into a top university requires a private admissions consultant charging $3,000 to $15,000 or more. Here is what they actually cost, what they do for that money, which parts an AI tool now replicates for $25, and when a human is genuinely worth paying for.</p>
-      <h2>What IB university consultants cost in 2026</h2>
-      <ul>
-        <li><strong>Hourly:</strong> $150–$400 per hour, 15–40 hours for a full engagement.</li>
-        <li><strong>Package:</strong> $3,000–$8,000 for a standard application-season package.</li>
-        <li><strong>Premium / Ivy-focused:</strong> $10,000–$15,000+, with boutique firms charging $30,000 and up.</li>
-      </ul>
-      <h2>Which parts an AI tool replicates for $25</h2>
-      <p>A balanced Safe/Match/Reach list, admission-chance estimates, a personal-statement angle, and an application timeline are structured, data-driven decisions. IBLens generates all four from your real IB predicted grades in two minutes for $25 — the strategic core of a $5,000 package. What AI does not replace is multi-draft human essay editing and interview coaching.</p>
-      <h2>When you genuinely need a human consultant</h2>
-      <ul>
-        <li>Hyper-selective schools where interview performance decides the outcome.</li>
-        <li>Unusual profiles (transfers, gap years) needing bespoke narrative work.</li>
-        <li>Ongoing multi-draft essay editing.</li>
-      </ul>
-      <p>For the majority of IB students who simply need to apply to the right list of universities, the $25 strategy covers the decisions that matter.</p>
-      <p>The IBLens University Strategy is being rebuilt on verified data and is temporarily unavailable. <a href="/essay">Grade your IB essays free →</a></p>
+  "/resources/ib-university-consultant-cost": `  <main style="max-width:800px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › University Guidance</nav>
+      <h1>IB University Guidance — being rebuilt</h1>
+      <p>We have taken our university guidance and strategy tools offline while we rebuild them on verified, official university requirements and deadlines from primary sources. We would rather show nothing than show admission estimates we cannot stand behind.</p>
+      <p>In the meantime, grade your IB essays free: <a href="/essay">IB Essay Analyzer →</a></p>
     </main>`,
-  "/resources/ib-university-chances": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB University Chances Checker</nav>
-      <h1>IB University Chances Checker</h1>
-      <p>See which universities are realistic Safe, Match, and Reach options for your predicted IB score. This free estimate is based on published IB entry requirements. A personalised, purchasable version is being rebuilt on verified university data.</p>
-      <h2>What different IB scores mean for university</h2>
-      <ul>
-        <li><strong>40–45 points:</strong> Competitive for the most selective universities worldwide — Oxbridge, Ivy League, LSE, Imperial.</li>
-        <li><strong>36–39 points:</strong> Strong for the Russell Group, top Canadian and Dutch universities, and many US institutions.</li>
-        <li><strong>32–35 points:</strong> A wide range of solid UK, European, and Australian universities via direct entry.</li>
-        <li><strong>28–31 points:</strong> Many direct-entry programs across the UK, Australia, and the EU, plus foundation pathways.</li>
-        <li><strong>24–27 points:</strong> Foundation and pathway routes, clearing, and open-admission programs.</li>
-      </ul>
-      <h2>How many IB points do you need for university?</h2>
-      <p>Most universities require 30–36 IB points for direct entry, with the most selective courses requiring 38–42. Competitive subjects like Medicine, Law, and Computer Science sit above the university average. Foundation pathways accept lower scores.</p>
-      <p><a href="/essay">Grade your IB essays free →</a></p>
+  "/resources/ib-university-chances": `  <main style="max-width:800px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › University Guidance</nav>
+      <h1>IB University Guidance — being rebuilt</h1>
+      <p>We have taken our university guidance and strategy tools offline while we rebuild them on verified, official university requirements and deadlines from primary sources. We would rather show nothing than show admission estimates we cannot stand behind.</p>
+      <p>In the meantime, grade your IB essays free: <a href="/essay">IB Essay Analyzer →</a></p>
     </main>`,
 };

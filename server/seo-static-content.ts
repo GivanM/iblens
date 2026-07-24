@@ -101,39 +101,10 @@ export const staticContent: Record<string, string> = {
   <p><a href="/essay">Start free →</a></p>
 </main>`),
 
-  "/university": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › IB University Strategy</nav>
-  <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB University Strategy — 9 AI-Matched University Picks with Real Admission Odds</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens builds a personalised university shortlist for IB Diploma students in two minutes. Enter your predicted grades, HL and SL subjects, and preferences, and the AI returns 9 universities — 3 Safe, 3 Match, 3 Reach — each with a realistic admission probability, a tailored personal-statement angle, and a full application timeline. Private university consultants charge $5,000–$10,000 for this. IBLens costs $25.</p>
-
-  <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">What your IB University Strategy includes</h2>
-  <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
-    <li><strong>9 personalised university picks</strong>: 3 Safe, 3 Match, and 3 Reach universities — matched to your exact IB predicted score and HL/SL subject combination, not generic league-table rankings.</li>
-    <li><strong>Real admission probabilities</strong>: every pick comes with an honest estimate of your chances, based on published IB entry requirements and the typical offers each course makes to IB applicants.</li>
-    <li><strong>Your personal-statement angle</strong>: a specific positioning angle for your profile — what to emphasise so your application stands out for your target course, not a generic template.</li>
-    <li><strong>A full application timeline</strong>: step-by-step deadlines for UCAS, the Common App, and direct applications, mapped onto your final IB year so nothing is missed.</li>
-  </ul>
-
-  <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">How the IB University Strategy works</h2>
-  <p style="color:#374151;line-height:1.75;margin-bottom:16px">You tell IBLens three things: your IB predicted grades (total and per subject), your HL and SL subject combination, and your preferences — countries, course area, and how ambitious you want the list to be. The AI cross-references your profile against real IB entry requirements and typical offer patterns to build a balanced Safe / Match / Reach shortlist. Instead of a single dream university with no backup, you get a strategy: universities you are very likely to get into, universities that fit your profile closely, and stretch options worth a shot.</p>
-
-  <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">$25 vs a $5,000 university consultant</h2>
-  <p style="color:#374151;line-height:1.75;margin-bottom:16px">Private IB university counsellors and admissions consultants typically charge $5,000 to $10,000 or more for a personalised university list and application strategy. Much of what they deliver — a balanced Safe/Match/Reach list, admission-chance estimates, a personal-statement angle, and a deadline plan — IBLens generates instantly for $25, using your real IB predicted grades and the published entry requirements of universities in the UK, US, Canada, Australia, the Netherlands, and beyond. It is not a replacement for a $10,000 relationship with a private counsellor, but for the vast majority of IB students who cannot afford one, it delivers the same core strategic decisions at 0.5% of the price.</p>
-
-  <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Which universities and countries are covered</h2>
-  <p style="color:#374151;line-height:1.75;margin-bottom:16px">IBLens covers the most popular IB destinations, including the UK (Oxford, Cambridge, LSE, Imperial, UCL and the wider Russell Group), the US (Ivy League, MIT, Stanford, and top liberal-arts colleges), Canada (Toronto, McGill, UBC), Australia (Group of Eight), the Netherlands, and Germany. Every pick uses the real IB score requirement for that specific university and course, so your Safe/Match/Reach bands reflect where you actually stand.</p>
-
-  <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Frequently asked questions</h2>
-  <dl style="color:#374151;line-height:1.75">
-    <dt style="font-weight:600;margin-top:16px">How much does the IB University Strategy cost?</dt>
-    <dd style="margin-top:4px">$25 — a one-time payment with no subscription. University consultants typically charge $5,000–$10,000+ for comparable personalised guidance.</dd>
-    <dt style="font-weight:600;margin-top:16px">Is the strategy really personalised to my IB scores?</dt>
-    <dd style="margin-top:4px">Yes. It uses your specific predicted grades, HL/SL subject combination, and preferences to generate picks and admission probabilities specific to your profile — not generic rankings.</dd>
-    <dt style="font-weight:600;margin-top:16px">Which countries does it cover?</dt>
-    <dd style="margin-top:4px">The UK, US, Canada, Australia, the Netherlands, Germany, and other popular IB destinations, with real IB requirements for top universities including Oxford, LSE, Imperial, MIT, and the Ivy League.</dd>
-  </dl>
-
-  <p style="margin-top:24px"><a href="/university" style="color:#7B1D2E;font-weight:600">Get your IB University Strategy for $25 →</a></p>
+  "/university": S(`<main style="max-width:800px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> ‹ University Strategy</nav>
+  <h1 style="font-size:28px;font-weight:700;margin:0 0 16px">IB University Strategy — being rebuilt</h1>
+  <p style="color:#374151;line-height:1.75">We have taken the University Strategy offline while we rebuild it on verified, official university requirements and deadlines from primary sources. In the meantime, grade your IB essays free: <a href="/essay">IB Essay Analyzer</a></p>
 </main>`),
 
   "/essay/biology-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
