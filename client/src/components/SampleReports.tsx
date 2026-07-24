@@ -188,11 +188,11 @@ export function SampleReports() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight mb-3">See exactly what you get</h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Real sample outputs — Essay grading report and University Strategy report
+            A real sample essay grading report — criterion by criterion
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-[920px] mx-auto items-start">
+        <div className="flex justify-center max-w-[460px] mx-auto">
           {/* Essay Report */}
           <div className="flex flex-col items-center gap-5">
             <div className="transition-transform duration-300 hover:scale-[0.98] cursor-pointer w-full flex justify-center">
@@ -205,17 +205,6 @@ export function SampleReports() {
             </Button>
           </div>
 
-          {/* University Report */}
-          <div className="flex flex-col items-center gap-5">
-            <div className="transition-transform duration-300 hover:scale-[0.98] cursor-pointer w-full flex justify-center">
-              <UniversityReportPreview />
-            </div>
-            <Button size="lg" variant="outline" className="border-2" asChild>
-              <Link href="/university">
-                Build My Strategy <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
-            </Button>
-          </div>
         </div>
       </div>
     </section>

@@ -242,22 +242,6 @@ export default function Dashboard() {
             </Link>
           </CardContent>
         </Card>
-
-        <Card className="hover:shadow-md transition-shadow">
-          <CardContent className="p-5">
-            <Link href="/university" className="flex items-center gap-3">
-              <div className="flex-1">
-                <h3 className="font-semibold text-sm">University Strategy</h3>
-                <p className="text-xs text-muted-foreground mt-0.5">
-                  {credits?.canAnalyzeUniversity
-                    ? `${credits.universityCredits} credits available`
-                    : "Purchase credits to use"}
-                </p>
-              </div>
-              <ArrowRight className="w-4 h-4 text-muted-foreground" />
-            </Link>
-          </CardContent>
-        </Card>
       </div>
 
       {/* Analysis History */}

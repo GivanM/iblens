@@ -162,7 +162,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 IB<span className="text-primary">Lens</span>
               </span>
               <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
-                AI-powered IB essay grader and university strategy. Criterion-by-criterion feedback in 60 seconds.
+                AI-powered IB essay grader for IA, EE and TOK. Criterion-by-criterion feedback in 60 seconds.
               </p>
             </div>
             <nav className="flex flex-wrap gap-x-6 gap-y-2 md:justify-end">
