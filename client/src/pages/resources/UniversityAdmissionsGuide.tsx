@@ -197,7 +197,7 @@ export default function UniversityAdmissionsGuide() {
       <h2>How IBLens University Strategy Helps</h2>
 
       <p>
-        Navigating the complexity of IB-to-university pathways is exactly what <Link href="/university" className="text-primary hover:underline">IBLens's University Strategy tool</Link> is designed for. Based on your predicted scores, subject combination, and preferences (country, program, campus size), it identifies:
+        Navigating the complexity of IB-to-university pathways is exactly what <Link href="/essay" className="text-primary hover:underline">IBLens's University Strategy tool</Link> is designed for. Based on your predicted scores, subject combination, and preferences (country, program, campus size), it identifies:
       </p>
 
       <ul>

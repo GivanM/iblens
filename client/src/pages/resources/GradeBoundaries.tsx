@@ -270,7 +270,7 @@ export default function GradeBoundaries() {
       </p>
 
       <p>
-        For personalized guidance on which universities match your predicted scores and subject combination, <Link href="/university" className="text-primary hover:underline">IBLens's University Strategy tool</Link> can help you identify realistic targets and reach schools based on historical admissions data.
+        For personalized guidance on which universities match your predicted scores and subject combination, <Link href="/essay" className="text-primary hover:underline">IBLens's University Strategy tool</Link> can help you identify realistic targets and reach schools based on historical admissions data.
       </p>
 
       <h2>How to Maximize Your Total Score</h2>
