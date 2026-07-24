@@ -90,7 +90,7 @@ export default function IBUniversityConsultantCost() {
         Before you spend thousands, get the strategic core first. See your personalised 9-university Safe/Match/Reach list with real admission odds.
       </p>
       <p>
-        <Link href="/university">Get your IB University Strategy for $25 →</Link>
+        <span className="text-muted-foreground">The IBLens University Strategy is being rebuilt on verified university data and is temporarily unavailable. In the meantime, <Link href="/essay" className="text-primary underline">grade your IB essays free</Link>.</span>
       </p>
     </ResourceArticle>
   );

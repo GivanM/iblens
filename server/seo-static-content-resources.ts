@@ -1839,12 +1839,12 @@ export const staticContentResources: Record<string, string> = {
         <li>Ongoing multi-draft essay editing.</li>
       </ul>
       <p>For the majority of IB students who simply need to apply to the right list of universities, the $25 strategy covers the decisions that matter.</p>
-      <p><a href="/university">Get your IB University Strategy for $25 →</a></p>
+      <p>The IBLens University Strategy is being rebuilt on verified data and is temporarily unavailable. <a href="/essay">Grade your IB essays free →</a></p>
     </main>`,
   "/resources/ib-university-chances": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB University Chances Checker</nav>
       <h1>IB University Chances Checker</h1>
-      <p>See which universities are realistic Safe, Match, and Reach options for your predicted IB score. This free estimate is based on published IB entry requirements. For a personalised 9-university shortlist with real admission odds tailored to your subjects, get the full IB University Strategy for $25.</p>
+      <p>See which universities are realistic Safe, Match, and Reach options for your predicted IB score. This free estimate is based on published IB entry requirements. A personalised, purchasable version is being rebuilt on verified university data.</p>
       <h2>What different IB scores mean for university</h2>
       <ul>
         <li><strong>40–45 points:</strong> Competitive for the most selective universities worldwide — Oxbridge, Ivy League, LSE, Imperial.</li>
@@ -1855,6 +1855,6 @@ export const staticContentResources: Record<string, string> = {
       </ul>
       <h2>How many IB points do you need for university?</h2>
       <p>Most universities require 30–36 IB points for direct entry, with the most selective courses requiring 38–42. Competitive subjects like Medicine, Law, and Computer Science sit above the university average. Foundation pathways accept lower scores.</p>
-      <p><a href="/university">See your personalised IB University Strategy for $25 →</a></p>
+      <p><a href="/essay">Grade your IB essays free →</a></p>
     </main>`,
 };

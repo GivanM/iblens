@@ -7,6 +7,33 @@
 const S = (s: string) => s; // identity, keeps template literals readable
 
 export const staticContent: Record<string, string> = {
+  "/privacy": S(`  <main style="max-width:800px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
+      <h1>Privacy Policy</h1>
+      <p>This policy explains what personal data IBLens collects and how it is used. Operated by an independent developer; contact glushkovim@gmail.com.</p>
+      <h2>What we collect</h2>
+      <p>Essay text you submit for analysis and the subject/type you select; account details (name, email) if you sign in; usage and device data via cookies and analytics.</p>
+      <h2>How your essay is processed</h2>
+      <p>Your text is transmitted over an encrypted connection to our AI provider, Anthropic PBC, solely to generate your analysis. We do not use it to train any AI model and do not sell it. Anonymous analyses are not stored permanently.</p>
+      <h2>Sharing</h2>
+      <p>We do not sell personal data. We share it only with the providers needed to run IBLens: Anthropic (AI analysis), LemonSqueezy (payments), Google (analytics, ads, sign-in). We do not share your essay with your school, universities, examiners, or other students.</p>
+      <h2>Your rights and children</h2>
+      <p>You can request access or deletion at glushkovim@gmail.com. IBLens is intended for secondary-school students; we collect only what the service needs and, where laws such as the UK Children's Code apply, keep data use to a minimum.</p>
+    </main>`),
+  "/terms": S(`  <main style="max-width:800px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
+      <h1>Terms of Use</h1>
+      <p>By using IBLens you agree to these terms.</p>
+      <h2>What IBLens is</h2>
+      <p>An AI tool that reads a piece of IB coursework (IA, EE, or TOK) you submit and estimates how it performs against published assessment criteria, before submission.</p>
+      <h2>Estimates, not official grades</h2>
+      <p>Any score, band, or probability is an AI-generated estimate to help you improve your own work. It is not an official grade and not a substitute for your teacher's or examiner's assessment. Do not make irreversible decisions on the basis of IBLens output alone.</p>
+      <h2>Independence from the IB</h2>
+      <p>IBLens is not affiliated with, endorsed by, or connected to the International Baccalaureate Organization. References to IB programmes and criteria are descriptive; all IB trademarks belong to their owner.</p>
+      <h2>Acceptable use</h2>
+      <p>Use IBLens only for feedback on work you wrote yourself; never submit AI-generated text for assessment; follow your school's AI policy.</p>
+      <h2>No warranty</h2>
+      <p>IBLens is provided as is, without warranty of accuracy. We are not liable for losses arising from reliance on its output.</p>
+    </main>`),
+
   "/remark": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › IB Remark Guide</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">Should You Pay for an IB Remark in 2026?</h1>
@@ -55,7 +82,7 @@ export const staticContent: Record<string, string> = {
   </ol>
   <h2 style="font-size:22px;font-weight:700;margin:28px 0 12px">Why IB students use IBLens</h2>
   <p style="color:#374151;line-height:1.7;margin-bottom:20px">IB tutors charge $80–150 per hour. A single IBLens analysis costs $4.99 and takes 60 seconds — with feedback based on the official IB marking criteria, available 24/7. Your first essay is graded free.</p>
-  <p style="line-height:2"><a href="/essay">Grade my IB essay free →</a> &nbsp;·&nbsp; <a href="/pricing">See pricing</a> &nbsp;·&nbsp; <a href="/university">IB University Strategy ($25)</a> &nbsp;·&nbsp; <a href="/resources">Free IB study guides</a></p>
+  <p style="line-height:2"><a href="/essay">Grade my IB essay free →</a> &nbsp;·&nbsp; <a href="/pricing">See pricing</a> &nbsp;·&nbsp; <a href="/resources">Free IB study guides</a></p>
 </main>`),
 
   "/pricing": S(`  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -68,7 +95,6 @@ export const staticContent: Record<string, string> = {
     <li><strong>Single analysis — $4.99</strong> — one full IB essay analysis (IA, EE or TOK).</li>
     <li><strong>Pack of 5 — $19.99</strong> — five analyses, credits never expire.</li>
     <li><strong>Pack of 10 — $34.99</strong> — ten analyses, best value per essay.</li>
-    <li><strong>IB University Strategy — $25</strong> — 9 personalised university picks with admission odds.</li>
   </ul>
   <h2 style="font-size:20px;font-weight:700;margin:28px 0 12px">How IBLens compares to an IB tutor</h2>
   <p style="color:#374151;line-height:1.7;margin-bottom:20px">IB tutors charge $80–150 per hour. A single IBLens analysis costs $4.99 and returns criterion-by-criterion feedback against the official IB rubric in 60 seconds, any time of day. Credits never expire, and every purchase is covered by a 7-day money-back guarantee.</p>

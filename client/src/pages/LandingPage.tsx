@@ -232,7 +232,7 @@ export default function LandingPage() {
               />
               <FAQItem
                 question="Is my essay private?"
-                answer="Yes. Essays are processed for analysis only and never stored or shared. Your work stays yours."
+                answer="Your essay is sent to our AI provider over an encrypted connection to generate your analysis. We do not use it to train any model or sell it. Anonymous analyses are not stored permanently."
               />
             </div>
           </div>

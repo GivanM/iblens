@@ -114,7 +114,7 @@ export default function HowIBLensWorks() {
 
       <ul>
         <li><strong>Essays are not stored permanently:</strong> Your essay text is processed through the AI for analysis and then discarded. We do not maintain a database of student essays.</li>
-        <li><strong>No sharing with third parties:</strong> Your essay content is never shared with other students, schools, universities, or any third party.</li>
+        <li><strong>Processed by our AI provider only:</strong> Your essay is sent to our AI provider (Anthropic) over an encrypted connection solely to generate your analysis. It is not used to train any model, not sold, and not shared with schools, universities, or other students.</li>
         <li><strong>Encrypted transmission:</strong> All data is transmitted over HTTPS with industry-standard encryption.</li>
         <li><strong>No training on your data:</strong> Your essays are not used to train or improve the AI model. Your intellectual property remains yours.</li>
         <li><strong>Account data:</strong> We store minimal account information (email, usage history) needed to provide the service. This can be deleted on request.</li>

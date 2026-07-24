@@ -49,7 +49,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
             <nav className="hidden md:flex items-center gap-1">
               <NavLink href="/essay" active={location === "/essay"}>Essay Analyzer</NavLink>
-              <NavLink href="/university" active={location === "/university"}>University Strategy</NavLink>
               <NavLink href="/resources" active={location.startsWith("/resources")}>Resources</NavLink>
               <NavLink href="/pricing" active={location === "/pricing"}>Pricing</NavLink>
               {isAuthenticated && (
@@ -118,16 +117,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               Essay Analyzer
             </Link>
             <Link
-              href="/university"
-              onClick={() => setMobileMenuOpen(false)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
-                location === "/university" ? "bg-primary/10 text-primary" : "text-muted-foreground"
-              }`}
-            >
-              <GraduationCap className="w-4 h-4" />
-              University Strategy
-            </Link>
-            <Link
               href="/resources"
               onClick={() => setMobileMenuOpen(false)}
               className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
@@ -178,9 +167,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
             <nav className="flex flex-wrap gap-x-6 gap-y-2 md:justify-end">
               <Link href="/essay" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Essay Analyzer</Link>
-              <Link href="/university" className="text-sm text-muted-foreground hover:text-foreground transition-colors">University Strategy</Link>
               <Link href="/resources" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Resources</Link>
               <Link href="/pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Pricing</Link>
+              <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Privacy</Link>
+              <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Terms</Link>
               <Link href="/refund-policy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Refund Policy</Link>
               <Link href="/resources/academic-integrity" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Academic Integrity</Link>
             </nav>

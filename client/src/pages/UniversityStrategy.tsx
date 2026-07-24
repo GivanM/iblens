@@ -265,38 +265,10 @@ export default function UniversityStrategy() {
             </div>
           )}
 
-          <Button
-            className="w-full h-11"
-            onClick={handleAnalyze}
-            disabled={analyzeMutation.isPending || (isAuthenticated && !credits?.canAnalyzeUniversity)}
-          >
-            {analyzeMutation.isPending ? (
-              <>
-                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                Building your strategy... (20-40 seconds)
-              </>
-            ) : !isAuthenticated ? (
-              <>
-                <Lock className="w-4 h-4 mr-2" />
-                Sign in to Build Strategy ({PRICE_LABELS.UNIVERSITY_SINGLE})
-              </>
-            ) : !credits?.canAnalyzeUniversity ? (
-              <>
-                <Lock className="w-4 h-4 mr-2" />
-                Purchase Credits to Build Strategy
-              </>
-            ) : (
-              <>
-                <GraduationCap className="w-4 h-4 mr-2" />
-                Build My University Strategy ({PRICE_LABELS.UNIVERSITY_SINGLE})
-              </>
-            )}
-          </Button>
-
-          {/* Price comparison */}
-          <p className="text-center text-xs text-muted-foreground/70">
-            IB consultants charge $300–500 for this. We do it in 2 minutes.
-          </p>
+          <div className="rounded-lg border-2 border-amber-400 bg-amber-50 p-5 text-sm text-amber-900">
+            <p className="font-semibold mb-1">Temporarily unavailable</p>
+            <p className="text-amber-800">We are rebuilding the University Strategy on verified, official university requirements and deadlines, and it is not available for purchase right now. For essay feedback in the meantime, use the <Link href="/essay" className="underline font-medium">IB Essay Analyzer</Link>.</p>
+          </div>
 
           {/* Direct purchase button when no credits */}
           {isAuthenticated && !credits?.canAnalyzeUniversity && (

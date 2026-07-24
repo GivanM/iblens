@@ -34,6 +34,21 @@ const SITE_NAME = "IBLens";
 const DEFAULT_OG_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663456034410/fPpXrWUtmpLttw7Fz9wKLE/og-image-CS5C2Vq6Jk92bXNFNMwCXg.png";
 
 const routeMeta: Record<string, PageMeta> = {
+  "/privacy": {
+    title: "Privacy Policy | IBLens",
+    description: "How IBLens handles your data: what we collect, how your essay is processed by our AI provider (Anthropic), retention, your rights, and children's privacy.",
+    ogType: "website",
+    canonical: "/privacy",
+    schemaType: "WebPage",
+  },
+  "/terms": {
+    title: "Terms of Use | IBLens",
+    description: "Terms for using IBLens: scores are AI estimates not official IB grades, acceptable use, and IBLens independence from the International Baccalaureate Organization.",
+    ogType: "website",
+    canonical: "/terms",
+    schemaType: "WebPage",
+  },
+
   "/remark": {
     title: "IB Remark 2026 — Is an EUR Worth It? Check Before You Pay | IBLens",
     description: "An IB remark costs around $100–120, your grade can go down, and the deadline is mid-September. Grade your EE or TOK essay with a strict AI first — know if you are near a boundary before you pay.",

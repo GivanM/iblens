@@ -252,9 +252,9 @@ export default function EssayAnalyzer() {
           {/* Score summary */}
           <div className="grid grid-cols-3 gap-3">
             {[
-              { label: "Predicted Score", value: "28/36", color: "text-amber-600" },
+              { label: "Predicted Score", value: "18/25", color: "text-amber-600" },
               { label: "IB Band", value: "Band 6", color: "text-foreground" },
-              { label: "Criteria Total", value: "78%", color: "text-foreground" },
+              { label: "Criteria Total", value: "72%", color: "text-foreground" },
             ].map((s) => (
               <div key={s.label} className="text-center p-4 bg-muted/50 rounded-lg border border-border">
                 <div style={SERIF} className={`text-2xl font-bold ${s.color}`}>{s.value}</div>
@@ -273,11 +273,12 @@ export default function EssayAnalyzer() {
           <div className="space-y-3">
             <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Criteria Breakdown</p>
             {[
-              { name: "Criterion A: Research Proposal", score: 5, max: 5, color: "bg-emerald-500" },
-              { name: "Criterion B: Theoretical Framework", score: 6, max: 8, color: "bg-amber-500" },
-              { name: "Criterion C: Research Methods", score: 5, max: 6, color: "bg-emerald-500" },
-              { name: "Criterion D: Analysis & Discussion", score: 7, max: 11, color: "bg-amber-500" },
-              { name: "Criterion E: Conclusions", score: 5, max: 6, color: "bg-emerald-500" },
+              { name: "Criterion A: Research question", score: 2, max: 3, color: "bg-amber-500" },
+              { name: "Criterion B: Methodology", score: 3, max: 4, color: "bg-emerald-500" },
+              { name: "Criterion C: Analysis & discussion", score: 7, max: 10, color: "bg-amber-500" },
+              { name: "Criterion D: Conclusions", score: 2, max: 3, color: "bg-amber-500" },
+              { name: "Criterion E: Evaluation", score: 2, max: 3, color: "bg-emerald-500" },
+              { name: "Criterion F: Structure & presentation", score: 2, max: 2, color: "bg-emerald-500" },
             ].map((c) => (
               <div key={c.name}>
                 <div className="flex justify-between text-sm mb-1">

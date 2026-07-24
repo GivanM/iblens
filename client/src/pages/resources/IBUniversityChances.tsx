@@ -50,7 +50,7 @@ export default function IBUniversityChances() {
     >
       <h1>IB University Chances Checker</h1>
       <p>
-        Move the slider to your predicted IB total and see a directional read on which universities are realistic Safe, Match, and Reach options. This is a free estimate based on published IB entry requirements — for a personalised 9-university shortlist with real admission odds tailored to your exact subjects, get the <Link href="/university">full IB University Strategy for $25</Link>.
+        Move the slider to your predicted IB total and see a directional read on which universities are realistic Safe, Match, and Reach options. This is a free estimate based on published IB entry requirements — a personalised, purchasable version is being rebuilt on verified university data.
       </p>
 
       <div style={{border: "1px solid #e5e7eb", borderRadius: 12, padding: "24px", margin: "24px 0", background: "#fff"}}>
@@ -92,7 +92,7 @@ export default function IBUniversityChances() {
           9 universities matched to your exact IB profile — with admission probabilities, a personal-statement angle, and a full timeline. University consultants charge $5,000+. IBLens costs $25.
         </p>
         <Link href="/university" style={{display: "inline-block", background: "#fff", color: "#7B1D2E", fontWeight: 700, padding: "12px 28px", borderRadius: 8, textDecoration: "none"}}>
-          Get my IB University Strategy — $25 →
+          University Strategy — coming back soon
         </Link>
       </div>
 
@@ -111,7 +111,7 @@ export default function IBUniversityChances() {
       </ul>
 
       <p>
-        <Link href="/university">See your personalised IB University Strategy for $25 →</Link>
+        <Link href="/essay">Grade your IB essays free →</Link>
       </p>
     </ResourceArticle>
   );

@@ -47,6 +47,8 @@ import IBHistoryExtendedEssay from "./pages/resources/IBHistoryExtendedEssay";
 import IBEnglishExtendedEssay from "./pages/resources/IBEnglishExtendedEssay";
 import IBEconomicsExtendedEssay from "./pages/resources/IBEconomicsExtendedEssay";
 import IBPsychologyExtendedEssay from "./pages/resources/IBPsychologyExtendedEssay";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 import Layout from "./components/Layout";
 import { CookieConsent } from "./components/CookieConsent";
 import BiologyIA from "./pages/essay/BiologyIA";
@@ -92,6 +94,8 @@ function Router() {
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/pricing" component={Pricing} />
       <Route path="/refund-policy" component={RefundPolicy} />
+      <Route path="/privacy" component={Privacy} />
+      <Route path="/terms" component={Terms} />
       <Route path="/auth/signin" component={SignIn} />
       <Route path="/resources" component={ResourcesIndex} />
       <Route path="/resources/ib-extended-essay-guide" component={ExtendedEssayGuide} />

@@ -70,22 +70,6 @@ const plans: Array<{
     href: "/dashboard",
     productKey: "ESSAY_PACK_10",
   },
-  {
-    name: "University Strategy",
-    price: PRICE_LABELS.UNIVERSITY_SINGLE,
-    description: "Complete university strategy report",
-    popular: false,
-    features: [
-      "9 universities: safe, match, reach",
-      "Admission probability estimates",
-      "Essay positioning angle",
-      "Timeline-based action roadmap",
-      "Profile strengths & concerns",
-    ],
-    cta: "Get Strategy",
-    href: "/university",
-    productKey: "UNIVERSITY_SINGLE",
-  },
 ];
 
 export default function Pricing() {

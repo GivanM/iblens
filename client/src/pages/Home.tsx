@@ -59,11 +59,12 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
 // Sample score card criteria for hero
 const SAMPLE_CRITERIA = [
-  { name: "Research Proposal", score: 5, max: 5 },
-  { name: "Theoretical Framework", score: 6, max: 8 },
-  { name: "Research Methods", score: 5, max: 6 },
-  { name: "Analysis & Discussion", score: 7, max: 11 },
-  { name: "Conclusions & Evaluation", score: 5, max: 6 },
+  { name: "A: Research question", score: 2, max: 3 },
+  { name: "B: Methodology", score: 3, max: 4 },
+  { name: "C: Analysis & discussion", score: 7, max: 10 },
+  { name: "D: Conclusions", score: 2, max: 3 },
+  { name: "E: Evaluation", score: 2, max: 3 },
+  { name: "F: Structure & presentation", score: 2, max: 2 },
 ];
 
 export default function Home() {
@@ -149,7 +150,7 @@ export default function Home() {
                 name: "Is my essay data kept private and secure?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Absolutely. Your essays are processed securely through our backend and are never stored permanently or shared with third parties. All AI processing happens through encrypted API calls.",
+                  text: "Your essay is sent to our AI provider (Anthropic PBC) over an encrypted connection solely to generate your analysis. We do not use it to train any AI model, we do not sell it, and we do not share it with your school, universities, or other students. Anonymous analyses are not stored permanently.",
                 },
               },
               {
@@ -219,11 +220,11 @@ export default function Home() {
               {/* Right column — score card */}
               <div className="rounded-xl border border-border bg-card shadow-sm p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Biology IA · Result</p>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Business Management IA · Sample</p>
                   <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">Sample</span>
                 </div>
-                <div style={SERIF} className="text-5xl font-bold mb-1">20 <span className="text-muted-foreground text-3xl">/</span> 24</div>
-                <p className="text-sm text-muted-foreground mb-4">Predicted grade 6 · Top 22%</p>
+                <div style={SERIF} className="text-5xl font-bold mb-1">18 <span className="text-muted-foreground text-3xl">/</span> 25</div>
+                <p className="text-sm text-muted-foreground mb-4">Sample report · illustrative</p>
                 <div className="border-t border-border pt-4 space-y-3">
                   {SAMPLE_CRITERIA.map((c) => {
                     const pct = (c.score / c.max) * 100;
@@ -249,11 +250,11 @@ export default function Home() {
         <div className="bg-muted/50 border-y border-border py-4">
           <div className="container">
             <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-2 text-sm text-muted-foreground">
-              <span><strong className="text-foreground">12,400+</strong> essays graded</span>
+              <span><strong className="text-foreground">No account</strong> needed for your first essay</span>
               <span className="hidden sm:block text-border">|</span>
-              <span><strong className="text-foreground">94%</strong> accuracy vs examiner scores</span>
+              <span><strong className="text-foreground">Every criterion</strong>, scored strictly</span>
               <span className="hidden sm:block text-border">|</span>
-              <span><strong className="text-foreground">47</strong> subjects supported</span>
+              <span><strong className="text-foreground">IA · EE · TOK</strong></span>
               <span className="hidden sm:block text-border">|</span>
               <span><strong className="text-foreground">Free</strong> first essay</span>
             </div>
@@ -516,7 +517,7 @@ export default function Home() {
               />
               <FAQItem
                 question="Is my essay data kept private and secure?"
-                answer="Absolutely. Your essays are processed securely through our backend and are never stored permanently or shared with third parties. All AI processing happens through encrypted API calls."
+                answer="Your essay is sent to our AI provider (Anthropic PBC) over an encrypted connection solely to generate your analysis. We do not use it to train any AI model, we do not sell it, and we do not share it with your school, universities, or other students. Anonymous analyses are not stored permanently."
               />
               <FAQItem
                 question="What payment methods do you accept?"

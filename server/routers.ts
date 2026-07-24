@@ -400,6 +400,9 @@ const paymentRouter = router({
       email: z.string().email("Please enter a valid email address"),
     }))
     .mutation(async ({ input }) => {
+      if (input.productKey === "UNIVERSITY_SINGLE") {
+        throw new Error("The University Strategy is temporarily unavailable while we rebuild it on verified data.");
+      }
       const product = PRODUCTS[input.productKey];
       if (!product) throw new Error("Invalid product");
 
@@ -448,6 +451,9 @@ const paymentRouter = router({
       productKey: z.enum(["ESSAY_SINGLE", "ESSAY_PACK_5", "ESSAY_PACK_10", "UNIVERSITY_SINGLE"]),
     }))
     .mutation(async ({ ctx, input }) => {
+      if (input.productKey === "UNIVERSITY_SINGLE") {
+        throw new Error("The University Strategy is temporarily unavailable while we rebuild it on verified data.");
+      }
       const product = PRODUCTS[input.productKey];
       if (!product) throw new Error("Invalid product");
 
