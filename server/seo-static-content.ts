@@ -1851,21 +1851,15 @@ export const staticContent: Record<string, string> = {
         <li><strong>Over 4000 words:</strong> Never acceptable. Cut until you are under the limit, then review once more.</li>
       </ul>
 
-      <h2>The Abstract Word Count</h2>
+      <h2>Do Not Write an Abstract</h2>
       <p>
-        The EE abstract has a separate limit of 300 words and is not included in the
-        4000-word count. The abstract must state: the research question, the scope of
-        the investigation, and the conclusion reached. It should not include personal
-        opinion or extensive background — it is a concise summary of the essay's
-        structure and findings.
+
       </p>
       <p>
-        From the May 2018 exam session onward, the abstract is abolished and must not be included; previously it was formally
-        assessed as part of the IB criteria. However, it is still required and will
-        be read by your supervisor and potentially by the examiner to orient
-        themselves before reading the full essay. A clear, accurate abstract makes
-        a good first impression and helps the examiner locate your research question
-        and argument quickly.
+        The abstract was abolished in the May 2018 session and has not been required or
+        assessed since. Do not include one — if a template still asks for a 300-word
+        abstract, it is out of date. Orient the examiner with a clear introduction and
+        a table of contents instead.
       </p>
 
       <h2>Subject-Specific Word Count Guidance</h2>
