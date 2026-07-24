@@ -43,7 +43,7 @@ export default function IBPhysicsIAExamples() {
         the Analysis score to 5 or 6.
       </p>
       <p>
-        Personal Engagement: investigate the spring constant of a specific object
+        Personal context: investigate the spring constant of a specific object
         with physical meaning — the spring in a retractable pen, a bungee cord
         sample, a guitar string under tension. This transforms a textbook lab into
         an original investigation.

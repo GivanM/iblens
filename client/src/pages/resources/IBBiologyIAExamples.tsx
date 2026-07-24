@@ -64,7 +64,7 @@ export default function IBBiologyIAExamples() {
         determine whether differences between groups are statistically significant
         will score Analysis = 6. Using two different plant tissues (e.g., potato
         and beetroot) and comparing the solute potential of each adds originality
-        for Personal Engagement.
+        for the personal-context element of Research design.
       </p>
 
       <h3>3. Effect of light intensity on the rate of photosynthesis</h3>
@@ -84,7 +84,7 @@ export default function IBBiologyIAExamples() {
         school has a suitable microbiology facility. A student who investigates
         whether natural antimicrobial compounds (garlic extract, tea tree oil,
         honey) produce inhibition zones comparable to a standard antibiotic
-        earns strong Personal Engagement marks. The Analysis requires measuring
+        makes the context convincingly personal. The Data analysis requires measuring
         inhibition zone diameters accurately, calculating means and standard
         deviations, and using a statistical test. The Evaluation should discuss
         why disc diffusion underestimates minimum inhibitory concentration and
