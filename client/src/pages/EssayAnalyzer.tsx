@@ -166,6 +166,7 @@ export default function EssayAnalyzer() {
   const [essayType, setEssayType] = useState("IA");
   const [subject, setSubject] = useState("Business Management");
   const [researchQuestion, setResearchQuestion] = useState("");
+  const [examSession, setExamSession] = useState<"nov2026" | "may2027">("nov2026");
   const [essayText, setEssayText] = useState("");
   const [result, setResult] = useState<EssayResult | null>(null);
   const [essayPurchaseOpen, setEssayPurchaseOpen] = useState(false);
@@ -279,6 +280,7 @@ export default function EssayAnalyzer() {
         subject: authParams.subject,
         researchQuestion: researchQuestion || undefined,
         essayText,
+        examSession,
       });
     } else {
       if (!canAnonAnalyze) {
@@ -292,6 +294,7 @@ export default function EssayAnalyzer() {
         researchQuestion: researchQuestion || undefined,
         essayText,
         clientFingerprint: anonFp,
+        examSession,
       });
     }
   };
@@ -445,6 +448,24 @@ export default function EssayAnalyzer() {
                     ))}
                   </SelectContent>
                 </Select>
+              </div>
+            )}
+
+            {(essayType === "EE" || (essayType === "IA" && (subject === "Psychology" || subject === "Computer Science"))) && (
+              <div className="space-y-2">
+                <Label>Exam session</Label>
+                <Select value={examSession} onValueChange={(v) => setExamSession(v as "nov2026" | "may2027")}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="nov2026">May / Nov 2026 — current syllabus</SelectItem>
+                    <SelectItem value="may2027">May 2027 — new syllabus</SelectItem>
+                  </SelectContent>
+                </Select>
+                {essayType === "EE" && examSession === "nov2026" && (
+                  <p className="text-xs text-muted-foreground">Writing your EE for May 2027 (started the DP in 2025)? Switch to the new 30-mark criteria.</p>
+                )}
               </div>
             )}
           </div>

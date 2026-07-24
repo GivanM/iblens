@@ -214,6 +214,7 @@ export const staticContent: Record<string, string> = {
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › Extended Essay</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Extended Essay Grader — Free AI Feedback on Your EE</h1>
   <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Extended Essay against the official IB EE rubric — all five criteria — and gives you criterion-by-criterion feedback in 60 seconds. Paste up to 4,000 words (or your full EE) and get a predicted score with specific improvement suggestions. A free preview is included; the full report is $4.99.</p>
+  <p style="background:#fef3c7;border:1px solid #f59e0b;border-radius:8px;padding:12px 16px;color:#92400e;font-size:14px;line-height:1.6"><strong>Which criteria apply to you?</strong> Sessions through November 2026 use the 34-mark EE criteria below. The <strong>May 2027 cohort</strong> (students who began the DP in 2025 — including current drafts) is assessed on the new 30-mark criteria (Framework 6, Knowledge 6, Analysis and line of argument 6, Discussion and evaluation 8, Reflection 4). Select your session in the analyzer.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Extended Essay rubric: five criteria (34 marks)</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
@@ -351,7 +352,7 @@ export const staticContent: Record<string, string> = {
   "/essay/psychology-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Psychology IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Psychology IA Grader — Free AI Feedback on Your Experimental Report</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Psychology Internal Assessment experimental report against the official IB Psychology IA rubric — all four criteria — in 60 seconds. Get specific feedback on your Introduction, Exploration, Analysis, and Evaluation. A free preview is included; the full report is $4.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Psychology Internal Assessment experimental report against the official IB Psychology IA rubric — all four criteria — in 60 seconds. Get specific feedback on your Introduction, Exploration, Analysis, and Evaluation. A free preview is included; the full report is $4.99. From May 2027 the IA becomes a research proposal marked out of 24 — select your session in the analyzer.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Psychology IA rubric: four criteria (22 marks)</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">

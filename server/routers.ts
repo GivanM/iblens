@@ -46,9 +46,9 @@ const productKeySchema = z.enum(["ESSAY_SINGLE", "ESSAY_PACK_5", "ESSAY_PACK_10"
  * Build the system prompt for essay analysis.
  * Includes rubric-specific instructions when a rubric is available.
  */
-function buildEssaySystemPrompt(essayType: string, subject: string): string {
-  const rubric = getRubric(essayType, subject);
-  const rubricFragment = buildRubricPromptFragment(essayType, subject);
+function buildEssaySystemPrompt(essayType: string, subject: string, examSession?: string): string {
+  const rubric = getRubric(essayType, subject, examSession);
+  const rubricFragment = buildRubricPromptFragment(essayType, subject, examSession);
 
   let base = `You are an experienced IB examiner with 12 years of grading experience across multiple subjects. Analyze the student's work strictly according to IB assessment criteria. Be specific, constructive, and honest. Reference actual IB criteria names and descriptors.
 
@@ -70,8 +70,8 @@ IMPORTANT FORMATTING RULES:
  * Build the user prompt for essay analysis.
  * Dynamically generates the expected JSON criteria structure from the rubric.
  */
-function buildEssayUserPrompt(essayType: string, subject: string, researchQuestion: string | undefined, essayText: string): string {
-  const rubric = getRubric(essayType, subject);
+function buildEssayUserPrompt(essayType: string, subject: string, researchQuestion: string | undefined, essayText: string, examSession?: string): string {
+  const rubric = getRubric(essayType, subject, examSession);
 
   let criteriaExample: string;
   if (rubric) {
@@ -226,6 +226,7 @@ const essayRouter = router({
       researchQuestion: z.string().optional(),
       essayText: z.string().min(300, "Please provide at least 200 words for meaningful analysis."),
       clientFingerprint: z.string().min(1),
+      examSession: z.enum(["nov2026", "may2027"]).optional(),
     }))
     .mutation(async ({ input }) => {
       // Use client-provided fingerprint (UUID stored in localStorage)
@@ -237,8 +238,8 @@ const essayRouter = router({
         throw new Error(usage.reason || "Free analysis already used. Sign in to continue.");
       }
 
-      const systemPrompt = buildEssaySystemPrompt(input.essayType, input.subject);
-      const userPrompt = buildEssayUserPrompt(input.essayType, input.subject, input.researchQuestion, input.essayText);
+      const systemPrompt = buildEssaySystemPrompt(input.essayType, input.subject, input.examSession);
+      const userPrompt = buildEssayUserPrompt(input.essayType, input.subject, input.researchQuestion, input.essayText, input.examSession);
 
       try {
         const response = await invokeLLM({
@@ -257,7 +258,7 @@ const essayRouter = router({
         const result = JSON.parse(cleaned);
 
         // Attach rubric metadata so frontend knows whether this was rubric-based
-        const rubric = getRubric(input.essayType, input.subject);
+        const rubric = getRubric(input.essayType, input.subject, input.examSession);
         result._rubricAvailable = !!rubric;
         if (rubric) {
           result._rubricLabel = rubric.label;
@@ -296,6 +297,7 @@ const essayRouter = router({
       subject: z.string().min(1),
       researchQuestion: z.string().optional(),
       essayText: z.string().min(300, "Please provide at least 200 words for meaningful analysis."),
+      examSession: z.enum(["nov2026", "may2027"]).optional(),
     }))
     .mutation(async ({ ctx, input }) => {
       const usage = await canUserAnalyzeEssay(ctx.user.id);
@@ -303,8 +305,8 @@ const essayRouter = router({
         throw new Error(usage.reason || "No essay credits remaining");
       }
 
-      const systemPrompt = buildEssaySystemPrompt(input.essayType, input.subject);
-      const userPrompt = buildEssayUserPrompt(input.essayType, input.subject, input.researchQuestion, input.essayText);
+      const systemPrompt = buildEssaySystemPrompt(input.essayType, input.subject, input.examSession);
+      const userPrompt = buildEssayUserPrompt(input.essayType, input.subject, input.researchQuestion, input.essayText, input.examSession);
 
       try {
         const response = await invokeLLM({
@@ -323,7 +325,7 @@ const essayRouter = router({
         const result = JSON.parse(cleaned);
 
         // Attach rubric metadata
-        const rubric = getRubric(input.essayType, input.subject);
+        const rubric = getRubric(input.essayType, input.subject, input.examSession);
         result._rubricAvailable = !!rubric;
         if (rubric) {
           result._rubricLabel = rubric.label;

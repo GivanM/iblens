@@ -243,6 +243,50 @@ const FILM_IA: Rubric = {
   notes: "1,750 words plus a list of sources.",
 };
 
+
+// ─── Extended Essay — NEW syllabus (first assessment May 2027) ───────────────
+// For students who began the DP in Aug/Sep 2025. RPPF replaced by RPF with a
+// single 500-word reflective statement.
+const EXTENDED_ESSAY_2027: Rubric = {
+  label: "Extended Essay (May 2027 syllabus)",
+  totalMarks: 30,
+  criteria: [
+    { name: "Criterion A: Framework for the essay", max: 6, descriptor: "Research question, method and structure appropriate to the essay (absorbs the former Presentation criterion)" },
+    { name: "Criterion B: Knowledge and understanding", max: 6, descriptor: "Knowledge and understanding of the topic and effective use of subject-specific terminology and concepts" },
+    { name: "Criterion C: Analysis and line of argument", max: 6, descriptor: "Analysis of the research and a clear, coherent line of argument" },
+    { name: "Criterion D: Discussion and evaluation", max: 8, descriptor: "Discussion and evaluation of the argument, evidence and viewpoints — the highest-weighted criterion" },
+    { name: "Criterion E: Reflection", max: 4, descriptor: "Reflection on the research process (assessed with the 500-word reflective statement, RPF)" },
+  ],
+  notes: "New EE for the May 2027 session onward (students who began the DP in 2025): 30 marks. Word limit 4,000. The RPPF is replaced by the RPF — a single reflective statement of up to 500 words.",
+};
+
+// ─── Psychology IA — research proposal (first assessment May 2027) ───────────
+const PSYCHOLOGY_IA_2027: Rubric = {
+  label: "Psychology IA — Research proposal (May 2027 syllabus)",
+  totalMarks: 24,
+  criteria: [
+    { name: "Criterion A: Introduction", max: 6, descriptor: "Research question, relevant background theory/research and rationale for the proposed study" },
+    { name: "Criterion B: Research methodology", max: 6, descriptor: "Appropriate research method, design and participant considerations for the proposal" },
+    { name: "Criterion C: Data collection", max: 6, descriptor: "Planned data collection: materials, procedure and ethical considerations" },
+    { name: "Criterion D: Discussion", max: 6, descriptor: "Anticipated outcomes, limitations and implications of the proposed study" },
+  ],
+  notes: "Research PROPOSAL (no experiment is conducted). Max 2,200 words — examiners stop reading beyond the limit. SL and HL identical.",
+};
+
+// ─── Computer Science IA — computational solution (first assessment May 2027) ─
+const CS_IA_2027: Rubric = {
+  label: "Computer Science IA — Computational solution (May 2027 syllabus)",
+  totalMarks: 30,
+  criteria: [
+    { name: "Criterion A: Problem specification", max: 4, descriptor: "Specification of the problem and success criteria" },
+    { name: "Criterion B: Planning", max: 4, descriptor: "Planning of the computational solution" },
+    { name: "Criterion C: System overview", max: 6, descriptor: "Overview of the system design" },
+    { name: "Criterion D: Development", max: 12, descriptor: "Development of the solution demonstrating appropriate techniques, with sources acknowledged" },
+    { name: "Criterion E: Evaluation", max: 4, descriptor: "Evaluation of the solution against the success criteria" },
+  ],
+  notes: "Documentation capped at 2,000 words (excluding code and diagrams) plus a 3-minute video. The former client requirement is removed.",
+};
+
 const RUBRIC_REGISTRY: Record<string, Rubric> = {
   // Business Management IA
   "IA::Business Management": BM_IA,
@@ -290,6 +334,11 @@ const RUBRIC_REGISTRY: Record<string, Rubric> = {
 
   // TOK Exhibition — holistic instrument
   "TOK::Exhibition": TOK_EXHIBITION,
+
+  // ── May 2027 syllabus track (selected via examSession="may2027") ──
+  "EE27::*": EXTENDED_ESSAY_2027,
+  "IA27::Psychology": PSYCHOLOGY_IA_2027,
+  "IA27::Computer Science": CS_IA_2027,
 };
 
 /**
@@ -297,7 +346,16 @@ const RUBRIC_REGISTRY: Record<string, Rubric> = {
  * 1. Exact match: `${type}::${subject}`
  * 2. Wildcard match: `${type}::*` (for EE and TOK which are subject-agnostic)
  */
-export function getRubric(essayType: string, subject: string): Rubric | undefined {
+export function getRubric(essayType: string, subject: string, examSession?: string): Rubric | undefined {
+  // May 2027 track: try the "27"-suffixed registry first, then fall back to the
+  // current-syllabus rubric (most subjects are unchanged in 2027).
+  if (examSession === "may2027") {
+    const key27 = `${essayType}27::${subject}`;
+    const exact27 = Object.entries(RUBRIC_REGISTRY).find(([k]) => k.toLowerCase() === key27.toLowerCase());
+    if (exact27) return exact27[1];
+    const wild27 = Object.entries(RUBRIC_REGISTRY).find(([k]) => k.toLowerCase() === `${essayType}27::*`.toLowerCase());
+    if (wild27) return wild27[1];
+  }
   const exactKey = `${essayType}::${subject}`;
   const exact = Object.entries(RUBRIC_REGISTRY).find(([k]) => k.toLowerCase() === exactKey.toLowerCase());
   if (exact) return exact[1];
@@ -311,8 +369,8 @@ export function getRubric(essayType: string, subject: string): Rubric | undefine
  * Build a prompt fragment describing the rubric for the AI to use.
  * Returns empty string if no rubric is available.
  */
-export function buildRubricPromptFragment(essayType: string, subject: string): string {
-  const rubric = getRubric(essayType, subject);
+export function buildRubricPromptFragment(essayType: string, subject: string, examSession?: string): string {
+  const rubric = getRubric(essayType, subject, examSession);
   if (!rubric) return "";
 
   if (rubric.holistic) {
