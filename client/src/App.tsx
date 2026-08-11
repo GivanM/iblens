@@ -35,6 +35,8 @@ import IBHistoryIA from "./pages/resources/IBHistoryIA";
 import IBEEExamplesBySubject from "./pages/resources/IBEEExamplesBySubject";
 import IBIAGrader from "./pages/resources/IBIAGrader";
 import TokEssayFormat from "./pages/resources/TokEssayFormat";
+import EENewCriteria2027 from "./pages/resources/EENewCriteria2027";
+import TokEssayChecklist from "./pages/resources/TokEssayChecklist";
 import TokEssayStructure from "./pages/resources/TokEssayStructure";
 import RemarkChecker from "./pages/RemarkChecker";
 import AcademicIntegrity from "./pages/resources/AcademicIntegrity";
@@ -121,6 +123,8 @@ function Router() {
       <Route path="/resources/ib-ee-examples-by-subject" component={IBEEExamplesBySubject} />
       <Route path="/resources/ib-ia-grader" component={IBIAGrader} />
       <Route path="/resources/tok-essay-format" component={TokEssayFormat} />
+      <Route path="/resources/ib-extended-essay-new-criteria-2027" component={EENewCriteria2027} />
+      <Route path="/resources/tok-essay-checklist" component={TokEssayChecklist} />
       <Route path="/resources/tok-essay-structure" component={TokEssayStructure} />
       <Route path="/remark" component={RemarkChecker} />
       <Route path="/resources/academic-integrity" component={AcademicIntegrity} />

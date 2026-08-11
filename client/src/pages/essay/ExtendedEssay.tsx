@@ -6,7 +6,7 @@ const config: SubjectConfig = {
   keyword: "IB Extended Essay",
   metaTitle: "IB Extended Essay Grader — Free AI Feedback on Your EE | IBLens",
   metaDescription:
-    "AI-powered feedback on your IB Extended Essay. All 5 criteria: focus & method, knowledge & understanding, critical thinking, presentation, and engagement. Free first check.",
+    "AI feedback on your IB Extended Essay against both official rubrics: the current 34-mark criteria and the new 30-mark May 2027 criteria. Criterion-by-criterion report with a free preview.",
   canonicalPath: "/essay/extended-essay",
   heroHeadline: "Know your Extended Essay grade before you submit",
   heroSubline:

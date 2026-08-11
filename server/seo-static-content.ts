@@ -141,6 +141,15 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Does IBLens store my essay?</dt>
     <dd style="margin-top:4px">Anonymous analyses are not permanently stored. Signed-in users can access analysis history from their dashboard.</dd>
   </dl>
+
+  <section style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:26px 0">
+  <h2 style="font-size:20px;font-weight:700;margin:0 0 10px">Why students use IBLens</h2>
+  <ul style="line-height:1.8;padding-left:20px;margin:0">
+  <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
+  <li>$4.99 for a full report — no subscription, you pay per essay.</li>
+  <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
+  <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  </ul></section>
 </main>`),
 
   "/essay/economics-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -176,6 +185,15 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Does the grader check my word count?</dt>
     <dd style="margin-top:4px">IBLens counts the words in your pasted text and will flag if you are over or near the 800-word limit.</dd>
   </dl>
+
+  <section style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:26px 0">
+  <h2 style="font-size:20px;font-weight:700;margin:0 0 10px">Why students use IBLens</h2>
+  <ul style="line-height:1.8;padding-left:20px;margin:0">
+  <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
+  <li>$4.99 for a full report — no subscription, you pay per essay.</li>
+  <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
+  <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  </ul></section>
 </main>`),
 
   "/essay/history-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -208,6 +226,15 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Is the History IA grader free?</dt>
     <dd style="margin-top:4px">Every essay gets a free preview (band range, weakest criterion with full feedback, top risks). The full report — exact score and every criterion with comments — unlocks for $4.99, or $19.99 for a pack of five.</dd>
   </dl>
+
+  <section style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:26px 0">
+  <h2 style="font-size:20px;font-weight:700;margin:0 0 10px">Why students use IBLens</h2>
+  <ul style="line-height:1.8;padding-left:20px;margin:0">
+  <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
+  <li>$4.99 for a full report — no subscription, you pay per essay.</li>
+  <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
+  <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  </ul></section>
 </main>`),
 
   "/essay/extended-essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -243,6 +270,15 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Is the Extended Essay grader free?</dt>
     <dd style="margin-top:4px">Every essay gets a free preview (band range, weakest criterion with full feedback, top risks). The full report — exact score and every criterion with comments — unlocks for $4.99, or $19.99 for a pack of five.</dd>
   </dl>
+
+  <section style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:26px 0">
+  <h2 style="font-size:20px;font-weight:700;margin:0 0 10px">Why students use IBLens</h2>
+  <ul style="line-height:1.8;padding-left:20px;margin:0">
+  <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
+  <li>$4.99 for a full report — no subscription, you pay per essay.</li>
+  <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
+  <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  </ul></section>
 </main>`),
 
   "/essay/tok-essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -278,6 +314,15 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Is the TOK Essay grader free?</dt>
     <dd style="margin-top:4px">Every essay gets a free preview (band range, weakest criterion, top risks). The full report is $4.99.</dd>
   </dl>
+
+  <section style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:26px 0">
+  <h2 style="font-size:20px;font-weight:700;margin:0 0 10px">Why students use IBLens</h2>
+  <ul style="line-height:1.8;padding-left:20px;margin:0">
+  <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
+  <li>$4.99 for a full report — no subscription, you pay per essay.</li>
+  <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
+  <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  </ul></section>
 </main>`),
 
   "/essay/tok-exhibition": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -313,6 +358,15 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Is the TOK Exhibition grader free?</dt>
     <dd style="margin-top:4px">Every essay gets a free preview (band range, weakest criterion with full feedback, top risks). The full report — exact score and every criterion with comments — unlocks for $4.99, or $19.99 for a pack of five.</dd>
   </dl>
+
+  <section style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:26px 0">
+  <h2 style="font-size:20px;font-weight:700;margin:0 0 10px">Why students use IBLens</h2>
+  <ul style="line-height:1.8;padding-left:20px;margin:0">
+  <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
+  <li>$4.99 for a full report — no subscription, you pay per essay.</li>
+  <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
+  <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  </ul></section>
 </main>`),
 
   "/essay/math-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -347,6 +401,15 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Is the Math IA grader free?</dt>
     <dd style="margin-top:4px">Every essay gets a free preview (band range, weakest criterion, top risks). The full report is $4.99.</dd>
   </dl>
+
+  <section style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:26px 0">
+  <h2 style="font-size:20px;font-weight:700;margin:0 0 10px">Why students use IBLens</h2>
+  <ul style="line-height:1.8;padding-left:20px;margin:0">
+  <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
+  <li>$4.99 for a full report — no subscription, you pay per essay.</li>
+  <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
+  <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  </ul></section>
 </main>`),
 
   "/essay/psychology-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -377,6 +440,15 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Does IBLens grade Psychology Extended Essays?</dt>
     <dd style="margin-top:4px">Yes — use the <a href="/essay/extended-essay">Extended Essay grader</a> and select Psychology as your subject.</dd>
   </dl>
+
+  <section style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:26px 0">
+  <h2 style="font-size:20px;font-weight:700;margin:0 0 10px">Why students use IBLens</h2>
+  <ul style="line-height:1.8;padding-left:20px;margin:0">
+  <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
+  <li>$4.99 for a full report — no subscription, you pay per essay.</li>
+  <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
+  <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  </ul></section>
 </main>`),
 
   "/essay/chemistry-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -408,6 +480,15 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Can I use this for IB Chemistry EE?</dt>
     <dd style="margin-top:4px">For Chemistry Extended Essays, use the <a href="/essay/extended-essay">Extended Essay grader</a> and select Chemistry as your subject. See also our <a href="/resources/ib-chemistry-extended-essay">IB Chemistry EE guide</a>.</dd>
   </dl>
+
+  <section style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:26px 0">
+  <h2 style="font-size:20px;font-weight:700;margin:0 0 10px">Why students use IBLens</h2>
+  <ul style="line-height:1.8;padding-left:20px;margin:0">
+  <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
+  <li>$4.99 for a full report — no subscription, you pay per essay.</li>
+  <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
+  <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  </ul></section>
 </main>`),
 
   "/essay/physics-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -439,6 +520,15 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Can I paste only part of my IA?</dt>
     <dd style="margin-top:4px">Yes — but for criterion-by-criterion feedback, paste your full report for the most accurate score prediction.</dd>
   </dl>
+
+  <section style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:26px 0">
+  <h2 style="font-size:20px;font-weight:700;margin:0 0 10px">Why students use IBLens</h2>
+  <ul style="line-height:1.8;padding-left:20px;margin:0">
+  <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
+  <li>$4.99 for a full report — no subscription, you pay per essay.</li>
+  <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
+  <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  </ul></section>
 </main>`),
 
   "/essay/business-management-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -473,6 +563,15 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">What is the word limit for the IB Business Management IA?</dt>
     <dd style="margin-top:4px">The Business research project has a maximum of 1,800 words for the report, plus 3–5 supporting documents. IBLens checks your approximate word count and will flag if you are significantly over.</dd>
   </dl>
+
+  <section style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:26px 0">
+  <h2 style="font-size:20px;font-weight:700;margin:0 0 10px">Why students use IBLens</h2>
+  <ul style="line-height:1.8;padding-left:20px;margin:0">
+  <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
+  <li>$4.99 for a full report — no subscription, you pay per essay.</li>
+  <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
+  <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  </ul></section>
 </main>`),
 
   "/essay/english-essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -503,6 +602,15 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Is the English IA grader free?</dt>
     <dd style="margin-top:4px">Every essay gets a free preview (band range, weakest criterion, top risks). The full report is $4.99.</dd>
   </dl>
+
+  <section style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:26px 0">
+  <h2 style="font-size:20px;font-weight:700;margin:0 0 10px">Why students use IBLens</h2>
+  <ul style="line-height:1.8;padding-left:20px;margin:0">
+  <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
+  <li>$4.99 for a full report — no subscription, you pay per essay.</li>
+  <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
+  <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  </ul></section>
 </main>`),
 
   "/essay/computer-science-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -534,6 +642,15 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Is the Computer Science IA grader free?</dt>
     <dd style="margin-top:4px">Every essay gets a free preview (band range, weakest criterion, top risks). The full report is $4.99.</dd>
   </dl>
+
+  <section style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:26px 0">
+  <h2 style="font-size:20px;font-weight:700;margin:0 0 10px">Why students use IBLens</h2>
+  <ul style="line-height:1.8;padding-left:20px;margin:0">
+  <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
+  <li>$4.99 for a full report — no subscription, you pay per essay.</li>
+  <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
+  <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  </ul></section>
 </main>`),
 
   "/essay/maths-aa-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -558,6 +675,15 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Is the Math AA IA grader free?</dt>
     <dd style="margin-top:4px">Every essay gets a free preview (band range, weakest criterion, top risks). The full report is $4.99.</dd>
   </dl>
+
+  <section style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:26px 0">
+  <h2 style="font-size:20px;font-weight:700;margin:0 0 10px">Why students use IBLens</h2>
+  <ul style="line-height:1.8;padding-left:20px;margin:0">
+  <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
+  <li>$4.99 for a full report — no subscription, you pay per essay.</li>
+  <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
+  <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  </ul></section>
 </main>`),
 
   "/essay/maths-ai-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -584,6 +710,15 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">What is the difference between Math AI and Math AA?</dt>
     <dd style="margin-top:4px">Math AI focuses on applied and statistical mathematics in real-world contexts. Math AA focuses on pure mathematics including calculus, proof, and algebra. See our <a href="/essay/maths-aa-ia">Math AA IA grader</a> for AA-specific feedback.</dd>
   </dl>
+
+  <section style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:26px 0">
+  <h2 style="font-size:20px;font-weight:700;margin:0 0 10px">Why students use IBLens</h2>
+  <ul style="line-height:1.8;padding-left:20px;margin:0">
+  <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
+  <li>$4.99 for a full report — no subscription, you pay per essay.</li>
+  <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
+  <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  </ul></section>
 </main>`),
 
   "/essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -625,6 +760,15 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Can I grade my essay more than once?</dt>
     <dd style="margin-top:4px">Yes — many students grade a draft, then revise and grade again. Each analysis uses one credit. A pack of five analyses ($19.99) is designed for iterative improvement across drafts.</dd>
   </dl>
+
+  <section style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:26px 0">
+  <h2 style="font-size:20px;font-weight:700;margin:0 0 10px">Why students use IBLens</h2>
+  <ul style="line-height:1.8;padding-left:20px;margin:0">
+  <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
+  <li>$4.99 for a full report — no subscription, you pay per essay.</li>
+  <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
+  <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  </ul></section>
 </main>`),
 
 

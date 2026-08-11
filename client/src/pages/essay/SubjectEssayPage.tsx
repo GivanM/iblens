@@ -206,6 +206,21 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
           </div>
         </section>
 
+        {/* Why IBLens fact block */}
+        <section className="py-12 bg-background">
+          <div className="container max-w-3xl mx-auto">
+            <div className="rounded-xl border bg-muted/30 p-6 md:p-8">
+              <h2 className="text-xl font-extrabold tracking-tight mb-4">Why students use IBLens</h2>
+              <ul className="space-y-3 text-sm text-muted-foreground list-disc pl-5">
+                <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
+                <li>$4.99 for a full report — no subscription, you pay per essay.</li>
+                <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
+                <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="py-16 bg-background">
           <div className="container max-w-2xl mx-auto text-center">

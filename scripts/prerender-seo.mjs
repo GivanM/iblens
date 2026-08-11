@@ -252,6 +252,18 @@ const routeMeta = {
     ogType: "article",
     schemaType: "Article",
   },
+  "/resources/ib-extended-essay-new-criteria-2027": {
+    title: "IB Extended Essay New Criteria 2027 — Marked Out of 30, Explained | IBLens",
+    description: "From the May 2027 session the IB Extended Essay is marked out of 30 under five new criteria — Framework, Knowledge and understanding, Analysis and line of argument, Discussion and evaluation, Reflection. What changed from the 34-mark rubric and how to check your draft.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/tok-essay-checklist": {
+    title: "TOK Essay Checklist — Check Your Essay Against the IB Criteria | IBLens",
+    description: "A practical TOK essay checklist built on the official holistic assessment instrument: the five bands out of 10, the exact question examiners ask, and the concrete checks to run on your draft before submission — no tutor needed.",
+    ogType: "article",
+    schemaType: "Article",
+  },
   "/resources/tok-essay-format": {
     title: "IB TOK Essay Format — Word Count, Structure & Formatting Rules | IBLens",
     description: "Official IB TOK essay format: 1,600-word limit, introduction and body structure, citation requirements, what counts towards the word count, and examiner formatting expectations.",
@@ -441,7 +453,7 @@ const routeMeta = {
   },
   "/essay/extended-essay": {
     title: "IB Extended Essay Grader \u2014 Free AI Feedback on Your EE | IBLens",
-    description: "AI-powered feedback on your IB Extended Essay. All 5 criteria scored: focus & method, knowledge, critical thinking, presentation, engagement. Free first check.",
+    description: "AI feedback on your IB Extended Essay against both official rubrics: the current 34-mark criteria and the new 30-mark May 2027 criteria. Criterion-by-criterion report with a free preview.",
     ogType: "website",
     schemaType: "WebPage",
   },

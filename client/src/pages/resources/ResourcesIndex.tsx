@@ -5,6 +5,20 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const resources = [
   {
+    slug: "/resources/ib-extended-essay-new-criteria-2027",
+    title: "EE New Criteria 2027 (Marked /30)",
+    description: "The May 2027 Extended Essay rubric explained: Framework, Knowledge, Analysis, Discussion and evaluation, Reflection — what changed from /34 and how to check your draft.",
+    icon: FileText,
+    readTime: "7 min read",
+  },
+  {
+    slug: "/resources/tok-essay-checklist",
+    title: "TOK Essay Checklist",
+    description: "Check your TOK essay against the official holistic instrument: the five bands out of 10, the examiner question, and the concrete checks to run before submission.",
+    icon: Lightbulb,
+    readTime: "6 min read",
+  },
+  {
     slug: "/resources/ib-extended-essay-guide",
     title: "IB Extended Essay Guide",
     description: "Structure, criteria A–E, research question tips, common mistakes, and strategies for scoring an A on your 4,000-word EE.",
