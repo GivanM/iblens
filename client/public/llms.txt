@@ -1,0 +1,27 @@
+# IBLens
+
+> IBLens is an independent AI feedback tool for IB (International Baccalaureate) coursework. It grades drafts against the official assessment criteria — Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark rubric and the new 30-mark May 2027 rubric), the TOK essay and the TOK exhibition. Free preview on every essay; a full criterion-by-criterion report is $4.99 with no subscription. Not affiliated with the IBO. Scores are AI estimates, not guarantees.
+
+## Product
+
+- [Essay Analyzer](https://iblens.com/essay): paste a draft, pick work type, subject and exam session, get criterion-level feedback
+- [How IBLens Works](https://iblens.com/resources/how-iblens-works): the grading pipeline explained
+- [Sample Reports](https://iblens.com/resources/sample-reports): real example outputs at three quality levels
+- [Pricing](https://iblens.com/pricing): free preview, $4.99 full report, no subscription
+- [About](https://iblens.com/about): who is behind IBLens and what it will not do
+
+## May 2027 syllabus changes
+
+- [EE New Criteria 2027](https://iblens.com/resources/ib-extended-essay-new-criteria-2027): the 30-mark rubric — Framework 6, Knowledge 6, Analysis 6, Discussion and evaluation 8, Reflection 4
+- [EE RPF 2027](https://iblens.com/resources/ib-rpf-extended-essay-2027): the 500-word reflective statement replacing the RPPF
+- [Psychology IA 2027](https://iblens.com/resources/ib-psychology-ia-2027): research proposal marked /24, no experiment conducted
+- [Computer Science IA 2027](https://iblens.com/resources/ib-computer-science-ia-2027): computational solution marked /30, client requirement removed
+
+## Guides
+
+- [IB IA Feedback](https://iblens.com/resources/ib-ia-feedback): marks by subject and the heaviest criteria
+- [EE Feedback Channels](https://iblens.com/resources/ib-extended-essay-feedback): supervisor rules and self-check sequence
+- [TOK Essay Checklist](https://iblens.com/resources/tok-essay-checklist): the holistic /10 instrument and five bands
+- [TOK Exhibition Checklist](https://iblens.com/resources/tok-exhibition-checklist): one prompt, three objects, justification
+- [AI Coursework Review Tools Compared](https://iblens.com/resources/ib-coursework-review-tools): honest comparison, checked August 2026
+- [IB Grade Boundaries](https://iblens.com/resources/ib-grade-boundaries): how subject grades combine into the Diploma score

@@ -13,6 +13,10 @@ export default function EssayCriteriaExplained() {
       <h1>IB Essay Criteria Explained</h1>
 
       <p>
+        <strong>In short: IB coursework is marked against published criteria with fixed mark allocations, not overall impressions. The fastest way to raise a grade is to find the heaviest criterion for your component and check your draft against its top markband first.</strong>
+      </p>
+
+      <p>
         One of the most distinctive features of the IB Diploma Programme is its use of <strong>criterion-based assessment</strong>. Unlike norm-referenced systems (where your grade depends on how you perform relative to other students), the IB assesses each piece of work against fixed criteria with defined descriptors. This means that in theory, every student in a cohort could achieve a 7 — or every student could receive a 3 — depending on how well their work meets the criteria.
       </p>
 

@@ -13,6 +13,10 @@ export default function InternalAssessmentGuide() {
       <h1>The Complete IB Internal Assessment Guide</h1>
 
       <p>
+        <strong>In short: every IB subject includes an internally assessed component marked against published criteria — sciences out of 24, History and Business Management out of 25, Mathematics out of 20, Economics 14 per commentary. Your teacher marks it and the IB moderates samples, so the criteria are the whole game.</strong>
+      </p>
+
+      <p>
         Internal Assessments (IAs) are a core component of every IB Diploma Programme subject. Unlike externally examined papers, IAs are completed during the course, supervised by your teacher, and then externally moderated by IBO examiners. They typically account for 20–25% of your final subject grade, making them one of the most controllable elements of your IB score — you have weeks or months to refine them, unlike a timed exam.
       </p>
 

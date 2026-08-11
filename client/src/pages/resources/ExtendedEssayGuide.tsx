@@ -13,6 +13,10 @@ export default function ExtendedEssayGuide() {
       <h1>The Complete IB Extended Essay Guide</h1>
 
       <p>
+        <strong>In short: the Extended Essay is a 4,000-word independent research essay. Through November 2026 it is marked out of 34 (Focus and method 6, Knowledge and understanding 6, Critical thinking 12, Presentation 4, Engagement 6); from the May 2027 session it is marked out of 30 under new criteria. Together with TOK it contributes up to 3 bonus points to your Diploma.</strong>
+      </p>
+
+      <p>
         The Extended Essay (EE) is one of the three core requirements of the IB Diploma Programme, alongside Theory of Knowledge and CAS. It is a 4,000-word independent research paper that asks students to investigate a topic of personal interest within one of the IB subject areas. For many students, the EE represents their first experience with sustained academic research, and it contributes up to 3 bonus points toward the IB Diploma when combined with the TOK grade.
       </p>
 

@@ -19,6 +19,13 @@ const resources = [
     readTime: "6 min read",
   },
   {
+    slug: "/resources/ib-rpf-extended-essay-2027",
+    title: "EE RPF 2027: Reflective Statement",
+    description: "The 500-word reflective statement that replaces the RPPF from May 2027 — how Criterion E marks it and how to write one with real decisions, not a timeline.",
+    icon: FileText,
+    readTime: "5 min read",
+  },
+  {
     slug: "/resources/ib-psychology-ia-2027",
     title: "Psychology IA 2027: Research Proposal",
     description: "The new May 2027 Psychology IA explained: a research proposal marked /24, no experiment conducted — criteria, word limit, and how to check your draft.",

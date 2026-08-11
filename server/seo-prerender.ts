@@ -357,6 +357,20 @@ const routeMeta: Record<string, PageMeta> = {
     canonical: "/resources/ib-ia-feedback",
     schemaType: "Article",
   },
+  "/about": {
+    title: "About IBLens — Who We Are and How the Grader Works | IBLens",
+    description: "IBLens is an independent AI feedback tool for IB coursework. How the grader works, which official criteria it applies, what it will not do, and how to reach us.",
+    ogType: "article",
+    canonical: "/about",
+    schemaType: "Article",
+  },
+  "/resources/ib-rpf-extended-essay-2027": {
+    title: "IB EE RPF 2027 — The 500-Word Reflective Statement, Explained | IBLens",
+    description: "From the May 2027 session the EE RPPF is replaced by the RPF — a single reflective statement of up to 500 words, assessed under Criterion E: Reflection (4 of 30 marks). What it is and how to write one.",
+    ogType: "article",
+    canonical: "/resources/ib-rpf-extended-essay-2027",
+    schemaType: "Article",
+  },
   "/resources/tok-essay-format": {
     title: "IB TOK Essay Format — Word Count, Structure & Formatting Rules | IBLens",
     description: "Official IB TOK essay format: 1,600-word limit, introduction and body structure, citation requirements, what counts towards the word count, and examiner formatting expectations.",

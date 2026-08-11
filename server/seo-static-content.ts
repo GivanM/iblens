@@ -150,7 +150,9 @@ export const staticContent: Record<string, string> = {
   <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
   <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
-</main>`),
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "USD", "description": "Full criterion-by-criterion report; free preview on every essay"}}</script>
+  </main>`),
 
   "/essay/economics-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Economics IA</nav>
@@ -194,7 +196,9 @@ export const staticContent: Record<string, string> = {
   <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
   <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
-</main>`),
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "USD", "description": "Full criterion-by-criterion report; free preview on every essay"}}</script>
+  </main>`),
 
   "/essay/history-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB History IA</nav>
@@ -235,7 +239,9 @@ export const staticContent: Record<string, string> = {
   <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
   <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
-</main>`),
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "USD", "description": "Full criterion-by-criterion report; free preview on every essay"}}</script>
+  </main>`),
 
   "/essay/extended-essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › Extended Essay</nav>
@@ -279,7 +285,9 @@ export const staticContent: Record<string, string> = {
   <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
   <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
-</main>`),
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "USD", "description": "Full criterion-by-criterion report; free preview on every essay"}}</script>
+  </main>`),
 
   "/essay/tok-essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › TOK Essay</nav>
@@ -323,7 +331,9 @@ export const staticContent: Record<string, string> = {
   <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
   <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
-</main>`),
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "USD", "description": "Full criterion-by-criterion report; free preview on every essay"}}</script>
+  </main>`),
 
   "/essay/tok-exhibition": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › TOK Exhibition</nav>
@@ -367,7 +377,9 @@ export const staticContent: Record<string, string> = {
   <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
   <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
-</main>`),
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "USD", "description": "Full criterion-by-criterion report; free preview on every essay"}}</script>
+  </main>`),
 
   "/essay/math-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Math IA</nav>
@@ -410,7 +422,9 @@ export const staticContent: Record<string, string> = {
   <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
   <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
-</main>`),
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "USD", "description": "Full criterion-by-criterion report; free preview on every essay"}}</script>
+  </main>`),
 
   "/essay/psychology-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Psychology IA</nav>
@@ -449,7 +463,9 @@ export const staticContent: Record<string, string> = {
   <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
   <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
-</main>`),
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "USD", "description": "Full criterion-by-criterion report; free preview on every essay"}}</script>
+  </main>`),
 
   "/essay/chemistry-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Chemistry IA</nav>
@@ -489,7 +505,9 @@ export const staticContent: Record<string, string> = {
   <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
   <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
-</main>`),
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "USD", "description": "Full criterion-by-criterion report; free preview on every essay"}}</script>
+  </main>`),
 
   "/essay/physics-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Physics IA</nav>
@@ -529,7 +547,9 @@ export const staticContent: Record<string, string> = {
   <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
   <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
-</main>`),
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "USD", "description": "Full criterion-by-criterion report; free preview on every essay"}}</script>
+  </main>`),
 
   "/essay/business-management-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Business Management IA</nav>
@@ -572,7 +592,9 @@ export const staticContent: Record<string, string> = {
   <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
   <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
-</main>`),
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "USD", "description": "Full criterion-by-criterion report; free preview on every essay"}}</script>
+  </main>`),
 
   "/essay/english-essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB English Essay</nav>
@@ -611,7 +633,9 @@ export const staticContent: Record<string, string> = {
   <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
   <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
-</main>`),
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "USD", "description": "Full criterion-by-criterion report; free preview on every essay"}}</script>
+  </main>`),
 
   "/essay/computer-science-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Computer Science IA</nav>
@@ -651,7 +675,9 @@ export const staticContent: Record<string, string> = {
   <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
   <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
-</main>`),
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "USD", "description": "Full criterion-by-criterion report; free preview on every essay"}}</script>
+  </main>`),
 
   "/essay/maths-aa-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Math AA IA</nav>
@@ -684,7 +710,9 @@ export const staticContent: Record<string, string> = {
   <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
   <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
-</main>`),
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "USD", "description": "Full criterion-by-criterion report; free preview on every essay"}}</script>
+  </main>`),
 
   "/essay/maths-ai-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Math AI IA</nav>
@@ -719,7 +747,9 @@ export const staticContent: Record<string, string> = {
   <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
   <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
-</main>`),
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "USD", "description": "Full criterion-by-criterion report; free preview on every essay"}}</script>
+  </main>`),
 
   "/essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Essay Grader — Free AI Feedback on IA, Extended Essay & TOK</h1>
@@ -769,7 +799,9 @@ export const staticContent: Record<string, string> = {
   <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
   <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
-</main>`),
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "USD", "description": "Full criterion-by-criterion report; free preview on every essay"}}</script>
+  </main>`),
 
 
   // ── Resource pages ──

@@ -13,6 +13,10 @@ export default function TokEssayGuide() {
       <h1>The Complete IB TOK Essay Guide</h1>
 
       <p>
+        <strong>In short: the TOK essay is up to 1,600 words on one of six prescribed titles, marked holistically out of 10 — one instrument, five bands, no separate criteria. With the Extended Essay it contributes up to 3 bonus points to your Diploma.</strong>
+      </p>
+
+      <p>
         The Theory of Knowledge (TOK) essay is one of the most distinctive and challenging components of the IB Diploma Programme. Unlike subject-specific essays that test your knowledge of content, the TOK essay asks you to reflect on the nature of knowledge itself — how we know what we claim to know, what counts as evidence, and how different ways of knowing interact with different areas of knowledge.
       </p>
 
