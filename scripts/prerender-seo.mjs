@@ -264,6 +264,42 @@ const routeMeta = {
     ogType: "article",
     schemaType: "Article",
   },
+  "/resources/ib-psychology-ia-2027": {
+    title: "IB Psychology IA Changes 2027 — Research Proposal Marked /24 | IBLens",
+    description: "From the May 2027 session the IB Psychology IA becomes a research proposal marked out of 24 — no experiment is conducted. New criteria explained, what changed from the 22-mark report, and how to check your draft.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/ib-computer-science-ia-2027": {
+    title: "IB Computer Science IA Changes 2027 — Marked Out of 30 | IBLens",
+    description: "From the May 2027 session the IB Computer Science IA is a computational solution marked out of 30: Problem specification, Planning, System overview, Development (12 marks), Evaluation. What changed from the 34-mark solution.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/ib-extended-essay-feedback": {
+    title: "IB Extended Essay Feedback — How to Get It Before You Submit | IBLens",
+    description: "Every legitimate way to get feedback on your IB Extended Essay before submission: supervisor rules, self-checking against the criteria, peers, and where AI feedback fits — with the limits of each channel.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/ib-coursework-review-tools": {
+    title: "AI Tools IB Students Use to Review Coursework — 2026 Comparison | IBLens",
+    description: "An honest comparison of AI tools IB students use to review IAs, EEs and TOK work: IBLens, RevisionDojo, MyRevisionAgent, Clastify and generic chatbots — coverage, pricing models, free tiers, May 2027 EE rubric support.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/tok-exhibition-checklist": {
+    title: "TOK Exhibition Checklist — Check Your Commentary Against the IB Criteria | IBLens",
+    description: "Check your TOK exhibition commentary against the official holistic instrument: the examiner question, five bands out of 10, and concrete checks for your three objects, contexts and IA prompt links.",
+    ogType: "article",
+    schemaType: "Article",
+  },
+  "/resources/ib-ia-feedback": {
+    title: "IB IA Feedback — Check Your IA Against the Official Criteria | IBLens",
+    description: "How to check your IB Internal Assessment against the official criteria without a tutor: what each subject is marked out of, where the heaviest criteria sit, and a self-check sequence for any subject.",
+    ogType: "article",
+    schemaType: "Article",
+  },
   "/resources/tok-essay-format": {
     title: "IB TOK Essay Format — Word Count, Structure & Formatting Rules | IBLens",
     description: "Official IB TOK essay format: 1,600-word limit, introduction and body structure, citation requirements, what counts towards the word count, and examiner formatting expectations.",

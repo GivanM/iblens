@@ -37,6 +37,12 @@ import IBIAGrader from "./pages/resources/IBIAGrader";
 import TokEssayFormat from "./pages/resources/TokEssayFormat";
 import EENewCriteria2027 from "./pages/resources/EENewCriteria2027";
 import TokEssayChecklist from "./pages/resources/TokEssayChecklist";
+import PsychologyIA2027 from "./pages/resources/PsychologyIA2027";
+import ComputerScienceIA2027 from "./pages/resources/ComputerScienceIA2027";
+import ExtendedEssayFeedback from "./pages/resources/ExtendedEssayFeedback";
+import CourseworkReviewTools from "./pages/resources/CourseworkReviewTools";
+import TokExhibitionChecklist from "./pages/resources/TokExhibitionChecklist";
+import IAFeedbackGuide from "./pages/resources/IAFeedbackGuide";
 import TokEssayStructure from "./pages/resources/TokEssayStructure";
 import RemarkChecker from "./pages/RemarkChecker";
 import AcademicIntegrity from "./pages/resources/AcademicIntegrity";
@@ -125,6 +131,12 @@ function Router() {
       <Route path="/resources/tok-essay-format" component={TokEssayFormat} />
       <Route path="/resources/ib-extended-essay-new-criteria-2027" component={EENewCriteria2027} />
       <Route path="/resources/tok-essay-checklist" component={TokEssayChecklist} />
+      <Route path="/resources/ib-psychology-ia-2027" component={PsychologyIA2027} />
+      <Route path="/resources/ib-computer-science-ia-2027" component={ComputerScienceIA2027} />
+      <Route path="/resources/ib-extended-essay-feedback" component={ExtendedEssayFeedback} />
+      <Route path="/resources/ib-coursework-review-tools" component={CourseworkReviewTools} />
+      <Route path="/resources/tok-exhibition-checklist" component={TokExhibitionChecklist} />
+      <Route path="/resources/ib-ia-feedback" component={IAFeedbackGuide} />
       <Route path="/resources/tok-essay-structure" component={TokEssayStructure} />
       <Route path="/remark" component={RemarkChecker} />
       <Route path="/resources/academic-integrity" component={AcademicIntegrity} />
