@@ -2851,7 +2851,23 @@ export const staticContent: Record<string, string> = {
       <p>
         <a href="/essay">Upload your Math IA draft to IBLens for rubric-based feedback →</a>
       </p>
-</main>`,
+
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Why full Math IA examples are hard to find — and what to use instead</h2>
+  <p style="line-height:1.7;margin:0 0 14px">Complete, high-scoring Math IAs are rarely published in full: the work belongs to the student who wrote it, and schools keep submitted coursework out of open circulation. What does circulate is usually stripped of the two things that would help — the mark it received and the examiner comments explaining that mark. A PDF with no score cannot tell you why it scored what it did.</p>
+  <p style="line-height:1.7;margin:0 0 14px">So the real question behind "show me an example" is: what separates a top-band Math IA from an average one? That difference is not stylistic — it sits in specific behaviours against each assessment criterion.</p>
+  <table style="border-collapse:collapse;width:100%;margin:0 0 14px">
+  <tr><th style="border:1px solid #ddd;padding:8px;text-align:left">Criterion</th><th style="border:1px solid #ddd;padding:8px;text-align:left">What an average one does</th><th style="border:1px solid #ddd;padding:8px;text-align:left">What a top-band one does</th></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>A: Presentation</strong></td><td style="border:1px solid #ddd;padding:8px">Sections exist, but the reader has to reconstruct what the exploration is trying to find out.</td><td style="border:1px solid #ddd;padding:8px">The aim is visible from the first page and the exploration stays coherent around it.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>B: Mathematical communication</strong></td><td style="border:1px solid #ddd;padding:8px">Notation drifts, symbols appear undefined, graphs are unlabelled.</td><td style="border:1px solid #ddd;padding:8px">Notation and terminology are correct throughout; every graph and table is labelled and referred to in the text.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>C: Personal engagement</strong></td><td style="border:1px solid #ddd;padding:8px">The introduction asserts that the topic is interesting to the student.</td><td style="border:1px solid #ddd;padding:8px">Engagement is shown, not claimed: own data, an unassigned extension, an independently chosen approach.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>D: Reflection</strong></td><td style="border:1px solid #ddd;padding:8px">The ending summarises what was done.</td><td style="border:1px solid #ddd;padding:8px">The reflection evaluates the mathematics itself — its limits, and what the result does not establish.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>E: Use of mathematics</strong></td><td style="border:1px solid #ddd;padding:8px">Routine procedures, correctly executed, at the edge of the syllabus.</td><td style="border:1px solid #ddd;padding:8px">Mathematics commensurate with the level, and clearly understood rather than merely performed.</td></tr>
+  </table>
+  <h3 style="font-size:18px;font-weight:700;margin:20px 0 8px">See a full marked report</h3>
+  <p style="line-height:1.7;margin:0 0 14px">To see what criterion-level marking looks like on a real piece of work, we publish three complete IBLens reports on the same essay title at three quality levels, with the commentary explaining each band placement: <a href="/resources/sample-reports">Sample IBLens Reports</a>. They are our own demonstration essays, so we can show them in full.</p>
+  <h3 style="font-size:18px;font-weight:700;margin:20px 0 8px">The faster route: check your own draft</h3>
+  <p style="line-height:1.7;margin:0 0 14px">Reading someone else's work tells you what good looks like in general. It cannot tell you what is missing from yours. IBLens marks your draft against these exact criteria and names your weakest one — the predicted band range and that weakest criterion are free, no account needed. <a href="/essay/math-ia">Check my Math IA against the criteria</a></p>
+  </main>`,
 
   "/resources/ib-extended-essay-examples": `<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Extended Essay Examples</nav>
@@ -2943,7 +2959,24 @@ export const staticContent: Record<string, string> = {
         <li>Have you completed your RPPF with genuine reflection?</li>
       </ul>
       <p>The Extended Essay rewards students who treat it as an intellectual exercise. Choose a question you are genuinely curious about, narrow it until it feels almost too specific, and build an argument you are willing to defend.</p>
-</main>`,
+
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Why full Extended Essay examples are hard to find — and what to use instead</h2>
+  <p style="line-height:1.7;margin:0 0 14px">Complete, high-scoring Extended Essays are rarely published in full: the work belongs to the student who wrote it, and schools keep submitted coursework out of open circulation. What does circulate is usually stripped of the two things that would help — the mark it received and the examiner comments explaining that mark. A PDF with no score cannot tell you why it scored what it did.</p>
+  <p style="line-height:1.7;margin:0 0 14px">So the real question behind "show me an example" is: what separates a top-band Extended Essay from an average one? That difference is not stylistic — it sits in specific behaviours against each assessment criterion.</p>
+  <table style="border-collapse:collapse;width:100%;margin:0 0 14px">
+  <tr><th style="border:1px solid #ddd;padding:8px;text-align:left">Criterion</th><th style="border:1px solid #ddd;padding:8px;text-align:left">What an average one does</th><th style="border:1px solid #ddd;padding:8px;text-align:left">What a top-band one does</th></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>A: Focus and method</strong></td><td style="border:1px solid #ddd;padding:8px">The research question restates the topic and could fill a book; scope is never stated.</td><td style="border:1px solid #ddd;padding:8px">The question is narrow enough to answer in 4,000 words, and the essay says why that scope was chosen.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>B: Knowledge and understanding</strong></td><td style="border:1px solid #ddd;padding:8px">Sources are summarised one after another in the order they were read.</td><td style="border:1px solid #ddd;padding:8px">Subject terminology is used precisely, and sources are positioned against each other rather than listed.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>C: Critical thinking</strong></td><td style="border:1px solid #ddd;padding:8px">Evidence is described, then a claim follows — the reader has to assume the link.</td><td style="border:1px solid #ddd;padding:8px">Each piece of evidence is weighed (strength, limitation, competing reading) before the claim is made.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>D: Presentation</strong></td><td style="border:1px solid #ddd;padding:8px">Headings and citations exist but the reader cannot see why sections come in this order.</td><td style="border:1px solid #ddd;padding:8px">Structure is navigable: each section visibly serves the research question.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>E: Engagement</strong></td><td style="border:1px solid #ddd;padding:8px">Reflections describe the timeline — chose a topic, found sources, wrote up.</td><td style="border:1px solid #ddd;padding:8px">Reflections name real decisions and turning points in the research.</td></tr>
+  </table>
+  <p style="line-height:1.7;margin:0 0 14px">One caution: if you sit exams in May 2027 or later, your EE is marked out of 30 under new criteria — Discussion and evaluation alone is worth 8 marks. Older example essays and mark schemes describe the 34-mark rubric. See <a href="/resources/ib-extended-essay-new-criteria-2027">what changed</a>.</p>
+  <h3 style="font-size:18px;font-weight:700;margin:20px 0 8px">See a full marked report</h3>
+  <p style="line-height:1.7;margin:0 0 14px">To see what criterion-level marking looks like on a real piece of work, we publish three complete IBLens reports on the same essay title at three quality levels, with the commentary explaining each band placement: <a href="/resources/sample-reports">Sample IBLens Reports</a>. They are our own demonstration essays, so we can show them in full.</p>
+  <h3 style="font-size:18px;font-weight:700;margin:20px 0 8px">The faster route: check your own draft</h3>
+  <p style="line-height:1.7;margin:0 0 14px">Reading someone else's work tells you what good looks like in general. It cannot tell you what is missing from yours. IBLens marks your draft against these exact criteria and names your weakest one — the predicted band range and that weakest criterion are free, no account needed. <a href="/essay/extended-essay">Check my Extended Essay against the criteria</a></p>
+  </main>`,
 
   "/resources/ib-score-calculator": `<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Score Calculator</nav>
@@ -3341,7 +3374,22 @@ export const staticContent: Record<string, string> = {
       <p>
         <a href="/essay">Upload your Chemistry IA draft to IBLens for rubric-based feedback →</a>
       </p>
-</main>`,
+
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Why full Chemistry IA examples are hard to find — and what to use instead</h2>
+  <p style="line-height:1.7;margin:0 0 14px">Complete, high-scoring Chemistry IAs are rarely published in full: the work belongs to the student who wrote it, and schools keep submitted coursework out of open circulation. What does circulate is usually stripped of the two things that would help — the mark it received and the examiner comments explaining that mark. A PDF with no score cannot tell you why it scored what it did.</p>
+  <p style="line-height:1.7;margin:0 0 14px">So the real question behind "show me an example" is: what separates a top-band Chemistry IA from an average one? That difference is not stylistic — it sits in specific behaviours against each assessment criterion.</p>
+  <table style="border-collapse:collapse;width:100%;margin:0 0 14px">
+  <tr><th style="border:1px solid #ddd;padding:8px;text-align:left">Criterion</th><th style="border:1px solid #ddd;padding:8px;text-align:left">What an average one does</th><th style="border:1px solid #ddd;padding:8px;text-align:left">What a top-band one does</th></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>Research design</strong></td><td style="border:1px solid #ddd;padding:8px">The method is lifted from a standard class practical and the variables are simply listed.</td><td style="border:1px solid #ddd;padding:8px">The method is justified for this specific question: why this range, this many trials, these controls.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>Data analysis</strong></td><td style="border:1px solid #ddd;padding:8px">Raw data is tabulated and a mean is plotted; uncertainties appear once and are then forgotten.</td><td style="border:1px solid #ddd;padding:8px">Uncertainties are propagated through the processing, and the processing chosen is the one that actually tests the hypothesis.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>Conclusion</strong></td><td style="border:1px solid #ddd;padding:8px">The hypothesis was supported — with no reference to how strongly.</td><td style="border:1px solid #ddd;padding:8px">The conclusion is stated with its uncertainty and compared against accepted values or published work.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>Evaluation</strong></td><td style="border:1px solid #ddd;padding:8px">Generic weaknesses: human error, not enough time, more trials next time.</td><td style="border:1px solid #ddd;padding:8px">Specific weaknesses, each with its direction of effect on the result, and improvements that would actually be workable.</td></tr>
+  </table>
+  <h3 style="font-size:18px;font-weight:700;margin:20px 0 8px">See a full marked report</h3>
+  <p style="line-height:1.7;margin:0 0 14px">To see what criterion-level marking looks like on a real piece of work, we publish three complete IBLens reports on the same essay title at three quality levels, with the commentary explaining each band placement: <a href="/resources/sample-reports">Sample IBLens Reports</a>. They are our own demonstration essays, so we can show them in full.</p>
+  <h3 style="font-size:18px;font-weight:700;margin:20px 0 8px">The faster route: check your own draft</h3>
+  <p style="line-height:1.7;margin:0 0 14px">Reading someone else's work tells you what good looks like in general. It cannot tell you what is missing from yours. IBLens marks your draft against these exact criteria and names your weakest one — the predicted band range and that weakest criterion are free, no account needed. <a href="/essay/chemistry-ia">Check my Chemistry IA against the criteria</a></p>
+  </main>`,
 
   "/resources/ib-physics-ia-examples": `<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Physics IA Examples</nav>\n      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Physics IA Examples</h1>
@@ -3489,7 +3537,22 @@ export const staticContent: Record<string, string> = {
       <p>
         <a href="/essay">Upload your Physics IA draft to IBLens for rubric-based feedback →</a>
       </p>
-</main>`,
+
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Why full Physics IA examples are hard to find — and what to use instead</h2>
+  <p style="line-height:1.7;margin:0 0 14px">Complete, high-scoring Physics IAs are rarely published in full: the work belongs to the student who wrote it, and schools keep submitted coursework out of open circulation. What does circulate is usually stripped of the two things that would help — the mark it received and the examiner comments explaining that mark. A PDF with no score cannot tell you why it scored what it did.</p>
+  <p style="line-height:1.7;margin:0 0 14px">So the real question behind "show me an example" is: what separates a top-band Physics IA from an average one? That difference is not stylistic — it sits in specific behaviours against each assessment criterion.</p>
+  <table style="border-collapse:collapse;width:100%;margin:0 0 14px">
+  <tr><th style="border:1px solid #ddd;padding:8px;text-align:left">Criterion</th><th style="border:1px solid #ddd;padding:8px;text-align:left">What an average one does</th><th style="border:1px solid #ddd;padding:8px;text-align:left">What a top-band one does</th></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>Research design</strong></td><td style="border:1px solid #ddd;padding:8px">The method is lifted from a standard class practical and the variables are simply listed.</td><td style="border:1px solid #ddd;padding:8px">The method is justified for this specific question: why this range, this many trials, these controls.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>Data analysis</strong></td><td style="border:1px solid #ddd;padding:8px">Raw data is tabulated and a mean is plotted; uncertainties appear once and are then forgotten.</td><td style="border:1px solid #ddd;padding:8px">Uncertainties are propagated through the processing, and the processing chosen is the one that actually tests the hypothesis.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>Conclusion</strong></td><td style="border:1px solid #ddd;padding:8px">The hypothesis was supported — with no reference to how strongly.</td><td style="border:1px solid #ddd;padding:8px">The conclusion is stated with its uncertainty and compared against accepted values or published work.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>Evaluation</strong></td><td style="border:1px solid #ddd;padding:8px">Generic weaknesses: human error, not enough time, more trials next time.</td><td style="border:1px solid #ddd;padding:8px">Specific weaknesses, each with its direction of effect on the result, and improvements that would actually be workable.</td></tr>
+  </table>
+  <h3 style="font-size:18px;font-weight:700;margin:20px 0 8px">See a full marked report</h3>
+  <p style="line-height:1.7;margin:0 0 14px">To see what criterion-level marking looks like on a real piece of work, we publish three complete IBLens reports on the same essay title at three quality levels, with the commentary explaining each band placement: <a href="/resources/sample-reports">Sample IBLens Reports</a>. They are our own demonstration essays, so we can show them in full.</p>
+  <h3 style="font-size:18px;font-weight:700;margin:20px 0 8px">The faster route: check your own draft</h3>
+  <p style="line-height:1.7;margin:0 0 14px">Reading someone else's work tells you what good looks like in general. It cannot tell you what is missing from yours. IBLens marks your draft against these exact criteria and names your weakest one — the predicted band range and that weakest criterion are free, no account needed. <a href="/essay/physics-ia">Check my Physics IA against the criteria</a></p>
+  </main>`,
 
   "/resources/ib-psychology-ia": `<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Psychology IA</nav>\n      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Psychology IA</h1>
@@ -4224,7 +4287,24 @@ export const staticContent: Record<string, string> = {
       <p>
         <a href="/essay">Upload your Extended Essay draft to IBLens for rubric-based feedback →</a>
       </p>
-</main>`,
+
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Why full Extended Essay examples are hard to find — and what to use instead</h2>
+  <p style="line-height:1.7;margin:0 0 14px">Complete, high-scoring Extended Essays are rarely published in full: the work belongs to the student who wrote it, and schools keep submitted coursework out of open circulation. What does circulate is usually stripped of the two things that would help — the mark it received and the examiner comments explaining that mark. A PDF with no score cannot tell you why it scored what it did.</p>
+  <p style="line-height:1.7;margin:0 0 14px">So the real question behind "show me an example" is: what separates a top-band Extended Essay from an average one? That difference is not stylistic — it sits in specific behaviours against each assessment criterion.</p>
+  <table style="border-collapse:collapse;width:100%;margin:0 0 14px">
+  <tr><th style="border:1px solid #ddd;padding:8px;text-align:left">Criterion</th><th style="border:1px solid #ddd;padding:8px;text-align:left">What an average one does</th><th style="border:1px solid #ddd;padding:8px;text-align:left">What a top-band one does</th></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>A: Focus and method</strong></td><td style="border:1px solid #ddd;padding:8px">The research question restates the topic and could fill a book; scope is never stated.</td><td style="border:1px solid #ddd;padding:8px">The question is narrow enough to answer in 4,000 words, and the essay says why that scope was chosen.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>B: Knowledge and understanding</strong></td><td style="border:1px solid #ddd;padding:8px">Sources are summarised one after another in the order they were read.</td><td style="border:1px solid #ddd;padding:8px">Subject terminology is used precisely, and sources are positioned against each other rather than listed.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>C: Critical thinking</strong></td><td style="border:1px solid #ddd;padding:8px">Evidence is described, then a claim follows — the reader has to assume the link.</td><td style="border:1px solid #ddd;padding:8px">Each piece of evidence is weighed (strength, limitation, competing reading) before the claim is made.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>D: Presentation</strong></td><td style="border:1px solid #ddd;padding:8px">Headings and citations exist but the reader cannot see why sections come in this order.</td><td style="border:1px solid #ddd;padding:8px">Structure is navigable: each section visibly serves the research question.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>E: Engagement</strong></td><td style="border:1px solid #ddd;padding:8px">Reflections describe the timeline — chose a topic, found sources, wrote up.</td><td style="border:1px solid #ddd;padding:8px">Reflections name real decisions and turning points in the research.</td></tr>
+  </table>
+  <p style="line-height:1.7;margin:0 0 14px">One caution: if you sit exams in May 2027 or later, your EE is marked out of 30 under new criteria — Discussion and evaluation alone is worth 8 marks. Older example essays and mark schemes describe the 34-mark rubric. See <a href="/resources/ib-extended-essay-new-criteria-2027">what changed</a>.</p>
+  <h3 style="font-size:18px;font-weight:700;margin:20px 0 8px">See a full marked report</h3>
+  <p style="line-height:1.7;margin:0 0 14px">To see what criterion-level marking looks like on a real piece of work, we publish three complete IBLens reports on the same essay title at three quality levels, with the commentary explaining each band placement: <a href="/resources/sample-reports">Sample IBLens Reports</a>. They are our own demonstration essays, so we can show them in full.</p>
+  <h3 style="font-size:18px;font-weight:700;margin:20px 0 8px">The faster route: check your own draft</h3>
+  <p style="line-height:1.7;margin:0 0 14px">Reading someone else's work tells you what good looks like in general. It cannot tell you what is missing from yours. IBLens marks your draft against these exact criteria and names your weakest one — the predicted band range and that weakest criterion are free, no account needed. <a href="/essay/extended-essay">Check my Extended Essay against the criteria</a></p>
+  </main>`,
 
   "/resources/ib-biology-ia-examples": `<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Biology IA Examples</nav>\n      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Biology IA Examples</h1>
@@ -4388,7 +4468,22 @@ export const staticContent: Record<string, string> = {
       <p>
         <a href="/essay">Upload your Biology IA draft to IBLens for rubric-based feedback →</a>
       </p>
-</main>`,
+
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Why full Biology IA examples are hard to find — and what to use instead</h2>
+  <p style="line-height:1.7;margin:0 0 14px">Complete, high-scoring Biology IAs are rarely published in full: the work belongs to the student who wrote it, and schools keep submitted coursework out of open circulation. What does circulate is usually stripped of the two things that would help — the mark it received and the examiner comments explaining that mark. A PDF with no score cannot tell you why it scored what it did.</p>
+  <p style="line-height:1.7;margin:0 0 14px">So the real question behind "show me an example" is: what separates a top-band Biology IA from an average one? That difference is not stylistic — it sits in specific behaviours against each assessment criterion.</p>
+  <table style="border-collapse:collapse;width:100%;margin:0 0 14px">
+  <tr><th style="border:1px solid #ddd;padding:8px;text-align:left">Criterion</th><th style="border:1px solid #ddd;padding:8px;text-align:left">What an average one does</th><th style="border:1px solid #ddd;padding:8px;text-align:left">What a top-band one does</th></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>Research design</strong></td><td style="border:1px solid #ddd;padding:8px">The method is lifted from a standard class practical and the variables are simply listed.</td><td style="border:1px solid #ddd;padding:8px">The method is justified for this specific question: why this range, this many trials, these controls.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>Data analysis</strong></td><td style="border:1px solid #ddd;padding:8px">Raw data is tabulated and a mean is plotted; uncertainties appear once and are then forgotten.</td><td style="border:1px solid #ddd;padding:8px">Uncertainties are propagated through the processing, and the processing chosen is the one that actually tests the hypothesis.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>Conclusion</strong></td><td style="border:1px solid #ddd;padding:8px">The hypothesis was supported — with no reference to how strongly.</td><td style="border:1px solid #ddd;padding:8px">The conclusion is stated with its uncertainty and compared against accepted values or published work.</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px"><strong>Evaluation</strong></td><td style="border:1px solid #ddd;padding:8px">Generic weaknesses: human error, not enough time, more trials next time.</td><td style="border:1px solid #ddd;padding:8px">Specific weaknesses, each with its direction of effect on the result, and improvements that would actually be workable.</td></tr>
+  </table>
+  <h3 style="font-size:18px;font-weight:700;margin:20px 0 8px">See a full marked report</h3>
+  <p style="line-height:1.7;margin:0 0 14px">To see what criterion-level marking looks like on a real piece of work, we publish three complete IBLens reports on the same essay title at three quality levels, with the commentary explaining each band placement: <a href="/resources/sample-reports">Sample IBLens Reports</a>. They are our own demonstration essays, so we can show them in full.</p>
+  <h3 style="font-size:18px;font-weight:700;margin:20px 0 8px">The faster route: check your own draft</h3>
+  <p style="line-height:1.7;margin:0 0 14px">Reading someone else's work tells you what good looks like in general. It cannot tell you what is missing from yours. IBLens marks your draft against these exact criteria and names your weakest one — the predicted band range and that weakest criterion are free, no account needed. <a href="/essay/biology-ia">Check my Biology IA against the criteria</a></p>
+  </main>`,
 
 
   "/resources/ib-grade-boundaries": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">

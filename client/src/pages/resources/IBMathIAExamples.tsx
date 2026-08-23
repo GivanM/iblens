@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { ExamplesBridge } from "@/components/ExamplesBridge";
 import { Link } from "wouter";
 
 export default function IBMathIAExamples() {
@@ -168,6 +169,18 @@ export default function IBMathIAExamples() {
         asking: what did I assume? What could go wrong? How does this connect to
         real-world constraints? What mathematics could extend this exploration?
       </p>
+
+            <ExamplesBridge
+        workLabel="Math IA"
+        ctaHref="/essay/math-ia"
+        rows={[
+          { criterion: "A: Presentation", typical: "Sections exist, but the reader has to reconstruct what the exploration is trying to find out.", top: "The aim is visible from the first page and the exploration stays coherent and concise around it." },
+          { criterion: "B: Mathematical communication", typical: "Notation drifts, symbols appear undefined, graphs are unlabelled.", top: "Notation and terminology are correct throughout; every graph and table is labelled and referred to in the text." },
+          { criterion: "C: Personal engagement", typical: "The introduction asserts that the topic is interesting to the student.", top: "Engagement is shown, not claimed: own data, an extension nobody assigned, an approach chosen independently." },
+          { criterion: "D: Reflection", typical: "The ending summarises what was done.", top: "The reflection evaluates the mathematics itself — its limits, and what the result does not establish." },
+          { criterion: "E: Use of mathematics", typical: "Routine procedures, correctly executed, at the edge of the syllabus.", top: "Mathematics commensurate with the level, and clearly understood rather than merely performed." },
+        ]}
+      />
 
       <h2>How Your IA Draft Compares to the Rubric</h2>
       <p>

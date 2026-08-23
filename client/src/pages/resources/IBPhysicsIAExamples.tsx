@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { ExamplesBridge } from "@/components/ExamplesBridge";
 import { Link } from "wouter";
 
 export default function IBPhysicsIAExamples() {
@@ -138,6 +139,17 @@ export default function IBPhysicsIAExamples() {
         <li><strong>Quantify the effect where possible:</strong> "The temperature rose by 2°C during the experiment; using the temperature coefficient of resistance for copper, this introduces a systematic 0.8% error in resistance."</li>
         <li><strong>Propose a concrete improvement:</strong> Not "be more careful" — identify a specific change (use a thermostatically controlled enclosure, replace the stopwatch with a light gate, use a digital vernier instead of a ruler) and explain why it would reduce that specific error.</li>
       </ul>
+
+            <ExamplesBridge
+        workLabel="Physics IA"
+        ctaHref="/essay/physics-ia"
+        rows={[
+          { criterion: "Research design", typical: "The method is lifted from a standard class practical and the variables are simply listed.", top: "The method is justified for this specific question: why this range, this many trials, these controls." },
+          { criterion: "Data analysis", typical: "Raw data is tabulated and a mean is plotted; uncertainties appear once and are then forgotten.", top: "Uncertainties are propagated through the processing, and the processing chosen is the one that actually tests the hypothesis." },
+          { criterion: "Conclusion", typical: "\u201cThe hypothesis was supported\u201d — with no reference to how strongly.", top: "The conclusion is stated with its uncertainty and compared against accepted values or published work." },
+          { criterion: "Evaluation", typical: "Generic weaknesses: human error, not enough time, more trials next time.", top: "Specific weaknesses, each with its direction of effect on the result, and improvements that would actually be workable." },
+        ]}
+      />
 
       <h2>Get Feedback Before Your Teacher Submits</h2>
       <p>

@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { ExamplesBridge } from "@/components/ExamplesBridge";
 import { Link } from "wouter";
 
 export default function IBBiologyIAExamples() {
@@ -152,6 +153,17 @@ export default function IBBiologyIAExamples() {
         observed Km. A thermostatically controlled water bath or a temperature
         logger would allow me to quantify this variation and correct for it."
       </p>
+
+            <ExamplesBridge
+        workLabel="Biology IA"
+        ctaHref="/essay/biology-ia"
+        rows={[
+          { criterion: "Research design", typical: "The method is lifted from a standard class practical and the variables are simply listed.", top: "The method is justified for this specific question: why this range, this many trials, these controls." },
+          { criterion: "Data analysis", typical: "Raw data is tabulated and a mean is plotted; uncertainties appear once and are then forgotten.", top: "Uncertainties are propagated through the processing, and the processing chosen is the one that actually tests the hypothesis." },
+          { criterion: "Conclusion", typical: "\u201cThe hypothesis was supported\u201d — with no reference to how strongly.", top: "The conclusion is stated with its uncertainty and compared against accepted values or published work." },
+          { criterion: "Evaluation", typical: "Generic weaknesses: human error, not enough time, more trials next time.", top: "Specific weaknesses, each with its direction of effect on the result, and improvements that would actually be workable." },
+        ]}
+      />
 
       <h2>Getting Criterion-Level Feedback Before Submission</h2>
       <p>
