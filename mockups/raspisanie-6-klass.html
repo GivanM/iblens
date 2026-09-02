@@ -1,0 +1,349 @@
+<title>Расписание шестиклассника</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Russo+One&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Oswald:wght@500;600&display=swap">
+<style>
+  :root {
+    --desk: #2f4437;
+    --paper: #efe5cc;
+    --paper-deep: #e6d9ba;
+    --ink: #2b2620;
+    --ink-soft: #57503f;
+    --rule: #8fa0be;
+    --margin-red: #b5493a;
+    --accent-red: #9e3527;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--desk);
+    color: var(--ink);
+    font-family: "Old Standard TT", "Times New Roman", Georgia, serif;
+    padding: 40px 16px 56px;
+  }
+
+  .sheet {
+    max-width: 900px;
+    margin: 0 auto;
+    background:
+      linear-gradient(174deg, rgba(255, 252, 240, 0.5), rgba(0, 0, 0, 0) 40%),
+      linear-gradient(6deg, rgba(120, 96, 50, 0.08), rgba(0, 0, 0, 0) 35%),
+      var(--paper);
+    border: 1px solid #c9b98f;
+    box-shadow: 0 2px 0 rgba(0,0,0,.25), 0 18px 40px rgba(0,0,0,.45);
+    padding: 44px 48px 30px;
+  }
+
+  /* ---------- Шапка ---------- */
+
+  .masthead { text-align: center; }
+
+  .masthead .stars {
+    color: var(--accent-red);
+    font-size: 14px;
+    letter-spacing: 14px;
+    text-indent: 14px; /* компенсация трекинга у последней звезды */
+    margin-bottom: 6px;
+  }
+
+  h1 {
+    font-family: "Russo One", "Arial Black", sans-serif;
+    font-weight: 400;
+    font-size: clamp(26px, 4.6vw, 40px);
+    letter-spacing: .14em;
+    margin: 0 0 4px;
+    text-wrap: balance;
+  }
+
+  .masthead .rule-double {
+    height: 5px;
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    margin: 10px auto 14px;
+    max-width: 560px;
+  }
+
+  .owner {
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink-soft);
+    margin: 0 0 4px;
+  }
+
+  .blank {
+    display: inline-block;
+    border-bottom: 1px solid var(--ink-soft);
+    height: 1em;
+    vertical-align: bottom;
+  }
+  .blank.w-s { width: 46px; }
+  .blank.w-m { width: 120px; }
+  .blank.w-l { width: 260px; }
+
+  /* ---------- Колонки дней ---------- */
+
+  .days {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 44px;
+    row-gap: 26px;
+    margin-top: 30px;
+    align-items: start;
+  }
+
+  .col { display: grid; row-gap: 26px; }
+
+  .day-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 3px;
+    margin-bottom: 2px;
+  }
+
+  .day-name {
+    font-family: "Oswald", "Arial Narrow", sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .day-name::first-letter { color: var(--accent-red); }
+
+  .day-date {
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  .lessons {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+
+  /* красная вертикаль полей, как в школьной тетради */
+  .lessons::before {
+    content: "";
+    position: absolute;
+    left: 30px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--margin-red);
+    opacity: .75;
+  }
+
+  .lessons li {
+    display: flex;
+    align-items: flex-end;
+    height: 31px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .lessons .num {
+    width: 30px;
+    flex: none;
+    text-align: center;
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+    padding-bottom: 2px;
+  }
+
+  /* ---------- Расписание звонков ---------- */
+
+  .bells {
+    border: 1px solid var(--ink-soft);
+    outline: 1px solid var(--ink-soft);
+    outline-offset: 2px;
+    background: var(--paper-deep);
+    padding: 12px 16px 10px;
+  }
+
+  .bells h2 {
+    font-family: "Oswald", "Arial Narrow", sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 0 8px;
+    color: var(--accent-red);
+  }
+
+  .bells table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .bells td { padding: 1px 4px; }
+  .bells td.n { width: 60px; color: var(--ink-soft); }
+  .bells td.t { text-align: right; }
+
+  /* ---------- Подвал ---------- */
+
+  .signoff {
+    margin-top: 34px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+    flex-wrap: wrap;
+  }
+
+  .imprint {
+    margin-top: 22px;
+    padding-top: 8px;
+    border-top: 1px solid #c9b98f;
+    text-align: center;
+    font-size: 11.5px;
+    letter-spacing: .06em;
+    color: #8a7d5e;
+  }
+
+  /* ---------- Узкий экран и печать ---------- */
+
+  @media (max-width: 640px) {
+    .sheet { padding: 30px 20px 22px; }
+    .days { grid-template-columns: 1fr; }
+    .day-name { letter-spacing: .14em; }
+  }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .sheet { box-shadow: none; border: none; max-width: none; }
+  }
+</style>
+
+<div class="sheet">
+  <header class="masthead">
+    <div class="stars">★ ★ ★</div>
+    <h1>РАСПИСАНИЕ УРОКОВ</h1>
+    <div class="rule-double"></div>
+    <p class="owner">ученика (ученицы) 6 «<span class="blank w-s"></span>» класса средней школы №&nbsp;<span class="blank w-s"></span></p>
+    <p class="owner">Фамилия, имя: <span class="blank w-l"></span></p>
+  </header>
+
+  <div class="days">
+    <div class="col">
+      <section class="day">
+        <div class="day-head">
+          <h2 class="day-name">Понедельник</h2>
+          <span class="day-date">«___» ____________ 20__ г.</span>
+        </div>
+        <ol class="lessons">
+          <li><span class="num">1.</span></li>
+          <li><span class="num">2.</span></li>
+          <li><span class="num">3.</span></li>
+          <li><span class="num">4.</span></li>
+          <li><span class="num">5.</span></li>
+          <li><span class="num">6.</span></li>
+          <li><span class="num">7.</span></li>
+          <li><span class="num">8.</span></li>
+        </ol>
+      </section>
+
+      <section class="day">
+        <div class="day-head">
+          <h2 class="day-name">Вторник</h2>
+          <span class="day-date">«___» ____________ 20__ г.</span>
+        </div>
+        <ol class="lessons">
+          <li><span class="num">1.</span></li>
+          <li><span class="num">2.</span></li>
+          <li><span class="num">3.</span></li>
+          <li><span class="num">4.</span></li>
+          <li><span class="num">5.</span></li>
+          <li><span class="num">6.</span></li>
+          <li><span class="num">7.</span></li>
+          <li><span class="num">8.</span></li>
+        </ol>
+      </section>
+
+      <section class="day">
+        <div class="day-head">
+          <h2 class="day-name">Среда</h2>
+          <span class="day-date">«___» ____________ 20__ г.</span>
+        </div>
+        <ol class="lessons">
+          <li><span class="num">1.</span></li>
+          <li><span class="num">2.</span></li>
+          <li><span class="num">3.</span></li>
+          <li><span class="num">4.</span></li>
+          <li><span class="num">5.</span></li>
+          <li><span class="num">6.</span></li>
+          <li><span class="num">7.</span></li>
+          <li><span class="num">8.</span></li>
+        </ol>
+      </section>
+    </div>
+
+    <div class="col">
+      <section class="day">
+        <div class="day-head">
+          <h2 class="day-name">Четверг</h2>
+          <span class="day-date">«___» ____________ 20__ г.</span>
+        </div>
+        <ol class="lessons">
+          <li><span class="num">1.</span></li>
+          <li><span class="num">2.</span></li>
+          <li><span class="num">3.</span></li>
+          <li><span class="num">4.</span></li>
+          <li><span class="num">5.</span></li>
+          <li><span class="num">6.</span></li>
+          <li><span class="num">7.</span></li>
+          <li><span class="num">8.</span></li>
+        </ol>
+      </section>
+
+      <section class="day">
+        <div class="day-head">
+          <h2 class="day-name">Пятница</h2>
+          <span class="day-date">«___» ____________ 20__ г.</span>
+        </div>
+        <ol class="lessons">
+          <li><span class="num">1.</span></li>
+          <li><span class="num">2.</span></li>
+          <li><span class="num">3.</span></li>
+          <li><span class="num">4.</span></li>
+          <li><span class="num">5.</span></li>
+          <li><span class="num">6.</span></li>
+          <li><span class="num">7.</span></li>
+          <li><span class="num">8.</span></li>
+        </ol>
+      </section>
+
+      <aside class="bells">
+        <h2>Расписание звонков</h2>
+        <table>
+          <tr><td class="n">1 урок</td><td class="t">8.30 — 9.15</td></tr>
+          <tr><td class="n">2 урок</td><td class="t">9.25 — 10.10</td></tr>
+          <tr><td class="n">3 урок</td><td class="t">10.30 — 11.15</td></tr>
+          <tr><td class="n">4 урок</td><td class="t">11.35 — 12.20</td></tr>
+          <tr><td class="n">5 урок</td><td class="t">12.30 — 13.15</td></tr>
+          <tr><td class="n">6 урок</td><td class="t">13.25 — 14.10</td></tr>
+          <tr><td class="n">7 урок</td><td class="t">14.20 — 15.05</td></tr>
+          <tr><td class="n">8 урок</td><td class="t">15.15 — 16.00</td></tr>
+        </table>
+      </aside>
+    </div>
+  </div>
+
+  <footer>
+    <div class="signoff">
+      <span>Классный руководитель: <span class="blank w-l"></span></span>
+      <span>Подпись родителей: <span class="blank w-m"></span></span>
+    </div>
+    <div class="imprint">Аккуратно веди дневник! Заполняй расписание чернилами, без помарок. · Форма № 2-у</div>
+  </footer>
+</div>
