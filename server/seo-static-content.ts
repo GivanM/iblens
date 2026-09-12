@@ -3102,7 +3102,7 @@ export const staticContent: Record<string, string> = {
 
       <h3>UK Universities</h3>
       <ul>
-        <li><strong>Oxford and Cambridge:</strong> 38–40 points overall, with specific HL grade requirements (e.g., 7,7,6). Medicine typically requires 40–42 with 7s in Biology and Chemistry HL.</li>
+        <li><strong>Oxford:</strong> 38 to 40 points overall with specific Higher Level grades, commonly 7,6,6 to 7,7,6. <strong>Cambridge:</strong> typically 40 to 42 with 7,7,6 at Higher Level. Medicine at either sits at the top of those ranges.</li>
         <li><strong>Imperial / UCL / LSE:</strong> 36–39 points with relevant HL grades of 6 or 7.</li>
         <li><strong>Russell Group generally:</strong> 32–36 points.</li>
       </ul>
@@ -3116,7 +3116,7 @@ export const staticContent: Record<string, string> = {
       <h3>Other International</h3>
       <ul>
         <li><strong>University of Toronto / McGill:</strong> 32–36 for competitive programmes; 38+ for medicine.</li>
-        <li><strong>ETH Zürich:</strong> 37–40 with strong Mathematics and Sciences HL.</li>
+        <li><strong>ETH Zurich:</strong> 38 of the 42 subject points, with the three bonus points excluded, and strong Mathematics and Sciences at Higher Level.</li>
         <li><strong>NUS / NTU (Singapore):</strong> 38–43 for medicine and law; 34–38 for engineering and science.</li>
       </ul>
 
