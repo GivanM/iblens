@@ -163,7 +163,7 @@ const ANALYZING_STEPS = [
   "Scoring each criterion like a strict examiner\u2026",
   "Finding the exact marks you\u2019re losing\u2026",
   "Writing your improvement plan\u2026",
-  "Formatting your report \u2014 almost there\u2026",
+  "Formatting your report, almost there\u2026",
 ];
 
 export default function EssayAnalyzer() {
@@ -274,7 +274,7 @@ export default function EssayAnalyzer() {
   const [reportEmailSaved, setReportEmailSaved] = useState(false);
   const saveEmailMutation = trpc.essay.saveReportEmail.useMutation({
     onSuccess: () => setReportEmailSaved(true),
-    onError: () => toast.error("Could not save your email \u2014 please try again."),
+    onError: () => toast.error("Could not save your email, please try again."),
   });
 
   const [lastAnalysisId, setLastAnalysisId] = useState<number | null>(null);

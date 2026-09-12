@@ -1,6 +1,6 @@
 /**
  * Centralized pricing constants for IBLens.
- * Change prices here — every page, component, and server module imports from this file.
+ * Change prices here, every page, component, and server module imports from this file.
  *
  * Prices are in USD cents (integer).
  */
@@ -24,7 +24,7 @@ export type ProductKey = keyof typeof PRICES;
 
 /**
  * LemonSqueezy variant IDs per SKU (integer, used for API calls).
- * These are NOT secrets — they are public product identifiers.
+ * These are NOT secrets, they are public product identifiers.
  */
 export const LEMONSQUEEZY_VARIANTS: Record<string, number> = {
   essay_single: 1593708,
@@ -35,7 +35,7 @@ export const LEMONSQUEEZY_VARIANTS: Record<string, number> = {
 
 /**
  * LemonSqueezy direct buy URLs per SKU.
- * Built from the product's buy_now_url — no server-side API call needed.
+ * Built from the product's buy_now_url, no server-side API call needed.
  */
 export const LEMONSQUEEZY_BUY_URLS: Record<string, string> = {
   essay_single: "https://iblens.lemonsqueezy.com/checkout/buy/6f96fb90-786a-43cc-9378-e24da5eeffa5",
