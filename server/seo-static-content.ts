@@ -136,7 +136,7 @@ export const staticContent: Record<string, string> = {
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Frequently asked questions</h2>
   <dl style="color:#374151;line-height:1.75">
     <dt style="font-weight:600;margin-top:16px">Is the Biology IA grader free?</dt>
-    <dd style="margin-top:4px">Your first analysis is free (band range, weakest criterion with full feedback, top risks). The full report — exact score and every criterion with comments — unlocks for $9.99, or $24.99 for a pack of five.</dd>
+    <dd style="margin-top:4px">Your first analysis is free (band range, weakest criterion with full feedback, top risks). The full report — exact score and the full report with comments — unlocks for $9.99, or $24.99 for a pack of five.</dd>
     <dt style="font-weight:600;margin-top:16px">How accurate is the predicted score?</dt>
     <dd style="margin-top:4px">IBLens uses the official IB Biology IA rubric descriptors and examiner language. The predicted score is an estimate, not a measured match to examiner marks. Your teacher's assessment is the official one.</dd>
     <dt style="font-weight:600;margin-top:16px">Can I use this for Biology EE?</dt>
@@ -187,7 +187,7 @@ export const staticContent: Record<string, string> = {
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Frequently asked questions</h2>
   <dl style="color:#374151;line-height:1.75">
     <dt style="font-weight:600;margin-top:16px">Is the Economics IA grader free?</dt>
-    <dd style="margin-top:4px">Your first analysis is free (band range, weakest criterion with full feedback, top risks). The full report — exact score and every criterion with comments — unlocks for $9.99, or $24.99 for a pack of five.</dd>
+    <dd style="margin-top:4px">Your first analysis is free (band range, weakest criterion with full feedback, top risks). The full report — exact score and the full report with comments — unlocks for $9.99, or $24.99 for a pack of five.</dd>
     <dt style="font-weight:600;margin-top:16px">Can I grade all three of my Economics IA commentaries?</dt>
     <dd style="margin-top:4px">Yes — each commentary is graded separately. Run one analysis per commentary to get specific feedback on each.</dd>
     <dt style="font-weight:600;margin-top:16px">Does the grader check my word count?</dt>
@@ -237,7 +237,7 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">What is the History IA word limit?</dt>
     <dd style="margin-top:4px">The IB History IA has a 2,200-word limit (excluding the bibliography). IBLens checks your approximate word count and will flag if you are over the limit.</dd>
     <dt style="font-weight:600;margin-top:16px">Is the History IA grader free?</dt>
-    <dd style="margin-top:4px">Your first analysis is free (band range, weakest criterion with full feedback, top risks). The full report — exact score and every criterion with comments — unlocks for $9.99, or $24.99 for a pack of five.</dd>
+    <dd style="margin-top:4px">Your first analysis is free (band range, weakest criterion with full feedback, top risks). The full report — exact score and the full report with comments — unlocks for $9.99, or $24.99 for a pack of five.</dd>
   </dl>
 
   <section style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:26px 0">
@@ -286,7 +286,7 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Which EE subjects does the grader cover?</dt>
     <dd style="margin-top:4px">The EE criteria are the same across subjects, and the selector offers the 14 subjects we hold rubrics for. Pick yours so the feedback on knowledge and terminology is subject-specific.</dd>
     <dt style="font-weight:600;margin-top:16px">Is the Extended Essay grader free?</dt>
-    <dd style="margin-top:4px">Your first analysis is free (band range, weakest criterion with full feedback, top risks). The full report — exact score and every criterion with comments — unlocks for $9.99, or $24.99 for a pack of five.</dd>
+    <dd style="margin-top:4px">Your first analysis is free (band range, weakest criterion with full feedback, top risks). The full report — exact score and the full report with comments — unlocks for $9.99, or $24.99 for a pack of five.</dd>
   </dl>
 
   <section style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:26px 0">
@@ -384,7 +384,7 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">What is the word limit for the TOK Exhibition?</dt>
     <dd style="margin-top:4px">The IB recommends approximately 950 words total across all three object commentaries, with no strict per-object limit.</dd>
     <dt style="font-weight:600;margin-top:16px">Is the TOK Exhibition grader free?</dt>
-    <dd style="margin-top:4px">Your first analysis is free (band range, weakest criterion with full feedback, top risks). The full report — exact score and every criterion with comments — unlocks for $9.99, or $24.99 for a pack of five.</dd>
+    <dd style="margin-top:4px">Your first analysis is free (band range, weakest criterion with full feedback, top risks). The full report — exact score and the full report with comments — unlocks for $9.99, or $24.99 for a pack of five.</dd>
   </dl>
 
   <section style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:26px 0">
@@ -472,7 +472,7 @@ export const staticContent: Record<string, string> = {
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Frequently asked questions</h2>
   <dl style="color:#374151;line-height:1.75">
     <dt style="font-weight:600;margin-top:16px">Is the Psychology IA grader free?</dt>
-    <dd style="margin-top:4px">Your first analysis is free (band range, weakest criterion with full feedback, top risks). The full report — exact score and every criterion with comments — unlocks for $9.99, or $24.99 for a pack of five.</dd>
+    <dd style="margin-top:4px">Your first analysis is free (band range, weakest criterion with full feedback, top risks). The full report — exact score and the full report with comments — unlocks for $9.99, or $24.99 for a pack of five.</dd>
     <dt style="font-weight:600;margin-top:16px">Does IBLens grade Psychology Extended Essays?</dt>
     <dd style="margin-top:4px">Yes — use the <a href="/essay/extended-essay">Extended Essay grader</a> and select Psychology as your subject.</dd>
   </dl>
@@ -517,7 +517,7 @@ export const staticContent: Record<string, string> = {
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Frequently asked questions</h2>
   <dl style="color:#374151;line-height:1.75">
     <dt style="font-weight:600;margin-top:16px">Is the Chemistry IA grader free?</dt>
-    <dd style="margin-top:4px">Your first analysis is free (band range, weakest criterion with full feedback, top risks). The full report — exact score and every criterion with comments — unlocks for $9.99, or $24.99 for a pack of five.</dd>
+    <dd style="margin-top:4px">Your first analysis is free (band range, weakest criterion with full feedback, top risks). The full report — exact score and the full report with comments — unlocks for $9.99, or $24.99 for a pack of five.</dd>
     <dt style="font-weight:600;margin-top:16px">Can I use this for IB Chemistry EE?</dt>
     <dd style="margin-top:4px">For Chemistry Extended Essays, use the <a href="/essay/extended-essay">Extended Essay grader</a> and select Chemistry as your subject. See also our <a href="/resources/ib-chemistry-extended-essay">IB Chemistry EE guide</a>.</dd>
   </dl>
@@ -1208,7 +1208,7 @@ export const staticContent: Record<string, string> = {
       <h2>Is the First IB IA Analysis Really Free?</h2>
 
       <p>
-        Your first analysis is free and shows a preview: the predicted band range, your weakest criterion with full feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments and a ranked fix list — is $9.99, and includes two free re-checks of the same draft within 14 days. Packs work out at $5.00 per essay (5 for $24.99) or $4.50 (10 for $44.99).
+        Your first analysis is free and shows a preview: the predicted band range, your weakest criterion with full feedback, and the top risks in your draft. The complete report — exact score, the full report with comments and a ranked fix list — is $9.99, and includes two free re-checks of the same draft within 14 days. Packs work out at $5.00 per essay (5 for $24.99) or $4.50 (10 for $44.99).
       </p>
 
       <h2>How Accurate Is the AI Grade?</h2>

@@ -217,8 +217,10 @@ export function registerLemonsqueezyWebhook(app: Express) {
             const variantName = String(attrs.first_order_item?.variant_name || attrs.product_name || "").toLowerCase();
             // Match the pack wording, not any digit in the name: "University
             // Strategy Report" and a price string both contain digits.
-            const guessed = /\b10[\s-]*pack\b|\bpack of 10\b/.test(variantName) ? 10
-              : /\b5[\s-]*pack\b|\bpack of (5|five)\b/.test(variantName) ? 5
+            // Our own products are named "Essay Analysis, 10 Pack" and
+            // "10 Essay Analyses", so match both shapes rather than any digit.
+            const guessed = /\b10\b[\s-]*(pack|essay|analys)|pack of 10/.test(variantName) ? 10
+              : /\b(5|five)\b[\s-]*(pack|essay|analys)|pack of (5|five)/.test(variantName) ? 5
               : 1;
             if (buyerEmail) {
               try {

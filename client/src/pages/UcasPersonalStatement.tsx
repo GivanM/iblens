@@ -78,6 +78,14 @@ export default function UcasPersonalStatement() {
   const { isAuthenticated } = useAuth();
   const creditsQ = trpc.dashboard.credits.useQuery(undefined, { enabled: isAuthenticated });
   const hasCredit = (creditsQ.data?.essayCredits ?? 0) > 0;
+  // Credits bought without an account live on the device, and this page could not
+  // see them: a guest who had paid was told the review costs $9.99.
+  const deviceCreditsQ = trpc.essay.deviceCredits.useQuery(
+    { fingerprint: anonFp },
+    { enabled: !isAuthenticated }
+  );
+  const deviceCredits = isAuthenticated ? 0 : (deviceCreditsQ.data?.credits ?? 0);
+  const canPayHere = hasCredit || deviceCredits > 0;
 
   const review = trpc.essay.analyzeUcasAnonymous.useMutation({
     onSuccess: (data: any) => setResult(data.result),
@@ -233,7 +241,7 @@ export default function UcasPersonalStatement() {
                   q1: answers.q1, q2: answers.q2, q3: answers.q3,
                   clientFingerprint: anonFp,
                   spendCredit: hasCredit,
-                  spendDeviceCredit: !hasCredit,
+                  spendDeviceCredit: !hasCredit && deviceCredits > 0,
                 });
                 return;
               }
@@ -247,6 +255,7 @@ export default function UcasPersonalStatement() {
                 // Only when the button says so, and it says so only when there is
                 // a credit to spend.
                 spendCredit: hasCredit,
+                spendDeviceCredit: !hasCredit && deviceCredits > 0,
               });
             }}
           >
@@ -256,8 +265,8 @@ export default function UcasPersonalStatement() {
               "Review a new statement (1 credit)"
             ) : isUnlocked ? (
               `Re-check my statement (free${effectiveRechecks !== null ? `, ${effectiveRechecks} left` : ""})`
-            ) : hasCredit ? (
-              "Review my statement in full (1 credit)"
+            ) : canPayHere ? (
+              `Review my statement in full (1 ${hasCredit ? "credit" : "paid report"})`
             ) : (
               "Review my statement, free"
             )}

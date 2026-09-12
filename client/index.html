@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Base SEO (per-page tags injected by react-helmet-async + seo-prerender.ts) -->
-    <title>IBLens — Free IB Essay Analyzer | Score Your IA, EE & TOK in 60 Seconds</title>
+    <title>IBLens — Free IB Essay Analyzer | Score Your IA, EE & TOK in 90 Seconds</title>
     <meta name="robots" content="index, follow" />
     <meta name="author" content="IBLens" />
     <meta name="theme-color" content="#7B1D2E" />
@@ -51,7 +51,13 @@
           if (m) {
             try { localStorage.setItem('iblens_geo_country', m[1]); } catch(e){}
             applyGeoConsent(m[1]);
+            return;
           }
+          // The domain is no longer behind Cloudflare, so this endpoint answers
+          // with the app's own HTML and no country. Treat that as unknown rather
+          // than as success, or the banner never resolves and consent stays
+          // denied for everyone, silently.
+          window.__iblens_show_banner = true;
         };
         xhr.onerror = xhr.ontimeout = function(){
           // Fallback: region unknown — keep consent DENIED and show the banner (safe default)

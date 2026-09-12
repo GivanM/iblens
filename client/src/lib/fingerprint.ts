@@ -28,3 +28,19 @@ export function getAnonFingerprint(): string {
     return sessionOnlyId;
   }
 }
+
+/**
+ * Start a new device identity. Called on sign-out: the id is what unlocks paid
+ * reports on this browser, so leaving it in place handed the next person to sign
+ * in everything the previous one had bought.
+ */
+export function rotateAnonFingerprint(): void {
+  try {
+    localStorage.removeItem(KEY);
+    localStorage.removeItem(LEGACY_KEY);
+    localStorage.removeItem("iblens_anon_used");
+  } catch {
+    /* nothing to rotate */
+  }
+  sessionOnlyId = null;
+}

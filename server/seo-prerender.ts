@@ -102,7 +102,7 @@ const routeMeta: Record<string, PageMeta> = {
     faq: [
       { question: "Which IB essay types can IBLens grade?", answer: "IBLens grades all IB essay types: coursework in 14 subjects (the IA in eleven, plus the externally assessed coursework in Visual Arts, Music and Film), Extended Essays (EE), and Theory of Knowledge (TOK) essays. Each is scored against the official IB rubric for that specific essay type." },
       { question: "How accurate is the AI grade prediction?", answer: "IBLens is given the official IB marking criteria for your task and produces an estimate from those criteria, which is not a measured match to examiner marks. It evaluates each criterion individually and identifies specific areas where marks are being lost, giving you actionable feedback to improve before submission." },
-      { question: "Is the first analysis really free?", answer: "Yes — your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments, and a ranked fix list — unlocks for $9.99." },
+      { question: "Is the first analysis really free?", answer: "Yes — your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report — exact score, the full report with comments, and a ranked fix list — unlocks for $9.99." },
       { question: "How long does it take to get feedback?", answer: "Results are ready in about 90 seconds. Paste your essay text, select your subject and essay type, and the report comes back in about 90 seconds." },
     ],
   },

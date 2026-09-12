@@ -112,7 +112,7 @@ export default function LandingPage() {
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 { step: "1", icon: "📋", title: "Paste your essay", desc: "Copy-paste your IA, EE, or TOK text and select your subject. Ready in seconds." },
-                { step: "2", icon: "⚡", title: "AI grades it in 60s", desc: "Scored against the official IB rubric for your subject and type." },
+                { step: "2", icon: "⚡", title: "AI grades it in about 90 seconds", desc: "Scored against the official IB rubric for your subject and type." },
                 { step: "3", icon: "🎯", title: "See exactly what to fix", desc: "Criterion scores, marks you're losing, and a specific action plan." },
               ].map(({ step, icon, title, desc }) => (
                 <div key={step} className="flex flex-col items-center text-center gap-3">
@@ -216,7 +216,7 @@ export default function LandingPage() {
             <div className="bg-background rounded-xl border p-5">
               <FAQItem
                 question="Is the first essay grade really free?"
-                answer="Yes, your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report, exact score, every criterion with comments, and a ranked fix list, unlocks for $9.99."
+                answer="Yes, your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report, exact score, the full report with comments, and a ranked fix list, unlocks for $9.99."
               />
               <FAQItem
                 question="Which essay types and subjects does IBLens support?"
@@ -224,7 +224,7 @@ export default function LandingPage() {
               />
               <FAQItem
                 question="How accurate is the AI grade?"
-                answer="IBLens evaluates your essay against official IB marking criteria for your subject. The predicted band gives you a reliable signal of where you stand and exactly which criteria to improve, the same way a real examiner would assess it."
+                answer="IBLens evaluates your essay against official IB marking criteria for your subject. The predicted band is an estimate of where the draft sits against the published criteria and exactly which criteria to improve, using the same criteria an examiner applies."
               />
               <FAQItem
                 question="What payment methods do you accept?"
@@ -265,6 +265,8 @@ export default function LandingPage() {
           <Link href="/" className="font-semibold text-foreground">IBLens</Link>
           <Link href="/pricing" className="hover:text-foreground transition-colors">Pricing</Link>
           <Link href="/refund-policy" className="hover:text-foreground transition-colors">Refund Policy</Link>
+          <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
+          <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
         </div>
       </footer>
     </>

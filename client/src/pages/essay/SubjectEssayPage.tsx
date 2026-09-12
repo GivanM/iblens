@@ -95,7 +95,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 { icon: "📋", title: "Paste your essay", desc: "Copy-paste your full text. No file upload needed, works on any device." },
-                { icon: "⚡", title: "AI grades it in 60s", desc: `Scored against the official IB rubric for ${config.subject}, criterion by criterion.` },
+                { icon: "⚡", title: "AI grades it in about 90 seconds", desc: `Scored against the official IB rubric for ${config.subject}, criterion by criterion.` },
                 { icon: "🎯", title: "See what to fix", desc: "Get exact marks you're losing and a prioritised action plan to improve." },
               ].map(({ icon, title, desc }) => (
                 <div key={title} className="flex flex-col items-center text-center gap-3">
@@ -193,7 +193,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
             <div className="grid sm:grid-cols-2 gap-4">
               {[
                 { text: `Scored against the official IB ${config.subject} rubric` },
-                { text: "Criterion-by-criterion breakdown, not just a single score" },
+                { text: "A criterion-level read where the instrument has criteria, and a holistic read where it does not" },
                 { text: "Identifies exactly which marks you're losing and why" },
                 { text: "Prioritised action plan to improve before submission" },
                 { text: "First analysis free, no sign-up required" },

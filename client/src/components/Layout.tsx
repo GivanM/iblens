@@ -11,7 +11,7 @@ import {
 import { Link, useLocation } from "wouter";
 import { useEffect } from "react";
 import { trpc } from "@/lib/trpc";
-import { getAnonFingerprint } from "@/lib/fingerprint";
+import { getAnonFingerprint, rotateAnonFingerprint } from "@/lib/fingerprint";
 import { toast } from "sonner";
 import { FileText, GraduationCap, LayoutDashboard, LogOut, User, Menu, X, DollarSign, BookOpen } from "lucide-react";
 import { useState } from "react";
@@ -98,7 +98,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => logout()} className="text-destructive">
+                  <DropdownMenuItem onClick={() => { rotateAnonFingerprint(); logout(); }} className="text-destructive">
                     <LogOut className="w-4 h-4 mr-2" />
                     Sign out
                   </DropdownMenuItem>

@@ -73,7 +73,8 @@ export function CookieConsent() {
       <div className="container max-w-4xl flex flex-col sm:flex-row items-start sm:items-center gap-4">
         <p className="text-sm text-gray-700 dark:text-gray-300 flex-1">
           We use cookies to measure site performance and improve your experience.
-          By clicking "Accept", you consent to analytics and advertising cookies.
+          By clicking "Accept", you consent to analytics and advertising cookies. What we collect and who
+          receives it is set out in our <a href="/privacy" className="underline">privacy notice</a>.
         </p>
         <div className="flex gap-2 shrink-0">
           <Button

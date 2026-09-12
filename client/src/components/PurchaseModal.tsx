@@ -128,7 +128,7 @@ export function PurchaseModal({ open, onOpenChange, sku }: PurchaseModalProps) {
               <div className="mt-3 rounded-lg bg-muted/50 p-3 text-left">
                 <p className="text-xs font-medium mb-1">What you get</p>
                 <ul className="text-xs text-muted-foreground space-y-1 list-disc pl-4">
-                  <li>Your current report unlocked in full: exact score, every criterion with comments, ranked fix list</li>
+                  <li>Your current report unlocked in full: exact score, the full report with comments, ranked fix list</li>
                   <li>Two free re-checks of the same draft within 14 days</li>
                   <li>The report opens on this device straight after payment, and stays open here</li>
                 </ul>

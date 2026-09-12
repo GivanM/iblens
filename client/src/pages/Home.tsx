@@ -135,7 +135,7 @@ export default function Home() {
                 name: "Is my first essay analysis really free?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes, your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report, exact score, every criterion with comments, and a ranked fix list, unlocks for $9.99.",
+                  text: "Yes, your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report, exact score, the full report with comments, and a ranked fix list, unlocks for $9.99.",
                 },
               },
               {
@@ -143,7 +143,7 @@ export default function Home() {
                 name: "How accurate is the predicted IB score?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "IBLens provides a predicted score band based on IB marking criteria analysis. While no tool can guarantee exact scores, the model is instructed with the official IB criteria for your subject and session and provides reliable estimates to help you understand where your essay stands and how to improve it.",
+                  text: "IBLens provides a predicted score band based on IB marking criteria analysis. While no tool can guarantee exact scores, the model is instructed with the official IB criteria for your subject and session and produces an estimate, which is not a measured match to examiner marks to help you understand where your essay stands and how to improve it.",
                 },
               },
               {
@@ -503,11 +503,11 @@ export default function Home() {
               />
               <FAQItem
                 question="Is my first essay analysis really free?"
-                answer="Yes, your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report, exact score, every criterion with comments, and a ranked fix list, unlocks for $9.99."
+                answer="Yes, your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report, exact score, the full report with comments, and a ranked fix list, unlocks for $9.99."
               />
               <FAQItem
                 question="How accurate is the predicted IB score?"
-                answer="IBLens provides a predicted score band based on IB marking criteria analysis. While no tool can guarantee exact scores, the model is instructed with the official IB criteria for your subject and session and provides reliable estimates to help you understand where your essay stands and how to improve it."
+                answer="IBLens provides a predicted score band based on IB marking criteria analysis. While no tool can guarantee exact scores, the model is instructed with the official IB criteria for your subject and session and produces an estimate, which is not a measured match to examiner marks to help you understand where your essay stands and how to improve it."
               />
               <FAQItem
                 question="Is my essay data kept private and secure?"

@@ -44,6 +44,17 @@ export default function AnalysisView() {
   }
 
   const r: any = (data as any).resultJson || {};
+  // A UCAS review has a different shape entirely. Rendering it here printed
+  // "undefined/undefined" with empty criteria.
+  if ((data as any).essayType === "UCAS") {
+    return (
+      <div className="container max-w-3xl mx-auto py-20 text-center space-y-4">
+        <h1 style={SERIF} className="text-2xl font-bold">{r.verdict || "Your UCAS review"}</h1>
+        <p className="text-muted-foreground">{r.verdict_reason || "This is a UCAS personal statement review."}</p>
+        <Button asChild><Link href="/ucas-personal-statement">Open it on the UCAS page</Link></Button>
+      </div>
+    );
+  }
   const unlocked = (data as any).unlocked;
   const criteria: any[] = Array.isArray(r.criteria) ? r.criteria : [];
 
@@ -51,7 +62,7 @@ export default function AnalysisView() {
     return (
       <div className="container max-w-3xl mx-auto py-20 text-center space-y-4">
         <h1 style={SERIF} className="text-2xl font-bold">This report is still locked</h1>
-        <p className="text-muted-foreground">You saw the free preview for this draft. The full report unlocks the exact score, every criterion with comments, and your ranked fix list.</p>
+        <p className="text-muted-foreground">You saw the free preview for this draft. The full report unlocks the exact score, the full report with comments, and your ranked fix list.</p>
         <div className="flex flex-col sm:flex-row gap-2 justify-center">
           <Button disabled={unlockHere.isPending} onClick={() => unlockHere.mutate({ analysisId: id })}>
             {unlockHere.isPending ? "Unlocking…" : "Unlock this report (1 credit)"}

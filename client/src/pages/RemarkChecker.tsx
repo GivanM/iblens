@@ -138,7 +138,7 @@ function RemarkQuickCheck() {
               ))}
             </ul>
           )}
-          <p className="text-sm text-muted-foreground mb-3">The full report, exact score, every criterion with comments, and a ranked fix list, unlocks for $9.99 on the analyzer page.</p>
+          <p className="text-sm text-muted-foreground mb-3">The full report, exact score, the full report with comments, and a ranked fix list, unlocks for $9.99 on the analyzer page.</p>
           <Button asChild><Link href="/essay">Unlock the full report, $9.99</Link></Button>
           {emailSaved ? (
             <p className="text-sm font-medium mt-4">Saved, your report link and improvement tips are on the way.</p>

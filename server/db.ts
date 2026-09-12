@@ -634,13 +634,17 @@ export async function absorbGuestAccount(email: string, targetUserId: number): P
 
   const essay = guest.essayCredits ?? 0;
   const university = guest.universityCredits ?? 0;
+
+  // Orders move regardless: a guest who spent the credit on the report they
+  // bought has nothing left to transfer, and their purchase history was
+  // disappearing because of it.
+  await db.update(orders).set({ userId: targetUserId }).where(eq(orders.userId, guest.id));
   if (essay <= 0 && university <= 0) return 0;
 
   await db.update(users)
     .set({ essayCredits: 0, universityCredits: 0 })
     .where(eq(users.id, guest.id));
   await grantCreditsViaLedger(targetUserId, essay, university, `guest-merge:${guest.id}`);
-  await db.update(orders).set({ userId: targetUserId }).where(eq(orders.userId, guest.id));
 
   console.log(`[Merge] Guest ${guest.id} absorbed into user ${targetUserId}: essay=${essay}, university=${university}`);
   return essay;
@@ -888,13 +892,23 @@ export async function ledgerHasEntry(reason: string, orderId: string): Promise<b
 export async function takeAllDeviceCredits(fingerprint: string, claimedBy: number): Promise<number> {
   const db = await getDb();
   if (!db) return 0;
-  const res: any = await db.update(deviceCredits)
-    .set({ credits: 0, claimedByUserId: claimedBy })
-    .where(and(eq(deviceCredits.fingerprint, fingerprint), sql`${deviceCredits.credits} > 0`));
-  const changed = Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0);
-  if (changed === 0) return 0;
-  const rows = await db.select().from(deviceCredits).where(eq(deviceCredits.fingerprint, fingerprint)).limit(1);
-  return (rows[0] as any)?.claimedAmount ?? 0;
+  // Compare and swap: read the balance, then zero it only if it is still that
+  // balance. Returning claimedAmount, which counts everything ever put here,
+  // handed people more credits than they had left.
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const rows = await db.select().from(deviceCredits).where(eq(deviceCredits.fingerprint, fingerprint)).limit(1);
+    const rec: any = rows[0];
+    const balance = rec?.credits ?? 0;
+    if (!rec || balance <= 0) return 0;
+    // A wallet already taken by someone else is not up for grabs.
+    if (rec.claimedByUserId && rec.claimedByUserId !== claimedBy) return 0;
+    const res: any = await db.update(deviceCredits)
+      .set({ credits: 0, claimedByUserId: claimedBy })
+      .where(and(eq(deviceCredits.fingerprint, fingerprint), eq(deviceCredits.credits, balance)));
+    const changed = Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0);
+    if (changed > 0) return balance;
+  }
+  return 0;
 }
 
 /** Take back device credits that a refunded purchase had granted. */
@@ -940,9 +954,11 @@ export async function relockAnalysesForOrder(userId: number, orderId: string) {
   if (!db) return;
   // Only what this order opened. Taking "the newest unlocked report" closed
   // reports paid for by other purchases.
+  // By order, not by owner: a report bought as a guest and later adopted onto an
+  // account belongs to a different user than the order does.
   const res: any = await db.update(analyses)
     .set({ unlocked: false, unlockedAt: null })
-    .where(and(eq(analyses.userId, userId), eq(analyses.unlockOrderId, orderId)));
+    .where(eq(analyses.unlockOrderId, orderId));
   const n = Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0);
   console.log(`[Refund] ${n} account report(s) re-locked for order ${orderId}`);
 }

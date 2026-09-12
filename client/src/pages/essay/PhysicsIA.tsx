@@ -6,7 +6,7 @@ const config: SubjectConfig = {
   keyword: "IB Physics IA",
   metaTitle: "IB Physics IA Grader, Free AI Feedback on Investigation | IBLens",
   metaDescription:
-    "AI-powered feedback on your IB Physics Internal Assessment. Checks all 5 criteria: personal engagement, exploration, analysis, evaluation, and communication.",
+    "AI-powered feedback on your IB Physics Internal Assessment. Checks all four criteria: research design, data analysis, conclusion and evaluation.",
   canonicalPath: "/essay/physics-ia",
   heroHeadline: "Your IB Physics IA scored by the same criteria your examiner uses",
   heroSubline:

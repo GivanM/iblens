@@ -288,14 +288,22 @@ export default function Dashboard() {
               {history.map((item) => (
                 <div key={item.id} className="flex items-center gap-3 border-b border-border last:border-0">
                 <Link
-                  href={item.unlocked ? `/dashboard/analysis/${item.id}` : "/essay"}
+                  href={
+                    item.essayType === "UCAS"
+                      ? "/ucas-personal-statement"
+                      : item.unlocked
+                        ? `/dashboard/analysis/${item.id}`
+                        : "/essay"
+                  }
                   className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors flex-1 min-w-0 cursor-pointer"
                 >
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium truncate">
-                      {item.type === "essay"
-                        ? `${item.essayType}, ${item.subject || "Unknown"}`
-                        : `University Strategy, ${item.fieldOfStudy || "Unknown"}`}
+                      {item.essayType === "UCAS"
+                        ? `UCAS personal statement, ${item.subject || "your course"}`
+                        : item.type === "essay"
+                          ? `${item.essayType}, ${item.subject || "Unknown"}`
+                          : `University Strategy, ${item.fieldOfStudy || "Unknown"}`}
                     </p>
                     <p className="text-xs text-muted-foreground">
                       {new Date(item.createdAt).toLocaleDateString()}
@@ -304,6 +312,8 @@ export default function Dashboard() {
                   </div>
                   {item.unlocked && item.predictedGrade ? (
                     <Badge variant="secondary" className="flex-shrink-0">{item.predictedGrade}</Badge>
+                  ) : item.unlocked ? (
+                    <Badge variant="secondary" className="flex-shrink-0">Open</Badge>
                   ) : (
                     <Badge variant="outline" className="flex-shrink-0">Locked</Badge>
                   )}

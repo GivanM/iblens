@@ -6,7 +6,7 @@ import { trackLogin, trackSignUp } from "@/lib/analytics/track";
  * Fires trackLogin or trackSignUp once when user auth state transitions
  * from unauthenticated → authenticated.
  *
- * Heuristic for sign_up: if user.createdAt is within last 60 seconds.
+ * Heuristic for sign_up: if user.createdAt is within last 90 seconds.
  * Otherwise fires login.
  *
  * Place this hook once in the App component.
@@ -24,7 +24,7 @@ export function useAuthTracking() {
 
     const now = Date.now();
     const createdAt = user.createdAt ? new Date(user.createdAt).getTime() : 0;
-    const isNewUser = now - createdAt < 60_000; // within last 60 seconds
+    const isNewUser = now - createdAt < 60_000; // within last 90 seconds
 
     if (isNewUser) {
       trackSignUp("manus_oauth", user.openId || user.id?.toString() || "");

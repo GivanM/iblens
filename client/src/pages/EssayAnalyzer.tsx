@@ -147,7 +147,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
             </div>
           ) : (
             <div className="flex flex-col sm:flex-row items-center gap-3">
-              <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report, $9.99.</strong> Exact score, every criterion with comments, your ranked fix list, and two free re-checks of this draft over the next 14 days, so you can see whether your edits actually landed.</p>
+              <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report, $9.99.</strong> Exact score, the full report with comments, your ranked fix list, and two free re-checks of this draft over the next 14 days, so you can see whether your edits actually landed.</p>
               <Button onClick={onBuy}>Buy &amp; unlock, $9.99</Button>
             </div>
           )}

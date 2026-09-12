@@ -6,7 +6,7 @@ const config: SubjectConfig = {
   keyword: "IB Math AA IA",
   metaTitle: "IB Math AA IA Grader, Free AI Feedback on Analysis & Approaches | IBLens",
   metaDescription:
-    "AI feedback on your IB Mathematics: Analysis and Approaches IA exploration. Presentation, mathematical communication, personal engagement, reflection and use of mathematics, reflection, and use of mathematics, scored against the official IB criteria.",
+    "AI feedback on your IB Mathematics: Analysis and Approaches IA exploration. Presentation, mathematical communication, personal engagement, reflection and use of mathematics, scored against the official IB criteria.",
   canonicalPath: "/essay/maths-aa-ia",
   heroHeadline: "Is your IB Math AA exploration heading for a 6 or a 4?",
   heroSubline:
