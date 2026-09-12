@@ -67,7 +67,7 @@ export const staticContent: Record<string, string> = {
   "/": S(`  <main style="max-width:1100px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <p style="font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#7B1D2E;margin-bottom:12px">IB Essay Grader</p>
   <h1 style="font-size:34px;font-weight:800;line-height:1.2;margin:0 0 16px">Know your IB score before the exam</h1>
-  <p style="font-size:17px;color:#374151;line-height:1.7;margin-bottom:24px">IBLens is a free AI IB essay grader that scores your Internal Assessment (IA), Extended Essay (EE), or Theory of Knowledge (TOK) essay against the official IB rubric in about a minute. Get a criterion-by-criterion breakdown, a predicted band, the exact marks you are losing, and specific improvements. Your first analysis is free — no account required, no subscription. IBLens is calibrated to grade like a strict examiner — no inflated scores.</p>
+  <p style="font-size:17px;color:#374151;line-height:1.7;margin-bottom:24px">IBLens is a free AI IB essay grader that scores your Internal Assessment (IA), Extended Essay (EE), or Theory of Knowledge (TOK) essay against the official IB rubric in about 90 seconds. Get a criterion-by-criterion breakdown, a predicted band, the exact marks you are losing, and specific improvements. Your first analysis is free — no account required, no subscription. IBLens is calibrated to grade like a strict examiner — no inflated scores.</p>
   <h2 style="font-size:22px;font-weight:700;margin:28px 0 12px">What IBLens grades</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:24px">
     <li><strong>Internal Assessments (IA)</strong> in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film.</li>
@@ -100,7 +100,7 @@ export const staticContent: Record<string, string> = {
     <li><strong>Pack of 10 — $44.99</strong> — ten analyses, best value per essay.</li>
   </ul>
   <h2 style="font-size:20px;font-weight:700;margin:28px 0 12px">How IBLens compares to an IB tutor</h2>
-  <p style="color:#374151;line-height:1.7;margin-bottom:20px">IB tutors charge $50–150 per hour. A single IBLens analysis costs $9.99 and returns criterion-by-criterion feedback against the official IB rubric in about a minute, any time of day. Credits stay on your account and we do not expire them, and every purchase is covered by a 7-day money-back guarantee.</p>
+  <p style="color:#374151;line-height:1.7;margin-bottom:20px">IB tutors charge $50–150 per hour. A single IBLens analysis costs $9.99 and returns criterion-by-criterion feedback against the official IB rubric in about 90 seconds, any time of day. Credits stay on your account and we do not expire them, and every purchase is covered by a 7-day money-back guarantee.</p>
   <p><a href="/essay">Start free →</a></p>
 </main>`),
 
@@ -113,7 +113,7 @@ export const staticContent: Record<string, string> = {
   "/essay/biology-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Biology IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Biology IA Grader — Free AI Feedback on Lab Reports</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Biology Internal Assessment against the official IB Biology IA rubric — criterion by criterion — and gives you a predicted score in about a minute. Paste your lab report, get specific, actionable feedback on every criterion. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Biology Internal Assessment against the official IB Biology IA rubric — criterion by criterion — and gives you a predicted score in about 90 seconds. Paste your lab report, get specific, actionable feedback on every criterion. A free preview is included; the full report is $9.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Biology IA rubric: what examiners look for (24 marks)</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">The Biology IA is worth 20% of your final IB grade. Under the current (first assessment 2025) scientific investigation, examiners assess four criteria worth 6 marks each, and the same rubric applies at SL and HL. The report has a maximum of 3,000 words.</p>
@@ -151,10 +151,10 @@ export const staticContent: Record<string, string> = {
   <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
   <li>$9.99 for the full report and two re-checks — no subscription, and it includes two free re-checks of the same draft within 14 days.</li>
   <li>Your first analysis is free: predicted band range, your weakest criterion with full feedback, and the top risks in your draft. No account needed.</li>
-  <li>Covers Internal Assessments in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
 
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: coursework in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
   
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
   <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-biology-ia-examples">Biology IA examples</a> · <a href="/resources/ib-biology-extended-essay">Biology Extended Essay</a> · <a href="/resources/ib-ia-feedback">Check your IA against the criteria</a></p>
@@ -163,7 +163,7 @@ export const staticContent: Record<string, string> = {
   "/essay/economics-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Economics IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Economics IA Grader — Free AI Feedback on Your Commentary</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Economics Internal Assessment commentary against the official IB Economics IA rubric. Get criterion-by-criterion feedback on Diagrams, Terminology, Application and analysis, Key concept, and Evaluation in about a minute. First analysis free — no account needed.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Economics Internal Assessment commentary against the official IB Economics IA rubric. Get criterion-by-criterion feedback on Diagrams, Terminology, Application and analysis, Key concept, and Evaluation in about 90 seconds. First analysis free — no account needed.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Economics IA rubric: five criteria per commentary (14 marks each)</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">You submit a portfolio of three commentaries, one for each unit — Microeconomics, Macroeconomics, and The global economy — and each commentary must be built around a different key concept. Each commentary is marked out of 14 across five criteria (A–E). The whole portfolio is marked out of 45: three commentaries at 14 marks each (42) plus Criterion F — Rubric requirements (3 marks), which rewards using different units, different sources and articles published within one year of writing.</p>
@@ -200,10 +200,10 @@ export const staticContent: Record<string, string> = {
   <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
   <li>$9.99 for the full report and two re-checks — no subscription, and it includes two free re-checks of the same draft within 14 days.</li>
   <li>Your first analysis is free: predicted band range, your weakest criterion with full feedback, and the top risks in your draft. No account needed.</li>
-  <li>Covers Internal Assessments in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
 
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: coursework in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
   
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
   <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-economics-ia">Economics IA guide</a> · <a href="/resources/ib-economics-extended-essay">Economics Extended Essay</a> · <a href="/resources/ib-ia-feedback">Check your IA against the criteria</a></p>
@@ -212,7 +212,7 @@ export const staticContent: Record<string, string> = {
   "/essay/history-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB History IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB History IA Grader — Free AI Feedback on Your Historical Investigation</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB History Internal Assessment (Historical Investigation) against the official IB History IA rubric. Get criterion-by-criterion feedback on your Section A, B, and C in about a minute. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB History Internal Assessment (Historical Investigation) against the official IB History IA rubric. Get criterion-by-criterion feedback on your Section A, B, and C in about 90 seconds. A free preview is included; the full report is $9.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB History IA rubric: three sections (25 marks)</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
@@ -246,10 +246,10 @@ export const staticContent: Record<string, string> = {
   <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
   <li>$9.99 for the full report and two re-checks — no subscription, and it includes two free re-checks of the same draft within 14 days.</li>
   <li>Your first analysis is free: predicted band range, your weakest criterion with full feedback, and the top risks in your draft. No account needed.</li>
-  <li>Covers Internal Assessments in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
 
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: coursework in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
   
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
   <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-history-ia">History IA guide</a> · <a href="/resources/ib-history-extended-essay">History Extended Essay</a></p>
@@ -258,7 +258,7 @@ export const staticContent: Record<string, string> = {
   "/essay/extended-essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › Extended Essay</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Extended Essay Grader — Free AI Feedback on Your EE</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Extended Essay against the official IB EE rubric — all five criteria — and gives you criterion-by-criterion feedback in about a minute. Paste up to 4,000 words (or your full EE) and get a predicted score with specific improvement suggestions. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Extended Essay against the official IB EE rubric — all five criteria — and gives you criterion-by-criterion feedback in about 90 seconds. Paste up to 4,000 words (or your full EE) and get a predicted score with specific improvement suggestions. A free preview is included; the full report is $9.99.</p>
   <p style="background:#fef3c7;border:1px solid #f59e0b;border-radius:8px;padding:12px 16px;color:#92400e;font-size:14px;line-height:1.6"><strong>Which criteria apply to you?</strong> Sessions through November 2026 use the 34-mark EE criteria below. The <strong>May 2027 cohort</strong> (students who began the DP in 2025 — including current drafts) is assessed on the new 30-mark criteria (Framework 6, Knowledge 6, Analysis and line of argument 6, Discussion and evaluation 8, Reflection 4). Select your session in the analyzer.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Extended Essay rubric: five criteria (34 marks)</h2>
@@ -295,10 +295,10 @@ export const staticContent: Record<string, string> = {
   <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
   <li>$9.99 for the full report and two re-checks — no subscription, and it includes two free re-checks of the same draft within 14 days.</li>
   <li>Your first analysis is free: predicted band range, your weakest criterion with full feedback, and the top risks in your draft. No account needed.</li>
-  <li>Covers Internal Assessments in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
 
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: coursework in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
   
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
   <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-extended-essay-guide">IB Extended Essay Guide</a> · <a href="/resources/ib-extended-essay-new-criteria-2027">New criteria for May 2027</a> · <a href="/resources/ib-extended-essay-feedback">How to get feedback before you submit</a> · <a href="/resources/ib-ee-examples-by-subject">EE examples by subject</a></p>
@@ -307,7 +307,7 @@ export const staticContent: Record<string, string> = {
   "/essay/tok-essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › TOK Essay</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB TOK Essay Grader — Free AI Feedback on Theory of Knowledge</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Theory of Knowledge essay against the official IB TOK rubric and gives you criterion-by-criterion feedback in about a minute. Find out if your knowledge claims are developed enough, whether your counter-claims are genuinely addressed, and whether your essay actually answers the prescribed title. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Theory of Knowledge essay against the official IB TOK rubric and gives you criterion-by-criterion feedback in about 90 seconds. Find out if your knowledge claims are developed enough, whether your counter-claims are genuinely addressed, and whether your essay actually answers the prescribed title. A free preview is included; the full report is $9.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB TOK Essay rubric: how it is marked (holistic, out of 10)</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">Since the 2022 syllabus the TOK essay is marked holistically against a single global-impression instrument, scored out of 10. There are no sub-criteria. The examiner works from one guiding question — "Does the student provide a clear, coherent and critical exploration of the essay title?" — and places your 1,600-word essay in one of five bands:</p>
@@ -344,10 +344,10 @@ export const staticContent: Record<string, string> = {
   <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
   <li>$9.99 for the full report and two re-checks — no subscription, and it includes two free re-checks of the same draft within 14 days.</li>
   <li>Your first analysis is free: predicted band range, your weakest criterion with full feedback, and the top risks in your draft. No account needed.</li>
-  <li>Covers Internal Assessments in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
 
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: coursework in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
   
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
   <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/tok-essay-guide">TOK Essay Guide</a> · <a href="/resources/tok-essay-checklist">TOK Essay Checklist</a> · <a href="/resources/tok-essay-structure">TOK Essay Structure</a></p>
@@ -356,7 +356,7 @@ export const staticContent: Record<string, string> = {
   "/essay/tok-exhibition": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › TOK Exhibition</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB TOK Exhibition Grader — Free AI Feedback on All 3 Objects</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Theory of Knowledge Exhibition commentary against the official IB TOK Exhibition rubric — all three criteria — and gives you specific feedback in about a minute. Find out if your object justifications make convincing links to the IA prompt and to TOK concepts. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Theory of Knowledge Exhibition commentary against the official IB TOK Exhibition rubric — all three criteria — and gives you specific feedback in about 90 seconds. Find out if your object justifications make convincing links to the IA prompt and to TOK concepts. A free preview is included; the full report is $9.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB TOK Exhibition rubric: how it is marked (holistic, out of 10)</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">Since the 2022 syllabus the TOK exhibition is marked holistically against a single global-impression instrument, out of 10, with no sub-criteria. The examiner works from one guiding question — "Does the exhibition successfully show how TOK manifests in the world around us?" — and places your commentary in one of five bands: Excellent (9–10), Good (7–8), Satisfactory (5–6), Basic (3–4), Rudimentary (1–2).</p>
@@ -393,10 +393,10 @@ export const staticContent: Record<string, string> = {
   <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
   <li>$9.99 for the full report and two re-checks — no subscription, and it includes two free re-checks of the same draft within 14 days.</li>
   <li>Your first analysis is free: predicted band range, your weakest criterion with full feedback, and the top risks in your draft. No account needed.</li>
-  <li>Covers Internal Assessments in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
 
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: coursework in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
   
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
   <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/tok-exhibition-checklist">TOK Exhibition Checklist</a> · <a href="/resources/tok-essay-guide">TOK Essay Guide</a></p>
@@ -441,10 +441,10 @@ export const staticContent: Record<string, string> = {
   <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
   <li>$9.99 for the full report and two re-checks — no subscription, and it includes two free re-checks of the same draft within 14 days.</li>
   <li>Your first analysis is free: predicted band range, your weakest criterion with full feedback, and the top risks in your draft. No account needed.</li>
-  <li>Covers Internal Assessments in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
 
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: coursework in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
   
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
   <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-math-ia-examples">Math IA examples</a> · <a href="/essay/maths-aa-ia">Maths AA IA grader</a> · <a href="/essay/maths-ai-ia">Maths AI IA grader</a></p>
@@ -458,9 +458,7 @@ export const staticContent: Record<string, string> = {
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Psychology IA rubric: four criteria (22 marks)</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
     <li><strong>Introduction (6 marks)</strong>: Background theory, aim, and hypothesis. IBLens checks whether your introduction clearly links the psychological theory to your experimental design and whether your hypothesis is directional and operationalised.</li>
-    <li><strong>Exploration (4 marks)</strong>: Research design, sampling method, materials, and ethical considerations. IBLens checks whether your design choices are justified and whether you explain how you controlled for confounding variables.</li>
-    <li><strong>Analysis (6 marks)</strong>: Descriptive and inferential statistics, graphs, and interpretation. IBLens checks whether you select the correct statistical test, present results clearly, and interpret the statistics accurately.</li>
-    <li><strong>Evaluation (6 marks)</strong>: Discussion of results in relation to the background theory, limitations, and suggestions for modification. IBLens checks whether your evaluation is specific and whether limitations directly relate to your findings.</li>
+    <li><strong>Research design (6 marks):</strong> focused question in a genuine context, methodology with variables and controls, safety and ethics.</li><li><strong>Data analysis (6 marks):</strong> recording, processing and presenting data, including uncertainties.</li><li><strong>Conclusion (6 marks):</strong> justified by the analysis and compared with the accepted scientific context.</li><li><strong>Evaluation (6 marks):</strong> methodological weaknesses and limitations, with realistic improvements.</li>
   </ul>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Common IB Psychology IA mistakes IBLens catches</h2>
@@ -485,10 +483,10 @@ export const staticContent: Record<string, string> = {
   <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
   <li>$9.99 for the full report and two re-checks — no subscription, and it includes two free re-checks of the same draft within 14 days.</li>
   <li>Your first analysis is free: predicted band range, your weakest criterion with full feedback, and the top risks in your draft. No account needed.</li>
-  <li>Covers Internal Assessments in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
 
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: coursework in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
   
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
   <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-psychology-ia">Psychology IA guide</a> · <a href="/resources/ib-psychology-ia-2027">What changes in 2027</a> · <a href="/resources/ib-psychology-extended-essay">Psychology Extended Essay</a></p>
@@ -530,10 +528,10 @@ export const staticContent: Record<string, string> = {
   <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
   <li>$9.99 for the full report and two re-checks — no subscription, and it includes two free re-checks of the same draft within 14 days.</li>
   <li>Your first analysis is free: predicted band range, your weakest criterion with full feedback, and the top risks in your draft. No account needed.</li>
-  <li>Covers Internal Assessments in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
 
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: coursework in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
   
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
   <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-chemistry-ia-examples">Chemistry IA examples</a> · <a href="/resources/ib-chemistry-extended-essay">Chemistry Extended Essay</a> · <a href="/resources/ib-ia-feedback">Check your IA against the criteria</a></p>
@@ -575,10 +573,10 @@ export const staticContent: Record<string, string> = {
   <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
   <li>$9.99 for the full report and two re-checks — no subscription, and it includes two free re-checks of the same draft within 14 days.</li>
   <li>Your first analysis is free: predicted band range, your weakest criterion with full feedback, and the top risks in your draft. No account needed.</li>
-  <li>Covers Internal Assessments in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
 
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: coursework in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
   
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
   <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-physics-ia-examples">Physics IA examples</a> · <a href="/resources/ib-ia-feedback">Check your IA against the criteria</a></p>
@@ -587,7 +585,7 @@ export const staticContent: Record<string, string> = {
   "/essay/business-management-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Business Management IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Business Management IA Grader — Free AI Feedback on Your IA</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Business Management Internal Assessment (the Business research project, first assessment 2024) against the official IB BM IA rubric. Get criterion-by-criterion feedback in about a minute on your key concept, supporting documents, and analysis. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Business Management Internal Assessment (the Business research project, first assessment 2024) against the official IB BM IA rubric. Get criterion-by-criterion feedback in about 90 seconds on your key concept, supporting documents, and analysis. A free preview is included; the full report is $9.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Business Management IA rubric: seven criteria (25 marks)</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">The current Business research project is a business report of up to 1,800 words, supported by 3–5 supporting documents published within three years, and built around one key concept — change, creativity, ethics or sustainability. It is marked out of 25 across seven criteria (A–G):</p>
@@ -623,10 +621,10 @@ export const staticContent: Record<string, string> = {
   <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
   <li>$9.99 for the full report and two re-checks — no subscription, and it includes two free re-checks of the same draft within 14 days.</li>
   <li>Your first analysis is free: predicted band range, your weakest criterion with full feedback, and the top risks in your draft. No account needed.</li>
-  <li>Covers Internal Assessments in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
 
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: coursework in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
   
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
   <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-ia-feedback">Check your IA against the criteria</a> · <a href="/resources/ib-internal-assessment-guide">IB Internal Assessment Guide</a></p>
@@ -667,10 +665,10 @@ export const staticContent: Record<string, string> = {
   <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
   <li>$9.99 for the full report and two re-checks — no subscription, and it includes two free re-checks of the same draft within 14 days.</li>
   <li>Your first analysis is free: predicted band range, your weakest criterion with full feedback, and the top risks in your draft. No account needed.</li>
-  <li>Covers Internal Assessments in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
 
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: coursework in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
   
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
   <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-english-extended-essay">English Extended Essay</a> · <a href="/resources/ib-ia-feedback">Check your IA against the criteria</a></p>
@@ -712,10 +710,10 @@ export const staticContent: Record<string, string> = {
   <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
   <li>$9.99 for the full report and two re-checks — no subscription, and it includes two free re-checks of the same draft within 14 days.</li>
   <li>Your first analysis is free: predicted band range, your weakest criterion with full feedback, and the top risks in your draft. No account needed.</li>
-  <li>Covers Internal Assessments in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
 
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: coursework in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
   
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
   <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-computer-science-ia-2027">What changes in 2027</a> · <a href="/resources/ib-ia-feedback">Check your IA against the criteria</a></p>
@@ -750,10 +748,10 @@ export const staticContent: Record<string, string> = {
   <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
   <li>$9.99 for the full report and two re-checks — no subscription, and it includes two free re-checks of the same draft within 14 days.</li>
   <li>Your first analysis is free: predicted band range, your weakest criterion with full feedback, and the top risks in your draft. No account needed.</li>
-  <li>Covers Internal Assessments in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
 
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: coursework in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
   
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
   <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-math-ia-examples">Math IA examples</a> · <a href="/essay/math-ia">General Math IA grader</a> · <a href="/essay/maths-ai-ia">Maths AI IA grader</a></p>
@@ -762,7 +760,7 @@ export const staticContent: Record<string, string> = {
   "/essay/maths-ai-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Math AI IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Math AI IA Grader — Free AI Feedback on Applications & Interpretation</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Mathematics: Applications and Interpretation Internal Assessment exploration against the official IB Math rubric in about a minute. Works for both SL and HL. Get feedback on communication, personal engagement, reflection, and use of mathematics. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Mathematics: Applications and Interpretation Internal Assessment exploration against the official IB Math rubric in about 90 seconds. Works for both SL and HL. Get feedback on communication, personal engagement, reflection, and use of mathematics. A free preview is included; the full report is $9.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Math AI IA: what examiners look for (20 marks)</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">Math AI students are expected to apply mathematics to real-world contexts. Examiners look for meaningful data collection, statistical modelling, and genuine mathematical analysis of a real-world phenomenon.</p>
@@ -790,10 +788,10 @@ export const staticContent: Record<string, string> = {
   <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
   <li>$9.99 for the full report and two re-checks — no subscription, and it includes two free re-checks of the same draft within 14 days.</li>
   <li>Your first analysis is free: predicted band range, your weakest criterion with full feedback, and the top risks in your draft. No account needed.</li>
-  <li>Covers Internal Assessments in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
 
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: coursework in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
   
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
   <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-math-ia-examples">Math IA examples</a> · <a href="/essay/math-ia">General Math IA grader</a> · <a href="/essay/maths-aa-ia">Maths AA IA grader</a></p>
@@ -823,7 +821,7 @@ export const staticContent: Record<string, string> = {
   </main>`),
   "/essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Essay Grader — Free AI Feedback on IA, Extended Essay & TOK</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens is a free AI essay grader for IB students. Paste your Internal Assessment, Extended Essay, or TOK Essay and get criterion-by-criterion feedback with a predicted score in about a minute — against the official IB rubric for your subject. No account required for your first analysis.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens is a free AI essay grader for IB students. Paste your Internal Assessment, Extended Essay, or TOK Essay and get criterion-by-criterion feedback with a predicted score in about 90 seconds — against the official IB rubric for your subject. No account required for your first analysis.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Subjects and work types supported</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">IBLens grades all major IB assessment types:</p>
@@ -838,7 +836,7 @@ export const staticContent: Record<string, string> = {
     <li><strong>Select your work type and subject</strong> — IBLens loads the official IB rubric for your specific assessment</li>
     <li><strong>Paste your text</strong> — copy and paste from your word processor; no file upload required</li>
     <li><strong>Add your research question or title</strong> (optional) — helps the AI evaluate whether your analysis addresses the question</li>
-    <li><strong>Get your feedback in about a minute</strong> — a predicted score for each criterion with specific, actionable improvement suggestions</li>
+    <li><strong>Get your feedback in about 90 seconds</strong> — a predicted score for each criterion with specific, actionable improvement suggestions</li>
   </ol>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">How IBLens compares to RevisionDojo</h2>
@@ -867,10 +865,10 @@ export const staticContent: Record<string, string> = {
   <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
   <li>$9.99 for the full report and two re-checks — no subscription, and it includes two free re-checks of the same draft within 14 days.</li>
   <li>Your first analysis is free: predicted band range, your weakest criterion with full feedback, and the top risks in your draft. No account needed.</li>
-  <li>Covers Internal Assessments in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+  <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
   </ul></section>
 
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: coursework in 14 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
   
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Applying to UK universities through UCAS?</h2>
   <p style="line-height:1.7;margin:0 0 14px">From 2026 entry the UCAS personal statement is three separate questions sharing one 4,000-character budget, with a 350-character minimum per answer. Our <a href="/ucas-personal-statement">UCAS personal statement checker</a> reviews each answer from an admissions-tutor perspective: what a tutor would credit, what they would expect and not find, and what to change first. No invented score — UCAS publishes no mark scheme. First review free.</p>
@@ -1182,7 +1180,7 @@ export const staticContent: Record<string, string> = {
         <li><strong>Choose your essay type and subject.</strong> Select "Internal Assessment (IA)" and your IB subject from the dropdown.</li>
         <li><strong>Paste your IA text.</strong> Copy the full text of your Internal Assessment — methodology, analysis, evaluation, everything.</li>
         <li><strong>Enter your research question.</strong> This helps the AI assess whether your investigation stays focused on a specific, answerable question.</li>
-        <li><strong>Get your grade report.</strong> Within about a minute you receive a criterion-by-criterion score, a predicted grade, the marks you are losing and why, and specific steps to recover them.</li>
+        <li><strong>Get your grade report.</strong> Within about 90 seconds you receive a criterion-by-criterion score, a predicted grade, the marks you are losing and why, and specific steps to recover them.</li>
       </ol>
 
       <h2>What You Get in the Grade Report</h2>
@@ -1429,7 +1427,7 @@ export const staticContent: Record<string, string> = {
       </ul>
 
       <p>
-        If you want objective, criterion-based feedback on your Extended Essay before submission, <a href="/essay/extended-essay">IBLens can grade your Extended Essay</a> against the official IB EE criteria — focus &amp; method, knowledge, critical thinking, presentation, and engagement — in about a minute.
+        If you want objective, criterion-based feedback on your Extended Essay before submission, <a href="/essay/extended-essay">IBLens can grade your Extended Essay</a> against the official IB EE criteria — focus &amp; method, knowledge, critical thinking, presentation, and engagement — in about 90 seconds.
       </p>
 
       <p>
@@ -1645,7 +1643,7 @@ export const staticContent: Record<string, string> = {
       </p>
 
       <p>
-        Get AI feedback in about 90 seconds on your IA: <a href="/essay/biology-ia">Biology IA</a>, <a href="/essay/chemistry-ia">Chemistry IA</a>, <a href="/essay/physics-ia">Physics IA</a>, <a href="/essay/economics-ia">Economics IA</a>, <a href="/essay/history-ia">History IA</a>, <a href="/essay/business-management-ia">Business Management IA</a>, <a href="/essay/math-ia">Mathematics IA</a>, or <a href="/essay/psychology-ia">Psychology IA</a> — each graded against the official IB rubric in about a minute.
+        Get AI feedback in about 90 seconds on your IA: <a href="/essay/biology-ia">Biology IA</a>, <a href="/essay/chemistry-ia">Chemistry IA</a>, <a href="/essay/physics-ia">Physics IA</a>, <a href="/essay/economics-ia">Economics IA</a>, <a href="/essay/history-ia">History IA</a>, <a href="/essay/business-management-ia">Business Management IA</a>, <a href="/essay/math-ia">Mathematics IA</a>, or <a href="/essay/psychology-ia">Psychology IA</a> — each graded against the official IB rubric in about 90 seconds.
       </p>
     
   
@@ -1834,7 +1832,7 @@ export const staticContent: Record<string, string> = {
       </ul>
 
       <p>
-        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <a href="/essay/tok-essay">IBLens can provide criterion-based feedback on your TOK essay</a> — scored against the official IB TOK rubric in about a minute. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <a href="/resources/ib-grade-boundaries">IB Grade Boundaries</a> guide. For a broader look at how IB criteria work across essay types, read our <a href="/resources/ib-essay-criteria-explained">IB Essay Criteria Explained</a> article.
+        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <a href="/essay/tok-essay">IBLens can provide criterion-based feedback on your TOK essay</a> — scored against the official IB TOK rubric in about 90 seconds. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <a href="/resources/ib-grade-boundaries">IB Grade Boundaries</a> guide. For a broader look at how IB criteria work across essay types, read our <a href="/resources/ib-essay-criteria-explained">IB Essay Criteria Explained</a> article.
       </p>
     
   
@@ -3315,11 +3313,7 @@ export const staticContent: Record<string, string> = {
 
       <h2>How the IB Chemistry IA Is Marked</h2>
       <ul>
-        <li><strong>Research design (6 marks):</strong> A focused research question in a genuine context — a non-standard variable or an original data source makes the design convincingly your own.</li>
-        <li><strong>Exploration (6 marks):</strong> Clear research question, relevant background theory, correct identification of variables (independent, dependent, controlled), and a reproducible methodology.</li>
-        <li><strong>Analysis (6 marks):</strong> Quantitative data processing (means, uncertainties, graphs), correct use of units, and a conclusion supported by the data. Error propagation is expected at HL.</li>
-        <li><strong>Evaluation (6 marks):</strong> Specific assessment of methodological limitations, systematic and random errors, and concrete improvements. The most under-scored criterion.</li>
-        <li><strong>Communication (4 marks):</strong> Clear structure, appropriate scientific notation, correct citations, and appropriate length (up to 3,000 words).</li>
+        <li><strong>Research design (6 marks):</strong> focused question in a genuine context, methodology with variables and controls, safety and ethics.</li><li><strong>Data analysis (6 marks):</strong> recording, processing and presenting data, including uncertainties.</li><li><strong>Conclusion (6 marks):</strong> justified by the analysis and compared with the accepted scientific context.</li><li><strong>Evaluation (6 marks):</strong> methodological weaknesses and limitations, with realistic improvements.</li>
       </ul>
 
       <h2>IB Chemistry IA Topics That Score Well</h2>
@@ -3492,11 +3486,7 @@ export const staticContent: Record<string, string> = {
 
       <h2>Marking Criteria Overview</h2>
       <ul>
-        <li><strong>Research design (6 marks):</strong> A focused research question in a genuine context — a non-standard variable, a context from the student's own life, or an original approach strengthens the design.</li>
-        <li><strong>Exploration (6 marks):</strong> Research question, background theory, identified variables (IV, DV, controlled), and a methodology detailed enough to be reproduced.</li>
-        <li><strong>Analysis (6 marks):</strong> Processed data with uncertainties, appropriate graphs (often linearised), and a conclusion with a comparison to expected values or theory.</li>
-        <li><strong>Evaluation (6 marks):</strong> Specific, directional assessment of limitations and improvements. Random vs systematic error distinction. This is where most marks are lost.</li>
-        <li><strong>Communication (4 marks):</strong> Clear structure, correct physics notation, appropriate length.</li>
+        <li><strong>Research design (6 marks):</strong> focused question in a genuine context, methodology with variables and controls, safety and ethics.</li><li><strong>Data analysis (6 marks):</strong> recording, processing and presenting data, including uncertainties.</li><li><strong>Conclusion (6 marks):</strong> justified by the analysis and compared with the accepted scientific context.</li><li><strong>Evaluation (6 marks):</strong> methodological weaknesses and limitations, with realistic improvements.</li>
       </ul>
 
       <h2>IB Physics IA Examples That Score Well</h2>
@@ -3659,12 +3649,10 @@ export const staticContent: Record<string, string> = {
       </p>
       <ul>
         <li><strong>Introduction (approx. 200–300 words):</strong> Background to the original study, explanation of the research question and aim, and a clear directional hypothesis (one-tailed or two-tailed).</li>
-        <li><strong>Exploration (approx. 200–350 words):</strong> Design of your study — independent variable, dependent variable, controls, sampling method, ethical considerations (including informed consent and right to withdraw).</li>
-        <li><strong>Analysis (approx. 150–250 words):</strong> Descriptive statistics (means, standard deviations) presented in a table, an appropriate graph, and the result of an inferential test.</li>
-        <li><strong>Evaluation (approx. 200–350 words):</strong> Comparison of your results to the original study, discussion of limitations, and suggested improvements.</li>
+        <li><strong>Research design (6 marks):</strong> focused question in a genuine context, methodology with variables and controls, safety and ethics.</li><li><strong>Data analysis (6 marks):</strong> recording, processing and presenting data, including uncertainties.</li><li><strong>Conclusion (6 marks):</strong> justified by the analysis and compared with the accepted scientific context.</li><li><strong>Evaluation (6 marks):</strong> methodological weaknesses and limitations, with realistic improvements.</li>
       </ul>
       <p>
-        Total word limit: 1500–2200 words (not including references, raw data in
+        Total word limit: 1,800 to 2,200 words (not including references, raw data in
         appendix, or participant consent forms). Staying within the word limit is
         itself assessed under Communication.
       </p>
@@ -4409,17 +4397,13 @@ export const staticContent: Record<string, string> = {
 
       <h2>How the IB Biology IA Is Marked</h2>
       <p>
-        The IA is marked out of 24 across five criteria:
+        The IA is marked out of 24 across four criteria (2025 syllabus):
       </p>
       <ul>
-        <li><strong>Research design (6 marks):</strong> A focused research question in a genuine context, with an appropriate and safe methodology — the criterion where most marks are won or lost.</li>
-        <li><strong>Exploration (6 marks):</strong> Clear research question, appropriate methodology, identified variables (independent, dependent, controlled), and sufficient background theory.</li>
-        <li><strong>Analysis (6 marks):</strong> Correctly processed data, appropriate statistical tests, graphs with error bars, and a conclusion drawn from the data.</li>
-        <li><strong>Evaluation (6 marks):</strong> Honest assessment of the methodology: what are the weaknesses? What systematic errors exist? How could the investigation be improved?</li>
-        <li><strong>Communication (4 marks):</strong> Structure, clarity, appropriate use of scientific terminology, and correct citation format.</li>
+        <li><strong>Research design (6 marks):</strong> focused question in a genuine context, methodology with variables and controls, safety and ethics.</li><li><strong>Data analysis (6 marks):</strong> recording, processing and presenting data, including uncertainties.</li><li><strong>Conclusion (6 marks):</strong> justified by the analysis and compared with the accepted scientific context.</li><li><strong>Evaluation (6 marks):</strong> methodological weaknesses and limitations, with realistic improvements.</li>
       </ul>
       <p>
-        A score of 20/24 or above typically corresponds to a 7. The most common reason
+        The IA is 20 per cent of the subject grade, so there is no IA-only conversion to a 1 to 7 score. The most common reason
         for dropping from a 7 to a 6 is weak Evaluation — students describe what
         happened without critically analysing why the method may have introduced error.
       </p>

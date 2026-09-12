@@ -46,7 +46,7 @@ const plans: Array<{
     popular: true,
     features: [
       "Everything in single analysis",
-      "$5.00 per essay — 50% off the single price",
+      "$5.00 per essay, 50% off the single price",
       "Two free re-checks of each draft within 14 days",
       "Use across any subjects",
       "No expiry date while the service operates",
@@ -63,7 +63,7 @@ const plans: Array<{
     popular: false,
     features: [
       "Everything in single analysis",
-      "$4.50 per essay — 55% off the single price",
+      "$4.50 per essay, 55% off the single price",
       "Two free re-checks of each draft within 14 days",
       "Use across any subjects",
       "No expiry date while the service operates",
@@ -87,7 +87,7 @@ export default function Pricing() {
   return (
     <div className="py-16 md:py-24">
       <SEOHead
-        title="Pricing — IB Essay Analysis from $9.99 | IBLens"
+        title="Pricing, IB Essay Analysis from $9.99 | IBLens"
         description="Affordable IB essay feedback: first analysis free, single essays from $9.99, packs of 5 for $24.99, packs of 10 for $44.99. 7-day money-back guarantee."
         canonical="/pricing"
       />
@@ -121,7 +121,7 @@ export default function Pricing() {
             <div className="flex-1">
               <h3 className="font-semibold">First essay analysis is free</h3>
               <p className="text-sm text-muted-foreground mt-0.5">
-                Paste your essay — no sign-in, no credit card required. You get a free preview: your band range, your weakest criterion with full feedback, and the top risks in your draft.
+                Paste your essay, no sign-in, no credit card required. You get a free preview: your band range, your weakest criterion with full feedback, and the top risks in your draft.
               </p>
             </div>
             <Button size="sm" asChild className="flex-shrink-0">

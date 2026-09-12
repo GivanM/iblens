@@ -4,7 +4,7 @@ import { Link } from "wouter";
 export default function IBHistoryIA() {
   return (
     <ResourceArticle
-      title="IB History IA — How to Write Your Historical Investigation and Score a 7 | IBLens"
+      title="IB History IA, How to Write Your Historical Investigation and Score a 7 | IBLens"
       description="A complete guide to the IB History Internal Assessment: how to choose a research question, structure the three sections, use sources correctly, and score well on all criteria."
       canonical="/resources/ib-history-ia"
       datePublished="2026-06-09"
@@ -16,7 +16,7 @@ export default function IBHistoryIA() {
         secondary sources, evaluate two specific sources in detail, and write an
         analytical argument supported by evidence. It is worth 25% of your final grade
         at SL and 20% at HL. Most students find the IA less difficult than Paper 2
-        or Paper 3 — but the specific structure and the source evaluation sections
+        or Paper 3, but the specific structure and the source evaluation sections
         trip up a significant number of students who don't understand exactly what
         each section requires.
       </p>
@@ -27,7 +27,7 @@ export default function IBHistoryIA() {
         what each section requires is more important than general writing skill.
       </p>
 
-      <h3>Section 1 — Identification and Evaluation of Sources (approx. 500 words)</h3>
+      <h3>Section 1, Identification and Evaluation of Sources (approx. 500 words)</h3>
       <p>
         This section focuses on two sources specifically relevant to your research
         question. For each source, you must analyse it using the OPCVL framework:
@@ -37,7 +37,7 @@ export default function IBHistoryIA() {
         <strong>What examiners want:</strong> Not a description of what the source says,
         but an analysis of what its origin and purpose mean for its value and
         limitations. A speech by a government minister on the eve of a controversial
-        decision is valuable as evidence of the official government position — but
+        decision is valuable as evidence of the official government position, but
         limited because it was designed to persuade, not to inform, and likely
         omits inconvenient facts. That is the level of analysis required.
       </p>
@@ -52,10 +52,10 @@ export default function IBHistoryIA() {
         <strong>Source selection:</strong> One primary source (a document, speech,
         photograph, or statistical record produced at the time) and one secondary
         source (a historian's analysis) works well. Both must be specifically relevant
-        to your research question — not just to the general topic.
+        to your research question, not just to the general topic.
       </p>
 
-      <h3>Section 2 — Investigation (approx. 1300 words)</h3>
+      <h3>Section 2, Investigation (approx. 1300 words)</h3>
       <p>
         This is the analytical body of your IA. It should directly answer your
         research question using evidence from multiple sources. Think of it as a
@@ -68,16 +68,15 @@ export default function IBHistoryIA() {
         what happened. Students who score 7 organise their argument thematically,
         weigh competing interpretations, and maintain a consistent answer to the
         research question throughout. Every paragraph should either advance or
-        qualify the argument — not just add more information.
+        qualify the argument, not just add more information.
       </p>
       <p>
         Use a minimum of 8–10 sources in the Investigation. Footnote or parenthetically
-        cite every piece of evidence you use. Do not quote at excessive length —
-        short, precise quotations with analysis are better than long block quotes
+        cite every piece of evidence you use. Do not quote at excessive length, short, precise quotations with analysis are better than long block quotes
         that consume word count.
       </p>
 
-      <h3>Section 3 — Reflection (approx. 400 words)</h3>
+      <h3>Section 3, Reflection (approx. 400 words)</h3>
       <p>
         This section asks you to reflect on the methods historians use and the
         challenges involved. It is the most misunderstood section of the History IA.
@@ -92,7 +91,7 @@ export default function IBHistoryIA() {
         examiners look for engagement with questions like:
       </p>
       <ul>
-        <li>What kinds of sources were available to you — and what kinds were not? How did this shape what you could know?</li>
+        <li>What kinds of sources were available to you, and what kinds were not? How did this shape what you could know?</li>
         <li>How did the perspective of your sources affect the conclusions you could draw?</li>
         <li>What does the existence of contradictory historical interpretations tell you about the nature of historical knowledge?</li>
         <li>How would a historian with access to different archives or sources approach this question differently?</li>
@@ -111,7 +110,7 @@ export default function IBHistoryIA() {
       </p>
       <ul>
         <li><strong>Narrow enough to answer in 1300 words of analysis.</strong> "What caused World War One?" cannot be answered in 1300 words. "To what extent did the Schlieffen Plan's failure determine Germany's military strategy in 1914?" can.</li>
-        <li><strong>Debatable — requiring evaluation of evidence, not just description.</strong> A question that can be answered by reciting a sequence of events is not suitable. A question where historians disagree — where you must weigh evidence and come to a justified position — is ideal.</li>
+        <li><strong>Debatable, requiring evaluation of evidence, not just description.</strong> A question that can be answered by reciting a sequence of events is not suitable. A question where historians disagree, where you must weigh evidence and come to a justified position, is ideal.</li>
         <li><strong>Supported by accessible sources.</strong> You need primary sources for Section 1. Topics where primary sources are available in translation, digitised, or held in a local archive are preferable to topics where all relevant sources are in an archive in another country.</li>
         <li><strong>Distinct from Paper 2 and Paper 3 topics.</strong> The IB prefers (though does not strictly require) that your IA topic is different from your examined topics. Using the same topic risks formulaic writing; using a genuinely new topic demonstrates independent historical thinking.</li>
       </ul>
@@ -128,9 +127,9 @@ export default function IBHistoryIA() {
         <tbody>
           <tr><td>Origin</td><td>Who produced this? When? Where? Under what conditions?</td><td>Context affects what the source could and could not contain.</td></tr>
           <tr><td>Purpose</td><td>Why was this produced? For what audience?</td><td>Purpose shapes what is included, what is omitted, and how it is framed.</td></tr>
-          <tr><td>Content</td><td>What does it say that is relevant to the research question?</td><td>Brief — the main value/limitation analysis flows from content, not from it.</td></tr>
+          <tr><td>Content</td><td>What does it say that is relevant to the research question?</td><td>Brief, the main value/limitation analysis flows from content, not from it.</td></tr>
           <tr><td>Value</td><td>What makes this source useful for investigating the research question?</td><td>Value comes from origin + purpose, not just content.</td></tr>
-          <tr><td>Limitation</td><td>What does this source not tell us, or tell us unreliably?</td><td>All sources have limitations — pretending they don't is a mark loss.</td></tr>
+          <tr><td>Limitation</td><td>What does this source not tell us, or tell us unreliably?</td><td>All sources have limitations, pretending they don't is a mark loss.</td></tr>
         </tbody>
       </table>
 
@@ -156,7 +155,7 @@ export default function IBHistoryIA() {
       </p>
       <p>
         IBLens analyses your History IA against the official IB marking criteria
-        and provides criterion-by-criterion feedback — so you know exactly what
+        and provides criterion-by-criterion feedback, so you know exactly what
         to change before you submit the final version.
       </p>
       <p>

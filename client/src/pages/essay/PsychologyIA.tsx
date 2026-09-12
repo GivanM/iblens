@@ -4,13 +4,13 @@ const config: SubjectConfig = {
   subject: "Psychology IA",
   slug: "psychology-ia",
   keyword: "IB Psychology IA",
-  metaTitle: "IB Psychology IA Grader — Free AI Feedback on Research Report | IBLens",
+  metaTitle: "IB Psychology IA Grader, Free AI Feedback on Research Report | IBLens",
   metaDescription:
-    "AI feedback on your IB Psychology Internal Assessment. Introduction, method, results, discussion, and conclusion — all scored against official IB Psychology criteria.",
+    "AI feedback on your IB Psychology Internal Assessment. Introduction, method, results, discussion, and conclusion, all scored against official IB Psychology criteria.",
   canonicalPath: "/essay/psychology-ia",
   heroHeadline: "Get your IB Psychology IA scored against the real IB rubric",
   heroSubline:
-    "Paste your Psychology IA research report and find out exactly where you're losing marks — criterion by criterion, in about a minute.",
+    "Paste your Psychology IA research report and find out exactly where you're losing marks, criterion by criterion, in about 90 seconds.",
   criteria: [
     { name: "Introduction", max: 6, sampleScore: 4 },
     { name: "Exploration", max: 4, sampleScore: 3 },

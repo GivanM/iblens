@@ -1,5 +1,5 @@
 /**
- * Analytics configuration — all tracking IDs in one place.
+ * Analytics configuration, all tracking IDs in one place.
  *
  * GTM Container ID: GTM-WSLBPQMP
  * GA4 Measurement ID: G-391DXZEC51 (configured inside GTM, not injected directly)
@@ -10,7 +10,7 @@
 export const GTM_CONTAINER_ID = "GTM-WSLBPQMP";
 export const GA4_MEASUREMENT_ID = "G-391DXZEC51";
 
-// ─── Placeholders — swap via one-line edit when ready ───────────────────────
+// ─── Placeholders, swap via one-line edit when ready ───────────────────────
 export const META_PIXEL_ID = "PLACEHOLDER";
 export const GOOGLE_ADS_CONVERSION_ID = "AW-18130476377";
 export const GOOGLE_ADS_LEAD_LABEL = "53NUCIiJqqUcENm6pMVD";

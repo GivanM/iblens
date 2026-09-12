@@ -3,8 +3,8 @@ import { Sheet, Slug } from "./Sheet";
 
 /**
  * Commentary for the worked example, keyed by the official criterion label.
- * The criteria, their marks and the total come from `shared/rubrics.ts` — the
- * same module the grader runs on — so this sheet cannot drift away from what
+ * The criteria, their marks and the total come from `shared/rubrics.ts`, the
+ * same module the grader runs on, so this sheet cannot drift away from what
  * the product actually marks against. A criterion with no entry here is shown
  * as unmarked rather than borrowing another criterion's text.
  *
@@ -13,10 +13,10 @@ import { Sheet, Slug } from "./Sheet";
  * the same distinction: see `isNotAssessableFromText` in server/routers.ts.
  */
 const DEMO: Record<string, { awarded: number; note: string; weak?: boolean }> = {
-  "Criterion A": { awarded: 5, note: "Question is focused and properly bounded. The scope only arrives on page four." },
+  "Criterion A": { awarded: 4, note: "The question is properly bounded, but the scope and the plan only arrive on page four." },
   "Criterion B": { awarded: 4, note: "One piece of real subject knowledge, the 1985 debt standstill. The rest stays general." },
-  "Criterion C": { awarded: 3, note: "Two readings named, neither weighed against the other.", weak: true },
-  "Criterion D": { awarded: 4, note: "The counter-argument is reported, not evaluated. This is the most expensive gap in the draft.", weak: true },
+  "Criterion C": { awarded: 3, note: "Three parallel explanations, no line between them. The conclusion about timing is never argued for.", weak: true },
+  "Criterion D": { awarded: 4, note: "The competing readings are reported, not weighed. This is the most expensive gap in the draft.", weak: true },
 };
 
 const UNMARKED_NOTE = "Marked on the reflective statement (RPF), which this draft did not include.";

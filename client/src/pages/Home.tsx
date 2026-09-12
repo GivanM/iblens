@@ -83,8 +83,8 @@ export default function Home() {
     <>
       <PurchaseModal open={purchaseModalOpen} onOpenChange={setPurchaseModalOpen} sku={purchaseSku} />
       <SEOHead
-        title="IBLens — Free IB Essay Grader & Feedback Tool"
-        description="Free IB essay grader — upload your Extended Essay, IA, or TOK and get AI feedback with a predicted grade in about a minute. No credit card required."
+        title="IBLens, Free IB Essay Grader & Feedback Tool"
+        description="Free IB essay grader, upload your Extended Essay, IA, or TOK and get AI feedback with a predicted grade in about 90 seconds. No credit card required."
         canonical="/"
         jsonLd={[
           {
@@ -119,7 +119,7 @@ export default function Home() {
                 name: "How does IBLens analyze my IB essay?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "IBLens uses a large language model instructed with the official IB marking criteria to analyze your essay. It evaluates each criterion (for example Knowledge and understanding, Analysis, Evaluation — the exact set depends on your subject) and provides a predicted score, identifies risk areas that could lose marks, and suggests specific improvements.",
+                  text: "IBLens uses a large language model instructed with the official IB marking criteria to analyze your essay. It evaluates each criterion (for example Knowledge and understanding, Analysis, Evaluation, the exact set depends on your subject) and provides a predicted score, identifies risk areas that could lose marks, and suggests specific improvements.",
                 },
               },
               {
@@ -127,7 +127,7 @@ export default function Home() {
                 name: "Which IB essay types does IBLens support?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "IBLens supports Internal Assessments (IA) in 14 subjects, Extended Essays (EE), TOK essays and the TOK exhibition. Each type is analyzed against its own published criteria.",
+                  text: "IBLens supports coursework in 14 subjects (the IA in eleven, plus the externally assessed coursework in Visual Arts, Music and Film), Extended Essays (EE), TOK essays and the TOK exhibition. Each type is analyzed against its own published criteria.",
                 },
               },
               {
@@ -135,7 +135,7 @@ export default function Home() {
                 name: "Is my first essay analysis really free?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes — your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments, and a ranked fix list — unlocks for $9.99.",
+                  text: "Yes, your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report, exact score, every criterion with comments, and a ranked fix list, unlocks for $9.99.",
                 },
               },
               {
@@ -159,7 +159,7 @@ export default function Home() {
                 name: "What payment methods do you accept?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "We accept card payments (Visa, Mastercard, Amex). The payment process is fast and secure — credits activate automatically after payment.",
+                  text: "We accept card payments (Visa, Mastercard, Amex). The payment process is fast and secure, credits activate automatically after payment.",
                 },
               },
               {
@@ -167,7 +167,7 @@ export default function Home() {
                 name: "Can I use IBLens for multiple subjects?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "IBLens marks Internal Assessments in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Each analysis uses that subject's own criteria. Subjects outside this list are not offered, because we would have no published criteria to mark them against.",
+                  text: "IBLens marks coursework in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Each analysis uses that subject's own criteria. Subjects outside this list are not offered, because we would have no published criteria to mark them against.",
                 },
               },
               {
@@ -188,7 +188,7 @@ export default function Home() {
           <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white py-2.5 text-center text-sm font-medium">
             <div className="container flex items-center justify-center gap-2">
               <Clock className="w-4 h-4" />
-              <span>Only {days} days until IB {examYear} exams — get your essay graded now</span>
+              <span>Only {days} days until IB {examYear} exams, get your essay graded now</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </div>
           </div>
@@ -205,20 +205,20 @@ export default function Home() {
                   Know your<br />IB score<br /><em className="text-primary">before the exam.</em>
                 </h1>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-md">
-                  Paste your essay. AI grades it against the official IB rubric — criterion by criterion — in about a minute.
+                  Paste your essay. AI grades it against the official IB rubric, criterion by criterion, in about 90 seconds.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 mb-4">
                   <Button size="lg" className="text-base px-8 shadow-lg shadow-primary/25" asChild>
-                    <Link href="/essay">Grade my essay — free</Link>
+                    <Link href="/essay">Grade my essay, free</Link>
                   </Button>
                   <Button size="lg" variant="ghost" asChild>
                     <Link href="/resources/sample-reports">See real sample reports</Link>
                   </Button>
                 </div>
-                <p className="text-sm text-muted-foreground">No subscription. No account for your first essay. Calibrated to grade like a <strong>strict examiner</strong> — no inflated scores.</p>
+                <p className="text-sm text-muted-foreground">No subscription. No account for your first essay. Calibrated to grade like a <strong>strict examiner</strong>, no inflated scores.</p>
               </div>
 
-              {/* Right column — score card */}
+              {/* Right column, score card */}
               <div className="rounded-xl border border-border bg-card shadow-sm p-6">
                 <div className="flex items-center justify-between mb-4">
                   <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Business Management IA · Sample</p>
@@ -262,16 +262,16 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Features — numbered */}
+        {/* Features, numbered */}
         <section className="py-20" id="sample">
           <div className="container">
             <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3 text-center">Why students choose IBLens</p>
             <h2 style={SERIF} className="text-3xl font-bold text-center mb-12">Built on the actual IB rubric.</h2>
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {[
-                { n: "01", title: "Official criteria", desc: "Same assessment criteria as IB examiners — no simplified versions. Every band descriptor, every criterion." },
+                { n: "01", title: "Official criteria", desc: "Same assessment criteria as IB examiners, no simplified versions. Every band descriptor, every criterion." },
                 { n: "02", title: "Criterion feedback", desc: "Specific written feedback on every criterion in the full report, not just a total score. Know exactly where marks are lost." },
-                { n: "03", title: "90-second results", desc: "Paste, click, done. Full breakdown in under a minute. No account required for your first analysis." },
+                { n: "03", title: "Results in about 90 seconds", desc: "Paste, click, done. Full breakdown in about 90 seconds. No account required for your first analysis." },
               ].map(f => (
                 <div key={f.n} className="border-t-2 border-primary pt-6">
                   <p style={SERIF} className="text-4xl font-bold text-primary mb-4">{f.n}</p>
@@ -327,7 +327,7 @@ export default function Home() {
                 </ul>
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">First review free</span>
-                  <span className="text-xs text-muted-foreground">no score invented — UCAS publishes no mark scheme</span>
+                  <span className="text-xs text-muted-foreground">no score invented, UCAS publishes no mark scheme</span>
                 </div>
                 <Button variant="outline" asChild>
                   <Link href="/ucas-personal-statement">Check my statement <ArrowRight className="w-4 h-4 ml-1" /></Link>
@@ -354,13 +354,13 @@ export default function Home() {
               <div>
                 <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">Why IBLens exists</p>
                 <h2 style={SERIF} className="text-2xl font-bold mb-4">
-                  "I built this because my daughter's IB tutor charged $120 for one feedback session — and it came the week before the deadline."
+                  "I built this because my daughter's IB tutor charged $120 for one feedback session, and it came the week before the deadline."
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  The IB marking rubric is public. Every criterion, every band descriptor, every score level — it's all in the official IBO documentation. A trained examiner knows it by heart. So I asked: why can't an AI do the same thing, instantly, for any student?
+                  The IB marking rubric is public. Every criterion, every band descriptor, every score level, it's all in the official IBO documentation. A trained examiner knows it by heart. So I asked: why can't an AI do the same thing, in ninety seconds, for any student?
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  IBLens is the result. It doesn't replace your teacher — but it gives you the same quality signal an experienced examiner would, before you've run out of time to act on it. First analysis is free. No account needed.
+                  IBLens is the result. It doesn't replace your teacher, but it gives you the same quality signal an experienced examiner would, before you've run out of time to act on it. First analysis is free. No account needed.
                 </p>
                 <div className="mt-5 flex items-center gap-3">
                   <img
@@ -394,7 +394,7 @@ export default function Home() {
                 <div className="text-3xl mb-3">😐</div>
                 <p className="font-semibold mb-1">IB Teacher</p>
                 <div className="text-2xl font-bold text-muted-foreground mb-1">Free</div>
-                <p className="text-xs text-muted-foreground">When available. Knows you and your school. Marks your IA against the criteria — but written feedback is limited and takes days.</p>
+                <p className="text-xs text-muted-foreground">When available. Knows you and your school. Marks your IA against the criteria, but written feedback is limited and takes days.</p>
               </div>
               <div className="bg-primary/5 border-2 border-primary rounded-xl p-5 text-center relative">
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">Recommended</div>
@@ -427,7 +427,7 @@ export default function Home() {
                   <Gift className="w-8 h-8 text-primary mx-auto mb-3" />
                   <h3 style={SERIF} className="text-xl font-bold mb-1">First Essay Analysis</h3>
                   <div style={SERIF} className="text-3xl font-bold mb-2">$0</div>
-                  <p className="text-xs text-muted-foreground mb-4">Free preview: band range, weakest criterion, top risks — no credit card required</p>
+                  <p className="text-xs text-muted-foreground mb-4">Free preview: band range, weakest criterion, top risks, no credit card required</p>
                   <Button variant="outline" size="sm" className="w-full" asChild>
                     <Link href="/essay">Try Free</Link>
                   </Button>
@@ -478,7 +478,7 @@ export default function Home() {
             <div className="flex flex-col items-center gap-4 mt-10">
               <div className="flex items-center gap-2 text-sm font-medium text-primary bg-primary/10 px-4 py-2 rounded-full">
                 <ShieldCheck className="w-4 h-4" />
-                <span>7-Day Money-Back Guarantee — No Questions Asked</span>
+                <span>7-Day Money-Back Guarantee, No Questions Asked</span>
                 <Link href="/refund-policy" className="text-primary underline underline-offset-2 ml-1 text-xs">Details</Link>
               </div>
             </div>
@@ -495,15 +495,15 @@ export default function Home() {
             <div className="max-w-2xl mx-auto bg-background rounded-xl border p-6 md:p-8">
               <FAQItem
                 question="How does IBLens analyze my IB essay?"
-                answer="IBLens uses a large language model instructed with the official IB marking criteria to analyze your essay. It evaluates each criterion (for example Knowledge and understanding, Analysis, Evaluation — the exact set depends on your subject) and provides a predicted score, identifies risk areas that could lose marks, and suggests specific improvements."
+                answer="IBLens uses a large language model instructed with the official IB marking criteria to analyze your essay. It evaluates each criterion (for example Knowledge and understanding, Analysis, Evaluation, the exact set depends on your subject) and provides a predicted score, identifies risk areas that could lose marks, and suggests specific improvements."
               />
               <FAQItem
                 question="Which IB essay types does IBLens support?"
-                answer="IBLens supports Internal Assessments (IA) in 14 subjects, Extended Essays (EE), TOK essays and the TOK exhibition. Each type is analyzed against its own published criteria."
+                answer="IBLens supports coursework in 14 subjects (the IA in eleven, plus the externally assessed coursework in Visual Arts, Music and Film), Extended Essays (EE), TOK essays and the TOK exhibition. Each type is analyzed against its own published criteria."
               />
               <FAQItem
                 question="Is my first essay analysis really free?"
-                answer="Yes — your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments, and a ranked fix list — unlocks for $9.99."
+                answer="Yes, your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report, exact score, every criterion with comments, and a ranked fix list, unlocks for $9.99."
               />
               <FAQItem
                 question="How accurate is the predicted IB score?"
@@ -515,11 +515,11 @@ export default function Home() {
               />
               <FAQItem
                 question="What payment methods do you accept?"
-                answer="We accept card payments (Visa, Mastercard, Amex). The payment process is fast and secure — credits activate automatically after payment."
+                answer="We accept card payments (Visa, Mastercard, Amex). The payment process is fast and secure, credits activate automatically after payment."
               />
               <FAQItem
                 question="Can I use IBLens for multiple subjects?"
-                answer="IBLens marks Internal Assessments in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Each analysis uses that subject's own criteria. Subjects outside this list are not offered, because we would have no published criteria to mark them against."
+                answer="IBLens marks coursework in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Each analysis uses that subject's own criteria. Subjects outside this list are not offered, because we would have no published criteria to mark them against."
               />
               <FAQItem
                 question="What if I'm not satisfied with my analysis?"
@@ -542,7 +542,7 @@ export default function Home() {
                 Start Your Free Analysis <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
-            <p className="text-xs text-muted-foreground mt-4">No credit card required. Results in about a minute.</p>
+            <p className="text-xs text-muted-foreground mt-4">No credit card required. Results in about 90 seconds.</p>
           </div>
         </section>
 

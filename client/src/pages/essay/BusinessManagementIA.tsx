@@ -4,13 +4,13 @@ const config: SubjectConfig = {
   subject: "Business Management IA",
   slug: "business-management-ia",
   keyword: "IB Business Management IA",
-  metaTitle: "IB Business Management IA Grader — Free AI Feedback | IBLens",
+  metaTitle: "IB Business Management IA Grader, Free AI Feedback | IBLens",
   metaDescription:
     "Get AI feedback in about 90 seconds on your IB Business Management Internal Assessment. Criterion-by-criterion scoring against official IB rubric. First analysis free.",
   canonicalPath: "/essay/business-management-ia",
   heroHeadline: "Is your Business Management IA scoring where you think it is?",
   heroSubline:
-    "Paste your IA text and get a full criterion-by-criterion grade report in about a minute — scored against the official IB Business Management rubric.",
+    "Paste your IA text and get a full criterion-by-criterion grade report in about 90 seconds, scored against the official IB Business Management rubric.",
   criteria: [
     { name: "Criterion A: Integration of a key concept", max: 5, sampleScore: 3 },
     { name: "Criterion B: Supporting documents", max: 4, sampleScore: 3 },

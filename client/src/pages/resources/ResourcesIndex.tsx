@@ -14,7 +14,7 @@ const resources = [
   {
     slug: "/resources/ib-extended-essay-new-criteria-2027",
     title: "EE New Criteria 2027 (Marked /30)",
-    description: "The May 2027 Extended Essay rubric explained: Framework, Knowledge, Analysis, Discussion and evaluation, Reflection — what changed from /34 and how to check your draft.",
+    description: "The May 2027 Extended Essay rubric explained: Framework, Knowledge, Analysis, Discussion and evaluation, Reflection, what changed from /34 and how to check your draft.",
     icon: FileText,
     readTime: "7 min read",
   },
@@ -28,28 +28,28 @@ const resources = [
   {
     slug: "/resources/ib-rpf-extended-essay-2027",
     title: "EE RPF 2027: Reflective Statement",
-    description: "The 500-word reflective statement that replaces the RPPF from May 2027 — how Criterion E marks it and how to write one with real decisions, not a timeline.",
+    description: "The 500-word reflective statement that replaces the RPPF from May 2027, how Criterion E marks it and how to write one with real decisions, not a timeline.",
     icon: FileText,
     readTime: "5 min read",
   },
   {
     slug: "/resources/ib-psychology-ia-2027",
     title: "Psychology IA 2027: Research Proposal",
-    description: "The new May 2027 Psychology IA explained: a research proposal marked /24, no experiment conducted — criteria, word limit, and how to check your draft.",
+    description: "The new May 2027 Psychology IA explained: a research proposal marked /24, no experiment conducted, criteria, word limit, and how to check your draft.",
     icon: FileText,
     readTime: "6 min read",
   },
   {
     slug: "/resources/ib-computer-science-ia-2027",
     title: "Computer Science IA 2027 (Marked /30)",
-    description: "The new CS IA criteria from May 2027: Problem specification, Planning, System overview, Development at 12 marks, Evaluation — and what changed from /34.",
+    description: "The new CS IA criteria from May 2027: Problem specification, Planning, System overview, Development at 12 marks, Evaluation, and what changed from /34.",
     icon: Cpu,
     readTime: "6 min read",
   },
   {
     slug: "/resources/ib-extended-essay-feedback",
     title: "How to Get EE Feedback",
-    description: "Every legitimate feedback channel for your Extended Essay — supervisor rules, self-checks, peers and AI — with the honest limits of each.",
+    description: "Every legitimate feedback channel for your Extended Essay, supervisor rules, self-checks, peers and AI, with the honest limits of each.",
     icon: FileText,
     readTime: "7 min read",
   },
@@ -133,7 +133,7 @@ const resources = [
   {
     slug: "/resources/ib-ee-examples-by-subject",
     title: "IB EE Examples by Subject",
-    description: "Real Extended Essay examples organised by subject: Biology, Chemistry, History, Economics, English, Psychology and more — with score breakdowns.",
+    description: "Real Extended Essay examples organised by subject: Biology, Chemistry, History, Economics, English, Psychology and more, with score breakdowns.",
     icon: FileText,
     readTime: "12 min read",
   },
@@ -255,7 +255,7 @@ export default function ResourcesIndex() {
   return (
     <>
       <SEOHead
-        title="IB Resources — Guides for Extended Essay, IA, TOK & University Admissions | IBLens"
+        title="IB Resources, Guides for Extended Essay, IA, TOK & University Admissions | IBLens"
         description="Free in-depth guides for IB Diploma students: Extended Essay structure, Internal Assessment criteria, TOK essay writing, grade boundaries, and university admissions strategies."
         canonical="/resources"
         jsonLd={{
@@ -321,7 +321,7 @@ export default function ResourcesIndex() {
           {/* CTA */}
           <div className="mt-16 text-center">
             <p className="text-muted-foreground mb-4">
-              Want specific feedback on your essay? Upload it and get criterion-by-criterion analysis in about a minute.
+              Want specific feedback on your essay? Upload it and get criterion-by-criterion analysis in about 90 seconds.
             </p>
             <Link href="/essay" className="inline-flex items-center gap-2 text-primary font-medium hover:underline">
               Try IBLens Free →

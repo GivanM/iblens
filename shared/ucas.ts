@@ -1,10 +1,10 @@
 /**
- * UCAS personal statement — 2026 entry onwards.
+ * UCAS personal statement, 2026 entry onwards.
  *
  * Source: ucas.com, "How to write your personal statement: 2026 entry onwards" (checked 2026-09-12).
  * The statement is no longer one free-form essay: it is three questions sharing one 4,000-character
  * budget, each answer needing at least 350 characters. UCAS publishes no mark scheme for it, so this
- * module deliberately carries no scores — everything here is either quoted from UCAS or measurable.
+ * module deliberately carries no scores, everything here is either quoted from UCAS or measurable.
  */
 
 export const UCAS_TOTAL_CHAR_LIMIT = 4000;
@@ -23,7 +23,7 @@ export const UCAS_QUESTIONS: UcasQuestion[] = [
     id: "q1",
     question: "Why do you want to study this course or subject?",
     looksFor:
-      "A specific, evidenced motivation for this subject — what drew you in, what you have followed up on since, and why this course rather than an adjacent one. Generic enthusiasm and childhood anecdotes carry no weight.",
+      "A specific, evidenced motivation for this subject: what drew you in, and what you have followed up on since, and why this course rather than an adjacent one. Generic enthusiasm and childhood anecdotes carry no weight.",
   },
   {
     id: "q2",
@@ -47,12 +47,12 @@ export const UCAS_WHAT_TUTORS_LOOK_FOR =
 
 /** Rules stated by UCAS that a draft can be checked against mechanically or by reading. */
 export const UCAS_RULES = [
-  "The three answers are reviewed as one statement — do not repeat the same evidence across them.",
+  "The three answers are reviewed as one statement, do not repeat the same evidence across them.",
   "Evidence should be relevant and specific to the subject you are applying to.",
   "The 4,000 characters can be split across the three answers however you like, subject to a 350-character minimum each.",
   "Do not exaggerate: you may be asked to elaborate at interview.",
   "Do not use quotations from other people, or cliches.",
-  "Do not post your statement online — UCAS runs submitted statements through similarity detection.",
+  "Do not post your statement online, UCAS runs submitted statements through similarity detection.",
 ];
 
 export interface UcasAnswers {
@@ -91,7 +91,7 @@ export function checkUcasMechanics(answers: UcasAnswers): UcasMechanicalCheck {
     const meetsMinimum = e.chars >= UCAS_MIN_CHARS_PER_ANSWER;
     if (!meetsMinimum) {
       problems.push(
-        `Answer ${e.id.toUpperCase()} is ${e.chars} characters — UCAS will not accept it below ${UCAS_MIN_CHARS_PER_ANSWER}.`,
+        `Answer ${e.id.toUpperCase()} is ${e.chars} characters, UCAS will not accept it below ${UCAS_MIN_CHARS_PER_ANSWER}.`,
       );
     }
     return {
@@ -105,7 +105,7 @@ export function checkUcasMechanics(answers: UcasAnswers): UcasMechanicalCheck {
   const withinTotalLimit = totalChars <= UCAS_TOTAL_CHAR_LIMIT;
   if (!withinTotalLimit) {
     problems.push(
-      `Your three answers total ${totalChars} characters — ${totalChars - UCAS_TOTAL_CHAR_LIMIT} over the ${UCAS_TOTAL_CHAR_LIMIT} limit.`,
+      `Your three answers total ${totalChars} characters, ${totalChars - UCAS_TOTAL_CHAR_LIMIT} over the ${UCAS_TOTAL_CHAR_LIMIT} limit.`,
     );
   }
 
@@ -149,7 +149,7 @@ CRITICAL HONESTY RULES:
 
 IMPORTANT FORMATTING RULES:
 - Respond with a single valid JSON object. No markdown, no text before or after the JSON.
-- Write ALL text in plain text only. NEVER use HTML entities like &amp; &lt; &gt; &quot; — write the actual characters: & < > " instead.`;
+- Write ALL text in plain text only. NEVER use HTML entities like &amp; &lt; &gt; &quot;, write the actual characters: & < > " instead.`;
 }
 
 export function buildUcasUserPrompt(
@@ -165,13 +165,13 @@ export function buildUcasUserPrompt(
 
 MEASURED ALREADY (do not recount): ${mech}. Total ${mechanics.totalChars} of ${UCAS_TOTAL_CHAR_LIMIT} characters.
 
-QUESTION 1 — ${UCAS_QUESTIONS[0].question}
+QUESTION 1, ${UCAS_QUESTIONS[0].question}
 ${answers.q1 || "(left blank)"}
 
-QUESTION 2 — ${UCAS_QUESTIONS[1].question}
+QUESTION 2, ${UCAS_QUESTIONS[1].question}
 ${answers.q2 || "(left blank)"}
 
-QUESTION 3 — ${UCAS_QUESTIONS[2].question}
+QUESTION 3, ${UCAS_QUESTIONS[2].question}
 ${answers.q3 || "(left blank)"}
 
 Respond with this exact JSON structure:

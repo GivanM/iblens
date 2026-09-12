@@ -4,7 +4,7 @@ import { Link } from "wouter";
 export default function IBScoreCalculator() {
   return (
     <ResourceArticle
-      title="IB Score Calculator & Grade Boundaries 2024–2026 — Complete Guide | IBLens"
+      title="IB Score Calculator & Grade Boundaries 2024–2026, Complete Guide | IBLens"
       description="Learn how IB scoring works, understand grade boundaries, calculate your predicted IB diploma score, and find out what scores top universities require."
       canonical="/resources/ib-score-calculator"
       datePublished="2026-06-06"
@@ -12,7 +12,7 @@ export default function IBScoreCalculator() {
     >
       <h1>IB Score Calculator & Grade Boundaries: The Complete Guide</h1>
       <h2>How IB Scoring Works: The 45-Point System Explained</h2>
-      <p>Every IB diploma candidate takes six subjects — three at Higher Level (HL) and three at Standard Level (SL). Each subject is graded on a scale of 1 to 7, giving a raw maximum of 42 subject points. The remaining 3 points come from the core: Theory of Knowledge (TOK) and the Extended Essay (EE) together award between 0 and 3 bonus points.</p>
+      <p>Every IB diploma candidate takes six subjects, three at Higher Level (HL) and three at Standard Level (SL). Each subject is graded on a scale of 1 to 7, giving a raw maximum of 42 subject points. The remaining 3 points come from the core: Theory of Knowledge (TOK) and the Extended Essay (EE) together award between 0 and 3 bonus points.</p>
       <p><strong>Maximum total: 6 subjects × 7 points = 42 + 3 bonus points = 45 points.</strong></p>
 
       <h2>How to Calculate Your Predicted IB Score Step by Step</h2>
@@ -89,17 +89,17 @@ export default function IBScoreCalculator() {
 
       <h2>Failing Conditions: When a High Score Doesn't Save You</h2>
       <ul>
-        <li><strong>Grade E in either TOK or EE</strong> — automatic diploma failure.</li>
-        <li><strong>CAS not completed</strong> — diploma failure regardless of academic scores.</li>
-        <li><strong>Grade 1 in any subject</strong> — automatic failure.</li>
-        <li><strong>Grade 2 in three or more subjects</strong> (HL or SL) — automatic failure.</li>
-        <li><strong>A grade of 3 or lower awarded more than three times</strong> across the diploma — automatic failure.</li>
-        <li><strong>Total subject score below 24 points</strong> — automatic failure.</li>
-        <li><strong>Malpractice finding</strong> — diploma withdrawal.</li>
+        <li><strong>Grade E in either TOK or EE</strong>, automatic diploma failure.</li>
+        <li><strong>CAS not completed</strong>, diploma failure regardless of academic scores.</li>
+        <li><strong>Grade 1 in any subject</strong>, automatic failure.</li>
+        <li><strong>Grade 2 in three or more subjects</strong> (HL or SL), automatic failure.</li>
+        <li><strong>A grade of 3 or lower awarded more than three times</strong> across the diploma, automatic failure.</li>
+        <li><strong>Total subject score below 24 points</strong>, automatic failure.</li>
+        <li><strong>Malpractice finding</strong>, diploma withdrawal.</li>
       </ul>
 
-      <h2>Improve Your Essay Scores — Improve Your Diploma Total</h2>
-      <p>The Extended Essay and TOK essay directly affect both your bonus points and your teacher's confidence in your predicted score. A weak EE draft can cost you up to 3 bonus points and reduce your predicted grade — a double penalty at the worst possible time.</p>
+      <h2>Improve Your Essay Scores, Improve Your Diploma Total</h2>
+      <p>The Extended Essay and TOK essay directly affect both your bonus points and your teacher's confidence in your predicted score. A weak EE draft can cost you up to 3 bonus points and reduce your predicted grade, a double penalty at the worst possible time.</p>
       <p><Link to="/essay">IBLens analyses your IB essay against the official criteria and shows you exactly where marks are being lost →</Link></p>
       <h2>Related tools</h2>
 

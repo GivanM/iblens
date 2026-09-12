@@ -13,6 +13,9 @@ import {
   getUserCredits,
   getLatestAnonymousEssay,
   setAnonymousUnlocked,
+  relockAnonymousAnalysis,
+  relockAnalysesForOrder,
+  addDeviceCredits,
   consumePaidEssayCredit,
 } from "../db";
 import { sendPaymentConfirmationEmail, getSkuHumanName } from "../email";
@@ -206,6 +209,17 @@ export function registerLemonsqueezyWebhook(app: Express) {
             return res.status(200).json({ ok: true, message: "Order not found" });
           }
 
+          // LemonSqueezy retries deliveries, and the dedup key used to include the
+          // processing status, so a retry looked new and granted the credits again.
+          // The order is the thing that can only be paid once.
+          if (order.status === "paid") {
+            console.log(`[LemonSqueezy] Order ${order.id} already paid, skipping credit grant`);
+            if (webhookEventId) {
+              await updateWebhookEvent(webhookEventId, { paymentStatus: "duplicate" }).catch(() => {});
+            }
+            return res.status(200).json({ ok: true, message: "Already processed" });
+          }
+
           // Mark order as paid
           await updateOrderStatus(order.id, "paid", dataId);
 
@@ -229,15 +243,27 @@ export function registerLemonsqueezyWebhook(app: Express) {
           if (unlockFp && (credits.essay > 0)) {
             try {
               const rec = await getLatestAnonymousEssay(unlockFp);
+              // A pack is several reports. One of them opens what the buyer is
+              // looking at; the rest stay with this device so they can be spent
+              // without an account, which is what "no account needed" has to mean.
+              const spentNow = rec && rec.resultJson && !(rec as any).unlocked ? 1 : 0;
+              if (credits.essay - spentNow > 0) {
+                await addDeviceCredits(unlockFp, credits.essay - spentNow);
+              }
               if (rec && rec.resultJson && !(rec as any).unlocked) {
-                await consumePaidEssayCredit(order.userId);
+                // Open the report first. If the charge against the credit then fails,
+                // the buyer still has what they paid for and we are out one credit,
+                // which is the right way round for the person who just paid.
                 await setAnonymousUnlocked(rec.id);
+                await consumePaidEssayCredit(order.userId).catch((creditErr) => {
+                  console.warn(`[LemonSqueezy] Report ${rec.id} opened but credit not consumed:`, creditErr);
+                });
                 console.log(`[LemonSqueezy] Anonymous report ${rec.id} unlocked for order ${order.id}`);
               } else if (!rec) {
-                console.warn(`[LemonSqueezy] No anonymous report for fingerprint on order ${order.id}; credit left on the account`);
+                console.warn(`[LemonSqueezy] No anonymous report for fingerprint on order ${order.id}; credits left on the account`);
               }
             } catch (unlockErr) {
-              // The credit stays on the account either way, so this never fails the webhook.
+              // The credits stay on the account, so the purchase is not lost either way.
               console.warn("[LemonSqueezy] Guest unlock failed (non-fatal):", unlockErr);
             }
           }
@@ -297,6 +323,25 @@ export function registerLemonsqueezyWebhook(app: Express) {
 
           // Mark order as refunded
           await updateOrderStatus(order.id, "refunded", dataId);
+
+          // Close what the payment opened. Refunding the money and leaving the
+          // report readable is a free report for anyone who asks for one.
+          // Close anything this order opened for a signed-in buyer as well.
+          await relockAnalysesForOrder(order.userId, order.id).catch((e) =>
+            console.warn("[LemonSqueezy] Re-lock of account reports failed:", e));
+
+          const refundFp = String(customData.unlock_fp || "");
+          if (refundFp) {
+            try {
+              const rec = await getLatestAnonymousEssay(refundFp);
+              if (rec && (rec as any).unlocked) {
+                await relockAnonymousAnalysis(rec.id);
+                console.log(`[LemonSqueezy] Report ${rec.id} re-locked after refund of order ${order.id}`);
+              }
+            } catch (relockErr) {
+              console.warn("[LemonSqueezy] Re-lock after refund failed:", relockErr);
+            }
+          }
 
           // Deduct credits
           const credits = lsSkuToCredits(order.sku);

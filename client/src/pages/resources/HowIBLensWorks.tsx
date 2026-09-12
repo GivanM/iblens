@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function HowIBLensWorks() {
   return (
     <ResourceArticle
-      title="How IBLens Works — AI-Powered IB Essay Analysis | IBLens"
-      description="How the IBLens AI analyzes IB essays against official criteria, predicts scores, and generates personalized feedback in about a minute."
+      title="How IBLens Works, AI-Powered IB Essay Analysis | IBLens"
+      description="How the IBLens AI analyzes IB essays against official criteria, predicts scores, and generates personalized feedback in about 90 seconds."
       canonical="/resources/how-iblens-works"
       datePublished="2026-05-01"
       dateModified="2026-05-01"
@@ -13,7 +13,7 @@ export default function HowIBLensWorks() {
       <h1>How IBLens Works</h1>
 
       <p>
-        IBLens is an AI-powered essay analysis tool designed specifically for IB Diploma Programme students. It provides criterion-by-criterion feedback on Internal Assessments, Extended Essays, and Theory of Knowledge essays — the same type of detailed assessment that an experienced IB examiner would provide, delivered in about 90 seconds.
+        IBLens is an AI-powered essay analysis tool designed specifically for IB Diploma Programme students. It provides criterion-by-criterion feedback on Internal Assessments, Extended Essays, and Theory of Knowledge essays, the same type of detailed assessment that an experienced IB examiner would provide, delivered in about 90 seconds.
       </p>
 
       <p>
@@ -30,7 +30,7 @@ export default function HowIBLensWorks() {
         <li><strong>Criterion-by-criterion scoring:</strong> Your essay is evaluated against the specific IB assessment criteria for your subject and essay type. Each criterion receives a predicted score with an explanation of why that score was assigned.</li>
         <li><strong>Overall predicted grade:</strong> Based on the criterion scores, IBLens provides a predicted grade (1–7 for subject IAs, A–E for Extended Essays and TOK).</li>
         <li><strong>Risk areas:</strong> Specific sections or aspects of your essay that are likely to lose marks, with explanations of why and suggestions for improvement.</li>
-        <li><strong>Leverage zones:</strong> Areas where small improvements would yield the largest mark gains — helping you prioritize your revision time.</li>
+        <li><strong>Leverage zones:</strong> Areas where small improvements would yield the largest mark gains, helping you prioritize your revision time.</li>
         <li><strong>Actionable next steps:</strong> Concrete, specific suggestions for how to improve each criterion score, written in plain language that tells you exactly what to do.</li>
       </ul>
 
@@ -57,7 +57,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        <strong>Calibration:</strong> The system is calibrated to produce scores that align with the standards applied by real IB examiners. This means the predicted scores are realistic estimates, not inflated or deflated — if IBLens predicts a 5, it means your essay currently demonstrates the qualities that examiners typically associate with a grade 5.
+        <strong>Calibration:</strong> The system is calibrated to produce scores that align with the standards applied by real IB examiners. This means the predicted scores are realistic estimates, not inflated or deflated, if IBLens predicts a 5, it means your essay currently demonstrates the qualities that examiners typically associate with a grade 5.
       </p>
 
       <h2>What Feedback Looks Like</h2>
@@ -71,7 +71,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        <strong>Criterion breakdown:</strong> For each assessment criterion, you see your predicted score (e.g., "Criterion B: Knowledge and Understanding — 4/6"), followed by a detailed explanation of what your essay demonstrates at this level and what would be needed to reach the next level.
+        <strong>Criterion breakdown:</strong> For each assessment criterion, you see your predicted score (e.g., "Criterion B: Knowledge and Understanding, 4/6"), followed by a detailed explanation of what your essay demonstrates at this level and what would be needed to reach the next level.
       </p>
 
       <p>
@@ -79,7 +79,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        <strong>Priority ranking:</strong> The feedback is organized by impact — the changes that would improve your score the most are highlighted first. This helps you allocate limited revision time effectively.
+        <strong>Priority ranking:</strong> The feedback is organized by impact, the changes that would improve your score the most are highlighted first. This helps you allocate limited revision time effectively.
       </p>
 
       <h2>Limitations and What AI Can and Cannot Do</h2>
@@ -143,7 +143,7 @@ export default function HowIBLensWorks() {
           <tr>
             <td><strong>Free Trial</strong></td>
             <td>$0</td>
-            <td>—</td>
+            <td>-</td>
             <td>Trying the tool on one essay to see if it is useful</td>
           </tr>
           <tr>
@@ -162,12 +162,12 @@ export default function HowIBLensWorks() {
             <td><strong>Essay Pack (10)</strong></td>
             <td>$44.99</td>
             <td>$3.50</td>
-            <td>Full IB preparation — analyze all your IAs, EE drafts, and TOK essay</td>
+            <td>Full IB preparation, analyze all your IAs, EE drafts, and TOK essay</td>
           </tr>
           <tr>
             <td><strong>University Strategy</strong></td>
             <td>$25.00</td>
-            <td>—</td>
+            <td>-</td>
             <td>Personalized university recommendations based on your predicted scores</td>
           </tr>
         </tbody>
@@ -205,7 +205,7 @@ export default function HowIBLensWorks() {
       <p>
         <strong>Pros:</strong> Authoritative, knows the subject deeply, understands your development, free.
         <strong>Cons:</strong> Limited time per student (teachers have 20+ students), may only review one draft, feedback turnaround can be slow (weeks).
-        <strong>When to use:</strong> Always — teacher feedback is irreplaceable. But you typically only get 1–2 rounds of teacher review.
+        <strong>When to use:</strong> Always, teacher feedback is irreplaceable. But you typically only get 1–2 rounds of teacher review.
       </p>
 
       <h3>IBLens</h3>

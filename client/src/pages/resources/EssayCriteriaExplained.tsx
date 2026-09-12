@@ -4,7 +4,7 @@ import { Link } from "wouter";
 export default function EssayCriteriaExplained() {
   return (
     <ResourceArticle
-      title="IB Essay Criteria Explained — How Criterion-Based Marking Works | IBLens"
+      title="IB Essay Criteria Explained, How Criterion-Based Marking Works | IBLens"
       description="Understand how IB criterion-based assessment works: common criteria across subjects, how examiners apply them, the difference between band 5 and band 7, and how to self-assess."
       canonical="/resources/ib-essay-criteria-explained"
       datePublished="2026-05-01"
@@ -17,7 +17,7 @@ export default function EssayCriteriaExplained() {
       </p>
 
       <p>
-        One of the most distinctive features of the IB Diploma Programme is its use of <strong>criterion-based assessment</strong>. Unlike norm-referenced systems (where your grade depends on how you perform relative to other students), the IB assesses each piece of work against fixed criteria with defined descriptors. This means that in theory, every student in a cohort could achieve a 7 — or every student could receive a 3 — depending on how well their work meets the criteria.
+        One of the most distinctive features of the IB Diploma Programme is its use of <strong>criterion-based assessment</strong>. Unlike norm-referenced systems (where your grade depends on how you perform relative to other students), the IB assesses each piece of work against fixed criteria with defined descriptors. This means that in theory, every student in a cohort could achieve a 7, or every student could receive a 3, depending on how well their work meets the criteria.
       </p>
 
       <p>
@@ -35,7 +35,7 @@ export default function EssayCriteriaExplained() {
       </p>
 
       <p>
-        <strong>Transparency:</strong> Students can read the criteria before they begin their work and understand exactly what is expected. There are no hidden requirements or subjective preferences — the criteria are published and available to all students.
+        <strong>Transparency:</strong> Students can read the criteria before they begin their work and understand exactly what is expected. There are no hidden requirements or subjective preferences, the criteria are published and available to all students.
       </p>
 
       <p>
@@ -54,7 +54,7 @@ export default function EssayCriteriaExplained() {
 
       <h3>Knowledge and Understanding</h3>
       <p>
-        Every IB subject assesses whether you understand the relevant content, concepts, and terminology. At lower levels, this means accurate recall and basic application. At higher levels, it means demonstrating <strong>deep, nuanced understanding</strong> — seeing connections between concepts, understanding why something works (not just that it works), and using terminology precisely rather than loosely.
+        Every IB subject assesses whether you understand the relevant content, concepts, and terminology. At lower levels, this means accurate recall and basic application. At higher levels, it means demonstrating <strong>deep, nuanced understanding</strong>, seeing connections between concepts, understanding why something works (not just that it works), and using terminology precisely rather than loosely.
       </p>
 
       <h3>Application and Analysis</h3>
@@ -79,15 +79,15 @@ export default function EssayCriteriaExplained() {
       </p>
 
       <p>
-        <strong>Best-fit approach:</strong> Examiners do not mark individual sentences or paragraphs. Instead, they read the entire piece of work and then determine which band descriptor best fits the overall quality for each criterion. This means that a few weak paragraphs will not necessarily drag down your mark if the overall quality is strong — but it also means that one brilliant paragraph cannot compensate for generally weak work.
+        <strong>Best-fit approach:</strong> Examiners do not mark individual sentences or paragraphs. Instead, they read the entire piece of work and then determine which band descriptor best fits the overall quality for each criterion. This means that a few weak paragraphs will not necessarily drag down your mark if the overall quality is strong, but it also means that one brilliant paragraph cannot compensate for generally weak work.
       </p>
 
       <p>
-        <strong>Positive marking:</strong> IB examiners are trained to look for evidence of achievement rather than counting errors. They ask "What has this student demonstrated?" rather than "What mistakes did they make?" This is why it is important to <strong>show your thinking</strong> — even if your conclusion is slightly off, demonstrating strong analytical reasoning will earn marks.
+        <strong>Positive marking:</strong> IB examiners are trained to look for evidence of achievement rather than counting errors. They ask "What has this student demonstrated?" rather than "What mistakes did they make?" This is why it is important to <strong>show your thinking</strong>, even if your conclusion is slightly off, demonstrating strong analytical reasoning will earn marks.
       </p>
 
       <p>
-        <strong>Holistic reading:</strong> Examiners read the entire response before assigning marks. They do not allocate marks paragraph by paragraph. This means your essay needs to work as a coherent whole — a strong introduction that sets up the argument, a body that develops it logically, and a conclusion that synthesizes the findings.
+        <strong>Holistic reading:</strong> Examiners read the entire response before assigning marks. They do not allocate marks paragraph by paragraph. This means your essay needs to work as a coherent whole, a strong introduction that sets up the argument, a body that develops it logically, and a conclusion that synthesizes the findings.
       </p>
 
       <p>
@@ -143,7 +143,7 @@ export default function EssayCriteriaExplained() {
       </table>
 
       <p>
-        The fundamental difference is <strong>depth of thinking</strong>. Band 5 work shows competence — the student understands the material and can apply it. Band 7 work shows <strong>intellectual sophistication</strong> — the student can evaluate, synthesize, and generate original insight.
+        The fundamental difference is <strong>depth of thinking</strong>. Band 5 work shows competence, the student understands the material and can apply it. Band 7 work shows <strong>intellectual sophistication</strong>, the student can evaluate, synthesize, and generate original insight.
       </p>
 
       <h2>Self-Assessment Using Criteria</h2>
@@ -153,7 +153,7 @@ export default function EssayCriteriaExplained() {
       </p>
 
       <p>
-        <strong>Step 1: Obtain the criteria.</strong> Every IB subject guide contains the assessment criteria for each component. Your teacher should have shared these with you. If not, ask — you have a right to see exactly how your work will be assessed.
+        <strong>Step 1: Obtain the criteria.</strong> Every IB subject guide contains the assessment criteria for each component. Your teacher should have shared these with you. If not, ask, you have a right to see exactly how your work will be assessed.
       </p>
 
       <p>
@@ -186,7 +186,7 @@ export default function EssayCriteriaExplained() {
       </ul>
 
       <p>
-        This is particularly valuable because self-assessment is inherently limited — it is difficult to objectively evaluate your own work, especially when you have been immersed in it for weeks. An external perspective (whether from a teacher, peer, or AI tool) can identify blind spots that you cannot see yourself.
+        This is particularly valuable because self-assessment is inherently limited, it is difficult to objectively evaluate your own work, especially when you have been immersed in it for weeks. An external perspective (whether from a teacher, peer, or AI tool) can identify blind spots that you cannot see yourself.
       </p>
 
       <p>

@@ -4,13 +4,13 @@ const config: SubjectConfig = {
   subject: "Biology IA",
   slug: "biology-ia",
   keyword: "IB Biology IA",
-  metaTitle: "IB Biology IA Grader — Free AI Feedback on Lab Report | IBLens",
+  metaTitle: "IB Biology IA Grader, Free AI Feedback on Lab Report | IBLens",
   metaDescription:
     "AI feedback in about 90 seconds on your IB Biology Internal Assessment. Checks exploration, analysis, evaluation, and communication against official IB criteria. Free.",
   canonicalPath: "/essay/biology-ia",
   heroHeadline: "Is your Biology IA experiment losing marks you don't know about?",
   heroSubline:
-    "Paste your Biology IA report and get criterion-by-criterion feedback against the official IB Science rubric — free in about a minute.",
+    "Paste your Biology IA report and get criterion-by-criterion feedback against the official IB Science rubric, free in about 90 seconds.",
   criteria: [
     { name: "Research design", max: 6, sampleScore: 4 },
     { name: "Data analysis", max: 6, sampleScore: 4 },

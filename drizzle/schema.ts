@@ -34,6 +34,8 @@ export const analyses = mysqlTable("analyses", {
   predictedGrade: varchar("predictedGrade", { length: 20 }),
     unlocked: boolean("unlocked").notNull().default(true),
   rerunsUsed: int("rerunsUsed").notNull().default(0),
+  /** Set when this row is itself the product of a re-check, so it cannot start a new allowance. */
+  rerunOf: int("rerunOf"),
   unlockedAt: timestamp("unlockedAt"),
 createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
@@ -117,6 +119,18 @@ export const anonymousAnalyses = mysqlTable("anonymous_analyses", {
   unlockedAt: timestamp("unlockedAt"),
   rerunsUsed: int("rerunsUsed").notNull().default(0),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+/**
+ * Credits bought without an account. They cannot live on the user row, because a
+ * guest has no account they can sign into: the purchase creates a guest record
+ * keyed by e-mail that Google sign-in never matches. So the credits live on the
+ * device that bought them, which is the same thing the report is tied to.
+ */
+export const deviceCredits = mysqlTable("device_credits", {
+  fingerprint: varchar("fingerprint", { length: 64 }).primaryKey(),
+  credits: int("credits").notNull().default(0),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
 
 export type Payment = typeof payments.$inferSelect;

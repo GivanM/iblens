@@ -4,7 +4,7 @@ import { Link } from "wouter";
 export default function ExtendedEssayGuide() {
   return (
     <ResourceArticle
-      title="IB Extended Essay Guide — Structure, Criteria & How to Score an A | IBLens"
+      title="IB Extended Essay Guide, Structure, Criteria & How to Score an A | IBLens"
       description="Complete guide to the IB Extended Essay: word count, structure, research question, assessment criteria A-E, common mistakes, and strategies for scoring an A."
       canonical="/resources/ib-extended-essay-guide"
       datePublished="2026-05-01"
@@ -31,7 +31,7 @@ export default function ExtendedEssayGuide() {
       </p>
 
       <p>
-        The EE is supervised by a teacher at the student's school, but the research and writing must be the student's own work. The IBO allocates approximately 40 hours of work to the Extended Essay, spread across the final two years of the Diploma Programme. Students are expected to meet regularly with their supervisor, who provides guidance on methodology, structure, and academic conventions — but does not edit or rewrite the essay.
+        The EE is supervised by a teacher at the student's school, but the research and writing must be the student's own work. The IBO allocates approximately 40 hours of work to the Extended Essay, spread across the final two years of the Diploma Programme. Students are expected to meet regularly with their supervisor, who provides guidance on methodology, structure, and academic conventions, but does not edit or rewrite the essay.
       </p>
 
       <h2>Word Count and Timeline</h2>
@@ -93,7 +93,7 @@ export default function ExtendedEssayGuide() {
         <li><strong>Introduction (300–400 words):</strong> Context, research question, scope, methodology overview</li>
         <li><strong>Body (3,000–3,200 words):</strong> Organized into logical sections with clear headings, presenting evidence, analysis, and argumentation</li>
         <li><strong>Conclusion (200–300 words):</strong> Direct answer to the RQ, summary of findings, acknowledgment of limitations, suggestions for further research</li>
-        <li><strong>Bibliography:</strong> Consistent citation style (MLA, APA, Chicago, or Harvard — pick one and use it throughout)</li>
+        <li><strong>Bibliography:</strong> Consistent citation style (MLA, APA, Chicago, or Harvard, pick one and use it throughout)</li>
         <li><strong>Appendices (if needed):</strong> Raw data, interview transcripts, supplementary materials</li>
       </ul>
 
@@ -104,7 +104,7 @@ export default function ExtendedEssayGuide() {
       <h2>Assessment Criteria (A–E)</h2>
 
       <p>
-        The criteria below are the <strong>current 34-mark criteria, used for sessions through November 2026</strong>. If you sit your exams in May 2027 or later, your essay is marked out of 30 under a different set — see <Link href="/resources/ib-extended-essay-new-criteria-2027">what changed in 2027</Link>. The current criteria apply uniformly across all subjects:
+        The criteria below are the <strong>current 34-mark criteria, used for sessions through November 2026</strong>. If you sit your exams in May 2027 or later, your essay is marked out of 30 under a different set, see <Link href="/resources/ib-extended-essay-new-criteria-2027">what changed in 2027</Link>. The current criteria apply uniformly across all subjects:
       </p>
 
       <table>
@@ -149,7 +149,7 @@ export default function ExtendedEssayGuide() {
       </p>
 
       <p>
-        <strong>Criterion E (Engagement)</strong> is assessed through the Reflections on Planning and Progress Form (RPPF), which holds three reflections written at different stages of the research process — the third of these is the viva voce reflection — and is limited to 500 words in total. From the May 2027 session the RPPF is replaced by the <Link href="/resources/ib-rpf-extended-essay-2027">RPF</Link>, a single reflective statement of up to 500 words assessed under Criterion E: Reflection (4 of 30 marks). This criterion evaluates intellectual engagement, decision-making, and the student's ability to reflect on their learning process.
+        <strong>Criterion E (Engagement)</strong> is assessed through the Reflections on Planning and Progress Form (RPPF), which holds three reflections written at different stages of the research process, the third of these is the viva voce reflection, and is limited to 500 words in total. From the May 2027 session the RPPF is replaced by the <Link href="/resources/ib-rpf-extended-essay-2027">RPF</Link>, a single reflective statement of up to 500 words assessed under Criterion E: Reflection (4 of 30 marks). This criterion evaluates intellectual engagement, decision-making, and the student's ability to reflect on their learning process.
       </p>
 
       <h2>Common Mistakes</h2>
@@ -217,7 +217,7 @@ export default function ExtendedEssayGuide() {
       </ul>
 
       <p>
-        If you want objective, criterion-based feedback on your Extended Essay before submission, <Link href="/essay/extended-essay" className="text-primary hover:underline">IBLens can grade your Extended Essay</Link> against the official IB EE criteria — focus &amp; method, knowledge, critical thinking, presentation, and engagement — in about a minute.
+        If you want objective, criterion-based feedback on your Extended Essay before submission, <Link href="/essay/extended-essay" className="text-primary hover:underline">IBLens can grade your Extended Essay</Link> against the official IB EE criteria, focus &amp; method, knowledge, critical thinking, presentation, and engagement, in about 90 seconds.
       </p>
 
       <p>

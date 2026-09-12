@@ -4,13 +4,13 @@ const config: SubjectConfig = {
   subject: "Economics IA",
   slug: "economics-ia",
   keyword: "IB Economics IA",
-  metaTitle: "IB Economics IA Grader — Free AI Feedback on Commentary | IBLens",
+  metaTitle: "IB Economics IA Grader, Free AI Feedback on Commentary | IBLens",
   metaDescription:
     "AI feedback on your IB Economics Internal Assessment commentary. Checks diagram quality, economic analysis, and evaluation against IB criteria. Free first check.",
   canonicalPath: "/essay/economics-ia",
   heroHeadline: "Get your IB Economics IA graded before your teacher does",
   heroSubline:
-    "Paste your Economics IA commentary and find out exactly which criteria are costing you marks — in about a minute.",
+    "Paste your Economics IA commentary and find out exactly which criteria are costing you marks, in about 90 seconds.",
   criteria: [
     { name: "Criterion A: Diagrams", max: 3, sampleScore: 2 },
     { name: "Criterion B: Terminology", max: 2, sampleScore: 2 },

@@ -12,14 +12,14 @@ const NOTES: { criterion: string; text: string; blue?: boolean }[] = [
   },
   {
     criterion: "Criterion C, 3 of 6",
-    text: "Two readings named, neither weighed against the other. Which do you reject, and on what evidence?",
+    text: "Here the essay changes explanation without connecting them. Where is the line of argument?",
   },
   {
     criterion: "Criterion D, 4 of 8",
-    text: "You say it yourself and then do not do it. Evaluating the two cases against each other is worth the most marks here.",
+    text: "You say it yourself and then do not do it. Weighing the two cases against each other is worth the most marks here.",
     blue: true,
   },
-];
+]
 
 export function MarkedScript() {
   return (
@@ -29,7 +29,7 @@ export function MarkedScript() {
         <div className="ms-col-text">
           <h2 className="ms-penline">Here is where your marks are going.</h2>
           <p className="ms-subline">
-            Paste a draft and the report comes back in a minute or two. The first one is a free preview: your mark
+            Paste a draft and the report comes back in about 90 seconds. The first one is a free preview: your mark
             range, your weakest criterion with its full feedback, and the risks costing the most marks. Nothing is
             charged to see it.
           </p>
@@ -60,7 +60,7 @@ export function MarkedScript() {
           </p>
           <div className="ms-stampwrap">
             <div className="ms-stamp" data-stamp>
-              <b>16/26</b>
+              <b>15/26</b>
               <span>Estimate, RPF not marked</span>
             </div>
           </div>

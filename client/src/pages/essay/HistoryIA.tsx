@@ -4,13 +4,13 @@ const config: SubjectConfig = {
   subject: "History IA",
   slug: "history-ia",
   keyword: "IB History IA",
-  metaTitle: "IB History IA Grader — Free AI Feedback & Score Prediction | IBLens",
+  metaTitle: "IB History IA Grader, Free AI Feedback & Score Prediction | IBLens",
   metaDescription:
-    "AI-powered feedback on your IB History Internal Assessment. Source evaluation, investigation quality, and reflection — all scored against official IB History criteria.",
+    "AI-powered feedback on your IB History Internal Assessment. Source evaluation, investigation quality, and reflection, all scored against official IB History criteria.",
   canonicalPath: "/essay/history-ia",
   heroHeadline: "Find out if your History IA will pass before it's too late",
   heroSubline:
-    "Get your History IA scored across all three sections — sources, investigation, and reflection — against the official IB rubric in about a minute.",
+    "Get your History IA scored across all three sections, sources, investigation, and reflection, against the official IB rubric in about 90 seconds.",
   criteria: [
     { name: "Section 1: Identification & Evaluation of Sources", max: 6, sampleScore: 4 },
     { name: "Section 2: Investigation", max: 15, sampleScore: 9 },

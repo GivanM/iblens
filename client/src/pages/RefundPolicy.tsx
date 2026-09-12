@@ -5,7 +5,7 @@ export default function RefundPolicy() {
   return (
     <div className="py-16 bg-background">
       <SEOHead
-        title="Refund Policy — 7-Day Money-Back Guarantee | IBLens"
+        title="Refund Policy, 7-Day Money-Back Guarantee | IBLens"
         description="IBLens offers a 7-day no-questions-asked money-back guarantee on all purchases. Email us within 7 days for a full refund."
         canonical="/refund-policy"
       />
@@ -17,7 +17,7 @@ export default function RefundPolicy() {
           <section>
             <h2 className="text-xl font-semibold mb-3">7-Day Money-Back Guarantee</h2>
             <p className="text-muted-foreground leading-relaxed">
-              We want you to be completely satisfied with your IBLens purchase. If for any reason you are not happy with your essay analysis or university strategy report, you may request a full refund within <strong className="text-foreground">7 days</strong> of your purchase date — no questions asked.
+              We want you to be completely satisfied with your IBLens purchase. If for any reason you are not happy with your essay analysis or university strategy report, you may request a full refund within <strong className="text-foreground">7 days</strong> of your purchase date, no questions asked.
             </p>
           </section>
 

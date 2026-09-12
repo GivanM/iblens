@@ -178,7 +178,7 @@ export default function Dashboard() {
             <div className="border border-border rounded-lg p-4 text-center">
               <h4 className="font-semibold text-sm mb-1">5 Essay Analyses</h4>
               <div style={SERIF} className="text-xl font-bold my-1">{PRICE_LABELS.ESSAY_PACK_5}</div>
-              <p className="text-xs text-muted-foreground mb-2">$4 each</p>
+              <p className="text-xs text-muted-foreground mb-2">$5.00 each</p>
               <Button
                 size="sm"
                 variant="outline"
@@ -196,7 +196,7 @@ export default function Dashboard() {
               </div>
               <h4 className="font-semibold text-sm mb-1">10 Essay Analyses</h4>
               <div style={SERIF} className="text-xl font-bold my-1">{PRICE_LABELS.ESSAY_PACK_10}</div>
-              <p className="text-xs text-muted-foreground mb-2">$3.50 each</p>
+              <p className="text-xs text-muted-foreground mb-2">$4.50 each</p>
               <Button
                 size="sm"
                 className="w-full"
@@ -258,8 +258,8 @@ export default function Dashboard() {
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium truncate">
                       {item.type === "essay"
-                        ? `${item.essayType} — ${item.subject || "Unknown"}`
-                        : `University Strategy — ${item.fieldOfStudy || "Unknown"}`}
+                        ? `${item.essayType}, ${item.subject || "Unknown"}`
+                        : `University Strategy, ${item.fieldOfStudy || "Unknown"}`}
                     </p>
                     <p className="text-xs text-muted-foreground">
                       {new Date(item.createdAt).toLocaleDateString()}
@@ -292,7 +292,7 @@ export default function Dashboard() {
               <Loader2 className="w-6 h-6 animate-spin text-muted-foreground" />
             </div>
           ) : orders.length === 0 ? (
-            <p className="text-muted-foreground text-sm text-center py-6">No purchases yet — your order history will appear here after your first purchase.</p>
+            <p className="text-muted-foreground text-sm text-center py-6">No purchases yet, your order history will appear here after your first purchase.</p>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">

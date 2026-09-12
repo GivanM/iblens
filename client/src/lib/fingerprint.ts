@@ -7,6 +7,9 @@
 const KEY = "iblens_anon_fp";
 const LEGACY_KEY = "iblens_fp";
 
+/** Per-tab fallback when localStorage throws. Never shared between visitors. */
+let sessionOnlyId: string | null = null;
+
 export function getAnonFingerprint(): string {
   try {
     let v = localStorage.getItem(KEY);
@@ -17,6 +20,11 @@ export function getAnonFingerprint(): string {
     }
     return v;
   } catch {
-    return "no-storage";
+    // No storage available (private mode, blocked cookies). A shared constant here
+    // would put every such visitor on one id and let them read each other's
+    // reports, so give this tab its own id instead. It will not survive a reload,
+    // which is the honest consequence of storage being off.
+    if (!sessionOnlyId) sessionOnlyId = crypto.randomUUID();
+    return sessionOnlyId;
   }
 }

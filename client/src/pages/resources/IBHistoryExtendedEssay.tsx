@@ -4,7 +4,7 @@ import { Link } from "wouter";
 export default function IBHistoryExtendedEssay() {
   return (
     <ResourceArticle
-      title="IB History Extended Essay — Research Questions & Tips | IBLens"
+      title="IB History Extended Essay, Research Questions & Tips | IBLens"
       description="How to write an IB History Extended Essay: strong research questions, source evaluation and historiography, criteria A–E, common mistakes and grading tips."
       canonical="/resources/ib-history-extended-essay"
       datePublished="2026-07-10"
@@ -32,7 +32,7 @@ export default function IBHistoryExtendedEssay() {
         criteria rather than the IA's section-by-section markbands. In practice the
         EE demands more of you in two areas. First, you must sustain a single line
         of argument across 4,000 words without drifting into narrative. Second, you
-        must engage with historiography — the ongoing debate among historians — rather
+        must engage with historiography, the ongoing debate among historians, rather
         than simply using sources as raw evidence. If you have already written the
         IA (see our <Link href="/resources/ib-history-ia">IB History IA guide</Link>),
         think of the EE as the same skills stretched over a bigger canvas, with the
@@ -45,7 +45,7 @@ export default function IBHistoryExtendedEssay() {
         word. A strong History EE question has four characteristics:
       </p>
       <ul>
-        <li><strong>Argumentative:</strong> It invites a judgement — "to what extent", "how significant", "how far" — not a description of what happened.</li>
+        <li><strong>Argumentative:</strong> It invites a judgement, "to what extent", "how significant", "how far", not a description of what happened.</li>
         <li><strong>Bounded:</strong> It fixes the period, the place, and the actors, so the essay has edges.</li>
         <li><strong>Debatable:</strong> Historians (or plausible interpretations) genuinely disagree about the answer, giving you something to weigh.</li>
         <li><strong>Researchable:</strong> Primary and secondary sources exist, are accessible to you, and are in a language you can read.</li>
@@ -81,7 +81,7 @@ export default function IBHistoryExtendedEssay() {
         </li>
       </ul>
 
-      <h3>Weak Research Questions — and Why They Fail</h3>
+      <h3>Weak Research Questions, and Why They Fail</h3>
       <ul>
         <li>
           What caused the Second World War?
@@ -100,18 +100,18 @@ export default function IBHistoryExtendedEssay() {
       <h2>How the Five EE Criteria Play Out in History</h2>
       <p>Every Extended Essay is marked out of 34 across the same five criteria. Here is what each one rewards in a History essay:</p>
       <ul>
-        <li><strong>Criterion A — Focus and method (6 marks):</strong> A sharply stated research question that the essay actually answers, plus a sensible research method. In History, "method" means your source strategy: which primary material you examined, which historians you read, and why that selection can support an answer.</li>
-        <li><strong>Criterion B — Knowledge and understanding (6 marks):</strong> Accurate contextual knowledge and correct use of historical concepts — causation, continuity and change, significance. The examiner should see that you understand the period well enough to locate your question inside it.</li>
-        <li><strong>Criterion C — Critical thinking (12 marks):</strong> The highest-weighted criterion and the one that separates bands. It rewards a sustained argument, evidence weighed rather than stacked, counter-arguments addressed, and interpretations evaluated rather than reported. Narrative essays lose most of their marks here.</li>
-        <li><strong>Criterion D — Presentation (4 marks):</strong> Clear structure, consistent referencing, and a bibliography that lets every claim be traced. History EEs lean heavily on citations because the argument rests on sources.</li>
-        <li><strong>Criterion E — Engagement (6 marks):</strong> Assessed through the three RPPF reflections. Strong reflections show decisions: a source that forced you to adjust your argument, a dead end in the archive, a change of scope and the reasoning behind it.</li>
+        <li><strong>Criterion A, Focus and method (6 marks):</strong> A sharply stated research question that the essay actually answers, plus a sensible research method. In History, "method" means your source strategy: which primary material you examined, which historians you read, and why that selection can support an answer.</li>
+        <li><strong>Criterion B, Knowledge and understanding (6 marks):</strong> Accurate contextual knowledge and correct use of historical concepts, causation, continuity and change, significance. The examiner should see that you understand the period well enough to locate your question inside it.</li>
+        <li><strong>Criterion C, Critical thinking (12 marks):</strong> The highest-weighted criterion and the one that separates bands. It rewards a sustained argument, evidence weighed rather than stacked, counter-arguments addressed, and interpretations evaluated rather than reported. Narrative essays lose most of their marks here.</li>
+        <li><strong>Criterion D, Presentation (4 marks):</strong> Clear structure, consistent referencing, and a bibliography that lets every claim be traced. History EEs lean heavily on citations because the argument rests on sources.</li>
+        <li><strong>Criterion E, Engagement (6 marks):</strong> Assessed through the three RPPF reflections. Strong reflections show decisions: a source that forced you to adjust your argument, a dead end in the archive, a change of scope and the reasoning behind it.</li>
       </ul>
 
       <h2>Sources, Method and Historiography</h2>
       <p>
         Examiners expect a History EE to work with both primary and secondary
         sources, and to treat neither as neutral. For primary sources, evaluation
-        means asking who produced the document, when, and for what purpose — and
+        means asking who produced the document, when, and for what purpose, and
         what that origin and purpose do to its value and limitations for your
         specific question. A propaganda poster is not a weak source; it is a strong
         source about intentions and a weak source about outcomes. Showing that you
@@ -123,7 +123,7 @@ export default function IBHistoryExtendedEssay() {
         each other instead of quoting whichever historian happens to agree with the
         thesis. Debates such as the orthodox, revisionist and post-revisionist
         readings of the early Cold War show the pattern: the disagreement itself
-        becomes evidence you can analyse. You do not need dozens of sources — a
+        becomes evidence you can analyse. You do not need dozens of sources, a
         small set of primary documents examined closely, plus a range of historians
         representing genuinely different positions, beats a long bibliography used
         superficially. Avoid leaning on encyclopedias and revision websites as
@@ -167,7 +167,7 @@ export default function IBHistoryExtendedEssay() {
       <h2>Grade Your History EE Before You Submit</h2>
       <p>
         IBLens analyses Extended Essays against the five official criteria and shows
-        you, criterion by criterion, where marks are being lost — including the most
+        you, criterion by criterion, where marks are being lost, including the most
         common History problem: an essay that narrates where it should argue. Upload
         a draft to the <Link href="/essay/extended-essay">free Extended Essay grader</Link> to
         see where your History EE stands, and read the <Link href="/resources/ib-extended-essay-guide">complete IB Extended Essay guide</Link> for

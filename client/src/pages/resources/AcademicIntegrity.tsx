@@ -86,7 +86,7 @@ export default function AcademicIntegrity() {
         Two practical rules follow from this. First, never paste wording from any tool, including ours,
         into your application: our reviews deliberately describe what to change rather than hand you
         sentences, precisely so there is nothing to copy. Second, do not post your statement anywhere
-        public — forums, social media, essay-sharing sites — because that is how a statement ends up in a
+        public, forums, social media, essay-sharing sites, because that is how a statement ends up in a
         similarity database before you have even submitted it.
       </p>
 

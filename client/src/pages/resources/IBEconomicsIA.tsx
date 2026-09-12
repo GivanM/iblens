@@ -4,19 +4,19 @@ import { Link } from "wouter";
 export default function IBEconomicsIA() {
   return (
     <ResourceArticle
-      title="IB Economics IA — How to Write All Three Commentaries and Score a 7 | IBLens"
+      title="IB Economics IA, How to Write All Three Commentaries and Score a 7 | IBLens"
       description="A complete guide to the IB Economics Internal Assessment: how to choose articles, structure each commentary, use diagrams correctly, and avoid the mistakes that cost marks."
       canonical="/resources/ib-economics-ia"
       datePublished="2026-06-09"
       dateModified="2026-06-09"
     >
       <p>
-        The IB Economics Internal Assessment consists of three commentaries — one each
-        on Microeconomics, Macroeconomics, and The global economy — each written
+        The IB Economics Internal Assessment consists of three commentaries, one each
+        on Microeconomics, Macroeconomics, and The global economy, each written
         in response to a real news article published after the start of your IB course.
         Each commentary is worth a third of the overall IA mark, which contributes 20%
         to your final grade. Most students find the IA easier to score well on than
-        the Papers — but the difference between a 6 and a 7 comes down to a handful
+        the Papers, but the difference between a 6 and a 7 comes down to a handful
         of consistently applied skills that this guide covers.
       </p>
 
@@ -24,16 +24,16 @@ export default function IBEconomicsIA() {
       <p>
         Each commentary is marked on five criteria (A–E), for a maximum of 14 marks per
         commentary. The portfolio of three commentaries is marked out of 45: 42 across the
-        commentaries plus 3 for Criterion F (Rubric requirements — different units, different
+        commentaries plus 3 for Criterion F (Rubric requirements, different units, different
         sources, and articles published within a year of writing). Each commentary must also
         use a different key concept.
       </p>
       <ul>
-        <li><strong>Criterion A — Diagrams (3 marks):</strong> Are diagrams used? Are they accurately labelled? Do they directly illustrate the economics being discussed?</li>
-        <li><strong>Criterion B — Terminology (2 marks):</strong> Is economic terminology used correctly and consistently throughout?</li>
-        <li><strong>Criterion C — Application and analysis (3 marks):</strong> Is relevant economic theory applied to the article, with developed and accurate analysis?</li>
-        <li><strong>Criterion D — Key concept (3 marks):</strong> Is one key concept identified and effectively linked to the article?</li>
-        <li><strong>Criterion E — Evaluation (3 marks):</strong> Are judgments supported by reasoned argument — short-run versus long-run, who gains and who loses, and underlying assumptions?</li>
+        <li><strong>Criterion A, Diagrams (3 marks):</strong> Are diagrams used? Are they accurately labelled? Do they directly illustrate the economics being discussed?</li>
+        <li><strong>Criterion B, Terminology (2 marks):</strong> Is economic terminology used correctly and consistently throughout?</li>
+        <li><strong>Criterion C, Application and analysis (3 marks):</strong> Is relevant economic theory applied to the article, with developed and accurate analysis?</li>
+        <li><strong>Criterion D, Key concept (3 marks):</strong> Is one key concept identified and effectively linked to the article?</li>
+        <li><strong>Criterion E, Evaluation (3 marks):</strong> Are judgments supported by reasoned argument, short-run versus long-run, who gains and who loses, and underlying assumptions?</li>
       </ul>
       <p>
         A common profile for a strong-but-not-top commentary is Criterion A = 2, B = 2,
@@ -87,7 +87,7 @@ export default function IBEconomicsIA() {
         the welfare loss triangle before the tax, shows how the tax corrects the
         externality by internalising the external cost, then evaluates: will
         producers pass the tax on to consumers (depends on PED/PES)? Is the tax
-        set at the right level? What are the distributional effects — does the
+        set at the right level? What are the distributional effects, does the
         tax burden fall disproportionately on lower-income households?
       </p>
 
@@ -132,7 +132,7 @@ export default function IBEconomicsIA() {
 
       <h2>Diagrams: The Cheapest Marks in the IA</h2>
       <p>
-        Criterion A (Diagrams) is worth 3 marks per commentary — and losing 1 mark
+        Criterion A (Diagrams) is worth 3 marks per commentary, and losing 1 mark
         here is extremely common. The most frequent errors are:
       </p>
       <ul>
@@ -153,7 +153,7 @@ export default function IBEconomicsIA() {
         <li><strong>Short run vs. long run:</strong> The policy may have one effect immediately and a different effect over time. Rent control reduces rents in the short run but reduces housing supply in the long run as developers exit the market.</li>
         <li><strong>Winners and losers:</strong> Who gains from this policy and who loses? A minimum wage helps low-wage workers but may reduce employment for the most marginally employed workers.</li>
         <li><strong>Magnitude depends on elasticity:</strong> The size of the effect always depends on PED, PES, or YED. A sin tax on cigarettes has a small effect on quantity demanded if demand is inelastic.</li>
-        <li><strong>Limitations of the policy:</strong> Why might the policy fail to achieve its stated goal? Externality taxes only work if set at the correct Pigouvian level, which requires accurate measurement of external cost — which is practically very difficult.</li>
+        <li><strong>Limitations of the policy:</strong> Why might the policy fail to achieve its stated goal? Externality taxes only work if set at the correct Pigouvian level, which requires accurate measurement of external cost, which is practically very difficult.</li>
       </ol>
       <p>
         Apply two or three of these frameworks to your specific article context and
@@ -166,9 +166,9 @@ export default function IBEconomicsIA() {
         the article itself); moderators stop reading at 800 words. The structure that works best:
       </p>
       <ul>
-        <li><strong>Opening context (50–80 words):</strong> Briefly describe what the article is about and identify the main economic concept. Do not summarise the article — you are analysing it.</li>
+        <li><strong>Opening context (50–80 words):</strong> Briefly describe what the article is about and identify the main economic concept. Do not summarise the article, you are analysing it.</li>
         <li><strong>Economic analysis (300–400 words):</strong> Explain the economics using diagrams, correct terminology, and the relevant theory. Describe cause and effect precisely.</li>
-        <li><strong>Evaluation (250–350 words):</strong> Weigh up the effects, consider limitations, discuss who gains and loses. Use two to three distinct evaluation points — do not make one point three times.</li>
+        <li><strong>Evaluation (250–350 words):</strong> Weigh up the effects, consider limitations, discuss who gains and loses. Use two to three distinct evaluation points, do not make one point three times.</li>
         <li><strong>Conclusion (50–80 words):</strong> State your overall judgement. Is the policy likely to achieve its goal? Under what conditions?</li>
       </ul>
 
@@ -176,7 +176,7 @@ export default function IBEconomicsIA() {
       <p>
         The most common experience after receiving IA marks is: "I didn't realise my
         diagram was missing labels" or "my evaluation was describing, not evaluating."
-        These are easy marks to recover — if you catch them in time.
+        These are easy marks to recover, if you catch them in time.
       </p>
       <p>
         IBLens analyses your IB essay and commentary drafts against the official IB

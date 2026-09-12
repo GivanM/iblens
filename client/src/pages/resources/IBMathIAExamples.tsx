@@ -5,14 +5,14 @@ import { Link } from "wouter";
 export default function IBMathIAExamples() {
   return (
     <ResourceArticle
-      title="IB Math IA Examples — High-Scoring Topics, Structures & Common Mistakes | IBLens"
+      title="IB Math IA Examples, High-Scoring Topics, Structures & Common Mistakes | IBLens"
       description="Real IB Math IA examples with examiner commentary. Understand what a 7-scoring Math Internal Assessment looks like and how to structure yours."
       canonical="/resources/ib-math-ia-examples"
       datePublished="2026-06-09"
       dateModified="2026-06-09"
     >
       <p>
-        The IB Mathematics Internal Assessment is worth 20% of your final grade — and
+        The IB Mathematics Internal Assessment is worth 20% of your final grade, and
         it is the one component where you control the topic, the approach, and the
         depth of exploration. That freedom is also what makes it difficult. Most
         students who score below a 6 do so not because their mathematics is wrong, but
@@ -27,27 +27,27 @@ export default function IBMathIAExamples() {
         (except Criterion E which is 6):
       </p>
       <ul>
-        <li><strong>Criterion A — Presentation (4 marks):</strong> Is the work well-organized, clearly written, and appropriately concise? Is there a table of contents and a bibliography?</li>
-        <li><strong>Criterion B — Mathematical Communication (4 marks):</strong> Are mathematical symbols, notation, and diagrams used correctly and consistently?</li>
-        <li><strong>Criterion C — Personal engagement (3 marks):</strong> Does the exploration reflect your genuine curiosity? Is the approach original rather than a textbook rehash?</li>
-        <li><strong>Criterion D — Reflection (3 marks):</strong> Do you discuss limitations, surprises, and what you would do differently? Is your thinking visible throughout?</li>
-        <li><strong>Criterion E — Use of Mathematics (6 marks):</strong> Is the mathematics relevant to the aim? Is it commensurate with the level of the course? Is it applied correctly?</li>
+        <li><strong>Criterion A, Presentation (4 marks):</strong> Is the work well-organized, clearly written, and appropriately concise? Is there a table of contents and a bibliography?</li>
+        <li><strong>Criterion B, Mathematical Communication (4 marks):</strong> Are mathematical symbols, notation, and diagrams used correctly and consistently?</li>
+        <li><strong>Criterion C, Personal engagement (3 marks):</strong> Does the exploration reflect your genuine curiosity? Is the approach original rather than a textbook rehash?</li>
+        <li><strong>Criterion D, Reflection (3 marks):</strong> Do you discuss limitations, surprises, and what you would do differently? Is your thinking visible throughout?</li>
+        <li><strong>Criterion E, Use of Mathematics (6 marks):</strong> Is the mathematics relevant to the aim? Is it commensurate with the level of the course? Is it applied correctly?</li>
       </ul>
       <p>
         A student who scores 4, 4, 3, 3, 5 = 19/20 has a high chance of a 7 on the IA.
         A student with correct but shallow mathematics (Criterion E = 3) combined with
-        no reflection (Criterion D = 1) ends up around 14/20 — which is a 5 or low 6.
+        no reflection (Criterion D = 1) ends up around 14/20, which is a 5 or low 6.
       </p>
 
       <h2>IB Math IA Examples by Topic Area</h2>
 
-      <h3>Analysis and Approaches (AA) HL/SL — Strong Topic Examples</h3>
+      <h3>Analysis and Approaches (AA) HL/SL, Strong Topic Examples</h3>
 
       <h4>1. Modelling the spread of a rumour using differential equations</h4>
       <p>
         This classic exploration uses a logistic differential equation to model how
         information spreads through a population. A student who chooses a real
-        data source — for instance, tweet counts from a viral news event — scores
+        data source, for instance, tweet counts from a viral news event, scores
         highly on the personal-context element of Research design because the context is self-selected and
         the data is original. The mathematics involves solving the logistic equation,
         fitting parameters to data, and comparing the model against observed values.
@@ -63,7 +63,7 @@ export default function IBMathIAExamples() {
 
       <h4>2. Investigating the golden ratio in architecture or music</h4>
       <p>
-        A perennially popular topic — but one that frequently scores low because
+        A perennially popular topic, but one that frequently scores low because
         students state that golden ratio connections "prove" aesthetic preference
         without using any statistical testing. A high-scoring version tests whether
         the ratio appears in a specific set of buildings or musical compositions using
@@ -75,14 +75,14 @@ export default function IBMathIAExamples() {
       <h4>3. Optimisation of a packaging design</h4>
       <p>
         Calculus-based optimisation is reliable AA content. A student who chooses a
-        product they actually use — a protein bar wrapper, a tea tin, a specific shoe
-        box — and measures real dimensions before comparing against the theoretical
+        product they actually use, a protein bar wrapper, a tea tin, a specific shoe
+        box, and measures real dimensions before comparing against the theoretical
         optimum earns strong marks on Criterion C. The mathematics should include
         second derivative tests and, for HL, possibly Lagrange multipliers if the
         constraint is complex.
       </p>
 
-      <h3>Applications and Interpretation (AI) HL/SL — Strong Topic Examples</h3>
+      <h3>Applications and Interpretation (AI) HL/SL, Strong Topic Examples</h3>
 
       <h4>4. Regression analysis of Premier League goal data</h4>
       <p>
@@ -98,9 +98,9 @@ export default function IBMathIAExamples() {
       <h4>5. Using Voronoi diagrams to optimise emergency service locations</h4>
       <p>
         Voronoi diagrams appear explicitly in the AI HL syllabus. An exploration
-        that applies Voronoi tessellation to a real map — choosing the nearest ambulance
+        that applies Voronoi tessellation to a real map, choosing the nearest ambulance
         station for each postcode in a city, or the nearest recycling point in a
-        neighbourhood — scores well because the application is practical and the
+        neighbourhood, scores well because the application is practical and the
         mathematics is used rather than described. The student should measure real
         distances, compute the Voronoi cells, and reflect on what the model ignores
         (traffic, road layout, capacity constraints).
@@ -112,7 +112,7 @@ export default function IBMathIAExamples() {
         student collects or downloads data, applies t-tests or ANOVA to compare
         distributions, and reflects on whether the statistical differences are
         meaningful in context. The key to Criterion D here is acknowledging that
-        statistical significance does not equal practical significance — a nuance
+        statistical significance does not equal practical significance, a nuance
         that signals genuine mathematical understanding.
       </p>
 
@@ -141,8 +141,8 @@ export default function IBMathIAExamples() {
       <h3>Choosing a topic that is too broad</h3>
       <p>
         "The mathematics of climate change" cannot be explored in 20 pages. A focused
-        version — "modelling the rate of Arctic ice loss using exponential decay" with
-        a specific dataset — can. Narrow your aim to something you can actually answer
+        version, "modelling the rate of Arctic ice loss using exponential decay" with
+        a specific dataset, can. Narrow your aim to something you can actually answer
         with the mathematics you know.
       </p>
 
@@ -177,14 +177,14 @@ export default function IBMathIAExamples() {
           { criterion: "A: Presentation", typical: "Sections exist, but the reader has to reconstruct what the exploration is trying to find out.", top: "The aim is visible from the first page and the exploration stays coherent and concise around it." },
           { criterion: "B: Mathematical communication", typical: "Notation drifts, symbols appear undefined, graphs are unlabelled.", top: "Notation and terminology are correct throughout; every graph and table is labelled and referred to in the text." },
           { criterion: "C: Personal engagement", typical: "The introduction asserts that the topic is interesting to the student.", top: "Engagement is shown, not claimed: own data, an extension nobody assigned, an approach chosen independently." },
-          { criterion: "D: Reflection", typical: "The ending summarises what was done.", top: "The reflection evaluates the mathematics itself — its limits, and what the result does not establish." },
+          { criterion: "D: Reflection", typical: "The ending summarises what was done.", top: "The reflection evaluates the mathematics itself, its limits, and what the result does not establish." },
           { criterion: "E: Use of mathematics", typical: "Routine procedures, correctly executed, at the edge of the syllabus.", top: "Mathematics commensurate with the level, and clearly understood rather than merely performed." },
         ]}
       />
 
       <h2>How Your IA Draft Compares to the Rubric</h2>
       <p>
-        Reading high-scoring IB Math IA examples is useful — but the gap between
+        Reading high-scoring IB Math IA examples is useful, but the gap between
         understanding a strong example and writing one yourself is where most marks
         are lost. When you have a draft, the most efficient use of your time is
         to get criterion-by-criterion feedback: exactly where is Criterion D weak?
@@ -193,7 +193,7 @@ export default function IBMathIAExamples() {
       </p>
       <p>
         IBLens analyses your IB essay or IA draft against the official IB marking
-        criteria and identifies precisely where marks are being lost — before your
+        criteria and identifies precisely where marks are being lost, before your
         teacher submits your final grade.
       </p>
       <p>

@@ -1,5 +1,5 @@
 /**
- * Legacy analytics helper — kept for backward compatibility.
+ * Legacy analytics helper, kept for backward compatibility.
  * New code should import from "@/lib/analytics/track" directly.
  *
  * Uses Umami (already configured in index.html) for event tracking.

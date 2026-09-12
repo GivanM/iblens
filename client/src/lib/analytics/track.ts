@@ -4,7 +4,7 @@
  * Every helper pushes a structured event to window.dataLayer.
  * GTM picks these up and routes them to GA4, Google Ads, Meta Pixel, etc.
  *
- * IMPORTANT: Do NOT call gtag() directly — all events flow through dataLayer → GTM.
+ * IMPORTANT: Do NOT call gtag() directly, all events flow through dataLayer → GTM.
  */
 
 import type { ProductSlug, PaymentMethod, AuthMethod } from "./config";
@@ -63,7 +63,7 @@ export function trackEssayUploadStarted(subject: string, essayType: string) {
 }
 
 /**
- * PRIMARY LEAD EVENT — fires when user submits essay for analysis.
+ * PRIMARY LEAD EVENT, fires when user submits essay for analysis.
  */
 export function trackEssaySubmitted(
   subject: string,
@@ -123,7 +123,7 @@ export function trackBeginCheckout(
 }
 
 /**
- * CRITICAL PURCHASE EVENT — fires on /dashboard?payment=success.
+ * CRITICAL PURCHASE EVENT, fires on /dashboard?payment=success.
  * Includes SHA-256 hashed email for Google Ads Enhanced Conversions.
  */
 export function trackPurchase(
@@ -157,7 +157,7 @@ export function trackPurchase(
     },
   });
 
-  // Direct Google Ads conversion — fires in parallel with GTM dataLayer push.
+  // Direct Google Ads conversion, fires in parallel with GTM dataLayer push.
   // Required because GTM is not yet configured with a Google Ads conversion tag.
   if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
     (window as any).gtag("event", "conversion", {

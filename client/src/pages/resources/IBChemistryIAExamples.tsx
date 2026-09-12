@@ -5,7 +5,7 @@ import { Link } from "wouter";
 export default function IBChemistryIAExamples() {
   return (
     <ResourceArticle
-      title="IB Chemistry IA Examples — Topics, Methods, and How to Score a 7 | IBLens"
+      title="IB Chemistry IA Examples, Topics, Methods, and How to Score a 7 | IBLens"
       description="High-scoring IB Chemistry IA examples with examiner analysis. Learn which investigation types earn top marks, how to handle data processing, and what Evaluation actually means."
       canonical="/resources/ib-chemistry-ia-examples"
       datePublished="2026-06-09"
@@ -13,9 +13,9 @@ export default function IBChemistryIAExamples() {
     >
       <p>
         The IB Chemistry Internal Assessment is a 10-hour scientific investigation
-        worth 20% of your final grade. It is marked on the same five criteria as
-        other Group 4 IAs — Research design, Data analysis, Conclusion and Evaluation,
-        and Communication — but Chemistry brings specific challenges: quantitative
+        worth 20% of your final grade. It is marked on the same four criteria as
+        other Group 4 IAs: Research design, Data analysis, Conclusion and Evaluation.
+        Chemistry brings specific challenges: quantitative
         data is expected, error calculations are required, and examiners have a low
         tolerance for vague methodology. This guide covers what high-scoring IB
         Chemistry IA examples look like, which investigation types work best, and
@@ -24,11 +24,10 @@ export default function IBChemistryIAExamples() {
 
       <h2>How the IB Chemistry IA Is Marked</h2>
       <ul>
-        <li><strong>Research design (6 marks):</strong> A focused research question in a genuine context — a non-standard variable or an original data source makes the design convincingly your own.</li>
-        <li><strong>Exploration (6 marks):</strong> Clear research question, relevant background theory, correct identification of variables (independent, dependent, controlled), and a reproducible methodology.</li>
-        <li><strong>Analysis (6 marks):</strong> Quantitative data processing (means, uncertainties, graphs), correct use of units, and a conclusion supported by the data. Error propagation is expected at HL.</li>
-        <li><strong>Evaluation (6 marks):</strong> Specific assessment of methodological limitations, systematic and random errors, and concrete improvements. The most under-scored criterion.</li>
-        <li><strong>Communication (4 marks):</strong> Clear structure, appropriate scientific notation, correct citations, and appropriate length (up to 3,000 words).</li>
+        <li><strong>Research design (6 marks):</strong> A focused research question in a genuine context, a methodology with identified variables and controls, and consideration of safety, ethical and environmental issues.</li>
+        <li><strong>Data analysis (6 marks):</strong> Recording, processing and presenting data in ways relevant to the question, including uncertainties and appropriate graphs.</li>
+        <li><strong>Conclusion (6 marks):</strong> A conclusion justified by the analysis, answering the research question and compared with the accepted scientific context.</li>
+        <li><strong>Evaluation (6 marks):</strong> Honest assessment of methodological weaknesses and limitations, with realistic improvements.</li>
       </ul>
 
       <h2>IB Chemistry IA Topics That Score Well</h2>
@@ -37,7 +36,7 @@ export default function IBChemistryIAExamples() {
       <p>
         Rate kinetics is a core HL and SL topic. A well-executed version uses a
         colorimeter to measure absorbance at regular intervals, processes the data
-        to determine rate constants, and — at HL — determines the order of reaction
+        to determine rate constants, and, at HL, determines the order of reaction
         with respect to the varying reactant. The personal engagement mark comes from
         choosing a reaction with a real-world context: the bleaching of food dyes,
         the oxidation of ascorbic acid, or the iodine clock with household starch.
@@ -56,7 +55,7 @@ export default function IBChemistryIAExamples() {
         content of different apple varieties across a ripening period; comparing
         acidity of commercial kombucha brands; measuring iron(II) content in iron
         supplement tablets before and after air exposure. The methodology is
-        standard — the originality comes from the context.
+        standard, the originality comes from the context.
       </p>
       <p>
         For Analysis, calculating the percentage uncertainty of each piece of
@@ -76,7 +75,7 @@ export default function IBChemistryIAExamples() {
         prediction.
       </p>
 
-      <h3>4. Electrochemistry — cell potential investigations</h3>
+      <h3>4. Electrochemistry, cell potential investigations</h3>
       <p>
         Measuring electrochemical cell potentials using different metal electrodes
         or concentrations allows for comparison with standard electrode potentials
@@ -105,7 +104,7 @@ export default function IBChemistryIAExamples() {
         calculate a meaningful standard deviation. Three replicates produce a
         standard deviation that is statistically unreliable. If you have five
         conditions (five concentrations, five temperatures) × five replicates,
-        that is 25 data points — achievable in a 10-hour IA. Students who run
+        that is 25 data points, achievable in a 10-hour IA. Students who run
         three replicates because they ran out of time are losing Analysis marks
         that are very easy to earn.
       </p>
@@ -117,8 +116,7 @@ export default function IBChemistryIAExamples() {
         reduced by averaging) and systematic error (consistent bias in one
         direction, not fixed by averaging). A colorimeter that was not zeroed
         correctly produces systematic error. Temperature fluctuations during
-        titration produce random error. Each requires a different improvement —
-        and examiners can tell whether the student understands the distinction.
+        titration produce random error. Each requires a different improvement, and examiners can tell whether the student understands the distinction.
       </p>
 
       <h3>Conclusions that don't reference the data</h3>
@@ -137,7 +135,7 @@ export default function IBChemistryIAExamples() {
         rate constant is exponentially sensitive to temperature (from the Arrhenius
         equation), this represents approximately a 12% variation in rate constant
         at the temperatures used, which explains the scatter visible in the graph
-        at higher temperatures" — that is developed evaluation. "The temperature
+        at higher temperatures", that is developed evaluation. "The temperature
         was not perfectly controlled" is not.
       </p>
 
@@ -150,7 +148,7 @@ export default function IBChemistryIAExamples() {
         <li>For addition/subtraction: add absolute uncertainties.</li>
         <li>For multiplication/division: add percentage uncertainties.</li>
         <li>Report final results with appropriate significant figures and absolute uncertainty.</li>
-        <li>Compare your percentage uncertainty to your percentage error (difference between experimental and literature values). If your percentage error exceeds your calculated uncertainty, there is a systematic error — this is worth discussing in Evaluation.</li>
+        <li>Compare your percentage uncertainty to your percentage error (difference between experimental and literature values). If your percentage error exceeds your calculated uncertainty, there is a systematic error, this is worth discussing in Evaluation.</li>
       </ul>
 
             <ExamplesBridge
@@ -159,7 +157,7 @@ export default function IBChemistryIAExamples() {
         rows={[
           { criterion: "Research design", typical: "The method is lifted from a standard class practical and the variables are simply listed.", top: "The method is justified for this specific question: why this range, this many trials, these controls." },
           { criterion: "Data analysis", typical: "Raw data is tabulated and a mean is plotted; uncertainties appear once and are then forgotten.", top: "Uncertainties are propagated through the processing, and the processing chosen is the one that actually tests the hypothesis." },
-          { criterion: "Conclusion", typical: "\u201cThe hypothesis was supported\u201d — with no reference to how strongly.", top: "The conclusion is stated with its uncertainty and compared against accepted values or published work." },
+          { criterion: "Conclusion", typical: "\u201cThe hypothesis was supported\u201d, with no reference to how strongly.", top: "The conclusion is stated with its uncertainty and compared against accepted values or published work." },
           { criterion: "Evaluation", typical: "Generic weaknesses: human error, not enough time, more trials next time.", top: "Specific weaknesses, each with its direction of effect on the result, and improvements that would actually be workable." },
         ]}
       />
@@ -168,13 +166,13 @@ export default function IBChemistryIAExamples() {
       <p>
         The difference between a Chemistry IA that scores 18/24 and one that scores
         22/24 is usually two specific marks on Evaluation and one on Analysis. These
-        are not visible from a general read-through — they require mapping each
+        are not visible from a general read-through, they require mapping each
         paragraph against the criterion descriptors to identify exactly what is
         missing.
       </p>
       <p>
         IBLens analyses your IB IA or essay against the official marking criteria
-        and shows you precisely where marks are being lost — before your teacher
+        and shows you precisely where marks are being lost, before your teacher
         submits your moderated grade.
       </p>
       <p>

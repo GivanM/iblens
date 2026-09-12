@@ -65,7 +65,7 @@ export default function AnalysisView() {
       <Card>
         <CardHeader>
           <CardTitle style={SERIF} className="text-xl">
-            {(data as any).essayType} — {(data as any).subject}
+            {(data as any).essayType}, {(data as any).subject}
           </CardTitle>
           <p className="text-sm text-muted-foreground">
             {new Date((data as any).createdAt).toLocaleDateString()}
@@ -116,7 +116,7 @@ export default function AnalysisView() {
               <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-2">What to fix first</h2>
               <ol className="list-decimal pl-5 space-y-2 text-sm">
                 {r.next_steps.map((s: any, i: number) => (
-                  <li key={i}>{typeof s === "string" ? s : `${s.action || ""} ${s.why ? `— ${s.why}` : ""}`}</li>
+                  <li key={i}>{typeof s === "string" ? s : `${s.action || ""} ${s.why ? `- ${s.why}` : ""}`}</li>
                 ))}
               </ol>
             </div>

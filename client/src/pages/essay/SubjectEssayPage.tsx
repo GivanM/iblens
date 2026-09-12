@@ -66,7 +66,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
         <section className="bg-gradient-to-b from-primary/5 to-background py-14 md:py-20">
           <div className="container max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold mb-6 uppercase tracking-wide">
-              ✓ First analysis free — no account, no credit card
+              ✓ First analysis free, no account, no credit card
             </div>
             <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
               {config.heroHeadline}
@@ -81,7 +81,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
               </Link>
             </Button>
             <p className="text-xs text-muted-foreground">
-              No account needed · Results in about a minute · Official IB rubric · 7-day money-back guarantee
+              No account needed · Results in about 90 seconds · Official IB rubric · 7-day money-back guarantee
             </p>
           </div>
         </section>
@@ -95,7 +95,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 { icon: "📋", title: "Paste your essay", desc: "Copy-paste your full text. No file upload needed, works on any device." },
-                { icon: "⚡", title: "AI grades it in 60s", desc: `Scored against the official IB rubric for ${config.subject} — criterion by criterion.` },
+                { icon: "⚡", title: "AI grades it in 60s", desc: `Scored against the official IB rubric for ${config.subject}, criterion by criterion.` },
                 { icon: "🎯", title: "See what to fix", desc: "Get exact marks you're losing and a prioritised action plan to improve." },
               ].map(({ icon, title, desc }) => (
                 <div key={title} className="flex flex-col items-center text-center gap-3">
@@ -120,7 +120,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
                 Sample {config.subject} score report
               </h2>
               <p className="text-muted-foreground text-sm">
-                This is what criterion-level feedback looks like — for your actual essay
+                This is what criterion-level feedback looks like, for your actual essay
               </p>
             </div>
 
@@ -173,7 +173,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
 
                 <div className="mt-6 pt-5 border-t flex flex-col sm:flex-row gap-3 items-center justify-between">
                   <p className="text-xs text-muted-foreground">
-                    Grade your own essay — free preview now, full breakdown and action plan for $9.99
+                    Grade your own essay, free preview now, full breakdown and action plan for $9.99
                   </p>
                   <Button size="sm" asChild>
                     <Link href="/essay">
@@ -196,8 +196,8 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
                 { text: "Criterion-by-criterion breakdown, not just a single score" },
                 { text: "Identifies exactly which marks you're losing and why" },
                 { text: "Prioritised action plan to improve before submission" },
-                { text: "First analysis free — no sign-up required" },
-                { text: "Results in about a minute, any time of day" },
+                { text: "First analysis free, no sign-up required" },
+                { text: "Results in about 90 seconds, any time of day" },
               ].map(({ text }) => (
                 <div key={text} className="flex items-start gap-3">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
@@ -214,10 +214,10 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
             <div className="rounded-xl border bg-muted/30 p-6 md:p-8">
               <h2 className="text-xl font-extrabold tracking-tight mb-4">Why students use IBLens</h2>
               <ul className="space-y-3 text-sm text-muted-foreground list-disc pl-5">
-                <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
-                <li>$9.99 for the full report and two re-checks — no subscription, and it includes two free re-checks of the same draft within 14 days.</li>
+                <li>Marks against the official IB assessment criteria for each subject and component, including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
+                <li>$9.99 for the full report and two re-checks, no subscription, and it includes two free re-checks of the same draft within 14 days.</li>
                 <li>Your first analysis is free: predicted band range, your weakest criterion with full feedback, and the top risks in your draft. No account needed.</li>
-                <li>Covers Internal Assessments in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
+                <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
               </ul>
             </div>
           </div>
@@ -230,7 +230,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
               Ready to find out your real score?
             </h2>
             <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-              Paste your {config.subject} text and get a full criterion-level grade report in about a minute. Free.
+              Paste your {config.subject} text and get a full criterion-level grade report in about 90 seconds. Free.
             </p>
             <Button size="lg" className="text-base px-10 shadow-lg shadow-primary/25" asChild>
               <Link href="/essay">

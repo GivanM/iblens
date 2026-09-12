@@ -4,7 +4,7 @@ import { Link } from "wouter";
 export default function IBBiologyExtendedEssay() {
   return (
     <ResourceArticle
-      title="IB Biology Extended Essay — Research Questions, Examples & Score an A | IBLens"
+      title="IB Biology Extended Essay, Research Questions, Examples & Score an A | IBLens"
       description="Complete guide to the IB Biology Extended Essay: choosing a research question, meeting criteria A-E, structuring your EE, and strategies that separate a Band A from Band B."
       canonical="/resources/ib-biology-extended-essay"
       datePublished="2026-06-17"
@@ -51,7 +51,7 @@ export default function IBBiologyExtendedEssay() {
       <h3>Common Research Question Mistakes</h3>
       <p>
         The most frequent error is a question that is too broad. "How does temperature
-        affect enzyme activity?" is not an EE question — it is a review article topic.
+        affect enzyme activity?" is not an EE question, it is a review article topic.
         "How does temperature (10-50 degrees C, in 10 degree increments) affect the rate of
         starch hydrolysis by salivary amylase, measured by iodine absorbance at 580 nm?"
         is an EE question.
@@ -91,7 +91,7 @@ export default function IBBiologyExtendedEssay() {
         <li><strong>Microbiology and antimicrobial activity:</strong> Testing the effect of plant extracts on bacterial growth using disk diffusion assays. Yields measurable quantitative data and connects to antibiotic resistance literature.</li>
         <li><strong>Ecology and population studies:</strong> Comparing species richness across disturbed and undisturbed habitats using quadrat sampling. Strong for Criterion C because you can compare findings to published biodiversity indices.</li>
         <li><strong>Plant physiology:</strong> Effect of different light spectra on chlorophyll production, stomatal density, or growth rate. Feasible with school equipment and produces clear quantitative results.</li>
-        <li><strong>Biochemistry and enzymes:</strong> The classic choice, but only when you go beyond basic kinetics — calculating the Michaelis constant, investigating inhibitors, or comparing enzyme activity across pH and ionic strength.</li>
+        <li><strong>Biochemistry and enzymes:</strong> The classic choice, but only when you go beyond basic kinetics, calculating the Michaelis constant, investigating inhibitors, or comparing enzyme activity across pH and ionic strength.</li>
       </ul>
 
       <h2>The RPPF: What Examiners Look For</h2>
@@ -109,7 +109,7 @@ export default function IBBiologyExtendedEssay() {
       <p>
         IBLens analyses IB extended essays against the official assessment criteria.
         Upload a draft of your Biology EE to receive criterion-by-criterion feedback
-        identifying where you are losing marks — especially on Criterion C and the
+        identifying where you are losing marks, especially on Criterion C and the
         focus of your research question in Criterion A.
       </p>
       <p>

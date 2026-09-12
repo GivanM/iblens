@@ -4,13 +4,13 @@ const config: SubjectConfig = {
   subject: "Computer Science IA",
   slug: "computer-science-ia",
   keyword: "IB Computer Science IA",
-  metaTitle: "IB Computer Science IA Grader — Free AI Feedback | IBLens",
+  metaTitle: "IB Computer Science IA Grader, Free AI Feedback | IBLens",
   metaDescription:
-    "AI feedback on your IB Computer Science Internal Assessment. Criterion-by-criterion scoring against the official IB CS IA rubric. First analysis free — no account needed.",
+    "AI feedback on your IB Computer Science Internal Assessment. Criterion-by-criterion scoring against the official IB CS IA rubric. First analysis free, no account needed.",
   canonicalPath: "/essay/computer-science-ia",
   heroHeadline: "Is your Computer Science IA losing marks you can't see?",
   heroSubline:
-    "Paste your IB CS IA and get criterion-by-criterion feedback against the official IB Computer Science rubric — free in about a minute.",
+    "Paste your IB CS IA and get criterion-by-criterion feedback against the official IB Computer Science rubric, free in about 90 seconds.",
   criteria: [
     { name: "Criterion A: Planning", max: 6, sampleScore: 4 },
     { name: "Criterion B: Solution Overview", max: 6, sampleScore: 4 },

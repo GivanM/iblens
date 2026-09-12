@@ -23,10 +23,17 @@ import {
   findOrCreateGuestUserByEmail,
   consumePaidEssayCredit,
   getLatestAnonymousEssay,
+  getLatestAnonymousUcas,
+  getDeviceCredits,
+  consumeDeviceCredit,
+  deleteAnonymousAnalysis,
+  updateAnonymousResult,
   setAnonymousUnlocked,
   markAnalysisUnlocked,
   consumeAnonymousRerun,
-  updateAnonymousResult,
+  createRerunAnalysis,
+  refundAnonymousRerun,
+  refundAnalysisRerun,
   consumeAnalysisRerun,
 } from "./db";
 import { checkUcasMechanics, buildUcasSystemPrompt, buildUcasUserPrompt, UCAS_TOTAL_CHAR_LIMIT, UCAS_MIN_CHARS_PER_ANSWER } from "../shared/ucas";
@@ -316,38 +323,58 @@ const essayRouter = router({
       if (!gate.ok) throw new Error(gate.reason);
       const rec: any = gate.record;
 
-      const systemPrompt = buildEssaySystemPrompt(rec.essayType, rec.subject, input.examSession);
-      const userPrompt = buildEssayUserPrompt(rec.essayType, rec.subject, rec.researchQuestion || undefined, input.essayText, input.examSession, input.reflections);
-      const response = await invokeLLM({
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: userPrompt },
-        ],
-      });
-      const rawContent = response.choices?.[0]?.message?.content;
-      const content = typeof rawContent === "string" ? rawContent : "";
-      const jsonMatch = content.match(/\{[\s\S]*\}/);
-      if (!jsonMatch) throw new Error("Failed to parse AI response");
-      const result = JSON.parse(jsonMatch[0].replace(/,\s*([\]\}])/g, "$1"));
-      const rubric = getRubric(rec.essayType, rec.subject, input.examSession);
-      if (rubric) {
-        result._rubricAvailable = true;
-        result._rubricLabel = rubric.label;
-        result._rubricTotalMarks = rubric.totalMarks;
+      try {
+        const systemPrompt = buildEssaySystemPrompt(rec.essayType, rec.subject, input.examSession);
+        const userPrompt = buildEssayUserPrompt(rec.essayType, rec.subject, rec.researchQuestion || undefined, input.essayText, input.examSession, input.reflections);
+        const startedAt = Date.now();
+        const response = await invokeLLM({
+          messages: [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: userPrompt },
+          ],
+        });
+        console.log(`[Timing] re-check answered in ${((Date.now() - startedAt) / 1000).toFixed(1)}s`);
+        const rawContent = response.choices?.[0]?.message?.content;
+        const content = typeof rawContent === "string" ? rawContent : "";
+        const jsonMatch = content.match(/\{[\s\S]*\}/);
+        if (!jsonMatch) throw new Error("Failed to parse AI response");
+        const result = JSON.parse(jsonMatch[0].replace(/,\s*([\]\}])/g, "$1"));
+        const rubric = getRubric(rec.essayType, rec.subject, input.examSession);
+        if (rubric) {
+          result._rubricAvailable = true;
+          result._rubricLabel = rubric.label;
+          result._rubricTotalMarks = rubric.totalMarks;
+        }
+
+        const analysis = await createAnalysis({
+          userId: ctx.user.id,
+          type: "essay",
+          essayType: rec.essayType,
+          subject: rec.subject,
+          researchQuestion: rec.researchQuestion,
+          resultJson: result,
+          predictedGrade: `${result.predicted_score}/${result.max_score}`,
+          unlocked: true,
+          rerunOf: rec.rerunOf ?? rec.id,
+        });
+        if (analysis?.id) await markAnalysisUnlocked(analysis.id);
+
+        const prev: any = rec.resultJson || {};
+        return {
+          id: analysis.id,
+          result,
+          rerunsLeft: gate.rerunsLeft,
+          previous: {
+            predicted_score: prev?.predicted_score ?? null,
+            max_score: prev?.max_score ?? null,
+            band_range: prev?.band_range ?? null,
+          },
+        };
+      } catch (error: any) {
+        // The student got nothing back, so the re-check they spent returns.
+        await refundAnalysisRerun(input.analysisId).catch(() => {});
+        throw new Error(error?.message || "Re-check failed. Please try again.");
       }
-
-      const analysis = await createAnalysis({
-        userId: ctx.user.id,
-        type: "essay",
-        essayType: rec.essayType,
-        subject: rec.subject,
-        researchQuestion: rec.researchQuestion,
-        resultJson: result,
-        predictedGrade: `${result.predicted_score}/${result.max_score}`,
-        unlocked: true,
-      });
-
-      return { id: analysis.id, result, rerunsLeft: gate.rerunsLeft };
     }),
 
   /**
@@ -363,6 +390,8 @@ const essayRouter = router({
       q2: z.string().default(""),
       q3: z.string().default(""),
       clientFingerprint: z.string().min(1),
+      /** Explicitly buy this review with a credit the user already owns. */
+      spendCredit: z.boolean().optional(),
     }))
     .mutation(async ({ input, ctx }) => {
       const answers = { q1: input.q1, q2: input.q2, q3: input.q3 };
@@ -378,15 +407,18 @@ const essayRouter = router({
       // A signed-in user with a paid credit gets the full review; everyone else gets the free
       // preview once per device. Telling someone who is already signed in to "sign in" was the
       // old behaviour and it read as a broken site.
+      // Spending a credit has to be asked for. This procedure used to take one
+      // from any signed-in user who had one, behind a button saying "free".
       const user = (ctx as any).user;
       let paidCredit = false;
-      if (user) {
+      if (user && input.spendCredit) {
         const credits = await getUserCredits(user.id);
         paidCredit = (credits?.essayCredits ?? 0) > 0;
+        if (!paidCredit) throw new TRPCError({ code: "FORBIDDEN", message: "No credit available. A full review is $9.99." });
       }
 
       if (!paidCredit) {
-        const usage = await canAnonymousAnalyze(input.clientFingerprint);
+        const usage = await canAnonymousAnalyze(input.clientFingerprint, "ucas");
         if (!usage.allowed) {
           throw new TRPCError({
             code: "FORBIDDEN",
@@ -419,7 +451,7 @@ const essayRouter = router({
         result._course = input.course;
         result._format = "ucas_2026";
 
-        await createAnonymousAnalysis({
+        const saved = await createAnonymousAnalysis({
           fingerprint,
           type: "essay",
           essayType: "UCAS",
@@ -427,11 +459,15 @@ const essayRouter = router({
           researchQuestion: null,
           resultJson: result,
           predictedGrade: null,
+          // A paid review is unlocked from the start. Without this it had no
+          // re-checks, could not be reopened, and retention would delete it.
+          unlocked: paidCredit,
+          unlockedAt: paidCredit ? new Date() : null,
         });
 
         if (paidCredit) {
           await consumePaidEssayCredit(user.id);
-          return { result, wasAnonymous: false, unlocked: true as const };
+          return { result, wasAnonymous: false, unlocked: true as const, id: saved?.id };
         }
         return { result: buildUcasTeaser(result), wasAnonymous: true };
       } catch (error: any) {
@@ -454,7 +490,7 @@ const essayRouter = router({
       answers: z.object({ q1: z.string(), q2: z.string(), q3: z.string() }).optional(),
     }))
     .mutation(async ({ input }) => {
-      const gate = await consumeAnonymousRerun(input.fingerprint);
+      const gate = await consumeAnonymousRerun(input.fingerprint, input.answers ? "ucas" : "essay");
       if (!gate.ok) throw new TRPCError({ code: "FORBIDDEN", message: gate.reason });
       const rec: any = gate.record;
 
@@ -494,10 +530,30 @@ const essayRouter = router({
           result._format = "ucas_2026";
         }
 
-        await updateAnonymousResult(rec.id, result, result?.predicted_score != null ? String(result.predicted_score) : undefined);
-        return { result, rerunsLeft: gate.rerunsLeft };
+        // Keep the marker of whether real criteria were behind this, exactly as the
+        // first run does, or the report silently loses its provenance badge.
+        if (rec.essayType !== "UCAS") {
+          const rubric = getRubric(rec.essayType, rec.subject, input.examSession);
+          result._rubricAvailable = !!rubric;
+          result._rubricLabel = rubric?.label ?? null;
+          result._rubricTotalMarks = rubric?.totalMarks ?? null;
+        }
+
+        await createRerunAnalysis(rec, result, result?.predicted_score != null ? String(result.predicted_score) : undefined);
+        const prev: any = rec.resultJson || {};
+        return {
+          result,
+          rerunsLeft: gate.rerunsLeft,
+          previous: {
+            predicted_score: prev?.predicted_score ?? null,
+            max_score: prev?.max_score ?? null,
+            band_range: prev?.band_range ?? null,
+          },
+        };
       } catch (error: any) {
         console.error("[Re-check] Error:", error);
+        // The student got nothing, so the re-check they spent comes back.
+        await refundAnonymousRerun(rec.id).catch(() => {});
         throw new Error(error.message || "Re-check failed. Please try again.");
       }
     }),
@@ -507,6 +563,11 @@ const essayRouter = router({
    * unlocked it. This is how a guest reads what they paid for: they never sign in,
    * so the authenticated unlock path is closed to them.
    */
+  /** Reports this device has already paid for and not yet spent. */
+  deviceCredits: publicProcedure
+    .input(z.object({ fingerprint: z.string().min(1) }))
+    .query(async ({ input }) => ({ credits: await getDeviceCredits(input.fingerprint) })),
+
   anonymousReport: publicProcedure
     .input(z.object({ fingerprint: z.string().min(1) }))
     .query(async ({ input }) => {
@@ -549,11 +610,32 @@ const essayRouter = router({
       // Use client-provided fingerprint (UUID stored in localStorage)
       const fingerprint = input.clientFingerprint;
 
-      // Check if this anonymous user already used their free analysis
+      // The free run, or a credit this device bought. Guests have no account to
+      // hold credits, so a pack bought without one lives on the device.
       const usage = await canAnonymousAnalyze(fingerprint);
+      let paidByDevice = false;
       if (!usage.allowed) {
-        throw new Error(usage.reason || "Free analysis already used. Sign in to continue.");
+        paidByDevice = await consumeDeviceCredit(fingerprint);
+        if (!paidByDevice) {
+          throw new TRPCError({
+            code: "FORBIDDEN",
+            message: usage.reason || "You have used your free analysis on this device.",
+          });
+        }
       }
+
+      // Claim the free slot before the model is called, not after. The analysis
+      // takes over a minute, and everything submitted inside that window used to
+      // pass the check: two production devices already got two free runs each.
+      const claim = paidByDevice ? null : await createAnonymousAnalysis({
+        fingerprint,
+        type: "essay",
+        essayType: input.essayType,
+        subject: input.subject,
+        researchQuestion: input.researchQuestion || null,
+        resultJson: null,
+        predictedGrade: null,
+      });
 
       const systemPrompt = buildEssaySystemPrompt(input.essayType, input.subject, input.examSession);
       const userPrompt = buildEssayUserPrompt(input.essayType, input.subject, input.researchQuestion, input.essayText, input.examSession, input.reflections);
@@ -584,20 +666,31 @@ const essayRouter = router({
           result._rubricTotalMarks = rubric.totalMarks;
         }
 
-        // Save anonymous analysis
-        await createAnonymousAnalysis({
-          fingerprint,
-          type: "essay",
-          essayType: input.essayType,
-          subject: input.subject,
-          researchQuestion: input.researchQuestion || null,
-          resultJson: result,
-          predictedGrade: `${result.predicted_score}/${result.max_score}`,
-        });
+        // Fill in the slot claimed before the model ran, or write a fresh row for
+        // a run paid with a device credit.
+        if (claim?.id) {
+          await updateAnonymousResult(claim.id, result, `${result.predicted_score}/${result.max_score}`);
+        } else {
+          await createAnonymousAnalysis({
+            fingerprint,
+            type: "essay",
+            unlocked: paidByDevice,
+            unlockedAt: paidByDevice ? new Date() : null,
+            essayType: input.essayType,
+            subject: input.subject,
+            researchQuestion: input.researchQuestion || null,
+            resultJson: result,
+            predictedGrade: `${result.predicted_score}/${result.max_score}`,
+          });
+        }
 
-        return { result: buildTeaser(result), wasAnonymous: true };
+        return paidByDevice
+          ? { result, wasAnonymous: true, unlocked: true as const }
+          : { result: buildTeaser(result), wasAnonymous: true };
       } catch (error: any) {
         console.error("[Anonymous Essay Analysis] Error:", error);
+        // A run that produced nothing must not cost the free slot it claimed.
+        if (claim?.id) await deleteAnonymousAnalysis(claim.id).catch(() => {});
         throw new Error(error.message || "Analysis failed. Please try again.");
       }
     }),
@@ -786,9 +879,14 @@ const dashboardRouter = router({
   analysis: protectedProcedure
     .input(z.object({ id: z.number() }))
     .query(async ({ ctx, input }) => {
-      const analysis = await getAnalysisById(input.id, ctx.user.id);
+      const analysis: any = await getAnalysisById(input.id, ctx.user.id);
       if (!analysis) throw new Error("Analysis not found");
-      return analysis;
+      // A locked report is locked on the wire too. Hiding it in the component
+      // left the full text one devtools tab away from anyone who looked.
+      if (!analysis.unlocked) {
+        return { ...analysis, resultJson: null, predictedGrade: null, locked: true as const };
+      }
+      return { ...analysis, locked: false as const };
     }),
 
   credits: protectedProcedure.query(async ({ ctx }) => {
@@ -883,7 +981,9 @@ const paymentRouter = router({
         input.email,
         sku,
         product.priceAmount,
-        input.productKey === "ESSAY_SINGLE" ? input.fingerprint : undefined,
+        // Every essay purchase carries the device, packs included: the buyer is
+        // looking at a locked report right now and that is what they think they bought.
+        input.fingerprint,
         input.returnTo,
       );
 

@@ -88,27 +88,27 @@ const routeMeta: Record<string, PageMeta> = {
 
   "/": {
     title: "Free IB Essay Grader 2026 \u2014 AI Feedback on IA, EE & TOK | IBLens",
-    description: "Get AI-powered feedback on your IB essay in about a minute. Criterion-by-criterion scores, predicted band, risk areas, and actionable improvements. First analysis free \u2014 no account needed.",
+    description: "Get AI-powered feedback on your IB essay in about 90 seconds. Criterion-by-criterion scores, predicted band, risk areas, and actionable improvements. First analysis free \u2014 no account needed.",
     ogType: "website",
     canonical: "/",
     schemaType: "WebSite",
   },
   "/essay": {
     title: "IB Essay Grader \u2014 Free AI Feedback on IA, Extended Essay & TOK | IBLens",
-    description: "Grade your IB Internal Assessment, Extended Essay, or TOK essay free. AI evaluates every criterion, predicts your band, and shows exactly which marks you\u2019re losing. All subjects.",
+    description: "Grade your IB Internal Assessment, Extended Essay, or TOK essay free. AI evaluates every criterion, predicts your band, and shows exactly which marks you\u2019re losing. 14 subjects.",
     ogType: "website",
     canonical: "/essay",
     schemaType: "WebPage",
     faq: [
-      { question: "Which IB essay types can IBLens grade?", answer: "IBLens grades all IB essay types: Internal Assessments (IA) for all subjects, Extended Essays (EE), and Theory of Knowledge (TOK) essays. Each is scored against the official IB rubric for that specific essay type." },
+      { question: "Which IB essay types can IBLens grade?", answer: "IBLens grades all IB essay types: coursework in 14 subjects (the IA in eleven, plus the externally assessed coursework in Visual Arts, Music and Film), Extended Essays (EE), and Theory of Knowledge (TOK) essays. Each is scored against the official IB rubric for that specific essay type." },
       { question: "How accurate is the AI grade prediction?", answer: "IBLens is trained on official IB marking criteria and provides reliable score predictions. It evaluates each criterion individually and identifies specific areas where marks are being lost, giving you actionable feedback to improve before submission." },
       { question: "Is the first analysis really free?", answer: "Yes — your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments, and a ranked fix list — unlocks for $9.99." },
-      { question: "How long does it take to get feedback?", answer: "Results are ready in about a minute. Paste your essay text, select your subject and essay type, and the AI delivers a complete grade report within a minute." },
+      { question: "How long does it take to get feedback?", answer: "Results are ready in about 90 seconds. Paste your essay text, select your subject and essay type, and the AI delivers a complete grade report within a minute." },
     ],
   },
   "/grade": {
     title: "Free IB Essay Grader \u2014 Grade My IB Essay in About 90 Seconds | IBLens",
-    description: "Paste your IB essay and get a predicted grade in about a minute. AI feedback on every criterion \u2014 Extended Essay, IA, or TOK. No account, no credit card required.",
+    description: "Paste your IB essay and get a predicted grade in about 90 seconds. AI feedback on every criterion \u2014 Extended Essay, IA, or TOK. No account, no credit card required.",
     ogType: "website",
     canonical: "/grade",
     schemaType: "WebPage",
@@ -295,7 +295,7 @@ const routeMeta: Record<string, PageMeta> = {
     schemaType: "Article",
   },
   "/resources/ib-ia-grader": {
-    title: "IB IA Grader — Free AI Internal Assessment Grader for All Subjects | IBLens",
+    title: "IB IA Grader — Free AI Internal Assessment Grader, 14 Subjects | IBLens",
     description: "Free IB IA grader powered by AI. Grade your Internal Assessment against official IB rubrics for Biology, Chemistry, Physics, Maths, History, Economics, Psychology and more.",
     ogType: "article",
     canonical: "/resources/ib-ia-grader",

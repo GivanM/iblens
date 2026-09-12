@@ -4,11 +4,11 @@ const config: SubjectConfig = {
   subject: "Chemistry IA",
   slug: "chemistry-ia",
   keyword: "IB Chemistry IA",
-  metaTitle: "IB Chemistry IA Grader — Free AI Feedback on Lab Report | IBLens",
+  metaTitle: "IB Chemistry IA Grader, Free AI Feedback on Lab Report | IBLens",
   metaDescription:
     "Get AI feedback on your IB Chemistry Internal Assessment. Exploration, analysis, and evaluation scored against official IB Chemistry criteria. First analysis free.",
   canonicalPath: "/essay/chemistry-ia",
-  heroHeadline: "Check your IB Chemistry IA against the official rubric — instantly",
+  heroHeadline: "Check your IB Chemistry IA against the official rubric, in about 90 seconds",
   heroSubline:
     "Paste your Chemistry IA and find out how you'd score on every criterion, plus exactly what to improve before submission.",
   criteria: [

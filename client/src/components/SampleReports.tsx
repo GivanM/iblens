@@ -188,7 +188,7 @@ export function SampleReports() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight mb-3">See exactly what you get</h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            A real sample essay grading report — criterion by criterion
+            A real sample essay grading report, criterion by criterion
           </p>
         </div>
 

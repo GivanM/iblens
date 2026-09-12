@@ -60,8 +60,8 @@ export default function LandingPage() {
   return (
     <>
       <SEOHead
-        title="Free IB Essay Grader — Grade My IB Essay in About 90 Seconds | IBLens"
-        description="Grade your IB Extended Essay, IA, or TOK essay instantly. AI-powered IB essay grader gives criterion-by-criterion feedback and predicted band in about a minute. Free."
+        title="Free IB Essay Grader, Grade My IB Essay in About 90 Seconds | IBLens"
+        description="Grade your IB Extended Essay, IA, or TOK essay in about 90 seconds. AI-powered IB essay grader gives criterion-by-criterion feedback and predicted band in about 90 seconds. Free."
         canonical="/grade"
       />
 
@@ -87,13 +87,13 @@ export default function LandingPage() {
         <section className="bg-gradient-to-b from-primary/5 to-background py-16 md:py-24">
           <div className="container max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold mb-6 uppercase tracking-wide">
-              ✓ First analysis free — no account, no credit card
+              ✓ First analysis free, no account, no credit card
             </div>
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-5 leading-tight">
               Grade Your IB Essay<br />in About 90 Seconds
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">
-              Paste your IA, Extended Essay, or TOK. Get a criterion-by-criterion score, the exact marks you're losing, and how to fix them — free, instantly.
+              Paste your IA, Extended Essay, or TOK. Get a criterion-by-criterion score, the exact marks you're losing, and how to fix them, free, in about 90 seconds.
             </p>
             <Button size="lg" className="text-base px-10 h-14 shadow-lg shadow-primary/25 mb-4" asChild>
               <Link href="/essay">
@@ -101,7 +101,7 @@ export default function LandingPage() {
                 Grade My Essay Free
               </Link>
             </Button>
-            <p className="text-xs text-muted-foreground">No account needed · Results in about a minute · All IB subjects · 7-day money-back guarantee</p>
+            <p className="text-xs text-muted-foreground">No account needed · Results in about 90 seconds · 14 IB subjects · 7-day money-back guarantee</p>
           </div>
         </section>
 
@@ -132,7 +132,7 @@ export default function LandingPage() {
           <div className="container max-w-2xl mx-auto">
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold tracking-tight mb-2">Here's what your grade report looks like</h2>
-              <p className="text-muted-foreground text-sm">Criterion scores, risk areas, and actionable feedback — all in one place</p>
+              <p className="text-muted-foreground text-sm">Criterion scores, risk areas, and actionable feedback, all in one place</p>
             </div>
 
             <Card className="border-2 shadow-lg">
@@ -187,7 +187,7 @@ export default function LandingPage() {
                     <Button size="sm" asChild>
                       <Link href="/essay">
                         <Lock className="w-3.5 h-3.5 mr-1.5" />
-                        See Full Feedback — Free
+                        See Full Feedback, Free
                       </Link>
                     </Button>
                   </div>
@@ -202,9 +202,9 @@ export default function LandingPage() {
           <div className="container">
             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 text-sm text-muted-foreground">
               <div className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-emerald-500" /><span>Scored against official IB rubric</span></div>
-              <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-amber-500" /><span>Results in about a minute</span></div>
+              <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-amber-500" /><span>Results in about 90 seconds</span></div>
               <div className="flex items-center gap-2"><Shield className="w-4 h-4 text-blue-500" /><span>Essays never stored</span></div>
-              <div className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /><span>All IB subjects supported</span></div>
+              <div className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /><span>14 IB subjects supported</span></div>
             </div>
           </div>
         </section>
@@ -216,19 +216,19 @@ export default function LandingPage() {
             <div className="bg-background rounded-xl border p-5">
               <FAQItem
                 question="Is the first essay grade really free?"
-                answer="Yes — your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments, and a ranked fix list — unlocks for $9.99."
+                answer="Yes, your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report, exact score, every criterion with comments, and a ranked fix list, unlocks for $9.99."
               />
               <FAQItem
                 question="Which essay types and subjects does IBLens support?"
-                answer="IBLens grades Extended Essays, TOK essays, the TOK exhibition and Internal Assessments in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film."
+                answer="IBLens grades Extended Essays, TOK essays, the TOK exhibition and coursework in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film."
               />
               <FAQItem
                 question="How accurate is the AI grade?"
-                answer="IBLens evaluates your essay against official IB marking criteria for your subject. The predicted band gives you a reliable signal of where you stand and exactly which criteria to improve — the same way a real examiner would assess it."
+                answer="IBLens evaluates your essay against official IB marking criteria for your subject. The predicted band gives you a reliable signal of where you stand and exactly which criteria to improve, the same way a real examiner would assess it."
               />
               <FAQItem
                 question="What payment methods do you accept?"
-                answer="We accept card payments — Visa, Mastercard, and Amex. Credits activate automatically after payment. You don't need an account to pay."
+                answer="We accept card payments, Visa, Mastercard, and Amex. Credits activate automatically after payment. You don't need an account to pay."
               />
               <FAQItem
                 question="Is my essay private?"
@@ -244,11 +244,11 @@ export default function LandingPage() {
             {days > 0 && days < 180 && (
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 text-amber-800 text-sm font-semibold mb-6">
                 <Clock className="w-4 h-4" />
-                {days} days until IB {examYear} exams — don't submit ungraded
+                {days} days until IB {examYear} exams, don't submit ungraded
               </div>
             )}
             <h2 className="text-3xl font-bold tracking-tight mb-4">Ready to see your IB grade?</h2>
-            <p className="text-muted-foreground mb-8">Paste your essay now — free, instant, no account needed.</p>
+            <p className="text-muted-foreground mb-8">Paste your essay now, free, about 90 seconds, no account needed.</p>
             <Button size="lg" className="text-base px-10 shadow-lg shadow-primary/25" asChild>
               <Link href="/essay">
                 Grade My Essay Free <ArrowRight className="w-4 h-4 ml-2" />

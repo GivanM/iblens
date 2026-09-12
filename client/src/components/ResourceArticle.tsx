@@ -37,7 +37,7 @@ export function ResourceArticle({
         breadcrumbs={[
           { name: "Home", url: "/" },
           { name: "Resources", url: "/resources" },
-          { name: title.split(" | ")[0].split(" — ")[0], url: canonical },
+          { name: title.split(" | ")[0].split(", ")[0], url: canonical },
         ]}
       />
       <div className="min-h-screen bg-background">
@@ -49,7 +49,7 @@ export function ResourceArticle({
             <Link href="/resources" className="hover:text-primary transition-colors">Resources</Link>
             <span>/</span>
             <span className="text-foreground font-medium truncate max-w-[200px]">
-              {title.split(" | ")[0].split(" — ")[0]}
+              {title.split(" | ")[0].split(", ")[0]}
             </span>
           </nav>
 
@@ -64,7 +64,7 @@ export function ResourceArticle({
               Ready to get specific feedback on your essay?
             </h2>
             <p className="text-muted-foreground mb-6 max-w-lg mx-auto text-sm leading-relaxed">
-              Upload your IA, EE, or TOK essay and get criterion-by-criterion analysis with a predicted score in about a minute. First analysis free.
+              Upload your IA, EE, or TOK essay and get criterion-by-criterion analysis with a predicted score in about 90 seconds. First analysis free.
             </p>
             <Link href="/essay">
               <Button size="lg">

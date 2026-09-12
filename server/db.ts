@@ -3,7 +3,7 @@ import { drizzle } from "drizzle-orm/mysql2";
 import {
   InsertUser, users, analyses, InsertAnalysis, payments, InsertPayment,
   anonymousAnalyses, InsertAnonymousAnalysis,
-  orders, InsertOrder, webhookEvents, InsertWebhookEvent,
+  orders, InsertOrder, webhookEvents, InsertWebhookEvent, deviceCredits,
   creditLedger, InsertCreditLedgerEntry,
 } from "../drizzle/schema";
 import crypto from "crypto";
@@ -369,21 +369,35 @@ export function generateFingerprint(ip: string, userAgent: string): string {
   return crypto.createHash("sha256").update(`${ip}::${userAgent}`).digest("hex").substring(0, 64);
 }
 
-export async function getAnonymousAnalysisCount(fingerprint: string): Promise<number> {
+/**
+ * Free runs already used on this device, counted per product. The essay grader and
+ * the UCAS checker each advertise their own free run, and they share a device id,
+ * so counting every row here would silently take one of the two away.
+ */
+export async function getAnonymousAnalysisCount(fingerprint: string, kind: "essay" | "ucas" = "essay"): Promise<number> {
   const db = await getDb();
   if (!db) return 0;
 
+  const isUcas = eq(anonymousAnalyses.essayType, "UCAS");
   const result = await db.select({ count: sql<number>`count(*)` })
     .from(anonymousAnalyses)
-    .where(eq(anonymousAnalyses.fingerprint, fingerprint));
+    .where(and(
+      eq(anonymousAnalyses.fingerprint, fingerprint),
+      kind === "ucas" ? isUcas : sql`(${anonymousAnalyses.essayType} IS NULL OR ${anonymousAnalyses.essayType} <> 'UCAS')`,
+    ));
 
   return result[0]?.count ?? 0;
 }
 
-export async function canAnonymousAnalyze(fingerprint: string): Promise<{ allowed: boolean; reason?: string }> {
-  const count = await getAnonymousAnalysisCount(fingerprint);
+export async function canAnonymousAnalyze(fingerprint: string, kind: "essay" | "ucas" = "essay"): Promise<{ allowed: boolean; reason?: string }> {
+  const count = await getAnonymousAnalysisCount(fingerprint, kind);
   if (count >= 1) {
-    return { allowed: false, reason: "You've used your free analysis. Sign in to purchase more credits." };
+    return {
+      allowed: false,
+      reason: kind === "ucas"
+        ? "You have used your free review from this device."
+        : "You have used your free analysis from this device.",
+    };
   }
   return { allowed: true };
 }
@@ -555,11 +569,24 @@ export async function grantCreditsViaLedger(
   }
 }
 
+/**
+ * Guest accounts are keyed by "guest:" plus a digest of the address, because
+ * openId is varchar(64) and a school address like
+ * firstname.lastname@long-school-domain.edu simply did not fit: the insert threw
+ * and the purchase failed at the payment button.
+ */
+export function guestOpenIdFor(email: string): string {
+  const normalised = email.trim().toLowerCase();
+  const direct = `guest:${normalised}`;
+  if (direct.length <= 64) return direct;
+  return `guest#${crypto.createHash("sha256").update(normalised).digest("hex").slice(0, 48)}`;
+}
+
 export async function findOrCreateGuestUserByEmail(email: string): Promise<{ id: number }> {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
 
-  const guestOpenId = `guest:${email}`;
+  const guestOpenId = guestOpenIdFor(email);
 
   // Check for existing guest user
   const existing = await db.select({ id: users.id })
@@ -599,7 +626,7 @@ export async function absorbGuestAccount(email: string, targetUserId: number): P
   const db = await getDb();
   if (!db) return 0;
 
-  const guestOpenId = `guest:${email}`;
+  const guestOpenId = guestOpenIdFor(email);
   const rows = await db.select().from(users).where(eq(users.openId, guestOpenId)).limit(1);
   const guest: any = rows[0];
   if (!guest || guest.id === targetUserId) return 0;
@@ -653,8 +680,25 @@ export async function consumePaidEssayCredit(userId: number) {
 export async function getLatestAnonymousEssay(fingerprint: string) {
   const db = await getDb();
   if (!db) return null;
+  // UCAS reviews are stored in this table too, with essayType "UCAS". They render
+  // in a different component, so handing one to the essay reader crashes it.
   const rows = await db.select().from(anonymousAnalyses)
-    .where(and(eq(anonymousAnalyses.fingerprint, fingerprint), eq(anonymousAnalyses.type, "essay")))
+    .where(and(
+      eq(anonymousAnalyses.fingerprint, fingerprint),
+      eq(anonymousAnalyses.type, "essay"),
+      sql`(${anonymousAnalyses.essayType} IS NULL OR ${anonymousAnalyses.essayType} <> 'UCAS')`,
+    ))
+    .orderBy(desc(anonymousAnalyses.id))
+    .limit(1);
+  return rows[0] ?? null;
+}
+
+/** The latest UCAS review for a device, kept apart from the essay reports. */
+export async function getLatestAnonymousUcas(fingerprint: string) {
+  const db = await getDb();
+  if (!db) return null;
+  const rows = await db.select().from(anonymousAnalyses)
+    .where(and(eq(anonymousAnalyses.fingerprint, fingerprint), eq(anonymousAnalyses.essayType, "UCAS")))
     .orderBy(desc(anonymousAnalyses.id))
     .limit(1);
   return rows[0] ?? null;
@@ -673,13 +717,15 @@ export async function setAnonymousUnlocked(id: number) {
  * without an account, so the window and the counter live on the anonymous row.
  * Returns the record to re-run, or the reason it cannot be re-run.
  */
-export async function consumeAnonymousRerun(fingerprint: string) {
+export async function consumeAnonymousRerun(fingerprint: string, kind: "essay" | "ucas" = "essay") {
   const db = await getDb();
   if (!db) return { ok: false as const, reason: "Database not available" };
-  const rows = await db.select().from(anonymousAnalyses)
-    .where(eq(anonymousAnalyses.fingerprint, fingerprint))
-    .orderBy(desc(anonymousAnalyses.createdAt)).limit(1);
-  const rec: any = rows[0];
+  // Pick the row of the product being re-checked. A device can hold both an essay
+  // report and a UCAS review, and taking "the latest row" burned a re-check on
+  // whichever happened to be newer.
+  const rec: any = kind === "ucas"
+    ? await getLatestAnonymousUcas(fingerprint)
+    : await getLatestAnonymousEssay(fingerprint);
   if (!rec || !rec.resultJson) return { ok: false as const, reason: "No report found for this device." };
   if (!rec.unlocked) return { ok: false as const, reason: "This report is not unlocked." };
   const started = rec.unlockedAt ? new Date(rec.unlockedAt).getTime() : new Date(rec.createdAt).getTime();
@@ -695,13 +741,113 @@ export async function consumeAnonymousRerun(fingerprint: string) {
   return { ok: true as const, record: rec, rerunsLeft: 1 - (rec.rerunsUsed ?? 0) };
 }
 
-/** Replace the stored report after a re-check. */
+/** Give a signed-in re-check back when the model failed. */
+export async function refundAnalysisRerun(id: number) {
+  const db = await getDb();
+  if (!db) return;
+  await db.update(analyses)
+    .set({ rerunsUsed: sql`GREATEST(${analyses.rerunsUsed} - 1, 0)` })
+    .where(eq(analyses.id, id));
+}
+
+/** Write the result into a row that was created as a placeholder. */
 export async function updateAnonymousResult(id: number, resultJson: any, predictedGrade?: string | null) {
   const db = await getDb();
   if (!db) return;
   await db.update(anonymousAnalyses)
     .set({ resultJson, ...(predictedGrade !== undefined ? { predictedGrade } : {}) })
     .where(eq(anonymousAnalyses.id, id));
+}
+
+/** Remove a claimed-but-failed free slot so a broken run does not cost the student theirs. */
+export async function deleteAnonymousAnalysis(id: number) {
+  const db = await getDb();
+  if (!db) return;
+  await db.delete(anonymousAnalyses).where(eq(anonymousAnalyses.id, id));
+}
+
+/** Credits a guest bought, held against the device that bought them. */
+export async function addDeviceCredits(fingerprint: string, amount: number) {
+  const db = await getDb();
+  if (!db || amount <= 0) return;
+  await db.insert(deviceCredits).values({ fingerprint, credits: amount })
+    .onDuplicateKeyUpdate({ set: { credits: sql`${deviceCredits.credits} + ${amount}` } });
+  console.log(`[DeviceCredits] +${amount} for ${fingerprint.slice(0, 8)}...`);
+}
+
+export async function getDeviceCredits(fingerprint: string): Promise<number> {
+  const db = await getDb();
+  if (!db) return 0;
+  const rows = await db.select().from(deviceCredits).where(eq(deviceCredits.fingerprint, fingerprint)).limit(1);
+  return (rows[0] as any)?.credits ?? 0;
+}
+
+/** Returns true when a credit was actually taken. */
+export async function consumeDeviceCredit(fingerprint: string): Promise<boolean> {
+  const db = await getDb();
+  if (!db) return false;
+  const res: any = await db.update(deviceCredits)
+    .set({ credits: sql`${deviceCredits.credits} - 1` })
+    .where(and(eq(deviceCredits.fingerprint, fingerprint), sql`${deviceCredits.credits} > 0`));
+  const changed = Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0);
+  return changed > 0;
+}
+
+/** Close a report again after its payment was refunded. */
+export async function relockAnonymousAnalysis(id: number) {
+  const db = await getDb();
+  if (!db) return;
+  await db.update(anonymousAnalyses)
+    .set({ unlocked: false, unlockedAt: null })
+    .where(eq(anonymousAnalyses.id, id));
+}
+
+/**
+ * Close the most recently opened report on an account after a refund. We do not
+ * record which report a given order unlocked, so this takes the newest unlocked
+ * one, which is the report the refunded purchase opened in every flow we have.
+ */
+export async function relockAnalysesForOrder(userId: number, _orderId: string) {
+  const db = await getDb();
+  if (!db) return;
+  const rows = await db.select().from(analyses)
+    .where(and(eq(analyses.userId, userId), eq(analyses.unlocked, true)))
+    .orderBy(desc(analyses.id)).limit(1);
+  const rec: any = rows[0];
+  if (!rec) return;
+  await db.update(analyses).set({ unlocked: false, unlockedAt: null }).where(eq(analyses.id, rec.id));
+  console.log(`[Refund] Analysis ${rec.id} re-locked for user ${userId}`);
+}
+
+/** Give a re-check back when the model failed and the student got nothing. */
+export async function refundAnonymousRerun(id: number) {
+  const db = await getDb();
+  if (!db) return;
+  await db.update(anonymousAnalyses)
+    .set({ rerunsUsed: sql`GREATEST(${anonymousAnalyses.rerunsUsed} - 1, 0)` })
+    .where(eq(anonymousAnalyses.id, id));
+}
+
+/**
+ * A re-check is a new report, not a replacement. The old one is what the student
+ * paid for, and the before/after comparison we sell needs both to exist.
+ */
+export async function createRerunAnalysis(prev: any, resultJson: any, predictedGrade?: string | null) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const [row] = await db.insert(anonymousAnalyses).values({
+    fingerprint: prev.fingerprint,
+    type: prev.type,
+    essayType: prev.essayType,
+    subject: prev.subject,
+    researchQuestion: prev.researchQuestion,
+    resultJson,
+    predictedGrade: predictedGrade ?? null,
+    unlocked: true,
+    unlockedAt: prev.unlockedAt ?? new Date(),
+    rerunsUsed: (prev.rerunsUsed ?? 0),
+  }).$returningId();
+  return row;
 }
 
 /** Paid unlock starts the free re-run window (14 days, 2 re-runs of the same draft). */
@@ -717,6 +863,12 @@ export async function consumeAnalysisRerun(id: number, userId: number) {
   const rows = await db.select().from(analyses).where(and(eq(analyses.id, id), eq(analyses.userId, userId))).limit(1);
   const rec: any = rows[0];
   if (!rec || !rec.unlocked) return { ok: false as const, reason: "This report is not unlocked." };
+  // A re-check is part of the purchase that opened the original, so its own
+  // re-checks come from that same allowance. Without this, every re-check was a
+  // fresh report with two more free runs attached to it, for ever.
+  if (rec.rerunOf) {
+    return { ok: false as const, reason: "Re-checks belong to the report you bought. Open that one to use the second." };
+  }
   const started = rec.unlockedAt ? new Date(rec.unlockedAt).getTime() : new Date(rec.createdAt).getTime();
   const days = (Date.now() - started) / 86400000;
   if (days > 14) return { ok: false as const, reason: "Your 14-day re-check window for this draft has ended." };

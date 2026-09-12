@@ -5,7 +5,7 @@ import { Link } from "wouter";
 export default function IBEEExamplesBySubject() {
   return (
     <ResourceArticle
-      title="IB Extended Essay Examples by Subject — What a 7-Scoring EE Looks Like | IBLens"
+      title="IB Extended Essay Examples by Subject, What a 7-Scoring EE Looks Like | IBLens"
       description="Concrete IB Extended Essay examples across Economics, History, Biology, English, Psychology, Mathematics, and Physics. Understand what separates a grade 7 EE from a grade 5."
       canonical="/resources/ib-ee-examples-by-subject"
       datePublished="2026-06-09"
@@ -14,7 +14,7 @@ export default function IBEEExamplesBySubject() {
       <p>
         The IB Extended Essay is a 4000-word independent research project that every
         Diploma candidate must complete. It is one of the most significant pieces of
-        academic writing most students have produced — and one of the most variable
+        academic writing most students have produced, and one of the most variable
         in quality. The difference between a grade A and a grade C EE is not usually
         the quality of the research. It is how clearly the research question is
         focused, how rigorously the evidence is analysed, and how honestly the
@@ -31,11 +31,11 @@ export default function IBEEExamplesBySubject() {
         22–27; C is 16–21; D is 9–15; E (failing) is below 9.
       </p>
       <ul>
-        <li><strong>Criterion A — Focus and Method (6 marks):</strong> Is the research question clear, focused, and appropriate for the subject? Is the methodology explicit and justified?</li>
-        <li><strong>Criterion B — Knowledge and Understanding (6 marks):</strong> Does the student demonstrate subject-specific knowledge and understanding, including appropriate use of subject terminology?</li>
-        <li><strong>Criterion C — Critical Thinking (12 marks):</strong> Is the analysis original, developed, and consistently connected to the research question? Are conclusions justified by the evidence?</li>
-        <li><strong>Criterion D — Presentation (4 marks):</strong> Is the essay well-structured, properly formatted, and within the word limit?</li>
-        <li><strong>Criterion E — Engagement (6 marks):</strong> Assessed via the RPPF — does the student demonstrate genuine intellectual curiosity and reflection throughout the process?</li>
+        <li><strong>Criterion A, Focus and Method (6 marks):</strong> Is the research question clear, focused, and appropriate for the subject? Is the methodology explicit and justified?</li>
+        <li><strong>Criterion B, Knowledge and Understanding (6 marks):</strong> Does the student demonstrate subject-specific knowledge and understanding, including appropriate use of subject terminology?</li>
+        <li><strong>Criterion C, Critical Thinking (12 marks):</strong> Is the analysis original, developed, and consistently connected to the research question? Are conclusions justified by the evidence?</li>
+        <li><strong>Criterion D, Presentation (4 marks):</strong> Is the essay well-structured, properly formatted, and within the word limit?</li>
+        <li><strong>Criterion E, Engagement (6 marks):</strong> Assessed via the RPPF, does the student demonstrate genuine intellectual curiosity and reflection throughout the process?</li>
       </ul>
 
       <h2>IB Extended Essay Examples by Subject</h2>
@@ -49,7 +49,7 @@ export default function IBEEExamplesBySubject() {
       <p>
         What makes this work: it is specific (one policy, one city, a defined time
         period), it uses Economics concepts precisely (consumer surplus, externalities,
-        cost-benefit analysis), and it has a debatable answer — the effects on
+        cost-benefit analysis), and it has a debatable answer, the effects on
         different groups pull in opposite directions. The student can use Transport for
         London data, academic studies of ULEZ impacts, and newspaper reports as sources.
       </p>
@@ -81,7 +81,7 @@ export default function IBEEExamplesBySubject() {
         A 7-scoring History EE weighs competing causes (collectivisation policy,
         grain quotas, kulak deportations, deliberate targeting by Soviet authorities)
         against the evidence for each, uses primary sources critically, and reaches
-        a justified but qualified conclusion — not a simplistic "yes" or "no."
+        a justified but qualified conclusion, not a simplistic "yes" or "no."
       </p>
 
       <h3>Biology Extended Essay</h3>
@@ -170,7 +170,7 @@ export default function IBEEExamplesBySubject() {
         Criterion C (Critical Thinking) because the analysis can compare experimental
         results to theoretical predictions. If original experiments are not feasible,
         a strong Physics EE analyses published datasets critically and applies
-        theoretical models — but must go beyond simply describing the physics.
+        theoretical models, but must go beyond simply describing the physics.
       </p>
 
       <h2>What All High-Scoring Extended Essays Have in Common</h2>
@@ -180,7 +180,7 @@ export default function IBEEExamplesBySubject() {
       </p>
       <ol>
         <li><strong>A research question specific enough to answer.</strong> Not "the impact of X on Y" but "to what extent did X influence Y under conditions Z during period P?"</li>
-        <li><strong>Analysis that argues, not describes.</strong> Every section that presents evidence should also evaluate it — what does this evidence tell us? How reliable is it? What does it not tell us? What competing explanation could account for the same evidence?</li>
+        <li><strong>Analysis that argues, not describes.</strong> Every section that presents evidence should also evaluate it, what does this evidence tell us? How reliable is it? What does it not tell us? What competing explanation could account for the same evidence?</li>
         <li><strong>A conclusion that directly answers the question.</strong> Not "in summary, there are many complex factors" but a qualified, evidenced position that the student has earned through the investigation.</li>
       </ol>
 
@@ -191,9 +191,9 @@ export default function IBEEExamplesBySubject() {
         rows={[
           { criterion: "A: Focus and method", typical: "The research question restates the topic and could fill a book; scope is never stated.", top: "The question is narrow enough to answer in 4,000 words, and the essay says why that scope was chosen." },
           { criterion: "B: Knowledge and understanding", typical: "Sources are summarised one after another in the order they were read.", top: "Subject terminology is used precisely, and sources are positioned against each other rather than listed." },
-          { criterion: "C: Critical thinking", typical: "Evidence is described, then a claim follows — the reader has to assume the link.", top: "Each piece of evidence is weighed (strength, limitation, competing reading) before the claim is made." },
+          { criterion: "C: Critical thinking", typical: "Evidence is described, then a claim follows, the reader has to assume the link.", top: "Each piece of evidence is weighed (strength, limitation, competing reading) before the claim is made." },
           { criterion: "D: Presentation", typical: "Headings and citations exist but the reader cannot see why sections come in this order.", top: "Structure is navigable: each section visibly serves the research question." },
-          { criterion: "E: Engagement", typical: "Reflections describe the timeline — chose a topic, found sources, wrote up.", top: "Reflections name real decisions and turning points in the research, in the student\u2019s own voice." },
+          { criterion: "E: Engagement", typical: "Reflections describe the timeline, chose a topic, found sources, wrote up.", top: "Reflections name real decisions and turning points in the research, in the student\u2019s own voice." },
         ]}
       />
 
@@ -204,8 +204,7 @@ export default function IBEEExamplesBySubject() {
         essay meets that standard is where most students lose marks.
       </p>
       <p>
-        IBLens analyses your Extended Essay draft against the official IB rubric —
-        the same criteria your examiner uses — and provides criterion-by-criterion
+        IBLens analyses your Extended Essay draft against the official IB rubric, the same criteria your examiner uses, and provides criterion-by-criterion
         feedback so you know exactly where marks are being lost before you submit.
       </p>
       <p>

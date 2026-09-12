@@ -5,7 +5,7 @@ import { Link } from "wouter";
 export default function IBBiologyIAExamples() {
   return (
     <ResourceArticle
-      title="IB Biology IA Examples — Topics, Data, and How to Score a 7 | IBLens"
+      title="IB Biology IA Examples, Topics, Data, and How to Score a 7 | IBLens"
       description="High-scoring IB Biology IA examples with analysis of what makes them work. Learn which topics get 7s and which common mistakes cost marks on every criterion."
       canonical="/resources/ib-biology-ia-examples"
       datePublished="2026-06-09"
@@ -14,7 +14,7 @@ export default function IBBiologyIAExamples() {
       <p>
         The IB Biology Internal Assessment is a scientific investigation worth 20% of
         your final grade. Unlike a lab practical in class, the IA asks you to design,
-        conduct, and evaluate your own experiment — and the marks go to students who
+        conduct, and evaluate your own experiment, and the marks go to students who
         demonstrate genuine scientific thinking, not just correct data collection.
         This guide covers what high-scoring IB Biology IA examples look like, which
         topics reliably earn strong marks, and the specific mistakes that drag
@@ -23,18 +23,17 @@ export default function IBBiologyIAExamples() {
 
       <h2>How the IB Biology IA Is Marked</h2>
       <p>
-        The IA is marked out of 24 across five criteria:
+        The IA is marked out of 24 across four criteria (2025 syllabus, first assessment May 2025):
       </p>
       <ul>
-        <li><strong>Research design (6 marks):</strong> A focused research question in a genuine context, with an appropriate and safe methodology — the criterion where most marks are won or lost.</li>
-        <li><strong>Exploration (6 marks):</strong> Clear research question, appropriate methodology, identified variables (independent, dependent, controlled), and sufficient background theory.</li>
-        <li><strong>Analysis (6 marks):</strong> Correctly processed data, appropriate statistical tests, graphs with error bars, and a conclusion drawn from the data.</li>
-        <li><strong>Evaluation (6 marks):</strong> Honest assessment of the methodology: what are the weaknesses? What systematic errors exist? How could the investigation be improved?</li>
-        <li><strong>Communication (4 marks):</strong> Structure, clarity, appropriate use of scientific terminology, and correct citation format.</li>
+        <li><strong>Research design (6 marks):</strong> A focused research question in a genuine context, a methodology with identified variables and controls, and consideration of safety, ethical and environmental issues.</li>
+        <li><strong>Data analysis (6 marks):</strong> Recording, processing and presenting data in ways relevant to the question, including uncertainties and appropriate graphs.</li>
+        <li><strong>Conclusion (6 marks):</strong> A conclusion justified by the analysis, answering the research question and compared with the accepted scientific context.</li>
+        <li><strong>Evaluation (6 marks):</strong> Honest assessment of methodological weaknesses and limitations, with realistic improvements.</li>
       </ul>
       <p>
-        A score of 20/24 or above typically corresponds to a 7. The most common reason
-        for dropping from a 7 to a 6 is weak Evaluation — students describe what
+        The IA is 20 per cent of the subject grade, so there is no IA-only conversion to a 1 to 7 score. The most common reason
+        for dropping from a 7 to a 6 is weak Evaluation, students describe what
         happened without critically analysing why the method may have introduced error.
       </p>
 
@@ -50,7 +49,7 @@ export default function IBBiologyIAExamples() {
         the Michaelis-Menten model at very high substrate concentrations, and
         reflects on whether enzyme concentration was truly controlled across trials.
         A convincing personal context typically comes from choosing an enzyme or
-        substrate with a personal connection — a student who works in a kitchen
+        substrate with a personal connection, a student who works in a kitchen
         and investigates pineapple juice (bromelain) inhibiting gelatin setting
         makes the research question feel genuinely yours, which strengthens Research design.
       </p>
@@ -74,9 +73,9 @@ export default function IBBiologyIAExamples() {
         5 and a 7 on this IA comes down to three things:
       </p>
       <ul>
-        <li>Controlling temperature precisely — failure to do so is the most common Evaluation point that students miss or understate.</li>
+        <li>Controlling temperature precisely, failure to do so is the most common Evaluation point that students miss or understate.</li>
         <li>Using a colorimetric or dissolved oxygen method rather than just counting bubbles, which is qualitative and unreliable.</li>
-        <li>Investigating a non-obvious variable — instead of light intensity (which every student uses), investigating the effect of light wavelength using coloured filters introduces more sophisticated Analysis and a stronger Exploration structure.</li>
+        <li>Investigating a non-obvious variable, instead of light intensity (which every student uses), investigating the effect of light wavelength using coloured filters introduces more sophisticated Data analysis and a stronger Research design.</li>
       </ul>
 
       <h3>4. Microbial growth and antibiotic inhibition zones</h3>
@@ -112,7 +111,7 @@ export default function IBBiologyIAExamples() {
         are popular topics that almost never score well. The problem is experimental
         control: you cannot isolate the independent variable in a human population
         without randomisation, blinding, and washout periods that are not feasible
-        in a school setting. Examiners mark down Exploration for poor methodology
+        in a school setting. Examiners mark down Research design for poor methodology
         and Evaluation for failing to identify the resulting confounds. If you want
         to study human biology, choose a variable you can measure physiologically
         (heart rate, reaction time with a standard protocol) rather than survey-based
@@ -121,7 +120,7 @@ export default function IBBiologyIAExamples() {
 
       <h3>Germination rate experiments</h3>
       <p>
-        Germination is fine as a topic but the timeline is a problem — seed germination
+        Germination is fine as a topic but the timeline is a problem, seed germination
         can take days or weeks, leaving little time for replication and data collection.
         If you choose germination, use a fast-germinating species (radish, cress,
         mung beans) and design the protocol so you can complete at least 30 seeds per
@@ -132,7 +131,7 @@ export default function IBBiologyIAExamples() {
       <p>
         Criterion D (Evaluation) is where the most marks are lost among students who
         scored 5 or 6. The common failure is writing: "My experiment had some errors.
-        I could improve it by being more careful." This is not evaluation — it is
+        I could improve it by being more careful." This is not evaluation, it is
         apology.
       </p>
       <p>
@@ -160,7 +159,7 @@ export default function IBBiologyIAExamples() {
         rows={[
           { criterion: "Research design", typical: "The method is lifted from a standard class practical and the variables are simply listed.", top: "The method is justified for this specific question: why this range, this many trials, these controls." },
           { criterion: "Data analysis", typical: "Raw data is tabulated and a mean is plotted; uncertainties appear once and are then forgotten.", top: "Uncertainties are propagated through the processing, and the processing chosen is the one that actually tests the hypothesis." },
-          { criterion: "Conclusion", typical: "\u201cThe hypothesis was supported\u201d — with no reference to how strongly.", top: "The conclusion is stated with its uncertainty and compared against accepted values or published work." },
+          { criterion: "Conclusion", typical: "\u201cThe hypothesis was supported\u201d, with no reference to how strongly.", top: "The conclusion is stated with its uncertainty and compared against accepted values or published work." },
           { criterion: "Evaluation", typical: "Generic weaknesses: human error, not enough time, more trials next time.", top: "Specific weaknesses, each with its direction of effect on the result, and improvements that would actually be workable." },
         ]}
       />
@@ -168,7 +167,7 @@ export default function IBBiologyIAExamples() {
       <h2>Getting Criterion-Level Feedback Before Submission</h2>
       <p>
         When you read IB Biology IA examples online, it is tempting to compare
-        your work broadly — "mine looks similar in length and has graphs, so
+        your work broadly, "mine looks similar in length and has graphs, so
         it should be fine." The problem is that marks are lost in specific places:
         a missing error bar here, an unacknowledged confounding variable there,
         a conclusion that does not reference the data. These are not things you

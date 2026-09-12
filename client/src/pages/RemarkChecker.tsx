@@ -71,8 +71,8 @@ function RemarkQuickCheck() {
 
   return (
     <div className="rounded-xl border-2 border-primary bg-card p-6 mb-12 shadow-sm">
-      <h2 style={SERIF} className="text-2xl font-bold mb-1">Check your essay right here — free</h2>
-      <p className="text-sm text-muted-foreground mb-4">Paste the exact EE or TOK essay you submitted. Strict rubric grading, band placement, and a remark verdict in about a minute.</p>
+      <h2 style={SERIF} className="text-2xl font-bold mb-1">Check your essay right here, free</h2>
+      <p className="text-sm text-muted-foreground mb-4">Paste the exact EE or TOK essay you submitted. Strict rubric grading, band placement, and a remark verdict in about 90 seconds.</p>
 
       {!result && (
         <>
@@ -93,20 +93,20 @@ function RemarkQuickCheck() {
             placeholder={essayType === "TOK" ? "Paste your full TOK essay (the version you submitted to IB)\u2026" : "Paste your full Extended Essay (the version you submitted to IB)\u2026"}
             className="mb-2 bg-background" />
           <div className="flex items-center justify-between gap-3 flex-wrap">
-            <span className="text-xs text-muted-foreground">{essayText.trim() ? essayText.trim().split(/\s+/).length + " words" : "No account needed. Never used to train AI. Free preview — full report $9.99."}</span>
+            <span className="text-xs text-muted-foreground">{essayText.trim() ? essayText.trim().split(/\s+/).length + " words" : "No account needed. Never used to train AI. Free preview, full report $9.99."}</span>
             <Button disabled={essayText.trim().length < 300 || analyze.isPending}
               onClick={() => analyze.mutate({ essayType, subject: essayType === "TOK" ? "Theory of Knowledge" : subject, essayText, clientFingerprint: fp })}>
               {analyze.isPending ? QUICK_STEPS[Math.min(step, QUICK_STEPS.length - 1)] : "Get my remark verdict"}
             </Button>
           </div>
           {essayText.trim().length > 0 && essayText.trim().length < 300 && (
-            <p className="text-xs text-muted-foreground mt-2">Keep pasting — we need the full essay for a meaningful read.</p>
+            <p className="text-xs text-muted-foreground mt-2">Keep pasting, we need the full essay for a meaningful read.</p>
           )}
           {alreadyUsed && (
-            <p className="text-sm mt-3">You have already used your free check on this device. <Link href="/essay" className="text-primary font-medium underline">Sign in on the analyzer page</Link> to run more — $9.99 per essay.</p>
+            <p className="text-sm mt-3">You have already used your free check on this device. <Link href="/essay" className="text-primary font-medium underline">Sign in on the analyzer page</Link> to run more, $9.99 per essay.</p>
           )}
           {errMsg && !alreadyUsed && (
-            <p className="text-sm mt-3 text-destructive">{errMsg} — please try again.</p>
+            <p className="text-sm mt-3 text-destructive">{errMsg}, please try again.</p>
           )}
         </>
       )}
@@ -119,13 +119,13 @@ function RemarkQuickCheck() {
           </div>
           {typeof result.near_band_edge === "boolean" && (
             <div className={"rounded-lg p-4 mb-4 border " + (result.near_band_edge ? "border-amber-400 bg-amber-50" : "border-emerald-300 bg-emerald-50")}>
-              <p className="font-semibold text-sm mb-1 text-foreground">{result.near_band_edge ? "Near a band edge — a remark has genuine upside" : "Solidly mid-band — a remark likely changes nothing"}</p>
-              <p className="text-sm text-muted-foreground">{result.near_band_edge ? "Your essay reads at the edge of its band. This is exactly the profile where a fresh examiner read can land differently — in either direction. If this grade matters for your offer, a remark is a rational bet." : "Your essay reads comfortably inside its band. A second examiner would most likely arrive at the same grade — this is the profile where remark fees get spent and nothing moves."}</p>
+              <p className="font-semibold text-sm mb-1 text-foreground">{result.near_band_edge ? "Near a band edge, a remark has genuine upside" : "Solidly mid-band, a remark likely changes nothing"}</p>
+              <p className="text-sm text-muted-foreground">{result.near_band_edge ? "Your essay reads at the edge of its band. This is exactly the profile where a fresh examiner read can land differently, in either direction. If this grade matters for your offer, a remark is a rational bet." : "Your essay reads comfortably inside its band. A second examiner would most likely arrive at the same grade, this is the profile where remark fees get spent and nothing moves."}</p>
             </div>
           )}
           {result.weakest_criterion && (
             <div className="rounded-lg border border-border bg-muted/40 p-4 mb-4">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">Your weakest criterion — full feedback</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">Your weakest criterion, full feedback</p>
               <div className="flex justify-between text-sm font-semibold mb-1"><span>{result.weakest_criterion.name}</span><span>{result.weakest_criterion.score}/{result.weakest_criterion.max}</span></div>
               <p className="text-sm text-muted-foreground leading-relaxed">{result.weakest_criterion.comment}</p>
             </div>
@@ -137,13 +137,13 @@ function RemarkQuickCheck() {
               ))}
             </ul>
           )}
-          <p className="text-sm text-muted-foreground mb-3">The full report — exact score, every criterion with comments, and a ranked fix list — unlocks for $9.99 on the analyzer page.</p>
-          <Button asChild><Link href="/essay">Unlock the full report — $9.99</Link></Button>
+          <p className="text-sm text-muted-foreground mb-3">The full report, exact score, every criterion with comments, and a ranked fix list, unlocks for $9.99 on the analyzer page.</p>
+          <Button asChild><Link href="/essay">Unlock the full report, $9.99</Link></Button>
           {emailSaved ? (
-            <p className="text-sm font-medium mt-4">Saved — your report link and improvement tips are on the way.</p>
+            <p className="text-sm font-medium mt-4">Saved, your report link and improvement tips are on the way.</p>
           ) : (
             <div className="flex gap-2 mt-4">
-              <Input type="email" placeholder="you@email.com — email me this report" value={reportEmail} onChange={(e) => setReportEmail(e.target.value)} className="bg-background" />
+              <Input type="email" placeholder="you@email.com, email me this report" value={reportEmail} onChange={(e) => setReportEmail(e.target.value)} className="bg-background" />
               <Button size="sm" variant="outline" disabled={!reportEmail.includes("@") || saveEmail.isPending} onClick={() => saveEmail.mutate({ email: reportEmail, fingerprint: fp })}>Save</Button>
             </div>
           )}

@@ -5,18 +5,18 @@ import { Link } from "wouter";
 export default function IBExtendedEssayExamples() {
   return (
     <ResourceArticle
-      title="IB Extended Essay Examples — Real Samples & What Makes Them Score High | IBLens"
+      title="IB Extended Essay Examples, Real Samples & What Makes Them Score High | IBLens"
       description="Explore IB Extended Essay examples across Economics, History, Biology, English & more. Learn what examiners look for and avoid common mistakes that cost marks."
       canonical="/resources/ib-extended-essay-examples"
       datePublished="2026-06-06"
       dateModified="2026-06-06"
     >
-      <h1>IB Extended Essay Examples — What Real High-Scoring EEs Look Like</h1>
-      <p>The Extended Essay is one of the most intimidating pieces of work in the IB Diploma Programme. At 4,000 words, it is longer than anything most 16–17-year-olds have ever written, and the open-ended format — choose your own topic, design your own research question, argue your own thesis — leaves many students paralysed. The best way to break through that paralysis is to study strong IB extended essay examples and understand <em>why</em> they worked, not just what they said.</p>
+      <h1>IB Extended Essay Examples, What Real High-Scoring EEs Look Like</h1>
+      <p>The Extended Essay is one of the most intimidating pieces of work in the IB Diploma Programme. At 4,000 words, it is longer than anything most 16–17-year-olds have ever written, and the open-ended format, choose your own topic, design your own research question, argue your own thesis, leaves many students paralysed. The best way to break through that paralysis is to study strong IB extended essay examples and understand <em>why</em> they worked, not just what they said.</p>
       <p>This guide walks through what examiners actually reward, gives you concrete example research questions by subject, shows the most common mistakes that drag scores down, and explains the mindset shift that separates a C-grade EE from one that earns a coveted A.</p>
 
       <h2>What Makes a High-Scoring IB Extended Essay?</h2>
-      <p>The IB grades Extended Essays against five criteria: Focus and Method (Criterion A), Knowledge and Understanding (B), Critical Thinking (C), Presentation (D), and Engagement (E). Total marks available are 34. An A requires roughly 28+ marks; most students earning a B or C lose the majority of their marks on Criterion C — critical thinking.</p>
+      <p>The IB grades Extended Essays against five criteria: Focus and Method (Criterion A), Knowledge and Understanding (B), Critical Thinking (C), Presentation (D), and Engagement (E). Total marks available are 34. An A requires roughly 28+ marks; most students earning a B or C lose the majority of their marks on Criterion C, critical thinking.</p>
       <p>Examiners are not looking for a Wikipedia-style overview of a topic. They want to see a student take a narrow, specific question and subject it to sustained, disciplined analysis. The difference between a mediocre essay and an excellent one almost always comes down to three things:</p>
       <ul>
         <li><strong>Specificity of the research question.</strong> Vague questions produce vague answers. A question like "How does social media affect mental health?" cannot be answered in 4,000 words. A question like "To what extent did Instagram's algorithmic feed, introduced in 2016, correlate with self-reported anxiety scores among UK adolescent girls aged 14–17?" is narrow enough to actually investigate.</li>
@@ -29,9 +29,9 @@ export default function IBExtendedEssayExamples() {
       <h3>Economics Extended Essay Examples</h3>
       <p>Economics EEs are popular because students feel comfortable with theory, but they are frequently penalised for being too theoretical and not empirical enough. Strong Economics EEs apply specific microeconomic or macroeconomic concepts to a real, local, measurable situation.</p>
       <ul>
-        <li><em>"To what extent did the introduction of the sugar tax in the UK (2018) reduce consumption of high-sugar soft drinks among 10–16-year-olds?"</em> — This works because it picks a specific policy, a specific country, a specific demographic, and a specific measurable outcome.</li>
-        <li><em>"How effective has price-cap regulation been in limiting profit margins for energy retailers in Germany following the 2021–2022 energy crisis?"</em> — Strong because it uses a defined time window, a defined mechanism, and quantifiable profitability data.</li>
-        <li><em>"To what extent does monopsony power explain wage stagnation among supermarket shelf-stackers in regional Australia, 2015–2023?"</em> — Excellent because it applies a specific market structure theory to a concrete labour market with accessible wage data.</li>
+        <li><em>"To what extent did the introduction of the sugar tax in the UK (2018) reduce consumption of high-sugar soft drinks among 10–16-year-olds?"</em>, This works because it picks a specific policy, a specific country, a specific demographic, and a specific measurable outcome.</li>
+        <li><em>"How effective has price-cap regulation been in limiting profit margins for energy retailers in Germany following the 2021–2022 energy crisis?"</em>, Strong because it uses a defined time window, a defined mechanism, and quantifiable profitability data.</li>
+        <li><em>"To what extent does monopsony power explain wage stagnation among supermarket shelf-stackers in regional Australia, 2015–2023?"</em>, Excellent because it applies a specific market structure theory to a concrete labour market with accessible wage data.</li>
       </ul>
 
       <h3>History Extended Essay Examples</h3>
@@ -76,7 +76,7 @@ export default function IBExtendedEssayExamples() {
       <p>The single most common reason for a low score is a research question that is too broad. "What caused World War One?" is a doctoral dissertation, not a 4,000-word essay. Examiners can spot this within the first 300 words, and the score for Criterion A rarely recovers.</p>
 
       <h3>Description Masquerading as Analysis</h3>
-      <p>Many students describe what sources say without evaluating why it matters. Criterion C — critical thinking — accounts for 12 of the 34 available marks. In History, engage with historiography. In Biology, discuss limitations of your method. In Economics, apply theory to real data.</p>
+      <p>Many students describe what sources say without evaluating why it matters. Criterion C, critical thinking, accounts for 12 of the 34 available marks. In History, engage with historiography. In Biology, discuss limitations of your method. In Economics, apply theory to real data.</p>
 
       <h3>A Weak Conclusion</h3>
       <p>The conclusion must directly and explicitly answer the research question. It should not introduce new evidence or vaguely state "the issue is complex." A strong conclusion names the answer, acknowledges the strongest counter-argument, and identifies what further research would be needed.</p>
@@ -91,15 +91,15 @@ export default function IBExtendedEssayExamples() {
         rows={[
           { criterion: "A: Focus and method", typical: "The research question restates the topic and could fill a book; scope is never stated.", top: "The question is narrow enough to answer in 4,000 words, and the essay says why that scope was chosen." },
           { criterion: "B: Knowledge and understanding", typical: "Sources are summarised one after another in the order they were read.", top: "Subject terminology is used precisely, and sources are positioned against each other rather than listed." },
-          { criterion: "C: Critical thinking", typical: "Evidence is described, then a claim follows — the reader has to assume the link.", top: "Each piece of evidence is weighed (strength, limitation, competing reading) before the claim is made." },
+          { criterion: "C: Critical thinking", typical: "Evidence is described, then a claim follows, the reader has to assume the link.", top: "Each piece of evidence is weighed (strength, limitation, competing reading) before the claim is made." },
           { criterion: "D: Presentation", typical: "Headings and citations exist but the reader cannot see why sections come in this order.", top: "Structure is navigable: each section visibly serves the research question." },
-          { criterion: "E: Engagement", typical: "Reflections describe the timeline — chose a topic, found sources, wrote up.", top: "Reflections name real decisions and turning points in the research, in the student\u2019s own voice." },
+          { criterion: "E: Engagement", typical: "Reflections describe the timeline, chose a topic, found sources, wrote up.", top: "Reflections name real decisions and turning points in the research, in the student\u2019s own voice." },
         ]}
       />
 
       <h2>Before You Submit: Get Feedback on Your Draft</h2>
       <p>One of the hardest parts of the EE process is getting objective feedback. Your supervisor may be encouraging but not specific. By the time you have spent months on a topic, it is almost impossible to read your own essay with fresh eyes.</p>
-      <p><Link to="/essay">IBLens is an AI tool built specifically for IB students that analyses your Extended Essay draft against the official IB criteria</Link>{" "}— giving you criterion-by-criterion feedback on Focus and Method, Critical Thinking, and Knowledge and Understanding before you hand it in. It identifies where your argument loses coherence, where your sources need strengthening, and whether your conclusion actually answers your research question.</p>
+      <p><Link to="/essay">IBLens is an AI tool built specifically for IB students that analyses your Extended Essay draft against the official IB criteria</Link>{" "}- giving you criterion-by-criterion feedback on Focus and Method, Critical Thinking, and Knowledge and Understanding before you hand it in. It identifies where your argument loses coherence, where your sources need strengthening, and whether your conclusion actually answers your research question.</p>
 
       <h2>Final Checklist Before Submitting</h2>
       <ul>

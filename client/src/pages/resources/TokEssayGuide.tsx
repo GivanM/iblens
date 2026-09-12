@@ -4,7 +4,7 @@ import { Link } from "wouter";
 export default function TokEssayGuide() {
   return (
     <ResourceArticle
-      title="IB TOK Essay Guide — Prescribed Titles, Knowledge Claims & How to Write It | IBLens"
+      title="IB TOK Essay Guide, Prescribed Titles, Knowledge Claims & How to Write It | IBLens"
       description="Complete guide to the IB Theory of Knowledge essay: prescribed titles, knowledge claims and counter-claims, areas of knowledge, assessment criteria, and common errors to avoid."
       canonical="/resources/tok-essay-guide"
       datePublished="2026-05-01"
@@ -13,11 +13,11 @@ export default function TokEssayGuide() {
       <h1>The Complete IB TOK Essay Guide</h1>
 
       <p>
-        <strong>In short: the TOK essay is up to 1,600 words on one of six prescribed titles, marked holistically out of 10 — one instrument, five bands, no separate criteria. With the Extended Essay it contributes up to 3 bonus points to your Diploma.</strong>
+        <strong>In short: the TOK essay is up to 1,600 words on one of six prescribed titles, marked holistically out of 10, one instrument, five bands, no separate criteria. With the Extended Essay it contributes up to 3 bonus points to your Diploma.</strong>
       </p>
 
       <p>
-        The Theory of Knowledge (TOK) essay is one of the most distinctive and challenging components of the IB Diploma Programme. Unlike subject-specific essays that test your knowledge of content, the TOK essay asks you to reflect on the nature of knowledge itself — how we know what we claim to know, what counts as evidence, and how different ways of knowing interact with different areas of knowledge.
+        The Theory of Knowledge (TOK) essay is one of the most distinctive and challenging components of the IB Diploma Programme. Unlike subject-specific essays that test your knowledge of content, the TOK essay asks you to reflect on the nature of knowledge itself, how we know what we claim to know, what counts as evidence, and how different ways of knowing interact with different areas of knowledge.
       </p>
 
       <p>
@@ -39,13 +39,13 @@ export default function TokEssayGuide() {
       </ul>
 
       <p>
-        The most common misconception about TOK is that it is about expressing opinions. It is not. TOK requires <strong>reasoned argumentation</strong> — claims must be supported with evidence and reasoning, and counter-claims must be genuinely engaged with rather than dismissed.
+        The most common misconception about TOK is that it is about expressing opinions. It is not. TOK requires <strong>reasoned argumentation</strong>, claims must be supported with evidence and reasoning, and counter-claims must be genuinely engaged with rather than dismissed.
       </p>
 
       <h2>The Prescribed Titles Structure</h2>
 
       <p>
-        Each examination session, the IBO releases six prescribed titles. These are carefully crafted questions that invite exploration of knowledge issues across multiple areas of knowledge (AOKs). You must choose one title and respond to it directly — you cannot modify the title or create your own question.
+        Each examination session, the IBO releases six prescribed titles. These are carefully crafted questions that invite exploration of knowledge issues across multiple areas of knowledge (AOKs). You must choose one title and respond to it directly, you cannot modify the title or create your own question.
       </p>
 
       <p>
@@ -66,11 +66,11 @@ export default function TokEssayGuide() {
       <h2>Building Knowledge Claims and Counter-Claims</h2>
 
       <p>
-        The backbone of a TOK essay is the claim/counter-claim structure. A <strong>knowledge claim</strong> is an assertion about knowledge — for example, "Mathematical knowledge is more certain than historical knowledge because it is based on logical proof rather than interpretation of evidence."
+        The backbone of a TOK essay is the claim/counter-claim structure. A <strong>knowledge claim</strong> is an assertion about knowledge, for example, "Mathematical knowledge is more certain than historical knowledge because it is based on logical proof rather than interpretation of evidence."
       </p>
 
       <p>
-        A <strong>counter-claim</strong> challenges or qualifies the initial claim — for example, "However, the certainty of mathematical knowledge depends on accepting axioms that cannot themselves be proven, suggesting that mathematics also rests on assumptions."
+        A <strong>counter-claim</strong> challenges or qualifies the initial claim, for example, "However, the certainty of mathematical knowledge depends on accepting axioms that cannot themselves be proven, suggesting that mathematics also rests on assumptions."
       </p>
 
       <p>
@@ -86,13 +86,13 @@ export default function TokEssayGuide() {
       </ul>
 
       <p>
-        The evaluation step is crucial. Weak essays present claims and counter-claims but never resolve the tension between them. Strong essays show <strong>nuanced judgment</strong> — perhaps the claim holds in one context but not another, or perhaps the truth lies in a synthesis of both perspectives.
+        The evaluation step is crucial. Weak essays present claims and counter-claims but never resolve the tension between them. Strong essays show <strong>nuanced judgment</strong>, perhaps the claim holds in one context but not another, or perhaps the truth lies in a synthesis of both perspectives.
       </p>
 
       <h2>Areas of Knowledge</h2>
 
       <p>
-        The TOK framework organizes knowledge into <strong>Areas of Knowledge (AOKs)</strong> — broad disciplines that produce knowledge using characteristic methods:
+        The TOK framework organizes knowledge into <strong>Areas of Knowledge (AOKs)</strong>, broad disciplines that produce knowledge using characteristic methods:
       </p>
 
       <ul>
@@ -105,11 +105,11 @@ export default function TokEssayGuide() {
       </ul>
 
       <p>
-        The pre-2022 TOK course also used a framework of <strong>Ways of Knowing</strong> — reason, sense perception, language, emotion, imagination, faith, intuition and memory. These were <strong>removed</strong> in the 2022 syllabus and are no longer part of the course or the assessment, so you should not build your essay around them. The underlying ideas can still inform how you discuss the way knowledge is produced and justified within an area of knowledge.
+        The pre-2022 TOK course also used a framework of <strong>Ways of Knowing</strong>, reason, sense perception, language, emotion, imagination, faith, intuition and memory. These were <strong>removed</strong> in the 2022 syllabus and are no longer part of the course or the assessment, so you should not build your essay around them. The underlying ideas can still inform how you discuss the way knowledge is produced and justified within an area of knowledge.
       </p>
 
       <p>
-        Most prescribed titles require you to draw examples from at least two different AOKs. The strongest essays show how the same knowledge question plays out differently across AOKs — for example, how "evidence" means something different in natural science (empirical data) versus history (primary sources) versus mathematics (logical proof).
+        Most prescribed titles require you to draw examples from at least two different AOKs. The strongest essays show how the same knowledge question plays out differently across AOKs, for example, how "evidence" means something different in natural science (empirical data) versus history (primary sources) versus mathematics (logical proof).
       </p>
 
       <h2>Assessment Criteria</h2>
@@ -149,7 +149,7 @@ export default function TokEssayGuide() {
           </tr>
           <tr>
             <td><strong>Implications of arguments</strong></td>
-            <td>Consider what follows if the argument holds — the examiner instrument asks for the implications of arguments to be considered</td>
+            <td>Consider what follows if the argument holds, the examiner instrument asks for the implications of arguments to be considered</td>
             <td>Reproduce generic arguments found in TOK textbooks</td>
           </tr>
         </tbody>
@@ -166,11 +166,11 @@ export default function TokEssayGuide() {
       </p>
 
       <p>
-        <strong>Weak approach:</strong> "Yes, certainty is achievable in mathematics because 2+2=4 is always true. No, certainty is not achievable in history because we cannot go back in time." This is superficial — it makes obvious claims without analysis and uses trivial examples.
+        <strong>Weak approach:</strong> "Yes, certainty is achievable in mathematics because 2+2=4 is always true. No, certainty is not achievable in history because we cannot go back in time." This is superficial, it makes obvious claims without analysis and uses trivial examples.
       </p>
 
       <p>
-        <strong>Strong approach:</strong> "Mathematical certainty appears absolute within formal systems — the Pythagorean theorem, for instance, has been proven with logical necessity. However, Gödel's incompleteness theorems demonstrate that any sufficiently complex formal system contains statements that are true but unprovable within that system, suggesting that even mathematical certainty has boundaries. In contrast, historical knowledge operates through inference from evidence rather than proof. The historian's claim that 'the Treaty of Versailles contributed to World War II' cannot be proven with mathematical certainty, yet the weight of evidence makes it a highly justified belief. This suggests that certainty exists on a spectrum rather than as a binary — and that the appropriate standard of certainty varies by area of knowledge."
+        <strong>Strong approach:</strong> "Mathematical certainty appears absolute within formal systems, the Pythagorean theorem, for instance, has been proven with logical necessity. However, Gödel's incompleteness theorems demonstrate that any sufficiently complex formal system contains statements that are true but unprovable within that system, suggesting that even mathematical certainty has boundaries. In contrast, historical knowledge operates through inference from evidence rather than proof. The historian's claim that 'the Treaty of Versailles contributed to World War II' cannot be proven with mathematical certainty, yet the weight of evidence makes it a highly justified belief. This suggests that certainty exists on a spectrum rather than as a binary, and that the appropriate standard of certainty varies by area of knowledge."
       </p>
 
       <p>
@@ -194,7 +194,7 @@ export default function TokEssayGuide() {
       </ul>
 
       <p>
-        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <Link href="/essay/tok-essay" className="text-primary hover:underline">IBLens can provide criterion-based feedback on your TOK essay</Link> — scored against the official IB TOK rubric in about a minute. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">IB Grade Boundaries</Link> guide. For a broader look at how IB criteria work across essay types, read our <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB Essay Criteria Explained</Link> article.
+        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <Link href="/essay/tok-essay" className="text-primary hover:underline">IBLens can provide criterion-based feedback on your TOK essay</Link>, scored against the official IB TOK rubric in about 90 seconds. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">IB Grade Boundaries</Link> guide. For a broader look at how IB criteria work across essay types, read our <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB Essay Criteria Explained</Link> article.
       </p>
       <h2>More on TOK</h2>
 

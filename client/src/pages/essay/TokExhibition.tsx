@@ -4,13 +4,13 @@ const config: SubjectConfig = {
   subject: "TOK Exhibition",
   slug: "tok-exhibition",
   keyword: "IB TOK Exhibition",
-  metaTitle: "IB TOK Exhibition Grader — Free AI Feedback on All 3 Objects | IBLens",
+  metaTitle: "IB TOK Exhibition Grader, Free AI Feedback on All 3 Objects | IBLens",
   metaDescription:
-    "AI feedback on your IB Theory of Knowledge Exhibition. Check if your objects make convincing links to the IA prompt and to TOK concepts — scored against the official IB rubric. Free first check.",
+    "AI feedback on your IB Theory of Knowledge Exhibition. Check if your objects make convincing links to the IA prompt and to TOK concepts, scored against the official IB rubric. Free first check.",
   canonicalPath: "/essay/tok-exhibition",
   heroHeadline: "Do your TOK Exhibition objects actually link to the IA prompt?",
   heroSubline:
-    "Paste your TOK Exhibition commentary and get criterion-by-criterion feedback against the official IB rubric — free preview first, full report $9.99. Find out if your object justifications are strong enough to score 9–10/10.",
+    "Paste your TOK Exhibition commentary and get criterion-by-criterion feedback against the official IB rubric, free preview first, full report $9.99. Find out if your object justifications are strong enough to score 9–10/10.",
   criteria: [
     { name: "Holistic assessment: how well the exhibition shows TOK in the world", max: 10, sampleScore: 6 },
   ],

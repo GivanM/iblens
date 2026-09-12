@@ -34,7 +34,7 @@ export function CookieConsent() {
       return;
     }
 
-    // Check localStorage — user already made a choice previously
+    // Check localStorage, user already made a choice previously
     const stored = localStorage.getItem(CONSENT_STORAGE_KEY);
     if (stored) {
       pushConsentUpdate(stored === "granted");
@@ -42,7 +42,7 @@ export function CookieConsent() {
     }
 
     // EU or geo not yet resolved: show banner after short delay
-    // (wait for geo script to finish — it has 700ms timeout + 800ms wait_for_update)
+    // (wait for geo script to finish, it has 700ms timeout + 800ms wait_for_update)
     const timer = setTimeout(() => {
       // Re-check after delay in case geo resolved during the wait
       if ((window as any).__iblens_show_banner === false || (window as any).__iblens_consent_granted === true) {

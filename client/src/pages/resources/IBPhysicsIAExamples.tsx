@@ -5,7 +5,7 @@ import { Link } from "wouter";
 export default function IBPhysicsIAExamples() {
   return (
     <ResourceArticle
-      title="IB Physics IA Examples — Investigation Ideas and How to Score a 7 | IBLens"
+      title="IB Physics IA Examples, Investigation Ideas and How to Score a 7 | IBLens"
       description="High-scoring IB Physics IA examples with examiner commentary. Discover which investigations earn top marks, how to handle uncertainty, and what kills your Evaluation score."
       canonical="/resources/ib-physics-ia-examples"
       datePublished="2026-06-09"
@@ -24,16 +24,15 @@ export default function IBPhysicsIAExamples() {
 
       <h2>Marking Criteria Overview</h2>
       <ul>
-        <li><strong>Research design (6 marks):</strong> A focused research question in a genuine context — a non-standard variable, a context from the student's own life, or an original approach strengthens the design.</li>
-        <li><strong>Exploration (6 marks):</strong> Research question, background theory, identified variables (IV, DV, controlled), and a methodology detailed enough to be reproduced.</li>
-        <li><strong>Analysis (6 marks):</strong> Processed data with uncertainties, appropriate graphs (often linearised), and a conclusion with a comparison to expected values or theory.</li>
-        <li><strong>Evaluation (6 marks):</strong> Specific, directional assessment of limitations and improvements. Random vs systematic error distinction. This is where most marks are lost.</li>
-        <li><strong>Communication (4 marks):</strong> Clear structure, correct physics notation, appropriate length.</li>
+        <li><strong>Research design (6 marks):</strong> A focused research question in a genuine context, a methodology with identified variables and controls, and consideration of safety, ethical and environmental issues.</li>
+        <li><strong>Data analysis (6 marks):</strong> Recording, processing and presenting data in ways relevant to the question, including uncertainties and appropriate graphs.</li>
+        <li><strong>Conclusion (6 marks):</strong> A conclusion justified by the analysis, answering the research question and compared with the accepted scientific context.</li>
+        <li><strong>Evaluation (6 marks):</strong> Honest assessment of methodological weaknesses and limitations, with realistic improvements.</li>
       </ul>
 
       <h2>IB Physics IA Examples That Score Well</h2>
 
-      <h3>1. Simple harmonic motion — spring constant or pendulum period</h3>
+      <h3>1. Simple harmonic motion, spring constant or pendulum period</h3>
       <p>
         Investigating how the period of a spring-mass system varies with mass
         (T = 2π√(m/k)) is a clean, quantitative Physics IA. The key to a high
@@ -45,26 +44,26 @@ export default function IBPhysicsIAExamples() {
       </p>
       <p>
         Personal context: investigate the spring constant of a specific object
-        with physical meaning — the spring in a retractable pen, a bungee cord
+        with physical meaning, the spring in a retractable pen, a bungee cord
         sample, a guitar string under tension. This transforms a textbook lab into
         an original investigation.
       </p>
 
-      <h3>2. Optics — focal length of lenses using the lens equation</h3>
+      <h3>2. Optics, focal length of lenses using the lens equation</h3>
       <p>
         Measuring image and object distances for convex lenses and applying 1/f =
         1/v + 1/u is a reliable method. A strong version linearises the equation
         (plot 1/v vs 1/u, extract f from the intercepts), compares the experimental
         focal length to the manufacturer's specification, and discusses how lens
         aberrations affect accuracy at small object distances. Personal engagement:
-        use lenses from a real optical system — reading glasses, a camera lens,
+        use lenses from a real optical system, reading glasses, a camera lens,
         a magnifying glass from a specific application.
       </p>
 
       <h3>3. Projectile motion and drag</h3>
       <p>
-        Investigating how launch angle or initial speed affects range — and then
-        extending to quantify the effect of air resistance — is engaging and
+        Investigating how launch angle or initial speed affects range, and then
+        extending to quantify the effect of air resistance, is engaging and
         produces good data. Video analysis (using Tracker or equivalent software)
         allows frame-by-frame position measurement, making the velocity and
         acceleration calculations rigorous. A student who extracts a drag
@@ -72,7 +71,7 @@ export default function IBPhysicsIAExamples() {
         projectile's shape earns strong Analysis and Evaluation marks.
       </p>
 
-      <h3>4. Electromagnetic induction — Faraday's law</h3>
+      <h3>4. Electromagnetic induction, Faraday's law</h3>
       <p>
         Dropping a magnet through a coil and measuring the induced EMF as a
         function of magnet speed, coil turns, or magnet strength directly
@@ -91,7 +90,7 @@ export default function IBPhysicsIAExamples() {
         The investigation is most original when applied to a non-standard material:
         different cooking oils, metals from specific alloys, or composite materials.
         The systematic error from heat loss to the surroundings is significant and
-        must be addressed in Evaluation — either by applying a cooling correction
+        must be addressed in Evaluation, either by applying a cooling correction
         or by estimating the heat loss rate and showing its effect on the result.
       </p>
 
@@ -125,7 +124,7 @@ export default function IBPhysicsIAExamples() {
         <li>Plot error bars on graphs (both x and y if both have significant uncertainty).</li>
         <li>Draw a best-fit line AND a worst-case line (max gradient, min gradient) to determine the uncertainty in any gradient you extract.</li>
         <li>Express the final result as value ± uncertainty with appropriate significant figures.</li>
-        <li>Compare your percentage uncertainty to your percentage error from the accepted value — and explain the discrepancy if they differ significantly.</li>
+        <li>Compare your percentage uncertainty to your percentage error from the accepted value, and explain the discrepancy if they differ significantly.</li>
       </ol>
 
       <h2>Evaluation: How to Write It Well</h2>
@@ -134,10 +133,10 @@ export default function IBPhysicsIAExamples() {
         actually analysing them. The structure that consistently earns 5–6 marks:
       </p>
       <ul>
-        <li><strong>Identify the limitation specifically:</strong> Not "human error" — name the exact source (parallax reading a ruler, air currents in the lab, temperature drift during a 30-minute experiment).</li>
+        <li><strong>Identify the limitation specifically:</strong> Not "human error", name the exact source (parallax reading a ruler, air currents in the lab, temperature drift during a 30-minute experiment).</li>
         <li><strong>State whether it is random or systematic:</strong> Random errors increase scatter; systematic errors shift all values in one direction.</li>
         <li><strong>Quantify the effect where possible:</strong> "The temperature rose by 2°C during the experiment; using the temperature coefficient of resistance for copper, this introduces a systematic 0.8% error in resistance."</li>
-        <li><strong>Propose a concrete improvement:</strong> Not "be more careful" — identify a specific change (use a thermostatically controlled enclosure, replace the stopwatch with a light gate, use a digital vernier instead of a ruler) and explain why it would reduce that specific error.</li>
+        <li><strong>Propose a concrete improvement:</strong> Not "be more careful", identify a specific change (use a thermostatically controlled enclosure, replace the stopwatch with a light gate, use a digital vernier instead of a ruler) and explain why it would reduce that specific error.</li>
       </ul>
 
             <ExamplesBridge
@@ -146,7 +145,7 @@ export default function IBPhysicsIAExamples() {
         rows={[
           { criterion: "Research design", typical: "The method is lifted from a standard class practical and the variables are simply listed.", top: "The method is justified for this specific question: why this range, this many trials, these controls." },
           { criterion: "Data analysis", typical: "Raw data is tabulated and a mean is plotted; uncertainties appear once and are then forgotten.", top: "Uncertainties are propagated through the processing, and the processing chosen is the one that actually tests the hypothesis." },
-          { criterion: "Conclusion", typical: "\u201cThe hypothesis was supported\u201d — with no reference to how strongly.", top: "The conclusion is stated with its uncertainty and compared against accepted values or published work." },
+          { criterion: "Conclusion", typical: "\u201cThe hypothesis was supported\u201d, with no reference to how strongly.", top: "The conclusion is stated with its uncertainty and compared against accepted values or published work." },
           { criterion: "Evaluation", typical: "Generic weaknesses: human error, not enough time, more trials next time.", top: "Specific weaknesses, each with its direction of effect on the result, and improvements that would actually be workable." },
         ]}
       />
@@ -160,7 +159,7 @@ export default function IBPhysicsIAExamples() {
       </p>
       <p>
         IBLens analyses your Physics IA against the official IB marking rubric and
-        identifies exactly where marks are being lost on each criterion — before your
+        identifies exactly where marks are being lost on each criterion, before your
         teacher finalises the moderated submission.
       </p>
       <p>

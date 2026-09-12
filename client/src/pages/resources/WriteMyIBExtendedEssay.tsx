@@ -14,7 +14,7 @@ export default function WriteMyIBExtendedEssay() {
         If you have typed "write my extended essay" or "help with IB extended essay"
         into a search bar at 11pm, you are not alone. The Extended Essay is the longest
         piece of academic writing most IB students have ever attempted, and it is easy
-        to get stuck — not because you are not capable, but because you are not sure
+        to get stuck, not because you are not capable, but because you are not sure
         what "good enough" actually looks like. This guide explains the most common
         reasons students get stuck, what you can realistically do to get unstuck, and
         what kind of help is actually worth pursuing.
@@ -32,7 +32,7 @@ export default function WriteMyIBExtendedEssay() {
         you could actually investigate with a survey and secondary literature.
       </p>
       <p>
-        If you are stuck, the first thing to do is not write more — it is to narrow
+        If you are stuck, the first thing to do is not write more, it is to narrow
         your question until it is specific enough to answer. Your supervisor's main
         job during the EE process is to help you with exactly this. Book a meeting
         and come with three versions of your question, each narrower than the last.
@@ -40,19 +40,19 @@ export default function WriteMyIBExtendedEssay() {
 
       <h3>You have research but don't know how to structure an argument</h3>
       <p>
-        Many students have read enough sources to fill 8000 words — they just don't
+        Many students have read enough sources to fill 8000 words, they just don't
         know how to organise it into a coherent argument. The structure that works for
         almost every EE subject is:
       </p>
       <ol>
         <li><strong>Introduction:</strong> State your research question, define key terms, outline the scope of your investigation and how you will answer it. (~300–400 words)</li>
-        <li><strong>Background / context:</strong> Give the reader the minimum context they need to understand your argument. This is not a literature review — it is setup. (~400–600 words)</li>
+        <li><strong>Background / context:</strong> Give the reader the minimum context they need to understand your argument. This is not a literature review, it is setup. (~400–600 words)</li>
         <li><strong>Body:</strong> 2–4 focused sections, each making one clear point that advances your answer. Each section presents evidence, analyses it, and connects it back to your research question. (~2000–2500 words)</li>
         <li><strong>Conclusion:</strong> Answer your research question directly. State what your investigation showed, acknowledge its limitations, and note what further research would be needed. (~300–400 words)</li>
       </ol>
       <p>
         If you outline your essay to this structure before writing, the blank page
-        problem mostly disappears. You are not writing an essay — you are filling
+        problem mostly disappears. You are not writing an essay, you are filling
         in sections you have already planned.
       </p>
 
@@ -63,21 +63,21 @@ export default function WriteMyIBExtendedEssay() {
         meet the examiner's expectations. The criteria are:
       </p>
       <ul>
-        <li><strong>Criterion A — Focus and Method (6 marks):</strong> Is the research question clear? Is the methodology appropriate for answering it?</li>
-        <li><strong>Criterion B — Knowledge and Understanding (6 marks):</strong> Does the student demonstrate understanding of the subject area and relevant theory?</li>
-        <li><strong>Criterion C — Critical Thinking (12 marks):</strong> Is the analysis developed, original, and connected to the research question? Are conclusions supported by evidence?</li>
-        <li><strong>Criterion D — Presentation (4 marks):</strong> Is the essay well-structured, properly formatted, and within the word limit?</li>
-        <li><strong>Criterion E — Engagement (6 marks):</strong> Does the student demonstrate personal involvement in the investigation, intellectual curiosity, and reflective thinking in the RPPF?</li>
+        <li><strong>Criterion A, Focus and Method (6 marks):</strong> Is the research question clear? Is the methodology appropriate for answering it?</li>
+        <li><strong>Criterion B, Knowledge and Understanding (6 marks):</strong> Does the student demonstrate understanding of the subject area and relevant theory?</li>
+        <li><strong>Criterion C, Critical Thinking (12 marks):</strong> Is the analysis developed, original, and connected to the research question? Are conclusions supported by evidence?</li>
+        <li><strong>Criterion D, Presentation (4 marks):</strong> Is the essay well-structured, properly formatted, and within the word limit?</li>
+        <li><strong>Criterion E, Engagement (6 marks):</strong> Does the student demonstrate personal involvement in the investigation, intellectual curiosity, and reflective thinking in the RPPF?</li>
       </ul>
       <p>
-        Criterion C (Critical Thinking) is worth 12 of 34 marks — more than any
+        Criterion C (Critical Thinking) is worth 12 of 34 marks, more than any
         other single criterion. If you are not sure where your marks are going, start
         with your analysis sections: are you arguing, or are you describing?
       </p>
 
       <h2>What Your EE Supervisor Can (and Can't) Do</h2>
       <p>
-        Your IB Extended Essay supervisor is assigned to give you guidance — but
+        Your IB Extended Essay supervisor is assigned to give you guidance, but
         within specific limits set by the IBO. They can:
       </p>
       <ul>
@@ -98,7 +98,7 @@ export default function WriteMyIBExtendedEssay() {
       </ul>
       <p>
         This means that after your supervisor's draft feedback, you are largely on
-        your own to implement changes — without knowing whether those changes
+        your own to implement changes, without knowing whether those changes
         actually improved your score on each criterion.
       </p>
 
@@ -106,7 +106,7 @@ export default function WriteMyIBExtendedEssay() {
       <p>
         This needs to be said plainly: submitting work written by someone else as
         your own is academic misconduct under IB regulations. If detected, the
-        consequence is disqualification from the IB Diploma — not just a failing
+        consequence is disqualification from the IB Diploma, not just a failing
         grade on the EE, but losing the diploma entirely. The IB uses plagiarism
         detection software and examiners are trained to identify writing that
         does not match a student's other assessed work. The risk is not worth it.
@@ -121,8 +121,8 @@ export default function WriteMyIBExtendedEssay() {
 
       <h2>What Actually Works: Getting Feedback on Your Own Draft</h2>
       <p>
-        The most effective intervention available to IB students — other than doing
-        the work — is getting criterion-level feedback on a draft you wrote yourself.
+        The most effective intervention available to IB students, other than doing
+        the work, is getting criterion-level feedback on a draft you wrote yourself.
         The difference between a 28/34 and a 34/34 Extended Essay is usually not
         "more research" or "better writing." It is knowing exactly which sections
         are weak on which criteria and fixing them before submission.
@@ -137,8 +137,8 @@ export default function WriteMyIBExtendedEssay() {
       </p>
       <p>
         That is what IBLens provides. Upload your Extended Essay draft and receive
-        detailed feedback mapped to each IB criterion — the same rubric your examiner
-        uses — so you know exactly what to improve before you submit.
+        detailed feedback mapped to each IB criterion, the same rubric your examiner
+        uses, so you know exactly what to improve before you submit.
       </p>
       <p>
         <Link to="/essay">Get criterion-by-criterion feedback on your Extended Essay draft →</Link>

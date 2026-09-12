@@ -4,13 +4,13 @@ const config: SubjectConfig = {
   subject: "Mathematics: Applications and Interpretation IA",
   slug: "maths-ai-ia",
   keyword: "IB Math AI IA",
-  metaTitle: "IB Math AI IA Grader — Free AI Feedback on Applications & Interpretation | IBLens",
+  metaTitle: "IB Math AI IA Grader, Free AI Feedback on Applications & Interpretation | IBLens",
   metaDescription:
-    "AI feedback on your IB Mathematics: Applications and Interpretation IA exploration. Communication, mathematical presentation, personal engagement, reflection, and use of mathematics — all scored against official IB criteria.",
+    "AI feedback on your IB Mathematics: Applications and Interpretation IA exploration. Communication, mathematical presentation, personal engagement, reflection, and use of mathematics, all scored against official IB criteria.",
   canonicalPath: "/essay/maths-ai-ia",
   heroHeadline: "Is your IB Math AI exploration on track for a top score?",
   heroSubline:
-    "Paste your Mathematics: Applications and Interpretation IA and get criterion-by-criterion feedback in about a minute — including Use of Mathematics and Reflection. Free first check.",
+    "Paste your Mathematics: Applications and Interpretation IA and get criterion-by-criterion feedback in about 90 seconds, including Use of Mathematics and Reflection. Free first check.",
   criteria: [
     { name: "Presentation", max: 4, sampleScore: 3 },
     { name: "Mathematical communication", max: 4, sampleScore: 3 },

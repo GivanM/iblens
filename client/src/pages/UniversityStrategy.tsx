@@ -9,15 +9,15 @@ const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 /**
  * University Strategy was taken off sale in July 2026 after an audit found incorrect university
  * deadlines and entry requirements in it. The page is kept because it is indexed, but everything
- * that could mislead an applicant — the sample report with invented admission percentages, the
- * timeline with wrong deadlines, and the purchase button — has been removed rather than hidden
+ * that could mislead an applicant, the sample report with invented admission percentages, the
+ * timeline with wrong deadlines, and the purchase button, has been removed rather than hidden
  * behind a banner.
  */
 export default function UniversityStrategy() {
   return (
     <div className="container max-w-2xl mx-auto py-16 px-4">
       <SEOHead
-        title="IB University Strategy — Withdrawn | IBLens"
+        title="IB University Strategy, Withdrawn | IBLens"
         description="The IBLens University Strategy report is no longer offered. University deadlines and entry requirements change every cycle, and we will not sell guidance we cannot keep verified."
         canonical="/university"
       />
@@ -30,7 +30,7 @@ export default function UniversityStrategy() {
       <div className="space-y-4 text-muted-foreground leading-relaxed">
         <p>
           We withdrew it in July 2026. An audit of our own product found university deadlines and
-          entry requirements that were out of date or simply wrong — the kind of detail an applicant
+          entry requirements that were out of date or simply wrong, the kind of detail an applicant
           acts on without double-checking, and the kind of mistake that costs someone a place.
         </p>
         <p>
@@ -50,7 +50,7 @@ export default function UniversityStrategy() {
             <h2 className="font-semibold">Applying through UCAS?</h2>
             <p className="text-sm text-muted-foreground">
               From 2026 entry the personal statement is three separate questions. We review each answer
-              from an admissions-tutor perspective — first review free.
+              from an admissions-tutor perspective, first review free.
             </p>
             <Button variant="outline" size="sm" asChild>
               <Link href="/ucas-personal-statement">Check my statement <ArrowRight className="w-4 h-4 ml-1" /></Link>
@@ -63,7 +63,7 @@ export default function UniversityStrategy() {
             <h2 className="font-semibold">Still writing IB coursework?</h2>
             <p className="text-sm text-muted-foreground">
               IA, Extended Essay, TOK essay and exhibition, graded against the official criteria for
-              your session — including the May 2027 rubrics.
+              your session, including the May 2027 rubrics.
             </p>
             <Button variant="outline" size="sm" asChild>
               <Link href="/essay">Grade my essay <ArrowRight className="w-4 h-4 ml-1" /></Link>

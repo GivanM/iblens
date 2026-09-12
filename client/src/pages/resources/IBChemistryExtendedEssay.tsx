@@ -4,7 +4,7 @@ import { Link } from "wouter";
 export default function IBChemistryExtendedEssay() {
   return (
     <ResourceArticle
-      title="IB Chemistry Extended Essay — Research Questions, Topics & Score an A | IBLens"
+      title="IB Chemistry Extended Essay, Research Questions, Topics & Score an A | IBLens"
       description="Complete guide to the IB Chemistry Extended Essay: choosing a research question, meeting criteria A-E, picking a topic that scores well, and structuring your EE to reach Band A."
       canonical="/resources/ib-chemistry-extended-essay"
       datePublished="2026-06-17"
@@ -28,7 +28,7 @@ export default function IBChemistryExtendedEssay() {
         history or literature), a Chemistry EE research question has a clear
         experimental design and a specific dependent variable to measure. This
         makes Criterion A (Focus and Method) and Criterion C (Critical Thinking)
-        more straightforward to address — if you design your experiment rigorously
+        more straightforward to address, if you design your experiment rigorously
         and compare your results to published values.
       </p>
 
@@ -56,7 +56,7 @@ export default function IBChemistryExtendedEssay() {
         of a reaction?" is not an EE question. "How does temperature (20-70 degrees C,
         in 10 degree increments) affect the rate constant k of the saponification of ethyl
         acetate, and does the Arrhenius equation accurately predict the activation
-        energy?" is an EE question — because it compares your experimental result to
+        energy?" is an EE question, because it compares your experimental result to
         a theoretical framework.
       </p>
 
@@ -78,7 +78,7 @@ export default function IBChemistryExtendedEssay() {
 
       <h2>How to Structure a Chemistry EE</h2>
       <ul>
-        <li><strong>Introduction (400-500 words):</strong> State the research question precisely. Provide chemical context — why is this system interesting? What does published literature say about it? State a hypothesis derived from theory, not intuition.</li>
+        <li><strong>Introduction (400-500 words):</strong> State the research question precisely. Provide chemical context, why is this system interesting? What does published literature say about it? State a hypothesis derived from theory, not intuition.</li>
         <li><strong>Background Chemistry (500-700 words):</strong> Explain the relevant chemistry at a level beyond the IB syllabus. If your EE involves enzyme kinetics, explain Michaelis-Menten theory. If it involves electrochemistry, explain the Nernst equation. Criterion B marks are won here.</li>
         <li><strong>Methodology (500-700 words):</strong> Write a reproducible method. State which variables are independent, dependent, and controlled. Justify your choice of analytical technique (why titration rather than spectrophotometry?). State replicate numbers and justify them statistically.</li>
         <li><strong>Results and Analysis (800-1000 words):</strong> Present raw data, processed data, and appropriate statistical analysis. Include error propagation for calculated values. Use graphs with error bars. Identify and investigate anomalous data points.</li>
@@ -99,7 +99,7 @@ export default function IBChemistryExtendedEssay() {
       <p>
         IBLens analyses IB extended essays against the official assessment criteria.
         Upload a draft of your Chemistry EE to receive criterion-by-criterion feedback
-        that identifies where you are losing marks — most commonly on Criterion C
+        that identifies where you are losing marks, most commonly on Criterion C
         (Critical Thinking) and the specificity of your research question in Criterion A.
       </p>
       <p>

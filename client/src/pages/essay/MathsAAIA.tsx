@@ -4,13 +4,13 @@ const config: SubjectConfig = {
   subject: "Mathematics: Analysis and Approaches IA",
   slug: "maths-aa-ia",
   keyword: "IB Math AA IA",
-  metaTitle: "IB Math AA IA Grader — Free AI Feedback on Analysis & Approaches | IBLens",
+  metaTitle: "IB Math AA IA Grader, Free AI Feedback on Analysis & Approaches | IBLens",
   metaDescription:
-    "AI feedback on your IB Mathematics: Analysis and Approaches IA exploration. Communication, mathematical presentation, personal engagement, reflection, and use of mathematics — scored against the official IB criteria.",
+    "AI feedback on your IB Mathematics: Analysis and Approaches IA exploration. Communication, mathematical presentation, personal engagement, reflection, and use of mathematics, scored against the official IB criteria.",
   canonicalPath: "/essay/maths-aa-ia",
   heroHeadline: "Is your IB Math AA exploration heading for a 6 or a 4?",
   heroSubline:
-    "Paste your Mathematics: Analysis and Approaches IA and get criterion-by-criterion feedback — including Use of mathematics and Personal engagement — free preview first, full report $9.99. Free first check.",
+    "Paste your Mathematics: Analysis and Approaches IA and get criterion-by-criterion feedback, including Use of mathematics and Personal engagement, free preview first, full report $9.99. Free first check.",
   criteria: [
     { name: "Presentation", max: 4, sampleScore: 3 },
     { name: "Mathematical communication", max: 4, sampleScore: 3 },

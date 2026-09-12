@@ -95,7 +95,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
         </div>
         {weakest && (
           <div className="rounded-lg border border-amber-300 bg-amber-50 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-1.5">Your weakest criterion — full feedback</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-1.5">Your weakest criterion, full feedback</p>
             <div className="flex justify-between text-sm font-semibold mb-1 text-foreground"><span>{weakest.name}</span><span>{weakest.score}/{weakest.max}</span></div>
             <p className="text-sm text-muted-foreground leading-relaxed">{weakest.comment}</p>
           </div>
@@ -105,7 +105,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
             <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Top risks in this draft</p>
             <ul className="space-y-2">
               {result.risks.map((r: any, i: number) => (
-                <li key={i} className="text-sm"><strong className="text-foreground">{r.title}</strong>{r.description ? <span className="text-muted-foreground"> — {r.description}</span> : null}</li>
+                <li key={i} className="text-sm"><strong className="text-foreground">{r.title}</strong>{r.description ? <span className="text-muted-foreground">, {r.description}</span> : null}</li>
               ))}
             </ul>
           </div>
@@ -133,8 +133,8 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
           {!isAuthenticated ? (
             <div className="space-y-2">
               <div className="flex flex-col sm:flex-row items-center gap-3">
-                <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report — $9.99.</strong> No account needed — pay with your email and it opens straight away, plus two free re-checks of this draft over the next 14 days.</p>
-                <Button onClick={onBuy}>Buy &amp; unlock — $9.99</Button>
+                <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report, $9.99.</strong> No account needed, pay with your email and it opens straight away, plus two free re-checks of this draft over the next 14 days.</p>
+                <Button onClick={onBuy}>Buy &amp; unlock, $9.99</Button>
               </div>
               <p className="text-xs text-muted-foreground">
                 Prefer to keep everything in one place? <a href={getLoginUrl()} className="underline">Sign in first</a> and the report is saved to your account.
@@ -147,8 +147,8 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
             </div>
           ) : (
             <div className="flex flex-col sm:flex-row items-center gap-3">
-              <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report — $9.99.</strong> Exact score, every criterion with comments, your ranked fix list — and two free re-checks of this draft over the next 14 days, so you can see whether your edits actually landed.</p>
-              <Button onClick={onBuy}>Buy &amp; unlock — $9.99</Button>
+              <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report, $9.99.</strong> Exact score, every criterion with comments, your ranked fix list, and two free re-checks of this draft over the next 14 days, so you can see whether your edits actually landed.</p>
+              <Button onClick={onBuy}>Buy &amp; unlock, $9.99</Button>
             </div>
           )}
         </div>
@@ -187,7 +187,7 @@ export default function EssayAnalyzer() {
   const [researchQuestion, setResearchQuestion] = useState("");
   const [reflections, setReflections] = useState("");
   const [examSession, setExamSession] = useState<"nov2026" | "may2027">(handoff.session ?? "may2027");
-  // ?rerun=<analysisId> — a paid report includes two free re-checks of the same draft.
+  // ?rerun=<analysisId>, a paid report includes two free re-checks of the same draft.
   const rerunId = (() => {
     if (typeof window === "undefined") return null;
     const v = new URLSearchParams(window.location.search).get("rerun");
@@ -297,10 +297,33 @@ export default function EssayAnalyzer() {
     { enabled: !isAuthenticated }
   );
   const anonUnlocked = !isAuthenticated && anonReportQ.data?.unlocked === true;
+  const deviceCreditsQ = trpc.essay.deviceCredits.useQuery(
+    { fingerprint: anonFp },
+    { enabled: !isAuthenticated }
+  );
+  const deviceCredits = deviceCreditsQ.data?.credits ?? 0;
+  // Coming back later, on the same device: the report is bought and paid for, so
+  // show it. Before this, a guest who closed the tab could never reach it again.
+  useEffect(() => {
+    if (anonReportQ.data?.unlocked && !result) {
+      setResult(anonReportQ.data.result as EssayResult);
+    }
+  }, [anonReportQ.data, result]);
+  const [rerunDelta, setRerunDelta] = useState<string | null>(null);
   const rerunAnonMutation = trpc.essay.rerunAnonymous.useMutation({
     onSuccess: (d: any) => {
       setResult(d.result as EssayResult);
       setAnonRerunsLeft(d.rerunsLeft);
+      const before = d.previous?.predicted_score;
+      const after = d.result?.predicted_score;
+      if (before != null && after != null) {
+        const max = d.result?.max_score ?? d.previous?.max_score;
+        const move = after - before;
+        setRerunDelta(
+          `Before: ${before}${max ? `/${max}` : ""}. Now: ${after}${max ? `/${max}` : ""}. ` +
+          (move > 0 ? `Up ${move} mark${move === 1 ? "" : "s"}.` : move < 0 ? `Down ${Math.abs(move)}.` : "No change.")
+        );
+      }
       toast.success(`Re-check complete. ${d.rerunsLeft} free re-check(s) left for this draft.`);
     },
     onError: (e: any) => toast.error(e.message || "Re-check unavailable"),
@@ -332,12 +355,15 @@ export default function EssayAnalyzer() {
     analytics.startEssayAnalysis(subject);
 
     if (isAuthenticated) {
-      if (!credits?.canAnalyzeEssay) {
-        setEssayPurchaseOpen(true);
-        return;
-      }
+      // A re-check is part of a report already paid for, so it is checked before
+      // the credit gate. Spending the credit on the unlock used to leave the
+      // buyer with no credits and therefore no way to use their two re-checks.
       if (rerunId) {
         rerunMutation.mutate({ analysisId: rerunId, essayText, examSession, reflections: reflections || undefined });
+        return;
+      }
+      if (!credits?.canAnalyzeEssay) {
+        setEssayPurchaseOpen(true);
         return;
       }
       const authParams = getApiEssayParams(essayType, subject);
@@ -350,7 +376,9 @@ export default function EssayAnalyzer() {
         examSession,
       });
     } else {
-      if (anonUnlocked) {
+      // A credit on this device pays for a new report, which is not the same as a
+      // re-check of the old one.
+      if (anonUnlocked && deviceCredits === 0) {
         rerunAnonMutation.mutate({
           fingerprint: anonFp,
           essayText,
@@ -359,7 +387,7 @@ export default function EssayAnalyzer() {
         });
         return;
       }
-      if (!canAnonAnalyze) {
+      if (!canAnonAnalyze && deviceCredits === 0) {
         setEssayPurchaseOpen(true);
         return;
       }
@@ -393,15 +421,15 @@ export default function EssayAnalyzer() {
   return (
     <div className="container py-12 max-w-4xl mx-auto">
       <SEOHead
-        title="IB Essay Grader & Checker — AI Feedback for IA, EE & TOK | IBLens"
-        description="Free IB essay grader and checker. AI scores your IA, Extended Essay, or TOK against official IB rubrics — criterion by criterion, with a predicted grade. First analysis free."
+        title="IB Essay Grader & Checker, AI Feedback for IA, EE & TOK | IBLens"
+        description="Free IB essay grader and checker. AI scores your IA, Extended Essay, or TOK against official IB rubrics, criterion by criterion, with a predicted grade. First analysis free."
         canonical="/essay"
       />
       <div className="mb-10">
         <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3">Essay Analyzer</p>
         <h1 style={SERIF} className="text-4xl font-bold mb-3">IB Essay Analyzer</h1>
         <p className="text-muted-foreground text-lg max-w-2xl">
-          AI feedback in about 90 seconds on your Extended Essay, IA, or TOK — criterion by criterion, with a predicted score.
+          AI feedback in about 90 seconds on your Extended Essay, IA, or TOK, criterion by criterion, with a predicted score.
         </p>
       </div>
 
@@ -468,10 +496,10 @@ export default function EssayAnalyzer() {
               <p className="text-xs font-semibold uppercase tracking-wider text-red-600 mb-2">Losing Marks</p>
               <div className="space-y-2">
                 <div className="p-3 bg-red-50 border-l-2 border-red-400 rounded-r text-sm">
-                  <strong>Weak analysis depth</strong> — Criterion D needs more application of business models to your data.
+                  <strong>Weak analysis depth</strong>, Criterion D needs more application of business models to your data.
                 </div>
                 <div className="p-3 bg-red-50 border-l-2 border-red-400 rounded-r text-sm">
-                  <strong>Conclusion gap</strong> — Your conclusions don't fully answer the research question.
+                  <strong>Conclusion gap</strong>, Your conclusions don't fully answer the research question.
                 </div>
               </div>
             </div>
@@ -479,10 +507,10 @@ export default function EssayAnalyzer() {
               <p className="text-xs font-semibold uppercase tracking-wider text-emerald-600 mb-2">Quick Wins</p>
               <div className="space-y-2">
                 <div className="p-3 bg-emerald-50 border-l-2 border-emerald-400 rounded-r text-sm">
-                  <strong>+2 marks possible</strong> — Add comparative analysis using one more business tool.
+                  <strong>+2 marks possible</strong>, Add comparative analysis using one more business tool.
                 </div>
                 <div className="p-3 bg-emerald-50 border-l-2 border-emerald-400 rounded-r text-sm">
-                  <strong>Easy fix</strong> — Restate your research question explicitly in the conclusion.
+                  <strong>Easy fix</strong>, Restate your research question explicitly in the conclusion.
                 </div>
               </div>
             </div>
@@ -536,8 +564,8 @@ export default function EssayAnalyzer() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="nov2026">May / Nov 2026 — current syllabus</SelectItem>
-                    <SelectItem value="may2027">May 2027 — new syllabus</SelectItem>
+                    <SelectItem value="nov2026">May / Nov 2026, current syllabus</SelectItem>
+                    <SelectItem value="may2027">May 2027, new syllabus</SelectItem>
                   </SelectContent>
                 </Select>
                 {essayType === "EE" && examSession === "may2027" && (
@@ -560,7 +588,7 @@ export default function EssayAnalyzer() {
             <div className="space-y-2">
               <Label>
                 {examSession === "may2027" ? "Reflective statement (RPF)" : "Reflections (RPPF)"}
-                <span className="text-muted-foreground font-normal"> — optional</span>
+                <span className="text-muted-foreground font-normal">, optional</span>
               </Label>
               <Textarea
                 placeholder={examSession === "may2027"
@@ -582,7 +610,7 @@ export default function EssayAnalyzer() {
             )}
             {rerunId && (
               <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 text-sm">
-                <strong>Re-checking your paid draft.</strong> Paste the revised version below — this re-check is free and does not use a credit.
+                <strong>Re-checking your paid draft.</strong> Paste the revised version below, this re-check is free and does not use a credit.
               </div>
             )}
             <Label>{essayType === "TOK Exhibition" ? "Paste your commentary on all three objects" : "Paste your essay or IA text"}</Label>
@@ -593,9 +621,11 @@ export default function EssayAnalyzer() {
               onChange={(e) => setEssayText(e.target.value)}
               className="resize-y"
             />
-            <p className="text-xs text-muted-foreground">
+            <p className={`text-xs ${essayText.length > 30000 ? "text-amber-600 font-medium" : "text-muted-foreground"}`}>
               {essayText.split(/\s+/).filter(Boolean).length} words
               {essayText.length > 0 && ` · ${essayText.length} characters`}
+              {essayText.length > 30000 &&
+                ` · only the first 30,000 characters are marked, so the last ${essayText.length - 30000} will not be read`}
             </p>
           </div>
 
@@ -617,19 +647,33 @@ export default function EssayAnalyzer() {
             </div>
           )}
 
-          {/* Anonymous: first-time free analysis banner */}
-          {!isAuthenticated && canAnonAnalyze && (
-            <div className="text-sm p-3 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
-              <span>Every essay gets a <strong>free preview</strong> — the full report unlocks for $9.99.</span>
+          {rerunDelta && (
+            <div className="text-sm p-3 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200">
+              <strong>Re-check done.</strong> {rerunDelta}
             </div>
           )}
 
-          {/* Anonymous: already used free analysis */}
-          {!isAuthenticated && !canAnonAnalyze && (
+          {/* Paid guest, waiting for the webhook */}
+          {paidReturn && !isAuthenticated && !result && (
+            <div className="text-sm p-3 rounded-lg bg-primary/5 border border-primary/30 flex items-center gap-2">
+              <Loader2 className="w-4 h-4 flex-shrink-0 animate-spin" />
+              <span>Payment received. Opening your full report, this takes a few seconds.</span>
+            </div>
+          )}
+
+          {/* Anonymous: first-time free analysis banner */}
+          {!isAuthenticated && canAnonAnalyze && !anonUnlocked && (
+            <div className="text-sm p-3 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
+              <span>Your first analysis on this device is a <strong>free preview</strong>. The full report unlocks for {PRICE_LABELS.ESSAY_SINGLE}.</span>
+            </div>
+          )}
+
+          {/* Anonymous: already used free analysis, and has not bought anything */}
+          {!isAuthenticated && !canAnonAnalyze && !anonUnlocked && !paidReturn && (
             <div className="text-sm p-3 rounded-lg bg-amber-50 text-amber-700 border border-amber-200">
-              You've used your free analysis.{" "}
-              <a href={getLoginUrl()} className="underline font-medium">Sign in</a> to get more — starting at $9.99.
+              You have used your free analysis on this device. A full report is {PRICE_LABELS.ESSAY_SINGLE},
+              with no account needed.
             </div>
           )}
 
@@ -648,14 +692,25 @@ export default function EssayAnalyzer() {
               ) : (
                 <>
                   <FileText className="w-4 h-4 mr-2" />
-                  Analyze Free — No Account Needed
+                  Analyze Free, No Account Needed
                 </>
               )}
             </Button>
           )}
 
+          {/* Guest holding credits bought without an account */}
+          {!isAuthenticated && deviceCredits > 0 && (
+            <Button className="w-full h-11" onClick={handleAnalyze} disabled={isAnalyzing}>
+              {isAnalyzing ? (
+                <><Loader2 className="w-4 h-4 mr-2 animate-spin" />{analyzingLabel}</>
+              ) : (
+                <><FileText className="w-4 h-4 mr-2" />Mark this work ({deviceCredits} paid {deviceCredits === 1 ? "report" : "reports"} left)</>
+              )}
+            </Button>
+          )}
+
           {/* Paid guest: the two re-checks they were promised */}
-          {anonUnlocked && (
+          {anonUnlocked && deviceCredits === 0 && (
             <Button
               className="w-full h-11"
               onClick={handleAnalyze}
@@ -675,11 +730,18 @@ export default function EssayAnalyzer() {
             </Button>
           )}
 
-          {/* Anonymous: buy credits after free used */}
-          {!isAuthenticated && !canAnonAnalyze && !anonUnlocked && (
-            <Button className="w-full h-11" onClick={() => setEssayPurchaseOpen(true)}>
+          {/* Anonymous: buy a report. Also for someone who already bought one:
+              their re-checks are for the same draft, a new draft is a new report. */}
+          {!isAuthenticated && !canAnonAnalyze && deviceCredits === 0 && (
+            <Button
+              className="w-full h-11"
+              variant={anonUnlocked ? "outline" : "default"}
+              onClick={() => setEssayPurchaseOpen(true)}
+            >
               <CreditCard className="w-4 h-4 mr-2" />
-              Buy Credits to Analyze ($9.99)
+              {anonUnlocked
+                ? `Mark a different piece of work (${PRICE_LABELS.ESSAY_SINGLE})`
+                : `Unlock the full report (${PRICE_LABELS.ESSAY_SINGLE})`}
             </Button>
           )}
 
@@ -709,7 +771,7 @@ export default function EssayAnalyzer() {
                 ) : (
                   <>
                     <FileText className="w-4 h-4 mr-2" />
-                    Analyze ($5)
+                    Analyze ({PRICE_LABELS.ESSAY_SINGLE})
                   </>
                 )}
               </Button>
@@ -755,7 +817,7 @@ export default function EssayAnalyzer() {
                   {pageUnlock.isPending ? "Unlocking…" : "Unlock full report (1 credit)"}
                 </Button>
               ) : (
-                <Button size="sm" onClick={() => setEssayPurchaseOpen(true)}>Buy &amp; unlock — $9.99</Button>
+                <Button size="sm" onClick={() => setEssayPurchaseOpen(true)}>Buy &amp; unlock, $9.99</Button>
               )}
             </div>
           </CardContent>
@@ -771,7 +833,7 @@ export default function EssayAnalyzer() {
             <Card className="border-primary/30 bg-primary/5">
               <CardContent className="pt-6">
                 {reportEmailSaved ? (
-                  <p className="text-sm font-medium flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> Saved — we’ll email your report link and improvement tips.</p>
+                  <p className="text-sm font-medium flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> Saved, we’ll email your report link and improvement tips.</p>
                 ) : (
                   <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
                     <div className="flex-1">
@@ -819,8 +881,11 @@ export default function EssayAnalyzer() {
                 <div className="text-center p-4 bg-muted/50 rounded-lg">
                   <div style={SERIF} className="text-3xl font-bold">
                     {(() => {
-                      const sumScores = result.criteria.reduce((a, c) => a + c.score, 0);
-                      const sumMax = result.criteria.reduce((a, c) => a + c.max, 0);
+                      // Only criteria that were actually marked. Counting the max of an
+                      // unassessed criterion made this disagree with the score above it.
+                      const marked = result.criteria.filter((c) => c.score != null);
+                      const sumScores = marked.reduce((a, c) => a + c.score, 0);
+                      const sumMax = marked.reduce((a, c) => a + c.max, 0);
                       return sumMax > 0 ? Math.round((sumScores / sumMax) * 100) : 0;
                     })()}%
                   </div>
@@ -843,8 +908,8 @@ export default function EssayAnalyzer() {
                 <div key={i} className="space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-semibold">{decodeAndSanitize(c.name)}</span>
-                    <span className={`text-sm font-bold ${getScoreColor(c.score, c.max)}`}>
-                      {c.score}/{c.max}
+                    <span className={`text-sm font-bold ${c.score == null ? "text-muted-foreground" : getScoreColor(c.score, c.max)}`}>
+                      {c.score == null ? "not marked" : `${c.score}/${c.max}`}
                     </span>
                   </div>
                   <div className="h-2 bg-muted rounded-full overflow-hidden">
@@ -901,7 +966,7 @@ export default function EssayAnalyzer() {
 
           {/* Next Steps */}
           {result.next_steps?.length > 0 && (
-            !isAuthenticated ? (
+            (!isAuthenticated && !anonUnlocked) ? (
               <Card className="border-border overflow-hidden">
                 <CardHeader className="pb-3">
                   <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
@@ -1011,10 +1076,10 @@ export default function EssayAnalyzer() {
                   <h3 style={SERIF} className="text-xl font-bold mb-2">Your fastest wins: +{potential} marks on the table</h3>
                   <ul className="space-y-1.5 mb-3">
                     {weakest.map((c: any) => (
-                      <li key={c.name} className="text-sm text-muted-foreground"><strong className="text-foreground">{c.name}</strong> — {c.score}/{c.max} now, +{c.max - c.score} available</li>
+                      <li key={c.name} className="text-sm text-muted-foreground"><strong className="text-foreground">{c.name}</strong>, {c.score}/{c.max} now, +{c.max - c.score} available</li>
                     ))}
                   </ul>
-                  <p className="text-sm text-muted-foreground">Fix these in your draft using the comments above, then run a <strong>re-check</strong> — you will see exactly which criteria moved and by how much. That before/after delta is what an $80/hr tutor charges for.</p>
+                  <p className="text-sm text-muted-foreground">Fix these in your draft using the comments above, then run a <strong>re-check</strong>, you will see exactly which criteria moved and by how much. That before/after delta is what an $80/hr tutor charges for.</p>
                 </CardContent>
               </Card>
             );
@@ -1031,7 +1096,7 @@ export default function EssayAnalyzer() {
                   <div>
                     <h3 style={SERIF} className="font-bold text-xl mb-1">Save this report & analyze Draft 2</h3>
                     <p className="text-sm text-muted-foreground">
-                      Sign in free to save your results and unlock your full action plan. Next analysis is <strong>$9.99</strong> — or a 5-pack for $24.99 ($4 each).
+                      Sign in free to save your results and unlock your full action plan. Next analysis is <strong>{PRICE_LABELS.ESSAY_SINGLE}</strong>, or a 5-pack for {PRICE_LABELS.ESSAY_PACK_5} ($5.00 each).
                     </p>
                   </div>
                 </div>
@@ -1039,7 +1104,7 @@ export default function EssayAnalyzer() {
                   <Button size="lg" asChild className="h-12">
                     <a href={getLoginUrl()}>
                       <BookmarkPlus className="w-4 h-4 mr-2" />
-                      Save Report — Free
+                      Save Report, Free
                     </a>
                   </Button>
                   <Button variant="outline" size="lg" className="h-12" onClick={() => { (window as any).dataLayer?.push({ event: "recheck_cta_click", auth: "anon" }); setEssayPurchaseOpen(true); }}>

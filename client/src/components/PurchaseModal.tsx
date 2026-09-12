@@ -157,7 +157,7 @@ export function PurchaseModal({ open, onOpenChange, sku }: PurchaseModalProps) {
             <div className="flex-1">
               <p className="font-medium text-sm">Pay with card</p>
               <p className="text-xs text-muted-foreground">
-                Visa, Mastercard, Amex — instant activation
+                Visa, Mastercard, Amex, credits activate as soon as the payment clears
               </p>
             </div>
           </div>

@@ -4,16 +4,16 @@ import { Link } from "wouter";
 export default function UniversityAdmissionsGuide() {
   return (
     <ResourceArticle
-      title="IB University Admissions — UK, US, EU Guide | IBLens"
+      title="IB University Admissions, UK, US, EU Guide | IBLens"
       description="How IB Diploma scores translate to university offers in the UK, US, EU and beyond. Typical IB requirements at top universities."
       canonical="/resources/ib-university-admissions"
       datePublished="2026-05-01"
       dateModified="2026-05-01"
     >
-      <h1>IB to University — How Scores Translate to Admissions</h1>
+      <h1>IB to University, How Scores Translate to Admissions</h1>
 
       <p>
-        The IB Diploma is recognized by universities in over 100 countries, but how institutions evaluate IB scores varies significantly by country, university, and program. Understanding these differences is critical for making informed application decisions — choosing the right universities based on your predicted grades, and knowing which aspects of your IB profile matter most for your target programs.
+        The IB Diploma is recognized by universities in over 100 countries, but how institutions evaluate IB scores varies significantly by country, university, and program. Understanding these differences is critical for making informed application decisions, choosing the right universities based on your predicted grades, and knowing which aspects of your IB profile matter most for your target programs.
       </p>
 
       <p>
@@ -27,7 +27,7 @@ export default function UniversityAdmissionsGuide() {
       </p>
 
       <p>
-        <strong>HL grades matter most.</strong> UK universities focus heavily on your three Higher Level subjects because these are considered equivalent to A-Levels — the qualification most UK applicants hold. A student with 38 total points but 7,7,6 at HL is generally more competitive than a student with 40 points but 6,6,5 at HL for selective programs.
+        <strong>HL grades matter most.</strong> UK universities focus heavily on your three Higher Level subjects because these are considered equivalent to A-Levels, the qualification most UK applicants hold. A student with 38 total points but 7,7,6 at HL is generally more competitive than a student with 40 points but 6,6,5 at HL for selective programs.
       </p>
 
       <p>
@@ -67,7 +67,7 @@ export default function UniversityAdmissionsGuide() {
       </table>
 
       <p>
-        <strong>UCAS Tariff Points:</strong> Since 2017 UCAS has awarded tariff points per subject grade (HL and SL separately, plus TOK/EE bands) rather than for the overall IB total — the old “45 = 720 points” scale is long obsolete. Most selective universities make offers in IB points anyway; when a tariff number is needed, use the official UCAS calculator.
+        <strong>UCAS Tariff Points:</strong> Since 2017 UCAS has awarded tariff points per subject grade (HL and SL separately, plus TOK/EE bands) rather than for the overall IB total, the old “45 = 720 points” scale is long obsolete. Most selective universities make offers in IB points anyway; when a tariff number is needed, use the official UCAS calculator.
       </p>
 
       <h2>United States: Holistic Admissions</h2>
@@ -85,7 +85,7 @@ export default function UniversityAdmissionsGuide() {
       </p>
 
       <p>
-        <strong>Credit and placement:</strong> Many US universities grant college credit or advanced placement for HL scores of 5, 6, or 7. This can allow students to skip introductory courses, graduate early, or take more advanced electives. Policies vary by institution — check each university's IB credit policy.
+        <strong>Credit and placement:</strong> Many US universities grant college credit or advanced placement for HL scores of 5, 6, or 7. This can allow students to skip introductory courses, graduate early, or take more advanced electives. Policies vary by institution, check each university's IB credit policy.
       </p>
 
       <table>
@@ -179,7 +179,7 @@ export default function UniversityAdmissionsGuide() {
       </p>
 
       <p>
-        <strong>Match your HL subjects to target programs.</strong> If you are applying to UK universities, your HL subject choices are critical — they cannot be changed after Year 1. Research subject requirements early and ensure your HL combination opens the doors you want.
+        <strong>Match your HL subjects to target programs.</strong> If you are applying to UK universities, your HL subject choices are critical, they cannot be changed after Year 1. Research subject requirements early and ensure your HL combination opens the doors you want.
       </p>
 
       <p>
@@ -187,11 +187,11 @@ export default function UniversityAdmissionsGuide() {
       </p>
 
       <p>
-        <strong>Use predicted grades strategically.</strong> If your predicted grades are strong (38+), you can aim for highly selective universities. If they are moderate (32–36), focus on programs where your score is above the typical offer — being above the threshold is more important than being at the median.
+        <strong>Use predicted grades strategically.</strong> If your predicted grades are strong (38+), you can aim for highly selective universities. If they are moderate (32–36), focus on programs where your score is above the typical offer, being above the threshold is more important than being at the median.
       </p>
 
       <p>
-        <strong>Consider credit policies.</strong> If you achieve 6s and 7s at HL, some universities will grant significant credit — potentially saving a semester or year of tuition. This can be worth tens of thousands of dollars and should factor into your university choice.
+        <strong>Consider credit policies.</strong> If you achieve 6s and 7s at HL, some universities will grant significant credit, potentially saving a semester or year of tuition. This can be worth tens of thousands of dollars and should factor into your university choice.
       </p>
 
       <h2>How IBLens University Strategy Helps</h2>

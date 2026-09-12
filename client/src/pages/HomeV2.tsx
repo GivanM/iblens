@@ -23,7 +23,7 @@ const FAQ = [
   },
   {
     q: "Which IB essay types does IBLens support?",
-    a: "The Extended Essay, the TOK essay, the TOK exhibition, and the Internal Assessment in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Each is marked against its own criteria.",
+    a: "The Extended Essay, the TOK essay, the TOK exhibition, and coursework in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Each is marked against its own criteria.",
   },
   {
     q: "Is my first essay analysis really free?",
@@ -64,7 +64,7 @@ export default function HomeV2() {
     <div className="ms-root" data-marking-sheet ref={rootRef}>
       <SEOHead
         title="IBLens, IB essay grader marked like a script"
-        description="Paste an IB draft and get it marked against the published criteria, criterion by criterion, in a minute or two. Free preview on the first one. Full report $9.99, no subscription."
+        description="Paste an IB draft and get it marked against the published criteria, criterion by criterion, in about 90 seconds. Free preview on the first one. Full report $9.99, no subscription."
         canonical="/"
         jsonLd={[
           {
@@ -109,7 +109,7 @@ export default function HomeV2() {
         <span>IBLens</span>
         <span>Independent of the International Baccalaureate Organization</span>
         <span>Predicted scores are estimates, not official marks</span>
-        <span>Scripts are processed by Anthropic PBC to produce the analysis</span>
+        <span>Scripts pass through our server in Finland and are processed by Anthropic PBC</span>
         <Link href="/privacy">Privacy</Link>
         <Link href="/terms">Terms</Link>
       </footer>

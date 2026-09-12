@@ -21,7 +21,7 @@ export default function SignIn() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">
       <SEOHead
-        title="Sign In — IBLens"
+        title="Sign In, IBLens"
         description="Sign in to IBLens to access your IB essay analyses, purchase history, and personalized university strategies."
         canonical="/auth/signin"
       />

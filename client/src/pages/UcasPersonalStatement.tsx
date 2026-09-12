@@ -89,7 +89,7 @@ export default function UcasPersonalStatement() {
       const len = (answers as any)[q.id].length;
       if (len === 0) out.push(`Question ${i + 1} is empty.`);
       else if (len < UCAS_MIN_CHARS_PER_ANSWER)
-        out.push(`Question ${i + 1} is ${len} characters — UCAS requires at least ${UCAS_MIN_CHARS_PER_ANSWER}.`);
+        out.push(`Question ${i + 1} is ${len} characters, UCAS requires at least ${UCAS_MIN_CHARS_PER_ANSWER}.`);
     });
     if (total > UCAS_TOTAL_CHAR_LIMIT)
       out.push(`Your answers are ${total - UCAS_TOTAL_CHAR_LIMIT} characters over the ${UCAS_TOTAL_CHAR_LIMIT} limit.`);
@@ -101,7 +101,7 @@ export default function UcasPersonalStatement() {
   return (
     <div className="container max-w-3xl mx-auto py-10 px-4 space-y-6">
       <SEOHead
-        title="UCAS Personal Statement Checker — New Three-Question Format | IBLens"
+        title="UCAS Personal Statement Checker, New Three-Question Format | IBLens"
         description="Check your UCAS personal statement against the format used from 2026 entry: three questions, 4,000 characters, 350 minimum each. Evidence-based feedback on each answer, free preview."
         canonical="/ucas-personal-statement"
       />
@@ -115,7 +115,7 @@ export default function UcasPersonalStatement() {
           From 2026 entry the personal statement is three separate questions sharing one 4,000-character
           budget, with a 350-character minimum per answer. Paste your draft answers and get a read on
           each one: what a tutor would credit, what they would look for and not find, and what to fix
-          first. No score — UCAS publishes no mark scheme, and inventing one would not help you.
+          first. No score, UCAS publishes no mark scheme, and inventing one would not help you.
         </p>
       </div>
 
@@ -125,7 +125,7 @@ export default function UcasPersonalStatement() {
         statements are checked for similarity against previously submitted work. This tool gives you
         feedback on your own writing and deliberately never hands you sentences to copy. We do not
         publish your statement, do not train models on it, and do not feed it to any similarity
-        database. Do not post your statement anywhere public either — that is what puts it into
+        database. Do not post your statement anywhere public either, that is what puts it into
         similarity checks. <Link href="/resources/academic-integrity" className="underline">How to use AI feedback safely</Link>
       </div>
 
@@ -171,7 +171,7 @@ export default function UcasPersonalStatement() {
                 />
                 <p className={`text-xs ${short ? "text-rose-600" : "text-muted-foreground"}`}>
                   {val.length} characters
-                  {short && ` — UCAS requires at least ${UCAS_MIN_CHARS_PER_ANSWER}`}
+                  {short && `, UCAS requires at least ${UCAS_MIN_CHARS_PER_ANSWER}`}
                 </p>
               </div>
             );
@@ -187,9 +187,9 @@ export default function UcasPersonalStatement() {
               <p className="text-sm"><strong className="text-foreground">{limitReached}</strong></p>
               <p className="text-xs text-muted-foreground">
                 A full review covers all three answers, the issues across the statement as a whole and a
-                ranked revision list — plus two free re-checks of this statement within 14 days.
+                ranked revision list, plus two free re-checks of this statement within 14 days.
               </p>
-              <Button size="sm" onClick={() => setPurchaseOpen(true)}>Unlock a full review — $9.99</Button>
+              <Button size="sm" onClick={() => setPurchaseOpen(true)}>Unlock a full review, $9.99</Button>
             </div>
           )}
 
@@ -224,6 +224,8 @@ export default function UcasPersonalStatement() {
                 q2: answers.q2,
                 q3: answers.q3,
                 clientFingerprint: anonFp,
+                // Never spend a credit behind a button that says free.
+                spendCredit: false,
               });
             }}
           >
@@ -232,7 +234,7 @@ export default function UcasPersonalStatement() {
             ) : isUnlocked ? (
               `Re-check my statement (free${rechecksLeft !== null ? `, ${rechecksLeft} left` : ""})`
             ) : (
-              "Review my statement — free"
+              "Review my statement, free"
             )}
           </Button>
         </CardContent>
@@ -276,7 +278,7 @@ export default function UcasPersonalStatement() {
               <div className="rounded-lg border p-4 space-y-3">
                 <div className="flex items-center gap-2">
                   <p className="text-sm font-semibold">
-                    {result.sample_answer.id?.toUpperCase()} — your weakest answer, in full
+                    {result.sample_answer.id?.toUpperCase()}, your weakest answer, in full
                   </p>
                   <Badge className={STATUS_STYLE[result.sample_answer.status] || ""}>{result.sample_answer.status}</Badge>
                 </div>
@@ -301,7 +303,7 @@ export default function UcasPersonalStatement() {
                 {result.other_answers?.map((a: any) => (
                   <li key={a.id} className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Lock className="w-3.5 h-3.5 shrink-0" />
-                    {a.id?.toUpperCase()} in full — currently rated <strong className="font-medium">{a.status}</strong>
+                    {a.id?.toUpperCase()} in full, currently rated <strong className="font-medium">{a.status}</strong>
                   </li>
                 ))}
                 <li className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -317,7 +319,7 @@ export default function UcasPersonalStatement() {
               </ul>
               <div className="pt-3 space-y-2">
                 <Button className="w-full sm:w-auto" onClick={() => setPurchaseOpen(true)}>
-                  Unlock the full review — $9.99
+                  Unlock the full review, $9.99
                 </Button>
                 <p className="text-xs text-muted-foreground">
                   Includes two free re-checks of this statement within 14 days, so you can revise and see

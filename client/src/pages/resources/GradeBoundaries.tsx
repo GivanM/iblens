@@ -4,7 +4,7 @@ import { Link } from "wouter";
 export default function GradeBoundaries() {
   return (
     <ResourceArticle
-      title="IB Grade Boundaries Explained — How IB Scoring Works | IBLens"
+      title="IB Grade Boundaries Explained, How IB Scoring Works | IBLens"
       description="Understand how IB grade boundaries work: the 7-point scale, how subject scores combine, bonus points from EE/TOK, and what different total scores mean for university admissions."
       canonical="/resources/ib-grade-boundaries"
       datePublished="2026-05-01"
@@ -13,13 +13,13 @@ export default function GradeBoundaries() {
       <h1>IB Grade Boundaries Explained</h1>
 
       <p>
-        One of the most confusing aspects of the IB Diploma Programme for students and parents is the scoring system. Unlike national curricula that use percentages or letter grades, the IB uses a 7-point scale for each subject, bonus points from core components, and grade boundaries that shift between examination sessions. This guide explains how the entire system works — from individual subject grades to the final diploma score — so you can understand where your marks come from and what you need to achieve your goals.
+        One of the most confusing aspects of the IB Diploma Programme for students and parents is the scoring system. Unlike national curricula that use percentages or letter grades, the IB uses a 7-point scale for each subject, bonus points from core components, and grade boundaries that shift between examination sessions. This guide explains how the entire system works, from individual subject grades to the final diploma score, so you can understand where your marks come from and what you need to achieve your goals.
       </p>
 
       <h2>How the 7-Point Scale Works</h2>
 
       <p>
-        Each IB subject is graded on a scale of 1 (lowest) to 7 (highest). These grades are not percentages — a 7 does not mean you scored 70% or above. Instead, grade boundaries are set after each examination session based on the difficulty of the papers and the performance of the global cohort.
+        Each IB subject is graded on a scale of 1 (lowest) to 7 (highest). These grades are not percentages, a 7 does not mean you scored 70% or above. Instead, grade boundaries are set after each examination session based on the difficulty of the papers and the performance of the global cohort.
       </p>
 
       <p>
@@ -82,7 +82,7 @@ export default function GradeBoundaries() {
       </table>
 
       <p>
-        <strong>Important:</strong> These ranges are approximate and vary significantly between subjects and sessions. Two subjects in the same session can have noticeably different grade 7 boundaries, because each is set from the difficulty of that session's papers. The IBO adjusts boundaries to maintain consistent standards across years — if a paper was unusually difficult, boundaries are lowered so that a similar proportion of students achieve each grade.
+        <strong>Important:</strong> These ranges are approximate and vary significantly between subjects and sessions. Two subjects in the same session can have noticeably different grade 7 boundaries, because each is set from the difficulty of that session's papers. The IBO adjusts boundaries to maintain consistent standards across years, if a paper was unusually difficult, boundaries are lowered so that a similar proportion of students achieve each grade.
       </p>
 
       <p>
@@ -143,7 +143,7 @@ export default function GradeBoundaries() {
 
       <h3>Languages (Group 1 and Group 2)</h3>
       <p>
-        Language subjects tend towards higher grade 7 boundaries, because marking on individual components is comparatively generous. However, the Individual Oral (IO) can be unpredictable, and Language B is assessed across reading, writing, speaking and listening, while Language A (Group 1) has no listening component — its assessment is Paper 1, Paper 2, the HL essay and the individual oral.
+        Language subjects tend towards higher grade 7 boundaries, because marking on individual components is comparatively generous. However, the Individual Oral (IO) can be unpredictable, and Language B is assessed across reading, writing, speaking and listening, while Language A (Group 1) has no listening component, its assessment is Paper 1, Paper 2, the HL essay and the individual oral.
       </p>
 
       <h2>Bonus Points from the EE/TOK Matrix</h2>
@@ -219,7 +219,7 @@ export default function GradeBoundaries() {
       </ul>
 
       <p>
-        This is why investing time in your <Link href="/resources/ib-extended-essay-guide" className="text-primary hover:underline">Extended Essay</Link> and <Link href="/resources/tok-essay-guide" className="text-primary hover:underline">TOK essay</Link> is strategically important — they offer "free" points that require effort but no exam-day performance pressure.
+        This is why investing time in your <Link href="/resources/ib-extended-essay-guide" className="text-primary hover:underline">Extended Essay</Link> and <Link href="/resources/tok-essay-guide" className="text-primary hover:underline">TOK essay</Link> is strategically important, they offer "free" points that require effort but no exam-day performance pressure.
       </p>
 
       <h2>What Different Total Scores Mean for University Admissions</h2>
@@ -270,7 +270,7 @@ export default function GradeBoundaries() {
       </p>
 
       <p>
-        For entry requirements and deadlines, use the university's own course pages and UCAS — they are the only sources that stay current. If you are writing a UCAS personal statement, our <Link href="/ucas-personal-statement" className="text-primary hover:underline">checker</Link> reviews it against the 2026 three-question format.
+        For entry requirements and deadlines, use the university's own course pages and UCAS, they are the only sources that stay current. If you are writing a UCAS personal statement, our <Link href="/ucas-personal-statement" className="text-primary hover:underline">checker</Link> reviews it against the 2026 three-question format.
       </p>
 
       <h2>How to Maximize Your Total Score</h2>
@@ -284,7 +284,7 @@ export default function GradeBoundaries() {
       </p>
 
       <p>
-        <strong>Invest in EE and TOK:</strong> The 3 bonus points from the EE/TOK matrix are achievable with focused effort. An A in your EE and a B in TOK gives you the maximum 3 points — equivalent to raising one subject grade by half a point across all six subjects.
+        <strong>Invest in EE and TOK:</strong> The 3 bonus points from the EE/TOK matrix are achievable with focused effort. An A in your EE and a B in TOK gives you the maximum 3 points, equivalent to raising one subject grade by half a point across all six subjects.
       </p>
 
       <p>

@@ -4,7 +4,7 @@ import { Link } from "wouter";
 export default function IBExtendedEssayWordCount() {
   return (
     <ResourceArticle
-      title="IB Extended Essay Word Count — The 4000-Word Limit Explained | IBLens"
+      title="IB Extended Essay Word Count, The 4000-Word Limit Explained | IBLens"
       description="Everything you need to know about the IB Extended Essay word count: what counts, what doesn't, how close to the limit you should aim, and what happens if you go over."
       canonical="/resources/ib-extended-essay-word-count"
       datePublished="2026-06-09"
@@ -12,7 +12,7 @@ export default function IBExtendedEssayWordCount() {
     >
       <p>
         The IB Extended Essay has a maximum word count of 4000 words. This is one of
-        the most misunderstood rules in the entire IB programme — students frequently
+        the most misunderstood rules in the entire IB programme, students frequently
         ask whether footnotes count, whether the bibliography counts, whether their
         whether the (long-abolished) abstract counts, and what happens if they go over by fifty words. This guide
         answers all of those questions and explains the strategy behind hitting the
@@ -61,8 +61,7 @@ export default function IBExtendedEssayWordCount() {
         not exist as far as your mark is concerned.
       </p>
       <p>
-        Going over the word count does not result in an automatic penalty beyond this —
-        there is no "minus 5 marks for exceeding the limit." The penalty is subtler and
+        Going over the word count does not result in an automatic penalty beyond this, there is no "minus 5 marks for exceeding the limit." The penalty is subtler and
         worse: your work is simply cut off. If you write 4500 words, the last 500 are
         invisible to the examiner.
       </p>
@@ -89,7 +88,7 @@ export default function IBExtendedEssayWordCount() {
       <h2>Do Not Write an Abstract</h2>
       <p>
         The abstract was abolished from the Extended Essay in the May 2018 session and has
-        not been required — or assessed — since. If a template or an older guide tells you
+        not been required, or assessed, since. If a template or an older guide tells you
         to include a 300-word abstract, it is out of date: submitting one today only
         signals an outdated structure and wastes effort. Orient the examiner with a clear
         introduction and a table of contents instead.
@@ -102,7 +101,7 @@ export default function IBExtendedEssayWordCount() {
         Science EEs often include data tables, graphs, and calculations. These elements
         (as figures and tables with captions) do not count toward the word count, so
         students sometimes find they have significant content but are under 3000 words
-        of prose. This is fine — the analysis and evaluation of that data is what
+        of prose. This is fine, the analysis and evaluation of that data is what
         must reach the required depth in the word-counted sections. Do not pad with
         description; deepen the analysis.
       </p>
@@ -119,7 +118,7 @@ export default function IBExtendedEssayWordCount() {
       <h3>Humanities (History, Geography, Economics, Philosophy)</h3>
       <p>
         Humanities EEs are usually prose-heavy and most naturally approach the 4000-word
-        limit. History EEs in particular need careful word management — it is easy to
+        limit. History EEs in particular need careful word management, it is easy to
         spend 600 words on historical context and have only 2400 for analysis and
         evaluation. Keep context brief and keep returning to your research question.
       </p>
@@ -147,15 +146,15 @@ export default function IBExtendedEssayWordCount() {
 
       <h2>Does Word Count Affect Your IB Grade?</h2>
       <p>
-        The word count itself is not a graded criterion — there is no criterion that
+        The word count itself is not a graded criterion, there is no criterion that
         says "you used X words, therefore you score Y." The word count matters because
         it determines how much of your essay the examiner reads, which affects every
         criterion that depends on reading the full essay: Critical Thinking,
         Presentation, and Engagement.
       </p>
       <p>
-        The most efficient essay — the one that makes every word count toward the
-        argument — is usually also the best essay. Students who write to fill space
+        The most efficient essay, the one that makes every word count toward the
+        argument, is usually also the best essay. Students who write to fill space
         rather than to make a point typically score lower on Critical Thinking even
         when they stay within the limit.
       </p>
