@@ -72,7 +72,7 @@ export default function IBIAGrader() {
       </p>
 
       <ul>
-        <li><strong>vs. RevisionDojo:</strong> RevisionDojo bundles IA grading inside a $19/month subscription that also includes videos and practice papers. IBLens is pay-per-analysis — $9.99 for a single analysis, $19.99 for 5. No subscription required. If you just need feedback on one or two IAs, IBLens is significantly cheaper.</li>
+        <li><strong>vs. RevisionDojo:</strong> RevisionDojo bundles IA grading inside a $19/month subscription that also includes videos and practice papers. IBLens is pay-per-analysis — $9.99 for a single analysis, $24.99 for 5. No subscription required. If you just need feedback on one or two IAs, IBLens is significantly cheaper.</li>
         <li><strong>vs. ChatGPT / Claude directly:</strong> Generic AI models don't know the specific IB rubric for your subject. IBLens is built on the official IBO marking criteria and formats the feedback to match how real IB examiners score work.</li>
         <li><strong>vs. a tutor:</strong> A tutor commonly charges $50–150 per hour and may give you subjective feedback. IBLens applies the rubric mechanically — the same way an examiner does — and identifies specific mark losses by criterion.</li>
       </ul>

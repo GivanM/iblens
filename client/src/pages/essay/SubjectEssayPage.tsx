@@ -213,7 +213,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
               <h2 className="text-xl font-extrabold tracking-tight mb-4">Why students use IBLens</h2>
               <ul className="space-y-3 text-sm text-muted-foreground list-disc pl-5">
                 <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
-                <li>$9.99 for a full report — no subscription, and it includes two free re-checks of the same draft within 14 days.</li>
+                <li>$9.99 for the full report and two re-checks — no subscription, and it includes two free re-checks of the same draft within 14 days.</li>
                 <li>Your first analysis is free: predicted band range, your weakest criterion with full feedback, and the top risks in your draft. No account needed.</li>
                 <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
               </ul>

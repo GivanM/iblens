@@ -154,13 +154,13 @@ export default function HowIBLensWorks() {
           </tr>
           <tr>
             <td><strong>Essay Pack (5)</strong></td>
-            <td>$19.99</td>
+            <td>$24.99</td>
             <td>$4.00</td>
             <td>Multiple drafts of the same essay or several different IAs</td>
           </tr>
           <tr>
             <td><strong>Essay Pack (10)</strong></td>
-            <td>$34.99</td>
+            <td>$44.99</td>
             <td>$3.50</td>
             <td>Full IB preparation — analyze all your IAs, EE drafts, and TOK essay</td>
           </tr>

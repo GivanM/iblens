@@ -140,12 +140,14 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardContent className="p-5">
-            <p className="text-xs text-muted-foreground font-medium mb-1">University Credits</p>
-            <div style={SERIF} className="text-2xl font-bold">{credits?.universityCredits ?? 0}</div>
-          </CardContent>
-        </Card>
+        {(credits?.universityCredits ?? 0) > 0 && (
+          <Card>
+            <CardContent className="p-5">
+              <p className="text-xs text-muted-foreground font-medium mb-1">University Credits</p>
+              <div style={SERIF} className="text-2xl font-bold">{credits?.universityCredits}</div>
+            </CardContent>
+          </Card>
+        )}
       </div>
 
       {/* Buy Credits */}
@@ -205,20 +207,6 @@ export default function Dashboard() {
               </Button>
             </div>
 
-            <div className="border border-border rounded-lg p-4 text-center">
-              <h4 className="font-semibold text-sm mb-1">University Strategy</h4>
-              <div style={SERIF} className="text-xl font-bold my-1">{PRICE_LABELS.UNIVERSITY_SINGLE}</div>
-              <p className="text-xs text-muted-foreground mb-2">Personalized plan</p>
-              <Button
-                size="sm"
-                variant="outline"
-                className="w-full"
-                onClick={() => handleBuy("UNIVERSITY_SINGLE")}
-              >
-                <CreditCard className="w-3 h-3 mr-1.5" />
-                Buy Now
-              </Button>
-            </div>
           </div>
         </CardContent>
       </Card>

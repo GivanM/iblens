@@ -305,7 +305,7 @@ export default function Home() {
                 </ul>
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">First analysis free</span>
-                  <span className="text-xs text-muted-foreground">then $9.99/analysis</span>
+                  <span className="text-xs text-muted-foreground">then $9.99 per draft, re-checks included</span>
                 </div>
                 <Button variant="outline" asChild>
                   <Link href="/essay">Try it now <ArrowRight className="w-4 h-4 ml-1" /></Link>

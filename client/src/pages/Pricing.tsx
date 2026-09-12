@@ -45,7 +45,7 @@ const plans: Array<{
     popular: true,
     features: [
       "Everything in single analysis",
-      "$4.00 per essay — 60% off the single price",
+      "$5.00 per essay — 50% off the single price",
       "Two free re-checks of each draft within 14 days",
       "Use across any subjects",
       "No expiration date",
@@ -62,7 +62,7 @@ const plans: Array<{
     popular: false,
     features: [
       "Everything in single analysis",
-      "$3.50 per essay — 65% off the single price",
+      "$4.50 per essay — 55% off the single price",
       "Two free re-checks of each draft within 14 days",
       "Use across any subjects",
       "No expiration date",
@@ -87,7 +87,7 @@ export default function Pricing() {
     <div className="py-16 md:py-24">
       <SEOHead
         title="Pricing — IB Essay Analysis from $9.99 | IBLens"
-        description="Affordable IB essay feedback: first analysis free, single essays from $9.99, packs of 5 for $19.99, packs of 10 for $34.99. 7-day money-back guarantee."
+        description="Affordable IB essay feedback: first analysis free, single essays from $9.99, packs of 5 for $24.99, packs of 10 for $44.99. 7-day money-back guarantee."
         canonical="/pricing"
       />
       <div className="container">

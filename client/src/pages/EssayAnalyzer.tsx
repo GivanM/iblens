@@ -128,12 +128,20 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
             <li className="flex items-center gap-2 text-sm text-muted-foreground"><Lock className="w-3.5 h-3.5 shrink-0" /> Examiner-style overall comment</li>
             <li className="flex items-center gap-2 text-sm text-muted-foreground"><Lock className="w-3.5 h-3.5 shrink-0" /> Step-by-step fixes, ranked by marks gained</li>
           </ul>
+          <p className="text-xs text-muted-foreground mt-3">
+            The criterion shown above in full is the one where this draft loses the largest share of its available marks. The others are scored in the full report.
+          </p>
         </div>
         <div className="rounded-lg bg-primary/5 border border-primary/30 p-4">
           {!isAuthenticated ? (
-            <div className="flex flex-col sm:flex-row items-center gap-3">
-              <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report — $9.99.</strong> Sign in first so the report is saved to your account.</p>
-              <Button asChild><a href={getLoginUrl()}>Sign in to unlock</a></Button>
+            <div className="space-y-2">
+              <div className="flex flex-col sm:flex-row items-center gap-3">
+                <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report — $9.99.</strong> No account needed — pay with your email and it opens straight away, plus two free re-checks of this draft over the next 14 days.</p>
+                <Button onClick={onBuy}>Buy &amp; unlock — $9.99</Button>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Prefer to keep everything in one place? <a href={getLoginUrl()} className="underline">Sign in first</a> and the report is saved to your account.
+              </p>
             </div>
           ) : hasPaidCredit ? (
             <div className="flex flex-col sm:flex-row items-center gap-3">
@@ -142,7 +150,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
             </div>
           ) : (
             <div className="flex flex-col sm:flex-row items-center gap-3">
-              <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report — $9.99.</strong> Exact score, every criterion with comments, and your ranked fix list.</p>
+              <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report — $9.99.</strong> Exact score, every criterion with comments, your ranked fix list — and two free re-checks of this draft over the next 14 days, so you can see whether your edits actually landed.</p>
               <Button onClick={onBuy}>Buy &amp; unlock — $9.99</Button>
             </div>
           )}
@@ -435,7 +443,7 @@ export default function EssayAnalyzer() {
 
           <div className="pt-3 border-t text-center">
             <p className="text-sm font-medium mb-1">↑ This is the full report, unlocked for $9.99. Your free preview shows the band range, your weakest criterion in full, and the top risks.</p>
-            <p className="text-xs text-muted-foreground">Paste your essay below → <strong>first one free</strong>, then $9.99/analysis</p>
+            <p className="text-xs text-muted-foreground">Paste your essay below → <strong>first one free</strong>, then $9.99 per draft, re-checks included</p>
           </div>
         </div>
       </div>
@@ -932,7 +940,7 @@ export default function EssayAnalyzer() {
                   <div>
                     <h3 style={SERIF} className="font-bold text-xl mb-1">Save this report & analyze Draft 2</h3>
                     <p className="text-sm text-muted-foreground">
-                      Sign in free to save your results and unlock your full action plan. Next analysis is <strong>$9.99</strong> — or a 5-pack for $19.99 ($4 each).
+                      Sign in free to save your results and unlock your full action plan. Next analysis is <strong>$9.99</strong> — or a 5-pack for $24.99 ($4 each).
                     </p>
                   </div>
                 </div>
