@@ -42,13 +42,18 @@ export default function UcasPersonalStatement() {
   const [answers, setAnswers] = useState({ q1: "", q2: "", q3: "" });
   const [result, setResult] = useState<any>(null);
   const [purchaseOpen, setPurchaseOpen] = useState(false);
+  const [limitReached, setLimitReached] = useState<string | null>(null);
 
   const total = answers.q1.length + answers.q2.length + answers.q3.length;
   const remaining = UCAS_TOTAL_CHAR_LIMIT - total;
 
   const review = trpc.essay.analyzeUcasAnonymous.useMutation({
     onSuccess: (data: any) => setResult(data.result),
-    onError: (err: any) => toast.error(err.message || "Review failed"),
+    onError: (err: any) => {
+      const msg = err?.message || "Review failed";
+      if (/free review/i.test(msg)) setLimitReached(msg);
+      else toast.error(msg);
+    },
   });
 
   // A free review is one per device, so submitting a draft UCAS would reject outright is the
@@ -152,6 +157,17 @@ export default function UcasPersonalStatement() {
             <strong>{total}</strong> of {UCAS_TOTAL_CHAR_LIMIT} characters used
             {remaining >= 0 ? ` · ${remaining} left` : ` · ${Math.abs(remaining)} over the limit`}
           </div>
+
+          {limitReached && (
+            <div className="rounded-lg border border-primary/30 bg-primary/5 p-4 space-y-3">
+              <p className="text-sm"><strong className="text-foreground">{limitReached}</strong></p>
+              <p className="text-xs text-muted-foreground">
+                A full review covers all three answers, the issues across the statement as a whole and a
+                ranked revision list — plus two free re-checks of this statement within 14 days.
+              </p>
+              <Button size="sm" onClick={() => setPurchaseOpen(true)}>Unlock a full review — $9.99</Button>
+            </div>
+          )}
 
           {blockers.length > 0 && (total > 0 || course.length > 0) && (
             <ul className="text-xs text-amber-700 space-y-1">

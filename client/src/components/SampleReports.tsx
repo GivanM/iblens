@@ -4,12 +4,14 @@ import { FileText, GraduationCap, ArrowRight } from "lucide-react";
 
 /* ── Essay Report Preview ── */
 function EssayReportPreview() {
+  // May 2027 criteria: the session almost every current DP2 student sits, and the default in
+  // the analyzer. Showing the retired 34-mark rubric here advertised a report nobody gets.
   const criteria = [
-    { name: "A: Focus & Method", score: 5, max: 6, color: "text-emerald-600", bg: "bg-emerald-50", bar: "bg-emerald-500", pct: 83 },
+    { name: "A: Framework for the essay", score: 4, max: 6, color: "text-amber-600", bg: "bg-amber-50", bar: "bg-amber-500", pct: 67 },
     { name: "B: Knowledge & Understanding", score: 5, max: 6, color: "text-emerald-600", bg: "bg-emerald-50", bar: "bg-emerald-500", pct: 83 },
-    { name: "C: Critical Thinking", score: 8, max: 12, color: "text-amber-600", bg: "bg-amber-50", bar: "bg-amber-500", pct: 67, note: "main weakness" },
-    { name: "D: Presentation", score: 4, max: 4, color: "text-emerald-600", bg: "bg-emerald-50", bar: "bg-emerald-500", pct: 100 },
-    { name: "E: Engagement", score: 2, max: 6, color: "text-orange-600", bg: "bg-orange-50", bar: "bg-orange-500", pct: 33 },
+    { name: "C: Analysis & Line of Argument", score: 4, max: 6, color: "text-amber-600", bg: "bg-amber-50", bar: "bg-amber-500", pct: 67 },
+    { name: "D: Discussion & Evaluation", score: 4, max: 8, color: "text-orange-600", bg: "bg-orange-50", bar: "bg-orange-500", pct: 50, note: "main weakness" },
+    { name: "E: Reflection", score: 3, max: 4, color: "text-emerald-600", bg: "bg-emerald-50", bar: "bg-emerald-500", pct: 75 },
   ];
 
   return (
@@ -27,7 +29,7 @@ function EssayReportPreview() {
           </div>
           <span className="text-white font-semibold text-xs tracking-wide">IBLens</span>
         </div>
-        <span className="text-gray-400 text-[10px] font-medium">Extended Essay Grading Report</span>
+        <span className="text-gray-400 text-[10px] font-medium">Extended Essay · May 2027 criteria</span>
       </div>
 
       {/* Body */}
@@ -40,7 +42,7 @@ function EssayReportPreview() {
         {/* Score summary */}
         <div className="flex items-center gap-2.5 mb-4 flex-wrap">
           <div className="bg-[#6c63ff] text-white text-lg font-bold px-3 py-1 rounded-lg">
-            24/34
+            20/30
           </div>
           <span className="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Grade B</span>
         </div>

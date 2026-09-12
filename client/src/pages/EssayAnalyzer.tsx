@@ -501,9 +501,9 @@ export default function EssayAnalyzer() {
           </div>
 
           <div className="space-y-2">
-            <Label>Research question / title</Label>
+            <Label>{essayType === "TOK Exhibition" ? "Your IA prompt (the one all three objects respond to)" : "Research question / title"}</Label>
             <Input
-              placeholder="e.g. To what extent did Apple's marketing strategy contribute to its growth in 2015-2020?"
+              placeholder={essayType === "TOK Exhibition" ? "e.g. What counts as knowledge?" : "e.g. To what extent did your research question go?"}
               value={researchQuestion}
               onChange={(e) => setResearchQuestion(e.target.value)}
             />
@@ -515,9 +515,9 @@ export default function EssayAnalyzer() {
                 <strong>Re-checking your paid draft.</strong> Paste the revised version below — this re-check is free and does not use a credit.
               </div>
             )}
-            <Label>Paste your essay or IA text</Label>
+            <Label>{essayType === "TOK Exhibition" ? "Paste your commentary on all three objects" : "Paste your essay or IA text"}</Label>
             <Textarea
-              placeholder="Paste the full text of your work here. Minimum 200 words for a meaningful analysis."
+              placeholder={essayType === "TOK Exhibition" ? "Paste your commentary for all three objects, including how each links to the prompt." : "Paste the full text of your work here. Minimum 200 words for a meaningful analysis."}
               rows={10}
               value={essayText}
               onChange={(e) => setEssayText(e.target.value)}
