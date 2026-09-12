@@ -33,7 +33,7 @@ export default function IBExtendedEssayWordCount() {
 
       <h2>What Does NOT Count Toward the 4000-Word Limit</h2>
       <p>
-        The following are explicitly excluded from the word count:
+        The following are excluded, along with equations, formulae, calculations, tables and diagrams, from the word count:
       </p>
       <ul>
         <li><strong>The title page</strong></li>

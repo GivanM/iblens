@@ -2,6 +2,7 @@ export const staticContentResources: Record<string, string> = {
   "/resources/ib-history-extended-essay": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB History Extended Essay</nav>
       <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB History Extended Essay</h1>
+      <p style="line-height:1.7;margin:0 0 14px"><strong>If you sit exams in May 2027 or later</strong>, your Extended Essay is marked out of 30 under rewritten criteria, not out of 34. <a href="/resources/ib-extended-essay-new-criteria-2027">What changed</a>.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">The IB History Extended Essay is a 4,000-word investigation of a historical question of your choice, marked out of 34 against the five Extended Essay criteria. It rewards a focused argument built on evaluated evidence and an awareness of historiography, how historians disagree, rather than a narrative retelling of events. This guide explains how the criteria play out in History, which research questions succeed, what examiners expect from primary and secondary sources, and the mistakes that most often keep History essays out of the top band.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">A strong History research question is argumentative (“to what extent”, “how significant”), bounded in period and place, genuinely debatable among historians, and researchable with sources you can access. Very recent events are risky because little historiography exists yet. Narrative questions, “what caused the Second World War?”, are too broad to argue in 4,000 words, and value-judgement questions such as “was Napoleon a good leader?” give the examiner no criteria to see tested.</p>
       <h2 style="font-size:20px;font-weight:600;margin:24px 0 12px">Examples of Strong Research Questions</h2>
@@ -14,6 +15,7 @@ export const staticContentResources: Record<string, string> = {
   "/resources/ib-english-extended-essay": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB English Extended Essay</nav>
       <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB English Extended Essay</h1>
+      <p style="line-height:1.7;margin:0 0 14px"><strong>If you sit exams in May 2027 or later</strong>, your Extended Essay is marked out of 30 under rewritten criteria, not out of 34. <a href="/resources/ib-extended-essay-new-criteria-2027">What changed</a>.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">The IB English Extended Essay is a 4,000-word piece of literary criticism: an argument about how one or two texts work, marked out of 34 against the five Extended Essay criteria. The most common way to lose marks in this subject is to write something else instead, a plot summary with quotations, an author biography, or a general essay about a theme. Most students analyse literature originally written in English, and success comes from a technique-anchored research question and sustained close reading of the primary text.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">A strong English research question names a formal feature, narration, structure, imagery, stage directions, and makes an arguable claim answerable from the text itself. One text analysed deeply, or two in genuine dialogue, beats a survey of four every time. Descriptive questions (“what is the theme of love in Romeo and Juliet?”) produce catalogues of scenes, and relevance questions (“why is 1984 still relevant today?”) invite social commentary that cannot be evidenced from the text.</p>
       <h2 style="font-size:20px;font-weight:600;margin:24px 0 12px">Examples of Strong Research Questions</h2>
@@ -26,6 +28,7 @@ export const staticContentResources: Record<string, string> = {
   "/resources/ib-economics-extended-essay": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Economics Extended Essay</nav>
       <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Economics Extended Essay</h1>
+      <p style="line-height:1.7;margin:0 0 14px"><strong>If you sit exams in May 2027 or later</strong>, your Extended Essay is marked out of 30 under rewritten criteria, not out of 34. <a href="/resources/ib-extended-essay-new-criteria-2027">What changed</a>.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">The IB Economics Extended Essay is a 4,000-word investigation that applies economic theory to a real market, policy or economic question, marked out of 34 against the five Extended Essay criteria. It is not an essay about economics, it is economics done to something specific: a defined market, a defined policy, a defined period, with real data tested against the predictions of a model. Essays that never touch data cannot demonstrate application, and application is where the analysis marks live.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">A strong Economics research question names the product, the place and the period; carries a clear theoretical frame (elasticity, market structure, externalities, intervention); has evidence you can realistically obtain; and uses “to what extent” phrasing that forces a judgement. Normative questions (“is capitalism better than socialism?”) and textbook-chapter questions (“what are the causes of inflation?”) leave nothing to investigate and nothing to evaluate.</p>
       <h2 style="font-size:20px;font-weight:600;margin:24px 0 12px">Examples of Strong Research Questions</h2>
@@ -38,6 +41,7 @@ export const staticContentResources: Record<string, string> = {
   "/resources/ib-psychology-extended-essay": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Psychology Extended Essay</nav>
       <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Psychology Extended Essay</h1>
+      <p style="line-height:1.7;margin:0 0 14px"><strong>If you sit exams in May 2027 or later</strong>, your Extended Essay is marked out of 30 under rewritten criteria, not out of 34. <a href="/resources/ib-extended-essay-new-criteria-2027">What changed</a>.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">The IB Psychology Extended Essay is a 4,000-word argument built on published psychological research, marked out of 34 against the five Extended Essay criteria. It is a literature-based investigation: no data collection of your own, and no pop psychology. Your originality lives in the question you pose and in how critically you select, compare and evaluate real studies to answer it, weighing methods, samples and conflicting findings until a defensible answer emerges.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">A strong Psychology research question is anchored in a real, contested literature; defines its constructs and population precisely; and uses “to what extent does the evidence support…” phrasing that makes weighing studies the whole task. Vague questions (“why do people dream?”, “does music affect the brain?”) leave nothing concrete to evaluate, so no focused argument is possible.</p>
       <h2 style="font-size:20px;font-weight:600;margin:24px 0 12px">Examples of Strong Research Questions</h2>
@@ -51,6 +55,7 @@ export const staticContentResources: Record<string, string> = {
   "/resources/ib-chemistry-extended-essay": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Chemistry Extended Essay</nav>
       <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Chemistry Extended Essay</h1>
+      <p style="line-height:1.7;margin:0 0 14px"><strong>If you sit exams in May 2027 or later</strong>, your Extended Essay is marked out of 30 under rewritten criteria, not out of 34. <a href="/resources/ib-extended-essay-new-criteria-2027">What changed</a>.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">The IB Chemistry Extended Essay (EE) is a 4,000-word independent research paper that requires original investigation of a chemistry topic. Done well, it earns up to three bonus points toward your Diploma score and demonstrates the kind of analytical thinking that university chemistry programs value. This guide covers how to choose a research question that works, what each assessment criterion requires, and which topic areas consistently produce high-scoring Chemistry EEs.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">Chemistry lends itself naturally to the EE because it produces measurable, quantitative data and connects directly to existing peer-reviewed literature. Unlike subjects where the research question is more open-ended (such as history or literature), a Chemistry EE research question has a clear experimental design and a specific dependent variable to measure. This makes Criterion A (Focus and Method) and Criterion C (Critical Thinking) more straightforward to address, if you design your experiment rigorously and compare your results to published values.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">A strong Chemistry EE research question specifies the system being studied, the variable being manipulated, the variable being measured, and the conditions under which the experiment is conducted. It should be narrow enough to be answered in 4,000 words, but significant enough to justify investigation.</p>
@@ -60,7 +65,7 @@ export const staticContentResources: Record<string, string> = {
   "/resources/how-iblens-works": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › How IBLens Works</nav>
       <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">How IBLens Works</h1>
-      <p style="color:#374151;line-height:1.75;margin-bottom:16px">IBLens is an AI-powered essay analysis tool designed specifically for IB Diploma Programme students. It provides criterion-by-criterion feedback on Internal Assessments, Extended Essays, and Theory of Knowledge essays, the same type of detailed assessment that an experienced IB examiner would provide, delivered in about 90 seconds.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">IBLens is an AI-powered essay analysis tool designed specifically for IB Diploma Programme students. It provides criterion-level feedback on Internal Assessments and Extended Essays, and a holistic read for TOK, which has no sub-criteria, the same type of detailed assessment that an experienced IB examiner would provide, delivered in about 90 seconds.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">This page explains exactly how IBLens works: what happens when you paste an essay, how the AI generates its feedback, what the output looks like, what the tool can and cannot do, and how it compares to alternatives like private tutors or peer review. We believe in transparency about our technology so you can make an informed decision about whether it is useful for your preparation.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">When you paste an essay to IBLens, the system performs a comprehensive analysis that includes a predicted band, criterion-level comments, and prioritised next steps.</p>
       <p style="margin-top:20px"><a href="/essay" style="color:#7B1D2E;font-weight:600">Grade your IB essay free →</a></p>
@@ -78,6 +83,7 @@ export const staticContentResources: Record<string, string> = {
   "/refund-policy": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › Refund Policy</nav>
       <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">Refund Policy</h1>
+      <p style="line-height:1.7;margin:0 0 14px"><strong>If you sit exams in May 2027 or later</strong>, your Extended Essay is marked out of 30 under rewritten criteria, not out of 34. <a href="/resources/ib-extended-essay-new-criteria-2027">What changed</a>.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">IBLens offers a 7-day no-questions-asked money-back guarantee on all purchases. Email us within 7 days for a full refund to your original payment method.</p>
       <p style="margin-top:20px"><a href="/essay" style="color:#7B1D2E;font-weight:600">Grade your IB essay free →</a></p>
     </main>`,
@@ -140,7 +146,7 @@ export const staticContentResources: Record<string, string> = {
       <h1>IB TOK Essay Format, Everything You Need to Know</h1>
 
       <p>
-        The IB Theory of Knowledge essay has strict formatting rules. Getting the format wrong, even with excellent ideas, can cost you marks or trigger an automatic penalty. This guide covers every official formatting requirement: word count rules, structural expectations, citation format, what does and does not count toward the limit, and what examiners expect when they open your essay.
+        The IB Theory of Knowledge essay has strict formatting rules. Formatting itself earns no marks, but a file an examiner cannot read is a problem you do not need. This guide covers every official formatting requirement: word count rules, structural expectations, citation format, what does and does not count toward the limit, and what examiners expect when they open your essay.
       </p>
 
       <h2>Word Count: The 1,600-Word Rule</h2>
@@ -553,7 +559,7 @@ export const staticContentResources: Record<string, string> = {
   </main>`,
   "/resources/ib-computer-science-ia-2027": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Computer Science IA Changes 2027, What Changed and How to Check Your Project</h1>
-  <p style="line-height:1.7;margin:0 0 14px">From the May 2027 session the IB Computer Science IA is a computational solution marked out of 30, down from 34, with a new criterion structure. Documentation is capped at 2,000 words (excluding code and diagrams) plus a 3-minute video, and the former client requirement is removed.</p>
+  <p style="line-height:1.7;margin:0 0 14px">From the May 2027 session the IB Computer Science IA is a computational solution marked out of 30, down from 34, with a new criterion structure. Documentation is capped at 2,000 words (excluding code and diagrams) plus a 5-minute video, and the former client requirement is removed.</p>
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">The new criteria (marked out of 30)</h2>
   <table style="border-collapse:collapse;width:100%;margin:0 0 14px"><tr><th style="border:1px solid #ddd;padding:8px;text-align:left">Criterion</th><th style="border:1px solid #ddd;padding:8px">Marks</th></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">A: Problem specification, the problem and success criteria</td><td style="border:1px solid #ddd;padding:8px">4</td></tr>
@@ -565,10 +571,10 @@ export const staticContentResources: Record<string, string> = {
   <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li>Total 34 → 30; Development stays at 12 marks, now 40% of the grade.</li>
   <li>New first criterion: Problem specification (4). Success criteria set here are what Evaluation tests against.</li>
   <li>Functionality and extensibility of product (4) no longer exists as a separate criterion; Planning drops 6→4, Evaluation 6→4.</li>
-  <li>Client requirement removed; documentation capped at 2,000 words plus a 3-minute video.</li></ul>
+  <li>Client requirement removed; documentation capped at 2,000 words plus a 5-minute video.</li></ul>
   <p style="line-height:1.7;margin:0 0 14px">Sessions through November 2026 keep the current rubric (Planning 6, Solution overview 6, Development 12, Functionality and extensibility 4, Evaluation 6 = 34). IBLens grades both: set Exam session to May 2027 in the analyzer for the new criteria. <a href="/essay/computer-science-ia">Check your CS IA</a> · <a href="/resources/ib-psychology-ia-2027">Psychology IA 2027</a></p>
   
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the IB Computer Science IA still marked out of 34?", "acceptedAnswer": {"@type": "Answer", "text": "Only through the November 2026 session. From May 2027 the IA is marked out of 30: Problem specification 4, Planning 4, System overview 6, Development 12, Evaluation 4."}}, {"@type": "Question", "name": "Do I still need a client for my CS IA?", "acceptedAnswer": {"@type": "Answer", "text": "Not under the May 2027 syllabus, the client requirement is removed. Documentation is capped at 2,000 words plus a 3-minute video."}}, {"@type": "Question", "name": "Which criterion is worth the most in the 2027 CS IA?", "acceptedAnswer": {"@type": "Answer", "text": "Development, at 12 of 30 marks, 40% of the total."}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the IB Computer Science IA still marked out of 34?", "acceptedAnswer": {"@type": "Answer", "text": "Only through the November 2026 session. From May 2027 the IA is marked out of 30: Problem specification 4, Planning 4, System overview 6, Development 12, Evaluation 4."}}, {"@type": "Question", "name": "Do I still need a client for my CS IA?", "acceptedAnswer": {"@type": "Answer", "text": "Not under the May 2027 syllabus, the client requirement is removed. Documentation is capped at 2,000 words plus a 5-minute video."}}, {"@type": "Question", "name": "Which criterion is worth the most in the 2027 CS IA?", "acceptedAnswer": {"@type": "Answer", "text": "Development, at 12 of 30 marks, 40% of the total."}}]}</script>
   </main>`,
   "/resources/ib-extended-essay-feedback": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">How to Get Feedback on Your IB Extended Essay Before You Submit</h1>
@@ -637,7 +643,7 @@ export const staticContentResources: Record<string, string> = {
   <p style="line-height:1.7;margin:0 0 14px">IBLens gives IB students an honest, criterion-level read on their coursework before submission: coursework in 14 subjects, the Extended Essay, the TOK essay and exhibition. It started as a tool built inside one IB family, for checking our own student's drafts against the actual assessment criteria, and grew into a public product. IBLens is an independent project, not affiliated with or endorsed by the International Baccalaureate Organization.</p>
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">How the grader works</h2>
   <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li>The grading engine carries the official assessment criteria for each component, criterion names, their mark allocations and what each one assesses, including both EE rubrics (current 34-mark and new 30-mark May 2027) and the 2027 Psychology and Computer Science IA formats.</li>
-  <li>Analysis runs on a large language model (Anthropic's Claude) instructed with the relevant criteria; every submission gets a criterion-by-criterion assessment with a predicted band range.</li>
+  <li>Analysis runs on a large language model (Anthropic's Claude) instructed with the relevant criteria; every submission is read against the published instrument for that task with a predicted band range.</li>
   <li>Scores are AI estimates, not guarantees, real marking involves examiner judgement and moderation. The tool's job is to show which criterion costs you most while there is time to act.</li></ul>
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">What IBLens will not do</h2>
   <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li>Write, rewrite or edit your essay, feedback identifies weaknesses; the writing stays yours (<a href="/resources/academic-integrity">academic integrity</a>).</li>
@@ -1271,7 +1277,7 @@ export const staticContentResources: Record<string, string> = {
       </ul>
 
       <p>
-        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <a href="/essay/tok-essay">IBLens can provide criterion-based feedback on your TOK essay</a>, scored against the official IB TOK rubric in about 90 seconds. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <a href="/resources/ib-grade-boundaries">IB Grade Boundaries</a> guide. For a broader look at how IB criteria work across essay types, read our <a href="/resources/ib-essay-criteria-explained">IB Essay Criteria Explained</a> article.
+        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <a href="/essay/tok-essay">IBLens reads your TOK essay against its single holistic scale</a>, scored against the official IB TOK rubric in about 90 seconds. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <a href="/resources/ib-grade-boundaries">IB Grade Boundaries</a> guide. For a broader look at how IB criteria work across essay types, read our <a href="/resources/ib-essay-criteria-explained">IB Essay Criteria Explained</a> article.
       </p>
     
   
@@ -1503,7 +1509,7 @@ export const staticContentResources: Record<string, string> = {
 
       <h2>What Does NOT Count Toward the 4000-Word Limit</h2>
       <p>
-        The following are explicitly excluded from the word count:
+        The following are excluded, along with equations, formulae, calculations, tables and diagrams, from the word count:
       </p>
       <ul>
         <li><strong>The title page</strong></li>
@@ -1779,7 +1785,7 @@ export const staticContentResources: Record<string, string> = {
         <li><strong>Axes not labelled:</strong> Every diagram must have clearly labelled axes (Price/Quantity, or Price Level/Real GDP, etc.).</li>
         <li><strong>Shifts not labelled:</strong> If a curve shifts, label both the original curve (S₁, D₁) and the new curve (S₂, D₂) and show the direction of shift with an arrow.</li>
         <li><strong>Equilibrium points not marked:</strong> Mark original equilibrium (P₁, Q₁) and new equilibrium (P₂, Q₂) with dotted lines to the axes.</li>
-        <li><strong>Diagram not explained in text:</strong> Every feature on your diagram should be mentioned in your commentary. A diagram that is drawn but not referred to scores 0 on Criterion A.</li>
+        <li><strong>Diagram not explained in text:</strong> Every feature on your diagram should be mentioned in your commentary. A diagram that is drawn but never explained sits at the bottom band of Criterion A, not at zero.</li>
         <li><strong>Wrong diagram for the scenario:</strong> Using a supply-and-demand diagram for a macroeconomics article about fiscal policy (which needs AD/AS) loses all 3 marks.</li>
       </ul>
 

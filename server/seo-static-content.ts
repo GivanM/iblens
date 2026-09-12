@@ -45,7 +45,7 @@ export const staticContent: Record<string, string> = {
     <li><strong>Deadline:</strong> ~September 15 via your IB coordinator, schools often set earlier cutoffs.</li>
   </ul>
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">You are deciding blind, unless you re-grade first</h2>
-  <p style="color:#374151;line-height:1.75;margin-bottom:16px">The standard advice, remark only if you are 1–2 marks from a boundary, is useless when IB does not show you component marks. Your Extended Essay and TOK essay are externally marked, exactly where remarks apply and where examiner judgement varies most. Paste the essay you actually submitted into IBLens: strict, criterion-by-criterion grading against the official rubric. If it lands near a boundary, a remark has real upside. If it sits mid-band, save your \$110. First analysis free, then \$9.99.</p>
+  <p style="color:#374151;line-height:1.75;margin-bottom:16px">The standard advice, remark only if you are 1–2 marks from a boundary, is useless when IB does not show you component marks. Your Extended Essay and TOK essay are externally marked, exactly where remarks apply and where examiner judgement varies most. Paste the essay you actually submitted into IBLens: strict grading against the published instrument against the official rubric. If it lands near a boundary, a remark has real upside. If it sits mid-band, save your \$110. First analysis free, then \$9.99.</p>
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Key dates after results day</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
     <li><strong>July 6:</strong> results at 12:00 GMT on candidates.ibo.org</li>
@@ -258,7 +258,7 @@ export const staticContent: Record<string, string> = {
   "/essay/extended-essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › Extended Essay</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Extended Essay Grader, Free AI Feedback on Your EE</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Extended Essay against the official IB EE rubric, all five criteria, and gives you criterion-by-criterion feedback in about 90 seconds. Paste up to 4,000 words (or your full EE) and get a predicted score with specific improvement suggestions. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Extended Essay against the official IB EE rubric, all five criteria, and reads it against the published instrument in about 90 seconds. Paste up to 4,000 words (or your full EE) and get a predicted score with specific improvement suggestions. A free preview is included; the full report is $9.99.</p>
   <p style="background:#fef3c7;border:1px solid #f59e0b;border-radius:8px;padding:12px 16px;color:#92400e;font-size:14px;line-height:1.6"><strong>Which criteria apply to you?</strong> Sessions through November 2026 use the 34-mark EE criteria below. The <strong>May 2027 cohort</strong> (students who began the DP in 2025, including current drafts) is assessed on the new 30-mark criteria (Framework 6, Knowledge 6, Analysis and line of argument 6, Discussion and evaluation 8, Reflection 4). Select your session in the analyzer.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Extended Essay rubric: five criteria (34 marks)</h2>
@@ -307,7 +307,7 @@ export const staticContent: Record<string, string> = {
   "/essay/tok-essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › TOK Essay</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB TOK Essay Grader, Free AI Feedback on Theory of Knowledge</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Theory of Knowledge essay against the official IB TOK rubric and gives you criterion-by-criterion feedback in about 90 seconds. Find out if your knowledge claims are developed enough, whether your counter-claims are genuinely addressed, and whether your essay actually answers the prescribed title. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Theory of Knowledge essay against the official IB TOK rubric and reads it against the published instrument in about 90 seconds. Find out if your knowledge claims are developed enough, whether your counter-claims are genuinely addressed, and whether your essay actually answers the prescribed title. A free preview is included; the full report is $9.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB TOK Essay rubric: how it is marked (holistic, out of 10)</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">Since the 2022 syllabus the TOK essay is marked holistically against a single global-impression instrument, scored out of 10. There are no sub-criteria. The examiner works from one guiding question, "Does the student provide a clear, coherent and critical exploration of the essay title?", and places your 1,600-word essay in one of five bands:</p>
@@ -881,7 +881,7 @@ export const staticContent: Record<string, string> = {
       <h1>IB TOK Essay Format, Everything You Need to Know</h1>
 
       <p>
-        The IB Theory of Knowledge essay has strict formatting rules. Getting the format wrong, even with excellent ideas, can cost you marks or trigger an automatic penalty. This guide covers every official formatting requirement: word count rules, structural expectations, citation format, what does and does not count toward the limit, and what examiners expect when they open your essay.
+        The IB Theory of Knowledge essay has strict formatting rules. Formatting itself earns no marks, but a file an examiner cannot read is a problem you do not need. This guide covers every official formatting requirement: word count rules, structural expectations, citation format, what does and does not count toward the limit, and what examiners expect when they open your essay.
       </p>
 
       <h2>Word Count: The 1,600-Word Rule</h2>
@@ -1832,7 +1832,7 @@ export const staticContent: Record<string, string> = {
       </ul>
 
       <p>
-        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <a href="/essay/tok-essay">IBLens can provide criterion-based feedback on your TOK essay</a>, scored against the official IB TOK rubric in about 90 seconds. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <a href="/resources/ib-grade-boundaries">IB Grade Boundaries</a> guide. For a broader look at how IB criteria work across essay types, read our <a href="/resources/ib-essay-criteria-explained">IB Essay Criteria Explained</a> article.
+        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <a href="/essay/tok-essay">IBLens reads your TOK essay against its single holistic scale</a>, scored against the official IB TOK rubric in about 90 seconds. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <a href="/resources/ib-grade-boundaries">IB Grade Boundaries</a> guide. For a broader look at how IB criteria work across essay types, read our <a href="/resources/ib-essay-criteria-explained">IB Essay Criteria Explained</a> article.
       </p>
     
   
@@ -2063,7 +2063,7 @@ export const staticContent: Record<string, string> = {
 
       <h2>What Does NOT Count Toward the 4000-Word Limit</h2>
       <p>
-        The following are explicitly excluded from the word count:
+        The following are excluded, along with equations, formulae, calculations, tables and diagrams, from the word count:
       </p>
       <ul>
         <li><strong>The title page</strong></li>
@@ -2339,7 +2339,7 @@ export const staticContent: Record<string, string> = {
         <li><strong>Axes not labelled:</strong> Every diagram must have clearly labelled axes (Price/Quantity, or Price Level/Real GDP, etc.).</li>
         <li><strong>Shifts not labelled:</strong> If a curve shifts, label both the original curve (S₁, D₁) and the new curve (S₂, D₂) and show the direction of shift with an arrow.</li>
         <li><strong>Equilibrium points not marked:</strong> Mark original equilibrium (P₁, Q₁) and new equilibrium (P₂, Q₂) with dotted lines to the axes.</li>
-        <li><strong>Diagram not explained in text:</strong> Every feature on your diagram should be mentioned in your commentary. A diagram that is drawn but not referred to scores 0 on Criterion A.</li>
+        <li><strong>Diagram not explained in text:</strong> Every feature on your diagram should be mentioned in your commentary. A diagram that is drawn but never explained sits at the bottom band of Criterion A, not at zero.</li>
         <li><strong>Wrong diagram for the scenario:</strong> Using a supply-and-demand diagram for a macroeconomics article about fiscal policy (which needs AD/AS) loses all 3 marks.</li>
       </ul>
 
@@ -3066,7 +3066,7 @@ export const staticContent: Record<string, string> = {
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Score Calculator</nav>
   <h1>IB Score Calculator & Grade Boundaries: The Complete Guide</h1>
       <h2>How IB Scoring Works: The 45-Point System Explained</h2>
-      <p>Every IB diploma candidate takes six subjects, three at Higher Level (HL) and three at Standard Level (SL). Each subject is graded on a scale of 1 to 7, giving a raw maximum of 42 subject points. The remaining 3 points come from the core: Theory of Knowledge (TOK) and the Extended Essay (EE) together award between 0 and 3 bonus points.</p>
+      <p>Every IB diploma candidate takes six subjects, three or four at Higher Level and the rest at Standard Level. Each subject is graded on a scale of 1 to 7, giving a raw maximum of 42 subject points. The remaining 3 points come from the core: Theory of Knowledge (TOK) and the Extended Essay (EE) together award between 0 and 3 bonus points.</p>
       <p><strong>Maximum total: 6 subjects × 7 points = 42 + 3 bonus points = 45 points.</strong></p>
 
       <h2>How to Calculate Your Predicted IB Score Step by Step</h2>
@@ -3081,24 +3081,8 @@ export const staticContent: Record<string, string> = {
       <h2>IB Bonus Points Matrix: TOK and Extended Essay</h2>
       <p>Your bonus depends on the letter grade you receive in both TOK and the EE (A highest to E lowest). An E in either TOK or EE is an automatic failing condition regardless of your total points.</p>
 
-        <table>
-          <caption>IB Bonus Points: TOK × EE Grade Combinations</caption>
-          <thead>
-            <tr>
-              <th>EE \ TOK</th>
-              <th>A</th>
-              <th>B</th>
-              <th>C</th>
-              <th>D</th>
-              <th>E</th>
-            </tr>
-          </thead>
-          <tbody>
-            <table style="border-collapse:collapse;width:100%"><tr><th>EE \\ TOK</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr><tr><td>A</td><td>3</td><td>3</td><td>2</td><td>2</td><td>Fail</td></tr><tr><td>B</td><td>3</td><td>2</td><td>2</td><td>1</td><td>Fail</td></tr><tr><td>C</td><td>2</td><td>2</td><td>1</td><td>0</td><td>Fail</td></tr><tr><td>D</td><td>2</td><td>1</td><td>0</td><td>0</td><td>Fail</td></tr><tr><td>E</td><td>Fail</td><td>Fail</td><td>Fail</td><td>Fail</td><td>Fail</td></tr></table>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <p>IB Bonus Points: TOK and EE grade combinations</p>
+      <table style="border-collapse:collapse;width:100%"><tr><th>EE \\ TOK</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr><tr><td>A</td><td>3</td><td>3</td><td>2</td><td>2</td><td>Fail</td></tr><tr><td>B</td><td>3</td><td>2</td><td>2</td><td>1</td><td>Fail</td></tr><tr><td>C</td><td>2</td><td>2</td><td>1</td><td>0</td><td>Fail</td></tr><tr><td>D</td><td>2</td><td>1</td><td>0</td><td>0</td><td>Fail</td></tr><tr><td>E</td><td>Fail</td><td>Fail</td><td>Fail</td><td>Fail</td><td>Fail</td></tr></table>
 
 
       <h2>IB Grade Boundaries: What They Are and Why They Change</h2>
@@ -3635,7 +3619,7 @@ export const staticContent: Record<string, string> = {
   <p>
         The IB Psychology Internal Assessment is a replication study: you choose an
         existing published psychological study, adapt it for an ethical school setting,
-        collect data from a minimum of ten participants per condition, and write a
+        collect enough data for the test you plan to run, which the guide leaves to your design, and write a
         formal report in the style of a scientific paper. It is worth 25% of your
         final grade at SL and 20% at HL. Unlike other IB IAs, Psychology explicitly
         requires you to replicate an existing study rather than design a completely
@@ -3666,7 +3650,7 @@ export const staticContent: Record<string, string> = {
         <li><strong>Simple, operationalisable IV and DV:</strong> The independent variable must be something you can manipulate in a school setting (two word lists, two images, two conditions) and the dependent variable must be measurable numerically (number of words recalled, response time in seconds, rating on a scale).</li>
         <li><strong>Ethical with secondary school participants:</strong> Studies involving deception are acceptable if debriefing is provided, but anything involving stress induction, deception about a participant's health or performance, or sensitive topics (eating, depression, self-esteem) requires especially careful ethical planning.</li>
         <li><strong>Accessible to replicate with ≥10 participants per condition:</strong> A study requiring clinical populations, specific age groups you cannot access, or expensive equipment is unsuitable.</li>
-        <li><strong>An expected result that is testable with a Mann-Whitney U test or Wilcoxon signed-rank test:</strong> These are the two inferential tests specified in the IB Psychology course. Your study design must produce data suited to one of them.</li>
+        <li><strong>An expected result that is testable with a Mann-Whitney U test or Wilcoxon signed-rank test:</strong> Both are common choices, and the guide does not name a required test: it asks for an inferential test suited to your design. Your study design must produce data suited to one of them.</li>
       </ol>
 
       <h2>IB Psychology IA Study Examples That Work Well</h2>
@@ -3709,7 +3693,7 @@ export const staticContent: Record<string, string> = {
 
       <h2>The Statistical Test: Mann-Whitney U vs Wilcoxon</h2>
       <p>
-        IB Psychology requires one of two non-parametric tests. Choosing correctly
+        The guide asks for an inferential test appropriate to your data, without naming one. Choosing correctly
         is assessed under Analysis:
       </p>
       <ul>
@@ -3717,7 +3701,7 @@ export const staticContent: Record<string, string> = {
         <li><strong>Wilcoxon signed-rank test:</strong> Use when the same participants take part in both conditions (within-subjects / repeated measures design). Each participant's two scores are paired.</li>
       </ul>
       <p>
-        Calculate the test statistic by hand (the IB requires this) and compare to
+        Show the calculation. Output from statistics software is allowed in the appendices and compare to
         the critical value table at p ≤ 0.05. State whether you reject or retain the
         null hypothesis. Do not interpret a non-significant result as "the study
         failed", a non-significant result still has things to say about the original
@@ -4149,10 +4133,10 @@ export const staticContent: Record<string, string> = {
       <p>Add up your criterion marks to get a raw total. Then use the most recent grade boundary table for your subject. Remember that grade boundaries shift each session, using boundaries from two or three years ago can mislead you by one grade.</p>
 
       <h3>Step 5: Factor in Moderation Uncertainty</h3>
-      <p>If your raw mark sits near a grade boundary, you are in the highest-risk zone. A moderation adjustment of ±2 marks is common; adjustments of ±4 or more are possible. Students near boundaries should treat their estimated grade as a range: the grade they calculate, plus or minus one.</p>
+      <p>If your raw mark sits near a grade boundary, you are in the highest-risk zone. Moderation can move a school's marks in either direction, and the IB does not publish how far. Students near boundaries should treat their estimated grade as a range: the grade they calculate, plus or minus one.</p>
 
       <h2>Why Predicted IA Grades Change After Moderation</h2>
-      <p>Moderation adjusts some schools' marks each session, and the IB does not publish how many. The variance is higher in subjects with more subjective criteria, History and Psychology IAs tend to see wider adjustment ranges than Chemistry or Maths IAs. Two factors drive large adjustments: teacher inexperience with IB marking standards, and grade inflation pressure from knowing students personally.</p>
+      <p>Moderation adjusts some schools' marks each session, and the IB does not publish how many. The variance is higher in subjects with more subjective criteria, Moderation applies to every subject, and the IB does not publish which move most. Two factors drive large adjustments: teacher inexperience with IB marking standards, and grade inflation pressure from knowing students personally.</p>
 
       <h2>Get Your IA Analyzed by AI</h2>
       <p>Self-assessment has a fundamental limitation: you can't read your own work the way a stranger would. You know what you meant to say, which makes it hard to see where you failed to say it clearly enough to earn a mark.</p>
@@ -4679,7 +4663,7 @@ export const staticContent: Record<string, string> = {
 
       <h3>Sciences (Physics, Chemistry, Biology)</h3>
       <p>
-        Science subjects tend to have relatively high grade 7 boundaries (often 75–80%) because the papers include structured questions with clear right/wrong answers. However, the IA component (20%) provides an opportunity to secure marks through careful preparation. Students who score highly on the IA effectively lower the exam performance needed for a 7.
+        Grade boundaries are set after each session and the IB publishes them to coordinators, so no fixed percentage holds across sessions because the papers include structured questions with clear right/wrong answers. However, the IA component (20%) provides an opportunity to secure marks through careful preparation. Students who score highly on the IA effectively lower the exam performance needed for a 7.
       </p>
 
       <h3>Mathematics</h3>
@@ -4689,7 +4673,7 @@ export const staticContent: Record<string, string> = {
 
       <h3>Humanities (History, Economics, Psychology)</h3>
       <p>
-        Humanities subjects typically have grade 7 boundaries in the 70–76% range. The challenge in these subjects is not the boundary itself but the difficulty of achieving high marks on essay-based papers where examiners apply holistic marking criteria. A "perfect" essay is rare in humanities marking.
+        The same is true across the humanities: the boundary moves with the paper. The challenge in these subjects is not the boundary itself but the difficulty of achieving high marks on essay-based papers where examiners apply holistic marking criteria. A "perfect" essay is rare in humanities marking.
       </p>
 
       <h3>Languages (Group 1 and Group 2)</h3>
@@ -4765,7 +4749,7 @@ export const staticContent: Record<string, string> = {
       <ul>
         <li>An E grade in either TOK or EE results in automatic Diploma failure regardless of your total points</li>
         <li>To get the maximum 3 bonus points, you need at least an A in one component and a B in the other</li>
-        <li>The most common outcomes, B/B and B/C, both give 2 bonus points; a single point requires a D in one component</li>
+        <li>The most common outcomes, B/B and B/C, both give 2 bonus points; a single point comes from EE B with TOK D, EE C with TOK C, or EE D with TOK B</li>
         <li>These bonus points can be the difference between a 42 and a 45, or between meeting and missing a university offer</li>
       </ul>
 

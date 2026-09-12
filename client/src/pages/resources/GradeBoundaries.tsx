@@ -128,7 +128,7 @@ export default function GradeBoundaries() {
 
       <h3>Sciences (Physics, Chemistry, Biology)</h3>
       <p>
-        Science subjects tend to have relatively high grade 7 boundaries (often 75–80%) because the papers include structured questions with clear right/wrong answers. However, the IA component (20%) provides an opportunity to secure marks through careful preparation. Students who score highly on the IA effectively lower the exam performance needed for a 7.
+        Grade boundaries are set after each session and the IB publishes them to coordinators, so no fixed percentage holds across sessions because the papers include structured questions with clear right/wrong answers. However, the IA component (20%) provides an opportunity to secure marks through careful preparation. Students who score highly on the IA effectively lower the exam performance needed for a 7.
       </p>
 
       <h3>Mathematics</h3>
@@ -138,7 +138,7 @@ export default function GradeBoundaries() {
 
       <h3>Humanities (History, Economics, Psychology)</h3>
       <p>
-        Humanities subjects typically have grade 7 boundaries in the 70–76% range. The challenge in these subjects is not the boundary itself but the difficulty of achieving high marks on essay-based papers where examiners apply holistic marking criteria. A "perfect" essay is rare in humanities marking.
+        The same is true across the humanities: the boundary moves with the paper. The challenge in these subjects is not the boundary itself but the difficulty of achieving high marks on essay-based papers where examiners apply holistic marking criteria. A "perfect" essay is rare in humanities marking.
       </p>
 
       <h3>Languages (Group 1 and Group 2)</h3>
@@ -214,7 +214,7 @@ export default function GradeBoundaries() {
       <ul>
         <li>An E grade in either TOK or EE results in automatic Diploma failure regardless of your total points</li>
         <li>To get the maximum 3 bonus points, you need at least an A in one component and a B in the other</li>
-        <li>The most common outcomes, B/B and B/C, both give 2 bonus points; a single point requires a D in one component</li>
+        <li>The most common outcomes, B/B and B/C, both give 2 bonus points; a single point comes from EE B with TOK D, EE C with TOK C, or EE D with TOK B</li>
         <li>These bonus points can be the difference between a 42 and a 45, or between meeting and missing a university offer</li>
       </ul>
 

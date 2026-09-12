@@ -139,7 +139,7 @@ export default function IBEconomicsIA() {
         <li><strong>Axes not labelled:</strong> Every diagram must have clearly labelled axes (Price/Quantity, or Price Level/Real GDP, etc.).</li>
         <li><strong>Shifts not labelled:</strong> If a curve shifts, label both the original curve (S₁, D₁) and the new curve (S₂, D₂) and show the direction of shift with an arrow.</li>
         <li><strong>Equilibrium points not marked:</strong> Mark original equilibrium (P₁, Q₁) and new equilibrium (P₂, Q₂) with dotted lines to the axes.</li>
-        <li><strong>Diagram not explained in text:</strong> Every feature on your diagram should be mentioned in your commentary. A diagram that is drawn but not referred to scores 0 on Criterion A.</li>
+        <li><strong>Diagram not explained in text:</strong> Every feature on your diagram should be mentioned in your commentary. A diagram that is drawn but never explained sits at the bottom band of Criterion A, not at zero.</li>
         <li><strong>Wrong diagram for the scenario:</strong> Using a supply-and-demand diagram for a macroeconomics article about fiscal policy (which needs AD/AS) loses all 3 marks.</li>
       </ul>
 

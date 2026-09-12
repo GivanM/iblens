@@ -33,10 +33,13 @@ function bandVerdict(score: number, max: number, band: string) {
   if (!m) return null;
   const lo = parseInt(m[1], 10);
   const hi = parseInt(m[2], 10);
-  const near = score <= lo || score >= hi;
+  // A two-mark band (TOK reports 9-10, 7-8 and so on) has no middle, so this test
+  // was true for every TOK result and the page always advised paying for a remark.
+  const bandWidth = hi - lo + 1;
+  const near = bandWidth <= 2 ? score >= hi : score <= lo || score >= hi;
   return near
     ? { near, title: "Near a band edge, a remark has genuine upside", text: "Your essay reads at the edge of its band. This is exactly the profile where a fresh examiner read can land differently, in either direction. If this grade matters for your offer, a remark is a rational bet. Ask your coordinator about your school's deadline this week." }
-    : { near, title: "Solidly mid-band, a remark likely changes nothing", text: "Your essay reads comfortably inside its band. A second examiner would most likely arrive at the same grade, this is the profile where remark fees get spent and nothing moves. Consider saving the money unless your coordinator confirms you were 1\u20132 raw marks from a boundary." };
+    : { near, title: "Not at a band edge, a remark likely changes nothing", text: "Your essay reads comfortably inside its band. A second examiner would most likely arrive at the same grade, this is the profile where remark fees get spent and nothing moves. Consider saving the money unless your coordinator confirms you were 1\u20132 raw marks from a boundary." };
 }
 
 function RemarkQuickCheck() {

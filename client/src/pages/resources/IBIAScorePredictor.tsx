@@ -53,10 +53,10 @@ export default function IBIAScorePredictor() {
       <p>Add up your criterion marks to get a raw total. Then use the most recent grade boundary table for your subject. Remember that grade boundaries shift each session, using boundaries from two or three years ago can mislead you by one grade.</p>
 
       <h3>Step 5: Factor in Moderation Uncertainty</h3>
-      <p>If your raw mark sits near a grade boundary, you are in the highest-risk zone. A moderation adjustment of ±2 marks is common; adjustments of ±4 or more are possible. Students near boundaries should treat their estimated grade as a range: the grade they calculate, plus or minus one.</p>
+      <p>If your raw mark sits near a grade boundary, you are in the highest-risk zone. Moderation can move a school's marks in either direction, and the IB does not publish how far. Students near boundaries should treat their estimated grade as a range: the grade they calculate, plus or minus one.</p>
 
       <h2>Why Predicted IA Grades Change After Moderation</h2>
-      <p>Moderation adjusts some schools' marks each session, and the IB does not publish how many. The variance is higher in subjects with more subjective criteria, History and Psychology IAs tend to see wider adjustment ranges than Chemistry or Maths IAs. Two factors drive large adjustments: teacher inexperience with IB marking standards, and grade inflation pressure from knowing students personally.</p>
+      <p>Moderation adjusts some schools' marks each session, and the IB does not publish how many. The variance is higher in subjects with more subjective criteria, Moderation applies to every subject, and the IB does not publish which move most. Two factors drive large adjustments: teacher inexperience with IB marking standards, and grade inflation pressure from knowing students personally.</p>
 
       <h2>Get Your IA Analyzed by AI</h2>
       <p>Self-assessment has a fundamental limitation: you can't read your own work the way a stranger would. You know what you meant to say, which makes it hard to see where you failed to say it clearly enough to earn a mark.</p>

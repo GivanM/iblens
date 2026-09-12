@@ -8,8 +8,8 @@
  * Sources: official IB guides (verbatim assessment instruments). Every mark
  * allocation below was cross-checked against the guide for the syllabus in
  * force for the 2026 exam sessions. Where a new syllabus takes over at
- * first assessment May 2027, it is flagged in `notes`, TODO: session-aware
- * dual rubrics for EE / Psychology / CS / Visual Arts (M27 cohorts).
+ * first assessment May 2027, it is flagged in `notes`, Session-aware dual rubrics for EE,
+ * Psychology and Computer Science are implemented: see the EE27 and IA27 keys.
  */
 
 export interface RubricCriterion {
@@ -284,7 +284,7 @@ const CS_IA_2027: Rubric = {
     { name: "Criterion D: Development", max: 12, descriptor: "Development of the solution demonstrating appropriate techniques, with sources acknowledged" },
     { name: "Criterion E: Evaluation", max: 4, descriptor: "Evaluation of the solution against the success criteria" },
   ],
-  notes: "Documentation capped at 2,000 words (excluding code and diagrams) plus a 3-minute video. The former client requirement is removed.",
+  notes: "Documentation capped at 2,000 words (excluding code and diagrams) plus a 5-minute video. The former client requirement is removed.",
 };
 
 const RUBRIC_REGISTRY: Record<string, Rubric> = {

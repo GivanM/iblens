@@ -13,7 +13,7 @@ export default function IBPsychologyIA() {
       <p>
         The IB Psychology Internal Assessment is a replication study: you choose an
         existing published psychological study, adapt it for an ethical school setting,
-        collect data from a minimum of ten participants per condition, and write a
+        collect enough data for the test you plan to run, which the guide leaves to your design, and write a
         formal report in the style of a scientific paper. It is worth 25% of your
         final grade at SL and 20% at HL. Unlike other IB IAs, Psychology explicitly
         requires you to replicate an existing study rather than design a completely
@@ -46,7 +46,7 @@ export default function IBPsychologyIA() {
         <li><strong>Simple, operationalisable IV and DV:</strong> The independent variable must be something you can manipulate in a school setting (two word lists, two images, two conditions) and the dependent variable must be measurable numerically (number of words recalled, response time in seconds, rating on a scale).</li>
         <li><strong>Ethical with secondary school participants:</strong> Studies involving deception are acceptable if debriefing is provided, but anything involving stress induction, deception about a participant's health or performance, or sensitive topics (eating, depression, self-esteem) requires especially careful ethical planning.</li>
         <li><strong>Accessible to replicate with ≥10 participants per condition:</strong> A study requiring clinical populations, specific age groups you cannot access, or expensive equipment is unsuitable.</li>
-        <li><strong>An expected result that is testable with a Mann-Whitney U test or Wilcoxon signed-rank test:</strong> These are the two inferential tests specified in the IB Psychology course. Your study design must produce data suited to one of them.</li>
+        <li><strong>An expected result that is testable with a Mann-Whitney U test or Wilcoxon signed-rank test:</strong> Both are common choices, and the guide does not name a required test: it asks for an inferential test suited to your design. Your study design must produce data suited to one of them.</li>
       </ol>
 
       <h2>IB Psychology IA Study Examples That Work Well</h2>
@@ -88,7 +88,7 @@ export default function IBPsychologyIA() {
 
       <h2>The Statistical Test: Mann-Whitney U vs Wilcoxon</h2>
       <p>
-        IB Psychology requires one of two non-parametric tests. Choosing correctly
+        The guide asks for an inferential test appropriate to your data, without naming one. Choosing correctly
         is assessed under Analysis:
       </p>
       <ul>
@@ -96,7 +96,7 @@ export default function IBPsychologyIA() {
         <li><strong>Wilcoxon signed-rank test:</strong> Use when the same participants take part in both conditions (within-subjects / repeated measures design). Each participant's two scores are paired.</li>
       </ul>
       <p>
-        Calculate the test statistic by hand (the IB requires this) and compare to
+        Show the calculation. Output from statistics software is allowed in the appendices and compare to
         the critical value table at p ≤ 0.05. State whether you reject or retain the
         null hypothesis. Do not interpret a non-significant result as "the study
         failed", a non-significant result still has things to say about the original

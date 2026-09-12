@@ -13,7 +13,7 @@ export default function TokEssayFormat() {
       <h1>IB TOK Essay Format, Everything You Need to Know</h1>
 
       <p>
-        The IB Theory of Knowledge essay has strict formatting rules. Getting the format wrong, even with excellent ideas, can cost you marks or trigger an automatic penalty. This guide covers every official formatting requirement: word count rules, structural expectations, citation format, what does and does not count toward the limit, and what examiners expect when they open your essay.
+        The IB Theory of Knowledge essay has strict formatting rules. Formatting itself earns no marks, but a file an examiner cannot read is a problem you do not need. This guide covers every official formatting requirement: word count rules, structural expectations, citation format, what does and does not count toward the limit, and what examiners expect when they open your essay.
       </p>
 
       <h2>Word Count: The 1,600-Word Rule</h2>

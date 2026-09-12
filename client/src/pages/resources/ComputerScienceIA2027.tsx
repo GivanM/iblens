@@ -39,7 +39,7 @@ export default function ComputerScienceIA2027() {
       </table>
 
       <p>
-        Documentation is capped at 2,000 words (excluding code and diagrams), accompanied by a 3-minute video. The former client requirement is removed, you no longer need to recruit a client and evidence consultation with them.
+        Documentation is capped at 2,000 words (excluding code and diagrams), accompanied by a 5-minute video. The former client requirement is removed, you no longer need to recruit a client and evidence consultation with them.
       </p>
 
       <h2>What changed from the 34-mark rubric</h2>
@@ -50,7 +50,7 @@ export default function ComputerScienceIA2027() {
         <li><strong>A new first criterion, Problem specification (4),</strong> makes the problem statement and success criteria a marked component in their own right.</li>
         <li><strong>Functionality and extensibility of product (4)</strong> no longer exists as a separate criterion.</li>
         <li><strong>Planning drops from 6 to 4 marks, Evaluation from 6 to 4</strong>, and Evaluation is now explicitly against the success criteria you set in Criterion A.</li>
-        <li><strong>The client requirement is removed</strong>, and documentation is capped at 2,000 words plus a 3-minute video.</li>
+        <li><strong>The client requirement is removed</strong>, and documentation is capped at 2,000 words plus a 5-minute video.</li>
       </ul>
 
       <h2>How to check your project documentation</h2>
