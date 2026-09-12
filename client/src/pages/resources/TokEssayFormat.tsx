@@ -25,7 +25,7 @@ export default function TokEssayFormat() {
       <ul>
         <li><strong>Essays that exceed 1,600 words:</strong> Examiners are instructed to stop reading at the 1,600-word mark. Any argument, conclusion, or example after that point will not be assessed. This is one of the most costly mistakes IB students make, a brilliant conclusion on page 4 may never be read.</li>
         <li><strong>The title page and bibliography are NOT counted:</strong> These do not contribute to your 1,600 words.</li>
-        <li><strong>Footnotes and endnotes ARE counted:</strong> If you use footnotes for citations or additional commentary, every word counts toward your total.</li>
+        <li><strong>Footnotes with references are not counted:</strong> the word count covers the body of the essay including quotations, and excludes references given in footnotes, endnotes or in text. A footnote carrying argument rather than a reference is a different matter: keep argument in the body, where the examiner reads it.</li>
         <li><strong>Quotations are counted:</strong> Direct quotes from sources are included in the word count.</li>
         <li><strong>Diagrams, tables, and mathematical notation:</strong> Not typically counted, but avoid using them to circumvent the limit, examiners notice.</li>
       </ul>

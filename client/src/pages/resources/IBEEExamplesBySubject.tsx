@@ -27,8 +27,7 @@ export default function IBEEExamplesBySubject() {
       <p>
         The Extended Essay is marked on five criteria (A–E), totalling 34 marks.
         Combined with the TOK essay, this contributes up to 3 bonus points toward
-        your IB Diploma total. A grade A corresponds to 27 to 34 out of 34; B is around
-        22–27; C is 16–21; D is 9–15; E (failing) is below 9.
+        your IB Diploma total. A grade A is 27 to 34 out of 34, B is 21 to 26, C is 14 to 20, D is 7 to 13 and E is 0 to 6.
       </p>
       <ul>
         <li><strong>Criterion A, Focus and Method (6 marks):</strong> Is the research question clear, focused, and appropriate for the subject? Is the methodology explicit and justified?</li>

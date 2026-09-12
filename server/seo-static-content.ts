@@ -893,7 +893,7 @@ export const staticContent: Record<string, string> = {
       <ul>
         <li><strong>Essays that exceed 1,600 words:</strong> Examiners are instructed to stop reading at the 1,600-word mark. Any argument, conclusion, or example after that point will not be assessed. This is one of the most costly mistakes IB students make, a brilliant conclusion on page 4 may never be read.</li>
         <li><strong>The title page and bibliography are NOT counted:</strong> These do not contribute to your 1,600 words.</li>
-        <li><strong>Footnotes and endnotes ARE counted:</strong> If you use footnotes for citations or additional commentary, every word counts toward your total.</li>
+        <li><strong>Footnotes with references are not counted:</strong> the word count covers the body of the essay including quotations, and excludes references given in footnotes, endnotes or in text. A footnote carrying argument rather than a reference is a different matter: keep argument in the body, where the examiner reads it.</li>
         <li><strong>Quotations are counted:</strong> Direct quotes from sources are included in the word count.</li>
         <li><strong>Diagrams, tables, and mathematical notation:</strong> Not typically counted, but avoid using them to circumvent the limit, examiners notice.</li>
       </ul>
@@ -4174,8 +4174,7 @@ export const staticContent: Record<string, string> = {
       <p>
         The Extended Essay is marked on five criteria (A–E), totalling 34 marks.
         Combined with the TOK essay, this contributes up to 3 bonus points toward
-        your IB Diploma total. A grade A corresponds to 27 to 34 out of 34; B is around
-        22–27; C is 16–21; D is 9–15; E (failing) is below 9.
+        your IB Diploma total. A grade A is 27 to 34 out of 34, B is 21 to 26, C is 14 to 20, D is 7 to 13 and E is 0 to 6.
       </p>
       <ul>
         <li><strong>Criterion A, Focus and Method (6 marks):</strong> Is the research question clear, focused, and appropriate for the subject? Is the methodology explicit and justified?</li>
