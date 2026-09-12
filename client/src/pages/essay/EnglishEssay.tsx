@@ -4,18 +4,21 @@ const config: SubjectConfig = {
   subject: "English Essay",
   slug: "english-essay",
   keyword: "IB English essay",
-  metaTitle: "IB English IA & Essay Grader, Free AI Feedback | IBLens",
+  metaTitle: "IB English Individual Oral Grader, Free AI Feedback | IBLens",
   metaDescription:
     "AI feedback on the IB English A Individual Oral, marked out of 40 against the four published criteria. The HL essay is a separate component and is not covered. First analysis free.",
   canonicalPath: "/essay/english-essay",
-  heroHeadline: "Get your IB English essay graded in about 90 seconds",
+  heroHeadline: "Get your IB English Individual Oral graded in about 90 seconds",
   heroSubline:
-    "Paste your IB English A Individual Oral commentary and receive criterion-level feedback in about 90 seconds, free, no account required."
+    "Paste your IB English A Individual Oral commentary and receive criterion-level feedback in about 90 seconds, free, no account required.",
+  // The engine holds the Individual Oral instrument for English A: four criteria
+  // of ten, forty in total. The table here used to show the HL essay shape,
+  // four of five, which is a different component the product cannot mark.
   criteria: [
-    { name: "Criterion A: Knowledge & Understanding", max: 5, sampleScore: 3 },
-    { name: "Criterion B: Analysis & Evaluation", max: 5, sampleScore: 3 },
-    { name: "Criterion C: Focus & Organization", max: 5, sampleScore: 4 },
-    { name: "Criterion D: Language", max: 5, sampleScore: 4 },
+    { name: "Criterion A: Knowledge, understanding and interpretation", max: 10, sampleScore: 6 },
+    { name: "Criterion B: Analysis and evaluation", max: 10, sampleScore: 6 },
+    { name: "Criterion C: Focus and organization", max: 10, sampleScore: 7 },
+    { name: "Criterion D: Language", max: 10, sampleScore: 7 },
   ],
   relatedResources: [
     { label: "English Extended Essay", href: "/resources/ib-english-extended-essay" },
