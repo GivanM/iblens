@@ -4,13 +4,13 @@ import { Link } from "wouter";
 export default function IBUniversityChances() {
   return (
     <ResourceArticle
-      title="IB University Chances, Temporarily Unavailable | IBLens"
-      description="Our IB university guidance is being rebuilt on verified, official university requirements. In the meantime, grade your IB essays free with IBLens."
+      title="IB University Chances, No Longer Offered | IBLens"
+      description="Our IB university guidance is no longer offered on verified, official university requirements. In the meantime, grade your IB essays free with IBLens."
       canonical="/resources/ib-university-chances"
       datePublished="2026-07-16"
       dateModified="2026-07-16"
     >
-      <h1>IB University Guidance, being rebuilt</h1>
+      <h1>IB University Guidance, no longer offered</h1>
       <p>
         We have taken our university guidance and strategy tools offline while we rebuild them on
         verified, official university requirements and deadlines drawn from primary sources. We would

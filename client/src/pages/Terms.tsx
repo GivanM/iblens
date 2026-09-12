@@ -6,7 +6,7 @@ export default function Terms() {
     <div className="py-16 bg-background">
       <SEOHead
         title="Terms of Use | IBLens"
-        description="Terms for using IBLens: what the service is, that scores are estimates and not official IB grades, acceptable use, and our independence from the IB Organization."
+        description="Terms for using IBLens: scores are AI estimates not official IB grades, acceptable use, and IBLens independence from the International Baccalaureate Organization."
         canonical="/terms"
       />
       <div className="container max-w-3xl">

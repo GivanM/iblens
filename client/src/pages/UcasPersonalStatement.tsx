@@ -64,6 +64,12 @@ export default function UcasPersonalStatement() {
   const setRechecksLeft = setRechecksLeftState;
   const unlockedQ = trpc.essay.anonymousReport.useQuery({ fingerprint: anonFp, kind: "ucas" }, { enabled: !paidReturn });
   const isUnlocked = unlockedQ.data?.unlocked === true || paidReviewQ.data?.unlocked === true;
+  // Show the review that was paid for when the reader comes back. Without this
+  // the page said "your full review is unlocked on this device" and then showed
+  // an empty form, and the only way to see it again was to spend a re-check.
+  useEffect(() => {
+    if (unlockedQ.data?.unlocked && !result) setResult((unlockedQ.data as any).result);
+  }, [unlockedQ.data, result]);
   const serverRechecks = (unlockedQ.data as any)?.rerunsLeft ?? (paidReviewQ.data as any)?.rerunsLeft ?? null;
   const effectiveRechecks = rechecksLeft ?? serverRechecks;
   const recheck = trpc.essay.rerunAnonymous.useMutation({
@@ -117,8 +123,8 @@ export default function UcasPersonalStatement() {
   return (
     <div className="container max-w-3xl mx-auto py-10 px-4 space-y-6">
       <SEOHead
-        title="UCAS Personal Statement Checker, New Three-Question Format | IBLens"
-        description="Check your UCAS personal statement against the format used from 2026 entry: three questions, 4,000 characters, 350 minimum each. Evidence-based feedback on each answer, free preview."
+        title="UCAS Personal Statement Checker — New Three-Question Format 2026 | IBLens"
+        description="Check your UCAS personal statement against the format used from 2026 entry: three questions, 4,000 characters, 350 minimum per answer. Evidence-based feedback on each answer from an admissions-tutor perspective. Free preview, no account."
         canonical="/ucas-personal-statement"
       />
 

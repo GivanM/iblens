@@ -214,11 +214,25 @@ export function registerLemonsqueezyWebhook(app: Express) {
             // can be claimed by signing in with that address.
             const attrs: any = (body as any)?.data?.attributes || {};
             const buyerEmail = String(attrs.user_email || attrs.customer_email || "").trim();
-            const variantName = String(attrs.first_order_item?.variant_name || attrs.product_name || "").toLowerCase();
+            const rawVariant = String(attrs.first_order_item?.variant_name || "");
+            const productName = String(attrs.first_order_item?.product_name || attrs.product_name || "");
+            // "Default" is what LemonSqueezy sends for a product with no variants.
+            const variantName = (/^default$/i.test(rawVariant.trim()) ? productName : rawVariant || productName).toLowerCase();
             // Match the pack wording, not any digit in the name: "University
             // Strategy Report" and a price string both contain digits.
             // Our own products are named "Essay Analysis, 10 Pack" and
             // "10 Essay Analyses", so match both shapes rather than any digit.
+            // A withdrawn product must not quietly become an essay credit.
+            if (/university|strategy/.test(variantName)) {
+              console.error(`[LemonSqueezy] Storefront purchase of a withdrawn product (${variantName}) by ${buyerEmail}. Refund it manually.`);
+              if (webhookEventId) {
+                await updateWebhookEvent(webhookEventId, { paymentStatus: "withdrawn_product", errorMessage: variantName }).catch(() => {});
+              }
+              return res.status(200).json({ ok: true, message: "Withdrawn product, needs manual refund" });
+            }
+            // Our products are named "Essay Analysis, 10 Pack" and "10 Essay
+            // Analyses". LemonSqueezy sends "Default" as the variant name for a
+            // product without variants, so fall back to the product name.
             const guessed = /\b10\b[\s-]*(pack|essay|analys)|pack of 10/.test(variantName) ? 10
               : /\b(5|five)\b[\s-]*(pack|essay|analys)|pack of (5|five)/.test(variantName) ? 5
               : 1;
@@ -374,6 +388,27 @@ export function registerLemonsqueezyWebhook(app: Express) {
           }
         } else if (eventName === "order_refunded") {
           if (!orderId) {
+            // A storefront purchase has no order of ours, but it was credited by
+            // e-mail, so the refund has to take that back the same way.
+            const attrs: any = (body as any)?.data?.attributes || {};
+            const buyerEmail = String(attrs.user_email || attrs.customer_email || "").trim();
+            if (buyerEmail) {
+              try {
+                const { id: guestId } = await findOrCreateGuestUserByEmail(buyerEmail);
+                const credits = await getUserCredits(guestId);
+                const take = Math.min(credits?.essayCredits ?? 0, 10);
+                if (take > 0) {
+                  await grantCreditsViaLedger(guestId, -take, 0, `lemonsqueezy:storefront-refund`, dataId);
+                  console.log(`[LemonSqueezy] Storefront refund: ${take} credit(s) taken back from ${buyerEmail}`);
+                }
+                if (webhookEventId) {
+                  await updateWebhookEvent(webhookEventId, { paymentStatus: "storefront_refunded" }).catch(() => {});
+                }
+                return res.status(200).json({ ok: true, message: "Storefront refund processed" });
+              } catch (e) {
+                console.error("[LemonSqueezy] Storefront refund failed:", e);
+              }
+            }
             console.warn("[LemonSqueezy Webhook] order_refunded without order_id in custom_data");
             if (webhookEventId) {
               await updateWebhookEvent(webhookEventId, { paymentStatus: "no_order_id", errorMessage: "order_refunded without order_id" }).catch(() => {});

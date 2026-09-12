@@ -40,6 +40,8 @@ export const analyses = mysqlTable("analyses", {
   examSession: varchar("examSession", { length: 10 }),
   /** Which purchase opened this, so a refund closes exactly what it paid for. */
   unlockOrderId: varchar("unlockOrderId", { length: 64 }),
+  /** The anonymous row this was copied from when its buyer signed in. */
+  adoptedFromId: int("adoptedFromId"),
   unlockedAt: timestamp("unlockedAt"),
 createdAt: timestamp("createdAt").defaultNow().notNull(),
 });

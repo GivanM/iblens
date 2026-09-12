@@ -34,20 +34,62 @@ const DIST_DIR = path.resolve(__dirname, "../dist/public");
  * is how an abolished rubric survived on four pages for five rounds of review.
  * Fail the build instead.
  */
+function walkTsx(dir, out = []) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) walkTsx(full, out);
+    else if (entry.name.endsWith(".tsx")) out.push(full);
+  }
+  return out;
+}
+
 async function assertClientMetaMatches(routeMeta) {
-  const dir = path.resolve(__dirname, "../client/src/pages/essay");
-  if (!fs.existsSync(dir)) return;
+  const pagesDir = path.resolve(__dirname, "../client/src/pages");
+  if (!fs.existsSync(pagesDir)) return;
   const problems = [];
-  for (const file of fs.readdirSync(dir).filter((f) => f.endsWith(".tsx"))) {
-    const src = fs.readFileSync(path.join(dir, file), "utf8");
+
+  // Subject pages carry their metadata in a config object.
+  for (const file of walkTsx(path.resolve(pagesDir, "essay"))) {
+    const src = fs.readFileSync(file, "utf8");
     const pathMatch = src.match(/canonicalPath:\s*"([^"]+)"/);
     const descMatch = src.match(/metaDescription:\s*\n?\s*"((?:[^"\\]|\\.)*)"/);
+    const titleMatch = src.match(/metaTitle:\s*"((?:[^"\\]|\\.)*)"/);
     if (!pathMatch || !descMatch) continue;
     const route = pathMatch[1];
     const clientDesc = descMatch[1].replace(/\\"/g, '"');
     const serverDesc = routeMeta[route]?.description;
     if (serverDesc && serverDesc !== clientDesc) {
-      problems.push(`${route}\n    server: ${serverDesc.slice(0, 90)}\n    client: ${clientDesc.slice(0, 90)}`);
+      problems.push(`${route} (description)\n    server: ${serverDesc.slice(0, 90)}\n    client: ${clientDesc.slice(0, 90)}`);
+    }
+    if (titleMatch && routeMeta[route]?.title) {
+      const clientTitle = titleMatch[1].replace(/\\"/g, '"');
+      if (clientTitle !== routeMeta[route].title) {
+        problems.push(`${route} (title)\n    server: ${routeMeta[route].title}\n    client: ${clientTitle}`);
+      }
+    }
+  }
+
+  // Every other page passes them straight to SEOHead.
+  for (const file of walkTsx(pagesDir)) {
+    if (file.includes(`${path.sep}essay${path.sep}`)) continue;
+    // The staging homepage shares the canonical of the live one on purpose while
+    // it is behind noindex, so it is not a divergence.
+    if (file.endsWith("HomeV2.tsx")) continue;
+    const src = fs.readFileSync(file, "utf8");
+    const block = src.match(/<SEOHead[\s\S]{0,900}?\/>/);
+    if (!block) continue;
+    const canon = block[0].match(/canonical=\{?"([^"]+)"/);
+    if (!canon) continue;
+    const route = canon[1];
+    const meta = routeMeta[route];
+    if (!meta) continue;
+    const title = block[0].match(/title=\{?"((?:[^"\\]|\\.)*)"/);
+    const desc = block[0].match(/description=\{?"((?:[^"\\]|\\.)*)"/);
+    if (title && meta.title && title[1].replace(/\\"/g, '"') !== meta.title) {
+      problems.push(`${route} (title)\n    server: ${meta.title}\n    client: ${title[1]}`);
+    }
+    if (desc && meta.description && desc[1].replace(/\\"/g, '"') !== meta.description) {
+      problems.push(`${route} (description)\n    server: ${meta.description.slice(0, 90)}\n    client: ${desc[1].slice(0, 90)}`);
     }
   }
   if (problems.length > 0) {
@@ -56,7 +98,7 @@ async function assertClientMetaMatches(routeMeta) {
     console.error("Make them identical: the reader and the crawler must be told the same thing.\n");
     process.exit(1);
   }
-  console.log("✓ Page metadata agrees between server and client for every subject page");
+  console.log("✓ Page metadata agrees between server and client on every page that sets it");
 }
 
 const SITE_URL = "https://iblens.com";

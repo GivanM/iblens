@@ -447,6 +447,10 @@ const essayRouter = router({
       }
       const fingerprint = input.clientFingerprint;
 
+      // Take the credit before the model too, not ninety seconds later: two tabs
+      // on one credit produced two full reviews.
+      if (paidCredit) await consumePaidEssayCredit(user.id);
+
       // Claim the free slot before the model is called: the check and the write
       // were eighty seconds apart, which is a free second review for anyone who
       // submits twice.
@@ -504,7 +508,6 @@ const essayRouter = router({
         }
 
         if (paid) {
-          if (paidCredit) await consumePaidEssayCredit(user.id);
           return { result, wasAnonymous: !paidCredit, unlocked: true as const, id: saved?.id };
         }
         return { result: buildUcasTeaser(result), wasAnonymous: true };
@@ -512,6 +515,8 @@ const essayRouter = router({
         console.error("[UCAS PS Review] Error:", error);
         if (claim?.id) await deleteAnonymousAnalysis(claim.id).catch(() => {});
         if (paidByDevice) await addDeviceCredits(fingerprint, 1).catch(() => {});
+        // The account credit comes back too: nothing was produced.
+        if (paidCredit && user) await grantCreditsViaLedger(user.id, 1, 0, "refund:ucas-failed").catch(() => {});
         throw new Error(error.message || "Review failed. Please try again.");
       }
     }),
@@ -1047,7 +1052,7 @@ const paymentRouter = router({
     }))
     .mutation(async ({ input }) => {
       if (input.productKey === "UNIVERSITY_SINGLE") {
-        throw new Error("The University Strategy is temporarily unavailable while we rebuild it on verified data.");
+        throw new Error("The University Strategy is no longer offered.");
       }
       const product = PRODUCTS[input.productKey];
       if (!product) throw new Error("Invalid product");
@@ -1105,7 +1110,7 @@ const paymentRouter = router({
     }))
     .mutation(async ({ ctx, input }) => {
       if (input.productKey === "UNIVERSITY_SINGLE") {
-        throw new Error("The University Strategy is temporarily unavailable while we rebuild it on verified data.");
+        throw new Error("The University Strategy is no longer offered.");
       }
       const product = PRODUCTS[input.productKey];
       if (!product) throw new Error("Invalid product");

@@ -106,7 +106,7 @@ export const staticContent: Record<string, string> = {
 
   "/university": S(`<main style="max-width:800px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> ‹ University Strategy</nav>
-  <h1 style="font-size:28px;font-weight:700;margin:0 0 16px">IB University Strategy — being rebuilt</h1>
+  <h1 style="font-size:28px;font-weight:700;margin:0 0 16px">IB University Strategy — no longer offered</h1>
   <p style="color:#374151;line-height:1.75">We have taken the University Strategy offline while we rebuild it on verified, official university requirements and deadlines from primary sources. In the meantime, grade your IB essays free: <a href="/essay">IB Essay Analyzer</a></p>
 </main>`),
 

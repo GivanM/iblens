@@ -6,7 +6,7 @@ export default function Privacy() {
     <div className="py-16 bg-background">
       <SEOHead
         title="Privacy Policy | IBLens"
-        description="How IBLens handles your data: what we collect, how your essay is processed by our AI provider, retention, your rights, and children's privacy."
+        description="How IBLens handles your data: what we collect, how your essay is processed by our AI provider (Anthropic), retention, your rights, and children's privacy."
         canonical="/privacy"
       />
       <div className="container max-w-3xl">

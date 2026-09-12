@@ -783,10 +783,14 @@ export async function deleteAnonymousAnalysis(id: number) {
 export async function addDeviceCredits(fingerprint: string, amount: number) {
   const db = await getDb();
   if (!db || amount <= 0) return;
+  // New money on a device belongs to whoever is using it now, so the claim marker
+  // is cleared: a wallet that had been taken by one account used to stay locked
+  // to it for ever, and a later purchase on the same browser was unreachable.
   await db.insert(deviceCredits).values({ fingerprint, credits: amount, claimedAmount: amount })
     .onDuplicateKeyUpdate({ set: {
       credits: sql`${deviceCredits.credits} + ${amount}`,
       claimedAmount: sql`${deviceCredits.claimedAmount} + ${amount}`,
+      claimedByUserId: sql`NULL`,
     } });
   console.log(`[DeviceCredits] +${amount} for ${fingerprint.slice(0, 8)}...`);
 }
@@ -838,8 +842,11 @@ export async function adoptDeviceReports(fingerprint: string, userId: number): P
     .where(and(eq(anonymousAnalyses.fingerprint, fingerprint), eq(anonymousAnalyses.unlocked, true)));
   let copied = 0;
   for (const rec of rows as any[]) {
+    // By the source row id. Comparing a JSON column to a bound string is always
+    // false in MySQL, so this check never matched and every page load copied the
+    // same paid reports again, each copy carrying two fresh re-checks with it.
     const existing = await db.select({ id: analyses.id }).from(analyses)
-      .where(and(eq(analyses.userId, userId), eq(analyses.resultJson, rec.resultJson as any))).limit(1);
+      .where(and(eq(analyses.userId, userId), eq(analyses.adoptedFromId, rec.id))).limit(1);
     if (existing.length > 0) continue;
     await db.insert(analyses).values({
       userId,
@@ -854,6 +861,7 @@ export async function adoptDeviceReports(fingerprint: string, userId: number): P
       rerunsUsed: rec.rerunsUsed ?? 0,
       examSession: rec.examSession ?? null,
       unlockOrderId: rec.unlockOrderId ?? null,
+      adoptedFromId: rec.id,
     });
     copied++;
   }

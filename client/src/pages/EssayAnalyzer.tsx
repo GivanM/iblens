@@ -461,8 +461,8 @@ export default function EssayAnalyzer() {
   return (
     <div className="container py-12 max-w-4xl mx-auto">
       <SEOHead
-        title="IB Essay Grader & Checker, AI Feedback for IA, EE & TOK | IBLens"
-        description="Free IB essay grader and checker. AI scores your IA, Extended Essay, or TOK against official IB rubrics, criterion by criterion, with a predicted grade. First analysis free."
+        title="IB Essay Grader — Free AI Feedback on IA, Extended Essay & TOK | IBLens"
+        description="Grade your IB Internal Assessment, Extended Essay, or TOK essay free. AI evaluates every criterion, predicts your band, and shows exactly which marks you’re losing. 14 subjects."
         canonical="/essay"
       />
       <div className="mb-10">

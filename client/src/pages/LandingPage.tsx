@@ -60,8 +60,8 @@ export default function LandingPage() {
   return (
     <>
       <SEOHead
-        title="Free IB Essay Grader, Grade My IB Essay in About 90 Seconds | IBLens"
-        description="Grade your IB Extended Essay, IA, or TOK essay in about 90 seconds. AI-powered IB essay grader gives criterion-by-criterion feedback and predicted band in about 90 seconds. Free."
+        title="Free IB Essay Grader — Grade My IB Essay in About 90 Seconds | IBLens"
+        description="Paste your IB essay and get a predicted grade in about 90 seconds. AI feedback on every criterion — Extended Essay, IA, or TOK. No account, no credit card required."
         canonical="/grade"
       />
 
