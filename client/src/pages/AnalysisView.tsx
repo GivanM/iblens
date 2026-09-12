@@ -54,7 +54,7 @@ export default function AnalysisView() {
         </Button>
         <div className="flex items-center gap-2">
           <Button asChild variant="outline" size="sm">
-            <Link href={`/essay?rerun=${id}`}>Re-check my revised draft</Link>
+            <Link href={`/essay?rerun=${id}&session=${(data as any)?.examSession || ""}`}>Re-check my revised draft</Link>
           </Button>
           <Button variant="outline" size="sm" onClick={() => window.print()}>
             <Printer className="w-4 h-4 mr-2" />Save as PDF

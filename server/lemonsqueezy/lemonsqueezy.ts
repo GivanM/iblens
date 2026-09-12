@@ -12,6 +12,7 @@ import {
   getUserById,
   getUserCredits,
   getLatestAnonymousEssay,
+  getLatestAnonymousUcas,
   setAnonymousUnlocked,
   relockAnonymousAnalysis,
   relockAnalysesForOrder,
@@ -242,7 +243,10 @@ export function registerLemonsqueezyWebhook(app: Express) {
           const unlockFp = String(customData.unlock_fp || "");
           if (unlockFp && (credits.essay > 0)) {
             try {
-              const rec = await getLatestAnonymousEssay(unlockFp);
+              const unlockKind = String(customData.unlock_kind || "essay");
+              const rec = unlockKind === "ucas"
+                ? await getLatestAnonymousUcas(unlockFp)
+                : await getLatestAnonymousEssay(unlockFp);
               // A pack is several reports. One of them opens what the buyer is
               // looking at; the rest stay with this device so they can be spent
               // without an account, which is what "no account needed" has to mean.
@@ -333,7 +337,9 @@ export function registerLemonsqueezyWebhook(app: Express) {
           const refundFp = String(customData.unlock_fp || "");
           if (refundFp) {
             try {
-              const rec = await getLatestAnonymousEssay(refundFp);
+              const rec = String(customData.unlock_kind || "essay") === "ucas"
+                ? await getLatestAnonymousUcas(refundFp)
+                : await getLatestAnonymousEssay(refundFp);
               if (rec && (rec as any).unlocked) {
                 await relockAnonymousAnalysis(rec.id);
                 console.log(`[LemonSqueezy] Report ${rec.id} re-locked after refund of order ${order.id}`);
@@ -410,6 +416,9 @@ export async function createLemonsqueezyCheckout(
   url.searchParams.set("checkout[custom][order_id]", orderId);
   if (unlockFingerprint) {
     url.searchParams.set("checkout[custom][unlock_fp]", unlockFingerprint);
+    // Essay reports and UCAS reviews live in the same table. Without this the
+    // webhook opens whichever row is newer, which is not what was bought.
+    url.searchParams.set("checkout[custom][unlock_kind]", returnTo === "ucas-personal-statement" ? "ucas" : "essay");
   }
   if (userEmail) {
     url.searchParams.set("checkout[email]", userEmail);

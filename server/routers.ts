@@ -324,8 +324,12 @@ const essayRouter = router({
       const rec: any = gate.record;
 
       try {
-        const systemPrompt = buildEssaySystemPrompt(rec.essayType, rec.subject, input.examSession);
-        const userPrompt = buildEssayUserPrompt(rec.essayType, rec.subject, rec.researchQuestion || undefined, input.essayText, input.examSession, input.reflections);
+        // The session comes from the report being re-checked. Taking it from the
+        // form re-marked a November 2026 report on the May 2027 scale, and the
+        // before/after comparison we sell then compared two different rubrics.
+        const session = (rec.examSession as "nov2026" | "may2027" | null) ?? input.examSession;
+        const systemPrompt = buildEssaySystemPrompt(rec.essayType, rec.subject, session);
+        const userPrompt = buildEssayUserPrompt(rec.essayType, rec.subject, rec.researchQuestion || undefined, input.essayText, session, input.reflections);
         const startedAt = Date.now();
         const response = await invokeLLM({
           messages: [
@@ -339,7 +343,7 @@ const essayRouter = router({
         const jsonMatch = content.match(/\{[\s\S]*\}/);
         if (!jsonMatch) throw new Error("Failed to parse AI response");
         const result = JSON.parse(jsonMatch[0].replace(/,\s*([\]\}])/g, "$1"));
-        const rubric = getRubric(rec.essayType, rec.subject, input.examSession);
+        const rubric = getRubric(rec.essayType, rec.subject, session);
         if (rubric) {
           result._rubricAvailable = true;
           result._rubricLabel = rubric.label;
@@ -356,6 +360,7 @@ const essayRouter = router({
           predictedGrade: `${result.predicted_score}/${result.max_score}`,
           unlocked: true,
           rerunOf: rec.rerunOf ?? rec.id,
+          examSession: rec.examSession ?? input.examSession ?? null,
         });
         if (analysis?.id) await markAnalysisUnlocked(analysis.id);
 
@@ -450,6 +455,7 @@ const essayRouter = router({
         result._mechanics = mechanics;
         result._course = input.course;
         result._format = "ucas_2026";
+        result._universityType = input.universityType;
 
         const saved = await createAnonymousAnalysis({
           fingerprint,
@@ -503,12 +509,15 @@ const essayRouter = router({
           if (!input.answers) throw new Error("Paste your revised answers to re-check them.");
           mechanics = checkUcasMechanics(input.answers);
           const course = String(rec.subject || "your course");
-          systemPrompt = buildUcasSystemPrompt(course, "typical");
+          // Keep the standard the first review was written against.
+          const level = ((rec.resultJson as any)?._universityType === "competitive" ? "competitive" : "typical") as "typical" | "competitive";
+          systemPrompt = buildUcasSystemPrompt(course, level);
           userPrompt = buildUcasUserPrompt(course, input.answers, mechanics);
         } else {
           if (!input.essayText) throw new Error("Paste your revised draft to re-check it.");
-          systemPrompt = buildEssaySystemPrompt(rec.essayType, rec.subject, input.examSession);
-          userPrompt = buildEssayUserPrompt(rec.essayType, rec.subject, rec.researchQuestion || undefined, input.essayText, input.examSession, input.reflections);
+          const session = (rec.examSession as "nov2026" | "may2027" | null) ?? input.examSession;
+          systemPrompt = buildEssaySystemPrompt(rec.essayType, rec.subject, session);
+          userPrompt = buildEssayUserPrompt(rec.essayType, rec.subject, rec.researchQuestion || undefined, input.essayText, session, input.reflections);
         }
 
         const startedAt = Date.now();
@@ -533,7 +542,7 @@ const essayRouter = router({
         // Keep the marker of whether real criteria were behind this, exactly as the
         // first run does, or the report silently loses its provenance badge.
         if (rec.essayType !== "UCAS") {
-          const rubric = getRubric(rec.essayType, rec.subject, input.examSession);
+          const rubric = getRubric(rec.essayType, rec.subject, (rec.examSession as any) ?? input.examSession);
           result._rubricAvailable = !!rubric;
           result._rubricLabel = rubric?.label ?? null;
           result._rubricTotalMarks = rubric?.totalMarks ?? null;
@@ -569,9 +578,11 @@ const essayRouter = router({
     .query(async ({ input }) => ({ credits: await getDeviceCredits(input.fingerprint) })),
 
   anonymousReport: publicProcedure
-    .input(z.object({ fingerprint: z.string().min(1) }))
+    .input(z.object({ fingerprint: z.string().min(1), kind: z.enum(["essay", "ucas"]).optional() }))
     .query(async ({ input }) => {
-      const rec = await getLatestAnonymousEssay(input.fingerprint);
+      const rec = input.kind === "ucas"
+        ? await getLatestAnonymousUcas(input.fingerprint)
+        : await getLatestAnonymousEssay(input.fingerprint);
       if (!rec || !rec.resultJson || !(rec as any).unlocked) return { unlocked: false as const };
       return { unlocked: true as const, result: rec.resultJson };
     }),
@@ -635,6 +646,7 @@ const essayRouter = router({
         researchQuestion: input.researchQuestion || null,
         resultJson: null,
         predictedGrade: null,
+        examSession: input.examSession ?? null,
       });
 
       const systemPrompt = buildEssaySystemPrompt(input.essayType, input.subject, input.examSession);

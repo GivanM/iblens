@@ -657,7 +657,12 @@ export default function EssayAnalyzer() {
           {paidReturn && !isAuthenticated && !result && (
             <div className="text-sm p-3 rounded-lg bg-primary/5 border border-primary/30 flex items-center gap-2">
               <Loader2 className="w-4 h-4 flex-shrink-0 animate-spin" />
-              <span>Payment received. Opening your full report, this takes a few seconds.</span>
+              <span>
+                Payment received. Opening your full report, this takes a few seconds. If it does not open,
+                email glushkovim@gmail.com with order{" "}
+                <code className="text-xs">{new URLSearchParams(window.location.search).get("order") || ""}</code> and
+                we will open it or refund you.
+              </span>
             </div>
           )}
 
@@ -833,7 +838,7 @@ export default function EssayAnalyzer() {
             <Card className="border-primary/30 bg-primary/5">
               <CardContent className="pt-6">
                 {reportEmailSaved ? (
-                  <p className="text-sm font-medium flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> Saved, we’ll email your report link and improvement tips.</p>
+                  <p className="text-sm font-medium flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> Saved. We will use this address only to reach you about this report.</p>
                 ) : (
                   <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
                     <div className="flex-1">

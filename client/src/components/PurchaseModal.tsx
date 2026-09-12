@@ -123,7 +123,7 @@ export function PurchaseModal({ open, onOpenChange, sku }: PurchaseModalProps) {
                 <ul className="text-xs text-muted-foreground space-y-1 list-disc pl-4">
                   <li>Your current report unlocked in full: exact score, every criterion with comments, ranked fix list</li>
                   <li>Two free re-checks of the same draft within 14 days</li>
-                  <li>Saved to your account so you can reopen it any time</li>
+                  <li>The report opens on this device straight after payment, and stays open here</li>
                 </ul>
               </div>
             )}

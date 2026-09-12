@@ -62,7 +62,10 @@ async function startServer() {
   const port = await findAvailablePort(preferredPort);
 
   if (port !== preferredPort) {
-    console.log(`Port ${preferredPort} is busy, using port ${port} instead`);
+    // Caddy proxies to the configured port only. Starting on another one leaves
+    // systemd green and the site down, which is the worst of both.
+    console.error(`Port ${preferredPort} is busy. Refusing to start on ${port}: the proxy only forwards to ${preferredPort}.`);
+    process.exit(1);
   }
 
   server.listen(port, () => {

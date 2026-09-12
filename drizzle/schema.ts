@@ -36,6 +36,8 @@ export const analyses = mysqlTable("analyses", {
   rerunsUsed: int("rerunsUsed").notNull().default(0),
   /** Set when this row is itself the product of a re-check, so it cannot start a new allowance. */
   rerunOf: int("rerunOf"),
+  /** The rubric track this was marked on, so a re-check cannot silently switch scales. */
+  examSession: varchar("examSession", { length: 10 }),
   unlockedAt: timestamp("unlockedAt"),
 createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
@@ -118,6 +120,8 @@ export const anonymousAnalyses = mysqlTable("anonymous_analyses", {
   // so the counter has to live on the anonymous row, not on a user.
   unlockedAt: timestamp("unlockedAt"),
   rerunsUsed: int("rerunsUsed").notNull().default(0),
+  /** The rubric track this was marked on, so a re-check cannot silently switch scales. */
+  examSession: varchar("examSession", { length: 10 }),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
 

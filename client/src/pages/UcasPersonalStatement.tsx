@@ -47,7 +47,7 @@ export default function UcasPersonalStatement() {
   const paidReturn = typeof window !== "undefined"
     && new URLSearchParams(window.location.search).get("payment") === "success";
   const paidReviewQ = trpc.essay.anonymousReport.useQuery(
-    { fingerprint: anonFp },
+    { fingerprint: anonFp, kind: "ucas" },
     { enabled: paidReturn && !result, refetchInterval: (d: any) => (d?.unlocked ? false : 4000) }
   );
   useEffect(() => {
@@ -60,7 +60,7 @@ export default function UcasPersonalStatement() {
 
   // Two re-checks of the same statement, included with the purchase.
   const [rechecksLeft, setRechecksLeft] = useState<number | null>(null);
-  const unlockedQ = trpc.essay.anonymousReport.useQuery({ fingerprint: anonFp }, { enabled: !paidReturn });
+  const unlockedQ = trpc.essay.anonymousReport.useQuery({ fingerprint: anonFp, kind: "ucas" }, { enabled: !paidReturn });
   const isUnlocked = unlockedQ.data?.unlocked === true || paidReviewQ.data?.unlocked === true;
   const recheck = trpc.essay.rerunAnonymous.useMutation({
     onSuccess: (d: any) => {
@@ -297,6 +297,64 @@ export default function UcasPersonalStatement() {
               </div>
             )}
 
+            {result.answers?.length > 0 && (
+              <div className="space-y-4">
+                {result.answers.map((a: any) => (
+                  <div key={a.id} className="rounded-lg border p-4 space-y-2">
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="text-sm font-semibold">
+                        {a.id?.toUpperCase()}: {UCAS_QUESTIONS.find((q) => q.id === a.id)?.question.slice(0, 70) || "Answer"}
+                      </p>
+                      <Badge className={STATUS_STYLE[a.status] || ""}>{a.status}</Badge>
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">What works</p>
+                      <p className="text-sm leading-relaxed">{a.working}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">What a tutor cannot find</p>
+                      <p className="text-sm leading-relaxed">{a.missing}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Change this first</p>
+                      <p className="text-sm leading-relaxed">{a.fix}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {result.statement_level?.length > 0 && (
+              <div className="rounded-lg border p-4 space-y-3">
+                <p className="text-sm font-semibold">Across the statement as a whole</p>
+                {result.statement_level.map((issue: any, i: number) => (
+                  <div key={i}>
+                    <p className="text-sm font-medium">{issue.title}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{issue.description}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {result.subject_fit && (
+              <div className="rounded-lg border p-4">
+                <p className="text-sm font-semibold mb-1">Does this read as an application for {result._course || course}?</p>
+                <p className="text-sm leading-relaxed">{result.subject_fit}</p>
+              </div>
+            )}
+
+            {result.next_steps?.length > 0 && (
+              <div className="rounded-lg border p-4">
+                <p className="text-sm font-semibold mb-2">Revision list, most valuable first</p>
+                <ol className="space-y-2 list-decimal pl-5">
+                  {result.next_steps.map((step: string, i: number) => (
+                    <li key={i} className="text-sm leading-relaxed">{step}</li>
+                  ))}
+                </ol>
+              </div>
+            )}
+
+            {!result.answers && (
             <div className="rounded-lg bg-muted/40 p-4 space-y-2">
               <p className="text-sm font-semibold">In the full review</p>
               <ul className="space-y-1.5">
@@ -327,6 +385,7 @@ export default function UcasPersonalStatement() {
                 </p>
               </div>
             </div>
+            )}
 
             <p className="text-xs text-muted-foreground border-t pt-4">
               IBLens gives you feedback on writing that is yours. UCAS is explicit that submitting text generated
