@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function IAFeedbackGuide() {
   return (
     <ResourceArticle
-      title="IB IA Feedback, Check Your IA Against the Official Criteria | IBLens"
-      description="How to check your IB Internal Assessment against the official criteria without a tutor: what each subject is marked out of, where the heaviest criteria sit, a self-check sequence that works for any subject, and where AI feedback fits."
+      title="IB IA Feedback: Check Your IA Against the Official Criteria | IBLens"
+      description="How to check your IB Internal Assessment against the official criteria without a tutor: what each subject is marked out of, where the heaviest criteria sit, and a self-check sequence for any subject."
       canonical="/resources/ib-ia-feedback"
       datePublished="2026-08-11"
       dateModified="2026-08-11"

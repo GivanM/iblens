@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function GradeBoundaries() {
   return (
     <ResourceArticle
-      title="IB Grade Boundaries Explained, How IB Scoring Works | IBLens"
-      description="Understand how IB grade boundaries work: the 7-point scale, how subject scores combine, bonus points from EE/TOK, and what different total scores mean for university admissions."
+      title="IB Grade Boundaries Explained: How IB Scoring Works | IBLens"
+      description="How IB grade boundaries work: the 1 to 7 scale, how subject grades and the EE and TOK bonus points make up the 45-point Diploma score, and why boundaries move every session."
       canonical="/resources/ib-grade-boundaries"
       datePublished="2026-05-01"
       dateModified="2026-05-01"
@@ -13,143 +13,75 @@ export default function GradeBoundaries() {
       <h1>IB Grade Boundaries Explained</h1>
 
       <p>
-        One of the most confusing aspects of the IB Diploma Programme for students and parents is the scoring system. Unlike national curricula that use percentages or letter grades, the IB uses a 7-point scale for each subject, bonus points from core components, and grade boundaries that shift between examination sessions. This guide explains how the entire system works, from individual subject grades to the final diploma score, so you can understand where your marks come from and what you need to achieve your goals.
+        The IB scoring system confuses students and parents alike. Each subject is graded from 1 to 7, the Extended Essay and Theory of Knowledge add up to 3 bonus points, and the raw marks needed for each grade change from one examination session to the next. This guide explains how those pieces fit together, from a single subject grade to the final Diploma score.
       </p>
 
       <h2>How the 7-Point Scale Works</h2>
 
       <p>
-        Each IB subject is graded on a scale of 1 (lowest) to 7 (highest). These grades are not percentages, a 7 does not mean you scored 70% or above. Instead, grade boundaries are set after each examination session based on the difficulty of the papers and the performance of the global cohort.
+        Each IB subject is graded from 1 (lowest) to 7 (highest). The grades are not percentages: a 7 does not mean 70% or any other fixed share of the marks. After each session the IB sets grade boundaries, the minimum total mark needed for each grade, taking into account how demanding that session's papers turned out to be.
       </p>
 
       <p>
-        The grade boundaries represent the minimum raw mark (out of the total available marks for all components) needed to achieve each grade. For example, in a subject where the total available marks across all papers and IA is 100:
-      </p>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Grade</th>
-            <th>Typical Boundary Range</th>
-            <th>Approximate Percentage</th>
-            <th>Descriptor</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>7</strong></td>
-            <td>73–85+</td>
-            <td>~73–85%</td>
-            <td>Excellent</td>
-          </tr>
-          <tr>
-            <td><strong>6</strong></td>
-            <td>60–72</td>
-            <td>~60–72%</td>
-            <td>Very Good</td>
-          </tr>
-          <tr>
-            <td><strong>5</strong></td>
-            <td>48–59</td>
-            <td>~48–59%</td>
-            <td>Good</td>
-          </tr>
-          <tr>
-            <td><strong>4</strong></td>
-            <td>36–47</td>
-            <td>~36–47%</td>
-            <td>Satisfactory</td>
-          </tr>
-          <tr>
-            <td><strong>3</strong></td>
-            <td>25–35</td>
-            <td>~25–35%</td>
-            <td>Mediocre</td>
-          </tr>
-          <tr>
-            <td><strong>2</strong></td>
-            <td>14–24</td>
-            <td>~14–24%</td>
-            <td>Poor</td>
-          </tr>
-          <tr>
-            <td><strong>1</strong></td>
-            <td>0–13</td>
-            <td>~0–13%</td>
-            <td>Very Poor</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p>
-        <strong>Important:</strong> These ranges are approximate and vary significantly between subjects and sessions. Two subjects in the same session can have noticeably different grade 7 boundaries, because each is set from the difficulty of that session's papers. The IBO adjusts boundaries to maintain consistent standards across years, if a paper was unusually difficult, boundaries are lowered so that a similar proportion of students achieve each grade.
+        Boundaries differ between subjects, between SL and HL, and between sessions, so no single percentage table applies to every subject. The boundaries for each session are published to schools after marking, and your teacher can tell you where they fell for your subject in recent sessions. Treat an older session's boundaries as a guide, not a promise.
       </p>
 
       <p>
-        This is why it is impossible to know your exact grade during the course. You can estimate based on historical boundaries, but the actual boundaries are only finalized after all papers are marked for that session.
+        This is why nobody can tell you your exact grade during the course. You can estimate from past boundaries, but the boundaries that count are only fixed once that session's marking is complete.
       </p>
 
-      <h2>How Subject Scores Combine to Total Points</h2>
+      <h2>How Subject Grades Combine into the Diploma Score</h2>
 
       <p>
-        The IB Diploma score is calculated by adding together your grades from all six subjects plus bonus points from the core (TOK + EE). The maximum possible score is:
+        The Diploma score adds your six subject grades to the bonus points from the Extended Essay and TOK:
       </p>
 
       <ul>
         <li>6 subjects × 7 points maximum = <strong>42 points</strong></li>
-        <li>Core bonus points (EE + TOK) = <strong>3 points maximum</strong></li>
+        <li>Bonus points from the EE and TOK = <strong>3 points maximum</strong></li>
         <li><strong>Total maximum: 45 points</strong></li>
       </ul>
 
       <p>
-        To be awarded the IB Diploma (as opposed to individual subject certificates), you must meet all of the following conditions:
+        The Diploma is not awarded if any of the following applies, whatever the total:
       </p>
 
       <ul>
-        <li>Score at least <strong>24 points</strong> in total</li>
-        <li>Complete CAS requirements</li>
-        <li>No grade 1 in any subject</li>
-        <li>No more than two grade 2s</li>
-        <li>No more than three grade 3s (or below) across all subjects</li>
-        <li>At least 12 points from Higher Level subjects</li>
-        <li>At least 9 points from Standard Level subjects</li>
-        <li>No "N" (not graded) in any subject, TOK, or EE</li>
+        <li>The CAS requirements have not been met</li>
+        <li>The total is fewer than 24 points</li>
+        <li>An "N" has been given for TOK, the EE or a contributing subject</li>
+        <li>A grade E has been awarded for TOK, the EE or both</li>
+        <li>A grade 1 has been awarded in any subject</li>
+        <li>Grade 2 has been awarded three or more times</li>
+        <li>Grade 3 or below has been awarded four or more times</li>
+        <li>Fewer than 12 points on HL subjects (with four HL subjects, the three highest grades count)</li>
+        <li>Fewer than 9 points on SL subjects (with only two SL subjects, at least 5 points at SL)</li>
       </ul>
 
       <p>
-        Failing to meet any of these conditions results in not being awarded the Diploma, even if your total points are above 24. The most common reason for Diploma failure (beyond not reaching 24 points) is receiving a grade 2 or below in a subject where the student did not submit the IA or missed an exam.
+        So a student can reach 24 points and still not receive the Diploma, for example with a grade 1 in one subject. Students who are not awarded the Diploma receive DP Course Results for the subjects they completed.
       </p>
 
-      <h2>Grade Boundaries by Subject: General Patterns</h2>
+      <h2>What Moves a Boundary</h2>
 
       <p>
-        While exact boundaries vary by session, certain patterns are consistent across years:
+        A boundary is set for a subject and level as a whole, after all its components are marked. Two things are worth knowing about how that plays out in practice.
       </p>
 
-      <h3>Sciences (Physics, Chemistry, Biology)</h3>
+      <h3>Coursework counts toward the same total</h3>
       <p>
-        Grade boundaries are set after each session and the IB publishes them to coordinators, so no fixed percentage holds across sessions because the papers include structured questions with clear right/wrong answers. However, the IA component (20%) provides an opportunity to secure marks through careful preparation. Students who score highly on the IA effectively lower the exam performance needed for a 7.
+        The internally assessed component is part of the total that the boundary is applied to. In the sciences and mathematics it is worth 20% of the grade, and more in some subjects, such as 30% of Economics at SL. Marks secured on the IA before the exams are marks you do not have to find on the papers.
       </p>
 
-      <h3>Mathematics</h3>
+      <h3>Full marks are not required for a 7</h3>
       <p>
-        Mathematics Analysis & Approaches HL is known among teachers for comparatively low grade 7 boundaries, because the papers are designed to be challenging. Published boundaries for your session are in the subject reports your school receives. The key insight: in mathematics, you do not need to answer every question correctly to achieve a 7.
+        Because boundaries are set below the maximum, a 7 does not require a perfect performance on every paper, in any subject. Where exactly the line falls depends on the session, so the useful question is how close your own marks are to it, which your teacher can help you judge.
       </p>
 
-      <h3>Humanities (History, Economics, Psychology)</h3>
-      <p>
-        The same is true across the humanities: the boundary moves with the paper. The challenge in these subjects is not the boundary itself but the difficulty of achieving high marks on essay-based papers where examiners apply holistic marking criteria. A "perfect" essay is rare in humanities marking.
-      </p>
-
-      <h3>Languages (Group 1 and Group 2)</h3>
-      <p>
-        Language subjects tend towards higher grade 7 boundaries, because marking on individual components is comparatively generous. However, the Individual Oral (IO) can be unpredictable, and Language B is assessed across reading, writing, speaking and listening, while Language A (Group 1) has no listening component, its assessment is Paper 1, Paper 2, the HL essay and the individual oral.
-      </p>
-
-      <h2>Bonus Points from the EE/TOK Matrix</h2>
+      <h2>Bonus Points from the EE and TOK Matrix</h2>
 
       <p>
-        The Extended Essay and Theory of Knowledge are each graded A–E. These two grades are combined using a matrix to determine how many bonus points (0–3) are added to your diploma score:
+        The Extended Essay and Theory of Knowledge are each graded from A to E. The two grades are combined in a matrix that gives 0 to 3 bonus points:
       </p>
 
       <table>
@@ -208,95 +140,46 @@ export default function GradeBoundaries() {
       </table>
 
       <p>
-        Key observations from this matrix:
+        What the matrix means in practice:
       </p>
 
       <ul>
-        <li>An E grade in either TOK or EE results in automatic Diploma failure regardless of your total points</li>
-        <li>To get the maximum 3 bonus points, you need at least an A in one component and a B in the other</li>
-        <li>The most common outcomes, B/B and B/C, both give 2 bonus points; a single point comes from EE B with TOK D, EE C with TOK C, or EE D with TOK B</li>
-        <li>These bonus points can be the difference between a 42 and a 45, or between meeting and missing a university offer</li>
+        <li>An E in either TOK or the EE means the Diploma is not awarded, regardless of total points.</li>
+        <li>The maximum 3 points needs an A in one component and at least a B in the other.</li>
+        <li>B and B, or B and C, give 2 points. A single point comes from B with D, or C with C.</li>
+        <li>Three bonus points are worth as much as half a grade in each of your six subjects.</li>
       </ul>
 
       <p>
-        This is why investing time in your <Link href="/resources/ib-extended-essay-guide" className="text-primary hover:underline">Extended Essay</Link> and <Link href="/resources/tok-essay-guide" className="text-primary hover:underline">TOK essay</Link> is strategically important, they offer "free" points that require effort but no exam-day performance pressure.
+        That is why your <Link href="/resources/ib-extended-essay-guide" className="text-primary hover:underline">Extended Essay</Link> and <Link href="/resources/tok-essay-guide" className="text-primary hover:underline">TOK essay</Link> deserve real attention: both are submitted work with no exam-day pressure, and they are worth up to 3 points between them.
       </p>
 
-      <h2>What Different Total Scores Mean for University Admissions</h2>
+      <h2>Totals and University Offers</h2>
 
       <p>
-        IB scores are recognized by universities worldwide, but requirements vary significantly by institution and program:
-      </p>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Score Range</th>
-            <th>Competitiveness</th>
-            <th>Typical University Targets</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>40–45</strong></td>
-            <td>Highly competitive</td>
-            <td>Oxbridge, Ivy League, top medical schools, ETH Zurich</td>
-          </tr>
-          <tr>
-            <td><strong>36–39</strong></td>
-            <td>Very strong</td>
-            <td>Russell Group (UK), top US liberal arts, University of Toronto, NUS</td>
-          </tr>
-          <tr>
-            <td><strong>32–35</strong></td>
-            <td>Strong</td>
-            <td>Most competitive programs at good universities worldwide</td>
-          </tr>
-          <tr>
-            <td><strong>28–31</strong></td>
-            <td>Solid</td>
-            <td>Many university programs, some competitive programs with strong HL scores</td>
-          </tr>
-          <tr>
-            <td><strong>24–27</strong></td>
-            <td>Passing</td>
-            <td>Diploma awarded; limited competitive options but many pathways available</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p>
-        <strong>Important nuance:</strong> Many universities care more about your HL subject grades than your total score. A student with 38 points but 7,7,6 at HL in relevant subjects may be more competitive than a student with 40 points but 6,6,5 at HL. UK universities in particular often make offers based on specific HL grades (e.g., "766 at HL including 7 in Chemistry").
+        Universities set their own requirements for each course, and many care as much about grades in particular HL subjects as about the total. A UK offer, for example, can read "38 points including 766 at HL, with a 7 in Chemistry". A student on 38 points who meets those HL grades can hold an offer that a student on 40 points with the wrong HL grades does not.
       </p>
 
       <p>
-        For entry requirements and deadlines, use the university's own course pages and UCAS, they are the only sources that stay current. If you are writing a UCAS personal statement, our <Link href="/ucas-personal-statement" className="text-primary hover:underline">checker</Link> reviews it against the 2026 three-question format.
+        Requirements change, so use the university's own course page, and UCAS for UK courses, as the source for the course you are applying to. If you are writing a UCAS personal statement, our <Link href="/ucas-personal-statement" className="text-primary hover:underline">checker</Link> reviews it against the three-question format used from 2026 entry.
       </p>
 
-      <h2>How to Maximize Your Total Score</h2>
+      <h2>Where Your Effort Moves the Score</h2>
 
       <p>
-        Based on the scoring structure, here are strategic approaches to maximizing your IB Diploma score:
-      </p>
-
-      <p>
-        <strong>Prioritize IAs:</strong> Internal Assessments are the most controllable component of your grade. You have weeks to refine them, can get teacher feedback, and can use tools like <Link href="/essay" className="text-primary hover:underline">IBLens</Link> to identify areas for improvement. A strong IA can compensate for a weaker exam performance.
+        <strong>Internal Assessments:</strong> the IA is the part of each grade you work on over weeks rather than in an exam hall. Your teacher can comment on a draft, and you can check it against the criteria yourself or with a tool like <Link href="/essay" className="text-primary hover:underline">IBLens</Link> before you submit.
       </p>
 
       <p>
-        <strong>Invest in EE and TOK:</strong> The 3 bonus points from the EE/TOK matrix are achievable with focused effort. An A in your EE and a B in TOK gives you the maximum 3 points, equivalent to raising one subject grade by half a point across all six subjects.
+        <strong>The EE and TOK:</strong> an A in the EE and a B in TOK, or the other way round, gives the full 3 bonus points.
       </p>
 
       <p>
-        <strong>Know your boundaries:</strong> If you are on the borderline between two grades in a subject, even 1–2 extra marks on the IA or one paper can push you up. Understanding approximately where boundaries fall helps you allocate revision time strategically.
+        <strong>Boundaries:</strong> if you sit close to the line between two grades in a subject, one or two marks on the IA or a paper can move you across it. Knowing roughly where the line has fallen before helps you decide where to spend revision time.
       </p>
 
       <p>
-        <strong>Balance effort across subjects:</strong> Going from a 6 to a 7 in one subject requires significantly more effort than going from a 4 to a 5 in another. If your goal is to maximize total points, focus on subjects where you are closest to the next grade boundary.
-      </p>
-
-      <p>
-        For more on how to achieve top marks on your essays and IAs, see our guides on <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB Essay Criteria Explained</Link> and <Link href="/resources/ib-internal-assessment-guide" className="text-primary hover:underline">Internal Assessment Guide</Link>. Understanding the <Link href="/pricing" className="text-primary hover:underline">pricing</Link> of essay analysis tools can help you decide how to invest in your preparation.
+        For more on how essays and IAs are marked, see <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB Essay Criteria Explained</Link> and the <Link href="/resources/ib-internal-assessment-guide" className="text-primary hover:underline">Internal Assessment Guide</Link>.
       </p>
       <h2>After results day</h2>
 

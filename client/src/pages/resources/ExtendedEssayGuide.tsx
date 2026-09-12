@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function ExtendedEssayGuide() {
   return (
     <ResourceArticle
-      title="IB Extended Essay Guide, Structure, Criteria & How to Score an A | IBLens"
-      description="Complete guide to the IB Extended Essay: word count, structure, research question, assessment criteria A-E, common mistakes, and strategies for scoring an A."
+      title="IB Extended Essay Guide: Structure, Criteria and How to Score an A | IBLens"
+      description="A complete guide to the IB Extended Essay: the 4,000-word limit, structure, the research question, the assessment criteria for both rubrics, and the mistakes that cost marks."
       canonical="/resources/ib-extended-essay-guide"
       datePublished="2026-05-01"
       dateModified="2026-05-01"
@@ -27,21 +27,21 @@ export default function ExtendedEssayGuide() {
       <h2>What Is the IB Extended Essay?</h2>
 
       <p>
-        The Extended Essay is a required component for all IB Diploma candidates. It is an in-depth study of a focused topic chosen from one of the student's six DP subjects (or, in some cases, from an interdisciplinary perspective under the World Studies option). The essay must be the result of the student's own research and must demonstrate the ability to formulate an appropriate research question, engage in personal exploration of the topic, communicate ideas effectively, and develop a reasoned argument.
+        The Extended Essay is a required component for all IB Diploma candidates. It is an in-depth study of a focused topic, usually in one of the student's DP subjects, or written as an interdisciplinary World Studies essay. The essay must be the result of the student's own research and must demonstrate the ability to formulate an appropriate research question, engage in personal exploration of the topic, communicate ideas effectively, and develop a reasoned argument.
       </p>
 
       <p>
-        The EE is supervised by a teacher at the student's school, but the research and writing must be the student's own work. The IBO allocates approximately 40 hours of work to the Extended Essay, spread across the final two years of the Diploma Programme. Students are expected to meet regularly with their supervisor, who provides guidance on methodology, structure, and academic conventions, but does not edit or rewrite the essay.
+        The EE is supervised by a teacher at the student's school, but the research and writing must be the student's own work. The IBO allocates approximately 40 hours of work to the Extended Essay, spread across the final two years of the Diploma Programme. Students meet their supervisor, including three formal reflection sessions, and the supervisor gives guidance on method, structure and academic conventions but does not edit or rewrite the essay.
       </p>
 
       <h2>Word Count and Timeline</h2>
 
       <p>
-        The maximum word count for the Extended Essay is <strong>4,000 words</strong>. This limit includes the introduction, body, conclusion, and any quotations. It does <em>not</em> include the abstract (which was removed from the requirements in 2018), table of contents, maps, charts, diagrams, annotated illustrations, tables, equations, formulas, calculations, citations/references, bibliography, or appendices.
+        The maximum word count for the Extended Essay is <strong>4,000 words</strong>. This limit includes the introduction, body, conclusion, quotations, and any footnotes or endnotes that are not references. It does <em>not</em> include the contents page, maps, charts, diagrams, annotated illustrations, tables, equations, formulas and calculations, citations and references, the bibliography, or the reflection form. There is no abstract: it was dropped in 2018.
       </p>
 
       <p>
-        Going significantly under the word count (below 3,500 words) often indicates insufficient depth of analysis. Going over the limit means the examiner will stop reading at 4,000 words and will not assess any content beyond that point. Aim for 3,800–4,000 words to demonstrate thorough engagement without padding.
+        There is no minimum word count, but an essay far below the limit often lacks the depth the upper levels describe. Going over the limit means the examiner stops reading at 4,000 words and does not assess anything beyond that point. Most strong essays use most of the limit without padding.
       </p>
 
       <p>
@@ -56,7 +56,7 @@ export default function ExtendedEssayGuide() {
       </ul>
 
       <p>
-        Schools set their own internal deadlines, which are typically earlier than the IBO's final submission deadline. Missing internal deadlines can result in loss of supervisor support or, in extreme cases, inability to submit the essay.
+        Schools set their own internal deadlines, which come well before the IB's final submission deadline. Your school's EE policy says what happens if you miss one, so check it early.
       </p>
 
       <h2>Choosing a Research Question</h2>
@@ -88,12 +88,12 @@ export default function ExtendedEssayGuide() {
       </p>
 
       <ul>
-        <li><strong>Title page:</strong> Research question, subject, word count, candidate information</li>
+        <li><strong>Title page:</strong> the title, the research question, the subject the essay is registered in, and the word count. Leave off your name, candidate number and school name: Extended Essays are marked anonymously.</li>
         <li><strong>Table of contents:</strong> With page numbers</li>
         <li><strong>Introduction (300–400 words):</strong> Context, research question, scope, methodology overview</li>
         <li><strong>Body (3,000–3,200 words):</strong> Organized into logical sections with clear headings, presenting evidence, analysis, and argumentation</li>
         <li><strong>Conclusion (200–300 words):</strong> Direct answer to the RQ, summary of findings, acknowledgment of limitations, suggestions for further research</li>
-        <li><strong>Bibliography:</strong> Consistent citation style (MLA, APA, Chicago, or Harvard, pick one and use it throughout)</li>
+        <li><strong>Bibliography:</strong> one consistent citation style, such as MLA, APA, Chicago or Harvard, used throughout</li>
         <li><strong>Appendices (if needed):</strong> Raw data, interview transcripts, supplementary materials</li>
       </ul>
 
@@ -104,7 +104,7 @@ export default function ExtendedEssayGuide() {
       <h2>Assessment Criteria (A–E)</h2>
 
       <p>
-        The criteria below are the <strong>current 34-mark criteria, used for sessions through November 2026</strong>. If you sit your exams in May 2027 or later, your essay is marked out of 30 under a different set, see <Link href="/resources/ib-extended-essay-new-criteria-2027">what changed in 2027</Link>. The current criteria apply uniformly across all subjects:
+        The criteria below are the <strong>current 34-mark criteria, used for sessions through November 2026</strong>. If you sit your exams in May 2027 or later, your essay is marked out of 30 under a different set: see <Link href="/resources/ib-extended-essay-new-criteria-2027">what changed in 2027</Link>. The current criteria apply uniformly across all subjects:
       </p>
 
       <table>
@@ -149,19 +149,19 @@ export default function ExtendedEssayGuide() {
       </p>
 
       <p>
-        <strong>Criterion E (Engagement)</strong> is assessed through the Reflections on Planning and Progress Form (RPPF), which holds three reflections written at different stages of the research process, the third of these is the viva voce reflection, and is limited to 500 words in total. From the May 2027 session the RPPF is replaced by the <Link href="/resources/ib-rpf-extended-essay-2027">RPF</Link>, a single reflective statement of up to 500 words assessed under Criterion E: Reflection (4 of 30 marks). This criterion evaluates intellectual engagement, decision-making, and the student's ability to reflect on their learning process.
+        <strong>Criterion E (Engagement)</strong> is assessed through the Reflections on Planning and Progress Form (RPPF). It holds three reflections written at different stages of the research, the third of them after the viva voce, and is limited to 500 words in total. The examiner marks Criterion E on these reflections, reading the essay only as context. From the May 2027 session the RPPF is replaced by the <Link href="/resources/ib-rpf-extended-essay-2027">RPF</Link>, a single reflective statement of up to 500 words assessed under Criterion E: Reflection (4 of 30 marks). This criterion evaluates intellectual engagement, decision-making, and the student's ability to reflect on their learning process.
       </p>
 
       <h2>Common Mistakes</h2>
 
       <p>
-        Based on examiner reports published by the IBO, the most frequent issues with Extended Essays include:
+        Issues that commonly cost Extended Essays marks:
       </p>
 
       <ul>
         <li><strong>Descriptive rather than analytical writing:</strong> Reporting what happened or what sources say without evaluating, comparing, or arguing</li>
         <li><strong>Research question too broad:</strong> Attempting to cover too much ground, resulting in superficial treatment</li>
-        <li><strong>Over-reliance on secondary sources:</strong> Particularly in history and social science essays where primary sources are expected</li>
+        <li><strong>Over-reliance on secondary sources:</strong> particularly in subjects such as History, where primary sources strengthen the argument (a Psychology EE, by contrast, is built on published research)</li>
         <li><strong>Poor source evaluation:</strong> Citing sources without assessing their reliability, bias, or limitations</li>
         <li><strong>Weak conclusion:</strong> Failing to directly answer the research question or introducing new material in the conclusion</li>
         <li><strong>Inconsistent referencing:</strong> Mixing citation styles or failing to cite all borrowed ideas</li>
@@ -172,7 +172,7 @@ export default function ExtendedEssayGuide() {
       <h2>How to Score an A</h2>
 
       <p>
-        An A grade on the Extended Essay is 27–34 marks out of 34 under the criteria in force through November 2026. For May 2027 onward the essay is marked out of 30 against rewritten criteria, and the IB sets those grade boundaries only after the session is marked, so no A threshold exists for the new scale yet. Either way an A requires excellence across all criteria. Based on analysis of high-scoring essays and examiner commentary, here are the key characteristics of A-grade Extended Essays:
+        In recent sessions an A on the Extended Essay has been 27 to 34 marks out of 34, under the criteria in force through November 2026. For May 2027 onward the essay is marked out of 30 against rewritten criteria, and the IB sets those grade boundaries only after the session is marked, so no A threshold exists for the new scale yet. Either way, an A needs strong work across the criteria. A-grade Extended Essays tend to share these characteristics:
       </p>
 
       <p>
@@ -188,11 +188,11 @@ export default function ExtendedEssayGuide() {
       </p>
 
       <p>
-        <strong>Genuine personal engagement</strong> visible in the RPPF reflections and in the essay itself. Examiners can tell when a student is genuinely interested in their topic versus going through the motions.
+        <strong>Genuine engagement</strong> shown in the reflections: real decisions, turning points and what the student learned from them. Criterion E is marked on the reflection form, so that is where the engagement has to be visible.
       </p>
 
       <p>
-        <strong>Professional presentation:</strong> Clear structure, consistent formatting, accurate referencing, and polished academic writing. While presentation only accounts for 4 marks, poor presentation creates a negative impression that can affect how examiners perceive the quality of thinking.
+        <strong>Careful presentation:</strong> clear structure, consistent formatting, accurate referencing and polished academic writing. Presentation is worth 4 marks, and a clear structure also makes the argument easier to follow.
       </p>
 
       <h2>Final Checklist Before Submission</h2>
@@ -202,7 +202,8 @@ export default function ExtendedEssayGuide() {
       </p>
 
       <ul>
-        <li>Word count is between 3,800 and 4,000 words (check what is included/excluded)</li>
+        <li>Word count is no more than 4,000 (check what is included and excluded)</li>
+        <li>Your name, candidate number and school name appear nowhere in the essay</li>
         <li>Research question is clearly stated on the title page and in the introduction</li>
         <li>Every section of the body directly relates to answering the research question</li>
         <li>Conclusion directly answers the research question with evidence from the body</li>
@@ -217,7 +218,7 @@ export default function ExtendedEssayGuide() {
       </ul>
 
       <p>
-        If you want objective, criterion-based feedback on your Extended Essay before submission, <Link href="/essay/extended-essay" className="text-primary hover:underline">IBLens can grade your Extended Essay</Link> against the official IB EE criteria, focus &amp; method, knowledge, critical thinking, presentation, and engagement, in about 90 seconds.
+        If you want objective, criterion-based feedback on your Extended Essay before submission, <Link href="/essay/extended-essay" className="text-primary hover:underline">IBLens can mark your Extended Essay</Link> against the EE criteria for your session, the 34-mark set or the new 30-mark set, in about a minute.
       </p>
 
       <p>

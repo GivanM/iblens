@@ -4,174 +4,163 @@ import { Link } from "wouter";
 export default function IBExtendedEssayWordCount() {
   return (
     <ResourceArticle
-      title="IB Extended Essay Word Count, The 4000-Word Limit Explained | IBLens"
-      description="Everything you need to know about the IB Extended Essay word count: what counts, what doesn't, how close to the limit you should aim, and what happens if you go over."
+      title="IB Extended Essay Word Count: The 4,000-Word Limit Explained | IBLens"
+      description="What counts toward the 4,000-word limit of the IB Extended Essay, what does not, how close to the limit to aim, and what happens if you go over."
       canonical="/resources/ib-extended-essay-word-count"
       datePublished="2026-06-09"
       dateModified="2026-06-09"
     >
       <p>
-        The IB Extended Essay has a maximum word count of 4000 words. This is one of
-        the most misunderstood rules in the entire IB programme, students frequently
-        ask whether footnotes count, whether the bibliography counts, whether their
-        whether the (long-abolished) abstract counts, and what happens if they go over by fifty words. This guide
-        answers all of those questions and explains the strategy behind hitting the
-        word count effectively.
+        The IB Extended Essay has a maximum of 4,000 words. It is one of the most
+        misunderstood rules in the Diploma: students ask whether footnotes count,
+        whether the bibliography counts, and what happens if they go over by fifty
+        words. This guide answers those questions from the IB's own word count table
+        and explains how to use the limit well.
       </p>
 
-      <h2>What Counts Toward the 4000-Word Limit</h2>
+      <h2>What Counts Toward the 4,000-Word Limit</h2>
       <p>
-        According to the IB's official Extended Essay guide, the word count includes:
+        The Extended Essay guide lists what is included in the word count:
       </p>
       <ul>
         <li>The introduction</li>
-        <li>The body of the essay (all sections)</li>
+        <li>The main body</li>
         <li>The conclusion</li>
-        <li>Quotations embedded in the text</li>
-        <li>Footnotes used for anything other than referencing (substantive commentary counts)</li>
+        <li>Quotations</li>
+        <li>Footnotes and endnotes that are not references</li>
       </ul>
 
-      <h2>What Does NOT Count Toward the 4000-Word Limit</h2>
+      <h2>What Does Not Count</h2>
       <p>
-        The following are excluded, along with equations, formulae, calculations, tables and diagrams, from the word count:
+        The same table lists what is not included:
       </p>
       <ul>
-        <li><strong>The title page</strong></li>
-        <li><strong>The contents page / table of contents</strong></li>
-        
-        <li><strong>Acknowledgements</strong></li>
-        <li><strong>The bibliography / references list</strong></li>
-        <li><strong>Footnotes and endnotes</strong> (if used purely for citations)</li>
-        <li><strong>Captions for figures, tables, and diagrams</strong></li>
-        <li><strong>Headers and subheadings</strong></li>
-        <li><strong>Appendices</strong></li>
+        <li><strong>The contents page</strong></li>
+        <li><strong>Maps, charts, diagrams and annotated illustrations</strong></li>
+        <li><strong>Tables</strong></li>
+        <li><strong>Equations, formulas and calculations</strong></li>
+        <li><strong>Citations and references</strong>, whether parenthetical, numbered, footnotes or endnotes</li>
+        <li><strong>The bibliography</strong></li>
+        <li><strong>The reflection form</strong> (the RPPF, or from May 2027 the RPF)</li>
       </ul>
       <p>
-        Note: if you put substantive analysis in footnotes rather than the body of
-        the essay, examiners are instructed to ignore that analysis when marking.
-        Footnotes are for citations and minor clarifications, not for content that
-        should be in the main text.
+        Note the difference between two kinds of footnote. A footnote that gives a
+        reference is not counted. A footnote that adds explanation or argument is
+        counted, like any other sentence of the essay. Putting analysis in footnotes
+        does not save words, and it makes the argument harder to follow.
       </p>
 
-      <h2>What Happens If You Go Over 4000 Words</h2>
+      <h2>What Happens If You Go Over 4,000 Words</h2>
       <p>
-        Examiners are instructed to stop reading at 4000 words. Any content beyond the
-        limit is not assessed. This means that if your conclusion starts at word 3950
-        and your most critical evaluation point appears at word 4050, that point does
-        not exist as far as your mark is concerned.
+        Examiners are instructed not to read or assess anything beyond the word limit,
+        and the electronic upload lets them see exactly where that point falls. If your
+        most important evaluation point appears at word 4,050, it does not exist as far
+        as your mark is concerned.
       </p>
       <p>
-        Going over the word count does not result in an automatic penalty beyond this, there is no "minus 5 marks for exceeding the limit." The penalty is subtler and
-        worse: your work is simply cut off. If you write 4500 words, the last 500 are
-        invisible to the examiner.
-      </p>
-      <p>
-        This is why submitting an essay that is significantly over the word count is a
-        strategic error, not just a rule violation. Every student who goes over the limit
-        is effectively submitting an unfinished essay.
+        There is no separate deduction of marks for going over. The loss is in what is
+        not read: the guide points out that knowledge shown beyond the limit is treated
+        as if it were not there for Criterion B, and analysis or evaluation beyond it as
+        if it had not been made for Criterion C. If you write 4,500 words, the last 500
+        count for nothing, and they are usually where the conclusion is.
       </p>
 
-      <h2>How Close to 4000 Words Should You Aim?</h2>
+      <h2>How Close to 4,000 Words Should You Aim?</h2>
       <p>
-        The IB does not set a minimum word count for the Extended Essay. However, the
-        4000-word limit exists because that is the length considered sufficient to
-        develop a sustained argument to the required depth. In practice:
+        The IB sets no minimum word count. The limit is there because 4,000 words is
+        enough room to develop a sustained argument, and an essay well below it often
+        has not used that room. There is no ideal number, but a few practical points
+        hold:
       </p>
       <ul>
-        <li><strong>Under 3000 words:</strong> Almost always indicates insufficient depth of argument or analysis. Scores on Criterion B (Knowledge and Understanding) and Criterion C (Critical Thinking) will be low.</li>
-        <li><strong>3000–3500 words:</strong> Can score well if the writing is dense and every sentence earns its place. More common in Mathematics EEs where economy of expression is valued.</li>
-        <li><strong>3500–3800 words:</strong> The sweet spot for most subjects. Leaves enough margin for the examiner to read your conclusion in full and demonstrates that you have developed your argument fully.</li>
-        <li><strong>3800–4000 words:</strong> Fine, but leaves little margin for error. If your bibliography citation count is high (increasing your in-text citation word count), you may accidentally exceed the limit when you add final edits.</li>
-        <li><strong>Over 4000 words:</strong> Never acceptable. Cut until you are under the limit, then review once more.</li>
+        <li><strong>Check the count against the table, not your word processor.</strong> A word processor counts citations, the bibliography and table text that the IB does not, so an essay can look over the limit when it is not, or the other way round if footnotes carry argument.</li>
+        <li><strong>Leave yourself a small margin.</strong> Final edits tend to add words, so aiming slightly under the limit avoids a last-minute cut.</li>
+        <li><strong>Do not pad to reach a number.</strong> Repeated summaries and restated points add words without adding marks.</li>
+        <li><strong>Never go over.</strong> Cut until the essay is within the limit, then read it through once more.</li>
       </ul>
 
       <h2>Do Not Write an Abstract</h2>
       <p>
-        The abstract was abolished from the Extended Essay in the May 2018 session and has
-        not been required, or assessed, since. If a template or an older guide tells you
-        to include a 300-word abstract, it is out of date: submitting one today only
-        signals an outdated structure and wastes effort. Orient the examiner with a clear
-        introduction and a table of contents instead.
+        The abstract was removed from the Extended Essay in the May 2018 session and has
+        not been required or assessed since. If a template or an older guide tells you to
+        include a 300-word abstract, it is out of date. Orient the examiner with a clear
+        introduction and a contents page instead.
       </p>
 
-      <h2>Subject-Specific Word Count Guidance</h2>
+      <h2>Word Count by Subject</h2>
 
-      <h3>Sciences (Biology, Chemistry, Physics, Environmental Systems)</h3>
+      <h3>Sciences (Biology, Chemistry, Physics, Environmental Systems and Societies)</h3>
       <p>
-        Science EEs often include data tables, graphs, and calculations. These elements
-        (as figures and tables with captions) do not count toward the word count, so
-        students sometimes find they have significant content but are under 3000 words
-        of prose. This is fine, the analysis and evaluation of that data is what
-        must reach the required depth in the word-counted sections. Do not pad with
-        description; deepen the analysis.
+        Science EEs include data tables, graphs and calculations, none of which count.
+        Students sometimes find they have a lot of content but fewer words of prose than
+        expected. That is fine: what has to reach the required depth is the analysis and
+        evaluation of the data, in the counted sections. Do not pad with description;
+        deepen the analysis.
       </p>
 
       <h3>Mathematics</h3>
       <p>
-        Mathematics EEs are typically shorter in prose but dense in notation. Mathematical
-        expressions and equations technically count as words if they are typeset inline,
-        but most word processors handle this inconsistently. Aim for 2500–3500 words
-        with substantial mathematical working in between. The depth of the mathematics
-        matters more than the word count.
+        Mathematics EEs are dense in notation, and equations, formulas and calculations
+        do not count toward the limit. The prose that explains and connects the
+        mathematics does count. The depth and correctness of the mathematics matter far
+        more than the number of words.
       </p>
 
-      <h3>Humanities (History, Geography, Economics, Philosophy)</h3>
+      <h3>Humanities and social sciences (History, Geography, Economics, Philosophy)</h3>
       <p>
-        Humanities EEs are usually prose-heavy and most naturally approach the 4000-word
-        limit. History EEs in particular need careful word management, it is easy to
-        spend 600 words on historical context and have only 2400 for analysis and
-        evaluation. Keep context brief and keep returning to your research question.
+        These essays are mostly prose, so they tend to use the full limit. History EEs
+        need particular care: it is easy to spend 600 words on background and leave too
+        little for analysis and evaluation. Keep context brief and keep returning to the
+        research question.
       </p>
 
-      <h3>Language and Literature</h3>
+      <h3>Language and literature</h3>
       <p>
-        Literary analysis EEs should stay between 3500 and 4000 words. Quotation from
-        primary texts counts toward the word count, so choose your textual evidence
-        carefully. Short, precisely chosen quotations with detailed analysis are
-        preferred over long block quotations that use up word count without adding depth.
+        Quotations from the texts count toward the limit, so choose them carefully. Short,
+        precise quotations followed by close analysis do more than long block quotations
+        that use up words without adding depth.
       </p>
 
       <h2>How to Cut Your Extended Essay When Over the Limit</h2>
       <p>
-        If your draft exceeds 4000 words, do not start cutting from the end. Work through
-        the essay systematically:
+        If your draft is over 4,000 words, do not start cutting from the end. Work
+        through the essay systematically:
       </p>
       <ol>
-        <li><strong>Remove summary sentences:</strong> Any sentence that merely restates what the preceding paragraph said can be deleted. Transitions like "In summary, the above analysis shows that…" add no new argument.</li>
-        <li><strong>Shorten quotations:</strong> If you have a three-sentence quotation but only need to analyse one sentence of it, use an ellipsis and cut the rest.</li>
-        <li><strong>Cut background context:</strong> The introduction often contains historical or contextual information that is tangential to the research question. If a paragraph does not directly set up your argument, consider moving it to an appendix or deleting it.</li>
-        <li><strong>Tighten analysis paragraphs:</strong> Look for phrases like "This is important because…" followed by a restatement. Replace with direct analysis.</li>
-        <li><strong>Remove redundant examples:</strong> If you have three examples illustrating the same point, one strong example is more effective (and shorter) than three moderate ones.</li>
+        <li><strong>Remove summary sentences:</strong> any sentence that only restates the previous paragraph can go. Transitions like "In summary, the above analysis shows that…" add no argument.</li>
+        <li><strong>Shorten quotations:</strong> if you only analyse one sentence of a three-sentence quotation, use an ellipsis and cut the rest.</li>
+        <li><strong>Cut background:</strong> introductions often carry context that is only loosely related to the research question. If a paragraph does not set up your argument, delete it. Moving it to an appendix does not help, because examiners are not required to read appendices.</li>
+        <li><strong>Tighten analysis paragraphs:</strong> look for "This is important because…" followed by a restatement, and replace it with the analysis itself.</li>
+        <li><strong>Remove repeated examples:</strong> one strong example usually does more than three that make the same point.</li>
       </ol>
 
-      <h2>Does Word Count Affect Your IB Grade?</h2>
+      <h2>Does Word Count Affect Your Grade?</h2>
       <p>
-        The word count itself is not a graded criterion, there is no criterion that
-        says "you used X words, therefore you score Y." The word count matters because
-        it determines how much of your essay the examiner reads, which affects every
-        criterion that depends on reading the full essay: Critical Thinking,
-        Presentation, and Engagement.
+        The word count is not a criterion in itself. It matters because it decides how
+        much of your essay the examiner reads, and every criterion marked on the essay
+        depends on what was read. Criterion E is marked on the reflection form, which is
+        not part of the count.
       </p>
       <p>
-        The most efficient essay, the one that makes every word count toward the
-        argument, is usually also the best essay. Students who write to fill space
-        rather than to make a point typically score lower on Critical Thinking even
-        when they stay within the limit.
+        The most economical essay, where every sentence moves the argument, is usually
+        also the strongest. Essays written to fill space rather than to make a point
+        tend to score lower on critical thinking even when they stay within the limit.
       </p>
 
-      <h2>Get Your Extended Essay Draft Assessed Before Submission</h2>
+      <h2>Get Your Extended Essay Draft Checked Before Submission</h2>
       <p>
-        Once your Extended Essay is submitted, the grade is final. The most effective
-        intervention is criterion-by-criterion feedback on a draft: are you developing
-        your argument to the depth the examiner expects? Is your research question
-        focused enough to be answered in 4000 words? Where exactly are marks being lost?
+        Once your Extended Essay is submitted, the grade is out of your hands. The most
+        useful thing you can get is criterion-by-criterion feedback on a draft: is the
+        argument developed to the depth the criteria describe, is the research question
+        focused enough for 4,000 words, and where are the marks being lost?
       </p>
       <p>
-        IBLens analyses your Extended Essay draft against the official IB rubric
-        and gives you specific, actionable feedback on each criterion before you submit.
+        IBLens reads your Extended Essay draft against the criteria for your session,
+        gives feedback on each one, and counts the words of what you paste against the
+        4,000-word limit.
       </p>
       <p>
-        <Link to="/essay">Paste your Extended Essay draft into IBLens for rubric-based feedback →</Link>
+        <Link href="/essay/extended-essay">Paste your Extended Essay draft into IBLens for criterion-by-criterion feedback →</Link>
       </p>
     </ResourceArticle>
   );

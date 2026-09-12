@@ -5,21 +5,20 @@ import { Link } from "wouter";
 export default function IBPhysicsIAExamples() {
   return (
     <ResourceArticle
-      title="IB Physics IA Examples, Investigation Ideas and How to Score a 7 | IBLens"
-      description="High-scoring IB Physics IA examples with examiner commentary. Discover which investigations earn top marks, how to handle uncertainty, and what kills your Evaluation score."
+      title="IB Physics IA Examples: Investigation Ideas and What Scores Well | IBLens"
+      description="IB Physics IA investigation ideas, how to handle uncertainties, and what the Evaluation criterion needs, with the mistakes that cost marks most often."
       canonical="/resources/ib-physics-ia-examples"
       datePublished="2026-06-09"
       dateModified="2026-06-09"
     >
       <p>
         The IB Physics Internal Assessment is a practical investigation worth 20%
-        of your final grade. Physics IAs are particularly unforgiving on data
-        quality: examiners expect quantitative analysis, proper uncertainty
-        propagation, and graphs that are correctly processed. A student who
-        designs a clever investigation but takes sloppy data will score lower
-        than a student who runs a simpler experiment with rigorous measurement.
-        This guide covers which IB Physics IA topics produce reliable high scores
-        and what the marking criteria actually require.
+        of your final grade, marked on four criteria of 6 marks each. Physics IAs are
+        unforgiving on data quality: the criteria look for quantitative analysis,
+        uncertainties carried through the processing, and graphs that actually test the
+        relationship. A clever investigation with careless measurements can end up below
+        a simpler one measured rigorously. This guide covers topics that tend to work and
+        what the criteria ask for.
       </p>
 
       <h2>Marking Criteria Overview</h2>
@@ -32,32 +31,31 @@ export default function IBPhysicsIAExamples() {
 
       <h2>IB Physics IA Examples That Score Well</h2>
 
-      <h3>1. Simple harmonic motion, spring constant or pendulum period</h3>
+      <h3>1. Simple harmonic motion: spring constant or pendulum period</h3>
       <p>
         Investigating how the period of a spring-mass system varies with mass
         (T = 2π√(m/k)) is a clean, quantitative Physics IA. The key to a high
         score is linearisation: plot T² vs m and fit a straight line, extracting
-        k from the gradient. This demonstrates mathematical processing (Analysis
-        criterion) beyond simply plotting T vs m. Adding error bars on both axes
-        and a best-fit/worst-fit line analysis to determine uncertainty in k pushes
-        the Analysis score to 5 or 6.
+        k from the gradient. That is processing which tests the relationship, not just
+        a plot of T against m. Error bars on both axes, and maximum and minimum gradient
+        lines to find the uncertainty in k, are the kind of processing the top levels of
+        Data analysis describe.
       </p>
       <p>
-        Personal context: investigate the spring constant of a specific object
-        with physical meaning, the spring in a retractable pen, a bungee cord
-        sample, a guitar string under tension. This transforms a textbook lab into
-        an original investigation.
+        Context: investigate an object with a real use, such as the spring in a
+        retractable pen, a length of bungee cord or a guitar string under tension. That
+        turns a textbook practical into your own investigation and gives the research
+        question the context Research design asks for.
       </p>
 
-      <h3>2. Optics, focal length of lenses using the lens equation</h3>
+      <h3>2. Optics: the focal length of a lens from the lens equation</h3>
       <p>
         Measuring image and object distances for convex lenses and applying 1/f =
         1/v + 1/u is a reliable method. A strong version linearises the equation
         (plot 1/v vs 1/u, extract f from the intercepts), compares the experimental
         focal length to the manufacturer's specification, and discusses how lens
-        aberrations affect accuracy at small object distances. Personal engagement:
-        use lenses from a real optical system, reading glasses, a camera lens,
-        a magnifying glass from a specific application.
+        aberrations affect accuracy at small object distances. For context, use a lens
+        from a real optical system: reading glasses, a camera lens or a magnifying glass.
       </p>
 
       <h3>3. Projectile motion and drag</h3>
@@ -71,7 +69,7 @@ export default function IBPhysicsIAExamples() {
         projectile's shape earns strong Analysis and Evaluation marks.
       </p>
 
-      <h3>4. Electromagnetic induction, Faraday's law</h3>
+      <h3>4. Electromagnetic induction: Faraday's law</h3>
       <p>
         Dropping a magnet through a coil and measuring the induced EMF as a
         function of magnet speed, coil turns, or magnet strength directly
@@ -85,7 +83,7 @@ export default function IBPhysicsIAExamples() {
 
       <h3>5. Specific heat capacity of metals or liquids</h3>
       <p>
-        Measuring specific heat capacity by electrical heating (E = mcΔT) is
+        Measuring specific heat capacity by electrical heating (Q = mcΔT) is
         accessible, quantitative, and directly comparable to literature values.
         The investigation is most original when applied to a non-standard material:
         different cooking oils, metals from specific alloys, or composite materials.
@@ -96,9 +94,10 @@ export default function IBPhysicsIAExamples() {
 
       <h2>Linearisation: The Most Important Analysis Skill</h2>
       <p>
-        Physics IAs almost always involve a relationship between two variables that
-        is not linear in its raw form. Examiners reward students who linearise their
-        graphs because it demonstrates understanding of the underlying physics.
+        Many Physics investigations study a relationship that is not linear as measured.
+        Linearising it lets you test the relationship directly and pull a physical
+        constant, with its uncertainty, out of the gradient or intercept, which is the
+        kind of processing Data analysis rewards.
       </p>
       <p>Common linearisations in IB Physics:</p>
       <ul>
@@ -106,17 +105,17 @@ export default function IBPhysicsIAExamples() {
         <li>E = hf - φ → plot maximum kinetic energy vs frequency (photoelectric effect)</li>
         <li>I = I₀e^(-μx) → plot ln(I) vs x to get a straight line with gradient -μ</li>
         <li>v² = u² + 2as → plot v² vs s to get gradient 2a</li>
-        <li>P = IV → if investigating resistance, plot V vs I to confirm linearity (Ohm's law)</li>
+        <li>V = IR → plot V vs I; the gradient is the resistance if the conductor is ohmic</li>
       </ul>
       <p>
         Once linearised, use the gradient and intercept to extract physical constants,
         then compare to accepted values and calculate percentage error.
       </p>
 
-      <h2>Uncertainty Analysis: What Examiners Actually Want</h2>
+      <h2>Uncertainty Analysis: What the Criterion Looks For</h2>
       <p>
-        The single most common reason Physics IAs score Analysis = 3 or 4 instead
-        of 5 or 6 is incomplete uncertainty handling. What examiners expect:
+        Incomplete handling of uncertainties is one of the most frequent reasons a
+        Physics IA falls short on Data analysis. A complete treatment:
       </p>
       <ol>
         <li>Record absolute uncertainty for every measuring instrument (ruler: ±0.5 mm, stopwatch: ±0.1 s, digital balance: ±0.01 g).</li>
@@ -130,13 +129,13 @@ export default function IBPhysicsIAExamples() {
       <h2>Evaluation: How to Write It Well</h2>
       <p>
         The Evaluation criterion rewards students who go beyond listing errors to
-        actually analysing them. The structure that consistently earns 5–6 marks:
+        actually analysing them. A structure that works:
       </p>
       <ul>
-        <li><strong>Identify the limitation specifically:</strong> Not "human error", name the exact source (parallax reading a ruler, air currents in the lab, temperature drift during a 30-minute experiment).</li>
+        <li><strong>Identify the limitation specifically:</strong> not "human error" but the exact source, such as parallax when reading a ruler, air currents in the lab or temperature drift during a 30-minute run.</li>
         <li><strong>State whether it is random or systematic:</strong> Random errors increase scatter; systematic errors shift all values in one direction.</li>
         <li><strong>Quantify the effect where possible:</strong> "The temperature rose by 2°C during the experiment; using the temperature coefficient of resistance for copper, this introduces a systematic 0.8% error in resistance."</li>
-        <li><strong>Propose a concrete improvement:</strong> Not "be more careful", identify a specific change (use a thermostatically controlled enclosure, replace the stopwatch with a light gate, use a digital vernier instead of a ruler) and explain why it would reduce that specific error.</li>
+        <li><strong>Propose a concrete improvement:</strong> not "be more careful" but a specific change, such as a thermostatically controlled enclosure, a light gate instead of a stopwatch or digital calipers instead of a ruler, and why it would reduce that particular error.</li>
       </ul>
 
             <ExamplesBridge
@@ -150,20 +149,19 @@ export default function IBPhysicsIAExamples() {
         ]}
       />
 
-      <h2>Get Feedback Before Your Teacher Submits</h2>
+      <h2>Get Feedback Before Your Teacher Marks the Final Report</h2>
       <p>
-        Physics IA marks are often lower than students expect because the gap between
-        "correct experiment" and "correct report" is larger than it appears. A well-run
-        investigation with poorly presented uncertainty analysis or vague Evaluation
-        loses 4–6 marks needlessly.
+        Physics IA marks often come back lower than expected because a correct
+        experiment and a report that earns the marks are not the same thing. A well-run
+        investigation with thin uncertainty analysis or a vague Evaluation gives away
+        marks it did not need to.
       </p>
       <p>
-        IBLens analyses your Physics IA against the official IB marking rubric and
-        identifies exactly where marks are being lost on each criterion, before your
-        teacher finalises the moderated submission.
+        IBLens reads your Physics IA against the four criteria and shows which one is
+        losing you the most marks, while you can still revise the report.
       </p>
       <p>
-        <Link to="/essay">Paste your Physics IA draft into IBLens for rubric-based feedback →</Link>
+        <Link href="/essay/physics-ia">Paste your Physics IA draft into IBLens for criterion-by-criterion feedback →</Link>
       </p>
       <h2>Internal Assessment in other subjects</h2>
 

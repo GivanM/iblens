@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function TokEssayGuide() {
   return (
     <ResourceArticle
-      title="IB TOK Essay Guide, Prescribed Titles, Knowledge Claims & How to Write It | IBLens"
-      description="Complete guide to the IB Theory of Knowledge essay: prescribed titles, knowledge claims and counter-claims, areas of knowledge, assessment criteria, and common errors to avoid."
+      title="IB TOK Essay Guide: Prescribed Titles, Structure and Assessment | IBLens"
+      description="A guide to the IB Theory of Knowledge essay: unpacking the prescribed titles, claims and counter-claims, areas of knowledge, the holistic assessment instrument, and common errors."
       canonical="/resources/tok-essay-guide"
       datePublished="2026-05-01"
       dateModified="2026-05-01"

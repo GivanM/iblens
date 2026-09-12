@@ -5,8 +5,8 @@ import { Link } from "wouter";
 export default function IBExtendedEssayExamples() {
   return (
     <ResourceArticle
-      title="IB Extended Essay Examples, Real Samples & What Makes Them Score High | IBLens"
-      description="Explore IB Extended Essay examples across Economics, History, Biology, English & more. Learn what examiners look for and avoid common mistakes that cost marks."
+      title="IB Extended Essay Examples: What High-Scoring EEs Do Differently | IBLens"
+      description="Why full marked Extended Essays are hard to find, and what top-band essays do on each criterion across Economics, History, Biology, English and more."
       canonical="/resources/ib-extended-essay-examples"
       datePublished="2026-06-06"
       dateModified="2026-06-06"
@@ -87,7 +87,7 @@ export default function IBExtendedEssayExamples() {
             <ExamplesBridge
         workLabel="Extended Essay"
         ctaHref="/essay/extended-essay"
-        note={"One caution: if you sit exams in May 2027 or later, your EE is marked out of 30 under new criteria, Discussion and evaluation alone is worth 8 marks. Older example essays and older mark schemes describe the 34-mark rubric."}
+        note={"One caution: if you sit exams in May 2027 or later, your EE is marked out of 30 under new criteria, and Discussion and evaluation alone is worth 8 of them. Older example essays and mark schemes describe the 34-mark rubric."}
         rows={[
           { criterion: "A: Focus and method", typical: "The research question restates the topic and could fill a book; scope is never stated.", top: "The question is narrow enough to answer in 4,000 words, and the essay says why that scope was chosen." },
           { criterion: "B: Knowledge and understanding", typical: "Sources are summarised one after another in the order they were read.", top: "Subject terminology is used precisely, and sources are positioned against each other rather than listed." },

@@ -1,8 +1,28 @@
+import fs from "fs";
+import path from "path";
 import { staticContent } from "./seo-static-content";
 import { staticContentResources } from "./seo-static-content-resources";
 
 // Merge base + resources content so both files feed the crawler body injection.
-const allStaticContent: Record<string, string> = { ...staticContent, ...staticContentResources };
+/**
+ * Resource articles are rendered from their React pages at build time
+ * (scripts/render-crawler-bodies.mjs). Those renders win over the hand-kept
+ * copies, which remain only for pages that are not resource articles.
+ */
+function loadRenderedBodies(): Record<string, string> {
+  const here = typeof import.meta !== "undefined" && (import.meta as any).dirname ? (import.meta as any).dirname : process.cwd();
+  for (const candidate of [path.resolve(here, "crawler-bodies.json"), path.resolve(process.cwd(), "dist/crawler-bodies.json")]) {
+    try {
+      return JSON.parse(fs.readFileSync(candidate, "utf8"));
+    } catch {
+      // try the next location
+    }
+  }
+  console.warn("[SEO] dist/crawler-bodies.json not found: resource articles have no crawler body until the next build");
+  return {};
+}
+
+const allStaticContent: Record<string, string> = { ...staticContent, ...staticContentResources, ...loadRenderedBodies() };
 
 // SEO Pre-rendering Middleware (JSON-LD Strategy)
 //
@@ -51,20 +71,20 @@ const routeMeta: Record<string, PageMeta> = {
 
   "/remark": {
     title: "IB Remark 2026: Is an EUR Worth It? Check Before You Pay | IBLens",
-    description: "An IB remark costs around $100–120, your grade can go down, and the deadline is mid-September. Grade your EE or TOK essay with a strict AI first, know if you are near a boundary before you pay.",
+    description: "An IB re-mark can lower your grade as well as raise it, and May session requests close on 15 September. Mark the EE or TOK essay you submitted first and see whether it sits near a band edge before you pay.",
     ogType: "website",
     canonical: "/remark",
     schemaType: "WebPage",
     faq: [
-      { question: "How much does an IB remark cost in 2026?", answer: "An EUR Category 1 re-mark typically costs around $100–120 per subject, depending on your school and region. The fee is refunded only if your grade changes." },
-      { question: "Can my grade go down after an IB remark?", answer: "Yes. On a remark your grade can move up or down, and the new grade is final. Only remark when you have evidence you are close to a grade boundary." },
-      { question: "What is the IB remark deadline?", answer: "Around September 15 for the May session. Requests are submitted by your school, and coordinators often set earlier internal deadlines, ask yours as soon as results are out." },
-      { question: "Should I remark or retake?", answer: "Remark if your externally-marked essay (EE or TOK) reads close to a boundary. Retake in November if you are several marks off, registration between July 6–29 has the lowest fees." },
+      { question: "How much does an IB remark cost in 2026?", answer: "The IB publishes its enquiry upon results fees to schools rather than on its public website, so ask your coordinator for the current fee. There is no charge for a category 1 re-mark that results in a change of grade." },
+      { question: "Can my grade go down after an IB remark?", answer: "Yes. A category 1 re-mark can raise or lower the grade, and your school must have your written consent before requesting one. A re-mark makes most sense when you have reason to think you are near a boundary." },
+      { question: "What is the IB remark deadline?", answer: "Enquiry upon results requests for the May session can be made up to 15 September, two months after results. Your school submits them and may set an earlier deadline, so ask your coordinator as soon as results are out." },
+      { question: "Should I remark or retake?", answer: "Consider a re-mark if your externally assessed essay (EE or TOK) reads close to a boundary. Consider a November retake if you are several marks off; registering by 29 July keeps the fees lowest." },
     ],
   },
   "/resources/sample-reports": {
     title: "Sample IBLens Reports: Three Essays, Three Honest Grades | IBLens",
-    description: "Real, unedited IBLens output: the same TOK title at three quality levels, graded 2/10, 4/10 and 5/10 with criterion-level feedback. This is what strict marking against the criteria looks like.",
+    description: "Real, unedited IBLens output: the same TOK-style title answered at three quality levels and marked 2/10, 4/10 and 5/10 on the holistic instrument. This is what strict marking against the descriptors looks like.",
     ogType: "article",
     canonical: "/resources/sample-reports",
     schemaType: "Article",
@@ -148,154 +168,154 @@ const routeMeta: Record<string, PageMeta> = {
     schemaType: "CollectionPage",
   },
   "/resources/ib-extended-essay-guide": {
-    title: "IB Extended Essay (EE) Guide: Structure, Criteria & Score an A | IBLens",
-    description: "Complete guide to the IB Extended Essay: structure, assessment criteria A\u2013E explained, research question formulation, common mistakes, and strategies to score an A on your 4,000-word EE.",
+    title: "IB Extended Essay Guide: Structure, Criteria and How to Score an A | IBLens",
+    description: "A complete guide to the IB Extended Essay: the 4,000-word limit, structure, the research question, the assessment criteria for both rubrics, and the mistakes that cost marks.",
     ogType: "article",
     canonical: "/resources/ib-extended-essay-guide",
     schemaType: "Article",
   },
   "/resources/ib-internal-assessment-guide": {
     title: "IB Internal Assessment Guide 2026: Criteria, Marking & Subject Tips | IBLens",
-    description: "How IB Internal Assessments are marked: criteria by subject group, what examiners look for, moderation process, and strategies for top marks across sciences, humanities, and languages.",
+    description: "How IB Internal Assessments are marked: criteria by subject group, what examiners look for, the moderation process, and strategies for top marks across sciences, humanities and languages.",
     ogType: "article",
     canonical: "/resources/ib-internal-assessment-guide",
     schemaType: "Article",
   },
   "/resources/tok-essay-guide": {
-    title: "IB TOK Essay Format & Help: Prescribed Titles, Structure & Score 7 | IBLens",
-    description: "IB TOK essay help from format to final draft: how to unpack prescribed titles, write knowledge claims and counter-claims, use Areas of Knowledge, and hit the top assessment band.",
+    title: "IB TOK Essay Guide: Prescribed Titles, Structure and Assessment | IBLens",
+    description: "A guide to the IB Theory of Knowledge essay: unpacking the prescribed titles, claims and counter-claims, areas of knowledge, the holistic assessment instrument, and common errors.",
     ogType: "article",
     canonical: "/resources/tok-essay-guide",
     schemaType: "Article",
   },
   "/resources/ib-grade-boundaries": {
-    title: "IB Grade Boundaries 2026: Score Calculator & What Your Total Means | IBLens",
-    description: "Understand IB grade boundaries: how the 7-point scale works, how subject grades combine into a Diploma score, EE/TOK bonus points, and what different totals mean for university admissions.",
+    title: "IB Grade Boundaries Explained: How IB Scoring Works | IBLens",
+    description: "How IB grade boundaries work: the 1 to 7 scale, how subject grades and the EE and TOK bonus points make up the 45-point Diploma score, and why boundaries move every session.",
     ogType: "article",
     canonical: "/resources/ib-grade-boundaries",
     schemaType: "Article",
   },
   "/resources/ib-essay-criteria-explained": {
-    title: "IB Essay Criteria Explained: How Examiners Mark & What Gets a 7 | IBLens",
-    description: "What separates a band 5 essay from a band 7: how IB criterion-based marking works, what examiners look for at each level, and how to self-assess your work before submission.",
+    title: "IB Essay Criteria Explained: How Criterion-Based Marking Works | IBLens",
+    description: "How IB criterion-based marking works: the criteria common across subjects, how examiners apply the level descriptors, and how to self-assess your work before you submit.",
     ogType: "article",
     canonical: "/resources/ib-essay-criteria-explained",
     schemaType: "Article",
   },
   "/resources/how-iblens-works": {
-    title: "How IBLens Works: AI IB Essay Analysis Explained | IBLens",
-    description: "How the IBLens AI analyzes IB essays: which rubrics it uses, how it predicts scores, what the output includes, and how it compares to tutors and teacher feedback.",
+    title: "How IBLens Works: AI Feedback on IB Essays Explained | IBLens",
+    description: "How IBLens marks IB coursework: which criteria it uses, how the estimated mark is produced, what the report includes, and what it cannot do.",
     ogType: "article",
     canonical: "/resources/how-iblens-works",
     schemaType: "Article",
   },
   "/resources/ib-university-admissions": {
-    title: "IB University Admissions 2026: UK, US & Europe Requirements | IBLens",
-    description: "How IB Diploma scores translate to university offers in the UK, US, EU, Canada, and Australia. Typical IB score requirements at Oxford, LSE, Ivy League, and other top universities.",
+    title: "IB University Admissions: UK, US and Europe Requirements | IBLens",
+    description: "How IB Diploma scores translate to university offers in the UK, US, Europe and beyond, with typical IB requirements at top universities.",
     ogType: "article",
     canonical: "/resources/ib-university-admissions",
     schemaType: "Article",
   },
   "/resources/ib-extended-essay-examples": {
-    title: "IB Extended Essay Examples: High-Scoring EE Samples by Subject | IBLens",
-    description: "Real IB Extended Essay examples with examiner commentary. Understand what a 7-scoring EE looks like and how to structure yours.",
+    title: "IB Extended Essay Examples: What High-Scoring EEs Do Differently | IBLens",
+    description: "Why full marked Extended Essays are hard to find, and what top-band essays do on each criterion across Economics, History, Biology, English and more.",
     ogType: "article",
     canonical: "/resources/ib-extended-essay-examples",
     schemaType: "Article",
   },
   "/resources/ib-ia-score-predictor": {
     title: "IB IA Score Predictor: Estimate Your Internal Assessment Grade | IBLens",
-    description: "Understand how IB Internal Assessment grades work, how moderation affects your score, and how to predict your IA grade before submission.",
+    description: "How IB Internal Assessment marks are awarded and moderated, how to self-assess your IA criterion by criterion, and how to estimate your grade before results day.",
     ogType: "article",
     canonical: "/resources/ib-ia-score-predictor",
     schemaType: "Article",
   },
   "/resources/ib-score-calculator": {
     title: "IB Score Calculator: Points, Grade Boundaries and Diploma Requirements | IBLens",
-    description: "Calculate your IB Diploma total, understand grade boundaries, bonus points matrix, and what different scores mean for university admissions.",
+    description: "How the 45-point IB Diploma score is calculated: subject grades, the EE and TOK bonus matrix, grade boundaries, and the totals universities ask for.",
     ogType: "article",
     canonical: "/resources/ib-score-calculator",
     schemaType: "Article",
   },
   "/resources/ib-university-admissions-strategy": {
     title: "IB University Admissions Strategy: How to Choose Universities | IBLens",
-    description: "A practical guide to IB university admissions: build your school list, decode score requirements by country, and avoid common application mistakes.",
+    description: "A practical guide to IB university admissions: build your school list, decode score requirements by country, time your applications, and avoid common mistakes.",
     ogType: "article",
     canonical: "/resources/ib-university-admissions-strategy",
     schemaType: "Article",
   },
   "/resources/ib-math-ia-examples": {
-    title: "IB Math IA Examples: High-Scoring Topics and Structures | IBLens",
-    description: "Real IB Math IA examples with examiner commentary. Learn which topics score 7s and what common mistakes cost marks on every criterion.",
+    title: "IB Math IA Examples: Topics, Structure and Common Mistakes | IBLens",
+    description: "IB Math IA topic ideas for Analysis and Approaches and for Applications and Interpretation, what each of the five criteria rewards, and the mistakes that cost marks.",
     ogType: "article",
     canonical: "/resources/ib-math-ia-examples",
     schemaType: "Article",
   },
   "/resources/ib-biology-ia-examples": {
-    title: "IB Biology IA Examples: Topics, Data, and How to Score a 7 | IBLens",
-    description: "High-scoring IB Biology IA examples with analysis of what makes them work. Avoid the mistakes that drop competent students from a 6 to a 4.",
+    title: "IB Biology IA Examples: Topics, Data and What Scores Well | IBLens",
+    description: "IB Biology IA investigation ideas and what separates top-band work on each of the four criteria, with the mistakes that cost marks most often.",
     ogType: "article",
     canonical: "/resources/ib-biology-ia-examples",
     schemaType: "Article",
   },
   "/resources/ib-economics-ia": {
-    title: "IB Economics IA: How to Write All Three Commentaries and Score a 7 | IBLens",
-    description: "Complete guide to the IB Economics Internal Assessment: how to choose articles, structure each commentary, use diagrams correctly, and avoid mark-losing mistakes.",
+    title: "IB Economics IA: How to Write the Three Commentaries | IBLens",
+    description: "A guide to the IB Economics Internal Assessment: choosing articles, structuring each commentary, using diagrams well, and avoiding the mistakes that cost marks.",
     ogType: "article",
     canonical: "/resources/ib-economics-ia",
     schemaType: "Article",
   },
   "/resources/ib-extended-essay-word-count": {
-    title: "IB Extended Essay Word Count: The 4000-Word Limit Explained | IBLens",
-    description: "What counts toward the 4000-word limit, what does not, how close to the limit to aim, and what happens if you go over.",
+    title: "IB Extended Essay Word Count: The 4,000-Word Limit Explained | IBLens",
+    description: "What counts toward the 4,000-word limit of the IB Extended Essay, what does not, how close to the limit to aim, and what happens if you go over.",
     ogType: "article",
     canonical: "/resources/ib-extended-essay-word-count",
     schemaType: "Article",
   },
   "/resources/ib-extended-essay-help": {
     title: "IB Extended Essay Help: Fix Every Stage of Your EE and Score Higher | IBLens",
-    description: "Stuck on your IB Extended Essay? Get help with topic choice, research question, structure, each criterion, and how to get examiner-level feedback that actually improves your grade.",
+    description: "Stuck on your IB Extended Essay? What you can fix yourself at each stage, what your supervisor can help with, and where AI feedback on your draft fits.",
     ogType: "article",
     canonical: "/resources/ib-extended-essay-help",
     schemaType: "Article",
   },
   "/resources/ib-chemistry-ia-examples": {
-    title: "IB Chemistry IA Examples: Topics, Methods, and How to Score a 7 | IBLens",
-    description: "High-scoring IB Chemistry IA examples with examiner analysis. Learn which investigation types earn top marks and how to handle uncertainty and evaluation.",
+    title: "IB Chemistry IA Examples: Topics, Methods and What Scores Well | IBLens",
+    description: "IB Chemistry IA investigation types that work, how to handle uncertainties and data processing, and what the Evaluation criterion actually asks for.",
     ogType: "article",
     canonical: "/resources/ib-chemistry-ia-examples",
     schemaType: "Article",
   },
   "/resources/ib-physics-ia-examples": {
-    title: "IB Physics IA Examples: Investigation Ideas and How to Score a 7 | IBLens",
-    description: "High-scoring IB Physics IA examples with examiner commentary. Discover which investigations earn top marks and how to handle uncertainty propagation.",
+    title: "IB Physics IA Examples: Investigation Ideas and What Scores Well | IBLens",
+    description: "IB Physics IA investigation ideas, how to handle uncertainties, and what the Evaluation criterion needs, with the mistakes that cost marks most often.",
     ogType: "article",
     canonical: "/resources/ib-physics-ia-examples",
     schemaType: "Article",
   },
   "/resources/ib-psychology-ia": {
-    title: "IB Psychology IA: How to Design Your Replication Study and Score a 7 | IBLens",
-    description: "Complete guide to the IB Psychology Internal Assessment: choose a study to replicate, design an ethical experiment, analyse results statistically.",
+    title: "IB Psychology IA: How to Design Your Replication Study | IBLens",
+    description: "A guide to the IB Psychology Internal Assessment through November 2026: choosing a study to replicate, designing an ethical experiment, analysing the results, and what each criterion rewards.",
     ogType: "article",
     canonical: "/resources/ib-psychology-ia",
     schemaType: "Article",
   },
   "/resources/ib-history-ia": {
-    title: "IB History IA: How to Write Your Historical Investigation and Score a 7 | IBLens",
-    description: "Complete guide to the IB History Internal Assessment: how to choose a research question, structure the three sections, evaluate sources with OPCVL.",
+    title: "IB History IA: How to Write Your Historical Investigation | IBLens",
+    description: "A guide to the IB History Internal Assessment: choosing a research question, the three sections, evaluating sources, and what each criterion rewards.",
     ogType: "article",
     canonical: "/resources/ib-history-ia",
     schemaType: "Article",
   },
   "/resources/ib-ee-examples-by-subject": {
-    title: "IB EE Examples by Subject: What a 7-Scoring Extended Essay Looks Like | IBLens",
-    description: "Concrete IB Extended Essay examples across Economics, History, Biology, English, Psychology, Mathematics, and Physics. Understand what separates a grade 7 EE.",
+    title: "IB EE Examples by Subject: What Top-Band Extended Essays Do | IBLens",
+    description: "What separates top-band Extended Essays in Economics, History, Biology, English, Psychology, Mathematics and Physics, criterion by criterion.",
     ogType: "article",
     canonical: "/resources/ib-ee-examples-by-subject",
     schemaType: "Article",
   },
   "/resources/ib-ia-grader": {
-    title: "IB IA Grader: Free AI Internal Assessment Grader, 14 Subjects | IBLens",
+    title: "IB IA Grader: AI Feedback on Your Internal Assessment in 14 Subjects | IBLens",
     description: "Free IB IA grader powered by AI. Grade your Internal Assessment against official IB rubrics for Biology, Chemistry, Physics, Maths, History, Economics, Psychology and more.",
     ogType: "article",
     canonical: "/resources/ib-ia-grader",
@@ -317,14 +337,14 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/ib-psychology-ia-2027": {
     title: "IB Psychology IA Changes 2027: Research Proposal Marked /24 | IBLens",
-    description: "From the May 2027 session the IB Psychology IA becomes a research proposal marked out of 24, no experiment is conducted. New criteria explained, what changed from the 22-mark report, and how to check your draft.",
+    description: "From the May 2027 session the IB Psychology IA becomes a research proposal marked out of 24, and no experiment is conducted. The new criteria, what changed from the 22-mark report, and how to check your draft.",
     ogType: "article",
     canonical: "/resources/ib-psychology-ia-2027",
     schemaType: "Article",
   },
   "/resources/ib-computer-science-ia-2027": {
     title: "IB Computer Science IA Changes 2027: Marked Out of 30 | IBLens",
-    description: "From the May 2027 session the IB Computer Science IA is a computational solution marked out of 30: Problem specification, Planning, System overview, Development (12 marks), Evaluation. What changed from the 34-mark solution.",
+    description: "From the May 2027 session the IB Computer Science IA is a computational solution marked out of 30: Problem specification, Planning, System overview, Development (12 marks) and Evaluation. What changed from the 34-mark solution.",
     ogType: "article",
     canonical: "/resources/ib-computer-science-ia-2027",
     schemaType: "Article",
@@ -338,7 +358,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/ib-coursework-review-tools": {
     title: "AI Tools IB Students Use to Review Coursework: 2026 Comparison | IBLens",
-    description: "An honest comparison of AI tools IB students use to review IAs, EEs and TOK work: IBLens, RevisionDojo, MyRevisionAgent, Clastify and generic chatbots, coverage, pricing models, free tiers, May 2027 EE rubric support.",
+    description: "An honest comparison of the AI tools IB students use to review IAs, EEs and TOK work: IBLens, RevisionDojo, MyRevisionAgent, Clastify and general chatbots. What each reviews, how it charges, and which support the May 2027 EE criteria.",
     ogType: "article",
     canonical: "/resources/ib-coursework-review-tools",
     schemaType: "Article",
@@ -412,15 +432,15 @@ const routeMeta: Record<string, PageMeta> = {
     schemaType: "WebPage",
   },
   "/resources/ib-biology-extended-essay": {
-    title: "IB Biology Extended Essay: Research Questions, Examples & Score an A | IBLens",
-    description: "Complete guide to the IB Biology Extended Essay: choosing a research question, EE vs IA differences, assessment criteria A–E, structure, high-scoring topics, and RPPF guidance.",
+    title: "IB Biology Extended Essay: Research Questions, Criteria and Tips | IBLens",
+    description: "A guide to the IB Biology Extended Essay: choosing a research question, how the EE differs from the IA, the assessment criteria, structure, and the reflection.",
     ogType: "article",
     canonical: "/resources/ib-biology-extended-essay",
     schemaType: "Article",
   },
   "/resources/ib-chemistry-extended-essay": {
-    title: "IB Chemistry Extended Essay: Research Questions, Topics & Score an A | IBLens",
-    description: "Full guide to the IB Chemistry Extended Essay: research question examples, assessment criteria, structure, high-scoring topics (kinetics, electrochemistry, colorimetry), and common pitfalls.",
+    title: "IB Chemistry Extended Essay: Research Questions, Topics and Tips | IBLens",
+    description: "A guide to the IB Chemistry Extended Essay: research question examples, the assessment criteria, structure, workable topics such as kinetics, electrochemistry and colorimetry, and common pitfalls.",
     ogType: "article",
     canonical: "/resources/ib-chemistry-extended-essay",
     schemaType: "Article",

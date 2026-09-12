@@ -63,6 +63,25 @@ for (const file of walkTsx(pagesDir)) {
   }
 }
 
+// Resource articles pass their metadata to ResourceArticle, which hands it to
+// SEOHead. The block above never saw them, and 44 pages drifted from the table.
+for (const file of walkTsx(pagesDir)) {
+  const block = fs.readFileSync(file, "utf8").match(/<ResourceArticle\b[\s\S]{0,1500}?>/)?.[0];
+  if (!block) continue;
+  const route = block.match(/canonical=\{?"([^"]+)"/)?.[1];
+  const rel = path.relative(pagesDir, file);
+  if (!route) { problems.push(`${rel}: ResourceArticle without a canonical`); continue; }
+  if (!routeMeta[route]) { problems.push(`${route}: rendered by ${rel} but missing from the server table`); continue; }
+  const title = block.match(/\btitle=\{?"((?:[^"\\]|\\.)*)"/)?.[1];
+  const desc = block.match(/\bdescription=\{?"((?:[^"\\]|\\.)*)"/)?.[1];
+  if (title !== undefined && title.replace(/\\"/g, '"') !== routeMeta[route].title) {
+    problems.push(`${route} (title)\n    server: ${routeMeta[route].title}\n    client: ${title}`);
+  }
+  if (desc !== undefined && desc.replace(/\\"/g, '"') !== routeMeta[route].description) {
+    problems.push(`${route} (description)\n    server: ${routeMeta[route].description}\n    client: ${desc}`);
+  }
+}
+
 if (problems.length > 0) {
   console.error("\n❌ Page metadata disagrees between the server table and the React page:\n");
   problems.forEach((p) => console.error("  " + p + "\n"));

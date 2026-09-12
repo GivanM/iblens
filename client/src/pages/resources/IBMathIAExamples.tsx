@@ -5,8 +5,8 @@ import { Link } from "wouter";
 export default function IBMathIAExamples() {
   return (
     <ResourceArticle
-      title="IB Math IA Examples, High-Scoring Topics, Structures & Common Mistakes | IBLens"
-      description="Real IB Math IA examples with examiner commentary. Understand what a 7-scoring Math Internal Assessment looks like and how to structure yours."
+      title="IB Math IA Examples: Topics, Structure and Common Mistakes | IBLens"
+      description="IB Math IA topic ideas for Analysis and Approaches and for Applications and Interpretation, what each of the five criteria rewards, and the mistakes that cost marks."
       canonical="/resources/ib-math-ia-examples"
       datePublished="2026-06-09"
       dateModified="2026-06-09"
@@ -14,49 +14,50 @@ export default function IBMathIAExamples() {
       <p>
         The IB Mathematics Internal Assessment is worth 20% of your final grade, and
         it is the one component where you control the topic, the approach, and the
-        depth of exploration. That freedom is also what makes it difficult. Most
-        students who score below a 6 do so not because their mathematics is wrong, but
-        because their exploration lacks personal engagement, mathematical sophistication,
-        or a clearly communicated aim. This guide walks through what high-scoring IB Math
+        depth of exploration. That freedom is also what makes it difficult. Explorations
+        that lose marks usually do so not because the mathematics is wrong, but because
+        they lack personal engagement, mathematics at the level of the course, or a
+        clearly communicated aim. This guide walks through what high-scoring IB Math
         IA examples actually look like and how to replicate their structure.
       </p>
 
       <h2>What the Examiner Is Looking For</h2>
       <p>
-        The IB Math IA is marked on five criteria, each worth a maximum of 4 marks
-        (except Criterion E which is 6):
+        The IB Math IA is marked out of 20 on five criteria. A and B are worth 4 marks
+        each, C and D 3 marks each, and E 6 marks:
       </p>
       <ul>
-        <li><strong>Criterion A, Presentation (4 marks):</strong> Is the work well-organized, clearly written, and appropriately concise? Is there a table of contents and a bibliography?</li>
-        <li><strong>Criterion B, Mathematical Communication (4 marks):</strong> Are mathematical symbols, notation, and diagrams used correctly and consistently?</li>
-        <li><strong>Criterion C, Personal engagement (3 marks):</strong> Does the exploration reflect your genuine curiosity? Is the approach original rather than a textbook rehash?</li>
-        <li><strong>Criterion D, Reflection (3 marks):</strong> Do you discuss limitations, surprises, and what you would do differently? Is your thinking visible throughout?</li>
-        <li><strong>Criterion E, Use of Mathematics (6 marks):</strong> Is the mathematics relevant to the aim? Is it commensurate with the level of the course? Is it applied correctly?</li>
+        <li><strong>Criterion A: Presentation (4 marks).</strong> Is the work well-organized, clearly written, and appropriately concise? Is there a table of contents and a bibliography?</li>
+        <li><strong>Criterion B: Mathematical communication (4 marks).</strong> Are mathematical symbols, notation, and diagrams used correctly and consistently?</li>
+        <li><strong>Criterion C: Personal engagement (3 marks).</strong> Does the exploration reflect your genuine curiosity? Is the approach original rather than a textbook rehash?</li>
+        <li><strong>Criterion D: Reflection (3 marks).</strong> Do you discuss limitations, surprises, and what you would do differently? Is your thinking visible throughout?</li>
+        <li><strong>Criterion E: Use of mathematics (6 marks).</strong> Is the mathematics relevant to the aim? Is it commensurate with the level of the course? Is it applied correctly?</li>
       </ul>
       <p>
-        A student who scores 4, 4, 3, 3, 5 = 19/20 has a high chance of a 7 on the IA.
-        A student with correct but shallow mathematics (Criterion E = 3) combined with
-        no reflection (Criterion D = 1) ends up around 14/20, which is a 5 or low 6.
+        Marks of 4, 4, 3, 3 and 5 make 19 out of 20. Correct but routine mathematics
+        (3 on Criterion E) together with almost no reflection (1 on Criterion D) brings
+        the same exploration down to around 14, and those are the marks this guide is
+        about.
       </p>
 
       <h2>IB Math IA Examples by Topic Area</h2>
 
-      <h3>Analysis and Approaches (AA) HL/SL, Strong Topic Examples</h3>
+      <h3>Analysis and Approaches (AA), SL and HL: topics that work</h3>
 
       <h4>1. Modelling the spread of a rumour using differential equations</h4>
       <p>
         This classic exploration uses a logistic differential equation to model how
-        information spreads through a population. A student who chooses a real
-        data source, for instance, tweet counts from a viral news event, scores
-        highly on the personal-context element of Research design because the context is self-selected and
-        the data is original. The mathematics involves solving the logistic equation,
+        information spreads through a population. A student who chooses a real data
+        source, such as post counts from a news story that went viral, gives Personal
+        engagement something to reward: the context is self-chosen and the data is
+        their own. The mathematics involves solving the logistic equation,
         fitting parameters to data, and comparing the model against observed values.
         At HL, this can be extended to include a delayed-response model (a delay
         differential equation), pushing Criterion E toward 5 or 6.
       </p>
       <p>
-        <em>Common mistake:</em> Students who simply write out the logistic model without
-        collecting their own data score 2 on Criterion C. The personal engagement
+        <em>Common mistake:</em> writing out the logistic model without any data of your
+        own tends to score low on Criterion C. The personal engagement
         comes from the student's specific choice of context and data, not from the
         mathematics alone.
       </p>
@@ -75,14 +76,13 @@ export default function IBMathIAExamples() {
       <h4>3. Optimisation of a packaging design</h4>
       <p>
         Calculus-based optimisation is reliable AA content. A student who chooses a
-        product they actually use, a protein bar wrapper, a tea tin, a specific shoe
-        box, and measures real dimensions before comparing against the theoretical
-        optimum earns strong marks on Criterion C. The mathematics should include
-        second derivative tests and, for HL, possibly Lagrange multipliers if the
-        constraint is complex.
+        product they actually use (a protein bar wrapper, a tea tin, a particular shoe
+        box) and measures its real dimensions before comparing them with the theoretical
+        optimum gives Criterion C real evidence. The mathematics should justify the
+        optimum, for example with a second derivative test, rather than only find it.
       </p>
 
-      <h3>Applications and Interpretation (AI) HL/SL, Strong Topic Examples</h3>
+      <h3>Applications and Interpretation (AI), SL and HL: topics that work</h3>
 
       <h4>4. Regression analysis of Premier League goal data</h4>
       <p>
@@ -90,18 +90,18 @@ export default function IBMathIAExamples() {
         a plausible relationship and the student goes beyond a single regression line.
         A strong version compares linear, quadratic, and exponential models, uses
         residual analysis to evaluate fit, and discusses which model is most appropriate
-        and why. At HL, adding a chi-squared test for independence between two
-        categorical variables (e.g., home/away result versus number of shots on target)
-        strengthens Criterion E.
+        and why. A chi-squared test for independence between two categorical variables,
+        such as home or away and whether the match was won, can add a second strand of
+        analysis; it is in the syllabus at both SL and HL.
       </p>
 
       <h4>5. Using Voronoi diagrams to optimise emergency service locations</h4>
       <p>
-        Voronoi diagrams appear explicitly in the AI HL syllabus. An exploration
-        that applies Voronoi tessellation to a real map, choosing the nearest ambulance
-        station for each postcode in a city, or the nearest recycling point in a
-        neighbourhood, scores well because the application is practical and the
-        mathematics is used rather than described. The student should measure real
+        Voronoi diagrams are in the AI syllabus at both SL and HL. An exploration that
+        applies them to a real map, such as the nearest ambulance station for each
+        district of a city or the nearest recycling point in a neighbourhood, works well
+        because the application is practical and the mathematics is used rather than
+        described. The student should measure real
         distances, compute the Voronoi cells, and reflect on what the model ignores
         (traffic, road layout, capacity constraints).
       </p>
@@ -112,28 +112,28 @@ export default function IBMathIAExamples() {
         student collects or downloads data, applies t-tests or ANOVA to compare
         distributions, and reflects on whether the statistical differences are
         meaningful in context. The key to Criterion D here is acknowledging that
-        statistical significance does not equal practical significance, a nuance
-        that signals genuine mathematical understanding.
+        statistical significance is not the same as practical significance, which shows
+        real understanding of what the test can and cannot tell you.
       </p>
 
       <h2>Structure of a High-Scoring IB Math IA</h2>
       <p>
-        Examiners read hundreds of IAs. A clear structure signals organisation (Criterion A)
-        and makes the mathematics easier to follow (Criterion B). The following
-        structure appears in most top-scoring explorations:
+        Your teacher marks the exploration and a moderator may read it cold. A clear
+        structure shows organisation (Criterion A) and makes the mathematics easier to
+        follow (Criterion B). This structure works for most explorations:
       </p>
       <ol>
-        <li><strong>Introduction (150–250 words):</strong> Why this topic? What is the aim? State your research question explicitly. Do not start with "Mathematics is everywhere."</li>
-        <li><strong>Background mathematics (optional, 200–400 words):</strong> Explain only the theory a reader needs to follow your exploration. Do not include textbook definitions of concepts your reader already knows.</li>
-        <li><strong>Exploration (the bulk, 800–1500 words):</strong> Your calculations, models, graphs, and reasoning. Show working. Label every figure. Explain what each step means, not just what it is.</li>
-        <li><strong>Reflection (200–400 words):</strong> What did you find? Were you surprised? What are the limitations of your model? What would you do differently?</li>
-        <li><strong>Conclusion (100–200 words):</strong> Restate what you found in relation to your aim. Do not introduce new material here.</li>
+        <li><strong>Introduction:</strong> why this topic, and what the aim is. State the aim explicitly. Do not start with "Mathematics is everywhere."</li>
+        <li><strong>Background mathematics (optional):</strong> only the theory a reader needs to follow your exploration, not textbook definitions of things your reader already knows.</li>
+        <li><strong>Exploration (most of the work):</strong> your calculations, models, graphs and reasoning. Show working, label every figure, and explain what each step means, not just what it is.</li>
+        <li><strong>Reflection:</strong> what you found, what surprised you, the limitations of your model, and what you would do differently. Reflection that runs through the exploration counts, not only a closing section.</li>
+        <li><strong>Conclusion:</strong> what you found in relation to your aim, with no new material.</li>
         <li><strong>Bibliography:</strong> Cite every data source, textbook, and website you used.</li>
       </ol>
       <p>
-        Total length: 12–20 pages including figures, or roughly 2000–4000 words of prose.
-        Going over 4000 words rarely improves scores and often signals that the student
-        included padding rather than depth.
+        Length: the guide suggests approximately 12 to 20 pages with double line spacing,
+        including diagrams and graphs but not the bibliography, and adds that the quality
+        of the mathematical writing matters, not the length.
       </p>
 
       <h2>The Most Common Reasons IB Math IAs Score Below Expectations</h2>
@@ -156,14 +156,14 @@ export default function IBMathIAExamples() {
       <h3>Copying a well-known example</h3>
       <p>
         The "SIR model for disease spread" and the "mathematics of music and Fourier
-        series" are among the most submitted IA topics. Examiners recognise them
-        immediately. If you choose a familiar topic, you need an original data source,
+        series" are familiar to anyone who marks IAs, and teachers and moderators
+        recognise them quickly. If you choose a familiar topic, you need an original data source,
         an unusual angle, or a self-collected dataset to score well on Criterion C.
       </p>
 
       <h3>Weak or absent reflection</h3>
       <p>
-        Criterion D = 1 is the single most preventable mark loss in the Math IA.
+        A 1 on Criterion D is one of the most preventable mark losses in the Math IA.
         Students who write one paragraph at the end saying "in conclusion, my model
         was reasonably accurate" are describing, not reflecting. Reflection means
         asking: what did I assume? What could go wrong? How does this connect to
@@ -192,12 +192,11 @@ export default function IBMathIAExamples() {
         the mathematical reasoning is unclear?
       </p>
       <p>
-        IBLens analyses your IB essay or IA draft against the official IB marking
-        criteria and identifies precisely where marks are being lost, before your
-        teacher submits your final grade.
+        IBLens reads your Math IA draft against the assessment criteria and shows which
+        criterion is losing you the most marks, while you can still change the draft.
       </p>
       <p>
-        <Link to="/essay">Upload your Math IA draft to IBLens for rubric-based feedback →</Link>
+        <Link href="/essay/math-ia">Paste your Math IA draft into IBLens for criterion-by-criterion feedback →</Link>
       </p>
       <h2>Internal Assessment in other subjects</h2>
 

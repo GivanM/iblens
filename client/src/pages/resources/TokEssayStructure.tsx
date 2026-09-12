@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function TokEssayStructure() {
   return (
     <ResourceArticle
-      title="IB TOK Essay Structure 2026, How to Structure Your Theory of Knowledge Essay | IBLens"
-      description="Step-by-step IB TOK essay structure: introduction, knowledge claims, counter-claims, conclusion. Includes paragraph-by-paragraph guide and examiner tips for 2026."
+      title="IB TOK Essay Structure 2026: How to Structure Your Theory of Knowledge Essay | IBLens"
+      description="Step-by-step IB TOK essay structure: introduction, knowledge claims, counter-claims, conclusion. Paragraph-by-paragraph guide and examiner tips for 2026."
       canonical="/resources/tok-essay-structure"
       datePublished="2026-06-27"
       dateModified="2026-06-27"

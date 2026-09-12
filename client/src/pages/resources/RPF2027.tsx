@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function RPF2027() {
   return (
     <ResourceArticle
-      title="IB EE RPF 2027, The 500-Word Reflective Statement, Explained | IBLens"
-      description="From the May 2027 session the Extended Essay RPPF is replaced by the RPF, a single reflective statement of up to 500 words, assessed under Criterion E: Reflection (4 of 30 marks). What it is, how it is marked, and how to write one that earns its marks."
+      title="IB EE RPF 2027: The 500-Word Reflective Statement, Explained | IBLens"
+      description="From the May 2027 session the EE RPPF is replaced by the RPF, a single reflective statement of up to 500 words, assessed under Criterion E: Reflection (4 of 30 marks). What it is and how to write one."
       canonical="/resources/ib-rpf-extended-essay-2027"
       datePublished="2026-08-11"
       dateModified="2026-08-11"

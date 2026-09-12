@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function ExtendedEssayFeedback() {
   return (
     <ResourceArticle
-      title="IB Extended Essay Feedback, How to Get It Before You Submit | IBLens"
-      description="Every legitimate way to get feedback on your IB Extended Essay before submission: what your supervisor can and cannot comment on, how to self-check against the assessment criteria, where peers help, and what AI feedback adds, with an honest look at the limits of each."
+      title="IB Extended Essay Feedback: How to Get It Before You Submit | IBLens"
+      description="Every legitimate way to get feedback on your IB Extended Essay before submission: supervisor rules, self-checking against the criteria, peers, and where AI feedback fits, with the limits of each channel."
       canonical="/resources/ib-extended-essay-feedback"
       datePublished="2026-08-11"
       dateModified="2026-08-11"

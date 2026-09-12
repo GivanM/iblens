@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, ArrowLeft, Printer } from "lucide-react";
 import { SEOHead } from "@/components/SEOHead";
+import { WordCheckNote } from "@/components/WordCheckNote";
 
 const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
@@ -124,6 +125,8 @@ export default function AnalysisView() {
               </div>
             )}
           </div>
+
+          <WordCheckNote check={r._wordCheck} />
 
           {r.overall_comment && (
             <div>

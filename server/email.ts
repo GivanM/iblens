@@ -68,13 +68,13 @@ View your purchase history: https://iblens.com/dashboard
 
 If you have questions, reply to this email.
 
-— IBLens`;
+IBLens`;
 
   try {
     const { error } = await client.emails.send({
       from: "IBLens <noreply@iblens.com>",
       to: email,
-      subject: "IBLens — payment confirmed",
+      subject: "IBLens: payment confirmed",
       text: body,
     });
 

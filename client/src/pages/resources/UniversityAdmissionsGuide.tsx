@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function UniversityAdmissionsGuide() {
   return (
     <ResourceArticle
-      title="IB University Admissions, UK, US, EU Guide | IBLens"
-      description="How IB Diploma scores translate to university offers in the UK, US, EU and beyond. Typical IB requirements at top universities."
+      title="IB University Admissions: UK, US and Europe Requirements | IBLens"
+      description="How IB Diploma scores translate to university offers in the UK, US, Europe and beyond, with typical IB requirements at top universities."
       canonical="/resources/ib-university-admissions"
       datePublished="2026-05-01"
       dateModified="2026-05-01"

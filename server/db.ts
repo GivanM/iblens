@@ -1,11 +1,6 @@
 import { eq, desc, sql, and, lt } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import {
-  InsertUser, users, analyses, InsertAnalysis, payments, InsertPayment,
-  anonymousAnalyses, InsertAnonymousAnalysis,
-  orders, InsertOrder, webhookEvents, InsertWebhookEvent, deviceCredits,
-  creditLedger, InsertCreditLedgerEntry,
-} from "../drizzle/schema";
+import { InsertUser, users, analyses, InsertAnalysis, payments, InsertPayment, anonymousAnalyses, InsertAnonymousAnalysis, orders, InsertOrder, webhookEvents, InsertWebhookEvent, deviceCredits, creditLedger, InsertCreditLedgerEntry, revokedSessions } from "../drizzle/schema";
 import crypto from "crypto";
 import { ENV } from './_core/env';
 
@@ -403,6 +398,46 @@ export async function createAnonymousAnalysis(data: InsertAnonymousAnalysis) {
 
   const [result] = await db.insert(anonymousAnalyses).values(data).$returningId();
   return result;
+}
+
+function isDuplicateKey(err: any): boolean {
+  const code = err?.code ?? err?.cause?.code;
+  return code === "ER_DUP_ENTRY" || /Duplicate entry/i.test(String(err?.cause?.message ?? err?.message ?? ""));
+}
+
+/**
+ * Takes this device's free run. Returns null when another request already took
+ * it: the unique index on (fingerprint, freeClaim) decides, not an earlier count.
+ */
+export async function claimAnonymousFreeRun(data: InsertAnonymousAnalysis, kind: "essay" | "ucas") {
+  try {
+    return await createAnonymousAnalysis({ ...data, freeClaim: kind });
+  } catch (err) {
+    if (isDuplicateKey(err)) return null;
+    throw err;
+  }
+}
+
+export async function revokeSessionToken(tokenHash: string, expiresAt: Date) {
+  const db = await getDb();
+  if (!db) return;
+  await db.insert(revokedSessions).values({ tokenHash, expiresAt })
+    .onDuplicateKeyUpdate({ set: { tokenHash } });
+}
+
+export async function isSessionTokenRevoked(tokenHash: string): Promise<boolean> {
+  const db = await getDb();
+  if (!db) return false;
+  const rows = await db.select({ tokenHash: revokedSessions.tokenHash })
+    .from(revokedSessions).where(eq(revokedSessions.tokenHash, tokenHash)).limit(1);
+  return rows.length > 0;
+}
+
+export async function purgeExpiredRevokedSessions(): Promise<number> {
+  const db = await getDb();
+  if (!db) return 0;
+  const result: any = await db.delete(revokedSessions).where(lt(revokedSessions.expiresAt, new Date()));
+  return Number(result?.[0]?.affectedRows ?? result?.affectedRows ?? 0);
 }
 
 // ---- Order helpers (NOWPayments) ----

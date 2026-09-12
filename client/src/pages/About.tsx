@@ -4,7 +4,7 @@ import { Link } from "wouter";
 export default function About() {
   return (
     <ResourceArticle
-      title="About IBLens, Who We Are and How the Grader Works | IBLens"
+      title="About IBLens: Who We Are and How the Grader Works | IBLens"
       description="IBLens is an independent AI feedback tool for IB coursework. How the grader works, which official criteria it applies, what it will not do, and how to reach us."
       canonical="/about"
       datePublished="2026-08-11"

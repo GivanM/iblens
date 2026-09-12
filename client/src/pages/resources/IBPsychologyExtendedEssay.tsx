@@ -4,18 +4,24 @@ import { Link } from "wouter";
 export default function IBPsychologyExtendedEssay() {
   return (
     <ResourceArticle
-      title="IB Psychology Extended Essay, RQs, Criteria & Tips | IBLens"
+      title="IB Psychology Extended Essay: RQs, Criteria & Tips | IBLens"
       description="How to write an IB Psychology Extended Essay: research questions, engaging real studies critically, avoiding pop psychology, criteria A–E and common mistakes."
       canonical="/resources/ib-psychology-extended-essay"
       datePublished="2026-07-10"
       dateModified="2026-07-10"
     >
       <p>
+        <strong>Sitting your exams in May 2027 or later?</strong> Your Extended Essay is
+        marked out of 30 on rewritten criteria, not out of 34.{" "}
+        <Link href="/resources/ib-extended-essay-new-criteria-2027">See what changed</Link>.
+        The criteria described below apply through November 2026.
+      </p>
+      <p>
         The IB Psychology Extended Essay is a 4,000-word argument built on published
         psychological research. That definition rules out the two things students
         most often try to write instead: an experiment of their own, and an essay of
         interesting opinions about the mind. The Psychology EE is a literature-based
-        investigation, your originality lives in the question you pose and in how
+        investigation: your originality lives in the question you pose and in how
         critically you select, compare and evaluate real studies to answer it. This
         guide explains how the five EE criteria play out in Psychology, which
         research questions work, how to engage with studies like a researcher rather
@@ -24,12 +30,13 @@ export default function IBPsychologyExtendedEssay() {
 
       <h2>What a Psychology EE Is, and Is Not</h2>
       <p>
-        The Psychology IA is a replication of a published experiment with your own
-        participants, data and statistics. The EE is the opposite arrangement: no
+        Through November 2026 the Psychology IA is an experiment based on a published
+        study, with your own participants, data and statistics; from May 2027 it is a
+        research proposal. The EE is the opposite arrangement: no
         data collection of your own, and all of the marks in the argument. Running
-        your own study for the EE raises ethical-approval problems and is the wrong
-        format for the task, examiners want to see you interrogate the existing
-        evidence base, not add a small sample to it. If the IA is about doing
+        your own study for the EE raises ethical problems and is the wrong format for
+        the task: examiners want to see you interrogate the existing evidence base,
+        not add a small sample to it. If the IA is about doing
         psychology (see our <Link href="/resources/ib-psychology-ia">IB Psychology IA guide</Link>),
         the EE is about judging psychology: weighing methods, samples and
         conflicting findings until a defensible answer to your question emerges.
@@ -88,13 +95,13 @@ export default function IBPsychologyExtendedEssay() {
       </ul>
 
       <h2>How the Five EE Criteria Play Out in Psychology</h2>
-      <p>Every Extended Essay is marked out of 34 across five criteria. In Psychology they reward the following:</p>
+      <p>Through November 2026, every Extended Essay is marked out of 34 on five criteria. In Psychology they reward the following:</p>
       <ul>
-        <li><strong>Criterion A, Focus and method (6 marks):</strong> A precise psychological question and a visible method for a literature-based essay: how you found and selected studies, why these studies and not others, and how the essay is organised to answer the question rather than to tour the topic.</li>
-        <li><strong>Criterion B, Knowledge and understanding (6 marks):</strong> Accurate reporting of theories and studies, aims, methods, findings, using psychological terminology correctly, at a depth beyond the taught syllabus.</li>
-        <li><strong>Criterion C, Critical thinking (12 marks):</strong> The highest-weighted criterion and the real test. It rewards evaluation of the studies you cite, samples, designs, measures, generalisability, cultural bias, and an argument that weighs conflicting results instead of listing supportive ones. Describing ten studies scores worse than critically comparing five.</li>
-        <li><strong>Criterion D, Presentation (4 marks):</strong> Structure, consistent citation of every study referenced, correctly presented figures if you use them, and a complete bibliography.</li>
-        <li><strong>Criterion E, Engagement (6 marks):</strong> The RPPF reflections. Strong entries show your thinking changing as you read, a study that undermined your assumed answer, a decision to narrow the question, not a diary of the workload.</li>
+        <li><strong>Criterion A: Focus and method (6 marks).</strong> A precise psychological question and a visible method for a literature-based essay: how you found and selected studies, why these studies and not others, and how the essay is organised to answer the question rather than to tour the topic.</li>
+        <li><strong>Criterion B: Knowledge and understanding (6 marks).</strong> Accurate reporting of theories and studies (their aims, methods and findings), using psychological terminology correctly.</li>
+        <li><strong>Criterion C: Critical thinking (12 marks).</strong> The highest-weighted criterion and the real test. It rewards evaluation of the studies you cite (their samples, designs, measures, generalisability and cultural bias) and an argument that weighs conflicting results instead of listing supportive ones. Describing ten studies scores worse than critically comparing five.</li>
+        <li><strong>Criterion D: Presentation (4 marks).</strong> Structure, consistent citation of every study referenced, correctly presented figures if you use them, and a complete bibliography.</li>
+        <li><strong>Criterion E: Engagement (6 marks).</strong> The RPPF reflections. Strong entries show your thinking changing as you read, such as a study that undermined your assumed answer or a decision to narrow the question, not a diary of the workload.</li>
       </ul>
 
       <h2>Working With Real Studies, Critically</h2>
@@ -117,9 +124,9 @@ export default function IBPsychologyExtendedEssay() {
         result has been reproduced, at what scale, and in which populations, rather
         than treating one dated experiment as settled fact. Balance older
         foundational work with more recent research where you can. And keep pop
-        psychology out entirely, recycled myths such as "we only use ten percent
-        of our brains" or personality claims from online quizzes signal to an
-        examiner that the essay cannot tell evidence from folklore.
+        psychology out entirely: recycled myths such as "we only use ten percent of
+        our brains", or personality claims from online quizzes, tell an examiner that
+        the essay cannot separate evidence from folklore.
       </p>
 
       <h2>Common Mark-Losing Mistakes in Psychology EEs</h2>
@@ -127,7 +134,7 @@ export default function IBPsychologyExtendedEssay() {
         <li><strong>The annotated list:</strong> a parade of study summaries with no argument connecting them. Coverage without evaluation caps Criterion C.</li>
         <li><strong>Describing instead of evaluating:</strong> reporting what each study found but never assessing its sample, method or measures.</li>
         <li><strong>Pop-psych sourcing:</strong> building claims on blogs, talks or self-help books instead of peer-reviewed research.</li>
-        <li><strong>Correlation treated as causation:</strong> the single most common logical error, and one examiners are primed to spot.</li>
+        <li><strong>Correlation treated as causation:</strong> a common logical error, and one examiners are quick to spot.</li>
         <li><strong>Cherry-picking:</strong> citing only studies that support the thesis and ignoring the contradicting literature your question exists to weigh.</li>
         <li><strong>Overclaiming in the conclusion:</strong> a confident verdict the mixed evidence cannot carry. A calibrated "the evidence partly supports…" answer scores better than false certainty.</li>
       </ul>
@@ -136,22 +143,23 @@ export default function IBPsychologyExtendedEssay() {
       <h3>Can I run my own experiment for a Psychology EE?</h3>
       <p>
         The Psychology EE is expected to be based on published research rather than
-        your own data collection. Your originality comes from the argument you
-        build, how you select, compare and evaluate existing studies to answer a
-        focused question.
+        your own data collection. Your originality comes from the argument you build:
+        how you select, compare and evaluate existing studies to answer a focused
+        question.
       </p>
       <h3>How many studies should a Psychology EE discuss?</h3>
       <p>
-        Enough to sustain an argument, evaluated properly, often a core of several
+        Enough to sustain an argument, each evaluated properly: often a core of several
         studies examined in depth. Listing many studies descriptively scores worse
         than critically comparing a smaller set, because Criterion C rewards
         evaluation, not coverage.
       </p>
       <h3>How is the Psychology EE different from the Psychology IA?</h3>
       <p>
-        The IA is a replication of a published experiment with your own data and
-        statistics. The EE is a 4,000-word argumentative essay built on published
-        research, marked against criteria A–E, with no data collection of your own.
+        Through November 2026 the IA is an experiment based on a published study,
+        with your own data and statistics, and from May 2027 it is a research proposal.
+        The EE is a 4,000-word argumentative essay built on published research, with
+        no data collection of your own.
       </p>
 
       <h2>Grade Your Psychology EE Before You Submit</h2>
@@ -159,7 +167,7 @@ export default function IBPsychologyExtendedEssay() {
         IBLens analyses Extended Essays against the five official criteria and shows
         you, criterion by criterion, where marks are being lost, including the
         Psychology classics: description without evaluation, and causal claims the
-        evidence cannot support. Upload a draft to the <Link href="/essay/extended-essay">free Extended Essay grader</Link> to
+        evidence cannot support. Paste a draft into the <Link href="/essay/extended-essay">free Extended Essay grader</Link> to
         see where your Psychology EE stands, and read the <Link href="/resources/ib-extended-essay-guide">complete IB Extended Essay guide</Link> for
         the full process from question to final reflection.
       </p>

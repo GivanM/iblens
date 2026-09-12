@@ -5,8 +5,8 @@ import { Link } from "wouter";
 export default function IBEEExamplesBySubject() {
   return (
     <ResourceArticle
-      title="IB Extended Essay Examples by Subject, What a 7-Scoring EE Looks Like | IBLens"
-      description="Concrete IB Extended Essay examples across Economics, History, Biology, English, Psychology, Mathematics, and Physics. Understand what separates a grade 7 EE from a grade 5."
+      title="IB EE Examples by Subject: What Top-Band Extended Essays Do | IBLens"
+      description="What separates top-band Extended Essays in Economics, History, Biology, English, Psychology, Mathematics and Physics, criterion by criterion."
       canonical="/resources/ib-ee-examples-by-subject"
       datePublished="2026-06-09"
       dateModified="2026-06-09"
@@ -186,7 +186,7 @@ export default function IBEEExamplesBySubject() {
             <ExamplesBridge
         workLabel="Extended Essay"
         ctaHref="/essay/extended-essay"
-        note={"One caution: if you sit exams in May 2027 or later, your EE is marked out of 30 under new criteria, Discussion and evaluation alone is worth 8 marks. Older example essays and older mark schemes describe the 34-mark rubric."}
+        note={"One caution: if you sit exams in May 2027 or later, your EE is marked out of 30 under new criteria, and Discussion and evaluation alone is worth 8 of them. Older example essays and mark schemes describe the 34-mark rubric."}
         rows={[
           { criterion: "A: Focus and method", typical: "The research question restates the topic and could fill a book; scope is never stated.", top: "The question is narrow enough to answer in 4,000 words, and the essay says why that scope was chosen." },
           { criterion: "B: Knowledge and understanding", typical: "Sources are summarised one after another in the order they were read.", top: "Subject terminology is used precisely, and sources are positioned against each other rather than listed." },

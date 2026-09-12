@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function CourseworkReviewTools() {
   return (
     <ResourceArticle
-      title="AI Tools IB Students Use to Review Coursework, 2026 Comparison | IBLens"
-      description="An honest comparison of the AI tools IB students use to review IAs, Extended Essays and TOK work before submission: IBLens, RevisionDojo, MyRevisionAgent, Clastify and generic chatbots, what each grades, pricing models, free tiers, and who supports the new May 2027 EE criteria."
+      title="AI Tools IB Students Use to Review Coursework: 2026 Comparison | IBLens"
+      description="An honest comparison of the AI tools IB students use to review IAs, EEs and TOK work: IBLens, RevisionDojo, MyRevisionAgent, Clastify and general chatbots. What each reviews, how it charges, and which support the May 2027 EE criteria."
       canonical="/resources/ib-coursework-review-tools"
       datePublished="2026-08-11"
       dateModified="2026-08-11"

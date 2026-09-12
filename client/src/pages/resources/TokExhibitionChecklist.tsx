@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function TokExhibitionChecklist() {
   return (
     <ResourceArticle
-      title="TOK Exhibition Checklist, Check Your Commentary Against the IB Criteria | IBLens"
-      description="Check your TOK exhibition commentary against the official holistic instrument: the question examiners ask, the five bands out of 10, and concrete checks for your three objects, contexts and IA prompt links, before you submit."
+      title="TOK Exhibition Checklist: Check Your Commentary Against the IB Criteria | IBLens"
+      description="Check your TOK exhibition commentary against the official holistic instrument: the examiner question, five bands out of 10, and concrete checks for your three objects, contexts and IA prompt links."
       canonical="/resources/tok-exhibition-checklist"
       datePublished="2026-08-11"
       dateModified="2026-08-11"

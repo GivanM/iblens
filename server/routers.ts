@@ -2,6 +2,7 @@ import { COOKIE_NAME } from "@shared/const";
 import { TRPCError } from "@trpc/server";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
+import { sdk } from "./_core/sdk";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 import { z } from "zod";
 import { invokeLLM } from "./_core/llm";
@@ -10,15 +11,14 @@ import {
   getUserAnalyses,
   getAnalysisById,
   canUserAnalyzeEssay,
-  canUserAnalyzeUniversity,
   consumeEssayCredit,
   refundEssayConsumption,
-  consumeUniversityCredit,
   getUserCredits,
   getUserPayments,
   generateFingerprint,
   canAnonymousAnalyze,
   createAnonymousAnalysis,
+  claimAnonymousFreeRun,
   createOrder,
   getUserOrders,
   findOrCreateGuestUserByEmail,
@@ -42,12 +42,13 @@ import {
   refundAnalysisRerun,
   consumeAnalysisRerun,
 } from "./db";
+import { checkWordLimit, storableWordCheck, type WordCheck } from "../shared/wordcount";
 import { checkUcasMechanics, buildUcasSystemPrompt, buildUcasUserPrompt, UCAS_TOTAL_CHAR_LIMIT, UCAS_MIN_CHARS_PER_ANSWER } from "../shared/ucas";
 import { createLemonsqueezyCheckout } from "./lemonsqueezy/lemonsqueezy";
 import { LEMONSQUEEZY_VARIANTS, PRODUCT_KEY_TO_LS_SKU } from "../shared/pricing";
 import { randomUUID } from "crypto";
 import { PRODUCTS } from "./products";
-import { getRubric, buildRubricPromptFragment } from "../shared/rubrics";
+import { getRubric, buildRubricPromptFragment, unmarkableReason } from "../shared/rubrics";
 
 const IB_SUBJECTS = [
   "Business Management", "Economics", "History", "Biology", "Chemistry",
@@ -72,7 +73,8 @@ function buildEssaySystemPrompt(essayType: string, subject: string, examSession?
 
 IMPORTANT FORMATTING RULES:
 - Respond with a single valid JSON object. No markdown, no text before or after the JSON.
-- Write ALL text in plain text only. NEVER use HTML entities like &amp; &lt; &gt; &quot; — write the actual characters: & < > " instead.
+- Write ALL text in plain text only. NEVER use HTML entities like &amp; &lt; &gt; &quot;. Write the actual characters instead: & < > "
+- Do not use em dashes or en dashes as punctuation anywhere in the text. Use a comma, a colon, brackets or a new sentence instead. Write number ranges with a plain hyphen, for example 13-16.
 - Do not use any HTML tags or HTML encoding in your response.`;
 
   if (rubricFragment) {
@@ -88,6 +90,34 @@ IMPORTANT FORMATTING RULES:
  * Build the user prompt for essay analysis.
  * Dynamically generates the expected JSON criteria structure from the rubric.
  */
+/**
+ * The word count is measured here and handed to the model, the way UCAS character
+ * counts are: a model asked to count words guesses. Pages promise that IBLens
+ * checks the count and flags a draft over the limit, so this is where that happens.
+ */
+function buildWordCountBlock(check: WordCheck | null): string {
+  if (!check) return "";
+  const limit = `${check.max} words${check.unit ? ` ${check.unit}` : ""}`;
+  const lines = [
+    "",
+    "",
+    `WORD COUNT, MEASURED BY IBLENS (do not recount): the text as pasted is ${check.words} words. The official limit for this task is ${limit}${check.min ? `, and the report should be at least ${check.min} words` : ""}. The official count leaves out ${check.excludes}, and the pasted text may contain some of that material.`,
+  ];
+  if (check.unit) {
+    lines.push(`- The limit applies ${check.unit}. If the paste contains more than one, apply it to each separately.`);
+  }
+  if (check.status === "over") {
+    lines.push(check.stopsAt
+      ? `- The pasted text is over the limit. Unless the excess is plainly material the official count leaves out, include a risk saying that marking stops at ${check.max} words and nothing after that point is assessed, which in this text falls at: "${check.cutoff ?? ""}". Say what could be cut.`
+      : `- The pasted text is over the limit. Unless the excess is plainly material the official count leaves out, include a risk saying the text is over the maximum the subject guide sets, and say what could be cut. Do not claim that examiners stop reading at the limit.`);
+  } else if (check.status === "under_min") {
+    lines.push(`- The pasted text is under the ${check.min}-word minimum for this report. Unless part of the report is plainly missing from the paste, include a risk about it.`);
+  } else {
+    lines.push("- Do not raise the word count as a risk: the text is within the limit. If part of the task is underdeveloped, criticise the content, not the number of words.");
+  }
+  return lines.join("\n");
+}
+
 function buildEssayUserPrompt(essayType: string, subject: string, researchQuestion: string | undefined, essayText: string, examSession?: string, reflections?: string): string {
   const rubric = getRubric(essayType, subject, examSession);
 
@@ -129,11 +159,13 @@ NO REFLECTIVE STATEMENT WAS SUBMITTED. The reflection criterion is marked on the
     }
   }
 
+  const wordBlock = buildWordCountBlock(checkWordLimit(rubric, essayText));
+
   return `Analyze this IB ${essayType} for: ${subject}
 Research Question: ${researchQuestion || "not provided"}
 
 TEXT:
-${essayText.substring(0, 30000)}${reflectionBlock}
+${essayText.substring(0, 30000)}${reflectionBlock}${wordBlock}
 
 Respond with this exact JSON structure:
 {
@@ -265,19 +297,12 @@ function buildTeaser(result: any) {
     _rubricAvailable: result?._rubricAvailable,
     _rubricLabel: result?._rubricLabel,
     _rubricTotalMarks: result?._rubricTotalMarks,
+    _wordCheck: result?._wordCheck ?? null,
   };
 }
 
 // ---- Essay Analysis Router ----
 const essayRouter = router({
-  // Capture email of anonymous users who want their report + tips (remarketing list)
-  saveReportEmail: publicProcedure
-    .input(z.object({ email: z.string().email(), fingerprint: z.string().optional() }))
-    .mutation(async ({ input }) => {
-      await findOrCreateGuestUserByEmail(input.email.toLowerCase().trim());
-      console.log(`[Report Email] captured for fp=${input.fingerprint || "n/a"}`);
-      return { ok: true } as const;
-    }),
 
   // Paid unlock of a previously generated (teaser-gated) report.
   unlockAnalysis: protectedProcedure
@@ -362,6 +387,7 @@ const essayRouter = router({
           result._rubricLabel = rubric.label;
           result._rubricTotalMarks = rubric.totalMarks;
         }
+        result._wordCheck = storableWordCheck(checkWordLimit(rubric, input.essayText));
 
         const analysis = await createAnalysis({
           userId: ctx.user.id,
@@ -418,7 +444,7 @@ const essayRouter = router({
       const mechanics = checkUcasMechanics(answers);
 
       if (mechanics.totalChars < 200) {
-        throw new Error("Please paste your draft answers first — there is not enough text to review.");
+        throw new Error("Please paste your draft answers first. There is not enough text to review yet.");
       }
       if (mechanics.totalChars > UCAS_TOTAL_CHAR_LIMIT + 2000) {
         throw new Error(`Your answers total ${mechanics.totalChars} characters. UCAS allows ${UCAS_TOTAL_CHAR_LIMIT}; trim the draft before reviewing it.`);
@@ -448,7 +474,7 @@ const essayRouter = router({
             code: "FORBIDDEN",
             message: user
               ? "You have used your free review. Unlock a full review for $9.99 to continue."
-              : "You have used your free review from this device. A full review is $9.99 — no account needed.",
+              : "You have used your free review from this device. A full review is $9.99, and no account is needed.",
           });
         }
       }
@@ -461,7 +487,7 @@ const essayRouter = router({
       // Claim the free slot before the model is called: the check and the write
       // were eighty seconds apart, which is a free second review for anyone who
       // submits twice.
-      const claim = (paidCredit || paidByDevice) ? null : await createAnonymousAnalysis({
+      const claim = (paidCredit || paidByDevice) ? null : await claimAnonymousFreeRun({
         fingerprint,
         type: "essay",
         essayType: "UCAS",
@@ -469,7 +495,10 @@ const essayRouter = router({
         researchQuestion: null,
         resultJson: null,
         predictedGrade: null,
-      });
+      }, "ucas");
+      if (!(paidCredit || paidByDevice) && !claim) {
+        throw new TRPCError({ code: "FORBIDDEN", message: "You have used your free review from this device." });
+      }
 
       try {
         const systemPrompt = buildUcasSystemPrompt(input.course, input.universityType);
@@ -594,6 +623,7 @@ const essayRouter = router({
           result._rubricAvailable = !!rubric;
           result._rubricLabel = rubric?.label ?? null;
           result._rubricTotalMarks = rubric?.totalMarks ?? null;
+          result._wordCheck = storableWordCheck(checkWordLimit(rubric, input.essayText ?? ""));
         }
 
         await createRerunAnalysis(rec, result, result?.predicted_score != null ? String(result.predicted_score) : undefined);
@@ -694,6 +724,8 @@ const essayRouter = router({
       spendDeviceCredit: z.boolean().optional(),
     }))
     .mutation(async ({ input }) => {
+      const unmarkable = unmarkableReason(input.essayType, input.subject, input.examSession);
+      if (unmarkable) throw new TRPCError({ code: "BAD_REQUEST", message: unmarkable });
       // Use client-provided fingerprint (UUID stored in localStorage)
       const fingerprint = input.clientFingerprint;
 
@@ -719,7 +751,7 @@ const essayRouter = router({
       // Claim the free slot before the model is called, not after. The analysis
       // takes over a minute, and everything submitted inside that window used to
       // pass the check: two production devices already got two free runs each.
-      const claim = paidByDevice ? null : await createAnonymousAnalysis({
+      const claim = paidByDevice ? null : await claimAnonymousFreeRun({
         fingerprint,
         type: "essay",
         essayType: input.essayType,
@@ -728,7 +760,10 @@ const essayRouter = router({
         resultJson: null,
         predictedGrade: null,
         examSession: input.examSession ?? null,
-      });
+      }, "essay");
+      if (!paidByDevice && !claim) {
+        throw new TRPCError({ code: "FORBIDDEN", message: "You have used your free analysis from this device." });
+      }
 
       const systemPrompt = buildEssaySystemPrompt(input.essayType, input.subject, input.examSession);
       const userPrompt = buildEssayUserPrompt(input.essayType, input.subject, input.researchQuestion, input.essayText, input.examSession, input.reflections);
@@ -758,6 +793,7 @@ const essayRouter = router({
           result._rubricLabel = rubric.label;
           result._rubricTotalMarks = rubric.totalMarks;
         }
+        result._wordCheck = storableWordCheck(checkWordLimit(rubric, input.essayText));
 
         // Fill in the slot claimed before the model ran, or write a fresh row for
         // a run paid with a device credit.
@@ -808,6 +844,8 @@ const essayRouter = router({
       examSession: z.enum(["nov2026", "may2027"]).optional(),
     }))
     .mutation(async ({ ctx, input }) => {
+      const unmarkable = unmarkableReason(input.essayType, input.subject, input.examSession);
+      if (unmarkable) throw new TRPCError({ code: "BAD_REQUEST", message: unmarkable });
       const usage = await canUserAnalyzeEssay(ctx.user.id);
       if (!usage.allowed) {
         throw new Error(usage.reason || "No essay credits remaining");
@@ -848,6 +886,7 @@ const essayRouter = router({
           result._rubricLabel = rubric.label;
           result._rubricTotalMarks = rubric.totalMarks;
         }
+        result._wordCheck = storableWordCheck(checkWordLimit(rubric, input.essayText));
 
         const analysis = await createAnalysis({
           userId: ctx.user.id,
@@ -876,102 +915,6 @@ const essayRouter = router({
     }),
 });
 
-// ---- University Strategy Router ----
-const universityRouter = router({
-  analyze: protectedProcedure
-    .input(z.object({
-      predictedScore: z.number().min(24).max(45),
-      averageGrade: z.number().min(1).max(7),
-      fieldOfStudy: z.string().min(1),
-      budget: z.string(),
-      regions: z.array(z.string()),
-      extracurriculars: z.string().optional(),
-      notes: z.string().optional(),
-    }))
-    .mutation(async ({ ctx, input }) => {
-      const usage = await canUserAnalyzeUniversity(ctx.user.id);
-      if (!usage.allowed) {
-        throw new Error(usage.reason || "No university strategy credits remaining");
-      }
-
-      // Charged before the model, given back if nothing comes out, like the essay
-      // path. Charging afterwards handed over the report and then asked for it.
-      await consumeUniversityCredit(ctx.user.id);
-
-      const now = new Date();
-      const currentDate = now.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
-      const yr = now.getFullYear();
-
-      const systemPrompt = `You are an experienced IB university counselor with 15 years of advising students on university admissions worldwide. Give realistic, data-informed advice based on actual IB score requirements and admission statistics. Be honest about chances.
-
-IMPORTANT FORMATTING RULES:
-- Respond with a single valid JSON object. No markdown, no text before or after the JSON.
-- Write ALL text in plain text only. NEVER use HTML entities like &amp; &lt; &gt; &quot; — write the actual characters: & < > " instead.
-- Do not use any HTML tags or HTML encoding in your response.`;
-
-      const userPrompt = `Today is ${currentDate}. Build a university strategy for this IB student:
-Predicted: ${input.predictedScore}/45, Average Grade: ${input.averageGrade}/7
-Field: ${input.fieldOfStudy}
-Regions: ${input.regions.length ? input.regions.join(", ") : "any"}
-Budget: ${input.budget}
-Extracurriculars: ${input.extracurriculars || "not specified"}
-Notes: ${input.notes || "none"}
-
-Include 3 safe + 3 match + 3 reach universities. Roadmap must use real dates starting from ${currentDate}.
-
-Respond with this exact JSON structure:
-{
-  "profile_summary": "Honest assessment of the student's profile",
-  "universities": [
-    {"name": "University Name", "country": "Country", "type": "safe", "program": "Program Name", "typical_ib": "30-34", "admission_prob": 75, "why": "Specific reason this university fits"}
-  ],
-  "essay_angle": "Specific positioning angle for personal statement",
-  "roadmap": [
-    {"period": "March-May ${yr}", "action": "Specific action to take"}
-  ],
-  "strengths": ["Specific profile strength"],
-  "red_flags": ["Specific concern to address"]
-}`;
-
-      try {
-        const startedAt = Date.now();
-        const response = await invokeLLM({
-          messages: [
-            { role: "system", content: systemPrompt },
-            { role: "user", content: userPrompt },
-          ],
-        });
-
-        console.log(`[Timing] LLM answered in ${((Date.now() - startedAt) / 1000).toFixed(1)}s`);
-        const rawContent = response.choices?.[0]?.message?.content;
-        const content = typeof rawContent === "string" ? rawContent : "";
-        const jsonMatch = content.match(/\{[\s\S]*\}/);
-        if (!jsonMatch) throw new Error("Failed to parse AI response");
-
-        const cleaned = jsonMatch[0].replace(/,\s*([\]\}])/g, '$1');
-        const result = JSON.parse(cleaned);
-
-        const analysis = await createAnalysis({
-          userId: ctx.user.id,
-          type: "university",
-          essayType: null,
-          subject: null,
-          predictedScore: input.predictedScore,
-          averageGrade: String(input.averageGrade),
-          fieldOfStudy: input.fieldOfStudy,
-          resultJson: result,
-          predictedGrade: `${input.predictedScore}/45`,
-          unlocked: true,
-        });
-
-        return { id: analysis.id, result };
-      } catch (error: any) {
-        console.error("[University Strategy] Error:", error);
-        await grantCreditsViaLedger(ctx.user.id, 0, 1, "refund:university-failed").catch(() => {});
-        throw new Error(error.message || "Strategy generation failed. Please try again.");
-      }
-    }),
-});
 
 // ---- Dashboard Router ----
 const dashboardRouter = router({
@@ -1168,14 +1111,15 @@ export const appRouter = router({
   system: systemRouter,
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
-    logout: publicProcedure.mutation(({ ctx }) => {
+    logout: publicProcedure.mutation(async ({ ctx }) => {
+      const token = sdk.sessionTokenFrom(ctx.req);
+      if (token) await sdk.revokeSession(token);
       const cookieOptions = getSessionCookieOptions(ctx.req);
       ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });
       return { success: true } as const;
     }),
   }),
   essay: essayRouter,
-  university: universityRouter,
   dashboard: dashboardRouter,
   pricing: pricingRouter,
   payment: paymentRouter,

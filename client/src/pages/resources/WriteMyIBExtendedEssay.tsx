@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function WriteMyIBExtendedEssay() {
   return (
     <ResourceArticle
-      title="Struggling With Your IB Extended Essay? Here's What Actually Helps | IBLens"
-      description="If you're searching for help with your IB Extended Essay, this guide covers what you can do yourself, what your supervisor can help with, and the one tool that gives you examiner-level feedback."
+      title="IB Extended Essay Help: Fix Every Stage of Your EE and Score Higher | IBLens"
+      description="Stuck on your IB Extended Essay? What you can fix yourself at each stage, what your supervisor can help with, and where AI feedback on your draft fits."
       canonical="/resources/ib-extended-essay-help"
       datePublished="2026-06-09"
       dateModified="2026-06-09"

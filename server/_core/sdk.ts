@@ -3,6 +3,7 @@ import { ForbiddenError } from "@shared/_core/errors";
 import { parse as parseCookieHeader } from "cookie";
 import type { Request } from "express";
 import { SignJWT, jwtVerify } from "jose";
+import { createHash } from "crypto";
 import type { User } from "../../drizzle/schema";
 import * as db from "../db";
 import { ENV } from "./env";
@@ -142,13 +143,35 @@ class SDKServer {
     }
   }
 
+  sessionTokenFrom(req: Request): string | undefined {
+    return this.parseCookies(req.headers.cookie).get(COOKIE_NAME);
+  }
+
+  private hashToken(token: string): string {
+    return createHash("sha256").update(token).digest("hex");
+  }
+
+  /** Signing out ends this token everywhere a copy of it exists, not only in this browser. */
+  async revokeSession(token: string): Promise<void> {
+    try {
+      const { payload } = await jwtVerify(token, this.getSessionSecret(), { algorithms: ["HS256"] });
+      const exp = typeof payload.exp === "number" ? payload.exp * 1000 : Date.now() + ONE_YEAR_MS;
+      await db.revokeSessionToken(this.hashToken(token), new Date(exp));
+    } catch {
+      // An invalid or expired token authenticates nothing; there is nothing to revoke.
+    }
+  }
+
   async authenticateRequest(req: Request): Promise<User> {
-    const cookies = this.parseCookies(req.headers.cookie);
-    const sessionCookie = cookies.get(COOKIE_NAME);
+    const sessionCookie = this.sessionTokenFrom(req);
     const session = await this.verifySession(sessionCookie);
 
     if (!session) {
       throw ForbiddenError("Invalid session cookie");
+    }
+
+    if (await db.isSessionTokenRevoked(this.hashToken(sessionCookie as string))) {
+      throw ForbiddenError("Session signed out");
     }
 
     const signedInAt = new Date();

@@ -4,7 +4,7 @@ import { Link } from "wouter";
 export default function IBUniversityStrategy() {
   return (
     <ResourceArticle
-      title="IB University Admissions Strategy, How to Choose Universities and Maximise Your Chances | IBLens"
+      title="IB University Admissions Strategy: How to Choose Universities | IBLens"
       description="A practical guide to IB university admissions: build your school list, decode score requirements by country, time your applications, and avoid common mistakes."
       canonical="/resources/ib-university-admissions-strategy"
       datePublished="2026-06-06"

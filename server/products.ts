@@ -13,13 +13,13 @@ export const PRODUCTS = {
   },
   ESSAY_PACK_5: {
     name: "5 Essay Analyses",
-    description: "Pack of 5 IB essay analyses — save 50% per report",
+    description: "Pack of 5 IB essay analyses, 50% less per report",
     priceAmount: PRICES.ESSAY_PACK_5,
     credits: { essay: 5, university: 0 },
   },
   ESSAY_PACK_10: {
     name: "10 Essay Analyses",
-    description: "Pack of 10 IB essay analyses — save 55% per report",
+    description: "Pack of 10 IB essay analyses, 55% less per report",
     priceAmount: PRICES.ESSAY_PACK_10,
     credits: { essay: 10, university: 0 },
   },

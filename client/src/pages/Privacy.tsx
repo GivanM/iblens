@@ -11,14 +11,14 @@ export default function Privacy() {
       />
       <div className="container max-w-3xl">
         <h1 className="text-3xl font-bold tracking-tight mb-2">Privacy Policy</h1>
-        <p className="text-sm text-muted-foreground mb-8">Last updated: 12 September 2026</p>
+        <p className="text-sm text-muted-foreground mb-8">Last updated: 13 September 2026</p>
         <div className="prose prose-sm max-w-none text-foreground space-y-6 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:mt-8 [&_h2]:mb-3 [&_p]:text-muted-foreground [&_p]:leading-relaxed [&_li]:text-muted-foreground [&_ul]:list-disc [&_ul]:list-inside [&_ul]:space-y-1.5">
           <p>This policy explains what personal data IBLens collects, why, who processes it, how long we keep it, and the rights you have. IBLens is operated by an independent developer; for any privacy request, contact <a href="mailto:glushkovim@gmail.com" className="text-primary hover:underline">glushkovim@gmail.com</a>.</p>
 
           <h2>What we collect</h2>
           <ul>
             <li><strong>Essay text you submit</strong> for analysis (IA, EE or TOK), plus the subject and essay type you select.</li>
-            <li><strong>Account details</strong> if you sign in (name and email address via Google sign-in), or an email you provide to save a report.</li>
+            <li><strong>Account details</strong> if you sign in (name and email address via Google sign-in), and the email address you give at checkout if you buy without an account.</li>
             <li><strong>Usage and device data</strong> through cookies and analytics (Google Tag Manager, Google Analytics, Google Ads), such as pages viewed and approximate location for consent handling.</li>
           </ul>
 
@@ -29,10 +29,10 @@ export default function Privacy() {
           <h2>Who we share data with</h2>
           <p>We do not sell your personal data. We share it only with the service providers needed to run IBLens, each acting under their own terms:</p>
           <ul>
-            <li><strong>Anthropic PBC</strong> - AI processing of your essay to generate analysis.</li>
-            <li><strong>Hetzner Online GmbH</strong> (Helsinki, Finland) - the server we operate to reach the AI provider; your text passes through it in transit.</li>
-            <li><strong>LemonSqueezy</strong> - payment processing and receipts (they handle your card data; we never see full card numbers).</li>
-            <li><strong>Google</strong> - analytics, advertising measurement, and sign-in.</li>
+            <li><strong>Anthropic PBC:</strong> AI processing of your essay to generate the analysis.</li>
+            <li><strong>Hetzner Online GmbH</strong> (Helsinki, Finland): the server we operate to reach the AI provider; your text passes through it in transit.</li>
+            <li><strong>LemonSqueezy:</strong> payment processing and receipts (they handle your card data; we never see full card numbers).</li>
+            <li><strong>Google:</strong> analytics, advertising measurement, and sign-in.</li>
           </ul>
           <p>We do not share your essay content with your school, universities, examiners, or other students.</p>
 

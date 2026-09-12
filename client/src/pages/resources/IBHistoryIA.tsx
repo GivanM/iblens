@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function IBHistoryIA() {
   return (
     <ResourceArticle
-      title="IB History IA, How to Write Your Historical Investigation and Score a 7 | IBLens"
-      description="A complete guide to the IB History Internal Assessment: how to choose a research question, structure the three sections, use sources correctly, and score well on all criteria."
+      title="IB History IA: How to Write Your Historical Investigation | IBLens"
+      description="A guide to the IB History Internal Assessment: choosing a research question, the three sections, evaluating sources, and what each criterion rewards."
       canonical="/resources/ib-history-ia"
       datePublished="2026-06-09"
       dateModified="2026-06-09"

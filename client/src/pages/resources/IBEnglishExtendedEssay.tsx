@@ -4,17 +4,23 @@ import { Link } from "wouter";
 export default function IBEnglishExtendedEssay() {
   return (
     <ResourceArticle
-      title="IB English Extended Essay, Research Questions & Tips | IBLens"
+      title="IB English Extended Essay: Research Questions & Tips | IBLens"
       description="How to write an IB English Extended Essay: analytical research questions, close reading over plot summary, criteria A–E, common mistakes and grading tips."
       canonical="/resources/ib-english-extended-essay"
       datePublished="2026-07-10"
       dateModified="2026-07-10"
     >
       <p>
+        <strong>Sitting your exams in May 2027 or later?</strong> Your Extended Essay is
+        marked out of 30 on rewritten criteria, not out of 34.{" "}
+        <Link href="/resources/ib-extended-essay-new-criteria-2027">See what changed</Link>.
+        The criteria described below apply through November 2026.
+      </p>
+      <p>
         An IB English Extended Essay is an extended piece of literary criticism: a
         4,000-word argument about how one or two texts work. That framing matters,
         because the most common way to lose marks in this subject is to write
-        something else instead, a plot summary with quotations, a biography of the
+        something else instead: a plot summary with quotations, a biography of the
         author, or a general essay about a theme. Language A essays fall into set
         categories: analysis of literature originally written in English, comparison
         involving works in translation, or a language-focused study of how English is
@@ -30,18 +36,18 @@ export default function IBEnglishExtendedEssay() {
         you design yourself, and it is assessed against the same five generic EE
         criteria as every other subject, not against the Language A paper
         markbands you are used to. It also carries a reflection component, the RPPF,
-        which is marked separately under Criterion E. The practical consequence: a
+        which is marked under Criterion E. The practical consequence: a
         reading that would earn praise in class as "sensitive" is not enough here.
         The essay must pose a genuine question about the text, sustain an answer to
-        it for 4,000 words, and show the analytical method, which passages you
-        examined, through what lens, and why, that makes the answer more than an
+        it for 4,000 words, and show the analytical method (which passages you
+        examined, through what lens, and why) that makes the answer more than an
         impression.
       </p>
 
       <h2>Choosing a Research Question for an English EE</h2>
       <p>A strong English EE research question has four characteristics:</p>
       <ul>
-        <li><strong>Anchored in technique:</strong> It names a formal feature, narration, structure, imagery, stage directions, not just a theme.</li>
+        <li><strong>Anchored in technique:</strong> it names a formal feature, such as narration, structure, imagery or stage directions, not just a theme.</li>
         <li><strong>Arguable:</strong> A thoughtful reader could plausibly answer it differently, so your essay has to persuade, not describe.</li>
         <li><strong>Answerable from the text:</strong> The evidence is on the page, in passages you can quote and analyse closely.</li>
         <li><strong>Proportionate:</strong> One text, or two in genuine dialogue. Depth on a single work beats a survey of four every time.</li>
@@ -75,7 +81,7 @@ export default function IBEnglishExtendedEssay() {
         <li>
           What is the theme of love in Romeo and Juliet?
           <em> Why it fails:</em> "what is the theme" is a description request, not
-          an argument. The essay it produces is a catalogue of scenes, plot summary
+          an argument. The essay it produces is a catalogue of scenes: plot summary
           wearing academic clothes.
         </li>
         <li>
@@ -87,13 +93,13 @@ export default function IBEnglishExtendedEssay() {
       </ul>
 
       <h2>How the Five EE Criteria Play Out in English</h2>
-      <p>Every Extended Essay is marked out of 34 across five criteria. In English they translate like this:</p>
+      <p>Through November 2026, every Extended Essay is marked out of 34 on five criteria. In English they translate like this:</p>
       <ul>
-        <li><strong>Criterion A, Focus and method (6 marks):</strong> A precise, literary research question, plus a visible analytical approach: which text or texts, which passages, which critical lens, and why those choices can answer the question. The essay must stay on that question, drift into general appreciation is a Criterion A cost.</li>
-        <li><strong>Criterion B, Knowledge and understanding (6 marks):</strong> Understanding of the work and, where relevant, its context, shown through accurate and purposeful use of literary terminology. Terms must do analytical work; decorating a paragraph with "juxtaposition" earns nothing by itself.</li>
-        <li><strong>Criterion C, Critical thinking (12 marks):</strong> The heart of the essay and the highest-weighted criterion. It rewards sustained interpretation built from close reading: quotations analysed for their effect, alternative readings considered, an argument that develops rather than repeats. This is the criterion plot summary destroys.</li>
-        <li><strong>Criterion D, Presentation (4 marks):</strong> Clean structure, correctly formatted quotations, consistent referencing of the edition you used, and a complete bibliography.</li>
-        <li><strong>Criterion E, Engagement (6 marks):</strong> Assessed via the RPPF. Strong reflections trace how your reading changed, an interpretation you abandoned, a passage that complicated your thesis, not how the workload felt.</li>
+        <li><strong>Criterion A: Focus and method (6 marks).</strong> A precise, literary research question, plus a visible analytical approach: which text or texts, which passages, which critical lens, and why those choices can answer the question. The essay must stay on that question; drifting into general appreciation costs marks here.</li>
+        <li><strong>Criterion B: Knowledge and understanding (6 marks).</strong> Understanding of the work and, where relevant, its context, shown through accurate and purposeful use of literary terminology. Terms must do analytical work; decorating a paragraph with "juxtaposition" earns nothing by itself.</li>
+        <li><strong>Criterion C: Critical thinking (12 marks).</strong> The heart of the essay and the highest-weighted criterion. It rewards sustained interpretation built from close reading: quotations analysed for their effect, alternative readings considered, an argument that develops rather than repeats. This is the criterion plot summary destroys.</li>
+        <li><strong>Criterion D: Presentation (4 marks).</strong> Clean structure, correctly formatted quotations, consistent referencing of the edition you used, and a complete bibliography.</li>
+        <li><strong>Criterion E: Engagement (6 marks).</strong> Assessed through the RPPF. Strong reflections trace how your reading changed, such as an interpretation you abandoned or a passage that complicated your thesis, rather than how the workload felt.</li>
       </ul>
 
       <h2>Method: Close Reading, Not Plot Summary</h2>
@@ -101,7 +107,7 @@ export default function IBEnglishExtendedEssay() {
         The method examiners expect in English is close reading of the primary text.
         In practice that means your paragraphs run on a small loop: a claim about
         how the text works, a short quotation as evidence, then analysis of the
-        effect of specific choices, diction, syntax, image, form, and a link back
+        effect of specific choices (diction, syntax, imagery, form), and a link back
         to the research question. Long block quotes and long stretches of retold
         story both break the loop. A useful test for every paragraph: could someone
         who had only read a synopsis of the book have written it? If yes, it is
@@ -120,12 +126,12 @@ export default function IBEnglishExtendedEssay() {
 
       <h2>Common Mark-Losing Mistakes in English EEs</h2>
       <ul>
-        <li><strong>Plot summary:</strong> retelling the story between quotations. The single most common reason English EEs fall out of the top bands.</li>
+        <li><strong>Plot summary:</strong> retelling the story between quotations, one of the most common reasons English EEs fall out of the top bands.</li>
         <li><strong>Device-spotting:</strong> naming techniques ("Shakespeare uses metaphor") without analysing their effect on meaning. Identification is not analysis.</li>
         <li><strong>The biography detour:</strong> explaining the text through the author's life and times instead of through the text itself. Context should serve the reading, not substitute for it.</li>
         <li><strong>Too many texts:</strong> three or four works surveyed thinly, when the criteria reward sustained depth on one or two.</li>
         <li><strong>Study-guide voice:</strong> reproducing standard readings from revision sites rather than building an interpretation from your own close reading.</li>
-        <li><strong>Ignoring form:</strong> writing only about themes and characters while saying nothing about narration, structure or style, the things that make it a literary essay.</li>
+        <li><strong>Ignoring form:</strong> writing only about themes and characters while saying nothing about narration, structure or style, which are what make it a literary essay.</li>
       </ul>
 
       <h2>Frequently Asked Questions</h2>
@@ -144,8 +150,8 @@ export default function IBEnglishExtendedEssay() {
       <h3>How is the English EE different from a class literature essay?</h3>
       <p>
         Scale and independence. The EE is a 4,000-word argument built around your
-        own research question, assessed against criteria A–E, with a reflection
-        component (the RPPF). It demands a sharper question and more sustained
+        own research question, assessed against five criteria, with a reflection
+        component (the RPPF, which becomes the RPF from May 2027). It demands a sharper question and more sustained
         analysis than classroom essays.
       </p>
 
@@ -153,7 +159,7 @@ export default function IBEnglishExtendedEssay() {
       <p>
         IBLens analyses Extended Essays against the five official criteria and shows
         you exactly where marks are leaking, including whether your paragraphs are
-        analysing or quietly summarising. Upload a draft to the <Link href="/essay/extended-essay">free Extended Essay grader</Link> to
+        analysing or quietly summarising. Paste a draft into the <Link href="/essay/extended-essay">free Extended Essay grader</Link> to
         see where your English EE stands, and read the <Link href="/resources/ib-extended-essay-guide">complete IB Extended Essay guide</Link> for
         the full process from choosing a text to the final reflection.
       </p>

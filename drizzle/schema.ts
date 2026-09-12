@@ -130,6 +130,25 @@ export const anonymousAnalyses = mysqlTable("anonymous_analyses", {
   examSession: varchar("examSession", { length: 10 }),
   /** Which purchase opened this, so a refund closes exactly what it paid for. */
   unlockOrderId: varchar("unlockOrderId", { length: 64 }),
+  /**
+   * "essay" or "ucas" on the row that took this device's free run, null on every
+   * other row. The unique index is what makes the free run single: a count read
+   * followed by an insert let two tabs submitted together both pass.
+   */
+  freeClaim: varchar("freeClaim", { length: 8 }),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex("uniq_anon_free_claim").on(table.fingerprint, table.freeClaim),
+]);
+
+/**
+ * Session tokens that were signed out. A session is a JWT valid for a year, so
+ * clearing the cookie left any copy of it working until then. The hash is kept
+ * until the token would have expired anyway.
+ */
+export const revokedSessions = mysqlTable("revoked_sessions", {
+  tokenHash: varchar("tokenHash", { length: 64 }).primaryKey(),
+  expiresAt: timestamp("expiresAt").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
 

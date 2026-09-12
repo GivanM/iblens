@@ -4,84 +4,80 @@ import { Link } from "wouter";
 export default function IBIAScorePredictor() {
   return (
     <ResourceArticle
-      title="IB IA Score Predictor, How to Estimate Your Internal Assessment Grade | IBLens"
-      description="Learn how IB IA grading and moderation work, how to self-assess your Internal Assessment, and how to estimate your IA grade before results day."
+      title="IB IA Score Predictor: Estimate Your Internal Assessment Grade | IBLens"
+      description="How IB Internal Assessment marks are awarded and moderated, how to self-assess your IA criterion by criterion, and how to estimate your grade before results day."
       canonical="/resources/ib-ia-score-predictor"
       datePublished="2026-06-06"
       dateModified="2026-06-06"
     >
       <h1>IB IA Score Predictor: How to Estimate Your Internal Assessment Grade</h1>
-      <p>Every IB student reaches the same anxious moment: you've submitted your Internal Assessment, your teacher has awarded a mark, and now you're left wondering, <em>is that grade going to stick?</em> Understanding how IA grading actually works, and how to apply a systematic self-assessment, can get you surprisingly close to the real number before results day.</p>
+      <p>Your teacher has marked your Internal Assessment and you want to know whether that mark will hold. It may not: the mark is checked against a global standard before it counts. Knowing how that check works, and reading your own work criterion by criterion, gets you a realistic range rather than a single hopeful number.</p>
 
-      <h2>How IB Internal Assessment Grading Actually Works</h2>
-      <h3>Stage 1: Teacher Marking</h3>
-      <p>Your subject teacher marks your IA against an official mark scheme published by the IBO. Every criterion has a maximum score and a set of level descriptors. Raw marks vary by subject: Biology IAs are marked out of 24, Economics commentaries out of 45 (across three), Mathematics AIs out of 20, History IAs out of 25, Psychology IAs out of 22, and Chemistry IAs out of 24.</p>
+      <h2>How IB Internal Assessment Marking Works</h2>
+      <h3>Stage 1: your teacher marks the work</h3>
+      <p>Your teacher marks the IA against the assessment criteria in the subject guide. Each criterion has a maximum and a set of level descriptors. Totals differ by subject: the sciences are marked out of 24, Mathematics out of 20, History and Business Management out of 25, Psychology out of 22 through November 2026, and the Economics portfolio of three commentaries out of 45.</p>
 
-      <h3>Stage 2: IBO Moderation</h3>
-      <p>After teachers submit their marks, the IBO samples student work from each school, typically five students, and a trained moderator re-marks those samples independently. If the moderator consistently scores higher or lower than the teacher, the IBO applies a statistical adjustment to <em>all</em> marks from that school for that subject.</p>
-      <p>This means your final moderated mark is not simply what your teacher gave you. If your school's teacher was systematically generous, your whole cohort might be scaled down. This is the most important thing to understand about IB IA grade prediction: your teacher's mark is an estimate, not a final score.</p>
+      <h3>Stage 2: the IB moderates a sample</h3>
+      <p>Your school uploads a sample of marked work, with the students chosen by the IB's system to cover the range of marks. An external moderator reviews that sample and decides whether the teacher's marks are right, too harsh or too lenient. Where they are out of line, the IB applies a moderation factor to the marks of every student at the school for that component, not only the students in the sample, and sends the school feedback on the difference.</p>
+      <p>So the mark your teacher gave you is a well-informed estimate, not the final number. If the marking at your school was generous, everyone's marks in that subject can come down together.</p>
 
-      <h2>What Affects Your IA Score: Criteria by Subject</h2>
+      <h2>Where Marks Are Lost, Subject by Subject</h2>
 
-      <h3>Biology and Chemistry IA</h3>
-      <p>Science IAs are assessed on four criteria (2025 syllabus): Research design (6), Data analysis (6), Conclusion (6) and Evaluation (6), 24 marks total. Research design is where most students lose points, a weak research question cascades into problems in every subsequent criterion. Evaluation is the other common weak point: students frequently describe limitations without quantifying their impact or suggesting realistic improvements.</p>
+      <h3>Biology, Chemistry and Physics</h3>
+      <p>The scientific investigation is marked on four criteria of 6 marks each: Research design, Data analysis, Conclusion and Evaluation, 24 in total. A vague research question weakens everything after it, because the data, the conclusion and the evaluation all answer to it. Evaluation is another frequent gap: limitations are listed without saying how much they affected the result or what a realistic improvement would be.</p>
 
-      <h3>Economics IA</h3>
-      <p>Students submit three commentaries assessed on Diagrams, Terminology, Application, Analysis, and Evaluation. Many students draw supply-and-demand diagrams and never explicitly explain what the shifts represent in terms of the article, this costs marks in both Diagrams and Analysis. Genuine evaluation requires considering different perspectives and stakeholder impacts, not simply restating analysis with "however" in front of it.</p>
+      <h3>Economics</h3>
+      <p>Each of the three commentaries is marked on Diagrams, Terminology, Application and analysis, Key concept and Evaluation, 14 marks per commentary, and the portfolio earns 3 more under Criterion F for meeting the rubric requirements. A common loss: a supply and demand diagram that is drawn correctly but never tied back to what happened in the article. Evaluation means weighing the issue from different stakeholders and time frames, not restating the analysis after the word "however".</p>
 
-      <h3>History IA</h3>
-      <p>The Historical Investigation uses three sections. OPCVL analysis in Section A must go beyond surface observations. A source's limitation being "it might be biased" scores at the lower levels; explaining precisely how the author's position shaped what they omit scores at the top.</p>
+      <h3>History</h3>
+      <p>The Historical Investigation has three sections. In Section 1 you evaluate two of your sources for their origins, purpose, value and limitations. Saying a source "might be biased" stays in the lower levels; showing how the author's position shaped what the source leaves out is what the top levels describe.</p>
 
-      <h3>Psychology IA</h3>
-      <p>Psychology IAs replicate a cognitive psychology study. The Introduction must include a clearly operationalised hypothesis. Discussion is where marks are most frequently dropped: students either fail to relate findings back to the original study or write conclusions that go far beyond what their small sample can support.</p>
+      <h3>Psychology</h3>
+      <p>Through November 2026 the IA is a report on a simple experiment based on a published study, marked on Introduction, Exploration, Analysis and Evaluation. The Introduction needs an operationalised hypothesis. Evaluation is where marks slip most easily: the results are not related back to the original study, or the conclusions claim more than a small sample can support. From May 2027 the IA becomes a research proposal marked out of 24.</p>
 
-      <h3>Mathematics IA</h3>
-      <p>Assessed on Presentation, Mathematical communication, Personal engagement, Reflection, and Use of mathematics. The Use of Mathematics criterion differentiates grades most sharply, the mathematics must be "precise, elegant, and demonstrates sophistication," meaning a genuinely non-trivial approach for your level.</p>
+      <h3>Mathematics</h3>
+      <p>The exploration is marked on Presentation, Mathematical communication, Personal engagement, Reflection and Use of mathematics. Use of mathematics carries the most marks, 6 of 20, and its top level differs by course. At HL it asks for mathematics that is "precise and demonstrates sophistication and rigour". At SL the top level asks for relevant mathematics at the level of the course, used correctly, with thorough knowledge and understanding.</p>
 
-      <h2>How to Self-Assess Your IA: A Practical Method</h2>
+      <h2>How to Self-Assess Your IA</h2>
 
-      <h3>Step 1: Get the Official Mark Scheme</h3>
-      <p>Download the Subject Guide and the Internal Assessment section for your subject from the IBO resources page via your school's MyIB login. Third-party rubrics are often paraphrased and imprecise.</p>
+      <h3>Step 1: work from the real criteria</h3>
+      <p>Ask your teacher for the assessment criteria from the subject guide. Paraphrased rubrics found online often drop the words that decide between two levels.</p>
 
-      <h3>Step 2: Mark Each Criterion Independently</h3>
-      <p>Read your IA once for each criterion, ignoring all the others. If a descriptor uses the word "clearly," ask whether a moderator reading your work cold would find it clear.</p>
+      <h3>Step 2: mark one criterion at a time</h3>
+      <p>Read your IA once for each criterion and ignore the others. When a descriptor says "clearly", ask whether a moderator who has never met you would find it clear.</p>
 
-      <h3>Step 3: Apply the "Fit" Test</h3>
-      <p>IBO level descriptors describe the <em>best fit</em> for a band, not a perfect match. This is the judgment call where self-assessment is hardest, most students are either over-generous or over-harsh.</p>
+      <h3>Step 3: use best fit</h3>
+      <p>Level descriptors are applied by best fit, not by ticking every phrase. This is the hardest judgement to make about your own work, and most students lean either too generous or too harsh.</p>
 
-      <h3>Step 4: Sum Your Marks and Convert</h3>
-      <p>Add up your criterion marks to get a raw total. Then use the most recent grade boundary table for your subject. Remember that grade boundaries shift each session, using boundaries from two or three years ago can mislead you by one grade.</p>
+      <h3>Step 4: add up and compare</h3>
+      <p>Add your criterion marks to get a raw total. Boundaries for the IA component are set each session and published to schools, so ask your teacher which grade a total usually corresponds to in your subject, and treat an older session's boundaries as a guide rather than a rule.</p>
 
-      <h3>Step 5: Factor in Moderation Uncertainty</h3>
-      <p>If your raw mark sits near a grade boundary, you are in the highest-risk zone. Moderation can move a school's marks in either direction, and the IB does not publish how far. Students near boundaries should treat their estimated grade as a range: the grade they calculate, plus or minus one.</p>
+      <h3>Step 5: allow for moderation</h3>
+      <p>If your total sits close to a boundary, it is the most exposed to moderation. The IB does not publish how often or how far marks move, so treat your estimate as a range: the grade you calculated, or one either side of it.</p>
 
-      <h2>Why Predicted IA Grades Change After Moderation</h2>
-      <p>Moderation adjusts some schools' marks each session, and the IB does not publish how many. The variance is higher in subjects with more subjective criteria, Moderation applies to every subject, and the IB does not publish which move most. Two factors drive large adjustments: teacher inexperience with IB marking standards, and grade inflation pressure from knowing students personally.</p>
-
-      <h2>Get Your IA Analyzed by AI</h2>
-      <p>Self-assessment has a fundamental limitation: you can't read your own work the way a stranger would. You know what you meant to say, which makes it hard to see where you failed to say it clearly enough to earn a mark.</p>
-      <p><Link to="/essay">IBLens analyses your Internal Assessment against the official mark scheme criteria</Link>{" "}- giving you a criterion-by-criterion breakdown that identifies where your work is strong and where it's losing marks, with a predicted score range explained in detail. It's the closest thing to having an experienced IB examiner read your draft before you submit.</p>
+      <h2>Get Your IA Read Criterion by Criterion</h2>
+      <p>Self-assessment has one limit you cannot get around: you know what you meant, so it is hard to see where the page does not say it.</p>
+      <p><Link href="/essay">IBLens reads your Internal Assessment against the assessment criteria for your subject</Link> and returns an estimated mark for each criterion with the reasons behind it, so you can see which criterion is costing you the most before you submit. It is an estimate produced by a language model, not a moderated mark.</p>
 
       <h2>Frequently Asked Questions</h2>
-      <h3>Can I predict my IB IA score before my teacher marks it?</h3>
-      <p>Yes, by self-assessing against the official mark scheme descriptors, criterion by criterion. The challenge is objectivity: you know your work too well to read it the way a moderator would.</p>
+      <h3>Can I predict my IA mark before my teacher marks it?</h3>
+      <p>Roughly, by marking your work against the criteria one at a time. The difficulty is distance: you know the work too well to read it the way a moderator does.</p>
 
-      <h3>How much can moderation change my IA grade?</h3>
-      <p>An adjustment of ±2–3 marks is common; adjustments happen, and their size is not published. Whether it changes your final grade depends on where you sit relative to the grade boundaries for that session.</p>
+      <h3>How much can moderation change my IA mark?</h3>
+      <p>The IB does not publish the size of moderation adjustments. What it does publish is how they work: a factor applied to every student at your school in that component when the sampled marks are out of line. Whether an adjustment changes your grade depends on how close your total sits to a boundary.</p>
 
-      <h3>Are IB IA grade boundaries the same every year?</h3>
-      <p>No. Grade boundaries are set fresh each session based on the difficulty of the work submitted. Using boundaries from a previous year gives you an approximation only.</p>
+      <h3>Are IA grade boundaries the same every year?</h3>
+      <p>No. They are set each session, so boundaries from an earlier session are an approximation only.</p>
 
-      <h3>Which IB subjects have the most variable IA moderation?</h3>
-      <p>History, Psychology, and Group 1 language and literature IAs tend to see wider variation. Sciences and Mathematics IAs are more stable because criteria are more explicitly defined.</p>
+      <h3>Which subjects see the most moderation?</h3>
+      <p>The IB does not publish moderation outcomes by subject. Every subject with an internally assessed component is moderated in the same way.</p>
+
       <h2>Related tools</h2>
-
       <ul>
         <li><Link href="/resources/ib-score-calculator">IB Score Calculator</Link></li>
         <li><Link href="/resources/ib-grade-boundaries">IB Grade Boundaries</Link></li>
         <li><Link href="/remark">Is an IB remark worth it?</Link></li>
       </ul>
-
     </ResourceArticle>
   );
 }

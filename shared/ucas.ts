@@ -149,7 +149,8 @@ CRITICAL HONESTY RULES:
 
 IMPORTANT FORMATTING RULES:
 - Respond with a single valid JSON object. No markdown, no text before or after the JSON.
-- Write ALL text in plain text only. NEVER use HTML entities like &amp; &lt; &gt; &quot;, write the actual characters: & < > " instead.`;
+- Write ALL text in plain text only. NEVER use HTML entities like &amp; &lt; &gt; &quot;. Write the actual characters instead: & < > "
+- Do not use em dashes or en dashes as punctuation anywhere in the text. Use a comma, a colon, brackets or a new sentence instead. Write number ranges with a plain hyphen, for example 13-16.`;
 }
 
 export function buildUcasUserPrompt(

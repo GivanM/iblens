@@ -24,7 +24,9 @@ import {
 } from "lucide-react";
 import { PurchaseModal } from "@/components/PurchaseModal";
 import { PRICE_LABELS, type ProductKey } from "@shared/pricing";
-import { IA_RUBRIC_SUBJECTS } from "@shared/rubrics";
+import { WordCheckNote } from "@/components/WordCheckNote";
+import type { WordCheck } from "@shared/wordcount";
+import { IA_RUBRIC_SUBJECTS, unmarkableReason } from "@shared/rubrics";
 import { analytics } from "@/lib/analytics";
 import { getAnonFingerprint } from "@/lib/fingerprint";
 import { trackEssaySubmitted, trackEssayUploadStarted } from "@/lib/analytics/track";
@@ -70,10 +72,11 @@ type EssayResult = {
   _rubricAvailable?: boolean;
   _rubricLabel?: string;
   _rubricTotalMarks?: number;
+  _wordCheck?: WordCheck | null;
 };
 
 
-function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, analysisId, onUnlocked, onBuy }: any) {
+function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, analysisId, onUnlocked, onBuy, essayText }: any) {
   const unlock = trpc.essay.unlockAnalysis.useMutation({
     onSuccess: (d: any) => onUnlocked(d.result),
     onError: (e: any) => toast.error(e.message || "Unlock failed"),
@@ -93,6 +96,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
           <span style={SERIF} className="text-4xl font-bold">Band {result.band_range}</span>
           <span className="text-sm text-muted-foreground">out of {result.max_score}</span>
         </div>
+        <WordCheckNote check={result._wordCheck} text={essayText} />
         {weakest && (
           <div className="rounded-lg border border-amber-300 bg-amber-50 p-4">
             <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-1.5">Your weakest criterion, full feedback</p>
@@ -105,7 +109,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
             <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Top risks in this draft</p>
             <ul className="space-y-2">
               {result.risks.map((r: any, i: number) => (
-                <li key={i} className="text-sm"><strong className="text-foreground">{r.title}</strong>{r.description ? <span className="text-muted-foreground">, {r.description}</span> : null}</li>
+                <li key={i} className="text-sm"><strong className="text-foreground">{r.title}</strong>{r.description ? <span className="text-muted-foreground">: {r.description}</span> : null}</li>
               ))}
             </ul>
           </div>
@@ -270,12 +274,6 @@ export default function EssayAnalyzer() {
 
   const isAnalyzing = analyzeMutation.isPending || anonAnalyzeMutation.isPending || rerunMutation.isPending;
 
-  const [reportEmail, setReportEmail] = useState("");
-  const [reportEmailSaved, setReportEmailSaved] = useState(false);
-  const saveEmailMutation = trpc.essay.saveReportEmail.useMutation({
-    onSuccess: () => setReportEmailSaved(true),
-    onError: () => toast.error("Could not save your email, please try again."),
-  });
 
   const [lastAnalysisId, setLastAnalysisId] = useState<number | null>(null);
   const lockedQ = trpc.essay.lockedReport.useQuery(
@@ -379,6 +377,11 @@ export default function EssayAnalyzer() {
 
   type RunMode = "free" | "paid" | "recheck";
   const handleAnalyze = (mode: RunMode = "free") => {
+    const unmarkable = unmarkableReason(essayType, subject, examSession);
+    if (unmarkable) {
+      toast.error(unmarkable);
+      return;
+    }
     if (essayText.length < 300) {
       toast.error("Paste at least 300 characters, roughly 50 words, or there is nothing to mark.");
       return;
@@ -596,7 +599,7 @@ export default function EssayAnalyzer() {
               </div>
             )}
 
-            {(essayType === "EE" || (essayType === "IA" && (subject === "Psychology" || subject === "Computer Science"))) && (
+            {(essayType === "EE" || (essayType === "IA" && (subject === "Psychology" || subject === "Computer Science" || subject === "Visual Arts"))) && (
               <div className="space-y-2">
                 <Label>Exam session</Label>
                 <Select value={examSession} onValueChange={(v) => setExamSession(v as "nov2026" | "may2027")}>
@@ -610,6 +613,9 @@ export default function EssayAnalyzer() {
                 </Select>
                 {essayType === "EE" && examSession === "may2027" && (
                   <p className="text-xs text-muted-foreground">Sitting your exams in November 2026 or earlier? Switch to the current 34-mark criteria.</p>
+                )}
+                {unmarkableReason(essayType, subject, examSession) && (
+                  <p className="text-xs rounded-md border border-amber-300 bg-amber-50 text-amber-900 px-2.5 py-2">{unmarkableReason(essayType, subject, examSession)}</p>
                 )}
               </div>
             )}
@@ -875,28 +881,8 @@ export default function EssayAnalyzer() {
       {result && (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
           {(result as any).locked ? (
-            <LockedTeaser result={result} isAuthenticated={isAuthenticated} hasPaidCredit={(credits?.essayCredits ?? 0) > 0} fingerprint={anonFp} analysisId={lastAnalysisId} onUnlocked={(full: any) => setResult(full as EssayResult)} onBuy={() => setEssayPurchaseOpen(true)} />
+            <LockedTeaser essayText={essayText} result={result} isAuthenticated={isAuthenticated} hasPaidCredit={(credits?.essayCredits ?? 0) > 0} fingerprint={anonFp} analysisId={lastAnalysisId} onUnlocked={(full: any) => setResult(full as EssayResult)} onBuy={() => setEssayPurchaseOpen(true)} />
           ) : (<>
-          {!isAuthenticated && (
-            <Card className="border-primary/30 bg-primary/5">
-              <CardContent className="pt-6">
-                {reportEmailSaved ? (
-                  <p className="text-sm font-medium flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> Saved. We will use this address only to reach you about this report.</p>
-                ) : (
-                  <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
-                    <div className="flex-1">
-                      <p className="text-sm font-semibold mb-1">Keep this report</p>
-                      <p className="text-xs text-muted-foreground">Get your criterion breakdown and targeted improvement tips by email.</p>
-                    </div>
-                    <div className="flex gap-2 w-full sm:w-auto">
-                      <Input type="email" placeholder="you@email.com" value={reportEmail} onChange={(e) => setReportEmail(e.target.value)} className="sm:w-56 bg-background" />
-                      <Button size="sm" disabled={!reportEmail.includes("@") || saveEmailMutation.isPending} onClick={() => saveEmailMutation.mutate({ email: reportEmail, fingerprint: anonFp })}>Save</Button>
-                    </div>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          )}
           {/* Overall Score */}
           <Card>
             <CardHeader>
@@ -910,7 +896,7 @@ export default function EssayAnalyzer() {
                 <div className="mb-4 flex items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700 border border-emerald-200">
                     <CheckCircle2 className="w-3 h-3" />
-                    Scored against official IB rubric: {result._rubricLabel}
+                    Marked against the published IB criteria: {result._rubricLabel}
                   </span>
                 </div>
               )}
@@ -940,6 +926,7 @@ export default function EssayAnalyzer() {
                   <div className="text-xs text-muted-foreground mt-1">Criteria Total</div>
                 </div>
               </div>
+              <div className="mb-4"><WordCheckNote check={result._wordCheck} text={essayText} /></div>
               <p className="text-sm leading-relaxed">{decodeAndSanitize(result.overall_comment)}</p>
             </CardContent>
           </Card>

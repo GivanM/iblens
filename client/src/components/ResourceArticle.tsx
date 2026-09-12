@@ -1,3 +1,4 @@
+import { Children, isValidElement } from "react";
 import { Link } from "wouter";
 import { SEOHead } from "./SEOHead";
 import { ArrowLeft } from "lucide-react";
@@ -14,6 +15,11 @@ interface ResourceArticleProps {
   children: React.ReactNode;
 }
 
+/** The page's own name: the title before any " | IBLens" suffix or ": subtitle". */
+function shortTitle(title: string): string {
+  return title.split(" | ")[0].split(": ")[0];
+}
+
 export function ResourceArticle({
   title,
   description,
@@ -22,6 +28,10 @@ export function ResourceArticle({
   dateModified,
   children,
 }: ResourceArticleProps) {
+  // Seventeen articles never had a heading of their own; the crawler copy gave them
+  // one and the page did not. Supply it here unless the article brings its own.
+  const hasOwnHeading = Children.toArray(children).some((c) => isValidElement(c) && c.type === "h1");
+  const name = shortTitle(title);
   return (
     <>
       <SEOHead
@@ -37,7 +47,7 @@ export function ResourceArticle({
         breadcrumbs={[
           { name: "Home", url: "/" },
           { name: "Resources", url: "/resources" },
-          { name: title.split(" | ")[0].split(", ")[0], url: canonical },
+          { name, url: canonical },
         ]}
       />
       <div className="min-h-screen bg-background">
@@ -49,12 +59,13 @@ export function ResourceArticle({
             <Link href="/resources" className="hover:text-primary transition-colors">Resources</Link>
             <span>/</span>
             <span className="text-foreground font-medium truncate max-w-[200px]">
-              {title.split(" | ")[0].split(", ")[0]}
+              {name}
             </span>
           </nav>
 
           {/* Article content */}
           <article className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-foreground prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground prose-a:text-primary hover:prose-a:text-primary/80 [&_h1]:font-serif [&_h2]:font-serif [&_h3]:font-serif">
+            {!hasOwnHeading && <h1>{name}</h1>}
             {children}
           </article>
 
@@ -64,7 +75,7 @@ export function ResourceArticle({
               Ready to get specific feedback on your essay?
             </h2>
             <p className="text-muted-foreground mb-6 max-w-lg mx-auto text-sm leading-relaxed">
-              Upload your IA, EE, or TOK essay and get criterion-by-criterion analysis with a predicted score in about 90 seconds. First analysis free.
+              Paste your IA, EE or TOK essay and get criterion-by-criterion feedback with an estimated mark in about a minute. The first preview is free.
             </p>
             <Link href="/essay">
               <Button size="lg">

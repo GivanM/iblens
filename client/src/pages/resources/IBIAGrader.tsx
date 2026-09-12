@@ -4,20 +4,20 @@ import { Link } from "wouter";
 export default function IBIAGrader() {
   return (
     <ResourceArticle
-      title="IB IA Grader, Free AI Internal Assessment Grader, 14 Subjects | IBLens"
+      title="IB IA Grader: AI Feedback on Your Internal Assessment in 14 Subjects | IBLens"
       description="Free IB IA grader powered by AI. Grade your Internal Assessment against official IB rubrics for Biology, Chemistry, Physics, Maths, History, Economics, Psychology and more."
       canonical="/resources/ib-ia-grader"
       datePublished="2026-06-17"
       dateModified="2026-06-17"
     >
-      <h1>IB IA Grader, Free AI Feedback on Your Internal Assessment</h1>
+      <h1>IB IA Grader: AI Feedback on Your Internal Assessment</h1>
 
       <p>
-        An IB Internal Assessment is worth between 20% and 30% of your final subject grade. Most students submit without knowing whether they are on track for a 6 or a 3, because getting meaningful feedback before submission is hard. A teacher review is one or two sessions a year. Tutors charge by the hour. Peer feedback misses the nuance of what examiners actually look for.
+        An IB Internal Assessment is worth between 20% and 30% of the final subject grade. Many students submit without a clear idea of which criterion is costing them marks, because detailed feedback before submission is hard to get. Your teacher can comment on a draft, but not on every revision. Tutors charge by the hour. Classmates rarely know the criteria well enough to mark against them.
       </p>
 
       <p>
-        IBLens is an AI-powered IB IA grader that reads your Internal Assessment against the official IB rubric for your subject and gives you a criterion-by-criterion score, the specific marks you are losing, and exactly what to fix. It takes about 90 seconds and the first analysis is free.
+        IBLens is an AI grader that reads your Internal Assessment against the assessment criteria for your subject and gives you an estimated mark for each criterion, the marks you are losing, and what to change. It takes about a minute, and the first preview is free.
       </p>
 
       <p>
@@ -26,43 +26,43 @@ export default function IBIAGrader() {
 
       <h2>Which IB Subjects Does the Grader Support?</h2>
 
-      <p>IBLens grades Internal Assessments for all major IB subjects, each evaluated against the specific rubric for that subject:</p>
+      <p>IBLens marks coursework in 14 subjects, each against the criteria for that subject:</p>
 
       <ul>
-        <li><strong><Link href="/essay/biology-ia">IB Biology IA</Link></strong>, Sciences IA (2025 scientific investigation): Research design, Data analysis, Conclusion, Evaluation (24 marks; SL and HL)</li>
-        <li><strong><Link href="/essay/chemistry-ia">IB Chemistry IA</Link></strong>, Sciences IA: same four criteria as Biology (24 marks)</li>
-        <li><strong><Link href="/essay/physics-ia">IB Physics IA</Link></strong>, Sciences IA: same four criteria (24 marks)</li>
-        <li><strong><Link href="/essay/math-ia">IB Mathematics IA (Exploration)</Link></strong>, Math IA rubric: Presentation, Mathematical communication, Personal engagement, Reflection, Use of mathematics (20 marks)</li>
-        <li><strong><Link href="/essay/economics-ia">IB Economics IA</Link></strong>, Per-commentary rubric: Diagrams, Terminology, Application and analysis, Key concept, Evaluation (14 per commentary; portfolio 45)</li>
-        <li><strong><Link href="/essay/business-management-ia">IB Business Management IA</Link></strong>, Business research project: Integration of a key concept, Supporting documents, Tools and theories, Analysis and evaluation, Conclusions, Structure, Presentation (25 marks)</li>
-        <li><strong><Link href="/essay/history-ia">IB History IA</Link></strong>, Historical Investigation: Identification and evaluation of sources (6), Investigation (15), Reflection (4), 25 marks</li>
-        <li><strong><Link href="/essay/psychology-ia">IB Psychology IA</Link></strong>, Introduction, Exploration, Analysis, Evaluation (22 marks)</li>
-        <li><strong><Link href="/essay/computer-science-ia">IB Computer Science IA</Link></strong>, Planning, Solution overview, Development, Functionality and extensibility, Evaluation (34 marks)</li>
-        <li><strong>IB English A IA (Literature / Language & Literature)</strong>, assessed against the subject-specific oral or written commentary rubric</li>
-        <li><strong>IB Visual Arts, Music and Film coursework (externally assessed)</strong>, assessed against subject-specific criteria</li>
+        <li><strong><Link href="/essay/biology-ia">IB Biology IA</Link>:</strong> the scientific investigation, marked on Research design, Data analysis, Conclusion and Evaluation (24 marks, SL and HL)</li>
+        <li><strong><Link href="/essay/chemistry-ia">IB Chemistry IA</Link>:</strong> the same four criteria as Biology (24 marks)</li>
+        <li><strong><Link href="/essay/physics-ia">IB Physics IA</Link>:</strong> the same four criteria (24 marks)</li>
+        <li><strong><Link href="/essay/math-ia">IB Mathematics IA (the exploration)</Link>:</strong> Presentation, Mathematical communication, Personal engagement, Reflection, Use of mathematics (20 marks)</li>
+        <li><strong><Link href="/essay/economics-ia">IB Economics IA</Link>:</strong> per commentary, Diagrams, Terminology, Application and analysis, Key concept, Evaluation (14 marks each; the portfolio is marked out of 45)</li>
+        <li><strong><Link href="/essay/business-management-ia">IB Business Management IA</Link>:</strong> the business research project, marked on Integration of a key concept, Supporting documents, Selection and application of tools and theories, Analysis and evaluation, Conclusions, Structure, Presentation (25 marks)</li>
+        <li><strong><Link href="/essay/history-ia">IB History IA</Link>:</strong> the historical investigation, marked on Identification and evaluation of sources (6), Investigation (15) and Reflection (4), 25 marks</li>
+        <li><strong><Link href="/essay/psychology-ia">IB Psychology IA</Link>:</strong> Introduction, Exploration, Analysis, Evaluation (22 marks) through November 2026; the research proposal marked out of 24 from May 2027</li>
+        <li><strong><Link href="/essay/computer-science-ia">IB Computer Science IA</Link>:</strong> Planning, Solution overview, Development, Functionality and extensibility, Evaluation (34 marks) through November 2026; the new 30-mark criteria from May 2027</li>
+        <li><strong>IB English A (Literature, or Language and Literature):</strong> the individual oral, marked on four criteria of 10 marks each; paste your outline or a transcript</li>
+        <li><strong>IB Visual Arts, Music and Film coursework (externally assessed):</strong> each against its own criteria. Visual Arts is marked for sessions through November 2026 only, because the comparative study is replaced from May 2027</li>
       </ul>
 
       <p>
-        Subjects outside the list are not offered, because there would be no published criteria to mark them against, not subject-specific rubric scoring.
+        Subjects outside this list are not offered: IBLens only marks work it has the published criteria for.
       </p>
 
       <h2>How the IB IA Grader Works</h2>
 
       <ol>
         <li><strong>Choose your essay type and subject.</strong> Select "Internal Assessment (IA)" and your IB subject from the dropdown.</li>
-        <li><strong>Paste your IA text.</strong> Copy the full text of your Internal Assessment, methodology, analysis, evaluation, everything.</li>
+        <li><strong>Paste your IA text.</strong> Copy in the full text of your Internal Assessment: method, analysis, evaluation, everything.</li>
         <li><strong>Enter your research question.</strong> This helps the AI assess whether your investigation stays focused on a specific, answerable question.</li>
-        <li><strong>Get your grade report.</strong> Within about 90 seconds you receive a criterion-by-criterion score, a predicted grade, the marks you are losing and why, and specific steps to recover them.</li>
+        <li><strong>Get your report.</strong> In about a minute you receive an estimated mark for each criterion, the marks you are losing and why, and specific steps to recover them. IBLens also counts the words against your subject's limit.</li>
       </ol>
 
       <h2>What You Get in the Grade Report</h2>
 
       <ul>
-        <li><strong>Predicted score and IB band</strong>, how your IA scores overall against the rubric, with the mark range the draft currently sits in</li>
-        <li><strong>Criterion breakdown</strong>, each criterion scored individually with an explanation of why you received that score</li>
-        <li><strong>Risk areas</strong>, the specific parts of your IA that are losing marks and why</li>
-        <li><strong>Leverage zones</strong>, criteria where a small improvement would gain the most marks</li>
-        <li><strong>Actionable next steps</strong>, concrete changes to make before submission</li>
+        <li><strong>Estimated mark and band:</strong> where your IA sits overall against the criteria, with the mark range the draft currently falls in</li>
+        <li><strong>Criterion breakdown:</strong> each criterion marked individually, with the reasons for that mark</li>
+        <li><strong>Risk areas:</strong> the specific parts of your IA that are losing marks, and why</li>
+        <li><strong>Leverage zones:</strong> criteria where a small improvement would gain the most marks</li>
+        <li><strong>Next steps:</strong> concrete changes to make before submission</li>
       </ul>
 
       <h2>IBLens vs Other IB IA Graders</h2>
@@ -72,9 +72,9 @@ export default function IBIAGrader() {
       </p>
 
       <ul>
-        <li><strong>vs. RevisionDojo:</strong> RevisionDojo bundles IA grading inside a $19/month subscription that also includes videos and practice papers. IBLens is pay-per-analysis, $9.99 for a single analysis, $24.99 for 5. No subscription required. If you just need feedback on one or two IAs, IBLens is significantly cheaper.</li>
-        <li><strong>vs. ChatGPT / Claude directly:</strong> Generic AI models don't know the specific IB rubric for your subject. IBLens is built on the official IBO marking criteria and formats the feedback to match how real IB examiners score work.</li>
-        <li><strong>vs. a tutor:</strong> A tutor commonly charges $50–150 per hour and may give you subjective feedback. IBLens applies the rubric mechanically, the same way an examiner does, and identifies specific mark losses by criterion.</li>
+        <li><strong>vs. RevisionDojo:</strong> RevisionDojo includes AI coursework feedback in a wider revision platform sold by subscription; check its pricing page for current prices. IBLens charges per report: $9.99 for one, $24.99 for five, with no subscription. If you need feedback on one or two IAs, paying per report is usually cheaper.</li>
+        <li><strong>vs. a general chatbot:</strong> a general AI model marks against whatever it remembers of the criteria, which may be an older version, such as the science criteria retired in 2025. IBLens gives the model the current criteria for your subject and session, and counts the words for you.</li>
+        <li><strong>vs. a tutor:</strong> a good tutor brings subject judgement no tool has, at an hourly rate. IBLens gives you an estimate against the criteria in about a minute, for a fixed price, as often as you revise.</li>
       </ul>
 
       <h2>Is the First IB IA Analysis Really Free?</h2>
@@ -86,7 +86,7 @@ export default function IBIAGrader() {
       <h2>How Accurate Is the AI Grade?</h2>
 
       <p>
-        The grader applies the official IB rubric criteria as written in IBO subject guides. It cannot perfectly predict what a human moderator will decide on boundary cases, no tool can. But it is reliable for identifying which criteria are underdeveloped, what the mark range is, and where to focus revision effort. The point of running it before your supervisor sees the draft is to spend that one round of comments on substance.
+        The grader is given the criteria for your subject and session: the name of each criterion, its maximum mark and what it assesses, summarised from the subject guide. Its mark is an estimate from a language model, not a moderated mark, and no tool can predict exactly what a teacher or moderator will decide on a borderline piece of work. Where it is useful is in showing which criteria are underdeveloped, the mark range the draft sits in, and where to spend revision time. Running it before your teacher reads the draft means their comments can go on substance.
       </p>
 
       <p>

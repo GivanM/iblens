@@ -32,6 +32,19 @@ export interface Rubric {
   holistic?: boolean;
   /** Extra official rules the grader must know (word limits, band labels, caps) */
   notes?: string;
+  /**
+   * The official word limit, as the guide states it. Counted on the pasted text by
+   * the server and reported next to the mark; `excludes` is what the official count
+   * leaves out, in the guide's own terms, so the report can say what explains a gap.
+   */
+  wordLimit?: {
+    max: number;
+    min?: number;
+    unit?: string;
+    excludes: string;
+    /** The guide or the assessment procedures say marking stops at the limit. */
+    stopsAt?: boolean;
+  };
 }
 
 // ─── Business Management IA, "Business research project" (first assessment May 2024) ──
@@ -50,6 +63,7 @@ const BM_IA: Rubric = {
     { name: "Criterion G: Presentation", max: 2, descriptor: "Required presentation elements (title page, table of contents, references, appendices)" },
   ],
   notes: "Word limit 1,800 (moderators do not read beyond it). Requires 3–5 supporting documents no older than 3 years. The key concept must be one of: change, creativity, ethics, sustainability.",
+  wordLimit: { max: 1800, excludes: "acknowledgments, the contents page, tables of statistical data, diagrams or figures, equations and calculations, the supporting documents, citations, references and the bibliography", stopsAt: true },
 };
 
 // ─── Economics IA (2022 syllabus), per commentary ───────────────────────────
@@ -66,6 +80,7 @@ const ECONOMICS_IA: Rubric = {
     { name: "Criterion E: Evaluation", max: 3, descriptor: "Judgments supported by reasoned arguments considering short/long run, stakeholders, assumptions" },
   ],
   notes: "Word limit 800 per commentary, moderators will not read beyond 800 words. The full portfolio is marked out of 45: three commentaries (14 each) + Criterion F: Rubric requirements (3): different units, different sources, articles no older than one year. Each commentary must use a different key concept.",
+  wordLimit: { max: 800, unit: "per commentary", excludes: "acknowledgments, the contents page, diagrams with their short labels and headings, tables of statistical data, equations and calculations, citations and references", stopsAt: true },
 };
 
 // ─── History IA (current guide, first assessment 2017/2020 print) ────────────
@@ -78,6 +93,7 @@ const HISTORY_IA: Rubric = {
     { name: "Criterion C: Reflection", max: 4, descriptor: "Reflection on the methods used by historians and the limitations encountered" },
   ],
   notes: "Word limit 2,200. SL and HL identical.",
+  wordLimit: { max: 2200, excludes: "the bibliography and the references" },
 };
 
 // ─── Sciences IA, "Scientific investigation" (first assessment May 2025) ────
@@ -92,6 +108,7 @@ const SCIENCES_IA: Rubric = {
     { name: "Evaluation", max: 6, descriptor: "Evaluation of methodological weaknesses and limitations, with realistic improvements" },
   ],
   notes: "Report maximum 3,000 words. SL and HL use the same criteria. (The pre-2025 rubric, Personal engagement / Exploration / Analysis / Evaluation / Communication, no longer applies to any current candidate.)",
+  wordLimit: { max: 3000, excludes: "charts and diagrams, data tables, equations and calculations, citations and references, the bibliography and headers" },
 };
 
 // ─── Mathematics AA & AI IA, "Exploration" (first assessment 2021) ──────────
@@ -121,6 +138,7 @@ const PSYCHOLOGY_IA: Rubric = {
     { name: "IV. Evaluation", max: 6, descriptor: "Findings discussed in the context of the background theory; strengths, limitations and improvements" },
   ],
   notes: "Report 1,800–2,200 words. This rubric applies through November 2026; the May 2027 syllabus replaces it with a research proposal (24 marks).",
+  wordLimit: { min: 1800, max: 2200, excludes: "the appendices" },
 };
 
 // ─── Computer Science IA (2014 syllabus, LAST assessment Nov 2026) ──────────
@@ -154,6 +172,7 @@ const EXTENDED_ESSAY: Rubric = {
     { name: "Criterion E: Engagement", max: 6, descriptor: "Intellectual engagement and reflection on the process and its focus (assessed with the RPPF)" },
   ],
   notes: "Word limit 4,000: examiners do not read or assess beyond it (no separate deduction). There is NO minimum word count. Citations/references, bibliography, contents page, tables, equations, maps/charts/diagrams and the RPPF are excluded from the count; quotations and substantive (non-reference) footnotes are included. The abstract was abolished in 2018 and must not be included.",
+  wordLimit: { max: 4000, excludes: "citations and references, the bibliography, contents page, tables, equations, charts and diagrams", stopsAt: true },
 };
 
 // ─── TOK Essay (first assessment May 2022), HOLISTIC, single instrument /10 ─
@@ -165,6 +184,7 @@ const TOK_ESSAY: Rubric = {
     { name: "Holistic assessment, global impression", max: 10, descriptor: "Does the student provide a clear, coherent and critical exploration of the essay title?" },
   ],
   notes: "Marked holistically against ONE instrument (no sub-criteria), guided by: \"Does the student provide a clear, coherent and critical exploration of the essay title?\" Bands: Excellent 9–10 (sustained focus on the title, effectively linked to areas of knowledge; clear, coherent arguments effectively supported by specific examples; implications considered; different points of view evaluated). Good 7–8 (focused on the title, linked to AOKs; clear coherent arguments supported by examples; awareness and some evaluation of points of view). Satisfactory 5–6 (focused with some AOK links; arguments offered with examples; some awareness of points of view). Basic 3–4 (connected to the title but largely descriptive; limited or unclear arguments without effective examples). Rudimentary 1–2 (weakly connected; descriptive or unsupported assertions). 0 = below standard or not a response to a prescribed title. Word limit 1,600.",
+  wordLimit: { max: 1600, excludes: "acknowledgments, references (in footnotes, endnotes or in the text), the bibliography, and maps, charts, diagrams, illustrations or tables", stopsAt: true },
 };
 
 // ─── TOK Exhibition (first assessment May 2022), HOLISTIC, single instrument /10 ─
@@ -176,6 +196,7 @@ const TOK_EXHIBITION: Rubric = {
     { name: "Holistic assessment, global impression", max: 10, descriptor: "Does the exhibition successfully show how TOK manifests in the world around us?" },
   ],
   notes: "Marked holistically against ONE instrument (no sub-criteria), guided by: \"Does the exhibition successfully show how TOK manifests in the world around us?\" Bands: Excellent 9–10 (three objects with specific real-world contexts; links to the ONE selected IA prompt clearly made and well explained; strong justification of each object\u2019s contribution; points supported by evidence and explicit references to the prompt). Good 7–8; Satisfactory 5–6; Basic 3–4; Rudimentary 1–2; 0 = below standard or not using an official IA prompt. Commentary max 950 words total. Rules of thumb: only two objects, max 6 marks; only one object, max 3 marks.",
+  wordLimit: { max: 950, excludes: "text on the objects themselves, acknowledgments, references and the bibliography", stopsAt: true },
 };
 
 // ─── English A: Individual Oral (IA, both Language A courses, FA 2021) ───────
@@ -229,6 +250,7 @@ const MUSIC_IA: Rubric = {
     { name: "Criterion C2: Understanding performing practices", max: 3, descriptor: "Understanding of performing practices demonstrated in the practical exercises" },
   ],
   notes: "Portfolio maximum 2,400 words.",
+  wordLimit: { max: 2400, excludes: "track lists in an appendix, citations and the bibliography" },
 };
 
 // ─── Film, Textual Analysis (external, FA 2019 / 2nd edition FA 2023) ───────
@@ -241,6 +263,7 @@ const FILM_IA: Rubric = {
     { name: "Criterion C: Relationships within the film text", max: 8, descriptor: "How the extract relates to the film as a whole" },
   ],
   notes: "1,750 words plus a list of sources.",
+  wordLimit: { max: 1750, excludes: "the list of sources and the labels on illustrations", stopsAt: true },
 };
 
 
@@ -258,6 +281,7 @@ const EXTENDED_ESSAY_2027: Rubric = {
     { name: "Criterion E: Reflection", max: 4, descriptor: "Reflection on the research process (assessed with the 500-word reflective statement, RPF)" },
   ],
   notes: "New EE for the May 2027 session onward (students who began the DP in 2025): 30 marks. Word limit 4,000. The RPPF is replaced by the RPF, a single reflective statement of up to 500 words.",
+  wordLimit: { max: 4000, excludes: "citations and references, the bibliography, contents page, tables, equations, charts and diagrams", stopsAt: true },
 };
 
 // ─── Psychology IA, research proposal (first assessment May 2027) ───────────
@@ -271,6 +295,7 @@ const PSYCHOLOGY_IA_2027: Rubric = {
     { name: "Criterion D: Discussion", max: 6, descriptor: "Anticipated outcomes, limitations and implications of the proposed study" },
   ],
   notes: "Research PROPOSAL (no experiment is conducted). Max 2,200 words, examiners stop reading beyond the limit. SL and HL identical.",
+  wordLimit: { max: 2200, excludes: "the references and appendices", stopsAt: true },
 };
 
 // ─── Computer Science IA, computational solution (first assessment May 2027) ─
@@ -285,6 +310,7 @@ const CS_IA_2027: Rubric = {
     { name: "Criterion E: Evaluation", max: 4, descriptor: "Evaluation of the solution against the success criteria" },
   ],
   notes: "Documentation capped at 2,000 words (excluding code and diagrams) plus a 5-minute video. The former client requirement is removed.",
+  wordLimit: { max: 2000, excludes: "code excerpts, comments and diagrams" },
 };
 
 const RUBRIC_REGISTRY: Record<string, Rubric> = {
@@ -363,6 +389,20 @@ export function getRubric(essayType: string, subject: string, examSession?: stri
   const wildcardKey = `${essayType}::*`;
   const wildcard = Object.entries(RUBRIC_REGISTRY).find(([k]) => k.toLowerCase() === wildcardKey.toLowerCase());
   return wildcard ? wildcard[1] : undefined;
+}
+
+/**
+ * Work that cannot be marked for a session because the component the criteria
+ * belong to is not set in that session's syllabus. From May 2027 the Visual Arts
+ * comparative study is replaced by the connections study (SL) and the artist
+ * project (HL); marking a May 2027 draft on the comparative study criteria would
+ * grade a student on a task they were never given.
+ */
+export function unmarkableReason(essayType: string, subject: string, examSession?: string): string | null {
+  if (examSession === "may2027" && essayType === "IA" && subject.trim().toLowerCase() === "visual arts") {
+    return "From May 2027 the Visual Arts comparative study is replaced by the connections study (SL) and the artist project (HL). IBLens does not have criteria for those yet, so it cannot mark Visual Arts work for the May 2027 session. If you sit your exams in 2026, choose the current syllabus.";
+  }
+  return null;
 }
 
 /**

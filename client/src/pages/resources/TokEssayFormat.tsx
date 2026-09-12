@@ -4,16 +4,16 @@ import { Link } from "wouter";
 export default function TokEssayFormat() {
   return (
     <ResourceArticle
-      title="IB TOK Essay Format, Word Count, Structure & Formatting Rules | IBLens"
+      title="IB TOK Essay Format: Word Count, Structure & Formatting Rules | IBLens"
       description="Official IB TOK essay format: 1,600-word limit, introduction and body structure, citation requirements, what counts towards the word count, and examiner formatting expectations."
       canonical="/resources/tok-essay-format"
       datePublished="2026-06-17"
       dateModified="2026-06-17"
     >
-      <h1>IB TOK Essay Format, Everything You Need to Know</h1>
+      <h1>IB TOK Essay Format: Everything You Need to Know</h1>
 
       <p>
-        The IB Theory of Knowledge essay has strict formatting rules. Formatting itself earns no marks, but a file an examiner cannot read is a problem you do not need. This guide covers every official formatting requirement: word count rules, structural expectations, citation format, what does and does not count toward the limit, and what examiners expect when they open your essay.
+        The IB Theory of Knowledge essay has a few firm rules and many conventions. Formatting itself earns no marks, but breaking a rule, such as the word limit, can cost you. This guide separates the two: what the TOK guide requires, what schools usually expect, what does and does not count toward the limit, and how to present citations.
       </p>
 
       <h2>Word Count: The 1,600-Word Rule</h2>
@@ -23,33 +23,33 @@ export default function TokEssayFormat() {
       </p>
 
       <ul>
-        <li><strong>Essays that exceed 1,600 words:</strong> Examiners are instructed to stop reading at the 1,600-word mark. Any argument, conclusion, or example after that point will not be assessed. This is one of the most costly mistakes IB students make, a brilliant conclusion on page 4 may never be read.</li>
-        <li><strong>The title page and bibliography are NOT counted:</strong> These do not contribute to your 1,600 words.</li>
+        <li><strong>Essays that exceed 1,600 words:</strong> examiners are instructed to stop reading after 1,600 words and to base their assessment on the first 1,600 only. Any argument, example or conclusion after that point is not assessed, so a strong conclusion on the last page may never be read.</li>
+        <li><strong>Acknowledgments, references and the bibliography are not counted.</strong></li>
         <li><strong>Footnotes with references are not counted:</strong> the word count covers the body of the essay including quotations, and excludes references given in footnotes, endnotes or in text. A footnote carrying argument rather than a reference is a different matter: keep argument in the body, where the examiner reads it.</li>
         <li><strong>Quotations are counted:</strong> Direct quotes from sources are included in the word count.</li>
-        <li><strong>Diagrams, tables, and mathematical notation:</strong> Not typically counted, but avoid using them to circumvent the limit, examiners notice.</li>
+        <li><strong>Maps, charts, diagrams, annotated illustrations and tables:</strong> not counted. Do not use them to carry argument that belongs in the prose.</li>
       </ul>
 
       <p>
-        There is no official minimum word count, but essays significantly below 1,600 words rarely score well. A 900-word essay simply does not have enough space for the depth of analysis required for a top score. Aim for 1,400–1,600 words.
+        There is no official minimum word count, but an essay far below 1,600 words usually lacks the room to develop and evaluate its arguments. A 900-word essay rarely has space for the depth the top bands describe. Most students aim for 1,400 to 1,600 words.
       </p>
 
-      <h2>Required Format Elements</h2>
+      <h2>Presentation: What Is Required and What Is Convention</h2>
 
-      <p>The IBO specifies the following formal requirements for all submitted TOK essays:</p>
+      <p>The TOK guide sets few formal requirements. These are the ones that matter, together with the conventions most schools follow:</p>
 
       <ul>
-        <li><strong>Title page:</strong> Must include your session number (not your name, essays are marked anonymously), the prescribed title you selected (written in full, exactly as published by the IBO), and your school name.</li>
-        <li><strong>Word count declaration:</strong> You must declare the word count on the title page. If your declared count differs significantly from the actual count, this can be flagged.</li>
-        <li><strong>Readable font and spacing:</strong> While the IBO does not specify an exact font, essays should be readable, 12pt Times New Roman or Arial with double spacing is standard. Use 1.5 or double spacing, which is what schools ask for and what reads cleanly.</li>
-        <li><strong>Page numbering:</strong> Number your pages. This is not required by the rubric but is expected by examiners and makes it easier if pages become separated.</li>
-        <li><strong>No name on the essay body:</strong> Your name must not appear anywhere in the essay itself, only your session number. This protects anonymity during marking.</li>
+        <li><strong>The prescribed title, exactly as published:</strong> the essay must respond to one of the six titles for your session, and the title should be written out in full, word for word. An essay that bears no resemblance to a title for the current session is awarded zero.</li>
+        <li><strong>The word count:</strong> you indicate the number of words when the essay is uploaded during the submission process.</li>
+        <li><strong>Anonymity:</strong> coursework is marked anonymously, so leave your name, your candidate session number and your school's name off every page, including any title page. Your coordinator will tell you what the upload itself needs.</li>
+        <li><strong>A readable document:</strong> the IB does not prescribe a font. A 12-point standard font with 1.5 or double line spacing is what most schools ask for.</li>
+        <li><strong>Page numbers:</strong> not required, but they help anyone reading or commenting on a draft.</li>
       </ul>
 
       <h2>Essay Structure: The Expected Format</h2>
 
       <p>
-        The TOK essay does not have a mandated five-paragraph structure, but there is a standard format that examiners expect. Deviating from it without good reason typically hurts your score.
+        The TOK essay has no required structure. It is marked holistically on one question: does it provide a clear, coherent and critical exploration of the title? The shape below is a common and workable way to meet that, not a rule.
       </p>
 
       <h3>Introduction (approximately 150–200 words)</h3>
@@ -57,10 +57,10 @@ export default function TokEssayFormat() {
       <p>Your introduction should:</p>
 
       <ul>
-        <li><strong>Restate the prescribed title in your own words</strong>, show you understand what it is asking</li>
-        <li><strong>Define key terms</strong>, especially any terms that are ambiguous or central to your argument (e.g., "knowledge," "certainty," "prove")</li>
-        <li><strong>Introduce your thesis</strong>, state your overall position on the prescribed title question</li>
-        <li><strong>Outline your two Areas of Knowledge (AOKs)</strong>, briefly indicate which AOKs you will use to develop your argument</li>
+        <li><strong>Put the prescribed title in your own words</strong>, to show you understand what it asks</li>
+        <li><strong>Define key terms</strong>, especially any that are ambiguous or central to your argument (for example "knowledge", "certainty", "prove")</li>
+        <li><strong>State your thesis</strong>: your overall position on the title</li>
+        <li><strong>Name the areas of knowledge you will use</strong>, following what your title asks for; many titles ask for two</li>
       </ul>
 
       <p>
@@ -81,24 +81,24 @@ export default function TokEssayFormat() {
       </ol>
 
       <p>
-        Most high-scoring essays use two AOKs, with two to three knowledge claims per AOK. Do not try to cover four or five AOKs, you will have insufficient depth in each.
+        Where a title asks for two areas of knowledge, two or three well-developed claims in each is usually plenty. Trying to cover four or five areas leaves too little depth in each.
       </p>
 
-      <h3>Conclusion (approximately 200–250 words)</h3>
+      <h3>Conclusion (approximately 150–200 words)</h3>
 
       <p>Your conclusion should:</p>
 
       <ul>
-        <li><strong>Answer the prescribed title directly</strong>, do not end with "therefore, this is a complex issue." Take a position.</li>
-        <li><strong>Synthesise rather than summarise</strong>, draw together your AOK analysis into a coherent overall claim about knowledge</li>
-        <li><strong>Acknowledge limitations or implications</strong>, what remains uncertain, or what does your argument imply about knowledge more broadly?</li>
-        <li><strong>Connect to real-world significance</strong>, optional, but a brief statement about why this knowledge question matters often strengthens the conclusion</li>
+        <li><strong>Answer the prescribed title directly.</strong> Do not end with "therefore, this is a complex issue"; take a position.</li>
+        <li><strong>Synthesise rather than summarise:</strong> draw your analysis of each area of knowledge into one coherent claim about knowledge.</li>
+        <li><strong>Acknowledge limitations or implications:</strong> what remains uncertain, and what does your argument imply about knowledge more broadly?</li>
+        <li><strong>Say why it matters:</strong> optional, but a brief statement of why the question matters often strengthens a conclusion.</li>
       </ul>
 
       <h2>Citations and Referencing Format</h2>
 
       <p>
-        The IBO does not prescribe a specific citation format for the TOK essay. You may use MLA, APA, Chicago, or any other consistent system, your school may have a preference. What matters is:
+        The IB does not prescribe a citation style for the TOK essay. You may use MLA, APA, Chicago or any other consistent system, and your school may have a preference. What matters is:
       </p>
 
       <ul>
@@ -113,11 +113,11 @@ export default function TokEssayFormat() {
       <p>Avoid these common formatting mistakes:</p>
 
       <ul>
-        <li><strong>Subheadings within the essay body:</strong> TOK essays should read as continuous prose. Subheadings like "Claim 1" or "Natural Sciences" are not appropriate and may signal a formulaic approach to the examiner.</li>
-        <li><strong>Bullet points in the body:</strong> The essay must be written in paragraphs. Bullet points are appropriate for planning but not for the final submission.</li>
+        <li><strong>Headings such as "Claim 1":</strong> no rule forbids headings, but labels like these tend to push an essay toward a formula instead of an argument. Most strong essays read as continuous prose.</li>
+        <li><strong>Bullet points in the body:</strong> an essay is an argument in paragraphs. Keep bullet points for planning.</li>
         <li><strong>Images and graphs:</strong> These are not required and generally not appropriate unless directly relevant to your argument (very rare).</li>
-        <li><strong>Appendices:</strong> There is no provision for appendices in the TOK essay format. Do not attach additional materials.</li>
-        <li><strong>Personal information:</strong> No name, photograph, or identifying details other than your session number.</li>
+        <li><strong>Appendices and extended footnotes:</strong> the TOK guide says they are not appropriate for the TOK essay.</li>
+        <li><strong>Personal information:</strong> no name, candidate session number, school name or photograph.</li>
       </ul>
 
       <h2>The TOK Essay Format vs. Other IB Essays</h2>
@@ -127,9 +127,9 @@ export default function TokEssayFormat() {
       </p>
 
       <ul>
-        <li><strong>No title is given to sections:</strong> Unlike the EE, the TOK essay does not use labelled sections (Introduction, Body, Conclusion), these are implicit</li>
-        <li><strong>No table of contents:</strong> At 1,600 words, a table of contents would be absurd and is not expected</li>
-        <li><strong>No abstract:</strong> Unlike the EE, there is no abstract or research question box, you begin directly with the essay</li>
+        <li><strong>No labelled sections needed:</strong> an EE usually uses headings; a TOK essay rarely needs them, because the introduction, body and conclusion are clear from the argument</li>
+        <li><strong>No table of contents:</strong> at 1,600 words it is not expected</li>
+        <li><strong>No abstract:</strong> neither the TOK essay nor the EE has one (the EE abstract was dropped in 2018), and there is no research question: you respond to the prescribed title and begin directly with the essay</li>
         <li><strong>Shorter but denser:</strong> The EE allows up to 4,000 words across a structured research document; the TOK essay packs comparable analytical depth into 1,600 words of continuous argument</li>
       </ul>
 
@@ -140,18 +140,18 @@ export default function TokEssayFormat() {
       </p>
 
       <ul>
-        <li>Word count is 1,600 or below (not including title page and bibliography)</li>
-        <li>Title page includes session number, full prescribed title (copied exactly), and school name</li>
-        <li>Word count is declared on the title page</li>
-        <li>No name appears in the essay body</li>
+        <li>Word count is 1,600 or below (references and bibliography not included)</li>
+        <li>The prescribed title for your session is written out exactly</li>
+        <li>You know your word count, to enter it when the essay is uploaded</li>
+        <li>Your name, candidate session number and school name appear nowhere in the file</li>
         <li>Bibliography is present and consistently formatted</li>
-        <li>Essay is in paragraph form, no bullets or subheadings in the body</li>
+        <li>Essay is written in paragraphs, without bullet points</li>
         <li>Font is readable and spacing is at least 1.5</li>
         <li>Pages are numbered</li>
       </ul>
 
       <p>
-        The format itself does not earn marks, but violating it costs them. Use IBLens to check that your TOK essay argument is as strong as its presentation.
+        Formatting earns no marks, but breaking the rules can cost them. IBLens marks your argument against the TOK assessment instrument and counts your words against the 1,600-word limit.
       </p>
 
       <p>

@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function ComputerScienceIA2027() {
   return (
     <ResourceArticle
-      title="IB Computer Science IA Changes 2027, Marked Out of 30 | IBLens"
-      description="From the May 2027 session the IB Computer Science IA is a computational solution marked out of 30: Problem specification, Planning, System overview, Development (12 marks), Evaluation. What changed from the 34-mark solution and how to check your documentation."
+      title="IB Computer Science IA Changes 2027: Marked Out of 30 | IBLens"
+      description="From the May 2027 session the IB Computer Science IA is a computational solution marked out of 30: Problem specification, Planning, System overview, Development (12 marks) and Evaluation. What changed from the 34-mark solution."
       canonical="/resources/ib-computer-science-ia-2027"
       datePublished="2026-08-11"
       dateModified="2026-08-11"

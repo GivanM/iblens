@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function PsychologyIA2027() {
   return (
     <ResourceArticle
-      title="IB Psychology IA Changes 2027, Research Proposal Marked /24 | IBLens"
-      description="From the May 2027 session the IB Psychology IA becomes a research proposal marked out of 24, no experiment is conducted. New criteria (Introduction, Research methodology, Data collection, Discussion), what changed from the 22-mark experimental report, and how to check your draft."
+      title="IB Psychology IA Changes 2027: Research Proposal Marked /24 | IBLens"
+      description="From the May 2027 session the IB Psychology IA becomes a research proposal marked out of 24, and no experiment is conducted. The new criteria, what changed from the 22-mark report, and how to check your draft."
       canonical="/resources/ib-psychology-ia-2027"
       datePublished="2026-08-11"
       dateModified="2026-08-11"

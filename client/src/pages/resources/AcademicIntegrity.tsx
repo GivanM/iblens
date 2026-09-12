@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function AcademicIntegrity() {
   return (
     <ResourceArticle
-      title="AI Feedback and IB Academic Integrity - Is It Allowed? | IBLens"
-      description="What the IB academic integrity policy means for AI feedback on your EE, TOK essay or IA - and exactly how IBLens handles your data: no training on your essays, no sharing, deletion on request."
+      title="AI Feedback and IB Academic Integrity: Is It Allowed? | IBLens"
+      description="What the IB academic integrity policy means for AI feedback on your EE, TOK essay or IA, and how IBLens handles your data: no training on your essays, no sharing, deletion on request."
       canonical="/resources/academic-integrity"
       datePublished="2026-07-03"
       dateModified="2026-07-03"

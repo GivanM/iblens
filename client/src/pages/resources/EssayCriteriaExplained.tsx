@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function EssayCriteriaExplained() {
   return (
     <ResourceArticle
-      title="IB Essay Criteria Explained, How Criterion-Based Marking Works | IBLens"
-      description="Understand how IB criterion-based assessment works: common criteria across subjects, how examiners apply them, the difference between band 5 and band 7, and how to self-assess."
+      title="IB Essay Criteria Explained: How Criterion-Based Marking Works | IBLens"
+      description="How IB criterion-based marking works: the criteria common across subjects, how examiners apply the level descriptors, and how to self-assess your work before you submit."
       canonical="/resources/ib-essay-criteria-explained"
       datePublished="2026-05-01"
       dateModified="2026-05-01"

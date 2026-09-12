@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function InternalAssessmentGuide() {
   return (
     <ResourceArticle
-      title="IB Internal Assessment Guide, Criteria, Structure & How to Score a 7 | IBLens"
-      description="Complete guide to IB Internal Assessments: how IAs differ by subject, assessment criteria explained, common pitfalls, examiner marking process, and strategies for top marks."
+      title="IB Internal Assessment Guide 2026: Criteria, Marking & Subject Tips | IBLens"
+      description="How IB Internal Assessments are marked: criteria by subject group, what examiners look for, the moderation process, and strategies for top marks across sciences, humanities and languages."
       canonical="/resources/ib-internal-assessment-guide"
       datePublished="2026-05-01"
       dateModified="2026-05-01"
@@ -13,15 +13,15 @@ export default function InternalAssessmentGuide() {
       <h1>The Complete IB Internal Assessment Guide</h1>
 
       <p>
-        <strong>In short: every IB subject includes an internally assessed component marked against published criteria, sciences out of 24, History and Business Management out of 25, Mathematics out of 20, Economics 14 per commentary. Your teacher marks it and the IB moderates samples, so the criteria are the whole game.</strong>
+        <strong>In short: every IB subject includes an internally assessed component marked against published criteria: the sciences out of 24, History and Business Management out of 25, Mathematics out of 20, Economics 14 per commentary. Your teacher marks it and the IB moderates a sample, so the criteria are what count.</strong>
       </p>
 
       <p>
-        Internal Assessments (IAs) are a core component of every IB Diploma Programme subject. Unlike externally examined papers, IAs are completed during the course, supervised by your teacher, and then externally moderated by IBO examiners. They typically account for 20–25% of your final subject grade, making them one of the most controllable elements of your IB score, you have weeks or months to refine them, unlike a timed exam.
+        Internal Assessments (IAs) are a core component of every IB Diploma Programme subject. Unlike externally examined papers, IAs are completed during the course, supervised by your teacher, and then externally moderated by the IB. They account for between 20% and 30% of the final subject grade, which makes them one of the most controllable parts of your IB score: you have weeks or months to refine them, not a timed exam.
       </p>
 
       <p>
-        This guide explains how IAs work across different subject groups, what examiners look for when applying criteria, the most common mistakes students make, and concrete strategies for achieving top marks. Whether you are writing a History IA, a Biology lab report, or a Mathematics exploration, the principles of strong IA work are consistent.
+        This guide explains how IAs work across different subject groups, what markers look for when applying the criteria, the most common mistakes students make, and concrete strategies for achieving top marks. Whether you are writing a History IA, a Biology lab report, or a Mathematics exploration, the principles of strong IA work are consistent.
       </p>
 
       <h2>What Is the Internal Assessment?</h2>
@@ -31,16 +31,16 @@ export default function InternalAssessmentGuide() {
       </p>
 
       <ul>
-        <li><strong>Group 1 (Language & Literature):</strong> Individual Oral (IO), a recorded oral commentary and discussion</li>
-        <li><strong>Group 2 (Language Acquisition):</strong> Individual Oral, a recorded oral assessment based on literary/non-literary works</li>
-        <li><strong>Group 3 (Individuals & Societies):</strong> Written investigation (History: 2,200 words; Economics: 800 words per commentary × 3; Psychology: experimental study report through November 2026; from May 2027 it becomes a research proposal marked out of 24)</li>
+        <li><strong>Group 1 (Studies in Language and Literature):</strong> the individual oral, a recorded oral on a global issue explored through extracts from two works</li>
+        <li><strong>Group 2 (Language Acquisition):</strong> an individual oral, based on a visual stimulus at SL and an extract from a literary work at HL in Language B</li>
+        <li><strong>Group 3 (Individuals and Societies):</strong> a written investigation (History: 2,200 words; Business Management: 1,800 words; Economics: three commentaries of up to 800 words each; Psychology: an experimental report through November 2026, and from May 2027 a research proposal marked out of 24)</li>
         <li><strong>Group 4 (Sciences):</strong> Scientific investigation (Biology, Chemistry, Physics: up to 3,000 words, marked out of 24)</li>
-        <li><strong>Group 5 (Mathematics):</strong> Mathematical Exploration (12–20 pages)</li>
-        <li><strong>Group 6 (The Arts):</strong> Varies by subject (Visual Arts: comparative study; Music: creating/performing)</li>
+        <li><strong>Group 5 (Mathematics):</strong> the mathematical exploration (approximately 12 to 20 pages)</li>
+        <li><strong>Group 6 (The Arts):</strong> varies by subject (Visual Arts: the exhibition; Music: experimenting with music; Film: the film portfolio). The Visual Arts comparative study and the Music and Film coursework IBLens marks are externally assessed components.</li>
       </ul>
 
       <p>
-        Despite these format differences, all IAs share common expectations: independent work, engagement with subject methodology, clear communication, and demonstration of understanding beyond what is covered in class.
+        Despite these format differences, IAs share common expectations: independent work, engagement with the methods of the subject, and clear communication.
       </p>
 
       <h2>How IAs Differ by Subject Group</h2>
@@ -52,25 +52,25 @@ export default function InternalAssessmentGuide() {
       <h3>Sciences (Group 4)</h3>
 
       <p>
-        Science IAs require you to design and conduct an original experiment (or simulation/modeling in some cases). The emphasis is on the <strong>scientific method</strong>: formulating a testable hypothesis, controlling variables, collecting sufficient data, processing results with appropriate statistical tools, and evaluating the methodology. Examiners want to see that you understand why you made each methodological choice, not just what you did. A common misconception is that complex experiments score higher, in reality, a simple experiment executed with rigorous methodology and thoughtful evaluation often outscores an ambitious experiment with poor controls.
+        Science IAs ask you to design and carry out your own investigation, which can be an experiment or work with a database or simulation. The emphasis is on <strong>scientific method</strong>: a focused research question set in context, controlled variables, enough data, processing with appropriate tools, and an evaluation of the method. The criteria reward understanding why you made each methodological choice, not just what you did. A common misconception is that complex experiments score higher; in reality, a simple experiment with a rigorous method and a thoughtful evaluation often outscores an ambitious one with poor controls.
       </p>
 
       <h3>History (Group 3)</h3>
 
       <p>
-        The History IA is a 2,200-word investigation into a historical question. It requires you to identify and evaluate sources (Section 1), investigate the topic using evidence (Section 2), and reflect on the methods used by historians (Section 3). The key differentiator for top marks is <strong>genuine engagement with historiography</strong>, showing that you understand how different historians have interpreted the same events and why their interpretations differ based on methodology, perspective, or available evidence.
+        The History IA is a 2,200-word investigation into a historical question. It asks you to identify and evaluate sources (Section 1), investigate the question using evidence (Section 2), and reflect on the methods used by historians (Section 3). The Investigation carries 15 of the 25 marks, and what lifts it is <strong>awareness of different perspectives</strong>: showing how historians have interpreted the same events differently, and weighing those interpretations to reach your own conclusion.
       </p>
 
       <h3>Mathematics (Group 5)</h3>
 
       <p>
-        The Mathematics Exploration is unique in that it asks you to explore a mathematical topic of personal interest. There is no fixed structure, but examiners look for <strong>personal engagement</strong> with the mathematics, use of appropriate notation and terminology, and mathematical thinking that goes beyond mere calculation. The best explorations connect mathematics to a real-world context that genuinely interests the student, then demonstrate sophisticated mathematical reasoning within that context.
+        The mathematical exploration asks you to explore a topic of your own choosing. There is no fixed structure, but the criteria look for <strong>personal engagement</strong> with the mathematics, appropriate notation and terminology, and mathematics used with understanding rather than only calculation. The strongest explorations connect the mathematics to a context that genuinely interests the student, then use mathematics at the level of the course within that context.
       </p>
 
       <h3>Economics (Group 3)</h3>
 
       <p>
-        Economics requires three commentaries of 800 words each, based on published news articles. Each commentary must apply economic theory to explain a real-world event, use appropriate diagrams, and evaluate the economic implications. The challenge is demonstrating <strong>depth of analysis within a tight word limit</strong>, every sentence must contribute to the argument. Examiners penalize commentaries that merely describe the article without applying economic models.
+        Economics requires three commentaries of 800 words each, based on published news articles. Each commentary must apply economic theory to explain a real-world event, use appropriate diagrams, and evaluate the economic implications. The challenge is <strong>depth of analysis within a tight word limit</strong>: every sentence has to contribute. Commentaries that describe the article without applying economic theory lose marks on application and analysis.
       </p>
 
       <h2>Assessment Criteria Explained</h2>
@@ -117,13 +117,13 @@ export default function InternalAssessmentGuide() {
       </table>
 
       <p>
-        The most heavily weighted criterion in nearly every subject is <strong>Analysis and Evaluation</strong>. This is where the difference between a 5 and a 7 is determined. Students who merely describe their findings without interpreting them, evaluating their significance, or acknowledging limitations will consistently score in the middle bands regardless of how well they perform on other criteria.
+        Where the weight sits differs by subject. History puts 15 of its 25 marks on the Investigation, Computer Science 12 on Development, and Mathematics 6 of 20 on Use of mathematics, while the four science criteria are worth 6 marks each. What holds across subjects is that description alone keeps an IA in the middle levels: the higher levels ask you to interpret your findings, weigh their significance and acknowledge their limitations.
       </p>
 
       <h2>Common Pitfalls Per Criterion</h2>
 
       <p>
-        Based on published examiner reports and moderation feedback, here are the most frequent issues that cost students marks:
+        Issues that commonly cost marks:
       </p>
 
       <p>
@@ -131,29 +131,29 @@ export default function InternalAssessmentGuide() {
       </p>
 
       <p>
-        <strong>Methodology:</strong> In sciences, the most common issue is insufficient repetition (fewer than 5 trials per condition) and failure to identify and control key variables. In humanities, it is over-reliance on a single source type or failure to evaluate source reliability.
+        <strong>Methodology:</strong> in the sciences, too few repeats and variables that were never identified or controlled. In the humanities, reliance on a single type of source, or sources used without being evaluated.
       </p>
 
       <p>
-        <strong>Analysis:</strong> The single biggest pitfall is <strong>describing rather than analyzing</strong>. Stating "the graph shows an upward trend" is description. Explaining why the trend occurs, whether it matches theoretical predictions, what anomalies suggest, and what the limitations of the data are, that is analysis.
+        <strong>Analysis:</strong> The single biggest pitfall is <strong>describing rather than analyzing</strong>. Stating "the graph shows an upward trend" is description. Explaining why the trend occurs, whether it matches theoretical predictions, what anomalies suggest and what the limitations of the data are: that is analysis.
       </p>
 
       <p>
-        <strong>Evaluation:</strong> Many students treat the evaluation section as a place to list "errors" (e.g., "human error" or "the timer was inaccurate"). Examiners want to see <strong>specific, realistic limitations</strong> that actually affected results, along with concrete suggestions for how the investigation could be improved if repeated.
+        <strong>Evaluation:</strong> Many students treat the evaluation as a place to list "errors" such as "human error" or "the timer was inaccurate". The criteria reward <strong>specific, realistic limitations</strong> that actually affected the results, with concrete suggestions for how the investigation could be improved if repeated.
       </p>
 
-      <h2>How Examiners Actually Mark</h2>
+      <h2>How IAs Are Actually Marked</h2>
 
       <p>
         Understanding the marking process helps you write for your audience. Here is how IA assessment typically works:
       </p>
 
       <p>
-        Your teacher marks your IA first, applying the subject-specific criteria and assigning a mark out of the maximum (typically 20–30 marks depending on the subject). Your teacher's marks are then submitted to the IBO along with a sample of student work from your school.
+        Your teacher marks your IA first, applying the criteria for the subject and awarding a mark out of the maximum, which ranges from 20 to 45 depending on the subject. The marks are then submitted to the IB, along with a sample of work from your school.
       </p>
 
       <p>
-        An external moderator (an experienced examiner appointed by the IBO) reviews the sample to check whether your teacher's marking is consistent with the global standard. If the moderator finds that your teacher has been too generous or too harsh, they adjust the marks for the entire cohort up or down. This means your final IA mark may differ from what your teacher awarded.
+        An external moderator appointed by the IB reviews the sample to check whether your teacher's marking matches the global standard. If the marking was too generous or too harsh, a moderation factor is applied to the marks of every student at the school for that component, up or down. This means your final IA mark may differ from what your teacher awarded.
       </p>
 
       <p>
@@ -161,16 +161,16 @@ export default function InternalAssessmentGuide() {
       </p>
 
       <ul>
-        <li>Your IA must be self-explanatory, the moderator has never met you and cannot ask clarifying questions</li>
+        <li>Your IA must explain itself: the moderator has never met you and cannot ask clarifying questions</li>
         <li>Clarity of communication matters enormously; if the moderator cannot follow your argument, they cannot award marks for it</li>
         <li>Following the prescribed structure and format for your subject makes it easier for moderators to find evidence of each criterion</li>
-        <li>Your teacher's feedback is valuable but not final, aim to exceed the criteria rather than just meeting your teacher's expectations</li>
+        <li>Your teacher's mark is not final, so aim for what the top levels of the criteria describe rather than only for your teacher's approval</li>
       </ul>
 
       <h2>Time Management for IA</h2>
 
       <p>
-        Most IAs require 10–20 hours of focused work spread across several weeks or months. The biggest time management mistake is leaving the IA until the last few weeks before the deadline. This leads to rushed methodology, insufficient data collection, and superficial analysis.
+        The subject guides allocate a set number of hours to the IA: 10 in the sciences, 20 in Economics, and more in some subjects, such as Computer Science. The biggest time management mistake is leaving the IA until the last few weeks before the deadline. This leads to rushed methodology, insufficient data collection, and superficial analysis.
       </p>
 
       <p>
@@ -201,7 +201,7 @@ export default function InternalAssessmentGuide() {
       </p>
 
       <p>
-        <strong>Second pass: Criteria alignment.</strong> Go through each criterion for your subject and highlight where in your IA you have addressed each one. If you cannot find clear evidence for a criterion, you need to add content. This is where tools like <Link href="/essay" className="text-primary hover:underline">IBLens</Link> can help, by analyzing your IA against the specific criteria for your subject, you can identify which areas need strengthening before submission.
+        <strong>Second pass: Criteria alignment.</strong> Go through each criterion for your subject and highlight where in your IA you have addressed each one. If you cannot find clear evidence for a criterion, you need to add content. This is where a tool like <Link href="/essay" className="text-primary hover:underline">IBLens</Link> can help: by marking your IA against the criteria for your subject, it shows which areas need strengthening before submission.
       </p>
 
       <p>
@@ -217,7 +217,7 @@ export default function InternalAssessmentGuide() {
       </p>
 
       <p>
-        Get AI feedback in about 90 seconds on your IA: <Link href="/essay/biology-ia" className="text-primary hover:underline">Biology IA</Link>, <Link href="/essay/chemistry-ia" className="text-primary hover:underline">Chemistry IA</Link>, <Link href="/essay/physics-ia" className="text-primary hover:underline">Physics IA</Link>, <Link href="/essay/economics-ia" className="text-primary hover:underline">Economics IA</Link>, <Link href="/essay/history-ia" className="text-primary hover:underline">History IA</Link>, <Link href="/essay/business-management-ia" className="text-primary hover:underline">Business Management IA</Link>, <Link href="/essay/math-ia" className="text-primary hover:underline">Mathematics IA</Link>, or <Link href="/essay/psychology-ia" className="text-primary hover:underline">Psychology IA</Link>, each graded against the official IB rubric in about 90 seconds.
+        Get AI feedback on your IA in about a minute: <Link href="/essay/biology-ia" className="text-primary hover:underline">Biology IA</Link>, <Link href="/essay/chemistry-ia" className="text-primary hover:underline">Chemistry IA</Link>, <Link href="/essay/physics-ia" className="text-primary hover:underline">Physics IA</Link>, <Link href="/essay/economics-ia" className="text-primary hover:underline">Economics IA</Link>, <Link href="/essay/history-ia" className="text-primary hover:underline">History IA</Link>, <Link href="/essay/business-management-ia" className="text-primary hover:underline">Business Management IA</Link>, <Link href="/essay/math-ia" className="text-primary hover:underline">Mathematics IA</Link>, or <Link href="/essay/psychology-ia" className="text-primary hover:underline">Psychology IA</Link>, each marked against the criteria for that subject.
       </p>
       <h2>Subject-specific IA guides</h2>
 

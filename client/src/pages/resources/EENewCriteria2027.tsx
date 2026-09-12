@@ -4,7 +4,7 @@ import { Link } from "wouter";
 export default function EENewCriteria2027() {
   return (
     <ResourceArticle
-      title="IB Extended Essay New Criteria 2027, Marked Out of 30, Explained | IBLens"
+      title="IB Extended Essay New Criteria 2027: Marked Out of 30, Explained | IBLens"
       description="From the May 2027 session the IB Extended Essay is marked out of 30 under five new criteria, Framework, Knowledge and understanding, Analysis and line of argument, Discussion and evaluation, Reflection. What changed from the 34-mark rubric and how to check your draft."
       canonical="/resources/ib-extended-essay-new-criteria-2027"
       datePublished="2026-08-11"

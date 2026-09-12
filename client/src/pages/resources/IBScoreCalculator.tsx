@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function IBScoreCalculator() {
   return (
     <ResourceArticle
-      title="IB Score Calculator & Grade Boundaries 2024–2026, Complete Guide | IBLens"
-      description="Learn how IB scoring works, understand grade boundaries, calculate your predicted IB diploma score, and find out what scores top universities require."
+      title="IB Score Calculator: Points, Grade Boundaries and Diploma Requirements | IBLens"
+      description="How the 45-point IB Diploma score is calculated: subject grades, the EE and TOK bonus matrix, grade boundaries, and the totals universities ask for."
       canonical="/resources/ib-score-calculator"
       datePublished="2026-06-06"
       dateModified="2026-06-06"
@@ -53,54 +53,44 @@ export default function IBScoreCalculator() {
       </div>
 
       <h2>IB Grade Boundaries: What They Are and Why They Change</h2>
-      <p>Grade boundaries are the minimum raw marks required to achieve each grade from 1 to 7. They are set by the IB <em>after</em> each examination session by senior examiners who review the actual distribution of student scores. <strong>Grade boundaries are not fixed.</strong> A mark of 65% in one session might earn a grade 6, while the same mark earns a grade 7 in a harder paper.</p>
+      <p>Grade boundaries are the minimum marks needed for each grade from 1 to 7. The IB sets them <em>after</em> each examination session, once marking is complete. <strong>They are not fixed.</strong> The same share of the marks can earn a 6 in one session and a 7 in another where the papers were harder.</p>
 
       <h3>Why Grade Boundaries Change Each Session</h3>
       <ul>
-        <li><strong>Paper difficulty:</strong> If the May 2025 Mathematics HL paper was harder than May 2024, the boundary for grade 7 will typically drop.</li>
-        <li><strong>Cohort performance:</strong> Statistical standardisation ensures grade distributions remain broadly consistent across years.</li>
-        <li><strong>Curriculum changes:</strong> New syllabuses often produce boundary shifts in transition years.</li>
+        <li><strong>Paper difficulty:</strong> a harder paper usually means a lower mark is needed for each grade, so that a grade means the same standard from one year to the next.</li>
+        <li><strong>New syllabuses:</strong> the first sessions of a new course have no earlier boundaries for that course to compare with.</li>
       </ul>
 
-      <h3>Grade Boundary Trends 2022–2026</h3>
-      <p>Grade boundaries move every session and the IB publishes them to coordinators after marking, so no fixed percentage can be quoted. Biology and Chemistry HL boundaries have been relatively stable. The post-pandemic 2022 session produced notable boundary drops; by 2025–2026 most subjects are tracking back toward pre-2020 historical norms.</p>
+      <h3>Where to Find the Boundaries</h3>
+      <p>The IB publishes each session's boundaries to schools after marking, so no fixed percentage can be quoted for any subject. Your teacher or DP coordinator can tell you where the boundaries fell for your subject and level in recent sessions.</p>
 
-      <h2>What IB Score Do You Need for Top Universities?</h2>
-
-      <h3>UK Universities</h3>
+      <h2>What Some Universities Publish</h2>
+      <p>Requirements are set per course and change from year to year, so the university's own course page is the only reliable source. Three well-known examples, as those universities state them:</p>
       <ul>
-        <li><strong>Oxford:</strong> 38 to 40 points overall with specific Higher Level grades, commonly 7,6,6 to 7,7,6. <strong>Cambridge:</strong> typically 40 to 42 with 7,7,6 at Higher Level. Medicine at either sits at the top of those ranges.</li>
-        <li><strong>Imperial / UCL / LSE:</strong> 36–39 points with relevant HL grades of 6 or 7.</li>
-        <li><strong>Russell Group generally:</strong> 32–36 points.</li>
+        <li><strong>Oxford:</strong> 38, 39 or 40 points including core points, depending on the course, with 6s and 7s in Higher Level subjects. Course pages range from 666 to 776 at HL, and 666 or 766 are the most common.</li>
+        <li><strong>Cambridge:</strong> minimum offers of 41 to 42 points out of 45, with 776 at Higher Level. Some colleges ask for 777 or a higher total.</li>
+        <li><strong>ETH Zurich:</strong> 38 out of 42 points, without bonus points, with Mathematics, one of Physics, Chemistry or Biology, and one Language A at Higher Level.</li>
       </ul>
-
-      <h3>US Universities</h3>
-      <ul>
-        <li><strong>Ivy League:</strong> Most admitted IB students score 38–43. No formal cutoff but below 36 is rare in top-10 admitted pools.</li>
-        <li><strong>Top-30 US:</strong> 34–40 points with strong HL performance in intended major area.</li>
-      </ul>
-
-      <h3>Other International</h3>
-      <ul>
-        <li><strong>University of Toronto / McGill:</strong> 32–36 for competitive programmes; 38+ for medicine.</li>
-        <li><strong>ETH Zurich:</strong> 38 of the 42 subject points, with the three bonus points excluded, and strong Mathematics and Sciences at Higher Level.</li>
-        <li><strong>NUS / NTU (Singapore):</strong> 38–43 for medicine and law; 34–38 for engineering and science.</li>
-      </ul>
+      <p>US universities do not set IB point thresholds in the same way: they read the IB grades as part of the whole application.</p>
 
       <h2>Failing Conditions: When a High Score Doesn't Save You</h2>
+      <p>The Diploma is not awarded if any of these applies, whatever the total:</p>
       <ul>
-        <li><strong>Grade E in either TOK or EE</strong>, automatic diploma failure.</li>
-        <li><strong>CAS not completed</strong>, diploma failure regardless of academic scores.</li>
-        <li><strong>Grade 1 in any subject</strong>, automatic failure.</li>
-        <li><strong>Grade 2 in three or more subjects</strong> (HL or SL), automatic failure.</li>
-        <li><strong>A grade of 3 or lower awarded more than three times</strong> across the diploma, automatic failure.</li>
-        <li><strong>Total subject score below 24 points</strong>, automatic failure.</li>
-        <li><strong>Malpractice finding</strong>, diploma withdrawal.</li>
+        <li><strong>CAS requirements not met.</strong></li>
+        <li><strong>Fewer than 24 points</strong> in total, bonus points included.</li>
+        <li><strong>An "N"</strong> for TOK, the EE or a contributing subject.</li>
+        <li><strong>A grade E</strong> for TOK, the EE or both.</li>
+        <li><strong>A grade 1</strong> in any subject.</li>
+        <li><strong>Grade 2 three or more times</strong>, at SL or HL.</li>
+        <li><strong>Grade 3 or below four or more times</strong>, at SL or HL.</li>
+        <li><strong>Fewer than 12 points on HL subjects</strong> (with four HL subjects, the three highest grades count).</li>
+        <li><strong>Fewer than 9 points on SL subjects</strong> (with only two SL subjects, at least 5 points at SL).</li>
       </ul>
+      <p>A finding of academic misconduct leads to no grade being awarded for the subject or requirement concerned.</p>
 
       <h2>Improve Your Essay Scores, Improve Your Diploma Total</h2>
-      <p>The Extended Essay and TOK essay directly affect both your bonus points and your teacher's confidence in your predicted score. A weak EE draft can cost you up to 3 bonus points and reduce your predicted grade, a double penalty at the worst possible time.</p>
-      <p><Link to="/essay">IBLens analyses your IB essay against the official criteria and shows you exactly where marks are being lost →</Link></p>
+      <p>The Extended Essay and the TOK essay decide your bonus points between them, and a weak draft usually also shapes the grade your supervisor predicts. Both are still in your hands while you are drafting.</p>
+      <p><Link href="/essay">IBLens reads your essay against the assessment criteria and shows which criterion is losing you the most marks →</Link></p>
       <h2>Related tools</h2>
 
       <ul>

@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function IBUniversityConsultantCost() {
   return (
     <ResourceArticle
-      title="IB University Guidance, No Longer Offered | IBLens"
-      description="Our IB university guidance is no longer offered on verified, official university requirements. In the meantime, grade your IB essays free with IBLens."
+      title="IB University Guidance: No Longer Offered | IBLens"
+      description="This part of IBLens is no longer offered. We withdrew it rather than sell university guidance we cannot keep current. In the meantime, grade your IB essays free with IBLens."
       canonical="/resources/ib-university-consultant-cost"
       datePublished="2026-07-16"
       dateModified="2026-07-16"

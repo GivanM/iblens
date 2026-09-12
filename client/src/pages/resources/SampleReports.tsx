@@ -69,8 +69,8 @@ const REPORTS = [
 export default function SampleReports() {
   return (
     <ResourceArticle
-      title="Sample IBLens Reports, Three Essays, Three Honest Grades | IBLens"
-      description="See real, unedited IBLens output: the same TOK-style title answered at three quality levels, graded 2/10, 4/10 and 5/10. A grader that gives everything 6.5 is useless, and these three show the spread strict marking produces."
+      title="Sample IBLens Reports: Three Essays, Three Honest Grades | IBLens"
+      description="Real, unedited IBLens output: the same TOK-style title answered at three quality levels and marked 2/10, 4/10 and 5/10 on the holistic instrument. This is what strict marking against the descriptors looks like."
       canonical="/resources/sample-reports"
       datePublished="2026-07-03"
       dateModified="2026-07-03"

@@ -12,11 +12,10 @@ import { AlertTriangle, TrendingDown, CalendarClock, ArrowRight, CheckCircle2 } 
 const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
 const TIMELINE = [
-  { date: "July 6", event: "Results released, 12:00 GMT on candidates.ibo.org" },
-  { date: "July 6 - 29", event: "Cheapest window to register for November retakes" },
-  { date: "~September 15", event: "Remark (EUR Category 1) requests close - submitted via your school" },
-  { date: "November", event: "Retake exam session" },
-  { date: "December 16", event: "November session results" },
+  { date: "6 July", event: "May session results released from 12:00 GMT on candidates.ibo.org" },
+  { date: "By 29 July", event: "Register for November retakes by midnight GMT for the lowest fees" },
+  { date: "15 September", event: "Last day for enquiry upon results requests for the May session, made through your school" },
+  { date: "November", event: "Retake examination session" },
 ];
 
 
@@ -34,11 +33,8 @@ function RemarkQuickCheck() {
   const [subject, setSubject] = useState("History");
   const [essayText, setEssayText] = useState("");
   const [result, setResult] = useState<any>(null);
-  const [reportEmail, setReportEmail] = useState("");
-  const [emailSaved, setEmailSaved] = useState(false);
   const [fp] = useState(getAnonFingerprint);
 
-  const saveEmail = trpc.essay.saveReportEmail.useMutation({ onSuccess: () => setEmailSaved(true) });
   const analyze = trpc.essay.analyzeAnonymous.useMutation({
     onSuccess: (data: any) => {
       setResult(data.result);
@@ -61,7 +57,7 @@ function RemarkQuickCheck() {
   return (
     <div className="rounded-xl border-2 border-primary bg-card p-6 mb-12 shadow-sm">
       <h2 style={SERIF} className="text-2xl font-bold mb-1">Check your essay right here, free</h2>
-      <p className="text-sm text-muted-foreground mb-4">Paste the exact EE or TOK essay you submitted. Strict rubric grading, band placement, and a remark verdict in about 90 seconds.</p>
+      <p className="text-sm text-muted-foreground mb-4">Paste the exact EE or TOK essay you submitted. You get marking against the published criteria, the band it lands in, and a remark verdict in about a minute.</p>
 
       {!result && (
         <>
@@ -90,13 +86,13 @@ function RemarkQuickCheck() {
             </Button>
           </div>
           {essayText.trim().length > 0 && essayText.trim().length < 300 && (
-            <p className="text-xs text-muted-foreground mt-2">Keep pasting, we need the full essay for a meaningful read.</p>
+            <p className="text-xs text-muted-foreground mt-2">Keep pasting: the verdict needs the full essay.</p>
           )}
           {alreadyUsed && (
             <p className="text-sm mt-3">You have already used your free check on this device. A full report is $9.99 on the <Link href="/essay" className="text-primary font-medium underline">analyzer page</Link>, with no account needed.</p>
           )}
           {errMsg && !alreadyUsed && (
-            <p className="text-sm mt-3 text-destructive">{errMsg}, please try again.</p>
+            <p className="text-sm mt-3 text-destructive">{errMsg.replace(/[.\s]*$/, ".")} Please try again.</p>
           )}
         </>
       )}
@@ -109,8 +105,8 @@ function RemarkQuickCheck() {
           </div>
           {typeof result.near_band_edge === "boolean" && (
             <div className={"rounded-lg p-4 mb-4 border " + (result.near_band_edge ? "border-amber-400 bg-amber-50" : "border-emerald-300 bg-emerald-50")}>
-              <p className="font-semibold text-sm mb-1 text-foreground">{result.near_band_edge ? "Near a band edge, a remark has genuine upside" : "Solidly mid-band, a remark likely changes nothing"}</p>
-              <p className="text-sm text-muted-foreground">{result.near_band_edge ? "Your essay reads at the edge of its band. This is exactly the profile where a fresh examiner read can land differently, in either direction. If this grade matters for your offer, a remark is a rational bet." : "Your essay reads comfortably inside its band. A second examiner would most likely arrive at the same grade, this is the profile where remark fees get spent and nothing moves."}</p>
+              <p className="font-semibold text-sm mb-1 text-foreground">{result.near_band_edge ? "Near a band edge: a re-mark has real upside" : "Solidly mid-band: a re-mark is unlikely to change the grade"}</p>
+              <p className="text-sm text-muted-foreground">{result.near_band_edge ? "Your essay reads at the edge of its band. That is the profile where a fresh examiner can land differently, in either direction. If this grade matters for your offer, a re-mark is a reasonable bet." : "Your essay reads comfortably inside its band. A second examiner would most likely arrive at the same grade, so a re-mark fee is unlikely to buy a different result."}</p>
             </div>
           )}
           {result.weakest_criterion && (
@@ -127,16 +123,8 @@ function RemarkQuickCheck() {
               ))}
             </ul>
           )}
-          <p className="text-sm text-muted-foreground mb-3">The full report, exact score, the full report with comments, and a ranked fix list, unlocks for $9.99 on the analyzer page.</p>
+          <p className="text-sm text-muted-foreground mb-3">The full report, with the exact mark, comments on every criterion and a ranked list of fixes, unlocks for $9.99 on the analyzer page. This verdict is an estimate from a language model, not the IB's mark.</p>
           <Button asChild><Link href="/essay">Unlock the full report, $9.99</Link></Button>
-          {emailSaved ? (
-            <p className="text-sm font-medium mt-4">Saved, your report link and improvement tips are on the way.</p>
-          ) : (
-            <div className="flex gap-2 mt-4">
-              <Input type="email" placeholder="you@email.com, email me this report" value={reportEmail} onChange={(e) => setReportEmail(e.target.value)} className="bg-background" />
-              <Button size="sm" variant="outline" disabled={!reportEmail.includes("@") || saveEmail.isPending} onClick={() => saveEmail.mutate({ email: reportEmail, fingerprint: fp })}>Save</Button>
-            </div>
-          )}
         </div>
       )}
     </div>
@@ -148,7 +136,7 @@ export default function RemarkChecker() {
     <>
       <SEOHead
         title="IB Remark 2026: Is an EUR Worth It? Check Before You Pay | IBLens"
-        description="An IB remark costs around $100–120, your grade can go down, and the deadline is mid-September. Grade your EE or TOK essay with a strict AI first, know if you are near a boundary before you pay."
+        description="An IB re-mark can lower your grade as well as raise it, and May session requests close on 15 September. Mark the EE or TOK essay you submitted first and see whether it sits near a band edge before you pay."
         canonical="/remark"
       />
       <div className="min-h-screen bg-background">
@@ -158,9 +146,10 @@ export default function RemarkChecker() {
             Should you pay for an IB remark?
           </h1>
           <p className="text-lg text-muted-foreground leading-relaxed mb-10">
-            A remark (Enquiry Upon Results) costs around $100-120 per subject, your grade can go
-            <em> down</em> as well as up, and you have until mid-September to decide. Most students
-            decide blind. Here is how to decide with data.
+            A re-mark (enquiry upon results, category 1) costs a fee set by the IB, refunded only if
+            your grade changes. The grade can go <em>down</em> as well as up, and for the May session
+            your school must submit the request by 15 September. Most students decide without knowing
+            how close they are to a boundary. Here is how to decide with more to go on.
           </p>
 
           <RemarkQuickCheck />
@@ -169,36 +158,37 @@ export default function RemarkChecker() {
             <Card>
               <CardContent className="pt-6">
                 <AlertTriangle className="w-5 h-5 text-primary mb-2" />
-                <p className="font-semibold text-sm mb-1">~$100-120 per subject</p>
-                <p className="text-xs text-muted-foreground">Fee is refunded only if your grade actually changes. Exact fee varies by school and region.</p>
+                <p className="font-semibold text-sm mb-1">Refunded only on a grade change</p>
+                <p className="text-xs text-muted-foreground">The IB publishes the fee to schools, so your coordinator can tell you what it is. There is no charge for a category 1 re-mark that changes your grade.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-6">
                 <TrendingDown className="w-5 h-5 text-primary mb-2" />
                 <p className="font-semibold text-sm mb-1">Grades can go down</p>
-                <p className="text-xs text-muted-foreground">The remark result is final - even if the new grade is lower than the original.</p>
+                <p className="text-xs text-muted-foreground">A re-mark can raise or lower the grade, which is why your school needs your written consent before requesting one.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-6">
                 <CalendarClock className="w-5 h-5 text-primary mb-2" />
-                <p className="font-semibold text-sm mb-1">Deadline ~Sept 15</p>
-                <p className="text-xs text-muted-foreground">Requests go through your IB coordinator - schools often set earlier internal cutoffs.</p>
+                <p className="font-semibold text-sm mb-1">Deadline: 15 September</p>
+                <p className="text-xs text-muted-foreground">Requests are made by your school, which may set an earlier internal deadline.</p>
               </CardContent>
             </Card>
           </div>
 
           <h2 style={SERIF} className="text-2xl font-bold mb-3">The problem: you are deciding blind</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            The standard advice is to remark only when you are 1-2 marks from a grade boundary. Good
-            advice - except IB does not show you component marks up front, so most students have no
-            idea how close they actually are. That turns a $110 decision into a coin flip.
+            The usual advice is to request a re-mark only when you are one or two marks from a grade
+            boundary. Good advice, except that most students see only their subject grade, and
+            component marks reach them through the coordinator if at all. So the decision gets made
+            without the one number that matters.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-10">
-            Your Extended Essay and TOK essay are externally marked - exactly the components where
-            remarks apply and where examiner judgement varies most. That also means they can be
-            re-graded independently, right now.
+            Your Extended Essay and TOK essay are externally assessed, which is what a category 1
+            re-mark covers. It also means you can read them against the criteria again yourself,
+            right now.
           </p>
 
           <div className="rounded-xl border-2 border-primary bg-primary/5 p-6 mb-12">
@@ -209,7 +199,7 @@ export default function RemarkChecker() {
               <li>If it lands near a grade boundary, a remark has genuine upside. If it sits mid-band, save your money.</li>
             </ol>
             <p className="text-sm text-muted-foreground mb-5">
-              First analysis free, then $9.99 - versus a $110 gamble with a grade that can drop.
+              The first preview is free; the full report is $9.99.
             </p>
             <Button size="lg" asChild>
               <Link href="/essay">Grade my submitted essay <ArrowRight className="w-4 h-4 ml-2" /></Link>
@@ -230,15 +220,15 @@ export default function RemarkChecker() {
           <div className="space-y-3 mb-12">
             <div className="flex gap-3 items-start">
               <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
-              <p className="text-sm text-muted-foreground"><strong className="text-foreground">Remark</strong> - when your essay reads close to a boundary. Fast, ~$110, no new work, but the grade can drop.</p>
+              <p className="text-sm text-muted-foreground"><strong className="text-foreground">Re-mark:</strong> when your essay reads close to a boundary. No new work, but the grade can drop as well as rise.</p>
             </div>
             <div className="flex gap-3 items-start">
               <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
-              <p className="text-sm text-muted-foreground"><strong className="text-foreground">November retake</strong> - when you are several marks off or the exam went wrong, not the coursework. Register between July 6-29 for the lowest fees.</p>
+              <p className="text-sm text-muted-foreground"><strong className="text-foreground">November retake:</strong> when you are several marks off, or the exam went wrong rather than the coursework. Register by 29 July for the lowest fees.</p>
             </div>
             <div className="flex gap-3 items-start">
               <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
-              <p className="text-sm text-muted-foreground"><strong className="text-foreground">Neither</strong> - if your points still meet your offer, or your essay grades solidly mid-band. Most remarks change nothing - that is why the fee is refundable only on a grade change.</p>
+              <p className="text-sm text-muted-foreground"><strong className="text-foreground">Neither:</strong> if your points already meet your offer, or your essay reads solidly mid-band.</p>
             </div>
           </div>
 
@@ -246,26 +236,26 @@ export default function RemarkChecker() {
           <div className="space-y-5 mb-12">
             <div>
               <p className="font-semibold text-sm mb-1">How much does an IB remark cost in 2026?</p>
-              <p className="text-sm text-muted-foreground">An EUR Category 1 re-mark typically costs around $100-120 per subject depending on your school and region. The fee is refunded only if your grade changes.</p>
+              <p className="text-sm text-muted-foreground">The IB publishes its enquiry upon results fees to schools rather than on its public website, so ask your coordinator for the current fee. There is no charge for a category 1 re-mark that results in a change of grade.</p>
             </div>
             <div>
               <p className="font-semibold text-sm mb-1">Can my grade go down after a remark?</p>
-              <p className="text-sm text-muted-foreground">Yes. Grades can move up or down on a remark, and the new grade is final. This is why you should only remark when you have reason to believe you are near a boundary.</p>
+              <p className="text-sm text-muted-foreground">Yes. A category 1 re-mark can raise or lower the grade, and your school must have your written consent before requesting one. That is why a re-mark makes most sense when you have reason to think you are near a boundary.</p>
             </div>
             <div>
               <p className="font-semibold text-sm mb-1">What is the remark deadline?</p>
-              <p className="text-sm text-muted-foreground">Around September 15 for the May session, but requests go through your school - coordinators often set earlier internal deadlines. Ask yours this week.</p>
+              <p className="text-sm text-muted-foreground">Enquiry upon results requests for the May session can be made up to 15 September, two months after results. Your school submits them and may set an earlier deadline, so ask your coordinator as soon as results are out.</p>
             </div>
             <div>
               <p className="font-semibold text-sm mb-1">Should I remark my EE or TOK essay?</p>
-              <p className="text-sm text-muted-foreground">EE and TOK are externally marked essays - the components where a fresh examiner read genuinely can differ. Grade the essay you submitted with IBLens first: near-boundary means a remark is worth considering, mid-band means it probably is not.</p>
+              <p className="text-sm text-muted-foreground">The EE and the TOK essay are externally assessed, so a category 1 re-mark covers them. Mark the essay you submitted with IBLens first: near a band edge, a re-mark is worth considering; solidly mid-band, it probably is not.</p>
             </div>
           </div>
 
           <div className="text-center border-t border-border pt-10">
             <p style={SERIF} className="text-xl font-bold mb-3">Know before you pay.</p>
             <Button size="lg" asChild>
-              <Link href="/essay">Grade my essay - first one free <ArrowRight className="w-4 h-4 ml-2" /></Link>
+              <Link href="/essay">Mark my essay: the first preview is free <ArrowRight className="w-4 h-4 ml-2" /></Link>
             </Button>
           </div>
         </div>

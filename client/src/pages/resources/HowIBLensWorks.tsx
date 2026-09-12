@@ -4,8 +4,8 @@ import { Link } from "wouter";
 export default function HowIBLensWorks() {
   return (
     <ResourceArticle
-      title="How IBLens Works, AI-Powered IB Essay Analysis | IBLens"
-      description="How the IBLens AI analyzes IB essays against official criteria, predicts scores, and generates personalized feedback in about 90 seconds."
+      title="How IBLens Works: AI Feedback on IB Essays Explained | IBLens"
+      description="How IBLens marks IB coursework: which criteria it uses, how the estimated mark is produced, what the report includes, and what it cannot do."
       canonical="/resources/how-iblens-works"
       datePublished="2026-05-01"
       dateModified="2026-05-01"
