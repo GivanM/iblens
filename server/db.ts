@@ -819,6 +819,19 @@ export async function debitAccountCredits(userId: number, amount: number) {
     .where(eq(users.id, userId));
 }
 
+/** Give back what a failed analysis consumed: the free slot, or one credit. */
+export async function refundEssayConsumption(userId: number, wasFree: boolean) {
+  const db = await getDb();
+  if (!db) return;
+  if (wasFree) {
+    await db.update(users).set({ freeEssayUsed: false }).where(eq(users.id, userId));
+  } else {
+    await db.update(users)
+      .set({ essayCredits: sql`${users.essayCredits} + 1` })
+      .where(eq(users.id, userId));
+  }
+}
+
 /** Has this exact grant already been recorded? Used to make retries harmless. */
 export async function ledgerHasEntry(reason: string, orderId: string): Promise<boolean> {
   const db = await getDb();

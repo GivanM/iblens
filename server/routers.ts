@@ -12,6 +12,7 @@ import {
   canUserAnalyzeEssay,
   canUserAnalyzeUniversity,
   consumeEssayCredit,
+  refundEssayConsumption,
   consumeUniversityCredit,
   getUserCredits,
   getUserPayments,
@@ -714,10 +715,6 @@ const essayRouter = router({
       const systemPrompt = buildEssaySystemPrompt(input.essayType, input.subject, input.examSession);
       const userPrompt = buildEssayUserPrompt(input.essayType, input.subject, input.researchQuestion, input.essayText, input.examSession, input.reflections);
 
-      // Take the free slot before the model runs. Two tabs used to get two free
-      // analyses, exactly as they did on the anonymous path.
-      if (usage.isFree) await consumeFreeEssaySlot(ctx.user.id).catch(() => {});
-
       try {
         const startedAt = Date.now();
         const response = await invokeLLM({
@@ -801,6 +798,11 @@ const essayRouter = router({
       const systemPrompt = buildEssaySystemPrompt(input.essayType, input.subject, input.examSession);
       const userPrompt = buildEssayUserPrompt(input.essayType, input.subject, input.researchQuestion, input.essayText, input.examSession, input.reflections);
 
+      // Take the free slot or the credit before the model runs, and give it back
+      // if nothing comes out. Checking first and charging afterwards let two tabs
+      // run two free analyses, the same race the anonymous path had.
+      await consumeEssayCredit(ctx.user.id);
+
       try {
         const startedAt = Date.now();
         const response = await invokeLLM({
@@ -840,8 +842,6 @@ const essayRouter = router({
           examSession: input.examSession ?? null,
         });
 
-        await consumeEssayCredit(ctx.user.id);
-
         // Free tier gets a teaser; paid credits get the full report immediately.
         if (usage.isFree) {
           return { id: analysis.id, result: buildTeaser(result), wasFree: true };
@@ -849,6 +849,8 @@ const essayRouter = router({
         return { id: analysis.id, result, wasFree: false };
       } catch (error: any) {
         console.error("[Essay Analysis] Error:", error);
+        // Nothing was produced, so the free slot or credit comes back.
+        await refundEssayConsumption(ctx.user.id, usage.isFree === true).catch(() => {});
         throw new Error(error.message || "Analysis failed. Please try again.");
       }
     }),
