@@ -151,7 +151,7 @@ export default function Home() {
                 name: "Is my essay data kept private and secure?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Your essay is sent to our AI provider (Anthropic PBC) over an encrypted connection solely to generate your analysis. We do not use it to train any AI model, we do not sell it, and we do not share it with your school, universities, or other students. Anonymous analyses are not stored permanently.",
+                  text: "Your essay is sent to our AI provider (Anthropic PBC) over an encrypted connection solely to generate your analysis. We do not use it to train any AI model, we do not sell it, and we do not share it with your school, universities, or other students. The essay text is never stored, and an anonymous report you did not buy is deleted after 90 days.",
                 },
               },
               {
@@ -271,7 +271,7 @@ export default function Home() {
               {[
                 { n: "01", title: "Official criteria", desc: "Same assessment criteria as IB examiners — no simplified versions. Every band descriptor, every criterion." },
                 { n: "02", title: "Criterion feedback", desc: "Specific written feedback on every criterion in the full report, not just a total score. Know exactly where marks are lost." },
-                { n: "03", title: "60-second results", desc: "Paste, click, done. Full breakdown in under a minute. No account required for your first analysis." },
+                { n: "03", title: "90-second results", desc: "Paste, click, done. Full breakdown in under a minute. No account required for your first analysis." },
               ].map(f => (
                 <div key={f.n} className="border-t-2 border-primary pt-6">
                   <p style={SERIF} className="text-4xl font-bold text-primary mb-4">{f.n}</p>
@@ -401,10 +401,10 @@ export default function Home() {
                 <div className="text-3xl mb-3">⚡</div>
                 <p className="font-semibold mb-1">IBLens</p>
                 <div style={SERIF} className="text-2xl font-bold text-primary mb-1">$9.99</div>
-                <p className="text-xs text-muted-foreground">Full criterion breakdown. Predicted score. Risk areas. 60 seconds.</p>
+                <p className="text-xs text-muted-foreground">Full criterion breakdown. Predicted score. Risk areas. About 90 seconds.</p>
               </div>
             </div>
-            <p className="text-sm text-muted-foreground">First analysis is always free. No credit card, no account.</p>
+            <p className="text-sm text-muted-foreground">Your first analysis is free, one per device. No credit card, no account.</p>
           </div>
         </section>
 
@@ -511,7 +511,7 @@ export default function Home() {
               />
               <FAQItem
                 question="Is my essay data kept private and secure?"
-                answer="Your essay is sent to our AI provider (Anthropic PBC) over an encrypted connection solely to generate your analysis. We do not use it to train any AI model, we do not sell it, and we do not share it with your school, universities, or other students. Anonymous analyses are not stored permanently."
+                answer="Your essay is sent to our AI provider (Anthropic PBC) over an encrypted connection solely to generate your analysis. We do not use it to train any AI model, we do not sell it, and we do not share it with your school, universities, or other students. The essay text is never stored, and an anonymous report you did not buy is deleted after 90 days."
               />
               <FAQItem
                 question="What payment methods do you accept?"

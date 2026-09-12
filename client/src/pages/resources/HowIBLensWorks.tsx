@@ -13,7 +13,7 @@ export default function HowIBLensWorks() {
       <h1>How IBLens Works</h1>
 
       <p>
-        IBLens is an AI-powered essay analysis tool designed specifically for IB Diploma Programme students. It provides criterion-by-criterion feedback on Internal Assessments, Extended Essays, and Theory of Knowledge essays — the same type of detailed assessment that an experienced IB examiner would provide, delivered in approximately 60 seconds.
+        IBLens is an AI-powered essay analysis tool designed specifically for IB Diploma Programme students. It provides criterion-by-criterion feedback on Internal Assessments, Extended Essays, and Theory of Knowledge essays — the same type of detailed assessment that an experienced IB examiner would provide, delivered in about 90 seconds.
       </p>
 
       <p>
@@ -113,7 +113,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <ul>
-        <li><strong>Storage:</strong> Anonymous essays are processed for your analysis and are not stored permanently. If you sign in, your analysis history is saved to your account until you delete it. Essay content is never shared and never used to train AI models.</li>
+        <li><strong>Storage:</strong> The essay text is never written to our database. The report it produces is deleted after 90 days unless you bought it. If you sign in, your analysis history is saved to your account until you delete it. Essay content is never shared and never used to train AI models.</li>
         <li><strong>Processed by our AI provider only:</strong> Your essay is sent to our AI provider (Anthropic) over an encrypted connection solely to generate your analysis. It is not used to train any model, not sold, and not shared with schools, universities, or other students.</li>
         <li><strong>Encrypted transmission:</strong> All data is transmitted over HTTPS with industry-standard encryption.</li>
         <li><strong>No training on your data:</strong> Your essays are not used to train or improve the AI model. Your intellectual property remains yours.</li>
@@ -210,7 +210,7 @@ export default function HowIBLensWorks() {
 
       <h3>IBLens</h3>
       <p>
-        <strong>Pros:</strong> Instant (60 seconds), criterion-specific, affordable, unlimited revisions possible, available 24/7, consistent quality.
+        <strong>Pros:</strong> Fast (about 90 seconds), criterion-specific, affordable, unlimited revisions possible, available 24/7, consistent quality.
         <strong>Cons:</strong> Cannot verify factual accuracy, cannot replace subject expertise, cannot assess practical components.
         <strong>When to use:</strong> Between teacher feedback rounds, for iterative revision, for a second opinion before submission, for identifying which criteria need the most work.
       </p>

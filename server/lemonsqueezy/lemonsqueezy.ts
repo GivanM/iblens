@@ -351,6 +351,8 @@ export async function createLemonsqueezyCheckout(
   valueUsd?: number,
   /** Anonymous device id. Present when a guest is buying the report they just ran. */
   unlockFingerprint?: string,
+  /** Page the guest was on, so they land back where their report is. */
+  returnTo?: string,
 ): Promise<{ checkoutUrl: string }> {
   const slug = productSlug || "essay_single";
   const baseUrl = LEMONSQUEEZY_BUY_URLS[slug];
@@ -368,7 +370,7 @@ export async function createLemonsqueezyCheckout(
     url.searchParams.set("checkout[email]", userEmail);
   }
   // A guest has no dashboard to come back to. Send them to the report they paid for.
-  const landing = unlockFingerprint ? "essay" : "dashboard";
+  const landing = unlockFingerprint ? (returnTo === "ucas-personal-statement" ? "ucas-personal-statement" : "essay") : "dashboard";
   url.searchParams.set(
     "checkout[redirect_url]",
     `https://iblens.com/${landing}?payment=success&order=${orderId}&product=${slug}&value=${((valueUsd ?? 0) / 100).toFixed(2)}&method=lemonsqueezy`,

@@ -26,6 +26,7 @@ import { PurchaseModal } from "@/components/PurchaseModal";
 import { PRICE_LABELS, type ProductKey } from "@shared/pricing";
 import { IA_RUBRIC_SUBJECTS } from "@shared/rubrics";
 import { analytics } from "@/lib/analytics";
+import { getAnonFingerprint } from "@/lib/fingerprint";
 import { trackEssaySubmitted, trackEssayUploadStarted } from "@/lib/analytics/track";
 
 const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
@@ -184,6 +185,7 @@ export default function EssayAnalyzer() {
   const [essayType, setEssayType] = useState(handoff.type ?? "IA");
   const [subject, setSubject] = useState(handoff.subject ?? "Business Management");
   const [researchQuestion, setResearchQuestion] = useState("");
+  const [reflections, setReflections] = useState("");
   const [examSession, setExamSession] = useState<"nov2026" | "may2027">(handoff.session ?? "may2027");
   // ?rerun=<analysisId> — a paid report includes two free re-checks of the same draft.
   const rerunId = (() => {
@@ -198,15 +200,8 @@ export default function EssayAnalyzer() {
   const creditsQuery = trpc.dashboard.credits.useQuery(undefined, { enabled: isAuthenticated });
   const credits = creditsQuery.data;
 
-  const [anonFp] = useState(() => {
-    const key = 'iblens_anon_fp';
-    let fp = localStorage.getItem(key);
-    if (!fp) {
-      fp = crypto.randomUUID();
-      localStorage.setItem(key, fp);
-    }
-    return fp;
-  });
+  const [anonFp] = useState(getAnonFingerprint);
+
   const anonCheckQuery = trpc.essay.canAnalyzeAnonymous.useQuery(
     { clientFingerprint: anonFp },
     { enabled: !isAuthenticated }
@@ -294,6 +289,23 @@ export default function EssayAnalyzer() {
     }
   }, [paidReportQ.data, result]);
 
+  // Someone who bought without an account still gets their two re-checks. The
+  // authenticated re-run path cannot see their report, so it has its own.
+  const [anonRerunsLeft, setAnonRerunsLeft] = useState<number | null>(null);
+  const anonReportQ = trpc.essay.anonymousReport.useQuery(
+    { fingerprint: anonFp },
+    { enabled: !isAuthenticated }
+  );
+  const anonUnlocked = !isAuthenticated && anonReportQ.data?.unlocked === true;
+  const rerunAnonMutation = trpc.essay.rerunAnonymous.useMutation({
+    onSuccess: (d: any) => {
+      setResult(d.result as EssayResult);
+      setAnonRerunsLeft(d.rerunsLeft);
+      toast.success(`Re-check complete. ${d.rerunsLeft} free re-check(s) left for this draft.`);
+    },
+    onError: (e: any) => toast.error(e.message || "Re-check unavailable"),
+  });
+
   const pageUnlock = trpc.essay.unlockAnalysis.useMutation({
     onSuccess: (d: any) => { setResult(d.result as EssayResult); lockedQ.refetch(); },
     onError: (e: any) => toast.error(e.message || "Unlock failed"),
@@ -325,7 +337,7 @@ export default function EssayAnalyzer() {
         return;
       }
       if (rerunId) {
-        rerunMutation.mutate({ analysisId: rerunId, essayText, examSession });
+        rerunMutation.mutate({ analysisId: rerunId, essayText, examSession, reflections: reflections || undefined });
         return;
       }
       const authParams = getApiEssayParams(essayType, subject);
@@ -334,9 +346,19 @@ export default function EssayAnalyzer() {
         subject: authParams.subject,
         researchQuestion: researchQuestion || undefined,
         essayText,
+        reflections: reflections || undefined,
         examSession,
       });
     } else {
+      if (anonUnlocked) {
+        rerunAnonMutation.mutate({
+          fingerprint: anonFp,
+          essayText,
+          reflections: reflections || undefined,
+          examSession,
+        });
+        return;
+      }
       if (!canAnonAnalyze) {
         setEssayPurchaseOpen(true);
         return;
@@ -347,6 +369,7 @@ export default function EssayAnalyzer() {
         subject: anonParams.subject,
         researchQuestion: researchQuestion || undefined,
         essayText,
+        reflections: reflections || undefined,
         clientFingerprint: anonFp,
         examSession,
       });
@@ -378,7 +401,7 @@ export default function EssayAnalyzer() {
         <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3">Essay Analyzer</p>
         <h1 style={SERIF} className="text-4xl font-bold mb-3">IB Essay Analyzer</h1>
         <p className="text-muted-foreground text-lg max-w-2xl">
-          Instant AI feedback on your Extended Essay, IA, or TOK — criterion by criterion, with a predicted score.
+          AI feedback in about 90 seconds on your Extended Essay, IA, or TOK — criterion by criterion, with a predicted score.
         </p>
       </div>
 
@@ -533,7 +556,30 @@ export default function EssayAnalyzer() {
             />
           </div>
 
+          {essayType === "EE" && (
+            <div className="space-y-2">
+              <Label>
+                {examSession === "may2027" ? "Reflective statement (RPF)" : "Reflections (RPPF)"}
+                <span className="text-muted-foreground font-normal"> — optional</span>
+              </Label>
+              <Textarea
+                placeholder={examSession === "may2027"
+                  ? "Paste your reflective statement, up to 500 words. Criterion E is marked on this and not on the essay, so without it the report covers the other four criteria only."
+                  : "Paste your three RPPF reflections, 500 words in total. Criterion E is marked on these and not on the essay, so without them the report covers the other four criteria only."}
+                rows={4}
+                value={reflections}
+                onChange={(e) => setReflections(e.target.value)}
+              />
+            </div>
+          )}
+
           <div className="space-y-2">
+            {anonUnlocked && (
+              <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 text-sm">
+                <strong>Your report is unlocked on this device.</strong> Paste your revised draft below and re-check it.
+                Two re-checks are included for 14 days, and they do not cost a credit.
+              </div>
+            )}
             {rerunId && (
               <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 text-sm">
                 <strong>Re-checking your paid draft.</strong> Paste the revised version below — this re-check is free and does not use a credit.
@@ -588,7 +634,7 @@ export default function EssayAnalyzer() {
           )}
 
           {/* Anonymous: analyze button (first-time) */}
-          {!isAuthenticated && canAnonAnalyze && (
+          {!isAuthenticated && canAnonAnalyze && !anonUnlocked && (
             <Button
               className="w-full h-11"
               onClick={handleAnalyze}
@@ -608,8 +654,29 @@ export default function EssayAnalyzer() {
             </Button>
           )}
 
+          {/* Paid guest: the two re-checks they were promised */}
+          {anonUnlocked && (
+            <Button
+              className="w-full h-11"
+              onClick={handleAnalyze}
+              disabled={rerunAnonMutation.isPending}
+            >
+              {rerunAnonMutation.isPending ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Re-checking your revision…
+                </>
+              ) : (
+                <>
+                  <FileText className="w-4 h-4 mr-2" />
+                  Re-check this draft (free{anonRerunsLeft !== null ? `, ${anonRerunsLeft} left` : ""})
+                </>
+              )}
+            </Button>
+          )}
+
           {/* Anonymous: buy credits after free used */}
-          {!isAuthenticated && !canAnonAnalyze && (
+          {!isAuthenticated && !canAnonAnalyze && !anonUnlocked && (
             <Button className="w-full h-11" onClick={() => setEssayPurchaseOpen(true)}>
               <CreditCard className="w-4 h-4 mr-2" />
               Buy Credits to Analyze ($9.99)

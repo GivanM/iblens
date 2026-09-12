@@ -17,7 +17,7 @@ export default function IBIAGrader() {
       </p>
 
       <p>
-        IBLens is an AI-powered IB IA grader that reads your Internal Assessment against the official IB rubric for your subject and gives you a criterion-by-criterion score, the specific marks you are losing, and exactly what to fix. It takes 60 seconds and the first analysis is free.
+        IBLens is an AI-powered IB IA grader that reads your Internal Assessment against the official IB rubric for your subject and gives you a criterion-by-criterion score, the specific marks you are losing, and exactly what to fix. It takes about 90 seconds and the first analysis is free.
       </p>
 
       <p>

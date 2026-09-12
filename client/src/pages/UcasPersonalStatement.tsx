@@ -1,4 +1,5 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { getAnonFingerprint } from "@/lib/fingerprint";
 import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { SEOHead } from "@/components/SEOHead";
@@ -20,15 +21,7 @@ import {
 
 const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
-function getFingerprint(): string {
-  const KEY = "iblens_fp";
-  let v = localStorage.getItem(KEY);
-  if (!v) {
-    v = crypto.randomUUID();
-    localStorage.setItem(KEY, v);
-  }
-  return v;
-}
+// the device id lives in one place now: lib/fingerprint.ts
 
 const STATUS_STYLE: Record<string, string> = {
   strong: "bg-emerald-100 text-emerald-800",
@@ -46,6 +39,37 @@ export default function UcasPersonalStatement() {
 
   const total = answers.q1.length + answers.q2.length + answers.q3.length;
   const remaining = UCAS_TOTAL_CHAR_LIMIT - total;
+
+  // The device id the free review and the purchase are both tied to.
+  const [anonFp] = useState(getAnonFingerprint);
+
+  // Coming back from checkout: the webhook has already unlocked the review.
+  const paidReturn = typeof window !== "undefined"
+    && new URLSearchParams(window.location.search).get("payment") === "success";
+  const paidReviewQ = trpc.essay.anonymousReport.useQuery(
+    { fingerprint: anonFp },
+    { enabled: paidReturn && !result, refetchInterval: (d: any) => (d?.unlocked ? false : 4000) }
+  );
+  useEffect(() => {
+    if (paidReviewQ.data?.unlocked && !result) {
+      setResult(paidReviewQ.data.result);
+      setLimitReached(null);
+      toast.success("Payment confirmed. Your full review is open below.");
+    }
+  }, [paidReviewQ.data, result]);
+
+  // Two re-checks of the same statement, included with the purchase.
+  const [rechecksLeft, setRechecksLeft] = useState<number | null>(null);
+  const unlockedQ = trpc.essay.anonymousReport.useQuery({ fingerprint: anonFp }, { enabled: !paidReturn });
+  const isUnlocked = unlockedQ.data?.unlocked === true || paidReviewQ.data?.unlocked === true;
+  const recheck = trpc.essay.rerunAnonymous.useMutation({
+    onSuccess: (d: any) => {
+      setResult(d.result);
+      setRechecksLeft(d.rerunsLeft);
+      toast.success(`Re-check complete. ${d.rerunsLeft} free re-check(s) left for this statement.`);
+    },
+    onError: (e: any) => toast.error(e.message || "Re-check unavailable"),
+  });
 
   const review = trpc.essay.analyzeUcasAnonymous.useMutation({
     onSuccess: (data: any) => setResult(data.result),
@@ -177,22 +201,39 @@ export default function UcasPersonalStatement() {
             </ul>
           )}
 
+          {isUnlocked && (
+            <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 text-sm mb-3">
+              <strong>Your full review is unlocked on this device.</strong> Revise the answers above and re-check them.
+              Two re-checks are included for 14 days and cost nothing.
+            </div>
+          )}
+
           <Button
             size="lg"
             className="w-full"
-            disabled={!canSubmit}
-            onClick={() =>
+            disabled={blockers.length > 0 || review.isPending || recheck.isPending}
+            onClick={() => {
+              if (isUnlocked) {
+                recheck.mutate({ fingerprint: anonFp, answers });
+                return;
+              }
               review.mutate({
                 course: course.trim(),
                 universityType,
                 q1: answers.q1,
                 q2: answers.q2,
                 q3: answers.q3,
-                clientFingerprint: getFingerprint(),
-              })
-            }
+                clientFingerprint: anonFp,
+              });
+            }}
           >
-            {review.isPending ? (<><Loader2 className="w-4 h-4 mr-2 animate-spin" />Reading your statement…</>) : "Review my statement — free"}
+            {review.isPending || recheck.isPending ? (
+              <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Reading your statement…</>
+            ) : isUnlocked ? (
+              `Re-check my statement (free${rechecksLeft !== null ? `, ${rechecksLeft} left` : ""})`
+            ) : (
+              "Review my statement — free"
+            )}
           </Button>
         </CardContent>
       </Card>

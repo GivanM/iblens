@@ -25,6 +25,8 @@ import {
   getLatestAnonymousEssay,
   setAnonymousUnlocked,
   markAnalysisUnlocked,
+  consumeAnonymousRerun,
+  updateAnonymousResult,
   consumeAnalysisRerun,
 } from "./db";
 import { checkUcasMechanics, buildUcasSystemPrompt, buildUcasUserPrompt, UCAS_TOTAL_CHAR_LIMIT, UCAS_MIN_CHARS_PER_ANSWER } from "../shared/ucas";
@@ -73,7 +75,7 @@ IMPORTANT FORMATTING RULES:
  * Build the user prompt for essay analysis.
  * Dynamically generates the expected JSON criteria structure from the rubric.
  */
-function buildEssayUserPrompt(essayType: string, subject: string, researchQuestion: string | undefined, essayText: string, examSession?: string): string {
+function buildEssayUserPrompt(essayType: string, subject: string, researchQuestion: string | undefined, essayText: string, examSession?: string, reflections?: string): string {
   const rubric = getRubric(essayType, subject, examSession);
 
   let criteriaExample: string;
@@ -89,17 +91,42 @@ function buildEssayUserPrompt(essayType: string, subject: string, researchQuesti
   ]`;
   }
 
+  // Criterion E of the Extended Essay is marked on the reflective statement (RPF
+  // from May 2027, RPPF before it), not on the essay. Marking it from the essay
+  // text invents a score; deducting for its absence charges the student for a
+  // document this form did not ask for. Say which of the two situations we are in.
+  const reflectionText = (reflections || "").trim();
+  let reflectionBlock = "";
+  if (essayType === "EE") {
+    if (reflectionText) {
+      reflectionBlock = `
+
+REFLECTIVE STATEMENT (the student's ${examSession === "may2027" ? "RPF" : "RPPF"}, submitted separately from the essay):
+${reflectionText.substring(0, 6000)}
+
+Mark the reflection criterion on this statement alone, never on the essay text.`;
+    } else {
+      reflectionBlock = `
+
+NO REFLECTIVE STATEMENT WAS SUBMITTED. The reflection criterion is marked on the ${examSession === "may2027" ? "RPF" : "RPPF"}, which is not part of this submission.
+- Do not award a score for the reflection criterion and do not deduct marks for its absence.
+- Return it in the criteria array with "score": null and a comment saying it was not assessed because the reflective statement was not submitted.
+- "max_score" must be the sum of the maximum marks of the criteria you actually assessed, and "band_range" must be expressed on that same total.
+- Do not list the missing reflective statement as a risk. The student was never asked for it.`;
+    }
+  }
+
   return `Analyze this IB ${essayType} for: ${subject}
 Research Question: ${researchQuestion || "not provided"}
 
 TEXT:
-${essayText.substring(0, 30000)}
+${essayText.substring(0, 30000)}${reflectionBlock}
 
 Respond with this exact JSON structure:
 {
-  "band_range": "4-5",
-  "predicted_score": 4,
-  "max_score": 7,
+  "band_range": "<range on the same total as max_score, e.g. 18-22>",
+  "predicted_score": <integer>,
+  "max_score": <total marks of the criteria you assessed>,
   "overall_comment": "Detailed overall assessment of the work",
   "criteria": ${criteriaExample},
   "risks": [
@@ -130,6 +157,13 @@ function isNotAssessableFromText(c: any): boolean {
   const isReflection = name.includes("reflection") || name.includes("engagement");
   if (!isReflection) return false;
   return /\brpf\b|\brppf\b|reflective (form|statement)|not (been )?(submitted|provided|included|attached)|no reflection|absence of (a )?reflect/.test(comment);
+}
+
+/** Same rule for risks: never bill a student for a document the form did not ask for. */
+function isRiskAboutMissingReflection(r: any): boolean {
+  const text = `${r?.title || ""} ${r?.description || ""}`.toLowerCase();
+  if (!/\brpf\b|\brppf\b|reflect/.test(text)) return false;
+  return /missing|not submitted|absence|no reflection|without a reflect|automatic 0|automatic zero/.test(text);
 }
 
 /** Cut at a sentence boundary where possible so the teaser reads as deliberate, not broken. */
@@ -187,13 +221,21 @@ function buildTeaser(result: any) {
     const hi = parseInt(m[2], 10);
     nearEdge = result.predicted_score <= lo || result.predicted_score >= hi;
   }
-  const risks = (Array.isArray(result?.risks) ? result.risks : []).slice(0, 3).map((r: any) => ({
+  // The model sometimes writes "14-18 out of 26" into band_range. The number of
+  // marks it is out of is already max_score, so keep the range and drop the tail.
+  const bandRange = typeof result?.band_range === "string"
+    ? (result.band_range.match(/\d+\s*[-\u2013\u2014]\s*\d+|\d+/)?.[0] ?? result.band_range).trim()
+    : result?.band_range ?? null;
+  const risks = (Array.isArray(result?.risks) ? result.risks : [])
+    .filter((r: any) => !isRiskAboutMissingReflection(r))
+    .slice(0, 3)
+    .map((r: any) => ({
     title: typeof r === "string" ? r : r?.title || "",
     description: typeof r === "string" ? "" : softTruncate(String(r?.description || ""), 280),
   }));
   return {
     locked: true as const,
-    band_range: result?.band_range ?? null,
+    band_range: bandRange,
     max_score: result?.max_score ?? null,
     weakest_criterion: weakest,
     risks,
@@ -264,7 +306,8 @@ const essayRouter = router({
   rerunAnalysis: protectedProcedure
     .input(z.object({
       analysisId: z.number(),
-      essayText: z.string().min(200, "Please paste at least 200 words."),
+      essayText: z.string().min(300, "Paste at least 300 characters, roughly 50 words, or there is nothing to mark."),
+      reflections: z.string().max(8000).optional(),
       examSession: z.enum(["nov2026", "may2027"]).optional(),
     }))
     .mutation(async ({ ctx, input }) => {
@@ -274,7 +317,7 @@ const essayRouter = router({
       const rec: any = gate.record;
 
       const systemPrompt = buildEssaySystemPrompt(rec.essayType, rec.subject, input.examSession);
-      const userPrompt = buildEssayUserPrompt(rec.essayType, rec.subject, rec.researchQuestion || undefined, input.essayText, input.examSession);
+      const userPrompt = buildEssayUserPrompt(rec.essayType, rec.subject, rec.researchQuestion || undefined, input.essayText, input.examSession, input.reflections);
       const response = await invokeLLM({
         messages: [
           { role: "system", content: systemPrompt },
@@ -358,12 +401,14 @@ const essayRouter = router({
       try {
         const systemPrompt = buildUcasSystemPrompt(input.course, input.universityType);
         const userPrompt = buildUcasUserPrompt(input.course, answers, mechanics);
+        const startedAt = Date.now();
         const response = await invokeLLM({
           messages: [
             { role: "system", content: systemPrompt },
             { role: "user", content: userPrompt },
           ],
         });
+        console.log(`[Timing] LLM answered in ${((Date.now() - startedAt) / 1000).toFixed(1)}s`);
         const rawContent = response.choices?.[0]?.message?.content;
         const content = typeof rawContent === "string" ? rawContent : "";
         const jsonMatch = content.match(/\{[\s\S]*\}/);
@@ -392,6 +437,68 @@ const essayRouter = router({
       } catch (error: any) {
         console.error("[UCAS PS Review] Error:", error);
         throw new Error(error.message || "Review failed. Please try again.");
+      }
+    }),
+
+  /**
+   * Two free re-checks of the same work within 14 days, for someone who bought
+   * without an account. The authenticated path (rerunAnalysis) cannot serve them:
+   * their report is an anonymous row, not a row on a user.
+   */
+  rerunAnonymous: publicProcedure
+    .input(z.object({
+      fingerprint: z.string().min(1),
+      essayText: z.string().min(300).optional(),
+      reflections: z.string().max(8000).optional(),
+      examSession: z.enum(["nov2026", "may2027"]).optional(),
+      answers: z.object({ q1: z.string(), q2: z.string(), q3: z.string() }).optional(),
+    }))
+    .mutation(async ({ input }) => {
+      const gate = await consumeAnonymousRerun(input.fingerprint);
+      if (!gate.ok) throw new TRPCError({ code: "FORBIDDEN", message: gate.reason });
+      const rec: any = gate.record;
+
+      try {
+        let systemPrompt: string;
+        let userPrompt: string;
+        let mechanics: any = null;
+
+        if (rec.essayType === "UCAS") {
+          if (!input.answers) throw new Error("Paste your revised answers to re-check them.");
+          mechanics = checkUcasMechanics(input.answers);
+          const course = String(rec.subject || "your course");
+          systemPrompt = buildUcasSystemPrompt(course, "typical");
+          userPrompt = buildUcasUserPrompt(course, input.answers, mechanics);
+        } else {
+          if (!input.essayText) throw new Error("Paste your revised draft to re-check it.");
+          systemPrompt = buildEssaySystemPrompt(rec.essayType, rec.subject, input.examSession);
+          userPrompt = buildEssayUserPrompt(rec.essayType, rec.subject, rec.researchQuestion || undefined, input.essayText, input.examSession, input.reflections);
+        }
+
+        const startedAt = Date.now();
+        const response = await invokeLLM({
+          messages: [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: userPrompt },
+          ],
+        });
+        console.log(`[Timing] re-check answered in ${((Date.now() - startedAt) / 1000).toFixed(1)}s`);
+        const rawContent = response.choices?.[0]?.message?.content;
+        const content = typeof rawContent === "string" ? rawContent : "";
+        const jsonMatch = content.match(/\{[\s\S]*\}/);
+        if (!jsonMatch) throw new Error("Failed to parse AI response");
+        const result = JSON.parse(jsonMatch[0].replace(/,\s*([\]\}])/g, "$1"));
+        if (mechanics) {
+          result._mechanics = mechanics;
+          result._course = rec.subject;
+          result._format = "ucas_2026";
+        }
+
+        await updateAnonymousResult(rec.id, result, result?.predicted_score != null ? String(result.predicted_score) : undefined);
+        return { result, rerunsLeft: gate.rerunsLeft };
+      } catch (error: any) {
+        console.error("[Re-check] Error:", error);
+        throw new Error(error.message || "Re-check failed. Please try again.");
       }
     }),
 
@@ -433,7 +540,8 @@ const essayRouter = router({
       essayType: z.enum(ESSAY_TYPES),
       subject: z.string().min(1),
       researchQuestion: z.string().optional(),
-      essayText: z.string().min(300, "Please provide at least 200 words for meaningful analysis."),
+      essayText: z.string().min(300, "Paste at least 300 characters, roughly 50 words, or there is nothing to mark."),
+      reflections: z.string().max(8000).optional(),
       clientFingerprint: z.string().min(1),
       examSession: z.enum(["nov2026", "may2027"]).optional(),
     }))
@@ -448,9 +556,10 @@ const essayRouter = router({
       }
 
       const systemPrompt = buildEssaySystemPrompt(input.essayType, input.subject, input.examSession);
-      const userPrompt = buildEssayUserPrompt(input.essayType, input.subject, input.researchQuestion, input.essayText, input.examSession);
+      const userPrompt = buildEssayUserPrompt(input.essayType, input.subject, input.researchQuestion, input.essayText, input.examSession, input.reflections);
 
       try {
+        const startedAt = Date.now();
         const response = await invokeLLM({
           messages: [
             { role: "system", content: systemPrompt },
@@ -458,6 +567,7 @@ const essayRouter = router({
           ],
         });
 
+        console.log(`[Timing] LLM answered in ${((Date.now() - startedAt) / 1000).toFixed(1)}s`);
         const rawContent = response.choices?.[0]?.message?.content;
         const content = typeof rawContent === "string" ? rawContent : "";
         const jsonMatch = content.match(/\{[\s\S]*\}/);
@@ -505,7 +615,8 @@ const essayRouter = router({
       essayType: z.enum(ESSAY_TYPES),
       subject: z.string().min(1),
       researchQuestion: z.string().optional(),
-      essayText: z.string().min(300, "Please provide at least 200 words for meaningful analysis."),
+      essayText: z.string().min(300, "Paste at least 300 characters, roughly 50 words, or there is nothing to mark."),
+      reflections: z.string().max(8000).optional(),
       examSession: z.enum(["nov2026", "may2027"]).optional(),
     }))
     .mutation(async ({ ctx, input }) => {
@@ -515,9 +626,10 @@ const essayRouter = router({
       }
 
       const systemPrompt = buildEssaySystemPrompt(input.essayType, input.subject, input.examSession);
-      const userPrompt = buildEssayUserPrompt(input.essayType, input.subject, input.researchQuestion, input.essayText, input.examSession);
+      const userPrompt = buildEssayUserPrompt(input.essayType, input.subject, input.researchQuestion, input.essayText, input.examSession, input.reflections);
 
       try {
+        const startedAt = Date.now();
         const response = await invokeLLM({
           messages: [
             { role: "system", content: systemPrompt },
@@ -525,6 +637,7 @@ const essayRouter = router({
           ],
         });
 
+        console.log(`[Timing] LLM answered in ${((Date.now() - startedAt) / 1000).toFixed(1)}s`);
         const rawContent = response.choices?.[0]?.message?.content;
         const content = typeof rawContent === "string" ? rawContent : "";
         const jsonMatch = content.match(/\{[\s\S]*\}/);
@@ -620,6 +733,7 @@ Respond with this exact JSON structure:
 }`;
 
       try {
+        const startedAt = Date.now();
         const response = await invokeLLM({
           messages: [
             { role: "system", content: systemPrompt },
@@ -627,6 +741,7 @@ Respond with this exact JSON structure:
           ],
         });
 
+        console.log(`[Timing] LLM answered in ${((Date.now() - startedAt) / 1000).toFixed(1)}s`);
         const rawContent = response.choices?.[0]?.message?.content;
         const content = typeof rawContent === "string" ? rawContent : "";
         const jsonMatch = content.match(/\{[\s\S]*\}/);
@@ -724,6 +839,8 @@ const paymentRouter = router({
       email: z.string().email("Please enter a valid email address"),
       /** Device the locked report sits on, so the payment can open it without an account. */
       fingerprint: z.string().min(1).optional(),
+      /** Page to return to after paying. */
+      returnTo: z.enum(["essay", "ucas-personal-statement"]).optional(),
     }))
     .mutation(async ({ input }) => {
       if (input.productKey === "UNIVERSITY_SINGLE") {
@@ -767,6 +884,7 @@ const paymentRouter = router({
         sku,
         product.priceAmount,
         input.productKey === "ESSAY_SINGLE" ? input.fingerprint : undefined,
+        input.returnTo,
       );
 
       return { checkoutUrl, orderId };

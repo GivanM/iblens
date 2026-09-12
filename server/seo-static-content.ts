@@ -77,11 +77,11 @@ export const staticContent: Record<string, string> = {
   <h2 style="font-size:22px;font-weight:700;margin:28px 0 12px">How the IB essay grader works</h2>
   <ol style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:24px">
     <li>Paste your essay and select your subject and essay type.</li>
-    <li>The AI evaluates every official IB criterion in about 60 seconds.</li>
+    <li>The AI evaluates every official IB criterion in about 90 seconds.</li>
     <li>You get a predicted score, per-criterion feedback, and specific fixes.</li>
   </ol>
   <h2 style="font-size:22px;font-weight:700;margin:28px 0 12px">Why IB students use IBLens</h2>
-  <p style="color:#374151;line-height:1.7;margin-bottom:20px">IB tutors charge $50–150 per hour. A single IBLens analysis costs $9.99 and takes 60 seconds — with feedback based on the official IB marking criteria, available 24/7. Your first essay is graded free.</p>
+  <p style="color:#374151;line-height:1.7;margin-bottom:20px">IB tutors charge $50–150 per hour. A single IBLens analysis costs $9.99 and takes about 90 seconds, with feedback based on the official IB marking criteria, available 24/7. Your first essay is graded free.</p>
   <p style="line-height:2"><a href="/essay">Grade my IB essay free →</a> &nbsp;·&nbsp; <a href="/pricing">See pricing</a> &nbsp;·&nbsp; <a href="/resources">Free IB study guides</a></p>
 
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Applying to UK universities through UCAS?</h2>
@@ -1147,7 +1147,7 @@ export const staticContent: Record<string, string> = {
       </p>
 
       <p>
-        IBLens is an AI-powered IB IA grader that reads your Internal Assessment against the official IB rubric for your subject and gives you a criterion-by-criterion score, the specific marks you are losing, and exactly what to fix. It takes 60 seconds and the first analysis is free.
+        IBLens is an AI-powered IB IA grader that reads your Internal Assessment against the official IB rubric for your subject and gives you a criterion-by-criterion score, the specific marks you are losing, and exactly what to fix. It takes about 90 seconds and the first analysis is free.
       </p>
 
       <p>
@@ -1645,7 +1645,7 @@ export const staticContent: Record<string, string> = {
       </p>
 
       <p>
-        Get instant AI feedback on your IA: <a href="/essay/biology-ia">Biology IA</a>, <a href="/essay/chemistry-ia">Chemistry IA</a>, <a href="/essay/physics-ia">Physics IA</a>, <a href="/essay/economics-ia">Economics IA</a>, <a href="/essay/history-ia">History IA</a>, <a href="/essay/business-management-ia">Business Management IA</a>, <a href="/essay/math-ia">Mathematics IA</a>, or <a href="/essay/psychology-ia">Psychology IA</a> — each graded against the official IB rubric in about a minute.
+        Get AI feedback in about 90 seconds on your IA: <a href="/essay/biology-ia">Biology IA</a>, <a href="/essay/chemistry-ia">Chemistry IA</a>, <a href="/essay/physics-ia">Physics IA</a>, <a href="/essay/economics-ia">Economics IA</a>, <a href="/essay/history-ia">History IA</a>, <a href="/essay/business-management-ia">Business Management IA</a>, <a href="/essay/math-ia">Mathematics IA</a>, or <a href="/essay/psychology-ia">Psychology IA</a> — each graded against the official IB rubric in about a minute.
       </p>
     
   

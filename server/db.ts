@@ -663,7 +663,45 @@ export async function getLatestAnonymousEssay(fingerprint: string) {
 export async function setAnonymousUnlocked(id: number) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
-  await db.update(anonymousAnalyses).set({ unlocked: true }).where(eq(anonymousAnalyses.id, id));
+  await db.update(anonymousAnalyses)
+    .set({ unlocked: true, unlockedAt: new Date() })
+    .where(eq(anonymousAnalyses.id, id));
+}
+
+/**
+ * A purchase includes two re-checks of the same work within 14 days. Guests buy
+ * without an account, so the window and the counter live on the anonymous row.
+ * Returns the record to re-run, or the reason it cannot be re-run.
+ */
+export async function consumeAnonymousRerun(fingerprint: string) {
+  const db = await getDb();
+  if (!db) return { ok: false as const, reason: "Database not available" };
+  const rows = await db.select().from(anonymousAnalyses)
+    .where(eq(anonymousAnalyses.fingerprint, fingerprint))
+    .orderBy(desc(anonymousAnalyses.createdAt)).limit(1);
+  const rec: any = rows[0];
+  if (!rec || !rec.resultJson) return { ok: false as const, reason: "No report found for this device." };
+  if (!rec.unlocked) return { ok: false as const, reason: "This report is not unlocked." };
+  const started = rec.unlockedAt ? new Date(rec.unlockedAt).getTime() : new Date(rec.createdAt).getTime();
+  if ((Date.now() - started) / 86400000 > 14) {
+    return { ok: false as const, reason: "Your 14-day re-check window for this draft has ended." };
+  }
+  if ((rec.rerunsUsed ?? 0) >= 2) {
+    return { ok: false as const, reason: "You have used both re-checks for this draft." };
+  }
+  await db.update(anonymousAnalyses)
+    .set({ rerunsUsed: (rec.rerunsUsed ?? 0) + 1 })
+    .where(eq(anonymousAnalyses.id, rec.id));
+  return { ok: true as const, record: rec, rerunsLeft: 1 - (rec.rerunsUsed ?? 0) };
+}
+
+/** Replace the stored report after a re-check. */
+export async function updateAnonymousResult(id: number, resultJson: any, predictedGrade?: string | null) {
+  const db = await getDb();
+  if (!db) return;
+  await db.update(anonymousAnalyses)
+    .set({ resultJson, ...(predictedGrade !== undefined ? { predictedGrade } : {}) })
+    .where(eq(anonymousAnalyses.id, id));
 }
 
 /** Paid unlock starts the free re-run window (14 days, 2 re-runs of the same draft). */

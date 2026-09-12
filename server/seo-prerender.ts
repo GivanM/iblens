@@ -81,13 +81,13 @@ const routeMeta: Record<string, PageMeta> = {
     schemaType: "Article",
     faq: [
       { question: "Is it against IB rules to get AI feedback on my essay?", answer: "The IB integrity policy targets submitting work that is not your own. Feedback on writing you produced yourself — like a supervisor or tutor gives — is study support. Your school may have stricter rules, so check with your coordinator, and never paste AI-generated text into your submission." },
-      { question: "Does IBLens store my essay or train AI on it?", answer: "No. Essays are graded and returned — they are not used to train models, not shared or published, and anonymous analyses are not stored permanently. You can request deletion at any time." },
+      { question: "Does IBLens store my essay or train AI on it?", answer: "No. Essays are graded and returned — they are not used to train models, not shared or published, and the essay text is never stored and unpurchased anonymous reports are deleted after 90 days. You can request deletion at any time." },
       { question: "Will Turnitin flag me for using AI feedback?", answer: "No. Reading feedback about your essay adds nothing to any similarity database. What gets flagged is AI-generated prose inside your submission — which is why IBLens returns feedback, never rewritten text." },
     ],
   },
 
   "/": {
-    title: "Free IB Essay Grader 2026 \u2014 Instant AI Feedback on IA, EE & TOK | IBLens",
+    title: "Free IB Essay Grader 2026 \u2014 AI Feedback on IA, EE & TOK | IBLens",
     description: "Get AI-powered feedback on your IB essay in about a minute. Criterion-by-criterion scores, predicted band, risk areas, and actionable improvements. First analysis free \u2014 no account needed.",
     ogType: "website",
     canonical: "/",
@@ -107,7 +107,7 @@ const routeMeta: Record<string, PageMeta> = {
     ],
   },
   "/grade": {
-    title: "Free IB Essay Grader \u2014 Grade My IB Essay in 60 Seconds | IBLens",
+    title: "Free IB Essay Grader \u2014 Grade My IB Essay in About 90 Seconds | IBLens",
     description: "Paste your IB essay and get a predicted grade in about a minute. AI feedback on every criterion \u2014 Extended Essay, IA, or TOK. No account, no credit card required.",
     ogType: "website",
     canonical: "/grade",
@@ -130,7 +130,7 @@ const routeMeta: Record<string, PageMeta> = {
       { question: "How much does IBLens cost?", answer: "Your first analysis is free. The full report costs $9.99, a pack of 5 is $24.99, and a pack of 10 is $44.99. There is no subscription \u2014 you pay only for what you use." },
       { question: "Is there a money-back guarantee?", answer: "Yes. IBLens offers a 7-day no-questions-asked money-back guarantee on all purchases. Email glushkovim@gmail.com within 7 days and you will receive a full refund to your original payment method." },
       { question: "Do credits expire?", answer: "No. Analysis credits do not expire. You can buy a pack now and use the analyses whenever you need them \u2014 for your IA, Extended Essay, or TOK essay." },
-      { question: "How does IBLens compare to an IB tutor?", answer: "IB tutors charge $50\u2013150 per hour. A single IBLens analysis costs $9.99 and takes 60 seconds. IBLens gives you criterion-by-criterion feedback against the official IB rubric, a predicted score, and specific improvement suggestions \u2014 available 24/7." },
+      { question: "How does IBLens compare to an IB tutor?", answer: "IB tutors charge $50\u2013150 per hour. A single IBLens analysis costs $9.99 and takes about 90 seconds. IBLens gives you criterion-by-criterion feedback against the official IB rubric, a predicted score, and specific improvement suggestions \u2014 available 24/7." },
     ],
   },
   "/refund-policy": {
@@ -483,7 +483,7 @@ const routeMeta: Record<string, PageMeta> = {
   // Programmatic subject pages
   "/essay/business-management-ia": {
     title: "IB Business Management IA Grader \u2014 Free AI Feedback | IBLens",
-    description: "Get instant AI feedback on your IB Business Management Internal Assessment. Criterion-by-criterion scoring against the official IB rubric. First analysis free \u2014 no account needed.",
+    description: "Get AI feedback in about 90 seconds on your IB Business Management Internal Assessment. Criterion-by-criterion scoring against the official IB rubric. First analysis free \u2014 no account needed.",
     ogType: "website",
     canonical: "/essay/business-management-ia",
     schemaType: "WebPage",
@@ -504,7 +504,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/essay/biology-ia": {
     title: "IB Biology IA Grader \u2014 Free AI Feedback on Lab Report | IBLens",
-    description: "Instant AI feedback on your IB Biology Internal Assessment. Exploration, analysis, evaluation, and communication scored against official IB criteria. Free.",
+    description: "AI feedback in about 90 seconds on your IB Biology Internal Assessment. Exploration, analysis, evaluation, and communication scored against official IB criteria. Free.",
     ogType: "website",
     canonical: "/essay/biology-ia",
     schemaType: "WebPage",
@@ -525,7 +525,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/essay/math-ia": {
     title: "IB Math IA Grader \u2014 Free AI Feedback on Exploration | IBLens",
-    description: "Get instant AI feedback on your IB Mathematics IA exploration. Communication, mathematical presentation, personal engagement \u2014 all scored against official IB Math criteria.",
+    description: "Get AI feedback in about 90 seconds on your IB Mathematics IA exploration. Communication, mathematical presentation, personal engagement \u2014 all scored against official IB Math criteria.",
     ogType: "website",
     canonical: "/essay/math-ia",
     schemaType: "WebPage",

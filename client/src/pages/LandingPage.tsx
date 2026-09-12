@@ -60,7 +60,7 @@ export default function LandingPage() {
   return (
     <>
       <SEOHead
-        title="Free IB Essay Grader — Grade My IB Essay in 60 Seconds | IBLens"
+        title="Free IB Essay Grader — Grade My IB Essay in About 90 Seconds | IBLens"
         description="Grade your IB Extended Essay, IA, or TOK essay instantly. AI-powered IB essay grader gives criterion-by-criterion feedback and predicted band in about a minute. Free."
         canonical="/grade"
       />
@@ -90,7 +90,7 @@ export default function LandingPage() {
               ✓ First analysis free — no account, no credit card
             </div>
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-5 leading-tight">
-              Grade Your IB Essay<br />in 60 Seconds
+              Grade Your IB Essay<br />in About 90 Seconds
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">
               Paste your IA, Extended Essay, or TOK. Get a criterion-by-criterion score, the exact marks you're losing, and how to fix them — free, instantly.
@@ -232,7 +232,7 @@ export default function LandingPage() {
               />
               <FAQItem
                 question="Is my essay private?"
-                answer="Your essay is sent to our AI provider over an encrypted connection to generate your analysis. We do not use it to train any model or sell it. Anonymous analyses are not stored permanently."
+                answer="Your essay is sent to our AI provider over an encrypted connection to generate your analysis. We do not use it to train any model or sell it. The essay text is never stored, and an anonymous report you did not buy is deleted after 90 days."
               />
             </div>
           </div>

@@ -6,7 +6,7 @@ const config: SubjectConfig = {
   keyword: "IB Business Management IA",
   metaTitle: "IB Business Management IA Grader — Free AI Feedback | IBLens",
   metaDescription:
-    "Get instant AI feedback on your IB Business Management Internal Assessment. Criterion-by-criterion scoring against official IB rubric. First analysis free.",
+    "Get AI feedback in about 90 seconds on your IB Business Management Internal Assessment. Criterion-by-criterion scoring against official IB rubric. First analysis free.",
   canonicalPath: "/essay/business-management-ia",
   heroHeadline: "Is your Business Management IA scoring where you think it is?",
   heroSubline:

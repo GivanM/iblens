@@ -108,7 +108,7 @@ export default function Pricing() {
           <p className="text-sm text-muted-foreground mt-2">No subscription. Credits stay on your account and we do not expire them. No ads.</p>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             No subscriptions. No hidden fees. Pay only for what you use.
-            Your first essay analysis is always free.
+            Your first essay analysis is free, one per device or account.
           </p>
         </div>
 
@@ -198,7 +198,7 @@ export default function Pricing() {
           </div>
           <div className="flex items-center gap-1.5">
             <CreditCard className="w-4 h-4" />
-            <span>Instant credit activation</span>
+            <span>Credits activate as soon as the payment clears</span>
           </div>
         </div>
 

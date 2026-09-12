@@ -60,7 +60,7 @@ export const staticContentResources: Record<string, string> = {
   "/resources/how-iblens-works": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › How IBLens Works</nav>
       <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">How IBLens Works</h1>
-      <p style="color:#374151;line-height:1.75;margin-bottom:16px">IBLens is an AI-powered essay analysis tool designed specifically for IB Diploma Programme students. It provides criterion-by-criterion feedback on Internal Assessments, Extended Essays, and Theory of Knowledge essays — the same type of detailed assessment that an experienced IB examiner would provide, delivered in approximately 60 seconds.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">IBLens is an AI-powered essay analysis tool designed specifically for IB Diploma Programme students. It provides criterion-by-criterion feedback on Internal Assessments, Extended Essays, and Theory of Knowledge essays — the same type of detailed assessment that an experienced IB examiner would provide, delivered in about 90 seconds.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">This page explains exactly how IBLens works: what happens when you paste an essay, how the AI generates its feedback, what the output looks like, what the tool can and cannot do, and how it compares to alternatives like private tutors or peer review. We believe in transparency about our technology so you can make an informed decision about whether it is useful for your preparation.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">When you paste an essay to IBLens, the system performs a comprehensive analysis that includes a predicted band, criterion-level comments, and prioritised next steps.</p>
       <p style="margin-top:20px"><a href="/essay" style="color:#7B1D2E;font-weight:600">Grade your IB essay free →</a></p>
@@ -83,8 +83,8 @@ export const staticContentResources: Record<string, string> = {
     </main>`,
 
   "/grade": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › Grade Your IB Essay in 60 Seconds</nav>
-      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">Grade Your IB Essay in 60 Seconds</h1>
+  <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › Grade Your IB Essay in About 90 Seconds</nav>
+      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">Grade Your IB Essay in About 90 Seconds</h1>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">Paste your IB essay and get a predicted grade in about a minute. AI feedback on every criterion \u2014 Extended Essay, IA, or TOK. No account, no credit card required.</p>
       <p style="margin-top:20px"><a href="/essay" style="color:#7B1D2E;font-weight:600">Grade your IB essay free →</a></p>
     </main>`,
@@ -404,7 +404,7 @@ export const staticContentResources: Record<string, string> = {
       </p>
 
       <p>
-        IBLens is an AI-powered IB IA grader that reads your Internal Assessment against the official IB rubric for your subject and gives you a criterion-by-criterion score, the specific marks you are losing, and exactly what to fix. It takes 60 seconds and the first analysis is free.
+        IBLens is an AI-powered IB IA grader that reads your Internal Assessment against the official IB rubric for your subject and gives you a criterion-by-criterion score, the specific marks you are losing, and exactly what to fix. It takes about 90 seconds and the first analysis is free.
       </p>
 
       <p>
@@ -1081,7 +1081,7 @@ export const staticContentResources: Record<string, string> = {
       </p>
 
       <p>
-        Get instant AI feedback on your IA: <a href="/essay/biology-ia">Biology IA</a>, <a href="/essay/chemistry-ia">Chemistry IA</a>, <a href="/essay/physics-ia">Physics IA</a>, <a href="/essay/economics-ia">Economics IA</a>, <a href="/essay/history-ia">History IA</a>, <a href="/essay/business-management-ia">Business Management IA</a>, <a href="/essay/math-ia">Mathematics IA</a>, or <a href="/essay/psychology-ia">Psychology IA</a> — each graded against the official IB rubric in about a minute.
+        Get AI feedback in about 90 seconds on your IA: <a href="/essay/biology-ia">Biology IA</a>, <a href="/essay/chemistry-ia">Chemistry IA</a>, <a href="/essay/physics-ia">Physics IA</a>, <a href="/essay/economics-ia">Economics IA</a>, <a href="/essay/history-ia">History IA</a>, <a href="/essay/business-management-ia">Business Management IA</a>, <a href="/essay/math-ia">Mathematics IA</a>, or <a href="/essay/psychology-ia">Psychology IA</a> — each graded against the official IB rubric in about a minute.
       </p>
     
   

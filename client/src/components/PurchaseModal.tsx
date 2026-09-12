@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { CreditCard, Loader2, Shield, Mail } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
+import { getAnonFingerprint } from "@/lib/fingerprint";
 import { PRICE_LABELS, PRICES, type ProductKey } from "@shared/pricing";
 import { trackBeginCheckout, trackViewItem } from "@/lib/analytics/track";
 import type { ProductSlug } from "@/lib/analytics/config";
@@ -86,13 +87,11 @@ export function PurchaseModal({ open, onOpenChange, sku }: PurchaseModalProps) {
       trackBeginCheckout(SKU_TO_SLUG[sku], PRICES[sku] / 100, "lemonsqueezy");
       // The device id travels with the payment so the webhook can open the report
       // this guest just ran. Without it they would pay and stay locked out.
-      let fingerprint: string | undefined;
-      try {
-        fingerprint = localStorage.getItem("iblens_anon_fp") || undefined;
-      } catch {
-        fingerprint = undefined;
-      }
-      createGuestCheckout.mutate({ productKey: sku, email: trimmedEmail, fingerprint });
+      const fingerprint = getAnonFingerprint();
+      const returnTo = typeof window !== "undefined" && window.location.pathname.startsWith("/ucas")
+        ? ("ucas-personal-statement" as const)
+        : ("essay" as const);
+      createGuestCheckout.mutate({ productKey: sku, email: trimmedEmail, fingerprint, returnTo });
       return;
     }
 

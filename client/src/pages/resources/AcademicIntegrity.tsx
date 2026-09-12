@@ -51,7 +51,7 @@ export default function AcademicIntegrity() {
       <ul>
         <li><strong>We do not train models on your essays.</strong> Your text is sent to the grading model, scored, and returned. It does not become training data.</li>
         <li><strong>We do not share, sell or publish your essay.</strong> No exemplar library built from user submissions, no reselling, no indexing.</li>
-        <li><strong>Anonymous analyses are not stored permanently.</strong> Signed-in users keep their history in their dashboard; you can request full deletion at any time.</li>
+        <li><strong>The essay text is never stored, and an anonymous report you did not buy is deleted after 90 days.</strong> Signed-in users keep their history in their dashboard; you can request full deletion at any time.</li>
         <li><strong>Nothing goes into plagiarism databases.</strong> IBLens does not feed Turnitin or any similarity database. Getting feedback here does not create a record that later flags your submission.</li>
       </ul>
 

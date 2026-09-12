@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { useEffect, useState } from "react";
 import { trpc } from "@/lib/trpc";
+import { getAnonFingerprint } from "@/lib/fingerprint";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { SEOHead } from "@/components/SEOHead";
@@ -45,12 +46,7 @@ function RemarkQuickCheck() {
   const [result, setResult] = useState<any>(null);
   const [reportEmail, setReportEmail] = useState("");
   const [emailSaved, setEmailSaved] = useState(false);
-  const [fp] = useState(() => {
-    const key = "iblens_anon_fp";
-    let v = localStorage.getItem(key);
-    if (!v) { v = crypto.randomUUID(); localStorage.setItem(key, v); }
-    return v;
-  });
+  const [fp] = useState(getAnonFingerprint);
 
   const saveEmail = trpc.essay.saveReportEmail.useMutation({ onSuccess: () => setEmailSaved(true) });
   const analyze = trpc.essay.analyzeAnonymous.useMutation({

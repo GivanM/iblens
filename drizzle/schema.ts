@@ -104,15 +104,19 @@ export type InsertAnalysis = typeof analyses.$inferInsert;
 // Anonymous analysis tracking (for users who haven't logged in)
 export const anonymousAnalyses = mysqlTable("anonymous_analyses", {
   id: int("id").autoincrement().primaryKey(),
-  fingerprint: varchar("fingerprint", { length: 64 }).notNull(), // hash of IP + user-agent
+  fingerprint: varchar("fingerprint", { length: 64 }).notNull(), // device id generated in the browser and kept in localStorage
   type: mysqlEnum("type", ["essay", "university"]).notNull(),
   essayType: varchar("essayType", { length: 10 }),
   subject: varchar("subject", { length: 100 }),
   researchQuestion: text("researchQuestion"),
   resultJson: json("resultJson"),
   predictedGrade: varchar("predictedGrade", { length: 20 }),
-    unlocked: boolean("unlocked").notNull().default(false),
-createdAt: timestamp("createdAt").defaultNow().notNull(),
+  unlocked: boolean("unlocked").notNull().default(false),
+  // A purchase includes two re-checks within 14 days. Guests buy without an account,
+  // so the counter has to live on the anonymous row, not on a user.
+  unlockedAt: timestamp("unlockedAt"),
+  rerunsUsed: int("rerunsUsed").notNull().default(0),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
 
 export type Payment = typeof payments.$inferSelect;
