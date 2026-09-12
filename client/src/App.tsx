@@ -38,6 +38,7 @@ import TokEssayFormat from "./pages/resources/TokEssayFormat";
 import EENewCriteria2027 from "./pages/resources/EENewCriteria2027";
 import TokEssayChecklist from "./pages/resources/TokEssayChecklist";
 import About from "./pages/About";
+import UcasPersonalStatement from "./pages/UcasPersonalStatement";
 import AnalysisView from "./pages/AnalysisView";
 import RPF2027 from "./pages/resources/RPF2027";
 import PsychologyIA2027 from "./pages/resources/PsychologyIA2027";
@@ -135,6 +136,7 @@ function Router() {
       <Route path="/resources/ib-extended-essay-new-criteria-2027" component={EENewCriteria2027} />
       <Route path="/resources/tok-essay-checklist" component={TokEssayChecklist} />
       <Route path="/about" component={About} />
+      <Route path="/ucas-personal-statement" component={UcasPersonalStatement} />
       <Route path="/dashboard/analysis/:id" component={AnalysisView} />
       <Route path="/resources/ib-rpf-extended-essay-2027" component={RPF2027} />
       <Route path="/resources/ib-psychology-ia-2027" component={PsychologyIA2027} />

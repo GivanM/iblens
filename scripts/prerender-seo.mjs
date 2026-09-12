@@ -312,6 +312,12 @@ const routeMeta = {
     ogType: "article",
     schemaType: "Article",
   },
+  "/ucas-personal-statement": {
+    title: "UCAS Personal Statement Checker — New Three-Question Format 2026 | IBLens",
+    description: "Check your UCAS personal statement against the format used from 2026 entry: three questions, 4,000 characters, 350 minimum per answer. Evidence-based feedback on each answer from an admissions-tutor perspective. Free preview, no account.",
+    ogType: "article",
+    schemaType: "Article",
+  },
   "/resources/tok-essay-format": {
     title: "IB TOK Essay Format — Word Count, Structure & Formatting Rules | IBLens",
     description: "Official IB TOK essay format: 1,600-word limit, introduction and body structure, citation requirements, what counts towards the word count, and examiner formatting expectations.",

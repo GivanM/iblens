@@ -27,6 +27,7 @@ import {
   markAnalysisUnlocked,
   consumeAnalysisRerun,
 } from "./db";
+import { checkUcasMechanics, buildUcasSystemPrompt, buildUcasUserPrompt, UCAS_TOTAL_CHAR_LIMIT, UCAS_MIN_CHARS_PER_ANSWER } from "../shared/ucas";
 import { createLemonsqueezyCheckout } from "./lemonsqueezy/lemonsqueezy";
 import { LEMONSQUEEZY_VARIANTS, PRODUCT_KEY_TO_LS_SKU } from "../shared/pricing";
 import { randomUUID } from "crypto";
@@ -140,6 +141,32 @@ function softTruncate(text: string, limit: number): string {
   return window.replace(/\s+\S*$/, "") + "\u2026";
 }
 
+/**
+ * Free preview for a personal statement. The character arithmetic is given away in full — it is
+ * factual, the applicant can verify it in the UCAS form anyway, and withholding it would just look
+ * mean. What stays behind the unlock is the reading: two of the three answers and the statement-level
+ * issues.
+ */
+function buildUcasTeaser(result: any) {
+  const answers: any[] = Array.isArray(result?.answers) ? result.answers : [];
+  const rank: Record<string, number> = { weak: 0, adequate: 1, strong: 2 };
+  const sorted = [...answers].sort((a, b) => (rank[a?.status] ?? 1) - (rank[b?.status] ?? 1));
+  const sample = sorted[0] || null;
+  return {
+    locked: true as const,
+    format: "ucas_2026" as const,
+    verdict: result?.verdict ?? null,
+    verdict_reason: result?.verdict_reason ?? null,
+    mechanics: result?._mechanics ?? null,
+    course: result?._course ?? null,
+    sample_answer: sample,
+    other_answers: answers
+      .filter((a) => a?.id !== sample?.id)
+      .map((a) => ({ id: a?.id, status: a?.status })),
+    statement_level_count: Array.isArray(result?.statement_level) ? result.statement_level.length : 0,
+  };
+}
+
 function buildTeaser(result: any) {
   const criteria: any[] = Array.isArray(result?.criteria) ? result.criteria : [];
   const scored = criteria.filter((c) => typeof c?.score === "number" && c?.max > 0);
@@ -198,7 +225,7 @@ const essayRouter = router({
     }))
     .mutation(async ({ ctx, input }) => {
       if (input.analysisId) {
-        const rec = await getAnalysisById(input.analysisId);
+        const rec = await getAnalysisById(input.analysisId, ctx.user.id);
         if (!rec || rec.userId !== ctx.user.id || !rec.resultJson) throw new Error("Report not found");
         if (!(rec as any).unlocked) {
           await consumePaidEssayCredit(ctx.user.id);
@@ -247,8 +274,17 @@ const essayRouter = router({
 
       const systemPrompt = buildEssaySystemPrompt(rec.essayType, rec.subject, input.examSession);
       const userPrompt = buildEssayUserPrompt(rec.essayType, rec.subject, rec.researchQuestion || undefined, input.essayText, input.examSession);
-      const raw = await invokeLLM(systemPrompt, userPrompt);
-      const result = extractJson(raw);
+      const response = await invokeLLM({
+        messages: [
+          { role: "system", content: systemPrompt },
+          { role: "user", content: userPrompt },
+        ],
+      });
+      const rawContent = response.choices?.[0]?.message?.content;
+      const content = typeof rawContent === "string" ? rawContent : "";
+      const jsonMatch = content.match(/\{[\s\S]*\}/);
+      if (!jsonMatch) throw new Error("Failed to parse AI response");
+      const result = JSON.parse(jsonMatch[0].replace(/,\s*([\]\}])/g, "$1"));
       const rubric = getRubric(rec.essayType, rec.subject, input.examSession);
       if (rubric) {
         result._rubricAvailable = true;
@@ -268,6 +304,73 @@ const essayRouter = router({
       });
 
       return { id: analysis.id, result, rerunsLeft: gate.rerunsLeft };
+    }),
+
+  /**
+   * UCAS personal statement review (2026 entry format). Kept separate from the IB graders because
+   * UCAS publishes no mark scheme: there is no score here, only evidence-based feedback, and the
+   * character arithmetic is done in code rather than by the model.
+   */
+  analyzeUcasAnonymous: publicProcedure
+    .input(z.object({
+      course: z.string().min(2, "Tell us which course you are applying for.").max(120),
+      universityType: z.enum(["typical", "competitive"]).default("typical"),
+      q1: z.string().default(""),
+      q2: z.string().default(""),
+      q3: z.string().default(""),
+      clientFingerprint: z.string().min(1),
+    }))
+    .mutation(async ({ input }) => {
+      const answers = { q1: input.q1, q2: input.q2, q3: input.q3 };
+      const mechanics = checkUcasMechanics(answers);
+
+      if (mechanics.totalChars < 200) {
+        throw new Error("Please paste your draft answers first — there is not enough text to review.");
+      }
+      if (mechanics.totalChars > UCAS_TOTAL_CHAR_LIMIT + 2000) {
+        throw new Error(`Your answers total ${mechanics.totalChars} characters. UCAS allows ${UCAS_TOTAL_CHAR_LIMIT}; trim the draft before reviewing it.`);
+      }
+
+      const fingerprint = input.clientFingerprint;
+      const usage = await canAnonymousAnalyze(fingerprint);
+      if (!usage.allowed) {
+        throw new Error(usage.reason || "You have used your free review from this device. A full review is $9.99.");
+      }
+
+      try {
+        const systemPrompt = buildUcasSystemPrompt(input.course, input.universityType);
+        const userPrompt = buildUcasUserPrompt(input.course, answers, mechanics);
+        const response = await invokeLLM({
+          messages: [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: userPrompt },
+          ],
+        });
+        const rawContent = response.choices?.[0]?.message?.content;
+        const content = typeof rawContent === "string" ? rawContent : "";
+        const jsonMatch = content.match(/\{[\s\S]*\}/);
+        if (!jsonMatch) throw new Error("Failed to parse AI response");
+        const result = JSON.parse(jsonMatch[0].replace(/,\s*([\]\}])/g, "$1"));
+
+        result._mechanics = mechanics;
+        result._course = input.course;
+        result._format = "ucas_2026";
+
+        await createAnonymousAnalysis({
+          fingerprint,
+          type: "essay",
+          essayType: "UCAS",
+          subject: input.course.slice(0, 100),
+          researchQuestion: null,
+          resultJson: result,
+          predictedGrade: null,
+        });
+
+        return { result: buildUcasTeaser(result), wasAnonymous: true };
+      } catch (error: any) {
+        console.error("[UCAS PS Review] Error:", error);
+        throw new Error(error.message || "Review failed. Please try again.");
+      }
     }),
 
   lockedReport: publicProcedure

@@ -751,6 +751,28 @@ export const staticContent: Record<string, string> = {
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
   </main>`),
 
+  "/ucas-personal-statement": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
+  <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">UCAS Personal Statement Checker — the three-question format from 2026 entry</h1>
+  <p style="line-height:1.7;margin:0 0 14px">From 2026 entry the UCAS personal statement is no longer one free-form essay. It is three separate questions sharing a single 4,000-character budget (including spaces), with a minimum of 350 characters per answer. You can split the 4,000 characters across the three answers however you like, and admissions staff still read the three answers as one statement.</p>
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">The three questions, as they appear in the application</h2>
+  <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px">
+  <li><strong>1. Why do you want to study this course or subject?</strong></li>
+  <li><strong>2. How have your qualifications and studies helped you to prepare for this course or subject?</strong></li>
+  <li><strong>3. What else have you done to prepare outside of education, and why are these experiences useful?</strong></li></ul>
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">What admissions tutors are looking for</h2>
+  <p style="line-height:1.7;margin:0 0 14px">UCAS states that tutors want evidence that you are passionate and knowledgeable about the subject, and that you have the relevant skills, experiences and potential to be a great student. In practice that means specific evidence tied to the course rather than general enthusiasm, and reflection on what an experience taught you rather than a list of what you did.</p>
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Rules worth checking your draft against</h2>
+  <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px">
+  <li>The three answers are read as one statement — do not repeat the same evidence across them.</li>
+  <li>Each answer needs at least 350 characters; the three together must stay within 4,000.</li>
+  <li>Do not exaggerate: you may be asked to elaborate at interview.</li>
+  <li>Avoid quotations from other people and cliches.</li>
+  <li>Do not post your statement online — UCAS checks submitted statements for similarity against previously submitted work and published samples.</li>
+  <li>Submitting AI-generated text as your own can be treated as cheating by universities; you declare that the statement is your own work.</li></ul>
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">There is no mark scheme, and no honest tool will give you a score</h2>
+  <p style="line-height:1.7;margin:0 0 14px">UCAS publishes no rubric and no points for the personal statement, so any tool that returns a score or an admission probability is inventing it. What can be checked is concrete: whether each answer meets the character rules, whether the evidence is specific to the course, whether claims are supported, and whether the three answers repeat each other.</p>
+  <p style="line-height:1.7;margin:0 0 14px">IBLens reviews each of the three answers separately from an admissions-tutor perspective and shows what a tutor would credit, what they would expect and not find, and what to change first. The character arithmetic is computed exactly, not estimated. Your first review is free. <a href="/ucas-personal-statement">Check your statement</a> · <a href="/resources/academic-integrity">How to use AI feedback without risking your application</a></p>
+  </main>`),
   "/essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Essay Grader — Free AI Feedback on IA, Extended Essay & TOK</h1>
   <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens is a free AI essay grader for IB students. Paste your Internal Assessment, Extended Essay, or TOK Essay and get criterion-by-criterion feedback with a predicted score in about a minute — against the official IB rubric for your subject. No account required for your first analysis.</p>

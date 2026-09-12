@@ -208,10 +208,10 @@ export default function EssayAnalyzer() {
       setResult(data.result as EssayResult);
       setLastAnalysisId(data.id);
       setStep(0);
-      toast({ title: "Re-check complete", description: `${data.rerunsLeft} free re-check(s) left for this draft.` });
+      toast.success(`Re-check complete — ${data.rerunsLeft} free re-check(s) left for this draft.`);
     },
     onError: (err: any) => {
-      toast({ title: "Re-check unavailable", description: err.message, variant: "destructive" });
+      toast.error(err.message || "Re-check unavailable");
     },
   });
 
