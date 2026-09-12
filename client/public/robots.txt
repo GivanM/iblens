@@ -3,5 +3,6 @@ Allow: /
 Disallow: /api/
 Disallow: /dashboard
 Disallow: /auth/
+Disallow: /v2
 
 Sitemap: https://iblens.com/sitemap.xml
