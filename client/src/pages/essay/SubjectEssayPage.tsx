@@ -15,6 +15,8 @@ export interface SubjectConfig {
   heroSubline: string;
   criteria: Array<{ name: string; max: number; sampleScore: number }>;
   relatedSubjects: Array<{ label: string; href: string }>;
+  /** Guides for this subject, rendered under the criteria. Added with the interlinking pass. */
+  relatedResources?: Array<{ label: string; href: string }>;
 }
 
 function getBarColor(ratio: number): string {

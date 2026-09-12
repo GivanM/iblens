@@ -5,6 +5,7 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import HomeV2 from "./pages/HomeV2";
 import EssayAnalyzer from "./pages/EssayAnalyzer";
 import UniversityStrategy from "./pages/UniversityStrategy";
 import Dashboard from "./pages/Dashboard";
@@ -175,6 +176,7 @@ function App() {
           <Toaster />
           <Switch>
             <Route path="/grade" component={LandingPage} />
+            <Route path="/v2" component={HomeV2} />
             <Route>
               <Layout>
                 <Router />

@@ -171,10 +171,22 @@ const ANALYZING_STEPS = [
 
 export default function EssayAnalyzer() {
   const { isAuthenticated } = useAuth();
-  const [essayType, setEssayType] = useState("IA");
+  // The homepage submission slip hands over the task and session it was filled
+  // in with, so the same choice is not asked for twice.
+  const handoff = (() => {
+    if (typeof window === "undefined") return {};
+    const q = new URLSearchParams(window.location.search);
+    const type = q.get("type");
+    const session = q.get("session");
+    return {
+      type: ESSAY_TYPES.some((t) => t.value === type) ? (type as string) : undefined,
+      session: session === "nov2026" || session === "may2027" ? (session as "nov2026" | "may2027") : undefined,
+    };
+  })();
+  const [essayType, setEssayType] = useState(handoff.type ?? "IA");
   const [subject, setSubject] = useState("Business Management");
   const [researchQuestion, setResearchQuestion] = useState("");
-  const [examSession, setExamSession] = useState<"nov2026" | "may2027">("may2027");
+  const [examSession, setExamSession] = useState<"nov2026" | "may2027">(handoff.session ?? "may2027");
   // ?rerun=<analysisId> — a paid report includes two free re-checks of the same draft.
   const rerunId = (() => {
     if (typeof window === "undefined") return null;
@@ -207,8 +219,7 @@ export default function EssayAnalyzer() {
     onSuccess: (data: any) => {
       setResult(data.result as EssayResult);
       setLastAnalysisId(data.id);
-      setStep(0);
-      toast.success(`Re-check complete — ${data.rerunsLeft} free re-check(s) left for this draft.`);
+      toast.success(`Re-check complete. ${data.rerunsLeft} free re-check(s) left for this draft.`);
     },
     onError: (err: any) => {
       toast.error(err.message || "Re-check unavailable");

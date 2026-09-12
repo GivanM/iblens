@@ -1,0 +1,373 @@
+/* Marking sheet — the homepage as a marked examination script.
+ *
+ * Scoped deliberately: every token is prefixed --ms- and every rule is nested under
+ * [data-marking-sheet]. The rest of the site still runs on the shadcn tokens in index.css,
+ * and nothing here can reach it.
+ */
+
+[data-marking-sheet] {
+  --ms-desk: #211E1A;
+  --ms-desk-hi: #2C2823;
+  --ms-paper: #EEE9DE;
+  --ms-paper-tex: none;
+  --ms-print: #2B2724;
+  --ms-faint: #675F53;
+  --ms-rule: #CFC7B7;
+  --ms-pen: #BE3226;
+  --ms-pen-soft: rgba(190, 50, 38, .14);
+  --ms-mod: #2E4A78;
+  --ms-stamp: #8C2018;
+
+  --ms-hand: "Caveat", ui-rounded, cursive;
+  --ms-form: "Courier Prime", ui-monospace, monospace;
+  --ms-body: "Source Serif 4", Georgia, serif;
+
+  --ms-sheet-w: min(1060px, 94vw);
+  --ms-pad: clamp(1.4rem, 4.5vw, 4.5rem);
+  --ms-step-hand: clamp(2.3rem, 5.6vw, 4.4rem);
+  --ms-measure: 62ch;
+
+  background: var(--ms-desk);
+  background-image: radial-gradient(120% 80% at 50% -10%, var(--ms-desk-hi), var(--ms-desk) 60%);
+  color: var(--ms-print);
+  font-family: var(--ms-body);
+  font-size: clamp(1rem, .55vw + .9rem, 1.125rem);
+  line-height: 1.62;
+  min-height: 100vh;
+}
+
+[data-marking-sheet] h1,
+[data-marking-sheet] h2,
+[data-marking-sheet] h3 { margin: 0; font-weight: 400; }
+[data-marking-sheet] a { color: inherit; }
+
+/* ---------- the sheet ---------- */
+[data-marking-sheet] .ms-sheet {
+  position: relative;
+  width: var(--ms-sheet-w);
+  margin: 0 auto clamp(2rem, 5vw, 4.5rem);
+  background: var(--ms-paper);
+  background-image: var(--ms-paper-tex);
+  background-repeat: repeat;
+  padding: clamp(2.6rem, 6vw, 5rem) var(--ms-pad) clamp(3rem, 7vw, 6rem);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, .35) inset,
+    0 18px 40px -12px rgba(0, 0, 0, .55),
+    0 2px 6px rgba(0, 0, 0, .3);
+}
+[data-marking-sheet] .ms-sheet::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(255, 255, 255, .25), transparent 55%),
+    linear-gradient(90deg, rgba(0, 0, 0, .05), transparent 6%, transparent 94%, rgba(0, 0, 0, .05));
+}
+/* punch holes, the one piece of skeuomorphism that earns its place */
+[data-marking-sheet] .ms-sheet::after {
+  content: ""; position: absolute; left: calc(var(--ms-pad) * .42); top: 2.1rem;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--ms-desk);
+  box-shadow: 0 1.9rem 0 var(--ms-desk), inset 0 1px 1px rgba(0, 0, 0, .6);
+  opacity: .5;
+}
+[data-marking-sheet] .ms-sheet.ms-plain::after { display: none; }
+[data-marking-sheet] .ms-sheet > * { position: relative; z-index: 1; }
+
+/* printed header strip */
+[data-marking-sheet] .ms-slug {
+  font-family: var(--ms-form); font-size: .68rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--ms-faint);
+  display: flex; flex-wrap: wrap; gap: .4rem 1.4rem;
+  padding-bottom: .7rem; border-bottom: 1px solid var(--ms-rule);
+  margin-bottom: clamp(1.6rem, 4vw, 2.8rem);
+}
+[data-marking-sheet] .ms-slug .ms-r { margin-left: auto; }
+
+/* ---------- cover ---------- */
+[data-marking-sheet] .ms-cover { min-height: 100svh; display: flex; align-items: center; padding: clamp(1rem, 3vw, 3rem) 0; }
+[data-marking-sheet] .ms-cover .ms-sheet {
+  margin-bottom: 0;
+  padding-block: clamp(2.4rem, 5vw, 4rem);
+  transform: translateY(calc(var(--ms-lift, 0) * -22vh)) rotate(calc(var(--ms-lift, 0) * -.7deg));
+  opacity: calc(1 - var(--ms-lift, 0) * .85);
+  will-change: transform;
+}
+[data-marking-sheet] .ms-cf { display: grid; grid-template-columns: 1fr 1fr; gap: 0 clamp(1.5rem, 4vw, 4rem); }
+[data-marking-sheet] .ms-fld { border-bottom: 1px solid var(--ms-rule); padding: .35rem 0 .45rem; margin-bottom: 1.1rem; }
+[data-marking-sheet] .ms-fld b {
+  display: block; font-family: var(--ms-form); font-size: .63rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--ms-faint); font-weight: 400;
+}
+[data-marking-sheet] .ms-fld span {
+  font-family: var(--ms-hand); font-size: 1.65rem; line-height: 1.1;
+  color: var(--ms-mod); display: block; margin-top: .15rem;
+}
+[data-marking-sheet] .ms-cover h1 {
+  font-family: var(--ms-form); font-weight: 700; font-size: clamp(1rem, 2vw, 1.35rem);
+  letter-spacing: .2em; text-transform: uppercase; line-height: 1.4;
+}
+[data-marking-sheet] .ms-lede {
+  font-family: var(--ms-form); font-size: .8rem; line-height: 1.8;
+  color: var(--ms-faint); max-width: 46ch; margin: .9rem 0 2.2rem;
+}
+[data-marking-sheet] .ms-box {
+  border: 1.5px solid var(--ms-print); padding: 1rem 1.2rem; display: flex; flex-wrap: wrap;
+  align-items: baseline; justify-content: space-between; gap: .4rem 1rem; margin-top: .5rem; min-height: 5.5rem;
+}
+[data-marking-sheet] .ms-box b {
+  font-family: var(--ms-form); font-size: .63rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--ms-faint); font-weight: 400;
+}
+[data-marking-sheet] .ms-box i { font-family: var(--ms-hand); font-style: normal; font-size: 2rem; color: var(--ms-faint); opacity: .45; }
+[data-marking-sheet] .ms-cue {
+  margin-top: clamp(2rem, 5vw, 3.4rem); font-family: var(--ms-form); font-size: .7rem;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--ms-faint);
+  display: flex; align-items: center; gap: .7rem;
+}
+[data-marking-sheet] .ms-cue svg { animation: ms-nudge 2.4s ease-in-out infinite; }
+@keyframes ms-nudge { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(5px) } }
+
+/* ---------- marked script ---------- */
+[data-marking-sheet] .ms-work { display: grid; grid-template-columns: minmax(0, 1fr) clamp(13rem, 22vw, 19rem); gap: 0 clamp(1.2rem, 3vw, 2.6rem); }
+[data-marking-sheet] .ms-col-text { padding-right: clamp(.5rem, 2vw, 1.5rem); border-right: 1px solid var(--ms-pen-soft); }
+[data-marking-sheet] .ms-penline {
+  font-family: var(--ms-hand); color: var(--ms-pen); font-size: var(--ms-step-hand);
+  line-height: .98; transform: rotate(-1.1deg); margin: 0 0 .6rem; max-width: 18ch;
+}
+[data-marking-sheet] .ms-subline {
+  font-family: var(--ms-form); font-size: .82rem; line-height: 1.85; color: var(--ms-faint);
+  max-width: 52ch; margin: 0 0 2.2rem; padding-bottom: 1.6rem; border-bottom: 1px dashed var(--ms-rule);
+}
+[data-marking-sheet] .ms-qn { font-style: italic; font-size: 1.08em; margin: 0 0 1.6rem; color: var(--ms-print); }
+[data-marking-sheet] .ms-body { margin: 0 0 1.15rem; max-width: var(--ms-measure); }
+[data-marking-sheet] .ms-body:last-of-type { margin-bottom: 0; }
+
+/* red pen underline that grows with scroll progress */
+[data-marking-sheet] mark {
+  background: none; color: inherit; position: relative; padding-bottom: .22em;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='42' height='7' viewBox='0 0 42 7'><path d='M0 4.6 q 5.2 -3.6 10.5 0 t 10.5 0 t 10.5 0 t 10.5 0' fill='none' stroke='%23BE3226' stroke-width='1.7' stroke-linecap='round'/></svg>");
+  background-repeat: repeat-x; background-position: left bottom;
+  background-size: calc(var(--ms-p, 0) * 100%) 7px;
+}
+
+/* margin notes */
+[data-marking-sheet] .ms-col-marg { padding-top: .35rem; display: flex; flex-direction: column; gap: clamp(1.5rem, 3.6vw, 2.8rem); }
+[data-marking-sheet] .ms-note {
+  font-family: var(--ms-hand); color: var(--ms-pen); font-size: 1.42rem; line-height: 1.2;
+  position: relative; padding-left: 1.15rem;
+}
+[data-marking-sheet] .ms-note::before {
+  content: ""; position: absolute; left: 0; top: .25em; bottom: .25em; width: 8px;
+  border-left: 2px solid var(--ms-pen); border-top: 2px solid var(--ms-pen); border-bottom: 2px solid var(--ms-pen);
+  border-radius: 3px 0 0 3px; transform: scaleY(var(--ms-p, 0)); transform-origin: top; opacity: .85;
+}
+[data-marking-sheet] .ms-note .ms-cr {
+  display: block; font-family: var(--ms-form); font-size: .6rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--ms-pen); opacity: calc(var(--ms-p, 0) * .85); margin-bottom: .25rem;
+}
+[data-marking-sheet] .ms-note .ms-w { opacity: clamp(0, calc(var(--ms-n, 0) - var(--ms-i)), 1); }
+[data-marking-sheet] .ms-note.ms-blue { color: var(--ms-mod); }
+[data-marking-sheet] .ms-note.ms-blue::before { border-color: var(--ms-mod); }
+[data-marking-sheet] .ms-note.ms-blue .ms-cr { color: var(--ms-mod); }
+
+/* stamp */
+[data-marking-sheet] .ms-stampwrap { margin-top: clamp(2.4rem, 6vw, 4rem); display: flex; justify-content: flex-end; padding-right: clamp(0rem, 4vw, 3rem); }
+[data-marking-sheet] .ms-stamp {
+  font-family: var(--ms-form); font-weight: 700; color: var(--ms-stamp);
+  border: 3px double var(--ms-stamp); padding: .7rem 1.3rem; text-align: center;
+  transform: rotate(-7deg) scale(2.6); opacity: 0; line-height: 1.15; mix-blend-mode: multiply;
+}
+[data-marking-sheet] .ms-stamp b { display: block; font-size: 2.1rem; letter-spacing: .02em; }
+[data-marking-sheet] .ms-stamp span { display: block; font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; opacity: .85; }
+[data-marking-sheet] .ms-stamp.ms-hit { animation: ms-thud .42s cubic-bezier(.2, 1.5, .4, 1) forwards; }
+@keyframes ms-thud {
+  0% { transform: rotate(-7deg) scale(2.6); opacity: 0; filter: blur(2px) }
+  70% { transform: rotate(-7deg) scale(.94); opacity: 1; filter: blur(0) }
+  100% { transform: rotate(-7deg) scale(1); opacity: 1 }
+}
+
+/* ---------- rubric grid ---------- */
+[data-marking-sheet] .ms-grid-note { font-family: var(--ms-form); font-size: .78rem; color: var(--ms-faint); line-height: 1.8; max-width: 58ch; margin: 0 0 2rem; }
+[data-marking-sheet] .ms-tw { overflow-x: auto; }
+[data-marking-sheet] table.ms-grid { width: 100%; min-width: 40rem; border-collapse: collapse; font-family: var(--ms-form); font-size: .78rem; }
+[data-marking-sheet] table.ms-grid th,
+[data-marking-sheet] table.ms-grid td { border: 1px solid var(--ms-rule); padding: .6rem .7rem; text-align: left; vertical-align: top; }
+[data-marking-sheet] table.ms-grid th {
+  font-weight: 400; font-size: .62rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ms-faint); background: rgba(0, 0, 0, .02);
+}
+[data-marking-sheet] table.ms-grid td.ms-band { text-align: center; width: 3.6rem; }
+[data-marking-sheet] table.ms-grid tr.ms-weak td { background: rgba(190, 50, 38, .05); }
+[data-marking-sheet] .ms-tick { font-family: var(--ms-hand); color: var(--ms-pen); font-size: 1.5rem; line-height: 1; display: inline-block; transform: rotate(-12deg); }
+[data-marking-sheet] .ms-circled { position: relative; display: inline-block; padding: .05em .35em; }
+[data-marking-sheet] .ms-circled::after {
+  content: ""; position: absolute; inset: -.28em -.42em; border: 2px solid var(--ms-pen);
+  border-radius: 48% 52% 50% 50% / 55% 45% 55% 45%; transform: rotate(-3deg);
+}
+[data-marking-sheet] .ms-legend { display: flex; flex-wrap: wrap; gap: 1.4rem; margin-top: 1.4rem; font-family: var(--ms-form); font-size: .7rem; color: var(--ms-faint); }
+[data-marking-sheet] .ms-legend b { color: var(--ms-pen); font-weight: 400; }
+
+/* ---------- received stamps ---------- */
+[data-marking-sheet] .ms-dates { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: clamp(1.2rem, 3vw, 2.4rem); }
+[data-marking-sheet] .ms-recv { border: 2px solid var(--ms-mod); color: var(--ms-mod); padding: 1rem 1.1rem; transform: rotate(var(--ms-rot, -1.5deg)); opacity: .92; }
+[data-marking-sheet] .ms-recv b { display: block; font-family: var(--ms-form); font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; margin-bottom: .35rem; }
+[data-marking-sheet] .ms-recv i { font-style: normal; font-family: var(--ms-hand); font-size: 1.6rem; display: block; line-height: 1.1; }
+[data-marking-sheet] .ms-recv p { font-family: var(--ms-body); font-size: .9rem; color: var(--ms-print); margin: .7rem 0 0; line-height: 1.5; }
+[data-marking-sheet] .ms-recv.ms-dead { border-color: var(--ms-pen); color: var(--ms-pen); }
+
+/* ---------- does / does not ---------- */
+[data-marking-sheet] .ms-spec { display: grid; grid-template-columns: 1fr 1fr; gap: 0 clamp(1.5rem, 4vw, 3.5rem); }
+[data-marking-sheet] .ms-spec h3 {
+  font-family: var(--ms-form); font-weight: 700; font-size: .66rem; letter-spacing: .2em;
+  text-transform: uppercase; margin-bottom: 1rem; padding-bottom: .6rem; border-bottom: 1px solid var(--ms-rule);
+}
+[data-marking-sheet] .ms-spec ul { list-style: none; margin: 0; padding: 0; }
+[data-marking-sheet] .ms-spec li { display: grid; grid-template-columns: 1.4rem 1fr; gap: .5rem; margin-bottom: 1rem; font-size: .95rem; line-height: 1.55; }
+[data-marking-sheet] .ms-spec li em { font-style: normal; font-family: var(--ms-form); font-size: 1rem; }
+[data-marking-sheet] .ms-spec .ms-yes li em { color: var(--ms-mod); }
+[data-marking-sheet] .ms-spec .ms-no li em { color: var(--ms-pen); }
+
+/* ---------- request slip ---------- */
+[data-marking-sheet] .ms-slip { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 0 clamp(1.5rem, 4vw, 3.5rem); }
+[data-marking-sheet] .ms-slip h2 { font-family: var(--ms-form); font-weight: 700; font-size: 1rem; letter-spacing: .2em; text-transform: uppercase; margin-bottom: .5rem; }
+[data-marking-sheet] .ms-slip .ms-sub { font-family: var(--ms-form); font-size: .78rem; color: var(--ms-faint); line-height: 1.8; margin: 0 0 1.8rem; max-width: 46ch; }
+[data-marking-sheet] .ms-label { display: block; font-family: var(--ms-form); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ms-faint); margin-bottom: .3rem; }
+[data-marking-sheet] .ms-inp {
+  width: 100%; border: 0; border-bottom: 1px solid var(--ms-print); background: transparent;
+  padding: .5rem .1rem; font-family: var(--ms-hand); font-size: 1.5rem; color: var(--ms-mod); line-height: 1.2;
+}
+[data-marking-sheet] .ms-inp:focus-visible { outline: 2px solid var(--ms-pen); outline-offset: 3px; }
+[data-marking-sheet] .ms-f2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem; }
+[data-marking-sheet] .ms-btn {
+  margin-top: 1.4rem; font-family: var(--ms-form); font-size: .72rem; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase; background: var(--ms-print); color: var(--ms-paper);
+  border: 0; padding: 1rem 1.8rem; cursor: pointer; display: inline-block; text-decoration: none;
+}
+[data-marking-sheet] .ms-btn:hover { background: var(--ms-pen); }
+[data-marking-sheet] .ms-btn:focus-visible { outline: 2px solid var(--ms-pen); outline-offset: 3px; }
+[data-marking-sheet] .ms-fees { border: 1px solid var(--ms-print); padding: 1.2rem; }
+[data-marking-sheet] .ms-fees h3 { font-family: var(--ms-form); font-weight: 700; font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; margin-bottom: .9rem; padding-bottom: .6rem; border-bottom: 1px solid var(--ms-rule); }
+[data-marking-sheet] .ms-fr { display: flex; justify-content: space-between; gap: 1rem; padding: .5rem 0; border-bottom: 1px dotted var(--ms-rule); font-family: var(--ms-form); font-size: .78rem; }
+[data-marking-sheet] .ms-fr:last-child { border-bottom: 0; }
+
+/* ---------- index of subjects (keeps internal linking alive) ---------- */
+[data-marking-sheet] .ms-index { margin-top: clamp(2rem, 5vw, 3rem); padding-top: 1.4rem; border-top: 1px solid var(--ms-rule); }
+[data-marking-sheet] .ms-index h3 { font-family: var(--ms-form); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ms-faint); margin-bottom: .8rem; }
+[data-marking-sheet] .ms-index-links { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; font-family: var(--ms-form); font-size: .76rem; }
+[data-marking-sheet] .ms-index-links a { color: var(--ms-faint); text-decoration: none; border-bottom: 1px solid var(--ms-rule); }
+[data-marking-sheet] .ms-index-links a:hover { color: var(--ms-print); border-bottom-color: var(--ms-print); }
+
+/* ---------- tabs ---------- */
+[data-marking-sheet] .ms-tabs { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 20; display: flex; flex-direction: column; gap: 6px; }
+[data-marking-sheet] .ms-tab {
+  writing-mode: vertical-rl; text-orientation: mixed; text-decoration: none; background: #DED6C5;
+  color: #5A5349; font-family: var(--ms-form); font-size: .63rem; letter-spacing: .18em;
+  text-transform: uppercase; padding: 1rem .5rem; border-radius: 3px 0 0 3px;
+  box-shadow: -2px 2px 6px rgba(0, 0, 0, .35); transition: background .2s, color .2s, padding .2s;
+}
+[data-marking-sheet] .ms-tab:hover { padding-right: .8rem; color: var(--ms-print); }
+[data-marking-sheet] .ms-tab:focus-visible { outline: 2px solid var(--ms-pen); outline-offset: 2px; }
+[data-marking-sheet] .ms-tab[aria-current="true"] { background: var(--ms-pen); color: #F6EFE4; }
+
+/* ---------- footer ---------- */
+[data-marking-sheet] .ms-foot {
+  width: var(--ms-sheet-w); margin: 0 auto; padding: 1.5rem 0 4rem; font-family: var(--ms-form);
+  font-size: .66rem; color: #9A9184; display: flex; flex-wrap: wrap; gap: .6rem 1.6rem;
+}
+[data-marking-sheet] .ms-foot a { text-decoration: none; border-bottom: 1px solid #4A443C; }
+
+@media (max-width: 880px) {
+  [data-marking-sheet] .ms-work,
+  [data-marking-sheet] .ms-slip,
+  [data-marking-sheet] .ms-spec,
+  [data-marking-sheet] .ms-cf { grid-template-columns: 1fr; }
+  [data-marking-sheet] .ms-col-text { border-right: 0; padding-right: 0; }
+  [data-marking-sheet] .ms-col-marg { margin-top: 2rem; padding-top: 1.4rem; border-top: 1px dashed var(--ms-rule); }
+  [data-marking-sheet] .ms-f2 { grid-template-columns: 1fr; }
+  [data-marking-sheet] .ms-fees { margin-top: 2rem; }
+  [data-marking-sheet] .ms-spec .ms-no { margin-top: 2rem; }
+  [data-marking-sheet] .ms-tabs {
+    top: auto; bottom: 0; right: 0; left: 0; transform: none; flex-direction: row;
+    justify-content: stretch; gap: 1px; background: #3A342C; padding: 0; box-shadow: 0 -6px 18px rgba(0, 0, 0, .45);
+  }
+  [data-marking-sheet] .ms-tab {
+    writing-mode: horizontal-tb; border-radius: 0; padding: 1rem .25rem; box-shadow: none;
+    flex: 1 1 0; min-width: 0; text-align: center; font-size: .56rem; letter-spacing: .06em;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  [data-marking-sheet] .ms-tab:hover { padding-right: .4rem; }
+  [data-marking-sheet] { padding-bottom: 3.6rem; }
+  [data-marking-sheet] .ms-foot { padding-bottom: 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-marking-sheet] .ms-cue svg { animation: none; }
+  [data-marking-sheet] .ms-stamp { opacity: 1; transform: rotate(-7deg) scale(1); }
+  [data-marking-sheet] .ms-stamp.ms-hit { animation: none; }
+  [data-marking-sheet] .ms-cover .ms-sheet { transform: none; opacity: 1; }
+}
+
+/* ---------- rubric grid: mark ladder, total, notes ---------- */
+[data-marking-sheet] table.ms-grid th[scope="row"] { font-weight: 700; color: var(--ms-print); text-transform: none; letter-spacing: 0; font-size: .74rem; background: none; }
+[data-marking-sheet] table.ms-grid td.ms-band { width: auto; white-space: nowrap; }
+[data-marking-sheet] .ms-ladder { display: inline-flex; gap: 2px; }
+[data-marking-sheet] .ms-rung {
+  display: inline-flex; align-items: center; justify-content: center; width: 1.15rem; height: 1.15rem;
+  border: 1px solid var(--ms-rule); font-size: .58rem; color: var(--ms-faint);
+}
+[data-marking-sheet] .ms-rung-hit { position: relative; color: var(--ms-print); border-color: var(--ms-faint); }
+[data-marking-sheet] .ms-rung-hit::after {
+  content: ""; position: absolute; inset: -.22rem; border: 2px solid var(--ms-pen);
+  border-radius: 48% 52% 50% 50% / 55% 45% 55% 45%; transform: rotate(-6deg);
+}
+[data-marking-sheet] table.ms-grid tr.ms-total th,
+[data-marking-sheet] table.ms-grid tr.ms-total td { border-top: 2px solid var(--ms-print); font-weight: 700; }
+[data-marking-sheet] table.ms-grid tr.ms-total td:last-child { font-weight: 400; color: var(--ms-faint); }
+[data-marking-sheet] .ms-faintcell { color: var(--ms-faint); font-style: italic; }
+[data-marking-sheet] .ms-grid-foot {
+  font-family: var(--ms-form); font-size: .72rem; line-height: 1.8; color: var(--ms-faint);
+  margin: 1.4rem 0 0; padding-top: 1rem; border-top: 1px dashed var(--ms-rule); max-width: 72ch;
+}
+
+/* ---------- desk label above the cover ---------- */
+[data-marking-sheet] .ms-rail {
+  width: var(--ms-sheet-w); margin: 0 auto; padding: 1.4rem 0 .2rem;
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1.5rem;
+  font-family: var(--ms-form); font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
+  color: #9A9184;
+}
+[data-marking-sheet] .ms-rail .ms-mark { color: #CFC7B7; letter-spacing: .28em; }
+[data-marking-sheet] .ms-rail nav { display: flex; flex-wrap: wrap; gap: .5rem 1.3rem; margin-left: auto; }
+[data-marking-sheet] .ms-rail a { text-decoration: none; }
+[data-marking-sheet] .ms-rail a:hover { color: var(--ms-paper); }
+[data-marking-sheet] .ms-rail a:focus-visible { outline: 2px solid var(--ms-pen); outline-offset: 3px; }
+
+/* ---------- colophon ---------- */
+[data-marking-sheet] .ms-colophon { padding-top: 1.6rem; margin-top: clamp(2rem, 5vw, 3rem); border-top: 1px solid var(--ms-rule); }
+[data-marking-sheet] .ms-colophon h3 {
+  font-family: var(--ms-form); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--ms-faint); margin: 0 0 .7rem;
+}
+[data-marking-sheet] .ms-colophon + .ms-colophon { margin-top: 1.8rem; }
+[data-marking-sheet] .ms-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1.6rem 2rem; }
+[data-marking-sheet] .ms-linklist { display: flex; flex-direction: column; gap: .4rem; font-family: var(--ms-form); font-size: .74rem; }
+[data-marking-sheet] .ms-linklist a { color: var(--ms-faint); text-decoration: none; }
+[data-marking-sheet] .ms-linklist a:hover { color: var(--ms-print); }
+[data-marking-sheet] .ms-linklist a:focus-visible { outline: 2px solid var(--ms-pen); outline-offset: 2px; }
+
+/* ---------- slip: selects ---------- */
+[data-marking-sheet] select.ms-inp { appearance: none; border-radius: 0; cursor: pointer; }
+[data-marking-sheet] .ms-fees .ms-hand {
+  font-family: var(--ms-hand); font-size: 1.35rem; color: var(--ms-pen); margin: .9rem 0 0;
+  line-height: 1.15; transform: rotate(-.8deg);
+}
+[data-marking-sheet] .ms-slipnote { font-family: var(--ms-form); font-size: .68rem; color: var(--ms-faint); margin-top: .8rem; }
+
+/* ---------- questions sheet ---------- */
+[data-marking-sheet] .ms-qhead {
+  font-family: var(--ms-form); font-weight: 700; font-size: .8rem; letter-spacing: .2em;
+  text-transform: uppercase; padding-bottom: .8rem; border-bottom: 1px solid var(--ms-rule); margin-bottom: 1.8rem;
+}
+[data-marking-sheet] .ms-faq { margin: 0; display: grid; gap: 1.5rem; max-width: 74ch; }
+[data-marking-sheet] .ms-faq dt { font-family: var(--ms-form); font-size: .8rem; font-weight: 700; margin-bottom: .35rem; }
+[data-marking-sheet] .ms-faq dd { margin: 0; padding-left: 1rem; border-left: 2px solid var(--ms-rule); color: #4A443C; font-size: .97rem; }
