@@ -312,6 +312,27 @@ export default function Home() {
                 </Button>
               </div>
 
+              <div className="rounded-xl border border-border bg-card p-8">
+                <h3 style={SERIF} className="text-xl font-bold mb-3">UCAS Personal Statement Checker</h3>
+                <p className="text-muted-foreground mb-5 leading-relaxed">
+                  Applying to UK universities? From 2026 entry the personal statement is three separate questions, not one essay. Get a read on each answer from an admissions-tutor perspective.
+                </p>
+                <ul className="space-y-2.5 text-sm mb-6">
+                  {["All three answers reviewed separately", "Exact character checks against the 4,000 limit", "What a tutor would credit, and what they would miss", "Whether it reads as your subject specifically", "Ranked revision list"].map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">First review free</span>
+                  <span className="text-xs text-muted-foreground">no score invented — UCAS publishes no mark scheme</span>
+                </div>
+                <Button variant="outline" asChild>
+                  <Link href="/ucas-personal-statement">Check my statement <ArrowRight className="w-4 h-4 ml-1" /></Link>
+                </Button>
+              </div>
             </div>
           </div>
         </section>

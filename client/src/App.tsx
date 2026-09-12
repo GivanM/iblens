@@ -148,6 +148,7 @@ function Router() {
       <Route path="/resources/tok-essay-structure" component={TokEssayStructure} />
       <Route path="/remark" component={RemarkChecker} />
       <Route path="/resources/academic-integrity" component={AcademicIntegrity} />
+      <Route path="/academic-integrity" component={AcademicIntegrity} />
       <Route path="/resources/sample-reports" component={SampleReports} />
       <Route path="/resources/ib-university-consultant-cost" component={IBUniversityConsultantCost} />
       <Route path="/resources/ib-university-chances" component={IBUniversityChances} />

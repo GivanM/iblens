@@ -49,6 +49,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
             <nav className="hidden md:flex items-center gap-1">
               <NavLink href="/essay" active={location === "/essay"}>Essay Analyzer</NavLink>
+              <NavLink href="/ucas-personal-statement" active={location === "/ucas-personal-statement"}>UCAS Statement</NavLink>
               <NavLink href="/resources" active={location.startsWith("/resources")}>Resources</NavLink>
               <NavLink href="/pricing" active={location === "/pricing"}>Pricing</NavLink>
               {isAuthenticated && (
@@ -115,6 +116,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             >
               <FileText className="w-4 h-4" />
               Essay Analyzer
+            </Link>
+            <Link
+              href="/ucas-personal-statement"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
+                location === "/ucas-personal-statement" ? "bg-primary/10 text-primary" : "text-muted-foreground"
+              }`}
+            >
+              <FileText className="w-4 h-4" />
+              UCAS Statement
             </Link>
             <Link
               href="/resources"

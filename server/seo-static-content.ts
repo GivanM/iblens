@@ -83,7 +83,10 @@ export const staticContent: Record<string, string> = {
   <h2 style="font-size:22px;font-weight:700;margin:28px 0 12px">Why IB students use IBLens</h2>
   <p style="color:#374151;line-height:1.7;margin-bottom:20px">IB tutors charge $50–150 per hour. A single IBLens analysis costs $9.99 and takes 60 seconds — with feedback based on the official IB marking criteria, available 24/7. Your first essay is graded free.</p>
   <p style="line-height:2"><a href="/essay">Grade my IB essay free →</a> &nbsp;·&nbsp; <a href="/pricing">See pricing</a> &nbsp;·&nbsp; <a href="/resources">Free IB study guides</a></p>
-</main>`),
+
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Applying to UK universities through UCAS?</h2>
+  <p style="line-height:1.7;margin:0 0 14px">From 2026 entry the UCAS personal statement is three separate questions sharing one 4,000-character budget, with a 350-character minimum per answer. Our <a href="/ucas-personal-statement">UCAS personal statement checker</a> reviews each answer from an admissions-tutor perspective: what a tutor would credit, what they would expect and not find, and what to change first. No invented score — UCAS publishes no mark scheme. First review free.</p>
+  </main>`),
 
   "/pricing": S(`  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › Pricing</nav>
@@ -823,6 +826,9 @@ export const staticContent: Record<string, string> = {
   </ul></section>
 
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Applying to UK universities through UCAS?</h2>
+  <p style="line-height:1.7;margin:0 0 14px">From 2026 entry the UCAS personal statement is three separate questions sharing one 4,000-character budget, with a 350-character minimum per answer. Our <a href="/ucas-personal-statement">UCAS personal statement checker</a> reviews each answer from an admissions-tutor perspective: what a tutor would credit, what they would expect and not find, and what to change first. No invented score — UCAS publishes no mark scheme. First review free.</p>
   </main>`),
 
 
@@ -3732,7 +3738,7 @@ export const staticContent: Record<string, string> = {
         reaches and too few realistic options. A well-structured list has three tiers.
       </p>
 
-      <h3>Reach Schools (20–30% admission probability)</h3>
+      <h3>Reach schools: your grades sit below the typical admitted range, or the course admits under roughly 15% of applicants</h3>
       <p>
         These are universities where your predicted grades and profile sit at or slightly
         below the typical admitted student. For IB applicants that usually means 40+ total
@@ -3741,7 +3747,7 @@ export const staticContent: Record<string, string> = {
         costs time that should go into the essays for realistic targets.
       </p>
 
-      <h3>Target Schools (50–70% admission probability)</h3>
+      <h3>Target schools: your predicted grades sit inside the published entry requirements and the course is not among the most selective</h3>
       <p>
         Your predicted score comfortably meets the published IB requirements and your
         subject choices align with the program. For most IB students this is the bulk of
@@ -3750,7 +3756,7 @@ export const staticContent: Record<string, string> = {
         places almost exclusively to students with 36+.
       </p>
 
-      <h3>Safety Schools (80%+ admission probability)</h3>
+      <h3>Safety schools: your predicted grades are comfortably above the published requirements</h3>
       <p>
         A safety school you would genuinely attend if every target rejected you. It should
         meet your needs academically and financially. Include at least two. International
@@ -3889,7 +3895,7 @@ export const staticContent: Record<string, string> = {
       <p>
         Confirm predicted grades with your school. Submit Oxbridge and medicine
         applications by 15 October via UCAS. Begin submitting US Early Decision/Early
-        Action applications. Sit any required admissions tests: LNAT, MAT, BMAT, SAT.
+        Action applications. Sit any required admissions tests: UCAT for medicine and dentistry (it replaced the BMAT, which was discontinued after October 2023), LNAT for law, MAT or TMUA for mathematics, and the SAT or ACT if you are also applying to the US.
       </p>
 
       <h3>November–January</h3>

@@ -26,7 +26,7 @@ export default function IBUniversityStrategy() {
         reaches and too few realistic options. A well-structured list has three tiers.
       </p>
 
-      <h3>Reach Schools (20–30% admission probability)</h3>
+      <h3>Reach schools: your grades sit below the typical admitted range, or the course admits under roughly 15% of applicants</h3>
       <p>
         These are universities where your predicted grades and profile sit at or slightly
         below the typical admitted student. For IB applicants that usually means 40+ total
@@ -35,7 +35,7 @@ export default function IBUniversityStrategy() {
         costs time that should go into the essays for realistic targets.
       </p>
 
-      <h3>Target Schools (50–70% admission probability)</h3>
+      <h3>Target schools: your predicted grades sit inside the published entry requirements and the course is not among the most selective</h3>
       <p>
         Your predicted score comfortably meets the published IB requirements and your
         subject choices align with the program. For most IB students this is the bulk of
@@ -44,7 +44,7 @@ export default function IBUniversityStrategy() {
         places almost exclusively to students with 36+.
       </p>
 
-      <h3>Safety Schools (80%+ admission probability)</h3>
+      <h3>Safety schools: your predicted grades are comfortably above the published requirements</h3>
       <p>
         A safety school you would genuinely attend if every target rejected you. It should
         meet your needs academically and financially. Include at least two. International
@@ -183,7 +183,7 @@ export default function IBUniversityStrategy() {
       <p>
         Confirm predicted grades with your school. Submit Oxbridge and medicine
         applications by 15 October via UCAS. Begin submitting US Early Decision/Early
-        Action applications. Sit any required admissions tests: LNAT, MAT, BMAT, SAT.
+        Action applications. Sit any required admissions tests: UCAT for medicine and dentistry (it replaced the BMAT, which was discontinued after October 2023), LNAT for law, MAT or TMUA for mathematics, and the SAT or ACT if you are also applying to the US.
       </p>
 
       <h3>November–January</h3>

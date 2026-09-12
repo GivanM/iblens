@@ -63,6 +63,40 @@ export default function AcademicIntegrity() {
         submission. The rule from the section above covers you: feedback in, your own writing out.
       </p>
 
+      <h2>If you are applying through UCAS</h2>
+
+      <p>
+        UCAS rules are separate from IB rules, and they are stricter about one specific thing. When you
+        submit your application you declare that the personal statement is your own work and has not been
+        copied or provided from another source, <strong>including artificial intelligence software</strong>.
+        Generating your statement with an AI tool and submitting it as your own can be treated as cheating
+        by the universities you applied to.
+      </p>
+
+      <p>
+        UCAS also runs every submitted statement through similarity detection, comparing it against
+        previously submitted statements, published sample statements and material available online. This is
+        a similarity check rather than an AI detector, but the practical consequence is the same: anything
+        that resembles text someone else has submitted, or text published on a website, can be flagged to
+        the universities you applied to. Individual universities also run their own checks and can ask you
+        about your statement at interview.
+      </p>
+
+      <p>
+        Two practical rules follow from this. First, never paste wording from any tool, including ours,
+        into your application: our reviews deliberately describe what to change rather than hand you
+        sentences, precisely so there is nothing to copy. Second, do not post your statement anywhere
+        public — forums, social media, essay-sharing sites — because that is how a statement ends up in a
+        similarity database before you have even submitted it.
+      </p>
+
+      <p>
+        What IBLens does with a statement you paste into the{" "}
+        <Link href="/ucas-personal-statement">UCAS personal statement checker</Link>: we analyse it, show
+        you the feedback, and that is all. We do not publish it, do not train models on it, and do not
+        submit it to Turnitin or any similarity database.
+      </p>
+
       <h2>Why we built it this way</h2>
       <p>
         IBLens exists to answer one question - "where does my essay lose marks against the official

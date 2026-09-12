@@ -40,7 +40,7 @@ export default function RefundPolicy() {
           <section>
             <h2 className="text-xl font-semibold mb-3">Eligibility</h2>
             <p className="text-muted-foreground leading-relaxed">
-              All paid products are eligible for a refund within the 7-day window, including single essay analyses, essay packs, and university strategy reports. The free first essay analysis is not applicable for refund as no payment was made.
+              All paid products are eligible for a refund within the 7-day window, including single essay analyses, essay packs and UCAS personal statement reviews. The free first essay analysis is not applicable for refund as no payment was made.
             </p>
           </section>
 

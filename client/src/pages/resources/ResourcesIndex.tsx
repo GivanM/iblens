@@ -5,6 +5,13 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const resources = [
   {
+    slug: "/ucas-personal-statement",
+    title: "UCAS Personal Statement Checker",
+    description: "The three-question format from 2026 entry explained, plus a free review of your own answers: character checks, what a tutor would credit, what is missing.",
+    icon: FileText,
+    readTime: "Tool",
+  },
+  {
     slug: "/resources/ib-extended-essay-new-criteria-2027",
     title: "EE New Criteria 2027 (Marked /30)",
     description: "The May 2027 Extended Essay rubric explained: Framework, Knowledge, Analysis, Discussion and evaluation, Reflection — what changed from /34 and how to check your draft.",
