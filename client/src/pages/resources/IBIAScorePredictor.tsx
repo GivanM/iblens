@@ -56,7 +56,7 @@ export default function IBIAScorePredictor() {
       <p>If your raw mark sits near a grade boundary, you are in the highest-risk zone. A moderation adjustment of ±2 marks is common; adjustments of ±4 or more are possible. Students near boundaries should treat their estimated grade as a range: the grade they calculate, plus or minus one.</p>
 
       <h2>Why Predicted IA Grades Change After Moderation</h2>
-      <p>In most sessions, a majority of schools receive some adjustment. The variance is higher in subjects with more subjective criteria, History and Psychology IAs tend to see wider adjustment ranges than Chemistry or Maths IAs. Two factors drive large adjustments: teacher inexperience with IB marking standards, and grade inflation pressure from knowing students personally.</p>
+      <p>Moderation adjusts some schools' marks each session, and the IB does not publish how many. The variance is higher in subjects with more subjective criteria, History and Psychology IAs tend to see wider adjustment ranges than Chemistry or Maths IAs. Two factors drive large adjustments: teacher inexperience with IB marking standards, and grade inflation pressure from knowing students personally.</p>
 
       <h2>Get Your IA Analyzed by AI</h2>
       <p>Self-assessment has a fundamental limitation: you can't read your own work the way a stranger would. You know what you meant to say, which makes it hard to see where you failed to say it clearly enough to earn a mark.</p>
@@ -67,7 +67,7 @@ export default function IBIAScorePredictor() {
       <p>Yes, by self-assessing against the official mark scheme descriptors, criterion by criterion. The challenge is objectivity: you know your work too well to read it the way a moderator would.</p>
 
       <h3>How much can moderation change my IA grade?</h3>
-      <p>An adjustment of ±2–3 marks is common; adjustments of ±4–6 marks occur in some schools each session. Whether it changes your final grade depends on where you sit relative to the grade boundaries for that session.</p>
+      <p>An adjustment of ±2–3 marks is common; adjustments happen, and their size is not published. Whether it changes your final grade depends on where you sit relative to the grade boundaries for that session.</p>
 
       <h3>Are IB IA grade boundaries the same every year?</h3>
       <p>No. Grade boundaries are set fresh each session based on the difficulty of the work submitted. Using boundaries from a previous year gives you an approximation only.</p>

@@ -216,7 +216,7 @@ export default function RemarkChecker() {
             <h2 style={SERIF} className="text-2xl font-bold mb-3">Run the numbers before you pay</h2>
             <ol className="space-y-2 text-sm text-muted-foreground mb-5 list-decimal pl-5">
               <li>Paste the exact EE or TOK essay you submitted to IB.</li>
-              <li>IBLens grades it against the official rubric, criterion by criterion, instructed to mark strictly rather than flatter.</li>
+              <li>IBLens grades it against the official rubric, criterion by criterion where the instrument has criteria, instructed to mark strictly rather than flatter.</li>
               <li>If it lands near a grade boundary, a remark has genuine upside. If it sits mid-band, save your money.</li>
             </ol>
             <p className="text-sm text-muted-foreground mb-5">

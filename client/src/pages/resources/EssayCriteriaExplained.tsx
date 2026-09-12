@@ -13,7 +13,7 @@ export default function EssayCriteriaExplained() {
       <h1>IB Essay Criteria Explained</h1>
 
       <p>
-        <strong>In short: IB coursework is marked against published criteria with fixed mark allocations, not overall impressions. The fastest way to raise a grade is to find the heaviest criterion for your component and check your draft against its top markband first.</strong>
+        <strong>In short: Most IB coursework is marked against published criteria with fixed mark allocations. The TOK essay and exhibition are the exception: they are marked holistically, as a single global impression. The fastest way to raise a grade is to find the heaviest criterion for your component and check your draft against its top markband first.</strong>
       </p>
 
       <p>
@@ -91,7 +91,7 @@ export default function EssayCriteriaExplained() {
       </p>
 
       <p>
-        <strong>Standardization:</strong> Before marking begins, examiners attend standardization meetings where they mark sample scripts and discuss how to apply the criteria consistently. This ensures that different examiners marking the same script would arrive at similar marks (within 1–2 marks of each other in most cases).
+        <strong>Standardization:</strong> Before marking begins, examiners attend standardization meetings where they mark sample scripts and discuss how to apply the criteria consistently. This ensures that different examiners marking the same script would arrive at similar marks (close to each other, which is the point of publishing descriptors at all).
       </p>
 
       <h2>The Difference Between Band 5 and Band 7</h2>
@@ -169,7 +169,7 @@ export default function EssayCriteriaExplained() {
       </p>
 
       <p>
-        <strong>Step 5: Targeted revision.</strong> Focus your revision effort on the criteria where you have the largest gap between current performance and target. There is no point polishing your communication (Criterion D) if your analysis (Criterion C) is still at band 3.
+        <strong>Step 5: Targeted revision.</strong> Focus your revision effort on the criteria where you have the largest gap between current performance and target. There is no point polishing presentation if the criterion carrying the most marks in your own rubric is still at the bottom band.
       </p>
 
       <h2>How AI Feedback Maps to Criteria</h2>

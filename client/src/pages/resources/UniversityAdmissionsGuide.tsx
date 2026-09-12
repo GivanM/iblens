@@ -151,7 +151,7 @@ export default function UniversityAdmissionsGuide() {
       </p>
 
       <p>
-        <strong>Switzerland:</strong> ETH Zurich and EPFL require the IB Diploma with specific subject requirements and minimum scores (typically 38+ for ETH). The Swiss system values the breadth of the IB.
+        <strong>Switzerland:</strong> ETH Zurich and EPFL require the IB Diploma with specific subject requirements and minimum scores (38 of the 42 subject points for ETH, bonus points excluded). The Swiss system values the breadth of the IB.
       </p>
 
       <p>
@@ -208,7 +208,7 @@ export default function UniversityAdmissionsGuide() {
       </ul>
 
       <p>
-        The tool draws on historical admissions data and university-specific IB policies to provide personalized recommendations rather than generic advice. This is particularly valuable for international students who may not have access to country-specific counseling for every system they are considering.
+        We no longer offer university recommendations. The part we help with is the writing. This is particularly valuable for international students who may not have access to country-specific counseling for every system they are considering.
       </p>
 
       <p>

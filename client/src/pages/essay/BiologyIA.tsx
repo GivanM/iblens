@@ -6,7 +6,7 @@ const config: SubjectConfig = {
   keyword: "IB Biology IA",
   metaTitle: "IB Biology IA Grader, Free AI Feedback on Lab Report | IBLens",
   metaDescription:
-    "AI feedback in about 90 seconds on your IB Biology Internal Assessment. Checks exploration, analysis, evaluation, and communication against official IB criteria. Free.",
+    "AI feedback in about 90 seconds on your IB Biology Internal Assessment. Checks all four criteria: research design, data analysis, conclusion and evaluation. Free.",
   canonicalPath: "/essay/biology-ia",
   heroHeadline: "Is your Biology IA experiment losing marks you don't know about?",
   heroSubline:

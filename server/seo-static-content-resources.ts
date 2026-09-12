@@ -168,7 +168,7 @@ export const staticContentResources: Record<string, string> = {
       <ul>
         <li><strong>Title page:</strong> Must include your session number (not your name — essays are marked anonymously), the prescribed title you selected (written in full, exactly as published by the IBO), and your school name.</li>
         <li><strong>Word count declaration:</strong> You must declare the word count on the title page. If your declared count differs significantly from the actual count, this can be flagged.</li>
-        <li><strong>Readable font and spacing:</strong> While the IBO does not specify an exact font, essays should be readable — 12pt Times New Roman or Arial with double spacing is standard. Single-spaced essays may be returned or penalised.</li>
+        <li><strong>Readable font and spacing:</strong> While the IBO does not specify an exact font, essays should be readable — 12pt Times New Roman or Arial with double spacing is standard. Use 1.5 or double spacing, which is what schools ask for and what reads cleanly.</li>
         <li><strong>Page numbering:</strong> Number your pages. This is not required by the rubric but is expected by examiners and makes it easier if pages become separated.</li>
         <li><strong>No name on the essay body:</strong> Your name must not appear anywhere in the essay itself — only your session number. This protects anonymity during marking.</li>
       </ul>
@@ -1281,7 +1281,7 @@ export const staticContentResources: Record<string, string> = {
   "/resources/ib-essay-criteria-explained": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Essay Criteria Explained</nav>
       <h1>IB Essay Criteria Explained</h1>
-  <p style="line-height:1.7;margin:0 0 14px"><strong>In short: IB coursework is marked against published criteria with fixed mark allocations, not overall impressions. The fastest way to raise a grade is to find the heaviest criterion for your component and check your draft against its top markband first.</strong></p>
+  <p style="line-height:1.7;margin:0 0 14px"><strong>In short: Most IB coursework is marked against published criteria with fixed mark allocations. The TOK essay and exhibition are the exception: they are marked holistically, as a single global impression. The fastest way to raise a grade is to find the heaviest criterion for your component and check your draft against its top markband first.</strong></p>
 
       <p>
         One of the most distinctive features of the IB Diploma Programme is its use of <strong>criterion-based assessment</strong>. Unlike norm-referenced systems (where your grade depends on how you perform relative to other students), the IB assesses each piece of work against fixed criteria with defined descriptors. This means that in theory, every student in a cohort could achieve a 7 — or every student could receive a 3 — depending on how well their work meets the criteria.
@@ -1358,7 +1358,7 @@ export const staticContentResources: Record<string, string> = {
       </p>
 
       <p>
-        <strong>Standardization:</strong> Before marking begins, examiners attend standardization meetings where they mark sample scripts and discuss how to apply the criteria consistently. This ensures that different examiners marking the same script would arrive at similar marks (within 1–2 marks of each other in most cases).
+        <strong>Standardization:</strong> Before marking begins, examiners attend standardization meetings where they mark sample scripts and discuss how to apply the criteria consistently. This ensures that different examiners marking the same script would arrive at similar marks (close to each other, which is the point of publishing descriptors at all).
       </p>
 
       <h2>The Difference Between Band 5 and Band 7</h2>
@@ -1436,7 +1436,7 @@ export const staticContentResources: Record<string, string> = {
       </p>
 
       <p>
-        <strong>Step 5: Targeted revision.</strong> Focus your revision effort on the criteria where you have the largest gap between current performance and target. There is no point polishing your communication (Criterion D) if your analysis (Criterion C) is still at band 3.
+        <strong>Step 5: Targeted revision.</strong> Focus your revision effort on the criteria where you have the largest gap between current performance and target. There is no point polishing presentation if the criterion carrying the most marks in your own rubric is still at the bottom band.
       </p>
 
       <h2>How AI Feedback Maps to Criteria</h2>
@@ -1999,11 +1999,11 @@ export const staticContentResources: Record<string, string> = {
       <h3>Conclusion: 200–250 words</h3>
       <p>Answer the prescribed title directly, synthesise both AOKs (don't summarise), acknowledge a genuine limitation, and connect to broader significance.</p>
       <h2>The Claim-Counter-Claim Cycle</h2>
-      <p>Students who structure genuine claim/counter-claim/synthesis cycles consistently score 8–10. Students who list claims without counter-claims score at most 5 out of 10.</p>
+      <p>A genuine claim, counter-claim and synthesis cycle is what the top band describes. Listing claims without counter-claims is what the lower bands describe.</p>
       <h2>Common Structural Mistakes</h2>
       <ul>
         <li><strong>Three or more AOKs:</strong> You cannot give adequate depth to three AOKs in 1,600 words.</li>
-        <li><strong>Claims without examples:</strong> Abstract claims with no concrete illustration score below 6.</li>
+        <li><strong>Claims without examples:</strong> Abstract claims with no concrete illustration are what the middle bands describe.</li>
         <li><strong>No counter-claims:</strong> A claim without a counter-claim keeps the essay in the lower bands of the holistic rubric.</li>
         <li><strong>Using subheadings:</strong> TOK essays should be continuous prose — subheadings signal a formulaic approach.</li>
       </ul>

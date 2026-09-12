@@ -41,7 +41,7 @@ export default function TokEssayFormat() {
       <ul>
         <li><strong>Title page:</strong> Must include your session number (not your name, essays are marked anonymously), the prescribed title you selected (written in full, exactly as published by the IBO), and your school name.</li>
         <li><strong>Word count declaration:</strong> You must declare the word count on the title page. If your declared count differs significantly from the actual count, this can be flagged.</li>
-        <li><strong>Readable font and spacing:</strong> While the IBO does not specify an exact font, essays should be readable, 12pt Times New Roman or Arial with double spacing is standard. Single-spaced essays may be returned or penalised.</li>
+        <li><strong>Readable font and spacing:</strong> While the IBO does not specify an exact font, essays should be readable, 12pt Times New Roman or Arial with double spacing is standard. Use 1.5 or double spacing, which is what schools ask for and what reads cleanly.</li>
         <li><strong>Page numbering:</strong> Number your pages. This is not required by the rubric but is expected by examiners and makes it easier if pages become separated.</li>
         <li><strong>No name on the essay body:</strong> Your name must not appear anywhere in the essay itself, only your session number. This protects anonymity during marking.</li>
       </ul>

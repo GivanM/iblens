@@ -373,7 +373,7 @@ export const staticContent: Record<string, string> = {
     <li><strong>Generic or symbolic objects</strong>: Choosing abstract symbols ("a book representing knowledge") rather than specific, real-world objects with a concrete epistemic connection to the prompt.</li>
     <li><strong>Naming TOK concepts without engaging with them</strong>: Asserting that an object "connects to knowledge" without explaining how the object actually shows knowledge being produced, shared or valued in the world.</li>
     <li><strong>Objects that do not work together</strong>: Three disconnected objects that each make separate points, rather than building a coherent, cumulative argument about knowledge in the context of the prompt.</li>
-    <li><strong>Weak justification length</strong>: Each object commentary should be roughly 100 words of substantive argument. Brief, superficial justifications score in the lowest mark band.</li>
+    <li><strong>Weak justification length</strong>: Each object commentary runs to roughly 300 words, since 950 is the total across all three. Brief, superficial justifications score in the lowest mark band.</li>
     <li><strong>Ignoring the IA prompt wording</strong>: Your justification must address the specific language of the chosen IA prompt — not just the general topic of knowledge.</li>
   </ul>
 
@@ -909,7 +909,7 @@ export const staticContent: Record<string, string> = {
       <ul>
         <li><strong>Title page:</strong> Must include your session number (not your name — essays are marked anonymously), the prescribed title you selected (written in full, exactly as published by the IBO), and your school name.</li>
         <li><strong>Word count declaration:</strong> You must declare the word count on the title page. If your declared count differs significantly from the actual count, this can be flagged.</li>
-        <li><strong>Readable font and spacing:</strong> While the IBO does not specify an exact font, essays should be readable — 12pt Times New Roman or Arial with double spacing is standard. Single-spaced essays may be returned or penalised.</li>
+        <li><strong>Readable font and spacing:</strong> While the IBO does not specify an exact font, essays should be readable — 12pt Times New Roman or Arial with double spacing is standard. Use 1.5 or double spacing, which is what schools ask for and what reads cleanly.</li>
         <li><strong>Page numbering:</strong> Number your pages. This is not required by the rubric but is expected by examiners and makes it easier if pages become separated.</li>
         <li><strong>No name on the essay body:</strong> Your name must not appear anywhere in the essay itself — only your session number. This protects anonymity during marking.</li>
       </ul>
@@ -1918,7 +1918,7 @@ export const staticContent: Record<string, string> = {
       </p>
 
       <p>
-        <strong>Standardization:</strong> Before marking begins, examiners attend standardization meetings where they mark sample scripts and discuss how to apply the criteria consistently. This ensures that different examiners marking the same script would arrive at similar marks (within 1–2 marks of each other in most cases).
+        <strong>Standardization:</strong> Before marking begins, examiners attend standardization meetings where they mark sample scripts and discuss how to apply the criteria consistently. This ensures that different examiners marking the same script would arrive at similar marks (close to each other, which is the point of publishing descriptors at all).
       </p>
 
       <h2>The Difference Between Band 5 and Band 7</h2>
@@ -1996,7 +1996,7 @@ export const staticContent: Record<string, string> = {
       </p>
 
       <p>
-        <strong>Step 5: Targeted revision.</strong> Focus your revision effort on the criteria where you have the largest gap between current performance and target. There is no point polishing your communication (Criterion D) if your analysis (Criterion C) is still at band 3.
+        <strong>Step 5: Targeted revision.</strong> Focus your revision effort on the criteria where you have the largest gap between current performance and target. There is no point polishing presentation if the criterion carrying the most marks in your own rubric is still at the bottom band.
       </p>
 
       <h2>How AI Feedback Maps to Criteria</h2>
@@ -2689,7 +2689,7 @@ export const staticContent: Record<string, string> = {
       </p>
 
       <p>
-        <strong>Switzerland:</strong> ETH Zurich and EPFL require the IB Diploma with specific subject requirements and minimum scores (typically 38+ for ETH). The Swiss system values the breadth of the IB.
+        <strong>Switzerland:</strong> ETH Zurich and EPFL require the IB Diploma with specific subject requirements and minimum scores (38 of the 42 subject points for ETH, bonus points excluded). The Swiss system values the breadth of the IB.
       </p>
 
       <p>
@@ -2746,7 +2746,7 @@ export const staticContent: Record<string, string> = {
       </ul>
 
       <p>
-        The tool draws on historical admissions data and university-specific IB policies to provide personalized recommendations rather than generic advice. This is particularly valuable for international students who may not have access to country-specific counseling for every system they are considering.
+        We no longer offer university recommendations. The part we help with is the writing. This is particularly valuable for international students who may not have access to country-specific counseling for every system they are considering.
       </p>
 
       <p>
@@ -2960,7 +2960,7 @@ export const staticContent: Record<string, string> = {
       <p>This guide walks through what examiners actually reward, gives you concrete example research questions by subject, shows the most common mistakes that drag scores down, and explains the mindset shift that separates a C-grade EE from one that earns a coveted A.</p>
 
       <h2>What Makes a High-Scoring IB Extended Essay?</h2>
-      <p>The IB grades Extended Essays against five criteria: Focus and Method (Criterion A), Knowledge and Understanding (B), Critical Thinking (C), Presentation (D), and Engagement (E). Total marks available are 34. An A is 27 marks or more out of 34; most students earning a B or C lose the majority of their marks on Criterion C — critical thinking.</p>
+      <p>The IB grades Extended Essays against five criteria: Focus and Method (Criterion A), Knowledge and Understanding (B), Critical Thinking (C), Presentation (D), and Engagement (E). Total marks available are 34. An A is 27 marks or more out of 34; the criterion carrying the most marks is where most of the gap usually sits — critical thinking.</p>
       <p>Examiners are not looking for a Wikipedia-style overview of a topic. They want to see a student take a narrow, specific question and subject it to sustained, disciplined analysis. The difference between a mediocre essay and an excellent one almost always comes down to three things:</p>
       <ul>
         <li><strong>Specificity of the research question.</strong> Vague questions produce vague answers. A question like "How does social media affect mental health?" cannot be answered in 4,000 words. A question like "To what extent did Instagram's algorithmic feed, introduced in 2016, correlate with self-reported anxiety scores among UK adolescent girls aged 14–17?" is narrow enough to actually investigate.</li>
@@ -3112,7 +3112,7 @@ export const staticContent: Record<string, string> = {
       </ul>
 
       <h3>Grade Boundary Trends 2022–2026</h3>
-      <p>Mathematics Analysis and Approaches HL, Physics HL, and Economics HL frequently require 75–85% of available marks for a grade 7. Biology and Chemistry HL boundaries have been relatively stable. The post-pandemic 2022 session produced notable boundary drops; by 2025–2026 most subjects are tracking back toward pre-2020 historical norms.</p>
+      <p>Grade boundaries move every session and the IB publishes them to coordinators after marking, so no fixed percentage can be quoted. Biology and Chemistry HL boundaries have been relatively stable. The post-pandemic 2022 session produced notable boundary drops; by 2025–2026 most subjects are tracking back toward pre-2020 historical norms.</p>
 
       <h2>What IB Score Do You Need for Top Universities?</h2>
 
@@ -4152,7 +4152,7 @@ export const staticContent: Record<string, string> = {
       <p>If your raw mark sits near a grade boundary, you are in the highest-risk zone. A moderation adjustment of ±2 marks is common; adjustments of ±4 or more are possible. Students near boundaries should treat their estimated grade as a range: the grade they calculate, plus or minus one.</p>
 
       <h2>Why Predicted IA Grades Change After Moderation</h2>
-      <p>In most sessions, a majority of schools receive some adjustment. The variance is higher in subjects with more subjective criteria — History and Psychology IAs tend to see wider adjustment ranges than Chemistry or Maths IAs. Two factors drive large adjustments: teacher inexperience with IB marking standards, and grade inflation pressure from knowing students personally.</p>
+      <p>Moderation adjusts some schools' marks each session, and the IB does not publish how many. The variance is higher in subjects with more subjective criteria — History and Psychology IAs tend to see wider adjustment ranges than Chemistry or Maths IAs. Two factors drive large adjustments: teacher inexperience with IB marking standards, and grade inflation pressure from knowing students personally.</p>
 
       <h2>Get Your IA Analyzed by AI</h2>
       <p>Self-assessment has a fundamental limitation: you can't read your own work the way a stranger would. You know what you meant to say, which makes it hard to see where you failed to say it clearly enough to earn a mark.</p>
@@ -4163,7 +4163,7 @@ export const staticContent: Record<string, string> = {
       <p>Yes — by self-assessing against the official mark scheme descriptors, criterion by criterion. The challenge is objectivity: you know your work too well to read it the way a moderator would.</p>
 
       <h3>How much can moderation change my IA grade?</h3>
-      <p>An adjustment of ±2–3 marks is common; adjustments of ±4–6 marks occur in some schools each session. Whether it changes your final grade depends on where you sit relative to the grade boundaries for that session.</p>
+      <p>An adjustment of ±2–3 marks is common; adjustments happen, and their size is not published. Whether it changes your final grade depends on where you sit relative to the grade boundaries for that session.</p>
 
       <h3>Are IB IA grade boundaries the same every year?</h3>
       <p>No. Grade boundaries are set fresh each session based on the difficulty of the work submitted. Using boundaries from a previous year gives you an approximation only.</p>

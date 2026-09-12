@@ -10,7 +10,7 @@ const config: SubjectConfig = {
   canonicalPath: "/essay/tok-exhibition",
   heroHeadline: "Do your TOK Exhibition objects actually link to the IA prompt?",
   heroSubline:
-    "Paste your TOK Exhibition commentary and get criterion-by-criterion feedback against the official IB rubric, free preview first, full report $9.99. Find out if your object justifications are strong enough to score 9–10/10.",
+    "Paste your TOK exhibition commentary and get it read against the official holistic scale out of 10, free preview first, full report $9.99. Find out if your object justifications are strong enough to score 9–10/10.",
   criteria: [
     { name: "Holistic assessment: how well the exhibition shows TOK in the world", max: 10, sampleScore: 6 },
   ],

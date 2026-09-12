@@ -13,7 +13,7 @@ export default function HowIBLensWorks() {
       <h1>How IBLens Works</h1>
 
       <p>
-        IBLens is an AI-powered essay analysis tool designed specifically for IB Diploma Programme students. It provides criterion-by-criterion feedback on Internal Assessments, Extended Essays, and Theory of Knowledge essays, the same type of detailed assessment that an experienced IB examiner would provide, delivered in about 90 seconds.
+        IBLens is an AI-powered essay analysis tool designed specifically for IB Diploma Programme students. It reads coursework against the published assessment criteria: criterion by criterion for the Internal Assessment and the Extended Essay, and against the single holistic scale for TOK, which has no sub-criteria. The report comes back in about 90 seconds.
       </p>
 
       <p>
@@ -45,7 +45,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        <strong>Criteria mapping:</strong> For each subject and essay type, the system has a detailed understanding of the criterion names, their mark allocations and what each one assesses. This is derived from the official IBO assessment criteria published in subject guides, examiner reports, and marking guidance documents.
+        <strong>Criteria mapping:</strong> For each subject and essay type, the system has a detailed understanding of the criterion names, their mark allocations and what each one assesses. This is taken from the official IBO assessment criteria published in the subject guides.
       </p>
 
       <p>
@@ -113,7 +113,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <ul>
-        <li><strong>Storage:</strong> The essay text is never written to our database. The report it produces is deleted after 90 days unless you bought it. If you sign in, your analysis history is saved to your account until you delete it. Essay content is never shared and never used to train AI models.</li>
+        <li><strong>Storage:</strong> The essay text is never written to our database. An anonymous report you did not buy is deleted after 90 days. A purchased report is kept. If you sign in, your history stays in your account until you delete it, and every report there has a delete button. Essay content is never shared and never used to train AI models.</li>
         <li><strong>Processed by our AI provider only:</strong> Your essay is sent to our AI provider (Anthropic) over an encrypted connection solely to generate your analysis. It is not used to train any model, not sold, and not shared with schools, universities, or other students.</li>
         <li><strong>Encrypted transmission:</strong> All data is transmitted over HTTPS with industry-standard encryption.</li>
         <li><strong>No training on your data:</strong> Your essays are not used to train or improve the AI model. Your intellectual property remains yours.</li>

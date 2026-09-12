@@ -27,6 +27,38 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DIST_DIR = path.resolve(__dirname, "../dist/public");
 
+/**
+ * The React subject pages keep their own metaTitle/metaDescription, and
+ * react-helmet-async writes them over whatever the server put in the HTML. When
+ * the two disagree, the crawler and the reader are told different things, which
+ * is how an abolished rubric survived on four pages for five rounds of review.
+ * Fail the build instead.
+ */
+async function assertClientMetaMatches(routeMeta) {
+  const dir = path.resolve(__dirname, "../client/src/pages/essay");
+  if (!fs.existsSync(dir)) return;
+  const problems = [];
+  for (const file of fs.readdirSync(dir).filter((f) => f.endsWith(".tsx"))) {
+    const src = fs.readFileSync(path.join(dir, file), "utf8");
+    const pathMatch = src.match(/canonicalPath:\s*"([^"]+)"/);
+    const descMatch = src.match(/metaDescription:\s*\n?\s*"((?:[^"\\]|\\.)*)"/);
+    if (!pathMatch || !descMatch) continue;
+    const route = pathMatch[1];
+    const clientDesc = descMatch[1].replace(/\\"/g, '"');
+    const serverDesc = routeMeta[route]?.description;
+    if (serverDesc && serverDesc !== clientDesc) {
+      problems.push(`${route}\n    server: ${serverDesc.slice(0, 90)}\n    client: ${clientDesc.slice(0, 90)}`);
+    }
+  }
+  if (problems.length > 0) {
+    console.error("\n❌ Page metadata disagrees between the server table and the React page:\n");
+    problems.forEach((p) => console.error("  " + p + "\n"));
+    console.error("Make them identical: the reader and the crawler must be told the same thing.\n");
+    process.exit(1);
+  }
+  console.log("✓ Page metadata agrees between server and client for every subject page");
+}
+
 const SITE_URL = "https://iblens.com";
 const SITE_NAME = "IBLens";
 const DEFAULT_OG_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663456034410/fPpXrWUtmpLttw7Fz9wKLE/og-image-CS5C2Vq6Jk92bXNFNMwCXg.png";
@@ -49,6 +81,8 @@ const routeMeta = await (async () => {
   const mod = await import("data:text/javascript;base64," + Buffer.from(code).toString("base64"));
   return mod.routeMeta;
 })();
+
+await assertClientMetaMatches(routeMeta);
 
 /**
  * Generate per-route JSON-LD structured data.

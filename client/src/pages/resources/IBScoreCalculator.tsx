@@ -12,7 +12,7 @@ export default function IBScoreCalculator() {
     >
       <h1>IB Score Calculator & Grade Boundaries: The Complete Guide</h1>
       <h2>How IB Scoring Works: The 45-Point System Explained</h2>
-      <p>Every IB diploma candidate takes six subjects, three at Higher Level (HL) and three at Standard Level (SL). Each subject is graded on a scale of 1 to 7, giving a raw maximum of 42 subject points. The remaining 3 points come from the core: Theory of Knowledge (TOK) and the Extended Essay (EE) together award between 0 and 3 bonus points.</p>
+      <p>Every IB diploma candidate takes six subjects, three or four at Higher Level and the rest at Standard Level. Each subject is graded on a scale of 1 to 7, giving a raw maximum of 42 subject points. The remaining 3 points come from the core: Theory of Knowledge (TOK) and the Extended Essay (EE) together award between 0 and 3 bonus points.</p>
       <p><strong>Maximum total: 6 subjects × 7 points = 42 + 3 bonus points = 45 points.</strong></p>
 
       <h2>How to Calculate Your Predicted IB Score Step by Step</h2>
@@ -63,7 +63,7 @@ export default function IBScoreCalculator() {
       </ul>
 
       <h3>Grade Boundary Trends 2022–2026</h3>
-      <p>Mathematics Analysis and Approaches HL, Physics HL, and Economics HL frequently require 75–85% of available marks for a grade 7. Biology and Chemistry HL boundaries have been relatively stable. The post-pandemic 2022 session produced notable boundary drops; by 2025–2026 most subjects are tracking back toward pre-2020 historical norms.</p>
+      <p>Grade boundaries move every session and the IB publishes them to coordinators after marking, so no fixed percentage can be quoted. Biology and Chemistry HL boundaries have been relatively stable. The post-pandemic 2022 session produced notable boundary drops; by 2025–2026 most subjects are tracking back toward pre-2020 historical norms.</p>
 
       <h2>What IB Score Do You Need for Top Universities?</h2>
 

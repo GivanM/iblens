@@ -10,7 +10,7 @@ const config: SubjectConfig = {
   canonicalPath: "/essay/tok-essay",
   heroHeadline: "Is your TOK essay actually answering the prescribed title?",
   heroSubline:
-    "Paste your TOK essay and get criterion-by-criterion feedback against the official IB TOK rubric, free in about 90 seconds. See if your knowledge claims are developed enough to score top marks.",
+    "Paste your TOK essay and get it read against the official holistic TOK scale, which has no sub-criteria, free in about 90 seconds. See if your knowledge claims are developed enough to score top marks.",
   criteria: [
     { name: "Holistic assessment: clear, coherent, critical exploration of the title", max: 10, sampleScore: 6 },
   ],

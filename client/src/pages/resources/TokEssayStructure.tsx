@@ -84,7 +84,7 @@ export default function TokEssayStructure() {
       </p>
 
       <p>
-        When you present a counter-claim and then respond to it, you are demonstrating exactly what the IB rubric rewards: "nuanced analysis that considers multiple perspectives." Students who list claims without counter-claims score at most a 5 out of 10. Students who structure genuine claim-counter-claim-synthesis cycles consistently score 8–10.
+        When you present a counter-claim and then respond to it, you are demonstrating exactly what the IB rubric rewards: "different points of view are evaluated." Students who list claims without counter-claims score at most a 5 out of 10. Students who structure genuine claim-counter-claim-synthesis cycles consistently score 8–10.
       </p>
 
       <h2>Choosing Your Two Areas of Knowledge</h2>
