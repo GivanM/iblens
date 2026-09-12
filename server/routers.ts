@@ -27,6 +27,7 @@ import {
   getDeviceCredits,
   consumeDeviceCredit,
   deleteAnonymousAnalysis,
+  deleteUserAnalysis,
   updateAnonymousResult,
   setAnonymousUnlocked,
   markAnalysisUnlocked,
@@ -886,6 +887,15 @@ const dashboardRouter = router({
       // A locked analysis must not expose the exact predicted score anywhere — that score is
       // the headline of the paid report.
       return rows.map((r: any) => (r.unlocked ? r : { ...r, predictedGrade: null, resultJson: null }));
+    }),
+
+  /** Delete one report from the account, for real, because the privacy page says so. */
+  deleteAnalysis: protectedProcedure
+    .input(z.object({ id: z.number() }))
+    .mutation(async ({ ctx, input }) => {
+      const removed = await deleteUserAnalysis(input.id, ctx.user.id);
+      if (!removed) throw new TRPCError({ code: "NOT_FOUND", message: "Report not found" });
+      return { deleted: true as const };
     }),
 
   analysis: protectedProcedure

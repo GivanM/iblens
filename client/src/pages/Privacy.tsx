@@ -39,7 +39,7 @@ export default function Privacy() {
           <h2>How long we keep it</h2>
           <ul>
             <li>Anonymous analyses: the report and the research question are deleted 90 days after the analysis, unless the report was purchased. The essay text itself is never stored.</li>
-            <li>Signed-in analysis history: kept until you delete it or ask us to.</li>
+            <li>Signed-in analysis history: kept until you delete it. Every report in your dashboard has a Delete button, and you can also ask us to remove everything.</li>
             <li>Account email: kept while your account is active, then on request.</li>
           </ul>
 

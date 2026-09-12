@@ -492,7 +492,7 @@ export async function addCreditLedgerEntry(data: InsertCreditLedgerEntry) {
 
 /**
  * Get user credit balance from credit_ledger (sum of deltas by creditType).
- * This is the source of truth for NOWPayments credits.
+ * This is the record of grants. Balances are read from the users table; this ledger is the audit trail of purchases, and spends are not written to it for NOWPayments credits.
  * For now, we still use denormalized counters on users table for backward compatibility.
  */
 export async function getUserCreditBalanceFromLedger(userId: number): Promise<{ essay: number; university: number }> {
@@ -757,6 +757,14 @@ export async function updateAnonymousResult(id: number, resultJson: any, predict
   await db.update(anonymousAnalyses)
     .set({ resultJson, ...(predictedGrade !== undefined ? { predictedGrade } : {}) })
     .where(eq(anonymousAnalyses.id, id));
+}
+
+/** Delete one analysis belonging to this user, with everything it holds. */
+export async function deleteUserAnalysis(id: number, userId: number): Promise<boolean> {
+  const db = await getDb();
+  if (!db) return false;
+  const res: any = await db.delete(analyses).where(and(eq(analyses.id, id), eq(analyses.userId, userId)));
+  return Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0) > 0;
 }
 
 /** Remove a claimed-but-failed free slot so a broken run does not cost the student theirs. */

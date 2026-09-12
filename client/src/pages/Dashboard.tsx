@@ -25,6 +25,9 @@ export default function Dashboard() {
   const [modalSku, setModalSku] = useState<ProductKey>("ESSAY_SINGLE");
 
   const confettiFired = useRef(false);
+  const [pendingPurchase, setPendingPurchase] = useState<
+    { orderId: string; product: ProductSlug; method: AnalyticsPaymentMethod } | null
+  >(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -44,18 +47,15 @@ export default function Dashboard() {
 
       toast.success(message, { duration: 6000 });
 
+      // Reported only once per order, and only for an order that exists on the
+      // account. The amount comes from the order, not from the address bar:
+      // reloading the page or typing ?payment=success used to book a purchase.
       const orderId = params.get("order") || "unknown";
-      const product = (params.get("product") || "essay_single") as ProductSlug;
-      const value = parseFloat(params.get("value") || "0");
-      const method = (params.get("method") || "lemonsqueezy") as AnalyticsPaymentMethod;
-      if (user?.email) {
-        sha256(user.email).then((emailHashed) => {
-          const userIdHashed = user.openId || "";
-          trackPurchase(orderId, product, value, method, userIdHashed, emailHashed);
-        });
-      } else {
-        trackPurchase(orderId, product, value, method, "", "");
-      }
+      setPendingPurchase({
+        orderId,
+        product: (params.get("product") || "essay_single") as ProductSlug,
+        method: (params.get("method") || "lemonsqueezy") as AnalyticsPaymentMethod,
+      });
 
       window.history.replaceState({}, "", "/dashboard");
 
@@ -99,7 +99,33 @@ export default function Dashboard() {
     );
   }
 
+  const deleteAnalysis = trpc.dashboard.deleteAnalysis.useMutation({
+    onSuccess: () => { toast.success("Report deleted."); historyQuery.refetch(); },
+    onError: (e: any) => toast.error(e.message || "Could not delete that report"),
+  });
   const credits = creditsQuery.data;
+
+  // The purchase reaches analytics only once the order is confirmed on the
+  // account, with the amount taken from the order. Typing ?payment=success or
+  // reloading the page used to book a sale that never happened.
+  useEffect(() => {
+    if (!pendingPurchase) return;
+    const known = (ordersQuery.data || []).find((o: any) => o.id === pendingPurchase.orderId && o.status === "paid");
+    if (!known) return;
+    const key = `iblens_purchase_reported_${pendingPurchase.orderId}`;
+    try {
+      if (localStorage.getItem(key) === "1") { setPendingPurchase(null); return; }
+      localStorage.setItem(key, "1");
+    } catch { /* no storage, report once per page load */ }
+    const value = (known.amountUsd ?? 0) / 100;
+    if (user?.email) {
+      sha256(user.email).then((emailHashed) =>
+        trackPurchase(pendingPurchase.orderId, pendingPurchase.product, value, pendingPurchase.method, user.openId || "", emailHashed));
+    } else {
+      trackPurchase(pendingPurchase.orderId, pendingPurchase.product, value, pendingPurchase.method, "", "");
+    }
+    setPendingPurchase(null);
+  }, [pendingPurchase, ordersQuery.data, user]);
   const history = historyQuery.data || [];
   const paymentsList = paymentsQuery.data || [];
   const orders = ordersQuery.data || [];
@@ -124,7 +150,9 @@ export default function Dashboard() {
           <CardContent className="p-5">
             <p className="text-xs text-muted-foreground font-medium mb-1">Free Essay</p>
             <div className="text-2xl font-bold">
-              {credits?.freeEssayAvailable ? (
+              {creditsQuery.isError ? (
+                <span className="text-muted-foreground text-base">not loaded</span>
+              ) : credits?.freeEssayAvailable ? (
                 <span className="text-primary">Available</span>
               ) : (
                 <span className="text-muted-foreground">Used</span>
@@ -136,7 +164,14 @@ export default function Dashboard() {
         <Card>
           <CardContent className="p-5">
             <p className="text-xs text-muted-foreground font-medium mb-1">Essay Credits</p>
-            <div style={SERIF} className="text-2xl font-bold">{credits?.essayCredits ?? 0}</div>
+            <div style={SERIF} className="text-2xl font-bold">
+              {creditsQuery.isError ? <span className="text-base text-muted-foreground">not loaded</span> : (credits?.essayCredits ?? 0)}
+            </div>
+            {creditsQuery.isError && (
+              <p className="text-xs text-amber-600 mt-1">
+                We could not read your balance just now. Reload before buying anything: this is not a statement that you have none.
+              </p>
+            )}
           </CardContent>
         </Card>
 
@@ -250,10 +285,10 @@ export default function Dashboard() {
           ) : (
             <div className="space-y-2">
               {history.map((item) => (
+                <div key={item.id} className="flex items-center gap-3 border-b border-border last:border-0">
                 <Link
-                  key={item.id}
                   href={item.unlocked ? `/dashboard/analysis/${item.id}` : "/essay"}
-                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors border-b border-border last:border-0 cursor-pointer"
+                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors flex-1 min-w-0 cursor-pointer"
                 >
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium truncate">
@@ -272,6 +307,19 @@ export default function Dashboard() {
                     <Badge variant="outline" className="flex-shrink-0">Locked</Badge>
                   )}
                 </Link>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="flex-shrink-0 text-muted-foreground hover:text-destructive"
+                  disabled={deleteAnalysis.isPending}
+                  onClick={() => {
+                    if (!window.confirm("Delete this report? The text of your essay was never stored, but the report and its research question go for good.")) return;
+                    deleteAnalysis.mutate({ id: item.id });
+                  }}
+                >
+                  Delete
+                </Button>
+                </div>
               ))}
             </div>
           )}

@@ -540,7 +540,7 @@ export default function EssayAnalyzer() {
                 </SelectContent>
               </Select>
             </div>
-            {essayType !== "TOK Exhibition" && (
+            {essayType !== "TOK Exhibition" && essayType !== "TOK" && (
               <div className="space-y-2">
                 <Label>Subject</Label>
                 <Select value={subject} onValueChange={setSubject}>
@@ -595,6 +595,7 @@ export default function EssayAnalyzer() {
                   ? "Paste your reflective statement, up to 500 words. Criterion E is marked on this and not on the essay, so without it the report covers the other four criteria only."
                   : "Paste your three RPPF reflections, 500 words in total. Criterion E is marked on these and not on the essay, so without them the report covers the other four criteria only."}
                 rows={4}
+                maxLength={8000}
                 value={reflections}
                 onChange={(e) => setReflections(e.target.value)}
               />
