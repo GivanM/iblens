@@ -83,8 +83,8 @@ export default function Home() {
     <>
       <PurchaseModal open={purchaseModalOpen} onOpenChange={setPurchaseModalOpen} sku={purchaseSku} />
       <SEOHead
-        title="IBLens, Free IB Essay Grader & Feedback Tool"
-        description="Free IB essay grader, upload your Extended Essay, IA, or TOK and get AI feedback with a predicted grade in about 90 seconds. No credit card required."
+        title="Free IB Essay Grader 2026: AI Feedback on IA, EE & TOK | IBLens"
+        description="AI feedback on your IB essay in about a minute: criterion-by-criterion marks, a predicted band, the risks costing you marks, and what to fix first. Free preview, no account needed."
         canonical="/"
         jsonLd={[
           {
@@ -119,7 +119,7 @@ export default function Home() {
                 name: "How does IBLens analyze my IB essay?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "IBLens uses a large language model instructed with the official IB marking criteria to analyze your essay. It evaluates each criterion (for example Knowledge and understanding, Analysis, Evaluation, the exact set depends on your subject) and provides a predicted score, identifies risk areas that could lose marks, and suggests specific improvements.",
+                  text: "IBLens uses a large language model instructed with the published IB assessment criteria for your subject and session. It marks each criterion (the set depends on your subject), gives a predicted score, identifies the risks that could lose marks, and suggests specific improvements.",
                 },
               },
               {
@@ -135,7 +135,7 @@ export default function Home() {
                 name: "Is my first essay analysis really free?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes, your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report, exact score, the full report with comments, and a ranked fix list, unlocks for $9.99.",
+                  text: "Yes. The first preview is free: your band range, your weakest criterion with its full feedback, and the top risks in your draft. The complete report, with the exact mark, comments on every criterion and a ranked list of fixes, unlocks for $9.99.",
                 },
               },
               {
@@ -143,7 +143,7 @@ export default function Home() {
                 name: "How accurate is the predicted IB score?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "IBLens provides a predicted score band based on IB marking criteria analysis. While no tool can guarantee exact scores, the model is instructed with the official IB criteria for your subject and session and produces an estimate, which is not a measured match to examiner marks to help you understand where your essay stands and how to improve it.",
+                  text: "It is an estimate, not a mark. No tool can guarantee an exact score. The model is instructed with the published criteria for your subject and session, and its estimate has not been measured against examiner marks, so the value of the report is in which criterion it flags and why.",
                 },
               },
               {
@@ -159,7 +159,7 @@ export default function Home() {
                 name: "What payment methods do you accept?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "We accept card payments (Visa, Mastercard, Amex). The payment process is fast and secure, credits activate automatically after payment.",
+                  text: "Payments are handled by LemonSqueezy, which accepts major cards and the other methods shown at checkout. Credits are added automatically once the payment is confirmed.",
                 },
               },
               {
@@ -175,7 +175,7 @@ export default function Home() {
                 name: "What if I'm not satisfied with my analysis?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Email us at glushkovim@gmail.com within 7 days of your purchase and we'll refund you in full, no questions asked. We process refunds via the original payment method within 3–5 business days.",
+                  text: "Email us at glushkovim@gmail.com within 7 days of your purchase and we'll refund you in full, no questions asked. We process refunds via the original payment method within 3-5 business days.",
                 },
               },
             ],
@@ -188,7 +188,7 @@ export default function Home() {
           <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white py-2.5 text-center text-sm font-medium">
             <div className="container flex items-center justify-center gap-2">
               <Clock className="w-4 h-4" />
-              <span>Only {days} days until IB {examYear} exams, get your essay graded now</span>
+              <span>About {days} days until the IB {examYear} exams. Check your coursework while there is time to act.</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </div>
           </div>
@@ -202,10 +202,10 @@ export default function Home() {
               <div>
                 <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-4">IB Essay Grader</p>
                 <h1 style={SERIF} className="text-5xl font-bold leading-tight mb-6">
-                  Know your<br />IB score<br /><em className="text-primary">before the exam.</em>
+                  Know where<br />your marks go<br /><em className="text-primary">before you submit.</em>
                 </h1>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-md">
-                  Paste your essay. AI grades it against the official IB rubric, criterion by criterion, in about 90 seconds.
+                  Paste your essay. AI marks it against the published IB criteria, criterion by criterion, in about a minute.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 mb-4">
                   <Button size="lg" className="text-base px-8 shadow-lg shadow-primary/25" asChild>
@@ -215,7 +215,7 @@ export default function Home() {
                     <Link href="/resources/sample-reports">See real sample reports</Link>
                   </Button>
                 </div>
-                <p className="text-sm text-muted-foreground">No subscription. No account for your first essay. Calibrated to grade like a <strong>strict examiner</strong>, no inflated scores.</p>
+                <p className="text-sm text-muted-foreground">No subscription. No account for your first essay. Instructed to mark <strong>strictly</strong>, not to flatter.</p>
               </div>
 
               {/* Right column, score card */}
@@ -253,11 +253,11 @@ export default function Home() {
             <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-2 text-sm text-muted-foreground">
               <span><strong className="text-foreground">No account</strong> needed for your first essay</span>
               <span className="hidden sm:block text-border">|</span>
-              <span><strong className="text-foreground">Every criterion</strong>, scored strictly</span>
+              <span><strong className="text-foreground">Every criterion</strong> in the full report</span>
               <span className="hidden sm:block text-border">|</span>
               <span><strong className="text-foreground">IA · EE · TOK</strong></span>
               <span className="hidden sm:block text-border">|</span>
-              <span><strong className="text-foreground">Free</strong> first essay</span>
+              <span><strong className="text-foreground">Free</strong> first preview</span>
             </div>
           </div>
         </div>
@@ -265,13 +265,13 @@ export default function Home() {
         {/* Features, numbered */}
         <section className="py-20" id="sample">
           <div className="container">
-            <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3 text-center">Why students choose IBLens</p>
+            <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3 text-center">How IBLens marks</p>
             <h2 style={SERIF} className="text-3xl font-bold text-center mb-12">Built on the actual IB rubric.</h2>
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {[
-                { n: "01", title: "Official criteria", desc: "Same assessment criteria as IB examiners, no simplified versions. Every band descriptor, every criterion." },
-                { n: "02", title: "Criterion feedback", desc: "Specific written feedback on every criterion in the full report, not just a total score. Know exactly where marks are lost." },
-                { n: "03", title: "Results in about 90 seconds", desc: "Paste, click, done. Full breakdown in about 90 seconds. No account required for your first analysis." },
+                { n: "01", title: "The published criteria", desc: "The criteria for your subject and exam session, with their real mark allocations, including the May 2027 changes." },
+                { n: "02", title: "Criterion feedback", desc: "Specific written feedback on every criterion in the full report, not just a total. See where the marks are lost." },
+                { n: "03", title: "About a minute", desc: "Paste, click, read. No account needed for your first preview, and the words are counted against your limit." },
               ].map(f => (
                 <div key={f.n} className="border-t-2 border-primary pt-6">
                   <p style={SERIF} className="text-4xl font-bold text-primary mb-4">{f.n}</p>
@@ -304,8 +304,8 @@ export default function Home() {
                   ))}
                 </ul>
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">First analysis free</span>
-                  <span className="text-xs text-muted-foreground">then $9.99 per draft, re-checks included</span>
+                  <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">Free preview</span>
+                  <span className="text-xs text-muted-foreground">then $9.99 per essay, two re-checks included</span>
                 </div>
                 <Button variant="outline" asChild>
                   <Link href="/essay">Try it now <ArrowRight className="w-4 h-4 ml-1" /></Link>
@@ -327,7 +327,7 @@ export default function Home() {
                 </ul>
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">First review free</span>
-                  <span className="text-xs text-muted-foreground">no score invented, UCAS publishes no mark scheme</span>
+                  <span className="text-xs text-muted-foreground">No invented score, because UCAS publishes no mark scheme</span>
                 </div>
                 <Button variant="outline" asChild>
                   <Link href="/ucas-personal-statement">Check my statement <ArrowRight className="w-4 h-4 ml-1" /></Link>
@@ -357,10 +357,10 @@ export default function Home() {
                   "I built this because my daughter's IB tutor charged $120 for one feedback session, and it came the week before the deadline."
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  The IB marking rubric is public. Every criterion, every band descriptor, every score level, it's all in the official IBO documentation. A trained examiner knows it by heart. So I asked: why can't an AI do the same thing, in ninety seconds, for any student?
+                  The IB's assessment criteria are written down in its subject guides, and a trained examiner knows them by heart. So I asked: why can't an AI read a draft against those same criteria, in about a minute, for any student?
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  IBLens is the result. It doesn't replace your teacher, but it gives you the same quality signal an experienced examiner would, before you've run out of time to act on it. First analysis is free. No account needed.
+                  IBLens is the result. It doesn't replace your teacher. It shows you, criterion by criterion, where a draft stands against the criteria, before you've run out of time to act on it. The first preview is free, with no account needed.
                 </p>
                 <div className="mt-5 flex items-center gap-3">
                   <img
@@ -385,26 +385,23 @@ export default function Home() {
             <h2 style={SERIF} className="text-2xl font-bold mb-10">What does IB feedback actually cost?</h2>
             <div className="grid md:grid-cols-3 gap-4 max-w-2xl mx-auto mb-8">
               <div className="bg-background border-2 border-border rounded-xl p-5 text-center">
-                <div className="text-3xl mb-3">😰</div>
                 <p className="font-semibold mb-1">IB Tutor</p>
-                <div className="text-2xl font-bold text-muted-foreground mb-1">$50–150<span className="text-sm font-normal">/hr</span></div>
-                <p className="text-xs text-muted-foreground">One feedback session = $120+. Wait 1–2 weeks. No rubric breakdown.</p>
+                <div className="text-2xl font-bold text-muted-foreground mb-1">By the hour</div>
+                <p className="text-xs text-muted-foreground">Subject judgement no tool has, but paid per session and booked around someone else's calendar.</p>
               </div>
               <div className="bg-background border-2 border-border rounded-xl p-5 text-center">
-                <div className="text-3xl mb-3">😐</div>
                 <p className="font-semibold mb-1">IB Teacher</p>
                 <div className="text-2xl font-bold text-muted-foreground mb-1">Free</div>
-                <p className="text-xs text-muted-foreground">When available. Knows you and your school. Marks your IA against the criteria, but written feedback is limited and takes days.</p>
+                <p className="text-xs text-muted-foreground">Knows you and your school, and marks your IA against the criteria, but comments on coursework drafts are limited, usually to one.</p>
               </div>
               <div className="bg-primary/5 border-2 border-primary rounded-xl p-5 text-center relative">
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">Recommended</div>
-                <div className="text-3xl mb-3">⚡</div>
                 <p className="font-semibold mb-1">IBLens</p>
                 <div style={SERIF} className="text-2xl font-bold text-primary mb-1">$9.99</div>
-                <p className="text-xs text-muted-foreground">Full criterion breakdown. Predicted score. Risk areas. About 90 seconds.</p>
+                <p className="text-xs text-muted-foreground">Full criterion breakdown, predicted score and risk areas in about a minute, with two re-checks.</p>
               </div>
             </div>
-            <p className="text-sm text-muted-foreground">Your first analysis is free, one per device. No credit card, no account.</p>
+            <p className="text-sm text-muted-foreground">Your first preview is free, one per device. No credit card, no account.</p>
           </div>
         </section>
 
@@ -414,7 +411,7 @@ export default function Home() {
             <div className="text-center mb-14">
               <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3">Pricing</p>
               <h2 style={SERIF} className="text-3xl font-bold mb-3">Pay only for what you use.</h2>
-              <p className="text-muted-foreground text-lg">No subscriptions. No commitments. Your first essay analysis is free.</p>
+              <p className="text-muted-foreground text-lg">No subscriptions. No commitments. Your first preview is free.</p>
             </div>
 
             {/* Free tier highlight */}
@@ -425,9 +422,9 @@ export default function Home() {
                 </div>
                 <CardContent className="p-6 text-center">
                   <Gift className="w-8 h-8 text-primary mx-auto mb-3" />
-                  <h3 style={SERIF} className="text-xl font-bold mb-1">First Essay Analysis</h3>
+                  <h3 style={SERIF} className="text-xl font-bold mb-1">First Essay Preview</h3>
                   <div style={SERIF} className="text-3xl font-bold mb-2">$0</div>
-                  <p className="text-xs text-muted-foreground mb-4">Free preview: band range, weakest criterion, top risks, no credit card required</p>
+                  <p className="text-xs text-muted-foreground mb-4">Band range, weakest criterion and top risks. No credit card required.</p>
                   <Button variant="outline" size="sm" className="w-full" asChild>
                     <Link href="/essay">Try Free</Link>
                   </Button>
@@ -439,9 +436,9 @@ export default function Home() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
               <Card className="border border-border">
                 <CardContent className="p-6 text-center">
-                  <h3 className="font-semibold mb-1">Single Analysis</h3>
+                  <h3 className="font-semibold mb-1">Full Report</h3>
                   <div style={SERIF} className="text-3xl font-bold mb-2">{PRICE_LABELS.ESSAY_SINGLE}</div>
-                  <p className="text-xs text-muted-foreground mb-4">Per analysis</p>
+                  <p className="text-xs text-muted-foreground mb-4">Per essay, with two re-checks</p>
                   <Button variant="outline" size="sm" className="w-full" asChild>
                     <Link href="/essay">Analyze Essay</Link>
                   </Button>
@@ -478,7 +475,7 @@ export default function Home() {
             <div className="flex flex-col items-center gap-4 mt-10">
               <div className="flex items-center gap-2 text-sm font-medium text-primary bg-primary/10 px-4 py-2 rounded-full">
                 <ShieldCheck className="w-4 h-4" />
-                <span>7-Day Money-Back Guarantee, No Questions Asked</span>
+                <span>7-day money-back guarantee, no questions asked</span>
                 <Link href="/refund-policy" className="text-primary underline underline-offset-2 ml-1 text-xs">Details</Link>
               </div>
             </div>
@@ -495,7 +492,7 @@ export default function Home() {
             <div className="max-w-2xl mx-auto bg-background rounded-xl border p-6 md:p-8">
               <FAQItem
                 question="How does IBLens analyze my IB essay?"
-                answer="IBLens uses a large language model instructed with the official IB marking criteria to analyze your essay. It evaluates each criterion (for example Knowledge and understanding, Analysis, Evaluation, the exact set depends on your subject) and provides a predicted score, identifies risk areas that could lose marks, and suggests specific improvements."
+                answer="IBLens uses a large language model instructed with the published IB assessment criteria for your subject and session. It marks each criterion (the set depends on your subject), gives a predicted score, identifies the risks that could lose marks, and suggests specific improvements."
               />
               <FAQItem
                 question="Which IB essay types does IBLens support?"
@@ -503,11 +500,11 @@ export default function Home() {
               />
               <FAQItem
                 question="Is my first essay analysis really free?"
-                answer="Yes, your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report, exact score, the full report with comments, and a ranked fix list, unlocks for $9.99."
+                answer="Yes. The first preview is free: your band range, your weakest criterion with its full feedback, and the top risks in your draft. The complete report, with the exact mark, comments on every criterion and a ranked list of fixes, unlocks for $9.99."
               />
               <FAQItem
                 question="How accurate is the predicted IB score?"
-                answer="IBLens provides a predicted score band based on IB marking criteria analysis. While no tool can guarantee exact scores, the model is instructed with the official IB criteria for your subject and session and produces an estimate, which is not a measured match to examiner marks to help you understand where your essay stands and how to improve it."
+                answer="It is an estimate, not a mark. No tool can guarantee an exact score. The model is instructed with the published criteria for your subject and session, and its estimate has not been measured against examiner marks, so the value of the report is in which criterion it flags and why."
               />
               <FAQItem
                 question="Is my essay data kept private and secure?"
@@ -515,7 +512,7 @@ export default function Home() {
               />
               <FAQItem
                 question="What payment methods do you accept?"
-                answer="We accept card payments (Visa, Mastercard, Amex). The payment process is fast and secure, credits activate automatically after payment."
+                answer="Payments are handled by LemonSqueezy, which accepts major cards and the other methods shown at checkout. Credits are added automatically once the payment is confirmed."
               />
               <FAQItem
                 question="Can I use IBLens for multiple subjects?"
@@ -523,7 +520,7 @@ export default function Home() {
               />
               <FAQItem
                 question="What if I'm not satisfied with my analysis?"
-                answer="Email us at glushkovim@gmail.com within 7 days of your purchase and we'll refund you in full, no questions asked. We process refunds via the original payment method within 3–5 business days."
+                answer="Email us at glushkovim@gmail.com within 7 days of your purchase and we'll refund you in full, no questions asked. We process refunds via the original payment method within 3-5 business days."
               />
             </div>
           </div>
@@ -535,14 +532,14 @@ export default function Home() {
             <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3">Get started</p>
             <h2 style={SERIF} className="text-3xl font-bold mb-4">Ready to improve your IB score?</h2>
             <p className="text-muted-foreground text-lg mb-8 max-w-xl mx-auto">
-              Join IB students worldwide who use AI-powered feedback to achieve their best results.
+              Paste a draft and see which criterion is costing you the most, while you can still change it.
             </p>
             <Button size="lg" className="text-base px-8 h-12 shadow-lg shadow-primary/25" asChild>
               <Link href="/essay">
-                Start Your Free Analysis <ArrowRight className="w-4 h-4 ml-2" />
+                Start your free preview <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
-            <p className="text-xs text-muted-foreground mt-4">No credit card required. Results in about 90 seconds.</p>
+            <p className="text-xs text-muted-foreground mt-4">No credit card required. Results in about a minute.</p>
           </div>
         </section>
 
@@ -569,7 +566,7 @@ export default function Home() {
                   <li><Link href="/essay/physics-ia" className="hover:text-foreground transition-colors">Physics IA</Link></li>
                   <li><Link href="/essay/math-ia" className="hover:text-foreground transition-colors">Mathematics IA</Link></li>
                   <li><Link href="/essay/psychology-ia" className="hover:text-foreground transition-colors">Psychology IA</Link></li>
-                  <li><Link href="/essay/english-essay" className="hover:text-foreground transition-colors">English Essay</Link></li>
+                  <li><Link href="/essay/english-essay" className="hover:text-foreground transition-colors">English Individual Oral</Link></li>
                   <li><Link href="/essay/tok-essay" className="hover:text-foreground transition-colors">TOK Essay</Link></li>
                   <li><Link href="/essay/extended-essay" className="hover:text-foreground transition-colors">Extended Essay (EE)</Link></li>
                 </ul>

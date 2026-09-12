@@ -22,7 +22,7 @@ export default function SignIn() {
     <div className="min-h-screen flex items-center justify-center bg-background">
       <SEOHead
         title="Sign In: IBLens"
-        description="Sign in to IBLens to access your IB essay analyses, purchase history, and personalized university strategies."
+        description="Sign in to IBLens with Google to keep your IB essay and personal statement reports, your credits and your purchase history in one account."
         canonical="/auth/signin"
       />
       <div className="max-w-md w-full mx-4">

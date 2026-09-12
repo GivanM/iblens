@@ -12,7 +12,7 @@ export default function IBEEExamplesBySubject() {
       dateModified="2026-06-09"
     >
       <p>
-        The IB Extended Essay is a 4000-word independent research project that every
+        The IB Extended Essay is a 4,000-word independent research project that every
         Diploma candidate must complete. It is one of the most significant pieces of
         academic writing most students have produced, and one of the most variable
         in quality. The difference between a grade A and a grade C EE is not usually
@@ -25,16 +25,18 @@ export default function IBEEExamplesBySubject() {
 
       <h2>IB EE Marking Overview</h2>
       <p>
-        The Extended Essay is marked on five criteria (A–E), totalling 34 marks.
-        Combined with the TOK essay, this contributes up to 3 bonus points toward
-        your IB Diploma total. A grade A is 27 to 34 out of 34, B is 21 to 26, C is 14 to 20, D is 7 to 13 and E is 0 to 6.
+        Through November 2026 the Extended Essay is marked on five criteria (A to E),
+        totalling 34 marks; from May 2027 it is marked out of 30 on rewritten criteria.
+        Combined with the TOK grade, the EE grade decides up to 3 bonus points on your
+        Diploma total. In recent sessions on the 34-mark scale, an A has been 27 to 34, a B
+        21 to 26, a C 14 to 20, a D 7 to 13 and an E 0 to 6.
       </p>
       <ul>
-        <li><strong>Criterion A, Focus and Method (6 marks):</strong> Is the research question clear, focused, and appropriate for the subject? Is the methodology explicit and justified?</li>
-        <li><strong>Criterion B, Knowledge and Understanding (6 marks):</strong> Does the student demonstrate subject-specific knowledge and understanding, including appropriate use of subject terminology?</li>
-        <li><strong>Criterion C, Critical Thinking (12 marks):</strong> Is the analysis original, developed, and consistently connected to the research question? Are conclusions justified by the evidence?</li>
-        <li><strong>Criterion D, Presentation (4 marks):</strong> Is the essay well-structured, properly formatted, and within the word limit?</li>
-        <li><strong>Criterion E, Engagement (6 marks):</strong> Assessed via the RPPF, does the student demonstrate genuine intellectual curiosity and reflection throughout the process?</li>
+        <li><strong>Criterion A: Focus and method (6 marks).</strong> Is the research question clear, focused, and appropriate for the subject? Is the methodology explicit and justified?</li>
+        <li><strong>Criterion B: Knowledge and understanding (6 marks).</strong> Does the student demonstrate subject-specific knowledge and understanding, including appropriate use of subject terminology?</li>
+        <li><strong>Criterion C: Critical thinking (12 marks).</strong> Is the analysis original, developed, and consistently connected to the research question? Are conclusions justified by the evidence?</li>
+        <li><strong>Criterion D: Presentation (4 marks).</strong> Is the essay well structured and consistently laid out, with the conventions of the subject followed?</li>
+        <li><strong>Criterion E: Engagement (6 marks).</strong> Assessed through the RPPF: do the reflections show genuine intellectual engagement and reflection throughout the process?</li>
       </ul>
 
       <h2>IB Extended Essay Examples by Subject</h2>
@@ -48,18 +50,18 @@ export default function IBEEExamplesBySubject() {
       <p>
         What makes this work: it is specific (one policy, one city, a defined time
         period), it uses Economics concepts precisely (consumer surplus, externalities,
-        cost-benefit analysis), and it has a debatable answer, the effects on
+        cost-benefit analysis), and it has a debatable answer: the effects on
         different groups pull in opposite directions. The student can use Transport for
         London data, academic studies of ULEZ impacts, and newspaper reports as sources.
       </p>
       <p>
-        What a 7-scoring version does: defines the market clearly, draws and explains
+        What a top-band version does: defines the market clearly, draws and explains
         supply and demand diagrams with welfare triangles, uses real data to quantify
         the effects on at least two stakeholder groups, and evaluates limitations
         (data quality, counterfactual problem, distributional assumptions).
       </p>
       <p>
-        What a 5-scoring version does: describes the policy and its effects without
+        What a middle-band version does: describes the policy and its effects without
         applying diagrams or welfare analysis, uses broad claims without data, and
         concludes vaguely that "the ULEZ had both positive and negative effects."
       </p>
@@ -67,7 +69,7 @@ export default function IBEEExamplesBySubject() {
       <h3>History Extended Essay</h3>
       <p>
         <strong>Strong research question:</strong> "To what extent was Stalin's
-        collectivisation policy the primary cause of the 1932–33 famine in Ukraine?"
+        collectivisation policy the primary cause of the 1932-33 famine in Ukraine?"
       </p>
       <p>
         What makes this work: it asks a causal question with a debatable answer
@@ -77,10 +79,10 @@ export default function IBEEExamplesBySubject() {
         debate.
       </p>
       <p>
-        A 7-scoring History EE weighs competing causes (collectivisation policy,
+        A top-band History EE weighs competing causes (collectivisation policy,
         grain quotas, kulak deportations, deliberate targeting by Soviet authorities)
         against the evidence for each, uses primary sources critically, and reaches
-        a justified but qualified conclusion, not a simplistic "yes" or "no."
+        a justified but qualified conclusion, not a simplistic "yes" or "no".
       </p>
 
       <h3>Biology Extended Essay</h3>
@@ -119,7 +121,7 @@ export default function IBEEExamplesBySubject() {
       <p>
         English EEs score poorly when they substitute plot summary for analysis or
         when the argument is too broad ("Ishiguro explores memory and identity").
-        A 7-scoring English EE makes a specific, arguable claim and defends it through
+        A top-band English EE makes a specific, arguable claim and defends it through
         close reading of selected passages, with engagement with secondary critical sources.
       </p>
 
@@ -130,11 +132,10 @@ export default function IBEEExamplesBySubject() {
         under what conditions does the model break down?"
       </p>
       <p>
-        Maths EEs succeed when the mathematics is commensurate with the level (HL
-        students should use calculus; SL students can use algebra and statistics),
-        when the exploration is genuine (the student tests the model rather than
-        just deriving it), and when the limitations of the model are mathematically
-        analysed rather than vaguely noted.
+        Maths EEs succeed when the mathematics is used with real understanding rather
+        than reproduced, when the investigation is genuine (the student tests the model
+        rather than only deriving it), and when the limitations of the model are analysed
+        mathematically rather than vaguely noted.
       </p>
       <p>
         Common failure: a Maths EE that merely solves textbook problems and presents
@@ -150,12 +151,11 @@ export default function IBEEExamplesBySubject() {
         differ by platform type?"
       </p>
       <p>
-        Psychology EEs are best approached as literature reviews with a critical
-        analytical argument, rather than primary research (running an original study
-        in 4000 words is usually not feasible). A high-scoring version reviews
-        3–5 studies systematically, evaluates their methodology (sample size,
-        operationalisation of variables, cultural context), and reaches a qualified
-        conclusion about what the evidence does and does not establish.
+        Psychology EEs are built on published research with a critical argument, not on
+        data you collect yourself. A high-scoring version examines a focused set of
+        studies closely, evaluates their methods (sample size, how variables were
+        operationalised, cultural context), and reaches a qualified conclusion about what
+        the evidence does and does not establish.
       </p>
 
       <h3>Physics Extended Essay</h3>
@@ -165,9 +165,9 @@ export default function IBEEExamplesBySubject() {
         optimal aerodynamic position in time trials?"
       </p>
       <p>
-        A Physics EE that involves original experimental data scores well on
-        Criterion C (Critical Thinking) because the analysis can compare experimental
-        results to theoretical predictions. If original experiments are not feasible,
+        A Physics EE with original experimental data gives Criterion C (Critical thinking)
+        plenty to work with, because the analysis can compare experimental results with
+        theoretical predictions. If original experiments are not feasible,
         a strong Physics EE analyses published datasets critically and applies
         theoretical models, but must go beyond simply describing the physics.
       </p>
@@ -179,7 +179,7 @@ export default function IBEEExamplesBySubject() {
       </p>
       <ol>
         <li><strong>A research question specific enough to answer.</strong> Not "the impact of X on Y" but "to what extent did X influence Y under conditions Z during period P?"</li>
-        <li><strong>Analysis that argues, not describes.</strong> Every section that presents evidence should also evaluate it, what does this evidence tell us? How reliable is it? What does it not tell us? What competing explanation could account for the same evidence?</li>
+        <li><strong>Analysis that argues rather than describes.</strong> Every section that presents evidence should also evaluate it: what does this evidence tell us, how reliable is it, what does it not tell us, and what competing explanation could account for it?</li>
         <li><strong>A conclusion that directly answers the question.</strong> Not "in summary, there are many complex factors" but a qualified, evidenced position that the student has earned through the investigation.</li>
       </ol>
 

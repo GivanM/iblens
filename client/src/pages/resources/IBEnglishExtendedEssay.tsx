@@ -5,7 +5,7 @@ export default function IBEnglishExtendedEssay() {
   return (
     <ResourceArticle
       title="IB English Extended Essay: Research Questions & Tips | IBLens"
-      description="How to write an IB English Extended Essay: analytical research questions, close reading over plot summary, criteria A–E, common mistakes and grading tips."
+      description="How to write an IB English Extended Essay: analytical research questions, close reading over plot summary, criteria A-E, common mistakes and grading tips."
       canonical="/resources/ib-english-extended-essay"
       datePublished="2026-07-10"
       dateModified="2026-07-10"

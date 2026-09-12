@@ -23,9 +23,9 @@ const plans: Array<{
   productKey: ProductKey;
 }> = [
   {
-    name: "Single Analysis",
+    name: "Full Report",
     price: PRICE_LABELS.ESSAY_SINGLE,
-    description: "1 essay analysis",
+    description: "1 essay or personal statement",
     popular: false,
     features: [
       "Predicted score & IB band",
@@ -40,34 +40,34 @@ const plans: Array<{
     productKey: "ESSAY_SINGLE",
   },
   {
-    name: "5 Analyses",
+    name: "5 Reports",
     price: PRICE_LABELS.ESSAY_PACK_5,
-    description: "5 essay analyses",
+    description: "5 essays or statements",
     popular: true,
     features: [
-      "Everything in single analysis",
-      "$5.00 per essay, 50% off the single price",
+      "Everything in the full report",
+      "$5.00 per report, 50% less than buying singly",
       "Two free re-checks of each draft within 14 days",
       "Use across any subjects",
       "No expiry date. Without an account they live on this device until you sign in",
-      "Perfect for exam prep",
+      "For several drafts or several subjects",
     ],
     cta: "Get Started",
     href: "/dashboard",
     productKey: "ESSAY_PACK_5",
   },
   {
-    name: "10 Analyses",
+    name: "10 Reports",
     price: PRICE_LABELS.ESSAY_PACK_10,
-    description: "10 essay analyses",
+    description: "10 essays or statements",
     popular: false,
     features: [
-      "Everything in single analysis",
-      "$4.50 per essay, 55% off the single price",
+      "Everything in the full report",
+      "$4.50 per report, 55% less than buying singly",
       "Two free re-checks of each draft within 14 days",
       "Use across any subjects",
       "No expiry date. Without an account they live on this device until you sign in",
-      "Best value for serious students",
+      "The lowest price per report",
     ],
     cta: "Get Started",
     href: "/dashboard",
@@ -87,8 +87,8 @@ export default function Pricing() {
   return (
     <div className="py-16 md:py-24">
       <SEOHead
-        title="IB Essay Analysis from $9.99: No Subscription, No Account Needed | IBLens"
-        description="First IB essay analysis free. Single analysis $9.99, pack of 5 for $24.99, pack of 10 for $44.99. No subscription. 7-day money-back guarantee. IB tutors charge $50–150/hr, IBLens answers in about 90 seconds."
+        title="IB Essay Feedback from $9.99: No Subscription, No Account Needed | IBLens"
+        description="A free preview on your first IB essay, then a full report for $9.99, five for $24.99 or ten for $44.99. No subscription, credits do not expire, two re-checks per report, and a 7-day money-back guarantee."
         canonical="/pricing"
       />
       <div className="container">
@@ -108,7 +108,7 @@ export default function Pricing() {
           <p className="text-sm text-muted-foreground mt-2">No subscription. Credits do not expire. Bought without an account they stay on the device that bought them, and move to your account the moment you sign in. No ads.</p>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             No subscriptions. No hidden fees. Pay only for what you use.
-            Your first essay analysis is free, one per device or account.
+            Your first preview is free, one per device or account.
           </p>
         </div>
 
@@ -119,9 +119,9 @@ export default function Pricing() {
               <Gift className="w-6 h-6 text-primary" />
             </div>
             <div className="flex-1">
-              <h3 className="font-semibold">First essay analysis is free</h3>
+              <h3 className="font-semibold">Your first preview is free</h3>
               <p className="text-sm text-muted-foreground mt-0.5">
-                Paste your essay, no sign-in, no credit card required. You get a free preview: your band range, your weakest criterion with full feedback, and the top risks in your draft.
+                Paste your essay with no sign-in and no credit card. The preview shows your band range, your weakest criterion with its full feedback, and the top risks in your draft.
               </p>
             </div>
             <Button size="sm" asChild className="flex-shrink-0">
@@ -131,7 +131,7 @@ export default function Pricing() {
         </div>
 
         {/* Pricing cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {plans.map((plan) => (
             <div
               key={plan.name}
@@ -142,7 +142,7 @@ export default function Pricing() {
               {plan.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                   <Badge className="bg-primary text-primary-foreground px-3 py-1 text-xs font-semibold shadow-sm">
-                    Most Popular
+                    Save 50%
                   </Badge>
                 </div>
               )}
@@ -190,7 +190,7 @@ export default function Pricing() {
         <div className="flex items-center justify-center gap-6 mt-12 text-sm text-muted-foreground flex-wrap">
           <div className="flex items-center gap-1.5">
             <CreditCard className="w-4 h-4" />
-            <span>Visa, Mastercard, Amex</span>
+            <span>Major cards and other methods at checkout</span>
           </div>
           <div className="flex items-center gap-1.5">
             <Shield className="w-4 h-4" />
@@ -204,10 +204,10 @@ export default function Pricing() {
 
         {/* Bottom CTA */}
         <div className="text-center mt-16">
-          <p className="text-muted-foreground mb-4">Not sure yet? Try your first analysis for free.</p>
+          <p className="text-muted-foreground mb-4">Not sure yet? Start with the free preview.</p>
           <Button size="lg" asChild>
             <Link href="/essay">
-              Start Free Analysis <ArrowRight className="w-4 h-4 ml-2" />
+              Start your free preview <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </Button>
         </div>

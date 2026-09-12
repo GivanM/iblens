@@ -45,14 +45,14 @@ export default function ExtendedEssayGuide() {
       </p>
 
       <p>
-        A typical timeline for the Extended Essay spans 12–18 months:
+        A typical timeline for the Extended Essay spans 12-18 months:
       </p>
 
       <ul>
-        <li><strong>Months 1–3:</strong> Subject selection, initial research, supervisor assignment, research question formulation</li>
-        <li><strong>Months 4–7:</strong> Deep research, data collection, experimentation (for sciences), primary source analysis (for humanities)</li>
-        <li><strong>Months 8–10:</strong> First draft writing, supervisor feedback sessions</li>
-        <li><strong>Months 11–12:</strong> Revision, final draft, formatting, and submission</li>
+        <li><strong>Months 1-3:</strong> Subject selection, initial research, supervisor assignment, research question formulation</li>
+        <li><strong>Months 4-7:</strong> Deep research, data collection, experimentation (for sciences), primary source analysis (for humanities)</li>
+        <li><strong>Months 8-10:</strong> First draft writing, supervisor feedback sessions</li>
+        <li><strong>Months 11-12:</strong> Revision, final draft, formatting, and submission</li>
       </ul>
 
       <p>
@@ -90,9 +90,9 @@ export default function ExtendedEssayGuide() {
       <ul>
         <li><strong>Title page:</strong> the title, the research question, the subject the essay is registered in, and the word count. Leave off your name, candidate number and school name: Extended Essays are marked anonymously.</li>
         <li><strong>Table of contents:</strong> With page numbers</li>
-        <li><strong>Introduction (300–400 words):</strong> Context, research question, scope, methodology overview</li>
-        <li><strong>Body (3,000–3,200 words):</strong> Organized into logical sections with clear headings, presenting evidence, analysis, and argumentation</li>
-        <li><strong>Conclusion (200–300 words):</strong> Direct answer to the RQ, summary of findings, acknowledgment of limitations, suggestions for further research</li>
+        <li><strong>Introduction (300-400 words):</strong> Context, research question, scope, methodology overview</li>
+        <li><strong>Body (3,000-3,200 words):</strong> Organized into logical sections with clear headings, presenting evidence, analysis, and argumentation</li>
+        <li><strong>Conclusion (200-300 words):</strong> Direct answer to the RQ, summary of findings, acknowledgment of limitations, suggestions for further research</li>
         <li><strong>Bibliography:</strong> one consistent citation style, such as MLA, APA, Chicago or Harvard, used throughout</li>
         <li><strong>Appendices (if needed):</strong> Raw data, interview transcripts, supplementary materials</li>
       </ul>
@@ -101,7 +101,7 @@ export default function ExtendedEssayGuide() {
         For science subjects, the structure typically mirrors a lab report: introduction, methodology, results, analysis, conclusion. For humanities and social sciences, a thematic or chronological structure with argumentative sections works best.
       </p>
 
-      <h2>Assessment Criteria (A–E)</h2>
+      <h2>Assessment Criteria (A-E)</h2>
 
       <p>
         The criteria below are the <strong>current 34-mark criteria, used for sessions through November 2026</strong>. If you sit your exams in May 2027 or later, your essay is marked out of 30 under a different set: see <Link href="/resources/ib-extended-essay-new-criteria-2027">what changed in 2027</Link>. The current criteria apply uniformly across all subjects:

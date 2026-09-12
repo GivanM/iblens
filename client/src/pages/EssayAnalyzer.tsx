@@ -46,6 +46,12 @@ function getApiEssayParams(essayType: string, subject: string) {
   if (essayType === "TOK Exhibition") {
     return { essayType: "TOK" as const, subject: "Exhibition" };
   }
+  // The subject dropdown is hidden for the TOK essay, but its state keeps whatever
+  // was last chosen (Business Management by default), which then went into the
+  // prompt and onto the saved report as the essay's subject.
+  if (essayType === "TOK") {
+    return { essayType: "TOK" as const, subject: "Essay" };
+  }
   return { essayType: essayType as "IA" | "EE" | "TOK", subject };
 }
 
@@ -137,7 +143,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
           {!isAuthenticated ? (
             <div className="space-y-2">
               <div className="flex flex-col sm:flex-row items-center gap-3">
-                <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report, $9.99.</strong> No account needed, pay with your email and it opens straight away, plus two free re-checks of this draft over the next 14 days.</p>
+                <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report, $9.99.</strong> No account needed: pay with your email and it opens straight away, with two free re-checks of this draft over the next 14 days.</p>
                 <Button onClick={onBuy}>Buy &amp; unlock, $9.99</Button>
               </div>
               <p className="text-xs text-muted-foreground">
@@ -151,7 +157,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
             </div>
           ) : (
             <div className="flex flex-col sm:flex-row items-center gap-3">
-              <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report, $9.99.</strong> Exact score, the full report with comments, your ranked fix list, and two free re-checks of this draft over the next 14 days, so you can see whether your edits actually landed.</p>
+              <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report, $9.99.</strong> The exact mark, comments on every criterion, your ranked fix list, and two free re-checks of this draft over the next 14 days, so you can see whether your edits landed.</p>
               <Button onClick={onBuy}>Buy &amp; unlock, $9.99</Button>
             </div>
           )}
@@ -163,7 +169,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
 
 const ANALYZING_STEPS = [
   "Reading your essay\u2026",
-  "Checking it against the official IB rubric\u2026",
+  "Checking it against the published criteria\u2026",
   "Scoring each criterion like a strict examiner\u2026",
   "Finding the exact marks you\u2019re losing\u2026",
   "Writing your improvement plan\u2026",
@@ -235,7 +241,7 @@ export default function EssayAnalyzer() {
       window.dataLayer.push({ event: 'essay_submit', essay_type: essayType, subject, word_count: wordCount });
       window.dataLayer.push({ event: 'sign_up', method: 'free_essay_analysis' });
       if (data.wasFree) {
-        toast.success(`Free analysis complete. The full report unlocks for ${PRICE_LABELS.ESSAY_SINGLE}.`);
+        toast.success(`Free preview ready. The full report unlocks for ${PRICE_LABELS.ESSAY_SINGLE}.`);
       } else {
         toast.success("Analysis complete!");
       }
@@ -265,7 +271,7 @@ export default function EssayAnalyzer() {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'essay_submit', essay_type: essayType, subject, word_count: wordCount });
       window.dataLayer.push({ event: 'sign_up', method: 'free_essay_analysis' });
-      toast.success(data.unlocked ? "Your paid report is open below." : `Free analysis complete. The full report unlocks for ${PRICE_LABELS.ESSAY_SINGLE}.`);
+      toast.success(data.unlocked ? "Your paid report is open below." : `Free preview ready. The full report unlocks for ${PRICE_LABELS.ESSAY_SINGLE}.`);
     },
     onError: (error: { message: string }) => {
       toast.error(error.message);
@@ -464,15 +470,15 @@ export default function EssayAnalyzer() {
   return (
     <div className="container py-12 max-w-4xl mx-auto">
       <SEOHead
-        title="IB Essay Grader: Free AI Feedback on IA, Extended Essay & TOK | IBLens"
-        description="Grade your IB Internal Assessment, Extended Essay, or TOK essay free. AI evaluates every criterion, predicts your band, and shows exactly which marks you’re losing. 14 subjects."
+        title="IB Essay Grader: AI Feedback on IA, Extended Essay and TOK | IBLens"
+        description="AI feedback on your IB Internal Assessment, Extended Essay or TOK work in 14 subjects: a free preview with your band range and weakest criterion, then a full criterion-by-criterion report."
         canonical="/essay"
       />
       <div className="mb-10">
         <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3">Essay Analyzer</p>
         <h1 style={SERIF} className="text-4xl font-bold mb-3">IB Essay Analyzer</h1>
         <p className="text-muted-foreground text-lg max-w-2xl">
-          AI feedback in about 90 seconds on your Extended Essay, IA, or TOK, criterion by criterion, with a predicted score.
+          AI feedback on your Extended Essay, IA or TOK work in about a minute, criterion by criterion, with a predicted score.
         </p>
       </div>
 
@@ -492,9 +498,9 @@ export default function EssayAnalyzer() {
           {/* Score summary */}
           <div className="grid grid-cols-3 gap-3">
             {[
-              { label: "Predicted Score", value: "18/25", color: "text-amber-600" },
+              { label: "Predicted Score", value: "16/25", color: "text-amber-600" },
               { label: "Weakest criterion", value: "D: Analysis", color: "text-foreground" },
-              { label: "Criteria Total", value: "72%", color: "text-foreground" },
+              { label: "Criteria Total", value: "64%", color: "text-foreground" },
             ].map((s) => (
               <div key={s.label} className="text-center p-4 bg-muted/50 rounded-lg border border-border">
                 <div style={SERIF} className={`text-2xl font-bold ${s.color}`}>{s.value}</div>
@@ -504,7 +510,7 @@ export default function EssayAnalyzer() {
           </div>
 
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Your IA demonstrates solid understanding of business concepts with good use of primary research.
+            Your IA demonstrates solid understanding of business concepts and makes good use of the supporting documents.
             The main areas for improvement are the depth of analysis in Criterion D and the connection
             between your research question and conclusions.
           </p>
@@ -516,7 +522,7 @@ export default function EssayAnalyzer() {
               { name: "Criterion A: Integration of a key concept", score: 3, max: 5, color: "bg-amber-500" },
               { name: "Criterion B: Supporting documents", score: 3, max: 4, color: "bg-emerald-500" },
               { name: "Criterion C: Tools and theories", score: 3, max: 4, color: "bg-amber-500" },
-              { name: "Criterion D: Analysis and evaluation", score: 4, max: 5, color: "bg-amber-500" },
+              { name: "Criterion D: Analysis and evaluation", score: 2, max: 5, color: "bg-red-500" },
               { name: "Criterion E: Conclusions", score: 2, max: 3, color: "bg-emerald-500" },
               { name: "Criterion F: Structure", score: 2, max: 2, color: "bg-emerald-500" },
               { name: "Criterion G: Presentation", score: 1, max: 2, color: "bg-amber-500" },
@@ -539,10 +545,10 @@ export default function EssayAnalyzer() {
               <p className="text-xs font-semibold uppercase tracking-wider text-red-600 mb-2">Losing Marks</p>
               <div className="space-y-2">
                 <div className="p-3 bg-red-50 border-l-2 border-red-400 rounded-r text-sm">
-                  <strong>Weak analysis depth</strong>, Criterion D needs more application of business models to your data.
+                  <strong>Weak analysis depth:</strong> Criterion D needs the business tools applied to the evidence in your supporting documents.
                 </div>
                 <div className="p-3 bg-red-50 border-l-2 border-red-400 rounded-r text-sm">
-                  <strong>Conclusion gap</strong>, Your conclusions don't fully answer the research question.
+                  <strong>Conclusion gap:</strong> your conclusions don't fully answer the research question.
                 </div>
               </div>
             </div>
@@ -550,18 +556,18 @@ export default function EssayAnalyzer() {
               <p className="text-xs font-semibold uppercase tracking-wider text-emerald-600 mb-2">Quick Wins</p>
               <div className="space-y-2">
                 <div className="p-3 bg-emerald-50 border-l-2 border-emerald-400 rounded-r text-sm">
-                  <strong>+2 marks possible</strong>, Add comparative analysis using one more business tool.
+                  <strong>+2 marks possible:</strong> weigh the options with one more business tool, applied to your documents.
                 </div>
                 <div className="p-3 bg-emerald-50 border-l-2 border-emerald-400 rounded-r text-sm">
-                  <strong>Easy fix</strong>, Restate your research question explicitly in the conclusion.
+                  <strong>Easy fix:</strong> answer your research question explicitly in the conclusion.
                 </div>
               </div>
             </div>
           </div>
 
           <div className="pt-3 border-t text-center">
-            <p className="text-sm font-medium mb-1">↑ This is the full report, unlocked for $9.99. Your free preview shows the band range, your weakest criterion in full, and the top risks.</p>
-            <p className="text-xs text-muted-foreground">Paste your essay below → <strong>first one free</strong>, then $9.99 per draft, re-checks included</p>
+            <p className="text-sm font-medium mb-1">↑ This is what a full report looks like, unlocked for $9.99. Your free preview shows the band range, your weakest criterion in full, and the top risks.</p>
+            <p className="text-xs text-muted-foreground">Paste your essay below → <strong>the first preview is free</strong>, then $9.99 per essay, two re-checks included</p>
           </div>
         </div>
       </div>
@@ -624,7 +630,7 @@ export default function EssayAnalyzer() {
           <div className="space-y-2">
             <Label>{essayType === "TOK Exhibition" ? "Your IA prompt (the one all three objects respond to)" : "Research question / title"}</Label>
             <Input
-              placeholder={essayType === "TOK Exhibition" ? "e.g. What counts as knowledge?" : "e.g. To what extent did your research question go?"}
+              placeholder={essayType === "TOK Exhibition" ? "e.g. What counts as knowledge?" : "e.g. To what extent did the UK sugar levy change soft drink prices in supermarkets?"}
               value={researchQuestion}
               onChange={(e) => setResearchQuestion(e.target.value)}
             />
@@ -686,7 +692,7 @@ export default function EssayAnalyzer() {
                 : "bg-amber-50 text-amber-700 border border-amber-200"
             }`}>
               {credits.freeEssayAvailable
-                ? "Your first essay analysis is free!"
+                ? "Your first preview is free."
                 : credits.essayCredits > 0
                   ? `You have ${credits.essayCredits} essay credit${credits.essayCredits > 1 ? "s" : ""} remaining.`
                   : <span>No credits remaining. <button onClick={() => setEssayPurchaseOpen(true)} className="underline font-medium cursor-pointer">Purchase credits</button> to continue.</span>
@@ -746,7 +752,7 @@ export default function EssayAnalyzer() {
               ) : (
                 <>
                   <FileText className="w-4 h-4 mr-2" />
-                  Analyze Free, No Account Needed
+                  Get my free preview, no account needed
                 </>
               )}
             </Button>
@@ -1019,7 +1025,7 @@ export default function EssayAnalyzer() {
                   <div className="p-4 rounded-lg bg-primary/5 border border-primary/20 text-center">
                     <p className="text-sm font-semibold mb-1">Unlock your full action plan</p>
                     <p className="text-xs text-muted-foreground mb-3">
-                      Sign in free to save this report and see all {result.next_steps.length} specific steps to raise your score.
+                      Unlock the full report to see all {result.next_steps.length} specific steps, ranked by the marks they recover.
                     </p>
                     <Button size="sm" asChild>
                       <a href={getLoginUrl()}>
@@ -1064,7 +1070,7 @@ export default function EssayAnalyzer() {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    const text = `IBLens estimates my IB ${essayType} in ${subject} at ${result.predicted_score}/${result.max_score} against the published criteria. Free preview at iblens.com`;
+                    const text = `IBLens estimates my IB ${essayType === "TOK" ? "TOK essay" : essayType === "TOK Exhibition" ? "TOK exhibition" : `${essayType} in ${subject}`} at ${result.predicted_score}/${result.max_score} against the published criteria. Free preview at iblens.com`;
                     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
                   }}
                 >
@@ -1075,7 +1081,7 @@ export default function EssayAnalyzer() {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    const text = `IBLens estimates my IB ${essayType} in ${subject} at ${result.predicted_score}/${result.max_score} against the published criteria. Free preview at iblens.com`;
+                    const text = `IBLens estimates my IB ${essayType === "TOK" ? "TOK essay" : essayType === "TOK Exhibition" ? "TOK exhibition" : `${essayType} in ${subject}`} at ${result.predicted_score}/${result.max_score} against the published criteria. Free preview at iblens.com`;
                     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
                   }}
                 >
@@ -1086,7 +1092,7 @@ export default function EssayAnalyzer() {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    const text = `I scored ${result.predicted_score}/${result.max_score} (Band ${result.band_range}) on my IB ${essayType} in ${subject}. Free analysis at iblens.com`;
+                    const text = `IBLens estimates my IB ${essayType === "TOK" ? "TOK essay" : essayType === "TOK Exhibition" ? "TOK exhibition" : `${essayType} in ${subject}`} at ${result.predicted_score}/${result.max_score} (band ${result.band_range}) against the published criteria. Free preview at iblens.com`;
                     navigator.clipboard.writeText(text);
                     toast.success("Score copied to clipboard!");
                   }}
@@ -1111,10 +1117,10 @@ export default function EssayAnalyzer() {
                   <h3 style={SERIF} className="text-xl font-bold mb-2">Your fastest wins: +{potential} marks on the table</h3>
                   <ul className="space-y-1.5 mb-3">
                     {weakest.map((c: any) => (
-                      <li key={c.name} className="text-sm text-muted-foreground"><strong className="text-foreground">{c.name}</strong>, {c.score}/{c.max} now, +{c.max - c.score} available</li>
+                      <li key={c.name} className="text-sm text-muted-foreground"><strong className="text-foreground">{c.name}:</strong> {c.score}/{c.max} now, +{c.max - c.score} available</li>
                     ))}
                   </ul>
-                  <p className="text-sm text-muted-foreground">Fix these in your draft using the comments above, then run a <strong>re-check</strong>, you will see exactly which criteria moved and by how much. That before/after delta is what an $80/hr tutor charges for.</p>
+                  <p className="text-sm text-muted-foreground">Fix these in your draft using the comments above, then run a <strong>re-check</strong>: you will see which criteria moved and by how much.</p>
                 </CardContent>
               </Card>
             );
@@ -1129,9 +1135,9 @@ export default function EssayAnalyzer() {
                     <BookmarkPlus className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <h3 style={SERIF} className="font-bold text-xl mb-1">Save this report & analyze Draft 2</h3>
+                    <h3 style={SERIF} className="font-bold text-xl mb-1">Keep this report in an account</h3>
                     <p className="text-sm text-muted-foreground">
-                      Sign in free to save your results and unlock your full action plan. Next analysis is <strong>{PRICE_LABELS.ESSAY_SINGLE}</strong>, or a 5-pack for {PRICE_LABELS.ESSAY_PACK_5} ($5.00 each).
+                      Sign in free and this report moves to your dashboard, where it stays until you delete it. Your next report is <strong>{PRICE_LABELS.ESSAY_SINGLE}</strong>, or five for {PRICE_LABELS.ESSAY_PACK_5} ($5.00 each).
                     </p>
                   </div>
                 </div>
@@ -1139,7 +1145,7 @@ export default function EssayAnalyzer() {
                   <Button size="lg" asChild className="h-12">
                     <a href={getLoginUrl()}>
                       <BookmarkPlus className="w-4 h-4 mr-2" />
-                      Save Report, Free
+                      Save report to an account
                     </a>
                   </Button>
                   <Button variant="outline" size="lg" className="h-12" onClick={() => { (window as any).dataLayer?.push({ event: "recheck_cta_click", auth: "anon" }); setEssayPurchaseOpen(true); }}>

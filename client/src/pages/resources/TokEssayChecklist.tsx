@@ -27,11 +27,11 @@ export default function TokEssayChecklist() {
           <tr><th>Band</th><th>Marks</th><th>What it looks like</th></tr>
         </thead>
         <tbody>
-          <tr><td>Excellent</td><td>9–10</td><td>A sustained focus on the title, linked effectively to areas of knowledge. Arguments are clear, coherent and effectively supported by specific examples, and their implications are considered. Clear awareness and evaluation of different points of view.</td></tr>
-          <tr><td>Good</td><td>7–8</td><td>Focused on the title and linked effectively to areas of knowledge. Arguments are clear, coherent and supported by examples. Awareness and some evaluation of different points of view.</td></tr>
-          <tr><td>Satisfactory</td><td>5–6</td><td>Focused on the title and developed with some links to areas of knowledge. Arguments are offered and supported by examples. Some awareness of different points of view.</td></tr>
-          <tr><td>Basic</td><td>3–4</td><td>Connected to the title, with superficial or limited links to areas of knowledge. Largely descriptive, with limited arguments that are unclear and not supported by effective examples.</td></tr>
-          <tr><td>Rudimentary</td><td>1–2</td><td>Weakly connected to the title. Any relevant points are descriptive or consist only of unsupported assertions.</td></tr>
+          <tr><td>Excellent</td><td>9-10</td><td>A sustained focus on the title, linked effectively to areas of knowledge. Arguments are clear, coherent and effectively supported by specific examples, and their implications are considered. Clear awareness and evaluation of different points of view.</td></tr>
+          <tr><td>Good</td><td>7-8</td><td>Focused on the title and linked effectively to areas of knowledge. Arguments are clear, coherent and supported by examples. Awareness and some evaluation of different points of view.</td></tr>
+          <tr><td>Satisfactory</td><td>5-6</td><td>Focused on the title and developed with some links to areas of knowledge. Arguments are offered and supported by examples. Some awareness of different points of view.</td></tr>
+          <tr><td>Basic</td><td>3-4</td><td>Connected to the title, with superficial or limited links to areas of knowledge. Largely descriptive, with limited arguments that are unclear and not supported by effective examples.</td></tr>
+          <tr><td>Rudimentary</td><td>1-2</td><td>Weakly connected to the title. Any relevant points are descriptive or consist only of unsupported assertions.</td></tr>
         </tbody>
       </table>
 
@@ -72,15 +72,15 @@ export default function TokEssayChecklist() {
         <li>The conclusion is the <em>outcome</em> of your analysis: it goes beyond anything you could have written before doing the exploration.</li>
       </ul>
 
-      <h2>What holds an essay below the 7–8 band</h2>
+      <h2>What holds an essay below the 7-8 band</h2>
 
       <p>Reading the levels side by side shows where the marks move:</p>
 
       <ul>
-        <li><strong>Links to areas of knowledge that are present but not effective:</strong> "some links" is the 5–6 wording; "linked effectively" is 7–8.</li>
+        <li><strong>Links to areas of knowledge that are present but not effective:</strong> "some links" is the 5-6 wording; "linked effectively" is 7-8.</li>
         <li><strong>Arguments offered but not clear and coherent:</strong> points are made and illustrated, but they do not build into one line of argument.</li>
         <li><strong>Perspectives noticed but not evaluated:</strong> "some people think X, others think Y" is awareness. Weighing them is what "some evaluation" asks for.</li>
-        <li><strong>Description:</strong> an essay that is largely descriptive sits in the 3–4 level, however accurate it is.</li>
+        <li><strong>Description:</strong> an essay that is largely descriptive sits in the 3-4 level, however accurate it is.</li>
         <li><strong>Title drift:</strong> the introduction addresses the title and the body addresses the topic. Every level is judged on the exploration <em>of the title</em>.</li>
       </ul>
 
@@ -103,7 +103,7 @@ export default function TokEssayChecklist() {
 
       <h3>How many points is the TOK essay worth for my Diploma?</h3>
       <p>
-        The essay is marked out of 10 and determines most of your TOK grade (A–E). Your TOK grade then combines with your Extended Essay grade to award up to 3 bonus points toward the Diploma. An E in either component is a failing condition.
+        The essay is marked out of 10 and determines most of your TOK grade (A-E). Your TOK grade then combines with your Extended Essay grade to award up to 3 bonus points toward the Diploma. An E in either component is a failing condition.
       </p>
 
       <h3>Can I just ask ChatGPT to check my TOK essay?</h3>

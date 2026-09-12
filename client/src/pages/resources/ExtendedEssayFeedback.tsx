@@ -13,7 +13,7 @@ export default function ExtendedEssayFeedback() {
       <h1>How to Get Feedback on Your IB Extended Essay Before You Submit</h1>
 
       <p>
-        The Extended Essay is the one piece of IB work where feedback is both most valuable and most rationed. Your supervisor's written comments are limited to one complete draft, teachers cannot edit your work, and by the time the deadline is close, most students have exactly one question: <em>is this good enough, and what do I fix first?</em> This guide covers every legitimate feedback channel, what each one can tell you, what it cannot, and when in the process to use it.
+        The Extended Essay is the one piece of IB work where feedback is both most valuable and most rationed. Your supervisor's written comments are limited to one complete draft, supervisors cannot edit your work, and by the time the deadline is close, most students have exactly one question: <em>is this good enough, and what do I fix first?</em> This guide covers every legitimate feedback channel, what each one can tell you, what it cannot, and when in the process to use it.
       </p>
 
       <h2>The feedback channels, honestly compared</h2>
@@ -27,20 +27,20 @@ export default function ExtendedEssayFeedback() {
           <tr><td>Reflection sessions</td><td>Three formal check-ins to test your direction, including the interim reflection</td><td>Guidance on process and thinking, not line-by-line feedback</td></tr>
           <tr><td>Peers and family</td><td>A fresh reader: do the argument and structure make sense to a non-expert?</td><td>They do not know the criteria; encouragement is not assessment</td></tr>
           <tr><td>Self-check against criteria</td><td>Free, unlimited, and exactly what examiners use</td><td>Hard to be objective about your own writing</td></tr>
-          <tr><td>AI rubric check</td><td>Criterion-by-criterion read in about 90 seconds on a draft, any time, before your one supervisor draft</td><td>An estimate, not an official mark; quality depends on the tool applying the real criteria</td></tr>
+          <tr><td>AI rubric check</td><td>A criterion-by-criterion read in about a minute, at any time, before your one supervisor draft</td><td>An estimate, not an official mark; quality depends on the tool applying the real criteria</td></tr>
         </tbody>
       </table>
 
       <h2>Use your one supervisor draft well</h2>
 
       <p>
-        Because your supervisor may give written feedback on only one complete draft, the worst way to spend that draft is on problems you could have caught yourself, missing signposting, sections that drift from the research question, an evaluation-free conclusion. Run a self-check first, fix the obvious, and let the supervisor round go to the things only an expert can see: subject accuracy, the strength of your sources, whether the argument would convince an examiner.
+        Because your supervisor may give written feedback on only one complete draft, the worst way to spend that draft is on problems you could have caught yourself: missing signposting, sections that drift from the research question, a conclusion with no evaluation in it. Run a self-check first, fix the obvious, and let the supervisor round go to the things only an expert can see: subject accuracy, the strength of your sources, whether the argument would convince an examiner.
       </p>
 
       <h2>Self-checking against the actual criteria</h2>
 
       <p>
-        The EE is marked against five criteria, and which set applies depends on your session. Through November 2026 the essay is marked out of 34 (Focus and method, Knowledge and understanding, Critical thinking, Presentation, Engagement). From May 2027 it is marked out of 30 under the new criteria: Framework for the essay (6), Knowledge and understanding (6), Analysis and line of argument (6), Discussion and evaluation (8) and Reflection (4). If you are drafting now for May 2027, check against the new set, <Link href="/resources/ib-extended-essay-new-criteria-2027">here is the full breakdown of what changed</Link>.
+        The EE is marked against five criteria, and which set applies depends on your session. Through November 2026 the essay is marked out of 34 (Focus and method, Knowledge and understanding, Critical thinking, Presentation, Engagement). From May 2027 it is marked out of 30 under the new criteria: Framework for the essay (6), Knowledge and understanding (6), Analysis and line of argument (6), Discussion and evaluation (8) and Reflection (4). If you are drafting now for May 2027, check against the new set: <Link href="/resources/ib-extended-essay-new-criteria-2027">here is the full breakdown of what changed</Link>.
       </p>
 
       <p>
@@ -50,18 +50,18 @@ export default function ExtendedEssayFeedback() {
       <ul>
         <li>Can a reader state your research question and your answer to it after the introduction and conclusion alone?</li>
         <li>Does every section analyse and argue, or do some merely report sources?</li>
-        <li>Is evidence evaluated, strengths, limitations, competing interpretations, or just cited?</li>
+        <li>Is evidence evaluated (strengths, limitations, competing interpretations) or just cited?</li>
         <li>Does the conclusion follow from the weighing of evidence, rather than restating the introduction?</li>
       </ul>
 
       <h2>Where AI feedback fits</h2>
 
       <p>
-        An AI check is not a replacement for your supervisor, it is what you run <em>before</em> spending that one draft. IBLens grades your EE against the official criteria for your session (both the 34-mark and the new 30-mark May 2027 rubrics), criterion by criterion: predicted band range and your weakest criterion free, the full report $9.99 with no subscription. Using AI for feedback on your own work is a different thing from having AI write it, see our guide to <Link href="/resources/academic-integrity">AI feedback and IB academic integrity</Link> for where the line sits.
+        An AI check is not a replacement for your supervisor; it is what you run <em>before</em> spending that one draft. IBLens marks your EE against the criteria for your session (the 34-mark set or the new 30-mark May 2027 set), criterion by criterion. The estimated band range and your weakest criterion are free, and the full report is $9.99 with no subscription. Using AI for feedback on your own work is a different thing from having AI write it: see our guide to <Link href="/resources/academic-integrity">AI feedback and IB academic integrity</Link> for where the line sits.
       </p>
 
       <p>
-        <Link href="/essay/extended-essay">Get feedback in about 90 seconds on your EE draft →</Link>
+        <Link href="/essay/extended-essay">Get feedback on your EE draft in about a minute →</Link>
       </p>
 
       <h2>Frequently asked questions</h2>

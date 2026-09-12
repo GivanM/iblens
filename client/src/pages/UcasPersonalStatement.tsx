@@ -111,7 +111,7 @@ export default function UcasPersonalStatement() {
       const len = (answers as any)[q.id].length;
       if (len === 0) out.push(`Question ${i + 1} is empty.`);
       else if (len < UCAS_MIN_CHARS_PER_ANSWER)
-        out.push(`Question ${i + 1} is ${len} characters, UCAS requires at least ${UCAS_MIN_CHARS_PER_ANSWER}.`);
+        out.push(`Question ${i + 1} is ${len} characters; UCAS requires at least ${UCAS_MIN_CHARS_PER_ANSWER}.`);
     });
     if (total > UCAS_TOTAL_CHAR_LIMIT)
       out.push(`Your answers are ${total - UCAS_TOTAL_CHAR_LIMIT} characters over the ${UCAS_TOTAL_CHAR_LIMIT} limit.`);
@@ -193,7 +193,7 @@ export default function UcasPersonalStatement() {
                 />
                 <p className={`text-xs ${short ? "text-rose-600" : "text-muted-foreground"}`}>
                   {val.length} characters
-                  {short && `, UCAS requires at least ${UCAS_MIN_CHARS_PER_ANSWER}`}
+                  {short && ` · UCAS requires at least ${UCAS_MIN_CHARS_PER_ANSWER}`}
                 </p>
               </div>
             );

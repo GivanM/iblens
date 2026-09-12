@@ -21,7 +21,7 @@ export default function IBEconomicsIA() {
 
       <h2>How the IB Economics IA Is Marked</h2>
       <p>
-        Each commentary is marked on five criteria (A–E), for a maximum of 14 marks per
+        Each commentary is marked on five criteria (A-E), for a maximum of 14 marks per
         commentary. The portfolio is marked out of 45: 42 across the three commentaries
         plus 3 for Criterion F, Rubric requirements, which checks that each article comes
         from a different unit, from a different and appropriate source, and was published
@@ -171,10 +171,10 @@ export default function IBEconomicsIA() {
         are. A structure that works well:
       </p>
       <ul>
-        <li><strong>Opening context (50–80 words):</strong> say briefly what the article is about and name the economics involved. Do not summarise the article: you are analysing it.</li>
-        <li><strong>Economic analysis (300–400 words):</strong> Explain the economics using diagrams, correct terminology, and the relevant theory. Describe cause and effect precisely.</li>
-        <li><strong>Evaluation (250–350 words):</strong> Weigh up the effects, consider limitations, discuss who gains and loses. Use two or three distinct evaluation points rather than one point made three times.</li>
-        <li><strong>Conclusion (50–80 words):</strong> State your overall judgement. Is the policy likely to achieve its goal? Under what conditions?</li>
+        <li><strong>Opening context (50-80 words):</strong> say briefly what the article is about and name the economics involved. Do not summarise the article: you are analysing it.</li>
+        <li><strong>Economic analysis (300-400 words):</strong> Explain the economics using diagrams, correct terminology, and the relevant theory. Describe cause and effect precisely.</li>
+        <li><strong>Evaluation (250-350 words):</strong> Weigh up the effects, consider limitations, discuss who gains and loses. Use two or three distinct evaluation points rather than one point made three times.</li>
+        <li><strong>Conclusion (50-80 words):</strong> State your overall judgement. Is the policy likely to achieve its goal? Under what conditions?</li>
       </ul>
 
       <h2>Getting Your Commentary Checked Before Submission</h2>

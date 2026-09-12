@@ -161,7 +161,11 @@ NO REFLECTIVE STATEMENT WAS SUBMITTED. The reflection criterion is marked on the
 
   const wordBlock = buildWordCountBlock(checkWordLimit(rubric, essayText));
 
-  return `Analyze this IB ${essayType} for: ${subject}
+  // TOK work has no subject: the subject field carries "Exhibition" for the exhibition.
+  const task = essayType === "TOK"
+    ? (subject.trim().toLowerCase() === "exhibition" ? "TOK exhibition" : "TOK essay")
+    : `${essayType} for: ${subject}`;
+  return `Analyze this IB ${task}
 Research Question: ${researchQuestion || "not provided"}
 
 TEXT:
@@ -181,7 +185,9 @@ Respond with this exact JSON structure:
     {"title": "Improvement area", "description": "Specific actionable advice to gain marks"}
   ],
   "next_steps": ["Specific step 1", "Specific step 2", "Specific step 3"]
-}`;
+}
+
+ORDER: list "risks" from the one costing the most marks to the least, "leverage_zones" from the most marks recoverable to the least, and "next_steps" from the change likely to recover the most marks to the least. The report shows them in this order and describes them as ranked.`;
 }
 
 

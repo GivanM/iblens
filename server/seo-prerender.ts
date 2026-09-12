@@ -1,13 +1,10 @@
 import fs from "fs";
 import path from "path";
-import { staticContent } from "./seo-static-content";
-import { staticContentResources } from "./seo-static-content-resources";
-
-// Merge base + resources content so both files feed the crawler body injection.
 /**
- * Resource articles are rendered from their React pages at build time
- * (scripts/render-crawler-bodies.mjs). Those renders win over the hand-kept
- * copies, which remain only for pages that are not resource articles.
+ * Crawler bodies are rendered from the React pages at build time
+ * (scripts/render-crawler-bodies.mjs), so a crawler reads the same text as a
+ * visitor. The hand-kept HTML copies they replaced are gone: every review round
+ * found a fix that had reached one copy and not the other.
  */
 function loadRenderedBodies(): Record<string, string> {
   const here = typeof import.meta !== "undefined" && (import.meta as any).dirname ? (import.meta as any).dirname : process.cwd();
@@ -18,11 +15,11 @@ function loadRenderedBodies(): Record<string, string> {
       // try the next location
     }
   }
-  console.warn("[SEO] dist/crawler-bodies.json not found: resource articles have no crawler body until the next build");
+  console.warn("[SEO] dist/crawler-bodies.json not found: pages have no crawler body until the next build");
   return {};
 }
 
-const allStaticContent: Record<string, string> = { ...staticContent, ...staticContentResources, ...loadRenderedBodies() };
+const allStaticContent: Record<string, string> = loadRenderedBodies();
 
 // SEO Pre-rendering Middleware (JSON-LD Strategy)
 //
@@ -84,14 +81,10 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/sample-reports": {
     title: "Sample IBLens Reports: Three Essays, Three Honest Grades | IBLens",
-    description: "Real, unedited IBLens output: the same TOK-style title answered at three quality levels and marked 2/10, 4/10 and 5/10 on the holistic instrument. This is what strict marking against the descriptors looks like.",
+    description: "Real, unedited IBLens output: three demonstration TOK essays on one title, written at three levels of quality and marked 2/10, 5/10 and 9/10 on the holistic instrument, each with its full report.",
     ogType: "article",
     canonical: "/resources/sample-reports",
     schemaType: "Article",
-    faq: [
-      { question: "Are the sample reports real IBLens output?", answer: "Yes. The three demo essays were written for this demonstration at deliberately different quality levels, then run through the live grader. The scores and every word of feedback are unedited IBLens output." },
-      { question: "Does IBLens give everyone a similar score?", answer: "No, that is the point of the demonstration. The weak essay scored 2/10, the developing one 4/10, the strong one 5/10. The grader is instructed to mark strictly, and these three reports show the spread that produces." },
-    ],
   },
   "/resources/academic-integrity": {
     title: "AI Feedback and IB Academic Integrity: Is It Allowed? | IBLens",
@@ -99,36 +92,25 @@ const routeMeta: Record<string, PageMeta> = {
     ogType: "article",
     canonical: "/resources/academic-integrity",
     schemaType: "Article",
-    faq: [
-      { question: "Is it against IB rules to get AI feedback on my essay?", answer: "The IB integrity policy targets submitting work that is not your own. Feedback on writing you produced yourself, like a supervisor or tutor gives, is study support. Your school may have stricter rules, so check with your coordinator, and never paste AI-generated text into your submission." },
-      { question: "Does IBLens store my essay or train AI on it?", answer: "No. Essays are graded and returned, they are not used to train models, not shared or published, and the essay text is never stored and unpurchased anonymous reports are deleted after 90 days. You can request deletion at any time." },
-      { question: "Will Turnitin flag me for using AI feedback?", answer: "No. Reading feedback about your essay adds nothing to any similarity database. What gets flagged is AI-generated prose inside your submission, which is why IBLens returns feedback, never rewritten text." },
-    ],
   },
 
   "/": {
     title: "Free IB Essay Grader 2026: AI Feedback on IA, EE & TOK | IBLens",
-    description: "Get AI-powered feedback on your IB essay in about 90 seconds. Criterion-by-criterion scores, predicted band, risk areas, and actionable improvements. First analysis free, no account needed.",
+    description: "AI feedback on your IB essay in about a minute: criterion-by-criterion marks, a predicted band, the risks costing you marks, and what to fix first. Free preview, no account needed.",
     ogType: "website",
     canonical: "/",
     schemaType: "WebSite",
   },
   "/essay": {
-    title: "IB Essay Grader: Free AI Feedback on IA, Extended Essay & TOK | IBLens",
-    description: "Grade your IB Internal Assessment, Extended Essay, or TOK essay free. AI evaluates every criterion, predicts your band, and shows exactly which marks you\u2019re losing. 14 subjects.",
+    title: "IB Essay Grader: AI Feedback on IA, Extended Essay and TOK | IBLens",
+    description: "AI feedback on your IB Internal Assessment, Extended Essay or TOK work in 14 subjects: a free preview with your band range and weakest criterion, then a full criterion-by-criterion report.",
     ogType: "website",
     canonical: "/essay",
     schemaType: "WebPage",
-    faq: [
-      { question: "Which IB essay types can IBLens grade?", answer: "IBLens grades all IB essay types: coursework in 14 subjects (the IA in eleven, plus the externally assessed coursework in Visual Arts, Music and Film), Extended Essays (EE), and Theory of Knowledge (TOK) essays. Each is scored against the official IB rubric for that specific essay type." },
-      { question: "How accurate is the AI grade prediction?", answer: "IBLens is given the official IB marking criteria for your task and produces an estimate from those criteria, which is not a measured match to examiner marks. It evaluates each criterion individually and identifies specific areas where marks are being lost, giving you actionable feedback to improve before submission." },
-      { question: "Is the first analysis really free?", answer: "Yes, your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report, exact score, the full report with comments, and a ranked fix list, unlocks for $9.99." },
-      { question: "How long does it take to get feedback?", answer: "Results are ready in about 90 seconds. Paste your essay text, select your subject and essay type, and the report comes back in about 90 seconds." },
-    ],
   },
   "/grade": {
-    title: "Free IB Essay Grader: Grade My IB Essay in About 90 Seconds | IBLens",
-    description: "Paste your IB essay and get a predicted grade in about 90 seconds. AI feedback on every criterion, Extended Essay, IA, or TOK. No account, no credit card required.",
+    title: "Free IB Essay Grader: Mark My IB Essay in About a Minute | IBLens",
+    description: "Paste your IB essay and get a free preview in about a minute: your band range, weakest criterion and top risks. The full report marks every criterion. Extended Essay, IA or TOK, no account needed.",
     ogType: "website",
     canonical: "/grade",
     schemaType: "WebPage",
@@ -141,17 +123,11 @@ const routeMeta: Record<string, PageMeta> = {
     schemaType: "WebPage",
   },
   "/pricing": {
-    title: "IB Essay Analysis from $9.99: No Subscription, No Account Needed | IBLens",
-    description: "First IB essay analysis free. Single analysis $9.99, pack of 5 for $24.99, pack of 10 for $44.99. No subscription. 7-day money-back guarantee. IB tutors charge $50\u2013150/hr, IBLens answers in about 90 seconds.",
+    title: "IB Essay Feedback from $9.99: No Subscription, No Account Needed | IBLens",
+    description: "A free preview on your first IB essay, then a full report for $9.99, five for $24.99 or ten for $44.99. No subscription, credits do not expire, two re-checks per report, and a 7-day money-back guarantee.",
     ogType: "website",
     canonical: "/pricing",
     schemaType: "WebPage",
-    faq: [
-      { question: "How much does IBLens cost?", answer: "Your first analysis is free. The full report costs $9.99, a pack of 5 is $24.99, and a pack of 10 is $44.99. There is no subscription, you pay only for what you use." },
-      { question: "Is there a money-back guarantee?", answer: "Yes. IBLens offers a 7-day no-questions-asked money-back guarantee on all purchases. Email glushkovim@gmail.com within 7 days and you will receive a full refund to your original payment method." },
-      { question: "Do credits expire?", answer: "No. Analysis credits do not expire. You can buy a pack now and use the analyses whenever you need them, for your IA, Extended Essay, or TOK essay." },
-      { question: "How does IBLens compare to an IB tutor?", answer: "IB tutors charge $50\u2013150 per hour. A single IBLens analysis costs $9.99 and takes about 90 seconds. IBLens gives you criterion-by-criterion feedback against the official IB rubric, a predicted score, and specific improvement suggestions, available 24/7." },
-    ],
   },
   "/refund-policy": {
     title: "Refund Policy: 7-Day Money-Back Guarantee | IBLens",
@@ -161,8 +137,8 @@ const routeMeta: Record<string, PageMeta> = {
     schemaType: "WebPage",
   },
   "/resources": {
-    title: "Free IB Study Guides: Extended Essay, IA, TOK & University Admissions | IBLens",
-    description: "Free in-depth guides for IB Diploma students: how to write an Extended Essay, Internal Assessment criteria by subject, TOK essay structure, IB grade boundaries, and university admissions tips.",
+    title: "Free IB Study Guides: Extended Essay, IA, TOK and University Applications | IBLens",
+    description: "Free guides for IB Diploma students: writing the Extended Essay, Internal Assessment criteria by subject, TOK essay structure, how IB grades and bonus points work, and planning university applications.",
     ogType: "website",
     canonical: "/resources",
     schemaType: "CollectionPage",
@@ -239,7 +215,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/ib-university-admissions-strategy": {
     title: "IB University Admissions Strategy: How to Choose Universities | IBLens",
-    description: "A practical guide to IB university admissions: build your school list, decode score requirements by country, time your applications, and avoid common mistakes.",
+    description: "A practical guide to IB university applications: build a balanced list, match your HL subjects to the courses you want, plan around application deadlines, and avoid common mistakes.",
     ogType: "article",
     canonical: "/resources/ib-university-admissions-strategy",
     schemaType: "Article",
@@ -411,11 +387,6 @@ const routeMeta: Record<string, PageMeta> = {
     ogType: "website",
     canonical: "/resources/tok-essay-structure",
     schemaType: "Article",
-    faq: [
-      { question: "What is the structure of a TOK essay?", answer: "A TOK essay has an introduction (150–200 words), two body sections each covering one Area of Knowledge using claim/counter-claim structure (500–600 words each), and a conclusion (200–250 words). Total: 1,600 words maximum." },
-      { question: "How many Areas of Knowledge should a TOK essay cover?", answer: "Two Areas of Knowledge. Covering three or more AOKs means insufficient depth in each. Choose two that create a meaningful contrast, for example, Natural Sciences and Arts, or History and Mathematics." },
-      { question: "What is a knowledge claim in TOK?", answer: "A knowledge claim is an assertion about how knowledge works in a specific Area of Knowledge. It must be arguable, not a fact or opinion, and must be supported by a specific real-world example and challenged by a counter-claim." },
-    ],
   },
   "/resources/ib-university-consultant-cost": {
     title: "IB University Guidance: No Longer Offered | IBLens",
@@ -447,161 +418,141 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/ib-history-extended-essay": {
     title: "IB History Extended Essay: Research Questions & Tips | IBLens",
-    description: "How to write an IB History Extended Essay: strong research questions, source evaluation and historiography, criteria A–E, common mistakes and grading tips.",
+    description: "How to write an IB History Extended Essay: strong research questions, source evaluation and historiography, criteria A-E, common mistakes and grading tips.",
     ogType: "article",
     canonical: "/resources/ib-history-extended-essay",
     schemaType: "Article",
-    faq: [
-      { question: "Can I write my History EE on a recent event?", answer: "Very recent topics are risky. The History EE rewards engagement with historiography, and events from the last few years rarely have an established body of historical writing. Choose a topic old enough that historians have debated it, and confirm your choice with your supervisor." },
-      { question: "How many sources does a History EE need?", answer: "There is no official number. Strong essays typically combine a small set of primary sources analysed in depth with a range of secondary works representing different interpretations. Depth of evaluation matters far more than the length of the bibliography." },
-      { question: "Is History a hard subject for the Extended Essay?", answer: "History EEs are marked against the same five criteria as every other subject, but Criterion C rewards argument and evaluation of interpretations rather than narrative. Students who retell events tend to score in the middle bands; students who argue a focused case can score highly." },
-    ],
   },
   "/resources/ib-english-extended-essay": {
     title: "IB English Extended Essay: Research Questions & Tips | IBLens",
-    description: "How to write an IB English Extended Essay: analytical research questions, close reading over plot summary, criteria A–E, common mistakes and grading tips.",
+    description: "How to write an IB English Extended Essay: analytical research questions, close reading over plot summary, criteria A-E, common mistakes and grading tips.",
     ogType: "article",
     canonical: "/resources/ib-english-extended-essay",
     schemaType: "Article",
-    faq: [
-      { question: "How many texts should an English EE analyse?", answer: "Most successful essays focus on one or two literary works. A single novel analysed deeply almost always beats four texts surveyed superficially, because Criterion C rewards sustained analysis rather than coverage." },
-      { question: "Can I use secondary criticism in an English EE?", answer: "Yes, and strong essays usually do, but critics should support or sharpen your own argument, not replace it. Quote critics to position your reading, then return to the primary text for evidence." },
-      { question: "How is the English EE different from a class literature essay?", answer: "Scale and independence. The EE is a 4,000-word argument built around your own research question, assessed against criteria A–E, with a reflection component (the RPPF). It demands a sharper question and more sustained analysis than classroom essays." },
-    ],
   },
   "/resources/ib-economics-extended-essay": {
     title: "IB Economics Extended Essay: Research Questions & Tips | IBLens",
-    description: "How to write an IB Economics Extended Essay: focused research questions, applying theory and real data with diagrams, criteria A–E and common mistakes.",
+    description: "How to write an IB Economics Extended Essay: focused research questions, applying theory and real data with diagrams, criteria A-E and common mistakes.",
     ogType: "article",
     canonical: "/resources/ib-economics-extended-essay",
     schemaType: "Article",
-    faq: [
-      { question: "Does an Economics EE need primary data?", answer: "Not necessarily. Strong essays can be built on either primary data (prices you collect, surveys) or good secondary data, as long as the data genuinely tests the question. What matters is that theory is applied to real evidence rather than discussed in the abstract." },
-      { question: "How many diagrams should an Economics EE include?", answer: "Use as many as your argument needs, typically several, but every diagram must be adapted to your specific market and referred to in the analysis. Generic textbook diagrams that are never used to explain your data earn little credit." },
-      { question: "Can I write my Economics EE on a macroeconomic topic?", answer: "You can, but scope is the danger. Whole-economy questions are hard to answer convincingly in 4,000 words. Narrowing to one policy, one market or one country over a defined period usually produces a stronger essay." },
-    ],
   },
   "/resources/ib-psychology-extended-essay": {
     title: "IB Psychology Extended Essay: RQs, Criteria & Tips | IBLens",
-    description: "How to write an IB Psychology Extended Essay: research questions, engaging real studies critically, avoiding pop psychology, criteria A–E and common mistakes.",
+    description: "How to write an IB Psychology Extended Essay: research questions, engaging real studies critically, avoiding pop psychology, criteria A-E and common mistakes.",
     ogType: "article",
     canonical: "/resources/ib-psychology-extended-essay",
     schemaType: "Article",
-    faq: [
-      { question: "Can I run my own experiment for a Psychology EE?", answer: "The Psychology EE is expected to be based on published research rather than your own data collection. Your originality comes from the argument you build, how you select, compare and evaluate existing studies to answer a focused question." },
-      { question: "How many studies should a Psychology EE discuss?", answer: "Enough to sustain an argument, evaluated properly, often a core of several studies examined in depth. Listing many studies descriptively scores worse than critically comparing a smaller set, because Criterion C rewards evaluation, not coverage." },
-      { question: "How is the Psychology EE different from the Psychology IA?", answer: "The IA is a replication of a published experiment with your own data and statistics. The EE is a 4,000-word argumentative essay built on published research, marked against criteria A–E, with no data collection of your own." },
-    ],
   },
   "/auth/signin": {
     title: "Sign In: IBLens",
-    description: "Sign in to IBLens to access your IB essay analyses, purchase history, and personalized university strategies.",
+    description: "Sign in to IBLens with Google to keep your IB essay and personal statement reports, your credits and your purchase history in one account.",
     ogType: "website",
     canonical: "/auth/signin",
     schemaType: "WebPage",
   },
   // Programmatic subject pages
   "/essay/business-management-ia": {
-    title: "IB Business Management IA Grader, Free AI Feedback | IBLens",
-    description: "Get AI feedback in about 90 seconds on your IB Business Management Internal Assessment. Criterion-by-criterion scoring against official IB rubric. First analysis free.",
+    title: "IB Business Management IA Grader: AI Feedback on Your Research Project | IBLens",
+    description: "AI feedback in about a minute on your IB Business Management research project, marked against the seven criteria out of 25, with the word count checked against 1,800. Free preview first.",
     ogType: "website",
     canonical: "/essay/business-management-ia",
     schemaType: "WebPage",
   },
   "/essay/economics-ia": {
-    title: "IB Economics IA Grader, Free AI Feedback on Commentary | IBLens",
-    description: "AI feedback on your IB Economics Internal Assessment commentary. Checks diagram quality, economic analysis, and evaluation against IB criteria. Free first check.",
+    title: "IB Economics IA Grader: AI Feedback on Your Commentary | IBLens",
+    description: "AI feedback on your IB Economics IA commentary against the five criteria: diagrams, terminology, application and analysis, key concept and evaluation, with the words counted against 800. Free preview first.",
     ogType: "website",
     canonical: "/essay/economics-ia",
     schemaType: "WebPage",
   },
   "/essay/history-ia": {
-    title: "IB History IA Grader, Free AI Feedback & Score Prediction | IBLens",
-    description: "AI-powered feedback on your IB History Internal Assessment. Source evaluation, investigation quality, and reflection, all scored against official IB History criteria.",
+    title: "IB History IA Grader: AI Feedback on Your Historical Investigation | IBLens",
+    description: "AI feedback on your IB History Internal Assessment: source evaluation, the investigation and the reflection, marked against the three criteria out of 25, with the words counted against 2,200.",
     ogType: "website",
     canonical: "/essay/history-ia",
     schemaType: "WebPage",
   },
   "/essay/biology-ia": {
-    title: "IB Biology IA Grader, Free AI Feedback on Lab Report | IBLens",
-    description: "AI feedback in about 90 seconds on your IB Biology Internal Assessment. Checks all four criteria: research design, data analysis, conclusion and evaluation. Free.",
+    title: "IB Biology IA Grader: AI Feedback on Your Scientific Investigation | IBLens",
+    description: "AI feedback on your IB Biology Internal Assessment in about a minute, against the four criteria: research design, data analysis, conclusion and evaluation. Free preview first.",
     ogType: "website",
     canonical: "/essay/biology-ia",
     schemaType: "WebPage",
   },
   "/essay/chemistry-ia": {
-    title: "IB Chemistry IA Grader, Free AI Feedback on Lab Report | IBLens",
-    description: "Get AI feedback on your IB Chemistry Internal Assessment. Research design, data analysis, conclusion and evaluation scored against the official IB Chemistry criteria. First analysis free.",
+    title: "IB Chemistry IA Grader: AI Feedback on Your Scientific Investigation | IBLens",
+    description: "AI feedback on your IB Chemistry Internal Assessment against the four criteria: research design, data analysis, conclusion and evaluation. Free preview first, full report $9.99.",
     ogType: "website",
     canonical: "/essay/chemistry-ia",
     schemaType: "WebPage",
   },
   "/essay/physics-ia": {
-    title: "IB Physics IA Grader, Free AI Feedback on Investigation | IBLens",
-    description: "AI-powered feedback on your IB Physics Internal Assessment. Checks all four criteria: research design, data analysis, conclusion and evaluation.",
+    title: "IB Physics IA Grader: AI Feedback on Your Scientific Investigation | IBLens",
+    description: "AI feedback on your IB Physics Internal Assessment against the four criteria: research design, data analysis, conclusion and evaluation. Free preview first, full report $9.99.",
     ogType: "website",
     canonical: "/essay/physics-ia",
     schemaType: "WebPage",
   },
   "/essay/math-ia": {
-    title: "IB Math IA Grader, Free AI Feedback on Exploration | IBLens",
-    description: "Get AI feedback in about 90 seconds on your IB Mathematics Internal Assessment exploration. Presentation, mathematical communication, personal engagement, reflection and use of mathematics, all scored against IB criteria.",
+    title: "IB Math IA Grader: AI Feedback on Your Exploration | IBLens",
+    description: "AI feedback in about a minute on your IB Mathematics exploration: presentation, mathematical communication, personal engagement, reflection and use of mathematics, marked out of 20.",
     ogType: "website",
     canonical: "/essay/math-ia",
     schemaType: "WebPage",
   },
   "/essay/psychology-ia": {
-    title: "IB Psychology IA Grader, Free AI Feedback on Research Report | IBLens",
-    description: "AI feedback on your IB Psychology Internal Assessment. Introduction, exploration, analysis and evaluation, all scored against the official IB Psychology criteria.",
+    title: "IB Psychology IA Grader: AI Feedback on Your Report or Proposal | IBLens",
+    description: "AI feedback on your IB Psychology Internal Assessment: the experimental report out of 22 through November 2026, or the research proposal out of 24 from May 2027. Free preview first.",
     ogType: "website",
     canonical: "/essay/psychology-ia",
     schemaType: "WebPage",
   },
   "/essay/english-essay": {
-    title: "IB English Individual Oral Grader, Free AI Feedback | IBLens",
-    description: "AI feedback on the IB English A Individual Oral, marked out of 40 against the four published criteria. The HL essay is a separate component and is not covered. First analysis free.",
+    title: "IB English Individual Oral Grader: AI Feedback on Your IO | IBLens",
+    description: "AI feedback on the IB English A Individual Oral, marked out of 40 against the four published criteria. Paste an outline or a transcript. The HL essay is a separate component and is not covered.",
     ogType: "website",
     canonical: "/essay/english-essay",
     schemaType: "WebPage",
   },
   "/essay/extended-essay": {
-    title: "IB Extended Essay Grader, Free AI Feedback on Your EE | IBLens",
-    description: "AI feedback on your IB Extended Essay against both official rubrics: the current 34-mark criteria and the new 30-mark May 2027 criteria. Criterion-by-criterion report with a free preview.",
+    title: "IB Extended Essay Grader: AI Feedback on Your EE | IBLens",
+    description: "AI feedback on your IB Extended Essay against either rubric: the 34-mark criteria through November 2026 or the new 30-mark criteria from May 2027. Criterion-by-criterion report, free preview first.",
     ogType: "website",
     canonical: "/essay/extended-essay",
     schemaType: "WebPage",
   },
   "/essay/tok-essay": {
-    title: "IB TOK Essay Grader, Free AI Feedback on Theory of Knowledge | IBLens",
-    description: "AI feedback on your IB Theory of Knowledge essay. Knowledge claims, counter-claims and areas of knowledge, read against the single holistic TOK scale. Free first check.",
+    title: "IB TOK Essay Grader: AI Feedback on Your Theory of Knowledge Essay | IBLens",
+    description: "AI feedback on your IB Theory of Knowledge essay, read against the holistic TOK assessment instrument out of 10, with the words counted against 1,600. Free preview first.",
     ogType: "website",
     canonical: "/essay/tok-essay",
     schemaType: "WebPage",
   },
   "/essay/computer-science-ia": {
-    title: "IB Computer Science IA Grader, Free AI Feedback | IBLens",
-    description: "AI feedback on your IB Computer Science Internal Assessment. Criterion-by-criterion scoring against the official IB CS IA rubric. First analysis free, no account needed.",
+    title: "IB Computer Science IA Grader: AI Feedback on Your Solution | IBLens",
+    description: "AI feedback on your IB Computer Science Internal Assessment against the 34-mark criteria through November 2026 or the new 30-mark criteria from May 2027. Free preview first, no account needed.",
     ogType: "website",
     canonical: "/essay/computer-science-ia",
     schemaType: "WebPage",
   },
   "/essay/tok-exhibition": {
-    title: "IB TOK Exhibition Grader, Free AI Feedback on All 3 Objects | IBLens",
-    description: "AI feedback on your IB Theory of Knowledge Exhibition. Check if your objects make convincing links to the IA prompt and to TOK concepts, scored against the official IB rubric. Free first check.",
+    title: "IB TOK Exhibition Grader: AI Feedback on Your Three Objects | IBLens",
+    description: "AI feedback on your IB Theory of Knowledge exhibition: whether your three objects link convincingly to your IA prompt, read against the holistic instrument out of 10, with the words counted against 950.",
     ogType: "website",
     canonical: "/essay/tok-exhibition",
     schemaType: "WebPage",
   },
   "/essay/maths-aa-ia": {
-    title: "IB Math AA IA Grader, Free AI Feedback on Analysis & Approaches | IBLens",
-    description: "AI feedback on your IB Mathematics: Analysis and Approaches IA exploration. Presentation, mathematical communication, personal engagement, reflection and use of mathematics, scored against the official IB criteria.",
+    title: "IB Math AA IA Grader: AI Feedback on Your Analysis and Approaches Exploration | IBLens",
+    description: "AI feedback on your IB Mathematics: Analysis and Approaches exploration: presentation, mathematical communication, personal engagement, reflection and use of mathematics, marked out of 20.",
     ogType: "website",
     canonical: "/essay/maths-aa-ia",
     schemaType: "WebPage",
   },
   "/essay/maths-ai-ia": {
-    title: "IB Math AI IA Grader, Free AI Feedback on Applications & Interpretation | IBLens",
-    description: "AI feedback on your IB Mathematics: Applications and Interpretation IA exploration. Presentation, mathematical communication, personal engagement, reflection and use of mathematics, all scored against official IB criteria.",
+    title: "IB Math AI IA Grader: AI Feedback on Your Applications and Interpretation Exploration | IBLens",
+    description: "AI feedback on your IB Mathematics: Applications and Interpretation exploration: presentation, mathematical communication, personal engagement, reflection and use of mathematics, marked out of 20.",
     ogType: "website",
     canonical: "/essay/maths-ai-ia",
     schemaType: "WebPage",

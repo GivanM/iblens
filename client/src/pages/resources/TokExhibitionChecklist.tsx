@@ -10,31 +10,31 @@ export default function TokExhibitionChecklist() {
       datePublished="2026-08-11"
       dateModified="2026-08-11"
     >
-      <h1>TOK Exhibition Checklist, How to Check Your Commentary Against the IB Criteria</h1>
+      <h1>TOK Exhibition Checklist: How to Check Your Commentary Against the IB Criteria</h1>
 
       <p>
-        Like the TOK essay, the exhibition is marked holistically, one instrument, out of 10, no separate criteria. The examiner asks a single question: <em>does the exhibition successfully show how TOK manifests in the world around us?</em> Your commentary either demonstrates that through three well-chosen objects, or it does not. This checklist turns the instrument into concrete checks you can run before submitting.
+        Like the TOK essay, the exhibition is marked holistically: one instrument, out of 10, with no separate criteria. It is internally assessed, so your teacher marks it and the IB moderates a sample. The instrument asks a single question: <em>does the exhibition successfully show how TOK manifests in the world around us?</em> Your commentary either demonstrates that through three well-chosen objects, or it does not. This checklist turns the instrument into concrete checks you can run before submitting.
       </p>
 
       <h2>How the exhibition is marked</h2>
 
       <p>
-        Your commentary is placed in one of five bands: Excellent (9–10), Good (7–8), Satisfactory (5–6), Basic (3–4), Rudimentary (1–2). At the top band, the descriptors reward three objects with specific real-world contexts, links to your single chosen IA prompt that are clearly made and well explained, strong justification of each object's contribution, and points supported by evidence with explicit references to the prompt.
+        Your commentary is placed in one of five levels: Excellent (9-10), Good (7-8), Satisfactory (5-6), Basic (3-4), Rudimentary (1-2). At the top, the descriptors reward three objects with specific real-world contexts, links to your selected IA prompt that are clearly made and well explained, a strong justification of each object's contribution, and points well supported by evidence and explicit references to the prompt. Two rules sit on top of the levels: with only two objects the maximum is 6 marks, and with only one it is 3. The limit is 950 words.
       </p>
 
       <h2>The checklist</h2>
 
       <h3>The prompt</h3>
       <ul>
-        <li>All three objects respond to <strong>one</strong> IA prompt, the same one, stated exactly as worded. Mixing prompts is a structural error the holistic reading punishes immediately.</li>
+        <li>All three objects respond to <strong>one</strong> of the 35 IA prompts, used exactly as given. The guide says the prompt must not be altered, and an exhibition that is not based on one of the prompts scores zero.</li>
         <li>Every object's section refers back to the prompt explicitly, by its words, not by vague gesture.</li>
       </ul>
 
       <h3>The objects</h3>
       <ul>
-        <li>Each object has a <strong>specific real-world context</strong>: this photograph from this event, this document from this archive, not a generic image that could illustrate anything.</li>
+        <li>Each object has a <strong>specific real-world context</strong>: this photograph from this event, this document from this archive, not a generic image that could illustrate anything. Objects can be digital, and can be something you made, but they must already exist rather than be created for the exhibition.</li>
         <li>The three objects do different work: each contributes something to the exhibition that the other two do not.</li>
-        <li>At least one object having a personal context makes the exhibition concrete, an object from your own life, school or community that genuinely connects to the prompt.</li>
+        <li>Optional, but encouraged by the guide: objects of personal interest, from your studies or your life outside the classroom, often make the exhibition more concrete.</li>
       </ul>
 
       <h3>The commentary</h3>
@@ -44,11 +44,11 @@ export default function TokExhibitionChecklist() {
         <li>The TOK point is explicit: a reader can see what each object reveals about how knowledge works, not just what it depicts.</li>
       </ul>
 
-      <h2>Common reasons commentaries stay in the 5–6 band</h2>
+      <h2>What holds a commentary in the 5-6 level</h2>
 
       <ul>
-        <li><strong>Description instead of justification:</strong> the commentary explains what each object is, but never argues why it belongs in an exhibition on this prompt.</li>
-        <li><strong>Generic objects:</strong> "a textbook", "a painting" with no specific context, the descriptors explicitly reward specific real-world contexts.</li>
+        <li><strong>Some justification rather than a strong one:</strong> the commentary explains what each object is, but only partly argues why it belongs in an exhibition on this prompt.</li>
+        <li><strong>Vague contexts:</strong> at 5-6 the contexts "may be vaguely or imprecisely stated"; "a textbook" or "a painting" with no specific context sits there or below.</li>
         <li><strong>Prompt drift:</strong> the discussion wanders to a theme the student prefers rather than the prompt as worded.</li>
         <li><strong>Three parallel mini-essays:</strong> no sense of the exhibition as one argument in three parts.</li>
       </ul>
@@ -56,7 +56,7 @@ export default function TokExhibitionChecklist() {
       <h2>Check your commentary with IBLens</h2>
 
       <p>
-        IBLens applies the official holistic instrument to your exhibition commentary: paste all three object sections and you get the band range the commentary currently sits in and the weakest area of the exploration, free, before any payment. The full report costs $9.99, no subscription.
+        IBLens applies the holistic instrument to your exhibition commentary: paste all three object sections, and the band it currently sits in and the opening of the comment explaining why are free, before any payment. The full report costs $9.99, with no subscription, and IBLens also counts the words against the 950-word limit.
       </p>
 
       <p>
@@ -67,7 +67,7 @@ export default function TokExhibitionChecklist() {
 
       <h3>Is the TOK exhibition marked with criteria like the EE?</h3>
       <p>
-        No, it is marked holistically out of 10 against a single instrument, guided by the question "does the exhibition successfully show how TOK manifests in the world around us?" Examiners place the commentary in one of five bands rather than scoring separate criteria.
+        No. It is marked holistically out of 10 against a single instrument, guided by the question "does the exhibition successfully show how TOK manifests in the world around us?" Your teacher places it in one of five levels rather than scoring separate criteria, and the IB moderates the marking.
       </p>
 
       <h3>Can my three objects use different IA prompts?</h3>
@@ -77,7 +77,7 @@ export default function TokExhibitionChecklist() {
 
       <h3>Do the objects have to be physical?</h3>
       <p>
-        Objects need specific real-world contexts, a particular tweet, artefact, photograph or document with an identifiable origin. What matters for the marking is the specificity of the context and the justification of the object's contribution, not physicality.
+        No. The guide allows digital objects, such as a particular tweet or a photograph of a document you cannot exhibit, as long as each has a specific real-world context. What matters for the marking is the specificity of the context and the justification of the object's contribution, not whether it is physical.
       </p>
 
       <h2>Related resources</h2>

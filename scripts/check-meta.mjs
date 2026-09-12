@@ -49,8 +49,12 @@ for (const file of walkTsx(path.resolve(pagesDir, "essay"))) {
 
 for (const file of walkTsx(pagesDir)) {
   if (file.includes(`${path.sep}essay${path.sep}`) || file.endsWith("HomeV2.tsx")) continue;
-  const block = fs.readFileSync(file, "utf8").match(/<SEOHead[\s\S]{0,900}?\/>/)?.[0];
-  if (!block) continue;
+  // Read the props from the tag's opening, not up to "/>": the homepage passes a long
+  // JSON-LD array, and a length cap on the whole tag silently skipped it.
+  const src = fs.readFileSync(file, "utf8");
+  const at = src.indexOf("<SEOHead");
+  if (at < 0) continue;
+  const block = src.slice(at, at + 4000);
   const route = block.match(/canonical=\{?"([^"]+)"/)?.[1];
   if (!route || !routeMeta[route]) continue;
   const title = block.match(/title=\{?"((?:[^"\\]|\\.)*)"/)?.[1];

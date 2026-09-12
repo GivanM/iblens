@@ -5,7 +5,7 @@ export default function IBPsychologyExtendedEssay() {
   return (
     <ResourceArticle
       title="IB Psychology Extended Essay: RQs, Criteria & Tips | IBLens"
-      description="How to write an IB Psychology Extended Essay: research questions, engaging real studies critically, avoiding pop psychology, criteria A–E and common mistakes."
+      description="How to write an IB Psychology Extended Essay: research questions, engaging real studies critically, avoiding pop psychology, criteria A-E and common mistakes."
       canonical="/resources/ib-psychology-extended-essay"
       datePublished="2026-07-10"
       dateModified="2026-07-10"

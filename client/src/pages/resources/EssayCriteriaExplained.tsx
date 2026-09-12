@@ -31,15 +31,15 @@ export default function EssayCriteriaExplained() {
       </p>
 
       <p>
-        <strong>Consistency across contexts:</strong> IB students study in over 150 countries with different educational traditions. Criterion-based marking ensures that a 7 in History means the same thing whether the student is in Singapore, Germany, or Brazil. Examiners worldwide apply the same criteria to the same standard.
+        <strong>Consistency across contexts:</strong> IB students study in many countries with different educational traditions. Criterion-based marking ensures that a 7 in History means the same thing whether the student is in Singapore, Germany, or Brazil. Examiners worldwide apply the same criteria to the same standard.
       </p>
 
       <p>
-        <strong>Transparency:</strong> Students can read the criteria before they begin their work and understand exactly what is expected. There are no hidden requirements or subjective preferences, the criteria are published and available to all students.
+        <strong>Transparency:</strong> Students can read the criteria before they begin their work and understand exactly what is expected. The criteria are published in the subject guides, and your teacher can share them with you.
       </p>
 
       <p>
-        <strong>Developmental feedback:</strong> Because criteria describe specific competencies at different levels, teachers can give targeted feedback: "Your analysis is at band 3–4; to reach band 5–6, you need to evaluate the reliability of your sources rather than just citing them."
+        <strong>Developmental feedback:</strong> Because criteria describe specific competencies at different levels, teachers can give targeted feedback: "Your analysis is at band 3-4; to reach band 5-6, you need to evaluate the reliability of your sources rather than just citing them."
       </p>
 
       <p>
@@ -54,7 +54,7 @@ export default function EssayCriteriaExplained() {
 
       <h3>Knowledge and Understanding</h3>
       <p>
-        Every IB subject assesses whether you understand the relevant content, concepts, and terminology. At lower levels, this means accurate recall and basic application. At higher levels, it means demonstrating <strong>deep, nuanced understanding</strong>, seeing connections between concepts, understanding why something works (not just that it works), and using terminology precisely rather than loosely.
+        Every IB subject assesses whether you understand the relevant content, concepts and terminology. At lower levels this means accurate recall and basic application. At higher levels it means <strong>deep understanding</strong>: seeing connections between concepts, understanding why something works and not just that it does, and using terminology precisely.
       </p>
 
       <h3>Application and Analysis</h3>
@@ -64,12 +64,12 @@ export default function EssayCriteriaExplained() {
 
       <h3>Synthesis and Evaluation</h3>
       <p>
-        The highest-order thinking skill assessed in the IB. Synthesis means combining ideas from different sources or perspectives to create new understanding. Evaluation means making reasoned judgments about the value, reliability, or significance of evidence, arguments, or methods. This is consistently the criterion that separates good work (band 4–5) from excellent work (band 6–7).
+        The highest-order thinking skill assessed in the IB. Synthesis means combining ideas from different sources or perspectives to create new understanding. Evaluation means making reasoned judgments about the value, reliability, or significance of evidence, arguments, or methods. In many criteria, evaluation is what separates the upper levels from the middle ones.
       </p>
 
       <h3>Communication and Presentation</h3>
       <p>
-        Assessed in every subject: can you communicate your ideas clearly, using appropriate structure, conventions, and academic language? This includes proper citation, logical organization, correct use of subject-specific formats (lab reports, essays, commentaries), and writing that is precise rather than vague.
+        Assessed directly in many components, and indirectly in all of them: can you communicate your ideas clearly, using appropriate structure, conventions and academic language? This includes proper citation, logical organization, correct use of subject-specific formats (lab reports, essays, commentaries), and writing that is precise rather than vague.
       </p>
 
       <h2>How Examiners Apply Criteria in Practice</h2>
@@ -83,29 +83,29 @@ export default function EssayCriteriaExplained() {
       </p>
 
       <p>
-        <strong>Positive marking:</strong> IB examiners are trained to look for evidence of achievement rather than counting errors. They ask "What has this student demonstrated?" rather than "What mistakes did they make?" This is why it is important to <strong>show your thinking</strong>, even if your conclusion is slightly off, demonstrating strong analytical reasoning will earn marks.
+        <strong>Positive marking:</strong> IB examiners are trained to look for evidence of achievement rather than counting errors. They ask "What has this student demonstrated?" rather than "What mistakes did they make?" This is why it is important to <strong>show your thinking</strong>: even if your conclusion is slightly off, strong analytical reasoning earns marks.
       </p>
 
       <p>
-        <strong>Holistic reading:</strong> Examiners read the entire response before assigning marks. They do not allocate marks paragraph by paragraph. This means your essay needs to work as a coherent whole, a strong introduction that sets up the argument, a body that develops it logically, and a conclusion that synthesizes the findings.
+        <strong>Holistic reading:</strong> Examiners read the entire response before assigning marks. They do not allocate marks paragraph by paragraph. This means your essay needs to work as a coherent whole: an introduction that sets up the argument, a body that develops it logically, and a conclusion that draws the findings together.
       </p>
 
       <p>
-        <strong>Standardization:</strong> Before marking begins, examiners attend standardization meetings where they mark sample scripts and discuss how to apply the criteria consistently. This ensures that different examiners marking the same script would arrive at similar marks (close to each other, which is the point of publishing descriptors at all).
+        <strong>Standardization:</strong> examiners are trained on work that senior examiners have already marked, and their marking is checked during the session. The aim is that different examiners marking the same work arrive at similar marks.
       </p>
 
-      <h2>The Difference Between Band 5 and Band 7</h2>
+      <h2>The Difference Between Good and Excellent Work</h2>
 
       <p>
-        Many students find it relatively straightforward to reach band 4–5 (a solid "good" performance) but struggle to break into band 6–7 (excellent/outstanding). Here is what typically distinguishes these levels:
+        Many students reach solid, good work without much trouble and then struggle to break into the top levels. The exact wording differs from criterion to criterion, but these differences come up again and again:
       </p>
 
       <table>
         <thead>
           <tr>
             <th>Aspect</th>
-            <th>Band 4–5 (Good)</th>
-            <th>Band 6–7 (Excellent)</th>
+            <th>Good</th>
+            <th>Excellent</th>
           </tr>
         </thead>
         <tbody>
@@ -143,7 +143,7 @@ export default function EssayCriteriaExplained() {
       </table>
 
       <p>
-        The fundamental difference is <strong>depth of thinking</strong>. Band 5 work shows competence, the student understands the material and can apply it. Band 7 work shows <strong>intellectual sophistication</strong>, the student can evaluate, synthesize, and generate original insight.
+        The fundamental difference is <strong>depth of thinking</strong>. Good work shows competence: the student understands the material and can apply it. Excellent work shows <strong>intellectual sophistication</strong>: the student can evaluate, synthesise and reach insight of their own.
       </p>
 
       <h2>Self-Assessment Using Criteria</h2>
@@ -153,11 +153,11 @@ export default function EssayCriteriaExplained() {
       </p>
 
       <p>
-        <strong>Step 1: Obtain the criteria.</strong> Every IB subject guide contains the assessment criteria for each component. Your teacher should have shared these with you. If not, ask, you have a right to see exactly how your work will be assessed.
+        <strong>Step 1: Obtain the criteria.</strong> Every IB subject guide contains the assessment criteria for each component. Your teacher should have shared these with you. If not, ask: you should know exactly how your work will be assessed.
       </p>
 
       <p>
-        <strong>Step 2: Read the top band descriptors.</strong> For each criterion, read the descriptor for the highest band (typically band 5–6 or band 7–8 depending on the scale). This tells you what "excellent" looks like for that criterion.
+        <strong>Step 2: Read the top band descriptors.</strong> For each criterion, read the descriptor for the highest band (typically band 5-6 or band 7-8 depending on the scale). This tells you what "excellent" looks like for that criterion.
       </p>
 
       <p>
@@ -175,7 +175,7 @@ export default function EssayCriteriaExplained() {
       <h2>How AI Feedback Maps to Criteria</h2>
 
       <p>
-        Tools like <Link href="/essay" className="text-primary hover:underline">IBLens</Link> are designed to replicate this criterion-based assessment process. When you paste an essay, the AI evaluates your work against the specific criteria for your subject and essay type, providing:
+        Tools like <Link href="/essay" className="text-primary hover:underline">IBLens</Link> follow the same criterion-based approach. When you paste an essay, a language model reads your work against the criteria for your subject, essay type and session, and returns:
       </p>
 
       <ul>
@@ -186,7 +186,7 @@ export default function EssayCriteriaExplained() {
       </ul>
 
       <p>
-        This is particularly valuable because self-assessment is inherently limited, it is difficult to objectively evaluate your own work, especially when you have been immersed in it for weeks. An external perspective (whether from a teacher, peer, or AI tool) can identify blind spots that you cannot see yourself.
+        This is useful because self-assessment has a built-in limit: it is hard to judge your own work objectively, especially after weeks inside it. An external perspective (whether from a teacher, peer, or AI tool) can identify blind spots that you cannot see yourself.
       </p>
 
       <p>
@@ -196,15 +196,15 @@ export default function EssayCriteriaExplained() {
       <h2>Practical Tips for Criterion-Based Writing</h2>
 
       <p>
-        Based on examiner reports and common patterns in high-scoring work:
+        A few habits that help:
       </p>
 
       <ul>
         <li><strong>Address every criterion explicitly.</strong> If a criterion asks for "evaluation of sources," make sure there is a visible section or paragraph where you evaluate sources. Do not assume the examiner will infer it.</li>
-        <li><strong>Use criterion language in your writing.</strong> If the criterion mentions "critical analysis," use phrases like "This evidence suggests..." or "A critical examination reveals..." to signal to the examiner that you are doing what the criterion asks.</li>
-        <li><strong>Front-load your strongest work.</strong> Examiners form impressions early. If your introduction demonstrates sophisticated thinking, the examiner approaches the rest of your essay with a positive expectation.</li>
+        <li><strong>Make the criterion's work visible, not its vocabulary.</strong> Phrases like "a critical examination reveals" earn nothing on their own; the evaluation itself does. Check that each criterion has somewhere in the work where it is clearly being done.</li>
+        <li><strong>Make your question and approach clear early.</strong> Best-fit marking reads the whole piece, and a reader who knows from the first page what you are trying to show can see how each section serves it.</li>
         <li><strong>Do not sacrifice one criterion for another.</strong> A beautifully written essay (high communication marks) that lacks analysis will not score well overall. Balance your effort across all criteria.</li>
-        <li><strong>Check word/page limits.</strong> Exceeding limits means the examiner stops reading. Everything beyond the limit is invisible to the assessment.</li>
+        <li><strong>Check word and page limits.</strong> In most components with a word limit, examiners or moderators stop reading at the limit, and anything beyond it is not assessed.</li>
       </ul>
 
       <p>

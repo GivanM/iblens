@@ -1,5 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+/* ResourceArticle, Privacy, Terms and Refund policy style their text with prose classes,
+   which compile to nothing unless the typography plugin is loaded. */
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 

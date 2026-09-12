@@ -14,7 +14,7 @@ export default function AcademicIntegrity() {
 
       <p>
         The most common question students ask before using any AI tool on their IB work is not about
-        accuracy - it is "will this get me in trouble?" It is a fair question, and most tools avoid
+        accuracy. It is "will this get me in trouble?" That is a fair question, and most tools avoid
         answering it. Here is an honest walkthrough of where the line sits, and exactly what IBLens
         does and does not do with your essay.
       </p>
@@ -22,18 +22,18 @@ export default function AcademicIntegrity() {
       <h2>What the IB integrity policy actually cares about</h2>
       <p>
         The IB academic integrity policy is built around one principle: the work you submit must be
-        your own. The violations it names - plagiarism, collusion, having someone else produce your
-        work - are all versions of submitting writing that is not yours.
+        your own. The violations it names (plagiarism, collusion, having someone else produce your
+        work) are all versions of submitting writing that is not yours.
       </p>
       <p>
         Getting <strong>feedback on work you wrote yourself</strong> is a different category. Teachers do it,
         supervisors do it on your EE draft, tutors charge for it. Feedback that helps you understand
-        where your own writing loses marks - which you then revise yourself - is study support, not
+        where your own writing loses marks, which you then revise yourself, is study support, not
         misconduct. The IB has also publicly stated it will not ban AI tools, treating them like any
         other source: the integrity question is how you use them.
       </p>
       <p>
-        Two important caveats. First, <strong>your school may have its own stricter rules</strong> - some schools
+        Two important caveats. First, <strong>your school may have its own stricter rules</strong>: some schools
         restrict any AI use on assessed work. Check with your IB coordinator; when in doubt, disclose.
         Second, the line is bright: the moment AI-generated text goes <em>into</em> your essay, it stops
         being your work. Never paste AI writing into a submission.
@@ -41,9 +41,9 @@ export default function AcademicIntegrity() {
 
       <h2>How to use AI feedback with integrity</h2>
       <ul>
-        <li><strong>Get feedback, not text.</strong> Use the criterion breakdown to see where marks are lost - then fix it in your own words.</li>
+        <li><strong>Get feedback, not text.</strong> Use the criterion breakdown to see where marks are lost, then fix it in your own words.</li>
         <li><strong>Keep your drafts.</strong> A visible draft history is your best evidence that the work is yours.</li>
-        <li><strong>Follow your school policy.</strong> If your school requires disclosing AI-assisted feedback, disclose it - the same way you would mention a tutor reviewed your draft.</li>
+        <li><strong>Follow your school policy.</strong> If your school requires you to disclose AI-assisted feedback, disclose it, the same way you would mention that a tutor reviewed your draft.</li>
         <li><strong>Never submit AI-written text.</strong> Not sentences, not paragraphs. Feedback in, your own writing out.</li>
       </ul>
 
@@ -58,7 +58,7 @@ export default function AcademicIntegrity() {
       <h2>Will Turnitin or the IB flag me for using AI feedback?</h2>
       <p>
         Similarity tools compare your submission against published text and other submissions. Reading
-        AI feedback about your essay adds nothing to those databases - there is nothing to match
+        AI feedback about your essay adds nothing to those databases: there is nothing to match
         against. What similarity and AI-detection tools <em>do</em> flag is AI-generated prose inside your
         submission. The rule from the section above covers you: feedback in, your own writing out.
       </p>
@@ -86,7 +86,7 @@ export default function AcademicIntegrity() {
         Two practical rules follow from this. First, never paste wording from any tool, including ours,
         into your application: our reviews deliberately describe what to change rather than hand you
         sentences, precisely so there is nothing to copy. Second, do not post your statement anywhere
-        public, forums, social media, essay-sharing sites, because that is how a statement ends up in a
+        public (forums, social media, essay-sharing sites), because that is how a statement ends up in a
         similarity database before you have even submitted it.
       </p>
 
@@ -99,15 +99,15 @@ export default function AcademicIntegrity() {
 
       <h2>Why we built it this way</h2>
       <p>
-        IBLens exists to answer one question - "where does my essay lose marks against the official
-        rubric?" - the same question a good supervisor answers on a draft. That is why the product
+        IBLens exists to answer one question, "where does my essay lose marks against the published
+        criteria?", which is the same question a good supervisor answers on a draft. That is why the product
         returns criterion-level feedback and a predicted band rather than rewritten text: it is
         designed so that the version you submit is always yours.
       </p>
 
       <p>
-        Questions about your data? Email us and we will delete your records - no forms, no friction.
-        Ready to see where your essay stands? <Link href="/essay">Your first analysis is free</Link>.
+        Questions about your data? Email us and we will delete your records, with no forms to fill in.
+        Ready to see where your essay stands? <Link href="/essay">The first preview is free</Link>.
       </p>
     </ResourceArticle>
   );

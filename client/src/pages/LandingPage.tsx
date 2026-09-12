@@ -1,30 +1,12 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { SEOHead } from "@/components/SEOHead";
 import {
-  FileText, ArrowRight, CheckCircle2, Star, ChevronDown, ChevronUp,
-  Shield, Zap, Lock, ShieldCheck, Clock
+  FileText, ArrowRight, CheckCircle2, ChevronDown, ChevronUp,
+  Shield, Zap, Lock, ShieldCheck, Clock, ListOrdered
 } from "lucide-react";
-
-function useExamCountdown() {
-  const [now, setNow] = useState(new Date());
-  const examDate = useMemo(() => {
-    const current = new Date();
-    let year = current.getFullYear();
-    const may1 = new Date(year, 4, 1);
-    if (current > may1) year++;
-    return new Date(year, 4, 1);
-  }, []);
-  useEffect(() => {
-    const timer = setInterval(() => setNow(new Date()), 60000);
-    return () => clearInterval(timer);
-  }, []);
-  const diff = examDate.getTime() - now.getTime();
-  const days = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
-  return { days, examYear: examDate.getFullYear() };
-}
 
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
@@ -48,20 +30,23 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   );
 }
 
+// The current Business research project criteria (first assessment 2024), out of 25.
 const SAMPLE_CRITERIA = [
-  { label: "Knowledge & Understanding", score: 4, max: 6, color: "bg-amber-400" },
-  { label: "Application & Analysis", score: 3, max: 6, color: "bg-orange-400" },
-  { label: "Synthesis & Evaluation", score: 5, max: 6, color: "bg-emerald-500" },
-  { label: "Use of Appropriate Skills", score: 2, max: 4, color: "bg-blue-400" },
+  { label: "A: Integration of a key concept", score: 3, max: 5, color: "bg-amber-400" },
+  { label: "B: Supporting documents", score: 3, max: 4, color: "bg-emerald-500" },
+  { label: "C: Tools and theories", score: 2, max: 4, color: "bg-orange-400" },
+  { label: "D: Analysis and evaluation", score: 2, max: 5, color: "bg-orange-400" },
+  { label: "E: Conclusions", score: 2, max: 3, color: "bg-emerald-500" },
+  { label: "F: Structure", score: 1, max: 2, color: "bg-amber-400" },
+  { label: "G: Presentation", score: 2, max: 2, color: "bg-emerald-500" },
 ];
 
 export default function LandingPage() {
-  const { days, examYear } = useExamCountdown();
   return (
     <>
       <SEOHead
-        title="Free IB Essay Grader: Grade My IB Essay in About 90 Seconds | IBLens"
-        description="Paste your IB essay and get a predicted grade in about 90 seconds. AI feedback on every criterion, Extended Essay, IA, or TOK. No account, no credit card required."
+        title="Free IB Essay Grader: Mark My IB Essay in About a Minute | IBLens"
+        description="Paste your IB essay and get a free preview in about a minute: your band range, weakest criterion and top risks. The full report marks every criterion. Extended Essay, IA or TOK, no account needed."
         canonical="/grade"
       />
 
@@ -87,13 +72,13 @@ export default function LandingPage() {
         <section className="bg-gradient-to-b from-primary/5 to-background py-16 md:py-24">
           <div className="container max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold mb-6 uppercase tracking-wide">
-              ✓ First analysis free, no account, no credit card
+              First preview free · No account · No card
             </div>
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-5 leading-tight">
-              Grade Your IB Essay<br />in About 90 Seconds
+              Grade Your IB Essay<br />in About a Minute
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">
-              Paste your IA, Extended Essay, or TOK. Get a criterion-by-criterion score, the exact marks you're losing, and how to fix them, free, in about 90 seconds.
+              Paste your IA, Extended Essay or TOK work. The free preview comes back in about a minute with your band range, weakest criterion and top risks; the full report marks every criterion and ranks the fixes.
             </p>
             <Button size="lg" className="text-base px-10 h-14 shadow-lg shadow-primary/25 mb-4" asChild>
               <Link href="/essay">
@@ -101,7 +86,7 @@ export default function LandingPage() {
                 Grade My Essay Free
               </Link>
             </Button>
-            <p className="text-xs text-muted-foreground">No account needed · Results in about 90 seconds · 14 IB subjects · 7-day money-back guarantee</p>
+            <p className="text-xs text-muted-foreground">No account needed · Results in about a minute · 14 IB subjects · 7-day money-back guarantee</p>
           </div>
         </section>
 
@@ -111,12 +96,12 @@ export default function LandingPage() {
             <h2 className="text-xl font-bold text-center mb-8 text-muted-foreground uppercase tracking-wider text-sm">How it works</h2>
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { step: "1", icon: "📋", title: "Paste your essay", desc: "Copy-paste your IA, EE, or TOK text and select your subject. Ready in seconds." },
-                { step: "2", icon: "⚡", title: "AI grades it in about 90 seconds", desc: "Scored against the official IB rubric for your subject and type." },
-                { step: "3", icon: "🎯", title: "See exactly what to fix", desc: "Criterion scores, marks you're losing, and a specific action plan." },
-              ].map(({ step, icon, title, desc }) => (
+                { step: "1", Icon: FileText, title: "Paste your essay", desc: "Copy and paste your IA, EE or TOK text and choose the task and subject." },
+                { step: "2", Icon: Clock, title: "AI marks it in about a minute", desc: "Marked against the published criteria for your subject, task and exam session." },
+                { step: "3", Icon: ListOrdered, title: "See what to fix", desc: "The marks you are losing, criterion by criterion, and the fixes ranked by what they recover." },
+              ].map(({ step, Icon, title, desc }) => (
                 <div key={step} className="flex flex-col items-center text-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-2xl">{icon}</div>
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center"><Icon className="w-5 h-5 text-primary" aria-hidden="true" /></div>
                   <div>
                     <p className="font-semibold mb-1">{title}</p>
                     <p className="text-sm text-muted-foreground">{desc}</p>
@@ -144,9 +129,9 @@ export default function LandingPage() {
                     <p className="font-semibold text-sm">The Impact of Remote Work on Employee Productivity</p>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-extrabold text-primary">14</div>
-                    <div className="text-xs text-muted-foreground">/ 22 pts</div>
-                    <div className="text-xs font-semibold text-amber-600 bg-amber-50 px-2 py-0.5 rounded mt-1">Band 4</div>
+                    <div className="text-3xl font-extrabold text-primary">15</div>
+                    <div className="text-xs text-muted-foreground">/ 25 marks</div>
+                    <div className="text-xs font-semibold text-amber-600 bg-amber-50 px-2 py-0.5 rounded mt-1">Sample</div>
                   </div>
                 </div>
 
@@ -180,14 +165,14 @@ export default function LandingPage() {
                         <div className="h-full rounded-full bg-rose-400" style={{ width: "40%" }} />
                       </div>
                     </div>
-                    <div className="text-xs text-muted-foreground">⚠ Criterion C: argument lacks primary source...</div>
-                    <div className="text-xs text-muted-foreground">✦ Quick win: restructure conclusion to re-state RQ...</div>
+                    <div className="text-xs text-muted-foreground">Criterion D: analysis summarises the documents instead of weighing them...</div>
+                    <div className="text-xs text-muted-foreground">Quick win: answer the research question directly in the conclusion...</div>
                   </div>
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Button size="sm" asChild>
                       <Link href="/essay">
                         <Lock className="w-3.5 h-3.5 mr-1.5" />
-                        See Full Feedback, Free
+                        Get a free preview
                       </Link>
                     </Button>
                   </div>
@@ -201,8 +186,8 @@ export default function LandingPage() {
         <section className="py-8 bg-muted/30 border-y">
           <div className="container">
             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-emerald-500" /><span>Scored against official IB rubric</span></div>
-              <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-amber-500" /><span>Results in about 90 seconds</span></div>
+              <div className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-emerald-500" /><span>Published IB criteria</span></div>
+              <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-amber-500" /><span>Results in about a minute</span></div>
               <div className="flex items-center gap-2"><Shield className="w-4 h-4 text-blue-500" /><span>Essays never stored</span></div>
               <div className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /><span>14 IB subjects supported</span></div>
             </div>
@@ -215,8 +200,8 @@ export default function LandingPage() {
             <h2 className="text-2xl font-bold text-center mb-8">Questions</h2>
             <div className="bg-background rounded-xl border p-5">
               <FAQItem
-                question="Is the first essay grade really free?"
-                answer="Yes, your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report, exact score, the full report with comments, and a ranked fix list, unlocks for $9.99."
+                question="Is the first preview really free?"
+                answer="Yes. The first preview is free: your band range, your weakest criterion with its full feedback, and the top risks in your draft. The complete report, with the exact mark, comments on every criterion and a ranked list of fixes, unlocks for $9.99."
               />
               <FAQItem
                 question="Which essay types and subjects does IBLens support?"
@@ -224,11 +209,11 @@ export default function LandingPage() {
               />
               <FAQItem
                 question="How accurate is the AI grade?"
-                answer="IBLens evaluates your essay against official IB marking criteria for your subject. The predicted band is an estimate of where the draft sits against the published criteria and exactly which criteria to improve, using the same criteria an examiner applies."
+                answer="It is an estimate, not a mark. IBLens reads your essay against the published criteria for your subject and session, and the value of the report is in which criterion it flags and why, more than in the exact number."
               />
               <FAQItem
                 question="What payment methods do you accept?"
-                answer="We accept card payments, Visa, Mastercard, and Amex. Credits activate automatically after payment. You don't need an account to pay."
+                answer="Payments are handled by LemonSqueezy, which accepts major cards and the other methods shown at checkout. Credits are added automatically once the payment is confirmed, and you don't need an account to pay."
               />
               <FAQItem
                 question="Is my essay private?"
@@ -241,20 +226,14 @@ export default function LandingPage() {
         {/* Urgency + Final CTA */}
         <section className="py-20 bg-gradient-to-b from-primary/5 to-background text-center">
           <div className="container max-w-xl mx-auto">
-            {days > 0 && days < 180 && (
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 text-amber-800 text-sm font-semibold mb-6">
-                <Clock className="w-4 h-4" />
-                {days} days until IB {examYear} exams, don't submit ungraded
-              </div>
-            )}
-            <h2 className="text-3xl font-bold tracking-tight mb-4">Ready to see your IB grade?</h2>
-            <p className="text-muted-foreground mb-8">Paste your essay now, free, about 90 seconds, no account needed.</p>
+            <h2 className="text-3xl font-bold tracking-tight mb-4">Ready to see where your essay stands?</h2>
+            <p className="text-muted-foreground mb-8">Paste your essay now: a free preview in about a minute, with no account needed.</p>
             <Button size="lg" className="text-base px-10 shadow-lg shadow-primary/25" asChild>
               <Link href="/essay">
                 Grade My Essay Free <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
-            <p className="text-xs text-muted-foreground mt-4">No account needed · 7-day money-back guarantee on paid plans</p>
+            <p className="text-xs text-muted-foreground mt-4">No account needed · 7-day money-back guarantee on paid reports</p>
           </div>
         </section>
       </main>

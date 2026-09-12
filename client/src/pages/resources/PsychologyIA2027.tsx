@@ -10,10 +10,10 @@ export default function PsychologyIA2027() {
       datePublished="2026-08-11"
       dateModified="2026-08-11"
     >
-      <h1>IB Psychology IA Changes 2027, The Research Proposal, Explained</h1>
+      <h1>IB Psychology IA Changes 2027: The Research Proposal, Explained</h1>
 
       <p>
-        From the May 2027 session, the IB Psychology Internal Assessment changes format completely: instead of conducting an experiment and writing it up, you write a <strong>research proposal</strong> for a study, and no experiment is carried out at all. The proposal is marked out of 24, up from 22 for the old experimental report, and the criteria are new. If you started the Diploma Programme in 2025, this is the format you are assessed on.
+        From the May 2027 session, the IB Psychology Internal Assessment changes format completely: instead of conducting an experiment and writing it up, you write a <strong>research proposal</strong> for a study, and no experiment is carried out at all. The proposal is marked out of 24, up from 22 for the old experimental report, and the criteria are new. If you sit your exams in May 2027 or later, this is the format you are assessed on.
       </p>
 
       <h2>Who is affected</h2>
@@ -38,22 +38,22 @@ export default function PsychologyIA2027() {
       </table>
 
       <p>
-        The word limit is 2,200, examiners stop reading beyond it. SL and HL students write the same proposal against the same criteria.
+        The word limit is 2,200, and examiners are instructed to stop reading when it is reached. References and appendices are not counted. SL and HL students write the same proposal against the same criteria.
       </p>
 
       <h2>What changed from the experimental report</h2>
 
       <ul>
-        <li><strong>No experiment.</strong> The old IA required you to replicate a study, collect data and analyse it statistically. The new IA is a proposal: you design a study you do not run.</li>
+        <li><strong>No experiment.</strong> The old IA required you to run an experiment based on a published study, collect data and analyse it statistically. The new IA is a proposal: you design a study you do not run.</li>
         <li><strong>Marks: 22 → 24</strong>, and four evenly weighted criteria of 6 replace the old 6/4/6/6 split.</li>
         <li><strong>Analysis of collected data disappears</strong> as a criterion, replaced by planned data collection (Criterion C) and anticipated outcomes (Criterion D).</li>
-        <li><strong>Discussion is forward-looking:</strong> instead of evaluating what happened, you evaluate what your design could and could not show, limitations and implications before the fact.</li>
+        <li><strong>Discussion is forward-looking:</strong> instead of evaluating what happened, you evaluate what your design could and could not show, with its limitations and implications, before any data exists.</li>
       </ul>
 
       <h2>How to check your proposal draft</h2>
 
       <ul>
-        <li><strong>Introduction:</strong> Is the research question precise, and does the background research genuinely lead to your rationale, or is it a summary bolted on?</li>
+        <li><strong>Introduction:</strong> is the research question precise, and does the background research genuinely lead to your rationale rather than sitting beside it as a summary?</li>
         <li><strong>Research methodology:</strong> Are method, design and participant choices each justified for <em>this</em> question, not just named?</li>
         <li><strong>Data collection:</strong> Could another student run your study from the materials and procedure as written? Are ethical considerations specific to your design?</li>
         <li><strong>Discussion:</strong> Do you anticipate concrete outcomes and honestly assess what the design cannot establish?</li>
@@ -62,7 +62,7 @@ export default function PsychologyIA2027() {
       <h2>Check your draft with IBLens</h2>
 
       <p>
-        IBLens is session-aware for Psychology: choose <em>Internal Assessment → Psychology</em> in the analyzer and set "Exam session" to <em>May 2027, new syllabus</em>. Your proposal is graded out of 24 against the four criteria above, criterion by criterion, with a free preview before any payment. Leave the session on May/Nov 2026 for the classic experimental report out of 22.
+        IBLens is session-aware for Psychology: choose <em>Internal Assessment → Psychology</em> in the analyzer and keep "Exam session" on <em>May 2027, new syllabus</em>, the default. Your proposal is graded out of 24 against the four criteria above, criterion by criterion, with a free preview before any payment. Switch the session to <em>May / Nov 2026, current syllabus</em> for the experimental report out of 22.
       </p>
 
       <p>
@@ -73,17 +73,17 @@ export default function PsychologyIA2027() {
 
       <h3>Do I still run an experiment for the Psychology IA?</h3>
       <p>
-        Not from the May 2027 session onward. The new Internal Assessment is a research proposal, you design a study, justify its methodology and data collection plan, and discuss anticipated outcomes, but no experiment is conducted.
+        Not from the May 2027 session onward. The new Internal Assessment is a research proposal: you design a study, justify its methodology and data collection plan, and discuss anticipated outcomes, but no experiment is conducted.
       </p>
 
       <h3>Is the new Psychology IA different for SL and HL?</h3>
       <p>
-        No, SL and HL students write the same research proposal and are assessed against the same four criteria out of 24.
+        No. SL and HL students write the same research proposal and are assessed against the same four criteria out of 24.
       </p>
 
       <h3>What is the word limit?</h3>
       <p>
-        2,200 words. Material beyond the limit is not read or credited, so a proposal that runs long effectively loses whatever sits past the cut-off.
+        2,200 words. Examiners stop reading at the limit, so a proposal that runs long loses whatever sits past it. IBLens counts the words of what you paste against the limit.
       </p>
 
       <h2>Related resources</h2>

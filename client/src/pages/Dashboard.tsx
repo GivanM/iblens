@@ -40,10 +40,7 @@ export default function Dashboard() {
         origin: { y: 0.6 },
       });
 
-      const sku = params.get("sku");
-      const message = sku === "university_single" || sku === "university_strategy"
-        ? "Payment confirmed! You can now build your University Strategy."
-        : "Payment confirmed! Your credits are ready to use.";
+      const message = "Payment confirmed. Your credits are ready to use.";
 
       toast.success(message, { duration: 6000 });
 
@@ -176,14 +173,6 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        {(credits?.universityCredits ?? 0) > 0 && (
-          <Card>
-            <CardContent className="p-5">
-              <p className="text-xs text-muted-foreground font-medium mb-1">University Credits</p>
-              <div style={SERIF} className="text-2xl font-bold">{credits?.universityCredits}</div>
-            </CardContent>
-          </Card>
-        )}
       </div>
 
       {/* Buy Credits */}
@@ -198,7 +187,7 @@ export default function Dashboard() {
         <CardContent>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="border border-border rounded-lg p-4 text-center">
-              <h4 className="font-semibold text-sm mb-1">1 Essay Analysis</h4>
+              <h4 className="font-semibold text-sm mb-1">1 Full Report</h4>
               <div style={SERIF} className="text-xl font-bold my-2">{PRICE_LABELS.ESSAY_SINGLE}</div>
               <Button
                 size="sm"
@@ -212,7 +201,7 @@ export default function Dashboard() {
             </div>
 
             <div className="border border-border rounded-lg p-4 text-center">
-              <h4 className="font-semibold text-sm mb-1">5 Essay Analyses</h4>
+              <h4 className="font-semibold text-sm mb-1">5 Full Reports</h4>
               <div style={SERIF} className="text-xl font-bold my-1">{PRICE_LABELS.ESSAY_PACK_5}</div>
               <p className="text-xs text-muted-foreground mb-2">$5.00 each</p>
               <Button
@@ -230,7 +219,7 @@ export default function Dashboard() {
               <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-primary text-primary-foreground text-[10px] font-semibold rounded-full">
                 Best Value
               </div>
-              <h4 className="font-semibold text-sm mb-1">10 Essay Analyses</h4>
+              <h4 className="font-semibold text-sm mb-1">10 Full Reports</h4>
               <div style={SERIF} className="text-xl font-bold my-1">{PRICE_LABELS.ESSAY_PACK_10}</div>
               <p className="text-xs text-muted-foreground mb-2">$4.50 each</p>
               <Button
@@ -257,7 +246,7 @@ export default function Dashboard() {
                 <p className="text-xs text-muted-foreground mt-0.5">
                   {credits?.canAnalyzeEssay
                     ? credits?.freeEssayAvailable
-                      ? "Your free analysis is waiting!"
+                      ? "Your free preview is waiting."
                       : `${credits.essayCredits} credits available`
                     : "Purchase credits to analyze"}
                 </p>
@@ -282,7 +271,7 @@ export default function Dashboard() {
               <Loader2 className="w-6 h-6 animate-spin text-muted-foreground" />
             </div>
           ) : history.length === 0 ? (
-            <p className="text-muted-foreground text-sm text-center py-6">No analyses yet. Start with your free essay analysis!</p>
+            <p className="text-muted-foreground text-sm text-center py-6">No reports yet. Start with a free preview.</p>
           ) : (
             <div className="space-y-2">
               {history.map((item) => (

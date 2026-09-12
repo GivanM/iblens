@@ -10,10 +10,10 @@ export default function ComputerScienceIA2027() {
       datePublished="2026-08-11"
       dateModified="2026-08-11"
     >
-      <h1>IB Computer Science IA Changes 2027, What Changed and How to Check Your Project</h1>
+      <h1>IB Computer Science IA Changes 2027: What Changed and How to Check Your Project</h1>
 
       <p>
-        From the May 2027 session, the IB Computer Science Internal Assessment is assessed as a <strong>computational solution marked out of 30</strong>, down from 34, with a new criterion structure and lighter documentation requirements. If you started the Diploma Programme in 2025, your IA is marked with the criteria below, not the ones in most older guides.
+        From the May 2027 session, the IB Computer Science Internal Assessment is assessed as a <strong>computational solution marked out of 30</strong>, down from 34, with a new criterion structure and lighter documentation requirements. If you sit your exams in May 2027 or later, your IA is marked with the criteria below, not the ones in most older guides.
       </p>
 
       <h2>Who is affected</h2>
@@ -39,14 +39,14 @@ export default function ComputerScienceIA2027() {
       </table>
 
       <p>
-        Documentation is capped at 2,000 words (excluding code and diagrams), accompanied by a 5-minute video. The former client requirement is removed, you no longer need to recruit a client and evidence consultation with them.
+        Documentation is capped at 2,000 words (excluding code excerpts, comments and diagrams), accompanied by a video of up to 5 minutes. There is no client requirement: you no longer need to recruit a client and evidence your consultation with them.
       </p>
 
       <h2>What changed from the 34-mark rubric</h2>
 
       <ul>
         <li><strong>Total marks: 34 → 30.</strong></li>
-        <li><strong>Development stays the giant:</strong> 12 marks, now 40% of the total (up from 35%). Demonstrating appropriate techniques, and acknowledging sources, decides more of your grade than ever.</li>
+        <li><strong>Development is still the largest criterion:</strong> 12 marks, now 40% of the total (up from 35%). Demonstrating appropriate techniques, and acknowledging sources, decides more of the mark than before.</li>
         <li><strong>A new first criterion, Problem specification (4),</strong> makes the problem statement and success criteria a marked component in their own right.</li>
         <li><strong>Functionality and extensibility of product (4)</strong> no longer exists as a separate criterion.</li>
         <li><strong>Planning drops from 6 to 4 marks, Evaluation from 6 to 4</strong>, and Evaluation is now explicitly against the success criteria you set in Criterion A.</li>
@@ -56,7 +56,7 @@ export default function ComputerScienceIA2027() {
       <h2>How to check your project documentation</h2>
 
       <ul>
-        <li><strong>Problem specification:</strong> Are your success criteria specific and measurable? Criterion E will evaluate against exactly these, vague criteria here cost marks twice.</li>
+        <li><strong>Problem specification:</strong> are your success criteria specific and measurable? Criterion E evaluates against exactly these, so vague criteria here cost marks twice.</li>
         <li><strong>Planning:</strong> Does the plan show real decisions (data structures, architecture, milestones), not a generic timeline?</li>
         <li><strong>System overview:</strong> Could a competent programmer understand your design from the overview alone?</li>
         <li><strong>Development:</strong> Are the techniques you used demonstrated and explained, and is every borrowed idea or snippet acknowledged?</li>
@@ -66,7 +66,7 @@ export default function ComputerScienceIA2027() {
       <h2>Check your draft with IBLens</h2>
 
       <p>
-        IBLens supports both Computer Science rubrics: choose <em>Internal Assessment → Computer Science</em> in the analyzer and set "Exam session" to <em>May 2027, new syllabus</em> for the 30-mark criteria above, or leave it on May/Nov 2026 for the current 34-mark rubric. Free preview on your first submission from a device; a full report is $9.99 with no subscription and includes two free re-checks of the same draft within 14 days, so you can revise and check whether the fix landed.
+        IBLens supports both Computer Science rubrics: choose <em>Internal Assessment → Computer Science</em> in the analyzer and keep "Exam session" on <em>May 2027, new syllabus</em>, the default, for the 30-mark criteria above, or switch it to <em>May / Nov 2026, current syllabus</em> for the 34-mark rubric. Free preview on your first submission from a device; a full report is $9.99 with no subscription and includes two free re-checks of the same draft within 14 days, so you can revise and check whether the fix landed.
       </p>
 
       <p>
@@ -82,12 +82,12 @@ export default function ComputerScienceIA2027() {
 
       <h3>Do I still need a client for my CS IA?</h3>
       <p>
-        Not under the May 2027 syllabus, the client requirement is removed. Sessions through November 2026 still follow the current guide.
+        Not under the May 2027 syllabus: the guide has no client requirement. Sessions through November 2026 still follow the current guide.
       </p>
 
       <h3>Which criterion is worth the most?</h3>
       <p>
-        Development, at 12 of 30 marks, 40% of the total. It rewards demonstrating appropriate techniques in your solution, with sources acknowledged.
+        Development: 12 of 30 marks, or 40% of the total. It rewards demonstrating appropriate techniques in your solution, with sources acknowledged.
       </p>
 
       <h2>Related resources</h2>

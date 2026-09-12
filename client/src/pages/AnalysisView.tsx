@@ -63,7 +63,7 @@ export default function AnalysisView() {
     return (
       <div className="container max-w-3xl mx-auto py-20 text-center space-y-4">
         <h1 style={SERIF} className="text-2xl font-bold">This report is still locked</h1>
-        <p className="text-muted-foreground">You saw the free preview for this draft. The full report unlocks the exact score, the full report with comments, and your ranked fix list.</p>
+        <p className="text-muted-foreground">You saw the free preview for this draft. The full report unlocks the exact mark, comments on every criterion, and your ranked fix list.</p>
         <div className="flex flex-col sm:flex-row gap-2 justify-center">
           <Button disabled={unlockHere.isPending} onClick={() => unlockHere.mutate({ analysisId: id })}>
             {unlockHere.isPending ? "Unlocking…" : "Unlock this report (1 credit)"}

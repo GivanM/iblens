@@ -5,10 +5,12 @@ import { CONSENT_STORAGE_KEY } from "@/lib/analytics/config";
 /**
  * Cookie consent banner implementing Google Consent Mode v2.
  * 
- * Geo-targeted behavior:
- * - EU/EEA/UK/CH visitors: Shows Accept/Reject banner (GDPR compliance)
- * - Non-EU visitors: Banner is NEVER shown; consent is granted by default
- *   via the inline script in index.html (geo detection via /cdn-cgi/trace)
+ * Region handling:
+ * - The inline script in index.html used to detect the country through Cloudflare's
+ *   /cdn-cgi/trace. The site is no longer behind Cloudflare, so the region is unknown
+ *   and the banner is shown to every visitor, with consent denied until they choose.
+ * - Visitors whose country was cached while detection still worked keep that result:
+ *   no banner outside the EU/EEA/UK/CH, the Accept/Reject banner inside it.
  * 
  * The inline script in index.html sets:
  *   window.__iblens_show_banner = true  (EU)

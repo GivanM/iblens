@@ -22,7 +22,7 @@ const SUBJECT_LINKS = [
   { href: "/essay/psychology-ia", label: "Psychology IA" },
   { href: "/essay/business-management-ia", label: "Business Management IA" },
   { href: "/essay/computer-science-ia", label: "Computer Science IA" },
-  { href: "/essay/english-essay", label: "English essay" },
+  { href: "/essay/english-essay", label: "English Individual Oral" },
 ];
 
 const READING_LINKS = [

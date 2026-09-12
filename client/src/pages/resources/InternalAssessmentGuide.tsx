@@ -76,7 +76,7 @@ export default function InternalAssessmentGuide() {
       <h2>Assessment Criteria Explained</h2>
 
       <p>
-        While specific criteria vary by subject, most IAs are assessed against 4–5 criteria that evaluate similar competencies:
+        While specific criteria vary by subject, most IAs are assessed against 4-5 criteria that evaluate similar competencies:
       </p>
 
       <table>
@@ -178,11 +178,11 @@ export default function InternalAssessmentGuide() {
       </p>
 
       <ul>
-        <li><strong>Weeks 1–2:</strong> Topic exploration, background research, research question formulation</li>
-        <li><strong>Weeks 3–4:</strong> Methodology design, preliminary trials, variable identification</li>
-        <li><strong>Weeks 5–7:</strong> Data collection (with sufficient repetitions and controlled conditions)</li>
-        <li><strong>Weeks 8–9:</strong> Data processing, graph creation, statistical analysis</li>
-        <li><strong>Weeks 10–11:</strong> Writing the report (introduction, methodology, results, analysis, evaluation, conclusion)</li>
+        <li><strong>Weeks 1-2:</strong> Topic exploration, background research, research question formulation</li>
+        <li><strong>Weeks 3-4:</strong> Methodology design, preliminary trials, variable identification</li>
+        <li><strong>Weeks 5-7:</strong> Data collection (with sufficient repetitions and controlled conditions)</li>
+        <li><strong>Weeks 8-9:</strong> Data processing, graph creation, statistical analysis</li>
+        <li><strong>Weeks 10-11:</strong> Writing the report (introduction, methodology, results, analysis, evaluation, conclusion)</li>
         <li><strong>Week 12:</strong> Revision, proofreading, formatting, teacher review</li>
       </ul>
 

@@ -15,9 +15,9 @@
     <meta name="application-name" content="IBLens" />
 
     <!-- JSON-LD is injected per-route by React Helmet (SEOHead component) -->
-    <!-- Do NOT add static JSON-LD here — it causes duplicate schema issues in GSC -->
+    <!-- Do NOT add static JSON-LD here: it causes duplicate schema issues in GSC -->
 
-    <!-- Google Consent Mode v2 — geo-targeted defaults BEFORE GTM loads -->
+    <!-- Google Consent Mode v2: defaults set BEFORE GTM loads -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -42,28 +42,11 @@
           applyGeoConsent(cached);
           return;
         }
-        // Fetch country from Cloudflare /cdn-cgi/trace (works on CF-proxied domains)
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/cdn-cgi/trace', true);
-        xhr.timeout = 700;
-        xhr.onload = function(){
-          var m = xhr.responseText.match(/loc=([A-Z]{2})/);
-          if (m) {
-            try { localStorage.setItem('iblens_geo_country', m[1]); } catch(e){}
-            applyGeoConsent(m[1]);
-            return;
-          }
-          // The domain is no longer behind Cloudflare, so this endpoint answers
-          // with the app's own HTML and no country. Treat that as unknown rather
-          // than as success, or the banner never resolves and consent stays
-          // denied for everyone, silently.
-          window.__iblens_show_banner = true;
-        };
-        xhr.onerror = xhr.ontimeout = function(){
-          // Fallback: region unknown — keep consent DENIED and show the banner (safe default)
-          window.__iblens_show_banner = true;
-        };
-        xhr.send();
+        // The country used to come from Cloudflare's /cdn-cgi/trace. The domain is no
+        // longer behind Cloudflare, so that request only ever returned a 404 on every
+        // page view. With no way to know the region, consent stays DENIED and the
+        // banner is shown to everyone.
+        window.__iblens_show_banner = true;
       })();
       function applyGeoConsent(country) {
         window.__iblens_geo_country = country;
@@ -83,7 +66,7 @@
       }
     </script>
 
-    <!-- Google Ads Conversion Tracking (AW-18130476377) — after consent defaults -->
+    <!-- Google Ads Conversion Tracking (AW-18130476377), after consent defaults -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18130476377"></script>
     <script>
       gtag('js', new Date());

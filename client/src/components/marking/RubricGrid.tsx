@@ -111,7 +111,7 @@ export function RubricGrid() {
         <span>
           <b>○</b> criterion where marks are most recoverable
         </span>
-        <span>Psychology, Computer Science, Design Technology and Visual Arts also move to new guides for May 2027</span>
+        <span>Psychology, Computer Science and Visual Arts also change for May 2027</span>
       </p>
       {rubric.notes ? <p className="ms-grid-foot">{rubric.notes}</p> : null}
     </Sheet>

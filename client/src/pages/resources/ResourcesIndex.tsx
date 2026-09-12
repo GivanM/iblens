@@ -14,7 +14,7 @@ const resources = [
   {
     slug: "/resources/ib-extended-essay-new-criteria-2027",
     title: "EE New Criteria 2027 (Marked /30)",
-    description: "The May 2027 Extended Essay rubric explained: Framework, Knowledge, Analysis, Discussion and evaluation, Reflection, what changed from /34 and how to check your draft.",
+    description: "The May 2027 Extended Essay rubric explained: Framework, Knowledge and understanding, Analysis, Discussion and evaluation, Reflection, what changed from the 34-mark rubric, and how to check your draft.",
     icon: FileText,
     readTime: "7 min read",
   },
@@ -28,7 +28,7 @@ const resources = [
   {
     slug: "/resources/ib-rpf-extended-essay-2027",
     title: "EE RPF 2027: Reflective Statement",
-    description: "The 500-word reflective statement that replaces the RPPF from May 2027, how Criterion E marks it and how to write one with real decisions, not a timeline.",
+    description: "The reflective statement of up to 500 words that replaces the RPPF from May 2027: how Criterion E marks it, and how to write one with real decisions rather than a timeline.",
     icon: FileText,
     readTime: "5 min read",
   },
@@ -49,7 +49,7 @@ const resources = [
   {
     slug: "/resources/ib-extended-essay-feedback",
     title: "How to Get EE Feedback",
-    description: "Every legitimate feedback channel for your Extended Essay, supervisor rules, self-checks, peers and AI, with the honest limits of each.",
+    description: "Every legitimate feedback channel for your Extended Essay (your supervisor, self-checks, peers and AI) with the honest limits of each.",
     icon: FileText,
     readTime: "7 min read",
   },
@@ -70,182 +70,182 @@ const resources = [
   {
     slug: "/resources/ib-ia-feedback",
     title: "IB IA Feedback Guide",
-    description: "Check your IA against the official criteria without a tutor: marks by subject, the heaviest criteria, and a self-check sequence that works anywhere.",
+    description: "Check your IA against the criteria without a tutor: what each subject is marked out of, where the heaviest criteria sit, and a self-check sequence for any subject.",
     icon: GraduationCap,
     readTime: "7 min read",
   },
   {
     slug: "/resources/ib-extended-essay-guide",
     title: "IB Extended Essay Guide",
-    description: "Structure, criteria A–E, research question tips, common mistakes, and strategies for scoring an A on your 4,000-word EE.",
+    description: "Structure, the criteria for both rubrics, research question tips, the word count rules, common mistakes, and what an A-grade essay does.",
     icon: FileText,
     readTime: "12 min read",
   },
   {
     slug: "/resources/ib-ia-grader",
     title: "IB IA Grader",
-    description: "Free AI-powered IB IA grader. Grade your Internal Assessment against official rubrics for Biology, Chemistry, Physics, Maths, History, Economics, Psychology, CS, and more.",
+    description: "How the IBLens IA grader works: the criteria it marks against in 14 subjects, what the report contains, and what it cannot do.",
     icon: BarChart3,
     readTime: "8 min read",
   },
   {
     slug: "/resources/ib-internal-assessment-guide",
     title: "IB Internal Assessment Guide",
-    description: "How IAs differ by subject, assessment criteria explained, examiner marking process, time management, and strategies for top marks.",
+    description: "How IAs differ by subject, how they are marked and moderated, where the weight sits in each subject, time management, and revision strategy.",
     icon: BookOpen,
     readTime: "11 min read",
   },
   {
     slug: "/resources/tok-essay-guide",
     title: "TOK Essay Guide",
-    description: "Prescribed titles, knowledge claims and counter-claims, areas of knowledge, assessment criteria, and common errors to avoid.",
+    description: "Prescribed titles, claims and counter-claims, the five areas of knowledge, the holistic assessment instrument, and common errors to avoid.",
     icon: Lightbulb,
     readTime: "10 min read",
   },
   {
     slug: "/resources/ib-grade-boundaries",
     title: "IB Grade Boundaries Explained",
-    description: "How the 7-point scale works, how subject scores combine, bonus points from EE/TOK, and what different total scores mean for university admissions.",
+    description: "How the 7-point scale works, how subject grades and EE and TOK bonus points make up the Diploma score, the failing conditions, and why boundaries move.",
     icon: BarChart3,
     readTime: "10 min read",
   },
   {
     slug: "/resources/ib-essay-criteria-explained",
     title: "IB Essay Criteria Explained",
-    description: "How criterion-based marking works, what distinguishes band 5 from band 7, how examiners apply criteria, and how to self-assess your work.",
+    description: "How criterion-based marking works, how examiners apply best fit, what separates good work from excellent, and how to self-assess.",
     icon: GraduationCap,
     readTime: "11 min read",
   },
   {
     slug: "/resources/how-iblens-works",
     title: "How IBLens Works",
-    description: "How AI-powered essay feedback maps to IB rubrics, what the output looks like, limitations, privacy, and comparison to tutors and peer review.",
+    description: "How the grader applies the criteria, what the report looks like, what it cannot do, how your essay is handled, and how it compares to tutors and teachers.",
     icon: Cpu,
     readTime: "10 min read",
   },
   {
     slug: "/resources/ib-extended-essay-examples",
     title: "IB Extended Essay Examples",
-    description: "High-scoring EE samples across subjects with examiner commentary. See what a grade-A Extended Essay looks like and how to structure your own.",
+    description: "Why full marked Extended Essays are hard to find, example research questions by subject, and what top-band essays do on each criterion.",
     icon: FileText,
     readTime: "13 min read",
   },
   {
     slug: "/resources/ib-ee-examples-by-subject",
     title: "IB EE Examples by Subject",
-    description: "Real Extended Essay examples organised by subject: Biology, Chemistry, History, Economics, English, Psychology and more, with score breakdowns.",
+    description: "Research question examples in Economics, History, Biology, English, Mathematics, Psychology and Physics, with what separates a top-band essay in each.",
     icon: FileText,
     readTime: "12 min read",
   },
   {
     slug: "/resources/tok-essay-format",
     title: "IB TOK Essay Format",
-    description: "Official TOK essay formatting rules: 1,600-word limit, title page requirements, structure, citation format, what counts toward the word count, and what examiners expect.",
+    description: "The TOK essay rules and conventions: the 1,600-word limit and what counts, the prescribed title, anonymity, structure and citations.",
     icon: FileText,
     readTime: "10 min read",
   },
   {
     slug: "/resources/ib-biology-extended-essay",
     title: "IB Biology Extended Essay",
-    description: "Full guide to the Biology EE: choosing a research question, EE vs IA differences, criteria A-E breakdown, structure, high-scoring topics, and RPPF guidance.",
+    description: "The Biology EE: choosing a research question, how the EE differs from the IA, the criteria, structure, workable topics and the reflection.",
     icon: BookOpen,
     readTime: "13 min read",
   },
   {
     slug: "/resources/ib-chemistry-extended-essay",
     title: "IB Chemistry Extended Essay",
-    description: "Complete Chemistry EE guide: research question examples, criteria A-E, structure, high-scoring topics (kinetics, electrochemistry, colorimetry, thermochemistry), and common pitfalls.",
+    description: "The Chemistry EE: research question examples, the criteria, structure, workable topics such as kinetics, electrochemistry and colorimetry, and common pitfalls.",
     icon: BookOpen,
     readTime: "12 min read",
   },
   {
     slug: "/resources/ib-extended-essay-help",
     title: "IB Extended Essay Help",
-    description: "Step-by-step guidance from choosing a topic to writing the reflection. Common pitfalls, supervisor advice, and how to hit all five criteria.",
+    description: "Getting unstuck on the EE: narrowing the question, structuring the argument, what your supervisor can and cannot do, and why paying someone to write it fails.",
     icon: BookOpen,
     readTime: "14 min read",
   },
   {
     slug: "/resources/ib-extended-essay-word-count",
     title: "IB Extended Essay Word Count",
-    description: "Official word count rules, what counts and what doesn't, penalties for going over 4,000 words, and strategies for cutting or expanding your EE.",
+    description: "The official word count table: what counts toward 4,000 words and what does not, what happens if you go over, and how to cut.",
     icon: FileText,
     readTime: "8 min read",
   },
   {
     slug: "/resources/ib-math-ia-examples",
     title: "IB Math IA Examples",
-    description: "Top-scoring Math IA samples with examiner notes. Topic ideas for AA and AI, how to demonstrate personal engagement, and scoring rubric breakdown.",
+    description: "Math IA topic ideas for AA and AI, what each of the five criteria rewards, a workable structure, and the mistakes that cost marks.",
     icon: BarChart3,
     readTime: "12 min read",
   },
   {
     slug: "/resources/ib-biology-ia-examples",
     title: "IB Biology IA Examples",
-    description: "High-scoring Biology IA samples covering ecology, genetics, physiology and more. Lab report structure, data analysis tips, and common mistakes.",
+    description: "Biology IA investigation ideas, topics to handle carefully, how to write a real evaluation, and what top-band work does on each criterion.",
     icon: BookOpen,
     readTime: "12 min read",
   },
   {
     slug: "/resources/ib-chemistry-ia-examples",
     title: "IB Chemistry IA Examples",
-    description: "Real IB Chemistry IA samples with scores and feedback. Experiment ideas, safety notes, how to handle errors and uncertainties, and full rubric guide.",
+    description: "Chemistry IA investigation types that work, uncertainties and data processing, the evaluation, and where marks are most often lost.",
     icon: BookOpen,
     readTime: "12 min read",
   },
   {
     slug: "/resources/ib-physics-ia-examples",
     title: "IB Physics IA Examples",
-    description: "High-scoring Physics IA examples with commentary. Choosing a research question, error analysis, graphing data, and how examiners award personal engagement.",
+    description: "Physics IA investigation ideas, linearising data, uncertainty analysis, and how to write an evaluation that earns its marks.",
     icon: BarChart3,
     readTime: "12 min read",
   },
   {
     slug: "/resources/ib-economics-ia",
     title: "IB Economics IA Guide",
-    description: "How to write all three Economics IA commentaries: article selection, applying diagrams, evaluation strategies, and the most common reasons for lost marks.",
+    description: "How to write the three Economics IA commentaries: choosing articles, the rubric requirements, diagrams, evaluation, and the word limit.",
     icon: BarChart3,
     readTime: "13 min read",
   },
   {
     slug: "/resources/ib-psychology-ia",
     title: "IB Psychology IA Guide",
-    description: "Full guide to the Psychology IA experimental design: hypothesis, sampling, ethics, statistical tests, and how to write the four required sections.",
+    description: "The experimental IA through November 2026: choosing a study, group work, ethics, the inferential test, and what each criterion rewards.",
     icon: GraduationCap,
     readTime: "11 min read",
   },
   {
     slug: "/resources/ib-history-ia",
     title: "IB History IA Guide",
-    description: "How to write the Historical Investigation: choosing a question, source analysis with OPCVL, writing the investigation, and avoiding the most common errors.",
+    description: "The historical investigation: choosing a question, evaluating sources, writing the investigation and the reflection, and the suggested word allocation.",
     icon: BookOpen,
     readTime: "12 min read",
   },
   {
     slug: "/resources/ib-ia-score-predictor",
     title: "IB IA Score Predictor",
-    description: "Understand how IA scores feed into your final subject grade, what raw marks translate to, and how to estimate your predicted score before results day.",
+    description: "How IA marks are awarded and moderated, where marks are lost subject by subject, and how to estimate your mark before results day.",
     icon: BarChart3,
     readTime: "9 min read",
   },
   {
     slug: "/resources/ib-score-calculator",
     title: "IB Score Calculator",
-    description: "How to calculate your total IB Diploma score from individual subject grades plus EE/TOK bonus points. Includes grade boundary lookup and university threshold guide.",
+    description: "How to add up your IB Diploma score from subject grades and EE and TOK bonus points, the failing conditions, and what Oxford, Cambridge and ETH publish.",
     icon: BarChart3,
     readTime: "9 min read",
   },
   {
     slug: "/resources/ib-university-admissions-strategy",
     title: "IB University Admissions Strategy",
-    description: "Tactical guide to maximising your university offers as an IB student: subject selection, predicted grades, personal statements, and understanding conditional offers.",
+    description: "Planning IB university applications: a balanced list, HL subjects that fit your course, application deadlines and tests, and common mistakes.",
     icon: GraduationCap,
     readTime: "14 min read",
   },
   {
     slug: "/resources/ib-university-admissions",
     title: "IB to University Admissions",
-    description: "How UK, US, Canadian, European, and Asia-Pacific universities evaluate IB scores. Typical offers, credit policies, and strategic application decisions.",
+    description: "How UK, US and other university systems read the IB Diploma, and what to check on the course pages that matter to you.",
     icon: GraduationCap,
     readTime: "11 min read",
   },
@@ -255,8 +255,8 @@ export default function ResourcesIndex() {
   return (
     <>
       <SEOHead
-        title="IB Resources, Guides for Extended Essay, IA, TOK & University Admissions | IBLens"
-        description="Free in-depth guides for IB Diploma students: Extended Essay structure, Internal Assessment criteria, TOK essay writing, grade boundaries, and university admissions strategies."
+        title="Free IB Study Guides: Extended Essay, IA, TOK and University Applications | IBLens"
+        description="Free guides for IB Diploma students: writing the Extended Essay, Internal Assessment criteria by subject, TOK essay structure, how IB grades and bonus points work, and planning university applications."
         canonical="/resources"
         jsonLd={{
           "@context": "https://schema.org",
@@ -283,7 +283,7 @@ export default function ResourcesIndex() {
               IB Resources
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Free, in-depth guides written for IB Diploma students. Everything you need to understand assessment criteria, maximize your scores, and navigate university admissions.
+              Free, in-depth guides for IB Diploma students: how the assessment criteria work, where marks are lost, and how to plan university applications.
             </p>
           </div>
 
@@ -321,7 +321,7 @@ export default function ResourcesIndex() {
           {/* CTA */}
           <div className="mt-16 text-center">
             <p className="text-muted-foreground mb-4">
-              Want specific feedback on your essay? Upload it and get criterion-by-criterion analysis in about 90 seconds.
+              Want specific feedback on your essay? Paste it and get criterion-by-criterion feedback in about a minute.
             </p>
             <Link href="/essay" className="inline-flex items-center gap-2 text-primary font-medium hover:underline">
               Try IBLens Free →

@@ -48,21 +48,21 @@ export interface Rubric {
 }
 
 // ─── Business Management IA, "Business research project" (first assessment May 2024) ──
-// SL and HL identical. Max 1,800 words; 3–5 supporting documents (≤3 years old);
+// SL and HL identical. Max 1,800 words; 3-5 supporting documents (≤3 years old);
 // key concept must be one of: change, creativity, ethics, sustainability.
 const BM_IA: Rubric = {
   label: "Business Management IA (Business research project, 2024 syllabus)",
   totalMarks: 25,
   criteria: [
     { name: "Criterion A: Integration of a key concept", max: 5, descriptor: "How well one chosen key concept (change, creativity, ethics or sustainability) is integrated throughout the project and linked to the research question" },
-    { name: "Criterion B: Supporting documents", max: 4, descriptor: "Relevance, depth and breadth of the 3–5 supporting documents and how well they are used" },
+    { name: "Criterion B: Supporting documents", max: 4, descriptor: "Three to five relevant supporting documents that address the research question in sufficient depth; the top mark needs a range of ideas and views (documents all from one company do not give balance). One or two, or more than five, documents limit this criterion to 1 mark" },
     { name: "Criterion C: Selection and application of tools and theories", max: 4, descriptor: "Appropriate selection and accurate application of business management tools and theories to the research question" },
-    { name: "Criterion D: Analysis and evaluation", max: 5, descriptor: "Quality of analysis, synthesis of findings, and evaluation leading to substantiated judgments" },
-    { name: "Criterion E: Conclusions", max: 3, descriptor: "Consistency of conclusions with the evidence and the research question" },
+    { name: "Criterion D: Analysis and evaluation", max: 5, descriptor: "Selection and use of data from the supporting documents in the analysis and evaluation of the research question; the top mark needs sustained integration of ideas and consideration of the assumptions underpinning the arguments and their implications" },
+    { name: "Criterion E: Conclusions", max: 3, descriptor: "Conclusions consistent with the evidence presented that explicitly answer the research question" },
     { name: "Criterion F: Structure", max: 2, descriptor: "Logical structure of the project" },
-    { name: "Criterion G: Presentation", max: 2, descriptor: "Required presentation elements (title page, table of contents, references, appendices)" },
+    { name: "Criterion G: Presentation", max: 2, descriptor: "All required presentation elements: a title page, an accurate table of contents, appropriate headings and sub-headings, and numbered pages" },
   ],
-  notes: "Word limit 1,800 (moderators do not read beyond it). Requires 3–5 supporting documents no older than 3 years. The key concept must be one of: change, creativity, ethics, sustainability.",
+  notes: "Word limit 1,800 (moderators do not read beyond it). Requires 3-5 supporting documents no older than 3 years. The key concept must be one of: change, creativity, ethics, sustainability.",
   wordLimit: { max: 1800, excludes: "acknowledgments, the contents page, tables of statistical data, diagrams or figures, equations and calculations, the supporting documents, citations, references and the bibliography", stopsAt: true },
 };
 
@@ -77,7 +77,7 @@ const ECONOMICS_IA: Rubric = {
     { name: "Criterion B: Terminology", max: 2, descriptor: "Relevant economic terminology used appropriately throughout" },
     { name: "Criterion C: Application and analysis", max: 3, descriptor: "Relevant economic theory applied to the article with an effective economic analysis" },
     { name: "Criterion D: Key concept", max: 3, descriptor: "Identification and effective linkage of ONE key concept (e.g. scarcity, efficiency, intervention, equity) to the article" },
-    { name: "Criterion E: Evaluation", max: 3, descriptor: "Judgments supported by reasoned arguments considering short/long run, stakeholders, assumptions" },
+    { name: "Criterion E: Evaluation", max: 3, descriptor: "Judgments supported by effective and balanced reasoning (for example weighing short run against long run, different stakeholders, and the assumptions behind the prediction)" },
   ],
   notes: "Word limit 800 per commentary, moderators will not read beyond 800 words. The full portfolio is marked out of 45: three commentaries (14 each) + Criterion F: Rubric requirements (3): different units, different sources, articles no older than one year. Each commentary must use a different key concept.",
   wordLimit: { max: 800, unit: "per commentary", excludes: "acknowledgments, the contents page, diagrams with their short labels and headings, tables of statistical data, equations and calculations, citations and references", stopsAt: true },
@@ -88,11 +88,11 @@ const HISTORY_IA: Rubric = {
   label: "History IA",
   totalMarks: 25,
   criteria: [
-    { name: "Criterion A: Identification and evaluation of sources", max: 6, descriptor: "Analysis of two relevant sources with explicit reference to origin, purpose, value and limitations" },
-    { name: "Criterion B: Investigation", max: 15, descriptor: "Critical analysis using a range of evidence, awareness of different perspectives, and a reasoned argued conclusion" },
-    { name: "Criterion C: Reflection", max: 4, descriptor: "Reflection on the methods used by historians and the limitations encountered" },
+    { name: "Criterion A: Identification and evaluation of sources", max: 6, descriptor: "The question for investigation clearly stated as a question; appropriate, relevant sources with their relevance to the investigation explained; detailed analysis and evaluation of two sources, with explicit discussion of their value and limitations for the investigation by reference to origins, purpose and content" },
+    { name: "Criterion B: Investigation", max: 15, descriptor: "A clear, coherent, well-organized investigation with well-developed critical analysis focused on the question, evidence from a range of sources used effectively, evaluation of different perspectives (awareness without evaluation stays in the 7-9 band), and a reasoned conclusion consistent with the evidence" },
+    { name: "Criterion C: Reflection", max: 4, descriptor: "Reflection on what the investigation highlighted about the methods used by historians and the challenges they face, with a clear and explicit connection to the rest of the investigation" },
   ],
-  notes: "Word limit 2,200. SL and HL identical.",
+  notes: "Word limit 2,200 (bibliography and references not counted). SL and HL identical. Section 1 = Criterion A, Section 2 = Criterion B, Section 3 = Criterion C. The topic cannot be about events in the last 10 years. Sources may be primary, secondary or both.",
   wordLimit: { max: 2200, excludes: "the bibliography and the references" },
 };
 
@@ -122,7 +122,7 @@ const MATH_IA: Rubric = {
     { name: "Criterion D: Reflection", max: 3, descriptor: "Critical reflection on the exploration linked to the aim, and on the significance of results" },
     { name: "Criterion E: Use of mathematics", max: 6, descriptor: "Relevant mathematics commensurate with the level of the course, used correctly; at HL the top levels additionally require sophistication and rigour" },
   ],
-  notes: "Criterion E has separate SL and HL level descriptors (same maximum): HL top marks require sophistication/rigour; SL requires correct mathematics commensurate with the course level, demonstrating thorough understanding.",
+  notes: "Criterion E has separate SL and HL level descriptors (same maximum): HL top marks require sophistication/rigour; SL requires correct mathematics commensurate with the course level, demonstrating thorough understanding. The analyzer does not ask for the course or level. If the text states them (AA or AI, SL or HL), apply that level; if it does not, say in the Criterion E comment which level you assumed and why.",
 };
 
 // ─── Psychology IA (guide first assessment 2019, LAST assessment Nov 2026) ──
@@ -137,7 +137,7 @@ const PSYCHOLOGY_IA: Rubric = {
     { name: "III. Analysis", max: 6, descriptor: "Correct descriptive and inferential statistics, appropriately graphed, with statistical significance addressed" },
     { name: "IV. Evaluation", max: 6, descriptor: "Findings discussed in the context of the background theory; strengths, limitations and improvements" },
   ],
-  notes: "Report 1,800–2,200 words. This rubric applies through November 2026; the May 2027 syllabus replaces it with a research proposal (24 marks).",
+  notes: "Report 1,800-2,200 words. This rubric applies through November 2026; the May 2027 syllabus replaces it with a research proposal (24 marks).",
   wordLimit: { min: 1800, max: 2200, excludes: "the appendices" },
 };
 
@@ -154,7 +154,7 @@ const CS_IA: Rubric = {
     { name: "Criterion D: Functionality and extensibility of product", max: 4, descriptor: "A functional product with evidence (video) and maintainable design" },
     { name: "Criterion E: Evaluation", max: 6, descriptor: "Evaluation against success criteria, client/adviser feedback, and recommendations for further development" },
   ],
-  notes: "This 34-mark rubric applies through November 2026; the May 2027 syllabus replaces it with a 30-mark computational solution.",
+  notes: "This 34-mark rubric applies through November 2026; the May 2027 syllabus replaces it with a 30-mark computational solution. The product and the video are not part of the pasted documentation: mark Development and Functionality on what the documentation shows, and say in those comments that the product and video were not seen.",
 };
 
 // ─── Extended Essay (guide first assessment 2018, applies through Nov 2026) ─
@@ -183,7 +183,7 @@ const TOK_ESSAY: Rubric = {
   criteria: [
     { name: "Holistic assessment, global impression", max: 10, descriptor: "Does the student provide a clear, coherent and critical exploration of the essay title?" },
   ],
-  notes: "Marked holistically against ONE instrument (no sub-criteria), guided by: \"Does the student provide a clear, coherent and critical exploration of the essay title?\" Bands: Excellent 9–10 (sustained focus on the title, effectively linked to areas of knowledge; clear, coherent arguments effectively supported by specific examples; implications considered; different points of view evaluated). Good 7–8 (focused on the title, linked to AOKs; clear coherent arguments supported by examples; awareness and some evaluation of points of view). Satisfactory 5–6 (focused with some AOK links; arguments offered with examples; some awareness of points of view). Basic 3–4 (connected to the title but largely descriptive; limited or unclear arguments without effective examples). Rudimentary 1–2 (weakly connected; descriptive or unsupported assertions). 0 = below standard or not a response to a prescribed title. Word limit 1,600.",
+  notes: "Marked holistically against ONE instrument (no sub-criteria), guided by: \"Does the student provide a clear, coherent and critical exploration of the essay title?\" Bands: Excellent 9-10 (sustained focus on the title, effectively linked to areas of knowledge; clear, coherent arguments effectively supported by specific examples; implications considered; different points of view evaluated). Good 7-8 (focused on the title, linked to AOKs; clear coherent arguments supported by examples; awareness and some evaluation of points of view). Satisfactory 5-6 (focused with some AOK links; arguments offered with examples; some awareness of points of view). Basic 3-4 (connected to the title but largely descriptive; limited or unclear arguments without effective examples). Rudimentary 1-2 (weakly connected; descriptive or unsupported assertions). 0 = below standard or not a response to a prescribed title. Word limit 1,600. Rules for justifying the mark: evaluation of points of view is described from the Good band upward (Satisfactory needs only some awareness of them); the 2022 course has no ways of knowing, so never refer to them; do not require a personal perspective or any other feature the band descriptors do not name.",
   wordLimit: { max: 1600, excludes: "acknowledgments, references (in footnotes, endnotes or in the text), the bibliography, and maps, charts, diagrams, illustrations or tables", stopsAt: true },
 };
 
@@ -195,7 +195,7 @@ const TOK_EXHIBITION: Rubric = {
   criteria: [
     { name: "Holistic assessment, global impression", max: 10, descriptor: "Does the exhibition successfully show how TOK manifests in the world around us?" },
   ],
-  notes: "Marked holistically against ONE instrument (no sub-criteria), guided by: \"Does the exhibition successfully show how TOK manifests in the world around us?\" Bands: Excellent 9–10 (three objects with specific real-world contexts; links to the ONE selected IA prompt clearly made and well explained; strong justification of each object\u2019s contribution; points supported by evidence and explicit references to the prompt). Good 7–8; Satisfactory 5–6; Basic 3–4; Rudimentary 1–2; 0 = below standard or not using an official IA prompt. Commentary max 950 words total. Rules of thumb: only two objects, max 6 marks; only one object, max 3 marks.",
+  notes: "Marked holistically against ONE instrument (no sub-criteria), guided by: \"Does the exhibition successfully show how TOK manifests in the world around us?\" Bands: Excellent 9-10 (three objects with specific real-world contexts; links to the ONE selected IA prompt clearly made and well explained; strong justification of each object\u2019s contribution; points supported by evidence and explicit references to the prompt). Good 7-8; Satisfactory 5-6; Basic 3-4; Rudimentary 1-2; 0 = below standard or not using an official IA prompt. Commentary max 950 words total. Rules of thumb: only two objects, max 6 marks; only one object, max 3 marks.",
   wordLimit: { max: 950, excludes: "text on the objects themselves, acknowledgments, references and the bibliography", stopsAt: true },
 };
 
@@ -280,7 +280,7 @@ const EXTENDED_ESSAY_2027: Rubric = {
     { name: "Criterion D: Discussion and evaluation", max: 8, descriptor: "Discussion and evaluation of the argument, evidence and viewpoints. This is the highest-weighted criterion" },
     { name: "Criterion E: Reflection", max: 4, descriptor: "Reflection on the research process (assessed with the 500-word reflective statement, RPF)" },
   ],
-  notes: "New EE for the May 2027 session onward (students who began the DP in 2025): 30 marks. Word limit 4,000. The RPPF is replaced by the RPF, a single reflective statement of up to 500 words.",
+  notes: "New EE for the May 2027 session onward: 30 marks. Word limit 4,000. The RPPF is replaced by the RPF, a single reflective statement of up to 500 words.",
   wordLimit: { max: 4000, excludes: "citations and references, the bibliography, contents page, tables, equations, charts and diagrams", stopsAt: true },
 };
 
@@ -289,12 +289,12 @@ const PSYCHOLOGY_IA_2027: Rubric = {
   label: "Psychology IA, Research proposal (May 2027 syllabus)",
   totalMarks: 24,
   criteria: [
-    { name: "Criterion A: Introduction", max: 6, descriptor: "Research question, relevant background theory/research and rationale for the proposed study" },
-    { name: "Criterion B: Research methodology", max: 6, descriptor: "Appropriate research method, design and participant considerations for the proposal" },
-    { name: "Criterion C: Data collection", max: 6, descriptor: "Planned data collection: materials, procedure and ethical considerations" },
-    { name: "Criterion D: Discussion", max: 6, descriptor: "Anticipated outcomes, limitations and implications of the proposed study" },
+    { name: "Criterion A: Introduction", max: 6, descriptor: "A clearly stated, focused aim or research question; a real-life problem described with its impact on the population of interest explained; the findings and conclusions of two pieces of relevant research explained and linked to the investigation" },
+    { name: "Criterion B: Research methodology", max: 6, descriptor: "The choice of research method (experiment, interview, observation or survey/questionnaire) explained; the procedure explained (sampling technique, sample characteristics, design if experimental, setting, process); relevant ethical considerations described and explicitly linked to the investigation" },
+    { name: "Criterion C: Data collection", max: 6, descriptor: "One appropriate and effective data collection tool created by the student to measure behaviour (at least five items, copy in the appendix); the decisions made when creating it explained; potential challenges when collecting data explained and relevant to the investigation" },
+    { name: "Criterion D: Discussion", max: 6, descriptor: "Potential findings described in detail with implications for policy or practice explained; relevant examples of how researcher bias may affect the investigation discussed; the usefulness of one additional research method discussed with reference to increasing understanding of the topic" },
   ],
-  notes: "Research PROPOSAL (no experiment is conducted). Max 2,200 words, examiners stop reading beyond the limit. SL and HL identical.",
+  notes: "Research PROPOSAL: the study is designed but not carried out, so there are no results; do not ask for data or statistics. Ethical considerations belong to Criterion B. Max 2,200 words, examiners stop reading beyond the limit. SL and HL identical.",
   wordLimit: { max: 2200, excludes: "the references and appendices", stopsAt: true },
 };
 
@@ -303,13 +303,13 @@ const CS_IA_2027: Rubric = {
   label: "Computer Science IA, Computational solution (May 2027 syllabus)",
   totalMarks: 30,
   criteria: [
-    { name: "Criterion A: Problem specification", max: 4, descriptor: "Specification of the problem and success criteria" },
-    { name: "Criterion B: Planning", max: 4, descriptor: "Planning of the computational solution" },
-    { name: "Criterion C: System overview", max: 6, descriptor: "Overview of the system design" },
-    { name: "Criterion D: Development", max: 12, descriptor: "Development of the solution demonstrating appropriate techniques, with sources acknowledged" },
-    { name: "Criterion E: Evaluation", max: 4, descriptor: "Evaluation of the solution against the success criteria" },
+    { name: "Criterion A: Problem specification", max: 4, descriptor: "The problem scenario, its computational context and the success criteria" },
+    { name: "Criterion B: Planning", max: 4, descriptor: "Decomposition of the problem and planning of a solution that addresses the success criteria" },
+    { name: "Criterion C: System overview", max: 6, descriptor: "The system model, the algorithms and the testing strategy" },
+    { name: "Criterion D: Development", max: 12, descriptor: "The development process and a fully functional product, supported by the video, with sources acknowledged" },
+    { name: "Criterion E: Evaluation", max: 4, descriptor: "Evaluation of the solution, including how far it meets the success criteria, with recommendations for improvement" },
   ],
-  notes: "Documentation capped at 2,000 words (excluding code and diagrams) plus a 5-minute video. The former client requirement is removed.",
+  notes: "Documentation capped at 2,000 words (excluding code excerpts, comments and diagrams) plus a video of up to 5 minutes. The former client requirement is removed. The product and the video are not part of the pasted documentation: mark Development on what the documentation shows, and say in that comment that the product and video were not seen.",
   wordLimit: { max: 2000, excludes: "code excerpts, comments and diagrams" },
 };
 

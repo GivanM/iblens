@@ -13,7 +13,7 @@ export default function IAFeedbackGuide() {
       <h1>How to Check Your IB IA Against the Official Criteria (Without a Tutor)</h1>
 
       <p>
-        Every IB Internal Assessment is marked against published criteria with fixed mark allocations, which means you can check a draft against the same instrument your examiner will use. The catch: the criteria differ completely by subject, and the smartest check starts from where the marks actually are. This guide shows what each subject is marked out of, where the heaviest criteria sit, and a self-check sequence that works for any of them.
+        Every IB Internal Assessment is marked against published criteria with fixed mark allocations, which means you can check a draft against the same criteria your teacher and the moderator will use. The catch: the criteria differ completely by subject, and the smartest check starts from where the marks actually are. This guide shows what each subject is marked out of, where the heaviest criteria sit, and a self-check sequence that works for any of them.
       </p>
 
       <h2>Know what your IA is marked out of</h2>
@@ -24,9 +24,9 @@ export default function IAFeedbackGuide() {
         </thead>
         <tbody>
           <tr><td>Biology, Chemistry, Physics (2025 instrument)</td><td>24</td><td>Four equal criteria of 6: Research design, Data analysis, Conclusion, Evaluation</td></tr>
-          <tr><td>History</td><td>25</td><td>Section B: the investigation itself, 15 of 25 marks</td></tr>
+          <tr><td>History</td><td>25</td><td>Criterion B: the Investigation (Section 2), 15 of 25 marks</td></tr>
           <tr><td>Business Management</td><td>25</td><td>Integration of a key concept (5) and Analysis and evaluation (5)</td></tr>
-          <tr><td>Economics (per commentary)</td><td>14</td><td>Even spread, each commentary must apply a different key concept, 800-word limit</td></tr>
+          <tr><td>Economics (per commentary)</td><td>14</td><td>An even spread; each commentary must use a different key concept, within 800 words</td></tr>
           <tr><td>Mathematics (AA and AI)</td><td>20</td><td>Criterion E: Use of mathematics, 6 marks</td></tr>
           <tr><td>Psychology (through Nov 2026)</td><td>22</td><td>Introduction, Analysis and Evaluation at 6 each</td></tr>
           <tr><td>Computer Science (through Nov 2026)</td><td>34</td><td>Criterion C: Development, 12 marks</td></tr>
@@ -34,20 +34,20 @@ export default function IAFeedbackGuide() {
       </table>
 
       <p>
-        Psychology and Computer Science change format from the May 2027 session, a research proposal out of 24 and a computational solution out of 30 respectively. If you sit exams in May 2027 or later, check against the new criteria: <Link href="/resources/ib-psychology-ia-2027">Psychology 2027</Link>, <Link href="/resources/ib-computer-science-ia-2027">Computer Science 2027</Link>.
+        Psychology and Computer Science change format from the May 2027 session: a research proposal out of 24 and a computational solution out of 30 respectively. If you sit exams in May 2027 or later, check against the new criteria: <Link href="/resources/ib-psychology-ia-2027">Psychology 2027</Link>, <Link href="/resources/ib-computer-science-ia-2027">Computer Science 2027</Link>.
       </p>
 
       <h2>The self-check sequence</h2>
 
       <ol>
         <li>
-          <strong>Start with the heaviest criterion.</strong> A History IA lives or dies on Section B; a CS IA on Development; a Math IA is capped by the mathematics you actually use. Check that criterion first, it moves the most marks.
+          <strong>Start with the heaviest criterion.</strong> A History IA lives or dies on the Investigation; a CS IA on Development; a Math IA is capped by the mathematics you actually use. Check that criterion first, because it moves the most marks.
         </li>
         <li>
-          <strong>Check the caps and limits.</strong> Word limits are hard: examiners stop crediting beyond them. Check yours before polishing prose that will not be read.
+          <strong>Check the limits.</strong> In several subjects the guide says marking stops at the word limit, and everywhere the limit is a rule. Check yours before polishing prose that may not be read.
         </li>
         <li>
-          <strong>Read one criterion at a time, draft in the other hand.</strong> For each criterion ask: where exactly in my draft is the evidence for the top markband? If you cannot point to a paragraph, the examiner cannot either.
+          <strong>Read one criterion at a time, draft in the other hand.</strong> For each criterion ask: where exactly in my draft is the evidence for the top markband? If you cannot point to a paragraph, a moderator cannot either.
         </li>
         <li>
           <strong>Fix the weakest criterion before the strongest.</strong> Marks lost at the bottom are cheaper to recover than marks squeezed at the top.
@@ -57,7 +57,7 @@ export default function IAFeedbackGuide() {
       <h2>Teacher feedback and where AI fits</h2>
 
       <p>
-        Your teacher gives guidance during the IA process and feedback on a draft, use it for what only a subject expert can judge: whether your method is sound and your subject content accurate. What AI adds is unlimited iterations against the criteria between teacher rounds. IBLens grades coursework drafts in 14 subjects against the official criteria for your session, predicted band range and weakest criterion free, full criterion-by-criterion report $9.99, no subscription.
+        Your teacher gives guidance during the IA process and feedback on one draft: use it for what only a subject expert can judge, such as whether your method is sound and your content accurate. What AI adds is a check against the criteria whenever you revise. IBLens marks coursework drafts in 14 subjects against the criteria for your session. The estimated band range and your weakest criterion are free, and the full criterion-by-criterion report is $9.99, with no subscription and two free re-checks.
       </p>
 
       <p>
@@ -68,7 +68,7 @@ export default function IAFeedbackGuide() {
 
       <h3>Which IA has the heaviest single criterion?</h3>
       <p>
-        History, Section B carries 15 of 25 marks, 60% of the IA. Computer Science's Development criterion (12 of 34 through November 2026, 12 of 30 from May 2027) is the other outlier.
+        History: the Investigation carries 15 of 25 marks, 60% of the IA. Computer Science's Development criterion (12 of 34 through November 2026, 12 of 30 from May 2027) is the other outlier.
       </p>
 
       <h3>Are the science IAs really marked identically?</h3>
@@ -78,14 +78,14 @@ export default function IAFeedbackGuide() {
 
       <h3>Can I check my IA against the criteria myself?</h3>
       <p>
-        Yes, the criteria are published, and this page's sequence is designed for exactly that. The hard part is objectivity about your own writing, which is where a second reader or a rubric-calibrated AI check earns its place.
+        Yes, the criteria are published, and this page's sequence is designed for exactly that. The hard part is objectivity about your own writing, which is where a second reader, or an AI check built on the criteria, earns its place.
       </p>
 
       <h2>Related resources</h2>
 
       <ul>
         <li><Link href="/resources/ib-internal-assessment-guide">IB Internal Assessment Guide</Link></li>
-        <li><Link href="/resources/ib-ia-grader">IB IA Grader, all subjects</Link></li>
+        <li><Link href="/resources/ib-ia-grader">IB IA Grader: all subjects</Link></li>
         <li><Link href="/resources/ib-ia-score-predictor">IB IA Score Predictor</Link></li>
       </ul>
       <h2>Subject-specific IA guides</h2>

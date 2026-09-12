@@ -1,25 +1,51 @@
 import SubjectEssayPage, { SubjectConfig } from "./SubjectEssayPage";
 
 const config: SubjectConfig = {
-  subject: "English Essay",
+  subject: "English Individual Oral",
   slug: "english-essay",
-  keyword: "IB English essay",
-  metaTitle: "IB English Individual Oral Grader, Free AI Feedback | IBLens",
+  keyword: "IB English Individual Oral",
+  metaTitle: "IB English Individual Oral Grader: AI Feedback on Your IO | IBLens",
   metaDescription:
-    "AI feedback on the IB English A Individual Oral, marked out of 40 against the four published criteria. The HL essay is a separate component and is not covered. First analysis free.",
+    "AI feedback on the IB English A Individual Oral, marked out of 40 against the four published criteria. Paste an outline or a transcript. The HL essay is a separate component and is not covered.",
   canonicalPath: "/essay/english-essay",
-  heroHeadline: "Get your IB English Individual Oral graded in about 90 seconds",
+  heroHeadline: "Get your IB English Individual Oral checked in about a minute",
   heroSubline:
-    "Paste your IB English A Individual Oral commentary and receive criterion-level feedback in about 90 seconds, free, no account required.",
-  // The engine holds the Individual Oral instrument for English A: four criteria
-  // of ten, forty in total. The table here used to show the HL essay shape,
-  // four of five, which is a different component the product cannot mark.
+    "Paste the outline or a transcript of your English A Individual Oral and receive feedback on the four criteria, with a free preview and no account required.",
+  analyzerHref: "/essay?type=IA&subject=English%20A%3A%20Language%20and%20Literature",
   criteria: [
     { name: "Criterion A: Knowledge, understanding and interpretation", max: 10, sampleScore: 6 },
     { name: "Criterion B: Analysis and evaluation", max: 10, sampleScore: 6 },
     { name: "Criterion C: Focus and organization", max: 10, sampleScore: 7 },
     { name: "Criterion D: Language", max: 10, sampleScore: 7 },
   ],
+  guide: {
+    rubricHeading: "What the Individual Oral criteria reward (40 marks)",
+    rubricIntro: [
+      "The Individual Oral is spoken, not written: you explore how a global issue is presented in extracts from two works. English A: Literature and English A: Language and Literature mark it on the same four criteria of 10 marks each. Your teacher marks it and the IB moderates the marking.",
+      "Because the oral is spoken, IBLens reads a transcript of a practice run or your outline. A transcript gives the fullest report. An outline gives much less to go on, especially for Language.",
+    ],
+    rubricItems: [
+      { title: "Criterion A: Knowledge, understanding and interpretation, 10 marks", text: "Knowledge and understanding of the extracts and of the works they come from, and your interpretation of what they imply about the global issue." },
+      { title: "Criterion B: Analysis and evaluation, 10 marks", text: "Analysis and evaluation of how the choices an author makes, or the choices in a text, present the global issue." },
+      { title: "Criterion C: Focus and organization, 10 marks", text: "A structured, balanced and focused oral in which the ideas are connected." },
+      { title: "Criterion D: Language, 10 marks", text: "Clear, accurate and effective language that suits the task." },
+    ],
+    mistakesHeading: "Mistakes the Individual Oral criteria penalize",
+    mistakes: [
+      { title: "Naming devices without analysing them", text: "Pointing out a metaphor without explaining how it presents the global issue. Criterion B is about how choices in the text shape that presentation." },
+      { title: "A global issue that drops out", text: "Introducing the issue at the start and returning to it only at the end. Criterion A measures your interpretation in relation to the global issue, so each part of the oral should come back to it." },
+      { title: "Plot summary", text: "Retelling what happens in a work. Knowledge of the work shows in what you choose to discuss and why, not in how much of it you retell." },
+      { title: "One work doing all the work", text: "Spending most of the oral on one work and little on the other. Criterion C rewards a balanced oral." },
+    ],
+    faq: [
+      { q: "Can I paste a transcript of my oral?", a: "Yes. Record a practice run, transcribe it and paste the transcript. It gives the fullest picture of your analysis, your organization and your language." },
+      { q: "Does it cover the HL essay or Paper 1?", a: "No. It covers the Individual Oral only. The HL essay and the exam papers are marked on different criteria." },
+      { q: "Literature or Language and Literature?", a: "Choose your course in the analyzer. The four criteria and their marks are the same, and the wording differs slightly: Language and Literature refers to works and texts, Literature to works." },
+      { q: "How accurate is the predicted mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. Your teacher marks the work and the IB moderates that marking, so their mark is the one that counts. Use the report to find what to fix before you submit." },
+      { q: "Is it free?", a: "The first preview is free and needs no account: your band range, your weakest criterion with its full feedback, and the top risks in the draft. The full report, with every criterion marked and a ranked list of fixes, is $9.99, or $24.99 for a pack of five." },
+      { q: "Is my work stored?", a: "The text you paste is never stored. It is sent to Anthropic, the AI provider, to produce the report. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },
+    ],
+  },
   relatedResources: [
     { label: "English Extended Essay", href: "/resources/ib-english-extended-essay" },
     { label: "Check your IA against the criteria", href: "/resources/ib-ia-feedback" },

@@ -11,13 +11,13 @@ export default function RefundPolicy() {
       />
       <div className="container max-w-3xl">
         <h1 className="text-3xl font-bold tracking-tight mb-2">Refund Policy</h1>
-        <p className="text-sm text-muted-foreground mb-8">Last updated: 12 September 2026</p>
+        <p className="text-sm text-muted-foreground mb-8">Last updated: 13 September 2026</p>
 
         <div className="prose prose-sm max-w-none text-foreground space-y-6">
           <section>
             <h2 className="text-xl font-semibold mb-3">7-Day Money-Back Guarantee</h2>
             <p className="text-muted-foreground leading-relaxed">
-              We want you to be completely satisfied with your IBLens purchase. If for any reason you are not happy with your essay analysis or university strategy report, you may request a full refund within <strong className="text-foreground">7 days</strong> of your purchase date, no questions asked.
+              We want you to be completely satisfied with your IBLens purchase. If for any reason you are not happy with your essay or personal statement report, you may request a full refund within <strong className="text-foreground">7 days</strong> of your purchase date, no questions asked.
             </p>
           </section>
 
@@ -26,21 +26,21 @@ export default function RefundPolicy() {
             <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
               <li>Email us at <a href="mailto:glushkovim@gmail.com" className="text-primary hover:underline font-medium">glushkovim@gmail.com</a> within 7 days of your purchase.</li>
               <li>Include your account email address and the product you purchased.</li>
-              <li>We will process your refund within 3–5 business days via the original payment method.</li>
+              <li>We will process your refund within 3-5 business days via the original payment method.</li>
             </ol>
           </section>
 
           <section>
             <h2 className="text-xl font-semibold mb-3">Refund Methods</h2>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-              <li><strong className="text-foreground">Card payments (via LemonSqueezy):</strong> Refunded to the original card. Please allow 5–10 business days for the refund to appear on your statement.</li>
+              <li><strong className="text-foreground">Card payments (via LemonSqueezy):</strong> Refunded to the original card. Please allow 5-10 business days for the refund to appear on your statement.</li>
             </ul>
           </section>
 
           <section>
             <h2 className="text-xl font-semibold mb-3">Eligibility</h2>
             <p className="text-muted-foreground leading-relaxed">
-              All paid products are eligible for a refund within the 7-day window, including single essay analyses, essay packs and UCAS personal statement reviews. The free first essay analysis is not applicable for refund as no payment was made.
+              All paid products are eligible for a refund within the 7-day window, including single essay analyses, essay packs and UCAS personal statement reviews. The free preview is not refundable, as no payment was made.
             </p>
           </section>
 

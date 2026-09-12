@@ -9,9 +9,9 @@ import { Sheet, Slug } from "./Sheet";
 const DOES = [
   "Marks against the published criteria for the Extended Essay, the TOK essay, the TOK exhibition and coursework in 14 subjects.",
   "Names the criterion losing you the most marks and says what in the text is costing them.",
-  "Follows your exam session. For the Extended Essay, Psychology and Computer Science the report uses the new May 2027 criteria.",
+  "Follows your exam session. Choose May 2027 and the Extended Essay, Psychology and Computer Science are marked on the new criteria; choose 2026 and they are marked on the current ones.",
   "Re-checks a revised draft twice within 14 days of a paid report, at no extra cost.",
-  "Comes back in about 90 seconds, at any hour, including the night before a deadline.",
+  "Comes back in about a minute, at any hour, including the night before a deadline.",
 ];
 
 export function ScopeSheet() {

@@ -52,7 +52,7 @@ export default function TokEssayFormat() {
         The TOK essay has no required structure. It is marked holistically on one question: does it provide a clear, coherent and critical exploration of the title? The shape below is a common and workable way to meet that, not a rule.
       </p>
 
-      <h3>Introduction (approximately 150–200 words)</h3>
+      <h3>Introduction (approximately 150-200 words)</h3>
 
       <p>Your introduction should:</p>
 
@@ -67,7 +67,7 @@ export default function TokEssayFormat() {
         Avoid: padding your introduction with general philosophical statements that say nothing specific. "Knowledge is one of the most complex topics that humans have ever grappled with" is a wasted 20 words.
       </p>
 
-      <h3>Body Paragraphs: Claim / Counter-Claim Structure (approximately 1,100–1,200 words)</h3>
+      <h3>Body Paragraphs: Claim / Counter-Claim Structure (approximately 1,100-1,200 words)</h3>
 
       <p>
         Each body section should examine one Area of Knowledge through the lens of the prescribed title. The standard structure per AOK is:
@@ -84,7 +84,7 @@ export default function TokEssayFormat() {
         Where a title asks for two areas of knowledge, two or three well-developed claims in each is usually plenty. Trying to cover four or five areas leaves too little depth in each.
       </p>
 
-      <h3>Conclusion (approximately 150–200 words)</h3>
+      <h3>Conclusion (approximately 150-200 words)</h3>
 
       <p>Your conclusion should:</p>
 

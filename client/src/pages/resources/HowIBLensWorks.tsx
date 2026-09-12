@@ -13,7 +13,7 @@ export default function HowIBLensWorks() {
       <h1>How IBLens Works</h1>
 
       <p>
-        IBLens is an AI-powered essay analysis tool designed specifically for IB Diploma Programme students. It reads coursework against the published assessment criteria: criterion by criterion for the Internal Assessment and the Extended Essay, and against the single holistic scale for TOK, which has no sub-criteria. The report comes back in about 90 seconds.
+        IBLens is an AI-powered essay analysis tool designed specifically for IB Diploma Programme students. It reads coursework against the published assessment criteria: criterion by criterion for the Internal Assessment and the Extended Essay, and against the single holistic scale for TOK, which has no sub-criteria. The report comes back in about a minute.
       </p>
 
       <p>
@@ -28,10 +28,11 @@ export default function HowIBLensWorks() {
 
       <ul>
         <li><strong>Criterion-by-criterion scoring:</strong> Your essay is evaluated against the specific IB assessment criteria for your subject and essay type. Each criterion receives a predicted score with an explanation of why that score was assigned.</li>
-        <li><strong>Overall predicted grade:</strong> Based on the criterion scores, IBLens provides a predicted grade (a mark out of the total for your task, with the range the draft currently sits in).</li>
+        <li><strong>Overall estimate:</strong> based on the criterion scores, an estimated mark out of the total for your task, with the band range the draft currently sits in.</li>
         <li><strong>Risk areas:</strong> Specific sections or aspects of your essay that are likely to lose marks, with explanations of why and suggestions for improvement.</li>
         <li><strong>Leverage zones:</strong> Areas where small improvements would yield the largest mark gains, helping you prioritize your revision time.</li>
-        <li><strong>Actionable next steps:</strong> Concrete, specific suggestions for how to improve each criterion score, written in plain language that tells you exactly what to do.</li>
+        <li><strong>Next steps:</strong> concrete suggestions for improving the criteria that are losing marks, in plain language, in order of how many marks they are likely to recover.</li>
+        <li><strong>Word count:</strong> the words you pasted, counted against the limit for your task where the guide sets one, with what the official count leaves out.</li>
       </ul>
 
       <p>
@@ -41,15 +42,15 @@ export default function HowIBLensWorks() {
       <h2>How the Criteria Reach the Model</h2>
 
       <p>
-        IBLens uses advanced language models that have been specifically configured to understand and apply IB assessment criteria. The system works by:
+        IBLens uses a large language model (Anthropic's Claude), instructed with the assessment criteria for your task before it reads your work. In practice that means:
       </p>
 
       <p>
-        <strong>Criteria mapping:</strong> For each subject and essay type, the system has a detailed understanding of the criterion names, their mark allocations and what each one assesses. This is taken from the official IBO assessment criteria published in the subject guides.
+        <strong>The criteria:</strong> for each subject, essay type and exam session, IBLens holds the criterion names, their maximum marks and a short summary of what each one assesses, taken from the subject guides. For TOK, it holds the band descriptors of the holistic instrument.
       </p>
 
       <p>
-        <strong>Pattern recognition:</strong> The AI identifies patterns in your writing that correspond to different performance levels. For example, it can distinguish between descriptive writing (which typically scores in the middle bands) and analytical writing (which scores in the upper bands) by looking at how you use evidence, whether you evaluate sources, and whether you develop arguments with counter-claims.
+        <strong>Reading against the levels:</strong> the model reads your work for what the levels describe, such as whether evidence is evaluated or only reported, and whether arguments are developed or only asserted. Description and analysis are among the clearest differences between the lower and upper levels in most criteria.
       </p>
 
       <p>
@@ -57,7 +58,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        <strong>Calibration:</strong> The criteria for your task and session are placed in the model's instructions before it reads your work. This means the predicted scores are realistic estimates, not inflated or deflated, a predicted mark is the model's reading of the published descriptors, not a calibrated measurement against marked scripts.
+        <strong>No calibration against marked scripts:</strong> IBLens has not been tested against a set of officially marked scripts. A predicted mark is the model's reading of the published criteria, which is why it is shown as an estimate with a band range, and why the criterion it flags matters more than the exact number.
       </p>
 
       <h2>What Feedback Looks Like</h2>
@@ -71,15 +72,15 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        <strong>Criterion breakdown:</strong> For each assessment criterion, you see your predicted score (e.g., "Criterion B: Knowledge and Understanding, 4/6"), followed by a detailed explanation of what your essay demonstrates at this level and what would be needed to reach the next level.
+        <strong>Criterion breakdown:</strong> for each assessment criterion you see an estimated mark (for example "Criterion B: Knowledge and understanding: 4/6"), followed by an explanation of what your essay shows at that level and what the next level would need.
       </p>
 
       <p>
-        <strong>Specific feedback:</strong> Rather than generic advice like "improve your analysis," IBLens points to specific sections of your essay. For example: "In paragraph 3, you describe the results of the experiment but do not explain why the trend occurs. Adding a theoretical explanation connecting your results to [relevant theory] would strengthen Criterion C."
+        <strong>Specific feedback:</strong> rather than generic advice like "improve your analysis", the feedback refers to what is actually in your essay. For example: "In paragraph 3, you describe the results of the experiment but do not explain why the trend occurs. Adding a theoretical explanation connecting your results to [relevant theory] would strengthen Criterion C."
       </p>
 
       <p>
-        <strong>Priority ranking:</strong> The feedback is organized by impact, the changes that would improve your score the most are highlighted first. This helps you allocate limited revision time effectively.
+        <strong>Priority order:</strong> risks and next steps are listed with the ones likely to cost or recover the most marks first, so you can spend limited revision time where it counts.
       </p>
 
       <h2>Limitations and What AI Can and Cannot Do</h2>
@@ -99,9 +100,9 @@ export default function HowIBLensWorks() {
 
       <h3>What IBLens cannot do</h3>
       <ul>
-        <li><strong>Verify factual accuracy:</strong> The AI cannot check whether your historical facts, scientific data, or mathematical calculations are correct. It assesses how you use evidence, not whether the evidence itself is accurate.</li>
+        <li><strong>Verify factual accuracy:</strong> the model cannot reliably check whether your historical facts, scientific data or calculations are correct. It assesses how you use evidence, not whether the evidence itself is accurate.</li>
         <li><strong>Replace your teacher:</strong> Your teacher knows your subject, your school's expectations, and your personal development. IBLens provides a second opinion, not a replacement for teacher guidance.</li>
-        <li><strong>Guarantee a specific grade:</strong> Predicted scores are estimates based on criteria analysis. Actual grades depend on many factors including the specific examiner, grade boundaries for that session, and moderation outcomes.</li>
+        <li><strong>Guarantee a specific grade:</strong> predicted marks are estimates. Actual grades depend on the examiner or moderator, the grade boundaries for that session, and moderation.</li>
         <li><strong>Assess practical components:</strong> For subjects with practical elements (science experiments, art portfolios, music performances), IBLens can only assess the written component.</li>
         <li><strong>Detect plagiarism:</strong> IBLens is not a plagiarism detection tool. It assumes the work submitted is your own.</li>
       </ul>
@@ -141,16 +142,16 @@ export default function HowIBLensWorks() {
         </thead>
         <tbody>
           <tr>
-            <td><strong>Free Trial</strong></td>
+            <td><strong>Free preview</strong></td>
             <td>$0</td>
-            <td>-</td>
-            <td>Trying the tool on one essay to see if it is useful</td>
+            <td>n/a</td>
+            <td>The band range, your weakest criterion with its full feedback, and the top risks, on one essay per device</td>
           </tr>
           <tr>
-            <td><strong>Single Analysis</strong></td>
+            <td><strong>Full report</strong></td>
             <td>$9.99</td>
             <td>$9.99</td>
-            <td>One-off feedback on a final draft before submission</td>
+            <td>One essay, with two free re-checks of the same draft within 14 days</td>
           </tr>
           <tr>
             <td><strong>Essay Pack (5)</strong></td>
@@ -163,12 +164,6 @@ export default function HowIBLensWorks() {
             <td>$44.99</td>
             <td>$4.50</td>
             <td>Full IB preparation, analyze all your IAs, EE drafts, and TOK essay</td>
-          </tr>
-          <tr>
-            <td><strong>University Strategy</strong></td>
-            <td>$25.00</td>
-            <td>-</td>
-            <td>Personalized university recommendations based on your predicted scores</td>
           </tr>
         </tbody>
       </table>
@@ -190,28 +185,28 @@ export default function HowIBLensWorks() {
       <h3>Private IB Tutors</h3>
       <p>
         <strong>Pros:</strong> Personalized, can ask follow-up questions, builds a relationship over time, can help with content knowledge.
-        <strong>Cons:</strong> Expensive ($50–150/hour), scheduling constraints, quality varies enormously, limited availability for niche subjects.
+        <strong>Cons:</strong> paid by the hour, scheduling constraints, quality varies a great deal, and fewer tutors for less common subjects.
         <strong>When to use:</strong> If you need ongoing subject support beyond essay feedback, or if you learn best through conversation.
       </p>
 
       <h3>Peer Review</h3>
       <p>
         <strong>Pros:</strong> Free, builds collaborative skills, can catch obvious errors.
-        <strong>Cons:</strong> Peers are not trained examiners, may give inaccurate feedback, social dynamics can prevent honest criticism, limited understanding of criteria.
+        <strong>Cons:</strong> peers are not trained examiners, may give inaccurate feedback, may hold back honest criticism, and rarely know the criteria well.
         <strong>When to use:</strong> For catching basic errors and getting a reader's perspective, but not for criterion-level assessment.
       </p>
 
       <h3>Teacher Feedback</h3>
       <p>
         <strong>Pros:</strong> Authoritative, knows the subject deeply, understands your development, free.
-        <strong>Cons:</strong> Limited time per student (teachers have 20+ students), may only review one draft, feedback turnaround can be slow (weeks).
-        <strong>When to use:</strong> Always, teacher feedback is irreplaceable. But you typically only get 1–2 rounds of teacher review.
+        <strong>Cons:</strong> limited time per student, and for coursework the IB expects teachers to comment on one draft and not to edit it.
+        <strong>When to use:</strong> always. Teacher feedback cannot be replaced, but there is usually only one round of it on coursework.
       </p>
 
       <h3>IBLens</h3>
       <p>
-        <strong>Pros:</strong> Fast (about 90 seconds), criterion-specific, affordable, unlimited revisions possible, available 24/7, consistent quality.
-        <strong>Cons:</strong> Cannot verify factual accuracy, cannot replace subject expertise, cannot assess practical components.
+        <strong>Pros:</strong> fast (about a minute), criterion by criterion, affordable, two free re-checks with each report, available at any hour.
+        <strong>Cons:</strong> an estimate from a language model, not a moderated mark; cannot verify factual accuracy, replace subject expertise or assess practical work.
         <strong>When to use:</strong> Between teacher feedback rounds, for iterative revision, for a second opinion before submission, for identifying which criteria need the most work.
       </p>
 
@@ -220,7 +215,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        Ready to try it? <Link href="/essay" className="text-primary hover:underline">Upload your first essay free</Link> and see how your work maps to IB criteria. For more on how IB assessment works, explore our guides on <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB Essay Criteria</Link>, the <Link href="/resources/ib-extended-essay-guide" className="text-primary hover:underline">Extended Essay</Link>, and <Link href="/resources/ib-internal-assessment-guide" className="text-primary hover:underline">Internal Assessments</Link>.
+        Ready to try it? <Link href="/essay" className="text-primary hover:underline">Paste your first essay for a free preview</Link> and see how your work maps to the IB criteria. For more on how IB assessment works, explore our guides on <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB Essay Criteria</Link>, the <Link href="/resources/ib-extended-essay-guide" className="text-primary hover:underline">Extended Essay</Link>, and <Link href="/resources/ib-internal-assessment-guide" className="text-primary hover:underline">Internal Assessments</Link>.
       </p>
     </ResourceArticle>
   );

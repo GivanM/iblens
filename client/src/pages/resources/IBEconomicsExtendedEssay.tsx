@@ -5,7 +5,7 @@ export default function IBEconomicsExtendedEssay() {
   return (
     <ResourceArticle
       title="IB Economics Extended Essay: Research Questions & Tips | IBLens"
-      description="How to write an IB Economics Extended Essay: focused research questions, applying theory and real data with diagrams, criteria A–E and common mistakes."
+      description="How to write an IB Economics Extended Essay: focused research questions, applying theory and real data with diagrams, criteria A-E and common mistakes."
       canonical="/resources/ib-economics-extended-essay"
       datePublished="2026-07-10"
       dateModified="2026-07-10"

@@ -10,15 +10,14 @@ export default function IBUniversityChances() {
       datePublished="2026-07-16"
       dateModified="2026-07-16"
     >
-      <h1>IB University Guidance, no longer offered</h1>
+      <h1>IB University Guidance: No Longer Offered</h1>
       <p>
-        We have taken our university guidance and strategy tools offline while we rebuild them on
-        verified, official university requirements and deadlines drawn from primary sources. We would
-        rather show nothing than show admission estimates or deadlines we cannot stand behind.
+        This part of IBLens is no longer offered. We withdrew our university guidance and strategy
+        tools rather than sell admission estimates or deadlines we cannot keep current and stand behind.
       </p>
       <p>
-        In the meantime, the part of IBLens that works well is essay feedback against the assessment
-        criteria. <Link href="/essay">Grade your IB IA, EE or TOK essay free →</Link>
+        What IBLens does offer is feedback on IB coursework against the assessment criteria.{" "}
+        <Link href="/essay">Get a free preview on your IA, EE or TOK essay →</Link>
       </p>
     </ResourceArticle>
   );

@@ -50,7 +50,7 @@ export default function UniversityStrategy() {
             <h2 className="font-semibold">Applying through UCAS?</h2>
             <p className="text-sm text-muted-foreground">
               From 2026 entry the personal statement is three separate questions. We review each answer
-              from an admissions-tutor perspective, first review free.
+              from an admissions-tutor perspective, and the first review is free.
             </p>
             <Button variant="outline" size="sm" asChild>
               <Link href="/ucas-personal-statement">Check my statement <ArrowRight className="w-4 h-4 ml-1" /></Link>
@@ -62,7 +62,7 @@ export default function UniversityStrategy() {
           <CardContent className="pt-6 space-y-3">
             <h2 className="font-semibold">Still writing IB coursework?</h2>
             <p className="text-sm text-muted-foreground">
-              IA, Extended Essay, TOK essay and exhibition, graded against the official criteria for
+              IA, Extended Essay, TOK essay and exhibition, marked against the published criteria for
               your session, including the May 2027 rubrics.
             </p>
             <Button variant="outline" size="sm" asChild>

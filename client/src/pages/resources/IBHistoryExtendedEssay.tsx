@@ -5,7 +5,7 @@ export default function IBHistoryExtendedEssay() {
   return (
     <ResourceArticle
       title="IB History Extended Essay: Research Questions & Tips | IBLens"
-      description="How to write an IB History Extended Essay: strong research questions, source evaluation and historiography, criteria A–E, common mistakes and grading tips."
+      description="How to write an IB History Extended Essay: strong research questions, source evaluation and historiography, criteria A-E, common mistakes and grading tips."
       canonical="/resources/ib-history-extended-essay"
       datePublished="2026-07-10"
       dateModified="2026-07-10"

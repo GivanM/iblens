@@ -36,7 +36,7 @@ function EssayReportPreview() {
       <div className="px-5 py-4 relative z-[1]">
         {/* Essay title */}
         <p className="text-[11px] leading-snug text-gray-700 font-medium mb-4 line-clamp-2">
-          "To what extent did economic sanctions contribute to the end of apartheid in South Africa (1985–1994)?"
+          "To what extent did economic sanctions contribute to the end of apartheid in South Africa, 1985 to 1994?"
         </p>
 
         {/* Score summary */}
@@ -44,7 +44,7 @@ function EssayReportPreview() {
           <div className="bg-[#6c63ff] text-white text-lg font-bold px-3 py-1 rounded-lg">
             20/30
           </div>
-          <span className="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Grade B</span>
+          <span className="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Estimate</span>
         </div>
 
         {/* Criteria table */}
@@ -85,7 +85,7 @@ function EssayReportPreview() {
               </div>
               <div className="flex items-start gap-1">
                 <span className="text-red-400 text-[10px] mt-0.5">●</span>
-                <span className="text-[9px] text-gray-600 leading-tight">Conclusion lacks nuanced reflection</span>
+                <span className="text-[9px] text-gray-600 leading-tight">Conclusion hedges instead of answering the question</span>
               </div>
             </div>
           </div>
@@ -186,9 +186,9 @@ export function SampleReports() {
     <section className="py-20 bg-muted/30">
       <div className="container">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tight mb-3">See exactly what you get</h2>
+          <h2 className="text-3xl font-bold tracking-tight mb-3">What a full report looks like</h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            A real sample essay grading report, criterion by criterion
+            An illustration on the May 2027 Extended Essay criteria, with made-up scores
           </p>
         </div>
 

@@ -63,8 +63,8 @@ export default function HomeV2() {
   return (
     <div className="ms-root" data-marking-sheet ref={rootRef}>
       <SEOHead
-        title="IBLens, IB essay grader marked like a script"
-        description="Paste an IB draft and get it marked against the published criteria, criterion by criterion, in about 90 seconds. Free preview on the first one. Full report $9.99, no subscription."
+        title="IBLens: IB Essay Grader, Marked Like a Script"
+        description="Paste an IB draft and get it marked against the published criteria, criterion by criterion, in about a minute. Free preview on the first one. Full report $9.99, no subscription."
         canonical="/"
         jsonLd={[
           {
