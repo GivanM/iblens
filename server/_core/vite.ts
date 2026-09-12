@@ -74,7 +74,9 @@ export function serveStatic(app: Express) {
   app.use("*", (req, res) => {
     const noCache = { "Cache-Control": "no-cache, no-store, must-revalidate", "CDN-Cache-Control": "no-store", "Surrogate-Control": "no-store" };
     const cleanPath = req.originalUrl.split("?")[0].replace(/\/+$/, "") || "/";
-    const isValid = VALID_ROUTES.has(cleanPath);
+    // Dynamic app routes carry an id segment, so they cannot sit in the static whitelist.
+    const DYNAMIC_PREFIXES = ["/dashboard/analysis/"];
+    const isValid = VALID_ROUTES.has(cleanPath) || DYNAMIC_PREFIXES.some((p) => cleanPath.startsWith(p));
     const status = isValid ? 200 : 404;
     const routeHtml = path.resolve(distPath, cleanPath.slice(1), "index.html");
     const indexHtml = path.resolve(distPath, "index.html");
