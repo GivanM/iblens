@@ -458,7 +458,7 @@ export const staticContent: Record<string, string> = {
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Psychology IA rubric: four criteria (22 marks)</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
     <li><strong>Introduction (6 marks)</strong>: Background theory, aim, and hypothesis. IBLens checks whether your introduction clearly links the psychological theory to your experimental design and whether your hypothesis is directional and operationalised.</li>
-    <li><strong>Research design (6 marks):</strong> focused question in a genuine context, methodology with variables and controls, safety and ethics.</li><li><strong>Data analysis (6 marks):</strong> recording, processing and presenting data, including uncertainties.</li><li><strong>Conclusion (6 marks):</strong> justified by the analysis and compared with the accepted scientific context.</li><li><strong>Evaluation (6 marks):</strong> methodological weaknesses and limitations, with realistic improvements.</li>
+    <li><strong>Exploration (4 marks):</strong> the research design, sampling technique and controlled variables, with the ethical considerations of your own study.</li><li><strong>Analysis (6 marks):</strong> descriptive and inferential statistics applied correctly, with the reasoning behind the test you chose.</li><li><strong>Evaluation (6 marks):</strong> discussion of your results against the background theory, with the limitations of your design and realistic improvements.</li>
   </ul>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Common IB Psychology IA mistakes IBLens catches</h2>
@@ -3633,7 +3633,7 @@ export const staticContent: Record<string, string> = {
       </p>
       <ul>
         <li><strong>Introduction (approx. 200–300 words):</strong> Background to the original study, explanation of the research question and aim, and a clear directional hypothesis (one-tailed or two-tailed).</li>
-        <li><strong>Research design (6 marks):</strong> focused question in a genuine context, methodology with variables and controls, safety and ethics.</li><li><strong>Data analysis (6 marks):</strong> recording, processing and presenting data, including uncertainties.</li><li><strong>Conclusion (6 marks):</strong> justified by the analysis and compared with the accepted scientific context.</li><li><strong>Evaluation (6 marks):</strong> methodological weaknesses and limitations, with realistic improvements.</li>
+        <li><strong>Exploration (4 marks):</strong> the research design, sampling technique and controlled variables, with the ethical considerations of your own study.</li><li><strong>Analysis (6 marks):</strong> descriptive and inferential statistics applied correctly, with the reasoning behind the test you chose.</li><li><strong>Evaluation (6 marks):</strong> discussion of your results against the background theory, with the limitations of your design and realistic improvements.</li>
       </ul>
       <p>
         Total word limit: 1,800 to 2,200 words (not including references, raw data in

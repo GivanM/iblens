@@ -26,7 +26,8 @@ jobs:
       - name: Pull, build, restart
         run: |
           ssh -i ~/.ssh/deploy_key -o ServerAliveInterval=30 \
-              ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'bash -s' <<'REMOTE'
+              ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+              "EVENT=${{ github.event_name }} BEFORE=${{ github.event.before }} bash -s" <<'REMOTE'
           set -e
           cd /opt/iblens
 
@@ -37,6 +38,49 @@ jobs:
           echo '==> ownership'
           sudo chown -R "$(id -un):$(id -gn)" /opt/iblens
 
+          echo '==> git'
+          git fetch --prune origin main
+          LOCAL=$(git rev-parse HEAD)
+          REMOTE_HEAD=$(git rev-parse origin/main)
+
+          # A push made from the server itself: the server already holds this
+          # commit and was built from it before the push. Stashing and resetting
+          # here swept away work still being edited on the server, twice, so the
+          # tree is left alone. What is checked instead is that the running build
+          # is not older than the committed sources it is supposed to contain.
+          if [ "$LOCAL" = "$REMOTE_HEAD" ] && [ "$EVENT" = "push" ]; then
+            echo "==> server already at $REMOTE_HEAD, pushed from the server"
+            STAMP=dist/index.js
+            if [ ! -f "$STAMP" ]; then
+              echo "no build at $STAMP"; exit 1
+            fi
+            RANGE="$REMOTE_HEAD~1..$REMOTE_HEAD"
+            if [ -n "$BEFORE" ] && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+              RANGE="$BEFORE..$REMOTE_HEAD"
+            fi
+            STALE=""
+            for f in $(git diff --name-only "$RANGE" -- client server shared drizzle scripts package.json); do
+              [ -f "$f" ] || continue
+              # A file still being edited cannot be judged; only committed content counts.
+              git diff --quiet -- "$f" || continue
+              if [ "$f" -nt "$STAMP" ]; then STALE="$STALE $f"; fi
+            done
+            if [ -n "$STALE" ]; then
+              echo "the running build is older than committed files:$STALE"
+              echo "build and restart on the server, then re-run this workflow"
+              exit 1
+            fi
+            echo '==> running build is current, nothing to do'
+            exit 0
+          fi
+
+          # The server holds commits that never reached origin/main. A reset
+          # would drop them silently, so stop and say so.
+          if ! git merge-base --is-ancestor HEAD origin/main; then
+            echo "server HEAD $LOCAL is not contained in origin/main; refusing to reset over it"
+            exit 1
+          fi
+
           # Keep whatever was edited on the server but not committed. The reset
           # below would otherwise destroy it with no way back.
           if [ -n "$(git status --porcelain)" ]; then
@@ -44,8 +88,6 @@ jobs:
             git stash push -u -m "pre-deploy $(date -Iseconds)"
           fi
 
-          echo '==> git'
-          git fetch --prune origin main
           git reset --hard origin/main
 
           echo '==> install'
