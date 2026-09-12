@@ -55,12 +55,15 @@ async function startServer() {
     const ip = String(req.headers["x-forwarded-for"] || req.socket.remoteAddress || "unknown").split(",")[0].trim();
     const now = Date.now();
     const windowMs = 60 * 60 * 1000;
+    // tRPC batches several calls into one request, so counting requests let a
+    // single HTTP call run as many analyses as it liked.
+    const calls = path.replace(/^\//, "").split(",").filter((p) => /analyze|rerun/i.test(p)).length || 1;
     const hits = (analysisHits.get(ip) || []).filter((t) => now - t < windowMs);
-    if (hits.length >= 30) {
+    if (hits.length + calls > 30) {
       res.status(429).json({ error: { message: "Too many analyses from this network in the last hour. Try again later." } });
       return;
     }
-    hits.push(now);
+    for (let i = 0; i < calls; i++) hits.push(now);
     analysisHits.set(ip, hits);
     if (analysisHits.size > 5000) {
       analysisHits.forEach((v: number[], k: string) => {

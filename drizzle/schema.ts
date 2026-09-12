@@ -38,6 +38,8 @@ export const analyses = mysqlTable("analyses", {
   rerunOf: int("rerunOf"),
   /** The rubric track this was marked on, so a re-check cannot silently switch scales. */
   examSession: varchar("examSession", { length: 10 }),
+  /** Which purchase opened this, so a refund closes exactly what it paid for. */
+  unlockOrderId: varchar("unlockOrderId", { length: 64 }),
   unlockedAt: timestamp("unlockedAt"),
 createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
@@ -70,6 +72,8 @@ export const orders = mysqlTable("orders", {
   provider: mysqlEnum("provider", ["nowpayments", "tribute", "lemonsqueezy"]).default("nowpayments").notNull(),
   npInvoiceId: varchar("npInvoiceId", { length: 255 }),
   npPaymentId: varchar("npPaymentId", { length: 255 }),
+  /** How many credits of this order were placed on a device, so a refund removes that many. */
+  deviceCreditsGranted: int("deviceCreditsGranted").notNull().default(0),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
@@ -122,6 +126,8 @@ export const anonymousAnalyses = mysqlTable("anonymous_analyses", {
   rerunsUsed: int("rerunsUsed").notNull().default(0),
   /** The rubric track this was marked on, so a re-check cannot silently switch scales. */
   examSession: varchar("examSession", { length: 10 }),
+  /** Which purchase opened this, so a refund closes exactly what it paid for. */
+  unlockOrderId: varchar("unlockOrderId", { length: 64 }),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
 

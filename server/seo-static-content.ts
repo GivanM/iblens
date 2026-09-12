@@ -70,7 +70,7 @@ export const staticContent: Record<string, string> = {
   <p style="font-size:17px;color:#374151;line-height:1.7;margin-bottom:24px">IBLens is a free AI IB essay grader that scores your Internal Assessment (IA), Extended Essay (EE), or Theory of Knowledge (TOK) essay against the official IB rubric in about 90 seconds. Get a criterion-by-criterion breakdown, a predicted band, the exact marks you are losing, and specific improvements. Your first analysis is free — no account required, no subscription. IBLens is calibrated to grade like a strict examiner — no inflated scores.</p>
   <h2 style="font-size:22px;font-weight:700;margin:28px 0 12px">What IBLens grades</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:24px">
-    <li><strong>Internal Assessments (IA)</strong> in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film.</li>
+    <li><strong>Coursework</strong> in 14 subjects (the IA in eleven, plus the externally assessed coursework in Visual Arts, Music and Film): Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film.</li>
     <li><strong>Extended Essay (EE)</strong> in the 14 subjects listed above, against the five official EE criteria.</li>
     <li><strong>Theory of Knowledge (TOK)</strong> essays and the TOK Exhibition.</li>
   </ul>
@@ -138,7 +138,7 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Is the Biology IA grader free?</dt>
     <dd style="margin-top:4px">Your first analysis is free (band range, weakest criterion with full feedback, top risks). The full report — exact score and every criterion with comments — unlocks for $9.99, or $24.99 for a pack of five.</dd>
     <dt style="font-weight:600;margin-top:16px">How accurate is the predicted score?</dt>
-    <dd style="margin-top:4px">IBLens uses the official IB Biology IA rubric descriptors and examiner language. The predicted score is a close approximation. Your teacher's assessment is the official one.</dd>
+    <dd style="margin-top:4px">IBLens uses the official IB Biology IA rubric descriptors and examiner language. The predicted score is an estimate, not a measured match to examiner marks. Your teacher's assessment is the official one.</dd>
     <dt style="font-weight:600;margin-top:16px">Can I use this for Biology EE?</dt>
     <dd style="margin-top:4px">No — the Biology IA grader uses the IA-specific rubric. For Extended Essays, use the <a href="/essay/extended-essay">Extended Essay grader</a>. For IB Biology EE tips, see our <a href="/resources/ib-biology-extended-essay">Biology EE guide</a>.</dd>
     <dt style="font-weight:600;margin-top:16px">Does IBLens store my essay?</dt>
@@ -356,7 +356,7 @@ export const staticContent: Record<string, string> = {
   "/essay/tok-exhibition": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › TOK Exhibition</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB TOK Exhibition Grader — Free AI Feedback on All 3 Objects</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Theory of Knowledge Exhibition commentary against the official IB TOK Exhibition rubric — all three criteria — and gives you specific feedback in about 90 seconds. Find out if your object justifications make convincing links to the IA prompt and to TOK concepts. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Theory of Knowledge Exhibition commentary against the official IB TOK exhibition instrument, which is a single holistic scale out of 10 — and gives you specific feedback in about 90 seconds. Find out if your object justifications make convincing links to the IA prompt and to TOK concepts. A free preview is included; the full report is $9.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB TOK Exhibition rubric: how it is marked (holistic, out of 10)</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">Since the 2022 syllabus the TOK exhibition is marked holistically against a single global-impression instrument, out of 10, with no sub-criteria. The examiner works from one guiding question — "Does the exhibition successfully show how TOK manifests in the world around us?" — and places your commentary in one of five bands: Excellent (9–10), Good (7–8), Satisfactory (5–6), Basic (3–4), Rudimentary (1–2).</p>
@@ -430,7 +430,7 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Does this work for both Math AA and Math AI?</dt>
     <dd style="margin-top:4px">Yes — the IB Math IA rubric is identical for both Mathematics: Analysis and Approaches and Mathematics: Applications and Interpretation. See also our dedicated <a href="/essay/maths-aa-ia">Math AA IA grader</a> and <a href="/essay/maths-ai-ia">Math AI IA grader</a> pages.</dd>
     <dt style="font-weight:600;margin-top:16px">What is the word limit for the Math IA?</dt>
-    <dd style="margin-top:4px">The IB recommends up to 3,000 words, with no strict word limit. Typically 1,500–3,000 words plus mathematical working.</dd>
+    <dd style="margin-top:4px">The IB sets no word limit for the exploration and suggests roughly 12 to 20 pages, with no strict word limit. Typically 1,500–3,000 words plus mathematical working.</dd>
     <dt style="font-weight:600;margin-top:16px">Is the Math IA grader free?</dt>
     <dd style="margin-top:4px">Your first analysis is free (band range, weakest criterion, top risks). The full report is $9.99.</dd>
   </dl>
@@ -827,7 +827,7 @@ export const staticContent: Record<string, string> = {
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">IBLens grades all major IB assessment types:</p>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
     <li><strong>Internal Assessments (IA)</strong>: <a href="/essay/biology-ia">Biology</a>, <a href="/essay/chemistry-ia">Chemistry</a>, <a href="/essay/physics-ia">Physics</a>, <a href="/essay/economics-ia">Economics</a>, <a href="/essay/history-ia">History</a>, <a href="/essay/psychology-ia">Psychology</a>, <a href="/essay/math-ia">Mathematics</a> (AA and AI), <a href="/essay/computer-science-ia">Computer Science</a>, <a href="/essay/business-management-ia">Business Management</a>, and <a href="/essay/english-essay">English A</a></li>
-    <li><strong>Extended Essay (EE)</strong>: All subjects — the <a href="/essay/extended-essay">Extended Essay grader</a> uses the universal EE rubric and applies subject-specific knowledge expectations</li>
+    <li><strong>Extended Essay (EE)</strong>: the 14 subjects listed above — the <a href="/essay/extended-essay">Extended Essay grader</a> uses the universal EE rubric and applies subject-specific knowledge expectations</li>
     <li><strong>TOK</strong>: Both the <a href="/essay/tok-essay">TOK Essay</a> (1,600-word prescribed title essay) and <a href="/essay/tok-exhibition">TOK Exhibition</a> (three-object commentary)</li>
   </ul>
 
@@ -852,7 +852,7 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Is IBLens free?</dt>
     <dd style="margin-top:4px">Your first analysis is free (band range, weakest criterion with full feedback, top risks). The full report unlocks for $9.99, or $24.99 for a pack of five.</dd>
     <dt style="font-weight:600;margin-top:16px">How accurate is the AI grading?</dt>
-    <dd style="margin-top:4px">IBLens uses the official IB rubric descriptors for each subject and assessment type. The predicted score closely approximates what an experienced examiner would award — but your teacher's assessment is always the official mark.</dd>
+    <dd style="margin-top:4px">IBLens uses the official IB rubric descriptors for each subject and assessment type. The predicted score is an estimate produced from the published criteria, not a measured match to examiner marks — but your teacher's assessment is always the official mark.</dd>
     <dt style="font-weight:600;margin-top:16px">Is my essay stored or used to train AI?</dt>
     <dd style="margin-top:4px">No. The essay text is never written to our database. The report it produces is deleted after 90 days unless you bought it, and IBLens does not use student essays to train AI models.</dd>
     <dt style="font-weight:600;margin-top:16px">Can I grade my essay more than once?</dt>
@@ -1171,7 +1171,7 @@ export const staticContent: Record<string, string> = {
       </ul>
 
       <p>
-        For subjects not listed (Geography, Philosophy, Environmental Systems), the grader provides general IB IA feedback — not subject-specific rubric scoring.
+        Subjects outside the list are not offered, because there would be no published criteria to mark them against — not subject-specific rubric scoring.
       </p>
 
       <h2>How the IB IA Grader Works</h2>
@@ -2732,7 +2732,7 @@ export const staticContent: Record<string, string> = {
         <strong>Consider credit policies.</strong> If you achieve 6s and 7s at HL, some universities will grant significant credit — potentially saving a semester or year of tuition. This can be worth tens of thousands of dollars and should factor into your university choice.
       </p>
 
-      <h2>How IBLens University Strategy Helps</h2>
+      <h2>How IBLens Helps With Applications</h2>
 
       <p>
         If you are applying through UCAS, the part we help with is the writing: our <a href="/ucas-personal-statement">personal statement checker</a> reviews each of the three answers against what admissions tutors look for. For entry requirements and deadlines, use the university's own course pages and UCAS. What a strong application needs:
@@ -2960,7 +2960,7 @@ export const staticContent: Record<string, string> = {
       <p>This guide walks through what examiners actually reward, gives you concrete example research questions by subject, shows the most common mistakes that drag scores down, and explains the mindset shift that separates a C-grade EE from one that earns a coveted A.</p>
 
       <h2>What Makes a High-Scoring IB Extended Essay?</h2>
-      <p>The IB grades Extended Essays against five criteria: Focus and Method (Criterion A), Knowledge and Understanding (B), Critical Thinking (C), Presentation (D), and Engagement (E). Total marks available are 34. An A requires roughly 28+ marks; most students earning a B or C lose the majority of their marks on Criterion C — critical thinking.</p>
+      <p>The IB grades Extended Essays against five criteria: Focus and Method (Criterion A), Knowledge and Understanding (B), Critical Thinking (C), Presentation (D), and Engagement (E). Total marks available are 34. An A is 27 marks or more out of 34; most students earning a B or C lose the majority of their marks on Criterion C — critical thinking.</p>
       <p>Examiners are not looking for a Wikipedia-style overview of a topic. They want to see a student take a narrow, specific question and subject it to sustained, disciplined analysis. The difference between a mediocre essay and an excellent one almost always comes down to three things:</p>
       <ul>
         <li><strong>Specificity of the research question.</strong> Vague questions produce vague answers. A question like "How does social media affect mental health?" cannot be answered in 4,000 words. A question like "To what extent did Instagram's algorithmic feed, introduced in 2016, correlate with self-reported anxiety scores among UK adolescent girls aged 14–17?" is narrow enough to actually investigate.</li>
@@ -3302,7 +3302,7 @@ export const staticContent: Record<string, string> = {
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Chemistry IA Examples</nav>\n      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Chemistry IA Examples</h1>
   <p>
         The IB Chemistry Internal Assessment is a 10-hour scientific investigation
-        worth 20% of your final grade. It is marked on the same five criteria as
+        worth 20% of your final grade. It is marked on the same four criteria as
         other Group 4 IAs — Research design, Data analysis, Conclusion and Evaluation,
         and Communication — but Chemistry brings specific challenges: quantitative
         data is expected, error calculations are required, and examiners have a low
@@ -4190,7 +4190,7 @@ export const staticContent: Record<string, string> = {
       <p>
         The Extended Essay is marked on five criteria (A–E), totalling 34 marks.
         Combined with the TOK essay, this contributes up to 3 bonus points toward
-        your IB Diploma total. A grade A corresponds to roughly 28+/34; B is around
+        your IB Diploma total. A grade A corresponds to 27 to 34 out of 34; B is around
         22–27; C is 16–21; D is 9–15; E (failing) is below 9.
       </p>
       <ul>

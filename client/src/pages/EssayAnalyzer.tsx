@@ -286,10 +286,21 @@ export default function EssayAnalyzer() {
   // so there is nothing to click: read it and show it.
   const paidReturn = typeof window !== "undefined"
     && new URLSearchParams(window.location.search).get("payment") === "success";
+  const [waitedFor, setWaitedFor] = useState(0);
   const paidReportQ = trpc.essay.anonymousReport.useQuery(
     { fingerprint: anonFp },
-    { enabled: paidReturn && !isAuthenticated && !result, refetchInterval: (d: any) => (d?.unlocked ? false : 4000) }
+    {
+      enabled: paidReturn && !isAuthenticated && !result,
+      // Stop after two minutes rather than spinning for ever: if the payment has
+      // not arrived by then, something is wrong and the reader needs to be told.
+      refetchInterval: (d: any) => (d?.unlocked || waitedFor > 120000 ? false : 4000),
+    }
   );
+  useEffect(() => {
+    if (!paidReturn || result) return;
+    const t = setInterval(() => setWaitedFor((w) => w + 4000), 4000);
+    return () => clearInterval(t);
+  }, [paidReturn, result]);
   useEffect(() => {
     if (paidReportQ.data?.unlocked && !result) {
       setResult(paidReportQ.data.result as EssayResult);
@@ -309,9 +320,24 @@ export default function EssayAnalyzer() {
   const anonUnlocked = !isAuthenticated && (anonReportQ.data?.unlocked === true || paidRunUnlocked);
   const deviceCreditsQ = trpc.essay.deviceCredits.useQuery(
     { fingerprint: anonFp },
-    { enabled: !isAuthenticated }
+    { enabled: true }
   );
-  const deviceCredits = deviceCreditsQ.data?.credits ?? 0;
+  // Signing in must not strand what was bought before signing in.
+  const claimCredits = trpc.essay.claimDeviceCredits.useMutation({
+    onSuccess: (d: any) => {
+      if (d.moved > 0) {
+        toast.success(`${d.moved} report${d.moved === 1 ? "" : "s"} you bought on this device moved to your account.`);
+        creditsQuery.refetch();
+        deviceCreditsQ.refetch();
+      }
+    },
+  });
+  useEffect(() => {
+    if (isAuthenticated && (deviceCreditsQ.data?.credits ?? 0) > 0 && !claimCredits.isPending && !claimCredits.isSuccess) {
+      claimCredits.mutate({ fingerprint: anonFp });
+    }
+  }, [isAuthenticated, deviceCreditsQ.data]);
+  const deviceCredits = isAuthenticated ? 0 : (deviceCreditsQ.data?.credits ?? 0);
   // Coming back later, on the same device: the report is bought and paid for, so
   // show it. Before this, a guest who closed the tab could never reach it again.
   useEffect(() => {
@@ -673,7 +699,9 @@ export default function EssayAnalyzer() {
             <div className="text-sm p-3 rounded-lg bg-primary/5 border border-primary/30 flex items-center gap-2">
               <Loader2 className="w-4 h-4 flex-shrink-0 animate-spin" />
               <span>
-                Payment received. Opening your full report, this takes a few seconds. If it does not open,
+                {waitedFor > 120000
+                  ? "Your payment went through but the report has not opened. This is on us: "
+                  : "Payment received. Opening your full report, this takes a few seconds. If it does not open, "}
                 email glushkovim@gmail.com with order{" "}
                 <code className="text-xs">{new URLSearchParams(window.location.search).get("order") || ""}</code> and
                 we will open it or refund you.

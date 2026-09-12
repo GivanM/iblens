@@ -194,7 +194,7 @@ export default function UniversityAdmissionsGuide() {
         <strong>Consider credit policies.</strong> If you achieve 6s and 7s at HL, some universities will grant significant credit, potentially saving a semester or year of tuition. This can be worth tens of thousands of dollars and should factor into your university choice.
       </p>
 
-      <h2>How IBLens University Strategy Helps</h2>
+      <h2>How IBLens Helps With Applications</h2>
 
       <p>
         If you are applying through UCAS, the part we can help with is the writing: our <Link href="/ucas-personal-statement" className="text-primary hover:underline">personal statement checker</Link> reviews each of the three answers against what admissions tutors look for. For entry requirements and deadlines, use the university's own course pages and UCAS. What a strong application needs:

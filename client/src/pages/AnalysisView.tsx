@@ -1,4 +1,8 @@
+import { useState } from "react";
 import { useParams, Link } from "wouter";
+import { toast } from "sonner";
+import { PRICE_LABELS } from "@shared/pricing";
+import { PurchaseModal } from "@/components/PurchaseModal";
 import { trpc } from "@/lib/trpc";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -12,6 +16,15 @@ export default function AnalysisView() {
   const params = useParams();
   const id = Number(params.id);
   const { data, isLoading, error } = trpc.dashboard.analysis.useQuery({ id }, { enabled: Number.isFinite(id) });
+  const [buyOpen, setBuyOpen] = useState(false);
+  const utils = trpc.useUtils();
+  // A locked report had no way to be opened from here: the dashboard sent people
+  // to the analyzer, where the unlock button only ever existed for the anonymous
+  // report of the current session.
+  const unlockHere = trpc.essay.unlockAnalysis.useMutation({
+    onSuccess: () => { toast.success("Report unlocked."); utils.dashboard.analysis.invalidate(); },
+    onError: (e: any) => toast.error(e.message || "Could not unlock this report"),
+  });
 
   if (isLoading) {
     return (
@@ -39,7 +52,15 @@ export default function AnalysisView() {
       <div className="container max-w-3xl mx-auto py-20 text-center space-y-4">
         <h1 style={SERIF} className="text-2xl font-bold">This report is still locked</h1>
         <p className="text-muted-foreground">You saw the free preview for this draft. The full report unlocks the exact score, every criterion with comments, and your ranked fix list.</p>
-        <Button asChild><Link href="/essay">Go to the analyzer</Link></Button>
+        <div className="flex flex-col sm:flex-row gap-2 justify-center">
+          <Button disabled={unlockHere.isPending} onClick={() => unlockHere.mutate({ analysisId: id })}>
+            {unlockHere.isPending ? "Unlocking…" : "Unlock this report (1 credit)"}
+          </Button>
+          <Button variant="outline" onClick={() => setBuyOpen(true)}>
+            Buy a credit, {PRICE_LABELS.ESSAY_SINGLE}
+          </Button>
+        </div>
+        <PurchaseModal open={buyOpen} onOpenChange={setBuyOpen} sku="ESSAY_SINGLE" />
       </div>
     );
   }
@@ -53,9 +74,11 @@ export default function AnalysisView() {
           <Link href="/dashboard"><ArrowLeft className="w-4 h-4 mr-2" />Dashboard</Link>
         </Button>
         <div className="flex items-center gap-2">
-          <Button asChild variant="outline" size="sm">
-            <Link href={`/essay?rerun=${id}&session=${(data as any)?.examSession || ""}`}>Re-check my revised draft</Link>
-          </Button>
+          {!(data as any).rerunOf && Math.max(0, 2 - ((data as any).rerunsUsed ?? 0)) > 0 && (
+            <Button asChild variant="outline" size="sm">
+              <Link href={`/essay?rerun=${id}&session=${(data as any)?.examSession || ""}`}>Re-check my revised draft</Link>
+            </Button>
+          )}
           <Button variant="outline" size="sm" onClick={() => window.print()}>
             <Printer className="w-4 h-4 mr-2" />Save as PDF
           </Button>
@@ -72,7 +95,9 @@ export default function AnalysisView() {
             {r._rubricLabel ? ` · ${r._rubricLabel}` : ""}
           </p>
           <p className="text-xs text-muted-foreground">
-            Included with this report: {Math.max(0, 2 - ((data as any).rerunsUsed ?? 0))} free re-check(s) of this draft within 14 days.
+            {(data as any).rerunOf
+        ? "This is a re-check of a report you bought. Its re-checks belong to that original report."
+        : `Included with this report: ${Math.max(0, 2 - ((data as any).rerunsUsed ?? 0))} free re-check(s) of this draft within 14 days.`}
           </p>
         </CardHeader>
         <CardContent className="space-y-6">

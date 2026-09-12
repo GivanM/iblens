@@ -60,9 +60,12 @@ export default function UcasPersonalStatement() {
   }, [paidReviewQ.data, result]);
 
   // Two re-checks of the same statement, included with the purchase.
-  const [rechecksLeft, setRechecksLeft] = useState<number | null>(null);
+  const [rechecksLeft, setRechecksLeftState] = useState<number | null>(null);
+  const setRechecksLeft = setRechecksLeftState;
   const unlockedQ = trpc.essay.anonymousReport.useQuery({ fingerprint: anonFp, kind: "ucas" }, { enabled: !paidReturn });
   const isUnlocked = unlockedQ.data?.unlocked === true || paidReviewQ.data?.unlocked === true;
+  const serverRechecks = (unlockedQ.data as any)?.rerunsLeft ?? (paidReviewQ.data as any)?.rerunsLeft ?? null;
+  const effectiveRechecks = rechecksLeft ?? serverRechecks;
   const recheck = trpc.essay.rerunAnonymous.useMutation({
     onSuccess: (d: any) => {
       setResult(d.result);
@@ -218,8 +221,20 @@ export default function UcasPersonalStatement() {
             className="w-full"
             disabled={blockers.length > 0 || review.isPending || recheck.isPending}
             onClick={() => {
-              if (isUnlocked) {
+              // Re-checks belong to the review that was bought. Once they are gone,
+              // a new statement is a new review, not a dead button.
+              if (isUnlocked && (effectiveRechecks === null || effectiveRechecks > 0)) {
                 recheck.mutate({ fingerprint: anonFp, answers });
+                return;
+              }
+              if (isUnlocked) {
+                review.mutate({
+                  course: course.trim(), universityType,
+                  q1: answers.q1, q2: answers.q2, q3: answers.q3,
+                  clientFingerprint: anonFp,
+                  spendCredit: hasCredit,
+                  spendDeviceCredit: !hasCredit,
+                });
                 return;
               }
               review.mutate({
@@ -237,8 +252,10 @@ export default function UcasPersonalStatement() {
           >
             {review.isPending || recheck.isPending ? (
               <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Reading your statement…</>
+            ) : isUnlocked && effectiveRechecks === 0 ? (
+              "Review a new statement (1 credit)"
             ) : isUnlocked ? (
-              `Re-check my statement (free${rechecksLeft !== null ? `, ${rechecksLeft} left` : ""})`
+              `Re-check my statement (free${effectiveRechecks !== null ? `, ${effectiveRechecks} left` : ""})`
             ) : hasCredit ? (
               "Review my statement in full (1 credit)"
             ) : (

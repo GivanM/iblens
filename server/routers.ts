@@ -25,6 +25,8 @@ import {
   getLatestAnonymousEssay,
   getLatestAnonymousUcas,
   getDeviceCredits,
+  takeAllDeviceCredits,
+  grantCreditsViaLedger,
   consumeDeviceCredit,
   addDeviceCredits,
   deleteAnonymousAnalysis,
@@ -602,6 +604,22 @@ const essayRouter = router({
    * unlocked it. This is how a guest reads what they paid for: they never sign in,
    * so the authenticated unlock path is closed to them.
    */
+  /**
+   * Move credits bought on this device onto the account that just signed in.
+   * A guest purchase leaves them on the device, and signing in used to look like
+   * the way to keep them while actually stranding them there.
+   */
+  claimDeviceCredits: protectedProcedure
+    .input(z.object({ fingerprint: z.string().min(1) }))
+    .mutation(async ({ ctx, input }) => {
+      const credits = await getDeviceCredits(input.fingerprint);
+      if (credits <= 0) return { moved: 0 };
+      const taken = await takeAllDeviceCredits(input.fingerprint);
+      if (taken <= 0) return { moved: 0 };
+      await grantCreditsViaLedger(ctx.user.id, taken, 0, `device-claim:${input.fingerprint.slice(0, 8)}`);
+      return { moved: taken };
+    }),
+
   /** Reports this device has already paid for and not yet spent. */
   deviceCredits: publicProcedure
     .input(z.object({ fingerprint: z.string().min(1) }))
@@ -664,7 +682,12 @@ const essayRouter = router({
       // hold credits, so a pack bought without one lives on the device.
       const usage = await canAnonymousAnalyze(fingerprint);
       let paidByDevice = false;
-      if (!usage.allowed) {
+      // Someone who asks for a paid report gets one, even if their free preview
+      // is still unused: they pressed the button that says it costs a credit.
+      if (input.spendDeviceCredit === true) {
+        paidByDevice = await consumeDeviceCredit(fingerprint);
+      }
+      if (!usage.allowed && !paidByDevice) {
         paidByDevice = input.spendDeviceCredit === true && await consumeDeviceCredit(fingerprint);
         if (!paidByDevice) {
           throw new TRPCError({
@@ -690,6 +713,10 @@ const essayRouter = router({
 
       const systemPrompt = buildEssaySystemPrompt(input.essayType, input.subject, input.examSession);
       const userPrompt = buildEssayUserPrompt(input.essayType, input.subject, input.researchQuestion, input.essayText, input.examSession, input.reflections);
+
+      // Take the free slot before the model runs. Two tabs used to get two free
+      // analyses, exactly as they did on the anonymous path.
+      if (usage.isFree) await consumeFreeEssaySlot(ctx.user.id).catch(() => {});
 
       try {
         const startedAt = Date.now();

@@ -70,7 +70,7 @@ export default function SampleReports() {
   return (
     <ResourceArticle
       title="Sample IBLens Reports, Three Essays, Three Honest Grades | IBLens"
-      description="See real, unedited IBLens output: the same TOK title answered at three quality levels, graded 3/10, 4/10 and 7/10. A grader that gives everything 6.5 is useless, this is what calibrated strictness looks like."
+      description="See real, unedited IBLens output: the same TOK title answered at three quality levels, graded 2/10, 4/10 and 5/10. A grader that gives everything 6.5 is useless, this is what calibrated strictness looks like."
       canonical="/resources/sample-reports"
       datePublished="2026-07-03"
       dateModified="2026-07-03"

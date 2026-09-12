@@ -28,7 +28,7 @@ export default function HowIBLensWorks() {
 
       <ul>
         <li><strong>Criterion-by-criterion scoring:</strong> Your essay is evaluated against the specific IB assessment criteria for your subject and essay type. Each criterion receives a predicted score with an explanation of why that score was assigned.</li>
-        <li><strong>Overall predicted grade:</strong> Based on the criterion scores, IBLens provides a predicted grade (1–7 for subject IAs, A–E for Extended Essays and TOK).</li>
+        <li><strong>Overall predicted grade:</strong> Based on the criterion scores, IBLens provides a predicted grade (a mark out of the total for your task, with the range the draft currently sits in).</li>
         <li><strong>Risk areas:</strong> Specific sections or aspects of your essay that are likely to lose marks, with explanations of why and suggestions for improvement.</li>
         <li><strong>Leverage zones:</strong> Areas where small improvements would yield the largest mark gains, helping you prioritize your revision time.</li>
         <li><strong>Actionable next steps:</strong> Concrete, specific suggestions for how to improve each criterion score, written in plain language that tells you exactly what to do.</li>
@@ -38,14 +38,14 @@ export default function HowIBLensWorks() {
         The analysis is tailored to your specific subject and essay type. A Biology IA is assessed against different criteria than a History IA or an Extended Essay in English Literature. IBLens recognizes the subject context and applies the appropriate framework.
       </p>
 
-      <h2>How the AI Was Trained Against IB Rubrics</h2>
+      <h2>How the Criteria Reach the Model</h2>
 
       <p>
         IBLens uses advanced language models that have been specifically configured to understand and apply IB assessment criteria. The system works by:
       </p>
 
       <p>
-        <strong>Criteria mapping:</strong> For each subject and essay type, the system has a detailed understanding of the assessment criteria, band descriptors, and what examiners look for at each level. This is derived from the official IBO assessment criteria published in subject guides, examiner reports, and marking guidance documents.
+        <strong>Criteria mapping:</strong> For each subject and essay type, the system has a detailed understanding of the criterion names, their mark allocations and what each one assesses. This is derived from the official IBO assessment criteria published in subject guides, examiner reports, and marking guidance documents.
       </p>
 
       <p>
@@ -57,7 +57,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        <strong>Calibration:</strong> The system is calibrated to produce scores that align with the standards applied by real IB examiners. This means the predicted scores are realistic estimates, not inflated or deflated, if IBLens predicts a 5, it means your essay currently demonstrates the qualities that examiners typically associate with a grade 5.
+        <strong>Calibration:</strong> The criteria for your task and session are placed in the model's instructions before it reads your work. This means the predicted scores are realistic estimates, not inflated or deflated, a predicted mark is the model's reading of the published descriptors, not a calibrated measurement against marked scripts.
       </p>
 
       <h2>What Feedback Looks Like</h2>
@@ -155,13 +155,13 @@ export default function HowIBLensWorks() {
           <tr>
             <td><strong>Essay Pack (5)</strong></td>
             <td>$24.99</td>
-            <td>$4.00</td>
+            <td>$5.00</td>
             <td>Multiple drafts of the same essay or several different IAs</td>
           </tr>
           <tr>
             <td><strong>Essay Pack (10)</strong></td>
             <td>$44.99</td>
-            <td>$3.50</td>
+            <td>$4.50</td>
             <td>Full IB preparation, analyze all your IAs, EE drafts, and TOK essay</td>
           </tr>
           <tr>

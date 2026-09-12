@@ -14,12 +14,15 @@ import {
   getLatestAnonymousEssay,
   getLatestAnonymousUcas,
   setAnonymousUnlocked,
-  relockAnonymousAnalysis,
+  relockAnonymousForOrder,
   relockAnalysesForOrder,
+  setOrderDeviceCredits,
   addDeviceCredits,
   findOrCreateGuestUserByEmail,
+  ledgerHasEntry,
   removeDeviceCredits,
   debitAccountCredits,
+  isGuestAccount,
   consumePaidEssayCredit,
 } from "../db";
 import { sendPaymentConfirmationEmail, getSkuHumanName } from "../email";
@@ -112,7 +115,17 @@ export function registerLemonsqueezyWebhook(app: Express) {
       const eventName = meta.event_name || eventNameHeader || "unknown";
       const dataId = String(body?.data?.id || "unknown");
       // Use composite key for idempotency: provider + dataId + eventName
-      const eventKey = `${dataId}_${eventName}`;
+      // Only a verified delivery may own an event key. Anyone can POST here, and
+      // an unsigned request writing the key first made the genuine webhook look
+      // like a duplicate, so the payment was swallowed. Unverified requests get a
+      // throwaway key and are logged for inspection only.
+      const signatureHeader = (req.headers["x-signature"] as string) || "";
+      const secretForKey = ENV.lemonsqueezyWebhookSecret || "";
+      const preVerified = !!secretForKey && !!signatureHeader
+        && verifyLsSignature(rawBodyStr, signatureHeader, secretForKey);
+      const eventKey = preVerified
+        ? `${dataId}_${eventName}`
+        : `unverified_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 
       console.log(`[LemonSqueezy Webhook] Incoming: event=${eventName}, dataId=${dataId}, bodyLen=${rawBodyStr.length}`);
 
@@ -205,6 +218,12 @@ export function registerLemonsqueezyWebhook(app: Express) {
             const guessed = /10/.test(variantName) ? 10 : /5|five/.test(variantName) ? 5 : 1;
             if (buyerEmail) {
               try {
+                // The same delivery can arrive twice; the ledger remembers this one.
+                const already = await ledgerHasEntry(`lemonsqueezy:storefront:${variantName || "unknown"}`, dataId);
+                if (already) {
+                  console.log(`[LemonSqueezy] Storefront purchase ${dataId} already credited`);
+                  return res.status(200).json({ ok: true, message: "Already credited" });
+                }
                 const { id: guestId } = await findOrCreateGuestUserByEmail(buyerEmail);
                 await grantCreditsViaLedger(guestId, guessed, 0, `lemonsqueezy:storefront:${variantName || "unknown"}`, dataId);
                 console.warn(`[LemonSqueezy] Storefront purchase with no order_id: ${guessed} credit(s) granted to ${buyerEmail}`);
@@ -245,10 +264,9 @@ export function registerLemonsqueezyWebhook(app: Express) {
             return res.status(200).json({ ok: true, message: "Already processed" });
           }
 
-          // Mark order as paid
-          await updateOrderStatus(order.id, "paid", dataId);
-
-          // Grant credits
+          // Grant first, mark paid second. The other way round, a failure between
+          // them left the order looking settled with nothing handed over, and the
+          // duplicate guard then refused every retry.
           const credits = lsSkuToCredits(order.sku);
           if (credits.essay > 0 || credits.university > 0) {
             await grantCreditsViaLedger(
@@ -260,12 +278,17 @@ export function registerLemonsqueezyWebhook(app: Express) {
             );
             console.log(`[LemonSqueezy] Credits granted to user ${order.userId}: essay=${credits.essay}, university=${credits.university}`);
           }
+          await updateOrderStatus(order.id, "paid", dataId);
 
           // A guest bought the report sitting on their device. Open it here, because
           // they cannot sign in to spend the credit themselves: sign-in is Google
           // only and the credit lives on a guest:<email> account.
+          // Only a guest needs credits on a device. A signed-in buyer has an
+          // account that holds them, and moving them to a browser id took the
+          // whole purchase away from every authenticated path.
           const unlockFp = String(customData.unlock_fp || "");
-          if (unlockFp && (credits.essay > 0)) {
+          const buyerIsGuest = await isGuestAccount(order.userId).catch(() => false);
+          if (unlockFp && buyerIsGuest && credits.essay > 0) {
             try {
               const unlockKind = String(customData.unlock_kind || "essay");
               const rec = unlockKind === "ucas"
@@ -280,7 +303,10 @@ export function registerLemonsqueezyWebhook(app: Express) {
               // out a pack twice over, so the account side is taken back.
               const spentNow = rec && rec.resultJson && !(rec as any).unlocked ? 1 : 0;
               const toDevice = credits.essay - spentNow;
-              if (toDevice > 0) await addDeviceCredits(unlockFp, toDevice);
+              if (toDevice > 0) {
+                await addDeviceCredits(unlockFp, toDevice);
+                await setOrderDeviceCredits(order.id, toDevice);
+              }
               // Only the part that moved to the device. The one credit the unlock
               // below consumes stays on the account until it is spent there.
               if (toDevice > 0) await debitAccountCredits(order.userId, toDevice);
@@ -288,7 +314,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
                 // Open the report first. If the charge against the credit then fails,
                 // the buyer still has what they paid for and we are out one credit,
                 // which is the right way round for the person who just paid.
-                await setAnonymousUnlocked(rec.id);
+                await setAnonymousUnlocked(rec.id, order.id);
                 await consumePaidEssayCredit(order.userId).catch((creditErr) => {
                   console.warn(`[LemonSqueezy] Report ${rec.id} opened but credit not consumed:`, creditErr);
                 });
@@ -375,22 +401,14 @@ export function registerLemonsqueezyWebhook(app: Express) {
           await relockAnalysesForOrder(order.userId, order.id).catch((e) =>
             console.warn("[LemonSqueezy] Re-lock of account reports failed:", e));
 
+          // Take back exactly what this order put on the device, not the price
+          // list value, and close exactly the report it opened.
           const refundFp = String(customData.unlock_fp || "");
-          if (refundFp) {
-            const refundedCredits = lsSkuToCredits(order.sku);
-            await removeDeviceCredits(refundFp, refundedCredits.essay).catch(() => {});
-            try {
-              const rec = String(customData.unlock_kind || "essay") === "ucas"
-                ? await getLatestAnonymousUcas(refundFp)
-                : await getLatestAnonymousEssay(refundFp);
-              if (rec && (rec as any).unlocked) {
-                await relockAnonymousAnalysis(rec.id);
-                console.log(`[LemonSqueezy] Report ${rec.id} re-locked after refund of order ${order.id}`);
-              }
-            } catch (relockErr) {
-              console.warn("[LemonSqueezy] Re-lock after refund failed:", relockErr);
-            }
+          if (refundFp && (order as any).deviceCreditsGranted > 0) {
+            await removeDeviceCredits(refundFp, (order as any).deviceCreditsGranted).catch(() => {});
           }
+          await relockAnonymousForOrder(order.id).catch((e) =>
+            console.warn("[LemonSqueezy] Anonymous re-lock failed:", e));
 
           // Deduct credits
           const credits = lsSkuToCredits(order.sku);

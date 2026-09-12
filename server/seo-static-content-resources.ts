@@ -430,7 +430,7 @@ export const staticContentResources: Record<string, string> = {
       </ul>
 
       <p>
-        For subjects not listed (Geography, Philosophy, Environmental Systems), the grader provides general IB IA feedback — not subject-specific rubric scoring.
+        Subjects outside the list are not offered, because there would be no published criteria to mark them against — not subject-specific rubric scoring.
       </p>
 
       <h2>How the IB IA Grader Works</h2>

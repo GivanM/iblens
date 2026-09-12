@@ -704,11 +704,11 @@ export async function getLatestAnonymousUcas(fingerprint: string) {
   return rows[0] ?? null;
 }
 
-export async function setAnonymousUnlocked(id: number) {
+export async function setAnonymousUnlocked(id: number, orderId?: string) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   await db.update(anonymousAnalyses)
-    .set({ unlocked: true, unlockedAt: new Date() })
+    .set({ unlocked: true, unlockedAt: new Date(), ...(orderId ? { unlockOrderId: orderId } : {}) })
     .where(eq(anonymousAnalyses.id, id));
 }
 
@@ -801,6 +801,15 @@ export async function consumeDeviceCredit(fingerprint: string): Promise<boolean>
   return changed > 0;
 }
 
+/** True when this account exists only because a guest paid: nobody can sign into it. */
+export async function isGuestAccount(userId: number): Promise<boolean> {
+  const db = await getDb();
+  if (!db) return false;
+  const rows = await db.select({ openId: users.openId }).from(users).where(eq(users.id, userId)).limit(1);
+  const openId = String(rows[0]?.openId || "");
+  return openId.startsWith("guest:") || openId.startsWith("guest#");
+}
+
 /** Move credits off an account and onto the device that bought them, exactly once. */
 export async function debitAccountCredits(userId: number, amount: number) {
   const db = await getDb();
@@ -808,6 +817,26 @@ export async function debitAccountCredits(userId: number, amount: number) {
   await db.update(users)
     .set({ essayCredits: sql`GREATEST(${users.essayCredits} - ${amount}, 0)` })
     .where(eq(users.id, userId));
+}
+
+/** Has this exact grant already been recorded? Used to make retries harmless. */
+export async function ledgerHasEntry(reason: string, orderId: string): Promise<boolean> {
+  const db = await getDb();
+  if (!db) return false;
+  const rows = await db.select({ id: creditLedger.id }).from(creditLedger)
+    .where(and(eq(creditLedger.reason, reason), eq(creditLedger.orderId, orderId))).limit(1);
+  return rows.length > 0;
+}
+
+/** Empty the device wallet and say how much was in it. */
+export async function takeAllDeviceCredits(fingerprint: string): Promise<number> {
+  const db = await getDb();
+  if (!db) return 0;
+  const rows = await db.select().from(deviceCredits).where(eq(deviceCredits.fingerprint, fingerprint)).limit(1);
+  const amount = (rows[0] as any)?.credits ?? 0;
+  if (amount <= 0) return 0;
+  await db.update(deviceCredits).set({ credits: 0 }).where(eq(deviceCredits.fingerprint, fingerprint));
+  return amount;
 }
 
 /** Take back device credits that a refunded purchase had granted. */
@@ -834,16 +863,34 @@ export async function relockAnonymousAnalysis(id: number) {
  * record which report a given order unlocked, so this takes the newest unlocked
  * one, which is the report the refunded purchase opened in every flow we have.
  */
-export async function relockAnalysesForOrder(userId: number, _orderId: string) {
+export async function relockAnalysesForOrder(userId: number, orderId: string) {
   const db = await getDb();
   if (!db) return;
-  const rows = await db.select().from(analyses)
-    .where(and(eq(analyses.userId, userId), eq(analyses.unlocked, true)))
-    .orderBy(desc(analyses.id)).limit(1);
-  const rec: any = rows[0];
-  if (!rec) return;
-  await db.update(analyses).set({ unlocked: false, unlockedAt: null }).where(eq(analyses.id, rec.id));
-  console.log(`[Refund] Analysis ${rec.id} re-locked for user ${userId}`);
+  // Only what this order opened. Taking "the newest unlocked report" closed
+  // reports paid for by other purchases.
+  const res: any = await db.update(analyses)
+    .set({ unlocked: false, unlockedAt: null })
+    .where(and(eq(analyses.userId, userId), eq(analyses.unlockOrderId, orderId)));
+  const n = Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0);
+  console.log(`[Refund] ${n} account report(s) re-locked for order ${orderId}`);
+}
+
+/** Close the anonymous report a given order opened. */
+export async function relockAnonymousForOrder(orderId: string) {
+  const db = await getDb();
+  if (!db) return;
+  const res: any = await db.update(anonymousAnalyses)
+    .set({ unlocked: false, unlockedAt: null })
+    .where(eq(anonymousAnalyses.unlockOrderId, orderId));
+  const n = Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0);
+  console.log(`[Refund] ${n} anonymous report(s) re-locked for order ${orderId}`);
+}
+
+/** Record how much of a purchase was placed on a device. */
+export async function setOrderDeviceCredits(orderId: string, amount: number) {
+  const db = await getDb();
+  if (!db) return;
+  await db.update(orders).set({ deviceCreditsGranted: amount }).where(eq(orders.id, orderId));
 }
 
 /** Give a re-check back when the model failed and the student got nothing. */
