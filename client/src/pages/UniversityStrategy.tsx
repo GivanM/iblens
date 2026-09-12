@@ -17,7 +17,7 @@ export default function UniversityStrategy() {
   return (
     <div className="container max-w-2xl mx-auto py-16 px-4">
       <SEOHead
-        title="IB University Strategy — No Longer Offered | IBLens"
+        title="IB University Strategy: No Longer Offered | IBLens"
         description="This part of IBLens is no longer offered on verified, official university requirements and deadlines. In the meantime, grade your IB essays free with IBLens."
         canonical="/university"
       />

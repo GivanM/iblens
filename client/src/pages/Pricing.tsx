@@ -87,8 +87,8 @@ export default function Pricing() {
   return (
     <div className="py-16 md:py-24">
       <SEOHead
-        title="IB Essay Analysis from $9.99 — No Subscription, No Account Needed | IBLens"
-        description="First IB essay analysis free. Single analysis $9.99, pack of 5 for $24.99, pack of 10 for $44.99. No subscription. 7-day money-back guarantee. IB tutors charge $50–150/hr — IBLens answers in about 90 seconds."
+        title="IB Essay Analysis from $9.99: No Subscription, No Account Needed | IBLens"
+        description="First IB essay analysis free. Single analysis $9.99, pack of 5 for $24.99, pack of 10 for $44.99. No subscription. 7-day money-back guarantee. IB tutors charge $50–150/hr, IBLens answers in about 90 seconds."
         canonical="/pricing"
       />
       <div className="container">

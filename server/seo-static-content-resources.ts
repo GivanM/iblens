@@ -2,48 +2,48 @@ export const staticContentResources: Record<string, string> = {
   "/resources/ib-history-extended-essay": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB History Extended Essay</nav>
       <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB History Extended Essay</h1>
-      <p style="color:#374151;line-height:1.75;margin-bottom:16px">The IB History Extended Essay is a 4,000-word investigation of a historical question of your choice, marked out of 34 against the five Extended Essay criteria. It rewards a focused argument built on evaluated evidence and an awareness of historiography — how historians disagree — rather than a narrative retelling of events. This guide explains how the criteria play out in History, which research questions succeed, what examiners expect from primary and secondary sources, and the mistakes that most often keep History essays out of the top band.</p>
-      <p style="color:#374151;line-height:1.75;margin-bottom:16px">A strong History research question is argumentative (“to what extent”, “how significant”), bounded in period and place, genuinely debatable among historians, and researchable with sources you can access. Very recent events are risky because little historiography exists yet. Narrative questions — “what caused the Second World War?” — are too broad to argue in 4,000 words, and value-judgement questions such as “was Napoleon a good leader?” give the examiner no criteria to see tested.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">The IB History Extended Essay is a 4,000-word investigation of a historical question of your choice, marked out of 34 against the five Extended Essay criteria. It rewards a focused argument built on evaluated evidence and an awareness of historiography, how historians disagree, rather than a narrative retelling of events. This guide explains how the criteria play out in History, which research questions succeed, what examiners expect from primary and secondary sources, and the mistakes that most often keep History essays out of the top band.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">A strong History research question is argumentative (“to what extent”, “how significant”), bounded in period and place, genuinely debatable among historians, and researchable with sources you can access. Very recent events are risky because little historiography exists yet. Narrative questions, “what caused the Second World War?”, are too broad to argue in 4,000 words, and value-judgement questions such as “was Napoleon a good leader?” give the examiner no criteria to see tested.</p>
       <h2 style="font-size:20px;font-weight:600;margin:24px 0 12px">Examples of Strong Research Questions</h2>
       <ul style="line-height:1.9;padding-left:20px;color:#374151"><li>To what extent did economic pressures, rather than the moral campaign of reformers, drive the abolition of serfdom in Russia in 1861?</li><li>How significant was propaganda in sustaining British civilian support for the war effort between 1914 and 1916?</li><li>To what extent was the Marshall Plan motivated by humanitarian concern rather than strategic self-interest?</li></ul>
       <h2 style="font-size:20px;font-weight:600;margin:24px 0 12px">Assessment Criteria and Common Mistakes</h2>
-      <p style="color:#374151;line-height:1.75;margin-bottom:16px">Criterion A — Focus and method (6 marks) rewards a sharply stated question and a clear source strategy. Criterion B — Knowledge and understanding (6 marks) rewards accurate context and correct use of historical concepts such as causation and significance. Criterion C — Critical thinking (12 marks) is the highest-weighted: it rewards sustained argument, evidence weighed rather than stacked, counter-arguments addressed and interpretations evaluated. Criterion D — Presentation (4 marks) covers structure and referencing. Criterion E — Engagement (6 marks) is assessed through the RPPF reflections. Primary sources should be evaluated for origin, purpose, value and limitations; secondary sources should be set against each other as interpretations, not quoted as fact.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">Criterion A, Focus and method (6 marks) rewards a sharply stated question and a clear source strategy. Criterion B, Knowledge and understanding (6 marks) rewards accurate context and correct use of historical concepts such as causation and significance. Criterion C, Critical thinking (12 marks) is the highest-weighted: it rewards sustained argument, evidence weighed rather than stacked, counter-arguments addressed and interpretations evaluated. Criterion D, Presentation (4 marks) covers structure and referencing. Criterion E, Engagement (6 marks) is assessed through the RPPF reflections. Primary sources should be evaluated for origin, purpose, value and limitations; secondary sources should be set against each other as interpretations, not quoted as fact.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">The most common mark-losing mistakes in History EEs: narrative instead of argument; no engagement with historiography; sources treated as neutral; questions without edges (whole wars, whole centuries); one-sided cases that ignore counter-evidence; and untraceable claims caused by weak referencing.</p>
       <p style="margin-top:20px"><a href="/essay/extended-essay" style="color:#7B1D2E;font-weight:600">Grade your Extended Essay free →</a></p>
     </main>`,
   "/resources/ib-english-extended-essay": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB English Extended Essay</nav>
       <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB English Extended Essay</h1>
-      <p style="color:#374151;line-height:1.75;margin-bottom:16px">The IB English Extended Essay is a 4,000-word piece of literary criticism: an argument about how one or two texts work, marked out of 34 against the five Extended Essay criteria. The most common way to lose marks in this subject is to write something else instead — a plot summary with quotations, an author biography, or a general essay about a theme. Most students analyse literature originally written in English, and success comes from a technique-anchored research question and sustained close reading of the primary text.</p>
-      <p style="color:#374151;line-height:1.75;margin-bottom:16px">A strong English research question names a formal feature — narration, structure, imagery, stage directions — and makes an arguable claim answerable from the text itself. One text analysed deeply, or two in genuine dialogue, beats a survey of four every time. Descriptive questions (“what is the theme of love in Romeo and Juliet?”) produce catalogues of scenes, and relevance questions (“why is 1984 still relevant today?”) invite social commentary that cannot be evidenced from the text.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">The IB English Extended Essay is a 4,000-word piece of literary criticism: an argument about how one or two texts work, marked out of 34 against the five Extended Essay criteria. The most common way to lose marks in this subject is to write something else instead, a plot summary with quotations, an author biography, or a general essay about a theme. Most students analyse literature originally written in English, and success comes from a technique-anchored research question and sustained close reading of the primary text.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">A strong English research question names a formal feature, narration, structure, imagery, stage directions, and makes an arguable claim answerable from the text itself. One text analysed deeply, or two in genuine dialogue, beats a survey of four every time. Descriptive questions (“what is the theme of love in Romeo and Juliet?”) produce catalogues of scenes, and relevance questions (“why is 1984 still relevant today?”) invite social commentary that cannot be evidenced from the text.</p>
       <h2 style="font-size:20px;font-weight:600;margin:24px 0 12px">Examples of Strong Research Questions</h2>
       <ul style="line-height:1.9;padding-left:20px;color:#374151"><li>How does Kazuo Ishiguro use unreliable narration in The Remains of the Day to reveal what Stevens cannot admit to himself?</li><li>To what extent does the epistolary structure of Mary Shelley’s Frankenstein direct the reader’s sympathy between Victor and the creature?</li><li>How does Tennessee Williams use stage directions in A Streetcar Named Desire to dramatise the gap between Blanche’s illusions and her circumstances?</li></ul>
       <h2 style="font-size:20px;font-weight:600;margin:24px 0 12px">Assessment Criteria and Common Mistakes</h2>
-      <p style="color:#374151;line-height:1.75;margin-bottom:16px">Criterion A — Focus and method (6 marks) rewards a precise literary question and a visible analytical approach: which texts, which passages, which lens. Criterion B — Knowledge and understanding (6 marks) rewards understanding of the work shown through purposeful literary terminology. Criterion C — Critical thinking (12 marks), the highest-weighted, rewards interpretation built from close reading: quotations analysed for their effect, alternative readings considered, an argument that develops rather than repeats. Criterion D — Presentation (4 marks) covers structure, quotation formatting and referencing. Criterion E — Engagement (6 marks) is assessed through the RPPF reflections. Secondary criticism should sharpen your own argument, never replace it.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">Criterion A, Focus and method (6 marks) rewards a precise literary question and a visible analytical approach: which texts, which passages, which lens. Criterion B, Knowledge and understanding (6 marks) rewards understanding of the work shown through purposeful literary terminology. Criterion C, Critical thinking (12 marks), the highest-weighted, rewards interpretation built from close reading: quotations analysed for their effect, alternative readings considered, an argument that develops rather than repeats. Criterion D, Presentation (4 marks) covers structure, quotation formatting and referencing. Criterion E, Engagement (6 marks) is assessed through the RPPF reflections. Secondary criticism should sharpen your own argument, never replace it.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">The mark-losing classics in English EEs: plot summary between quotations; device-spotting without analysing effect; explaining the text through the author’s life; too many texts covered thinly; study-guide readings reproduced secondhand; and ignoring form entirely in favour of theme talk.</p>
       <p style="margin-top:20px"><a href="/essay/extended-essay" style="color:#7B1D2E;font-weight:600">Grade your Extended Essay free →</a></p>
     </main>`,
   "/resources/ib-economics-extended-essay": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Economics Extended Essay</nav>
       <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Economics Extended Essay</h1>
-      <p style="color:#374151;line-height:1.75;margin-bottom:16px">The IB Economics Extended Essay is a 4,000-word investigation that applies economic theory to a real market, policy or economic question, marked out of 34 against the five Extended Essay criteria. It is not an essay about economics — it is economics done to something specific: a defined market, a defined policy, a defined period, with real data tested against the predictions of a model. Essays that never touch data cannot demonstrate application, and application is where the analysis marks live.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">The IB Economics Extended Essay is a 4,000-word investigation that applies economic theory to a real market, policy or economic question, marked out of 34 against the five Extended Essay criteria. It is not an essay about economics, it is economics done to something specific: a defined market, a defined policy, a defined period, with real data tested against the predictions of a model. Essays that never touch data cannot demonstrate application, and application is where the analysis marks live.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">A strong Economics research question names the product, the place and the period; carries a clear theoretical frame (elasticity, market structure, externalities, intervention); has evidence you can realistically obtain; and uses “to what extent” phrasing that forces a judgement. Normative questions (“is capitalism better than socialism?”) and textbook-chapter questions (“what are the causes of inflation?”) leave nothing to investigate and nothing to evaluate.</p>
       <h2 style="font-size:20px;font-weight:600;margin:24px 0 12px">Examples of Strong Research Questions</h2>
       <ul style="line-height:1.9;padding-left:20px;color:#374151"><li>To what extent did the UK sugar levy change the pricing and product range of soft drinks sold by major supermarkets?</li><li>To what extent does the ride-hailing market in one city behave as the oligopoly model predicts?</li><li>To what extent has competition from low-cost airlines reduced fares on a single short-haul route?</li></ul>
       <h2 style="font-size:20px;font-weight:600;margin:24px 0 12px">Assessment Criteria and Common Mistakes</h2>
-      <p style="color:#374151;line-height:1.75;margin-bottom:16px">Criterion A — Focus and method (6 marks) rewards a bounded question and a credible research design: what data, from where, over what period, analysed with which models. Criterion B — Knowledge and understanding (6 marks) rewards models chosen because they fit the case. Criterion C — Critical thinking (12 marks), the highest-weighted, rewards analysis of evidence through theory, evaluation of the theory’s assumptions, alternative explanations considered, and honest treatment of the data’s limitations. Criterion D — Presentation (4 marks) covers structure, labelled figures and referenced data sources. Criterion E — Engagement (6 marks) is assessed through the RPPF reflections. Diagrams must be adapted to your market and explicitly used in the analysis — generic textbook figures that are never mentioned again earn nothing.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">Criterion A, Focus and method (6 marks) rewards a bounded question and a credible research design: what data, from where, over what period, analysed with which models. Criterion B, Knowledge and understanding (6 marks) rewards models chosen because they fit the case. Criterion C, Critical thinking (12 marks), the highest-weighted, rewards analysis of evidence through theory, evaluation of the theory’s assumptions, alternative explanations considered, and honest treatment of the data’s limitations. Criterion D, Presentation (4 marks) covers structure, labelled figures and referenced data sources. Criterion E, Engagement (6 marks) is assessed through the RPPF reflections. Diagrams must be adapted to your market and explicitly used in the analysis, generic textbook figures that are never mentioned again earn nothing.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">Common mark-losers in Economics EEs: no data at all; generic diagrams never connected to the market being studied; descriptive journalism without models; whole-economy scope that cannot be investigated in 4,000 words; unexamined assumptions; and confident conclusions that mixed evidence cannot carry.</p>
       <p style="margin-top:20px"><a href="/essay/extended-essay" style="color:#7B1D2E;font-weight:600">Grade your Extended Essay free →</a></p>
     </main>`,
   "/resources/ib-psychology-extended-essay": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Psychology Extended Essay</nav>
       <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Psychology Extended Essay</h1>
-      <p style="color:#374151;line-height:1.75;margin-bottom:16px">The IB Psychology Extended Essay is a 4,000-word argument built on published psychological research, marked out of 34 against the five Extended Essay criteria. It is a literature-based investigation: no data collection of your own, and no pop psychology. Your originality lives in the question you pose and in how critically you select, compare and evaluate real studies to answer it — weighing methods, samples and conflicting findings until a defensible answer emerges.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">The IB Psychology Extended Essay is a 4,000-word argument built on published psychological research, marked out of 34 against the five Extended Essay criteria. It is a literature-based investigation: no data collection of your own, and no pop psychology. Your originality lives in the question you pose and in how critically you select, compare and evaluate real studies to answer it, weighing methods, samples and conflicting findings until a defensible answer emerges.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">A strong Psychology research question is anchored in a real, contested literature; defines its constructs and population precisely; and uses “to what extent does the evidence support…” phrasing that makes weighing studies the whole task. Vague questions (“why do people dream?”, “does music affect the brain?”) leave nothing concrete to evaluate, so no focused argument is possible.</p>
       <h2 style="font-size:20px;font-weight:600;margin:24px 0 12px">Examples of Strong Research Questions</h2>
       <ul style="line-height:1.9;padding-left:20px;color:#374151"><li>To what extent does post-event information distort eyewitness memory of a witnessed event?</li><li>To what extent is heavy social-media use associated with depressive symptoms in adolescents, and does the evidence support a causal link?</li><li>To what extent do conformity effects observed in laboratory experiments generalise across cultures?</li></ul>
       <h2 style="font-size:20px;font-weight:600;margin:24px 0 12px">Assessment Criteria and Common Mistakes</h2>
-      <p style="color:#374151;line-height:1.75;margin-bottom:16px">Criterion A — Focus and method (6 marks) rewards a precise question and a visible strategy for selecting studies. Criterion B — Knowledge and understanding (6 marks) rewards accurate reporting of aims, methods and findings with correct psychological terminology. Criterion C — Critical thinking (12 marks), the highest-weighted, rewards evaluation of samples, designs, measures, generalisability and cultural bias, and an argument that weighs conflicting results instead of listing supportive ones. Criterion D — Presentation (4 marks) covers structure and consistent citation of every study referenced. Criterion E — Engagement (6 marks) is assessed through the RPPF reflections. Respect classic studies without reverence: ask whether findings have been replicated and in which populations, and never let correlational evidence carry a causal claim.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">Criterion A, Focus and method (6 marks) rewards a precise question and a visible strategy for selecting studies. Criterion B, Knowledge and understanding (6 marks) rewards accurate reporting of aims, methods and findings with correct psychological terminology. Criterion C, Critical thinking (12 marks), the highest-weighted, rewards evaluation of samples, designs, measures, generalisability and cultural bias, and an argument that weighs conflicting results instead of listing supportive ones. Criterion D, Presentation (4 marks) covers structure and consistent citation of every study referenced. Criterion E, Engagement (6 marks) is assessed through the RPPF reflections. Respect classic studies without reverence: ask whether findings have been replicated and in which populations, and never let correlational evidence carry a causal claim.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">The classic mark-losers in Psychology EEs: annotated lists of studies with no argument connecting them; description without evaluation; pop-psych sourcing from blogs and self-help books; correlation treated as causation; cherry-picked evidence; and overclaiming conclusions the mixed evidence cannot support.</p>
       <p style="margin-top:20px"><a href="/essay/extended-essay" style="color:#7B1D2E;font-weight:600">Grade your Extended Essay free →</a></p>
     </main>`,
@@ -52,7 +52,7 @@ export const staticContentResources: Record<string, string> = {
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Chemistry Extended Essay</nav>
       <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Chemistry Extended Essay</h1>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">The IB Chemistry Extended Essay (EE) is a 4,000-word independent research paper that requires original investigation of a chemistry topic. Done well, it earns up to three bonus points toward your Diploma score and demonstrates the kind of analytical thinking that university chemistry programs value. This guide covers how to choose a research question that works, what each assessment criterion requires, and which topic areas consistently produce high-scoring Chemistry EEs.</p>
-      <p style="color:#374151;line-height:1.75;margin-bottom:16px">Chemistry lends itself naturally to the EE because it produces measurable, quantitative data and connects directly to existing peer-reviewed literature. Unlike subjects where the research question is more open-ended (such as history or literature), a Chemistry EE research question has a clear experimental design and a specific dependent variable to measure. This makes Criterion A (Focus and Method) and Criterion C (Critical Thinking) more straightforward to address — if you design your experiment rigorously and compare your results to published values.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">Chemistry lends itself naturally to the EE because it produces measurable, quantitative data and connects directly to existing peer-reviewed literature. Unlike subjects where the research question is more open-ended (such as history or literature), a Chemistry EE research question has a clear experimental design and a specific dependent variable to measure. This makes Criterion A (Focus and Method) and Criterion C (Critical Thinking) more straightforward to address, if you design your experiment rigorously and compare your results to published values.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">A strong Chemistry EE research question specifies the system being studied, the variable being manipulated, the variable being measured, and the conditions under which the experiment is conducted. It should be narrow enough to be answered in 4,000 words, but significant enough to justify investigation.</p>
       <p style="margin-top:20px"><a href="/essay" style="color:#7B1D2E;font-weight:600">Grade your IB essay free →</a></p>
     </main>`,
@@ -60,7 +60,7 @@ export const staticContentResources: Record<string, string> = {
   "/resources/how-iblens-works": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › How IBLens Works</nav>
       <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">How IBLens Works</h1>
-      <p style="color:#374151;line-height:1.75;margin-bottom:16px">IBLens is an AI-powered essay analysis tool designed specifically for IB Diploma Programme students. It provides criterion-by-criterion feedback on Internal Assessments, Extended Essays, and Theory of Knowledge essays — the same type of detailed assessment that an experienced IB examiner would provide, delivered in about 90 seconds.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">IBLens is an AI-powered essay analysis tool designed specifically for IB Diploma Programme students. It provides criterion-by-criterion feedback on Internal Assessments, Extended Essays, and Theory of Knowledge essays, the same type of detailed assessment that an experienced IB examiner would provide, delivered in about 90 seconds.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">This page explains exactly how IBLens works: what happens when you paste an essay, how the AI generates its feedback, what the output looks like, what the tool can and cannot do, and how it compares to alternatives like private tutors or peer review. We believe in transparency about our technology so you can make an informed decision about whether it is useful for your preparation.</p>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">When you paste an essay to IBLens, the system performs a comprehensive analysis that includes a predicted band, criterion-level comments, and prioritised next steps.</p>
       <p style="margin-top:20px"><a href="/essay" style="color:#7B1D2E;font-weight:600">Grade your IB essay free →</a></p>
@@ -71,7 +71,7 @@ export const staticContentResources: Record<string, string> = {
       <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Resources</h1>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">Free in-depth guides for IB Diploma students: how to write an Extended Essay, Internal Assessment criteria by subject, TOK essay structure, IB grade boundaries, and university admissions tips.</p>
       <h2 style="font-size:20px;font-weight:600;margin:24px 0 12px">All guides</h2>
-      <ul style="line-height:2;padding-left:20px"><li><a href="/resources/sample-reports">Sample IBLens Reports</a></li><li><a href="/resources/academic-integrity">AI Feedback and IB Academic Integrity</a></li><li><a href="/ucas-personal-statement">UCAS Personal Statement Checker (2026 format)</a></li><li><a href="/resources/ib-extended-essay-new-criteria-2027">IB Extended Essay New Criteria 2027</a></li><li><a href="/resources/ib-rpf-extended-essay-2027">IB EE RPF 2027 — Reflective Statement</a></li><li><a href="/resources/ib-psychology-ia-2027">IB Psychology IA 2027 — Research Proposal</a></li><li><a href="/resources/ib-computer-science-ia-2027">IB Computer Science IA 2027</a></li><li><a href="/resources/ib-extended-essay-feedback">IB Extended Essay Feedback</a></li><li><a href="/resources/ib-coursework-review-tools">AI Coursework Review Tools Compared</a></li><li><a href="/resources/tok-exhibition-checklist">TOK Exhibition Checklist</a></li><li><a href="/resources/ib-ia-feedback">IB IA Feedback Guide</a></li><li><a href="/resources/tok-essay-checklist">TOK Essay Checklist</a></li><li><a href="/resources/ib-extended-essay-guide">IB Extended Essay (EE) Guide</a></li><li><a href="/resources/ib-internal-assessment-guide">IB Internal Assessment Guide 2026</a></li><li><a href="/resources/tok-essay-guide">IB TOK Essay Format & Help</a></li><li><a href="/resources/ib-grade-boundaries">IB Grade Boundaries 2026</a></li><li><a href="/resources/ib-essay-criteria-explained">IB Essay Criteria Explained</a></li><li><a href="/resources/how-iblens-works">How IBLens Works</a></li><li><a href="/resources/ib-university-admissions">IB University Admissions 2026</a></li><li><a href="/resources/ib-extended-essay-examples">IB Extended Essay Examples</a></li><li><a href="/resources/ib-ia-score-predictor">IB IA Score Predictor</a></li><li><a href="/resources/ib-score-calculator">IB Score Calculator</a></li><li><a href="/resources/ib-university-admissions-strategy">IB University Admissions Strategy</a></li><li><a href="/resources/ib-math-ia-examples">IB Math IA Examples</a></li><li><a href="/resources/ib-biology-ia-examples">IB Biology IA Examples</a></li><li><a href="/resources/ib-economics-ia">IB Economics IA</a></li><li><a href="/resources/ib-extended-essay-word-count">IB Extended Essay Word Count</a></li><li><a href="/resources/ib-extended-essay-help">IB Extended Essay Help</a></li><li><a href="/resources/ib-chemistry-ia-examples">IB Chemistry IA Examples</a></li><li><a href="/resources/ib-physics-ia-examples">IB Physics IA Examples</a></li><li><a href="/resources/ib-psychology-ia">IB Psychology IA</a></li><li><a href="/resources/ib-history-ia">IB History IA</a></li><li><a href="/resources/ib-ee-examples-by-subject">IB EE Examples by Subject</a></li><li><a href="/resources/ib-ia-grader">IB IA Grader</a></li><li><a href="/resources/tok-essay-format">IB TOK Essay Format</a></li><li><a href="/resources/tok-essay-structure">IB TOK Essay Structure 2026</a></li><li><a href="/resources/ib-university-consultant-cost">IB University Consultant Cost 2026</a></li><li><a href="/resources/ib-university-chances">IB University Chances Checker</a></li><li><a href="/resources/ib-biology-extended-essay">IB Biology Extended Essay</a></li><li><a href="/resources/ib-chemistry-extended-essay">IB Chemistry Extended Essay</a></li></ul>
+      <ul style="line-height:2;padding-left:20px"><li><a href="/resources/sample-reports">Sample IBLens Reports</a></li><li><a href="/resources/academic-integrity">AI Feedback and IB Academic Integrity</a></li><li><a href="/ucas-personal-statement">UCAS Personal Statement Checker (2026 format)</a></li><li><a href="/resources/ib-extended-essay-new-criteria-2027">IB Extended Essay New Criteria 2027</a></li><li><a href="/resources/ib-rpf-extended-essay-2027">IB EE RPF 2027, Reflective Statement</a></li><li><a href="/resources/ib-psychology-ia-2027">IB Psychology IA 2027, Research Proposal</a></li><li><a href="/resources/ib-computer-science-ia-2027">IB Computer Science IA 2027</a></li><li><a href="/resources/ib-extended-essay-feedback">IB Extended Essay Feedback</a></li><li><a href="/resources/ib-coursework-review-tools">AI Coursework Review Tools Compared</a></li><li><a href="/resources/tok-exhibition-checklist">TOK Exhibition Checklist</a></li><li><a href="/resources/ib-ia-feedback">IB IA Feedback Guide</a></li><li><a href="/resources/tok-essay-checklist">TOK Essay Checklist</a></li><li><a href="/resources/ib-extended-essay-guide">IB Extended Essay (EE) Guide</a></li><li><a href="/resources/ib-internal-assessment-guide">IB Internal Assessment Guide 2026</a></li><li><a href="/resources/tok-essay-guide">IB TOK Essay Format & Help</a></li><li><a href="/resources/ib-grade-boundaries">IB Grade Boundaries 2026</a></li><li><a href="/resources/ib-essay-criteria-explained">IB Essay Criteria Explained</a></li><li><a href="/resources/how-iblens-works">How IBLens Works</a></li><li><a href="/resources/ib-university-admissions">IB University Admissions 2026</a></li><li><a href="/resources/ib-extended-essay-examples">IB Extended Essay Examples</a></li><li><a href="/resources/ib-ia-score-predictor">IB IA Score Predictor</a></li><li><a href="/resources/ib-score-calculator">IB Score Calculator</a></li><li><a href="/resources/ib-university-admissions-strategy">IB University Admissions Strategy</a></li><li><a href="/resources/ib-math-ia-examples">IB Math IA Examples</a></li><li><a href="/resources/ib-biology-ia-examples">IB Biology IA Examples</a></li><li><a href="/resources/ib-economics-ia">IB Economics IA</a></li><li><a href="/resources/ib-extended-essay-word-count">IB Extended Essay Word Count</a></li><li><a href="/resources/ib-extended-essay-help">IB Extended Essay Help</a></li><li><a href="/resources/ib-chemistry-ia-examples">IB Chemistry IA Examples</a></li><li><a href="/resources/ib-physics-ia-examples">IB Physics IA Examples</a></li><li><a href="/resources/ib-psychology-ia">IB Psychology IA</a></li><li><a href="/resources/ib-history-ia">IB History IA</a></li><li><a href="/resources/ib-ee-examples-by-subject">IB EE Examples by Subject</a></li><li><a href="/resources/ib-ia-grader">IB IA Grader</a></li><li><a href="/resources/tok-essay-format">IB TOK Essay Format</a></li><li><a href="/resources/tok-essay-structure">IB TOK Essay Structure 2026</a></li><li><a href="/resources/ib-university-consultant-cost">IB University Consultant Cost 2026</a></li><li><a href="/resources/ib-university-chances">IB University Chances Checker</a></li><li><a href="/resources/ib-biology-extended-essay">IB Biology Extended Essay</a></li><li><a href="/resources/ib-chemistry-extended-essay">IB Chemistry Extended Essay</a></li></ul>
       <p style="margin-top:20px"><a href="/essay" style="color:#7B1D2E;font-weight:600">Grade your IB essay free →</a></p>
     </main>`,
 
@@ -85,29 +85,29 @@ export const staticContentResources: Record<string, string> = {
   "/grade": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › Grade Your IB Essay in About 90 Seconds</nav>
       <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">Grade Your IB Essay in About 90 Seconds</h1>
-      <p style="color:#374151;line-height:1.75;margin-bottom:16px">Paste your IB essay and get a predicted grade in about 90 seconds. AI feedback on every criterion \u2014 Extended Essay, IA, or TOK. No account, no credit card required.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">Paste your IB essay and get a predicted grade in about 90 seconds. AI feedback on every criterion, Extended Essay, IA, or TOK. No account, no credit card required.</p>
       <p style="margin-top:20px"><a href="/essay" style="color:#7B1D2E;font-weight:600">Grade your IB essay free →</a></p>
     </main>`,
 
   "/resources/sample-reports": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › Sample Reports</nav>
       <h1>Three essays. Three honest grades.</h1>
-      <p>We wrote three demo essays on the same TOK-style title at deliberately different quality levels and ran each through IBLens, which marks TOK holistically against the official 2022 instrument — one global-impression score out of 10, exactly as IB examiners do. The analyses are real, unedited grader output: the weak essay scored 2/10, the developing one 4/10, the strong one 5/10 — each in a different official band (Rudimentary, Basic, Satisfactory).</p>
-      <h2>What a weak essay looks like — 2/10 (band 1-2)</h2>
+      <p>We wrote three demo essays on the same TOK-style title at deliberately different quality levels and ran each through IBLens, which marks TOK holistically against the official 2022 instrument, one global-impression score out of 10, exactly as IB examiners do. The analyses are real, unedited grader output: the weak essay scored 2/10, the developing one 4/10, the strong one 5/10, each in a different official band (Rudimentary, Basic, Satisfactory).</p>
+      <h2>What a weak essay looks like, 2/10 (band 1-2)</h2>
       <p><em>How we wrote it: Opinion-based claims, anecdotes instead of examples, no genuine counterclaims, key terms never defined.</em></p>
       <p>Excerpt: “Can we ever be certain about anything in science and math? This is a really interesting question that many people have thought about. In my opinion, certainty is possible in math but not really in science, and I will explain why I think this. First of all, math is certain…”</p>
-      <p><strong>Holistic assessment — global impression — 2/10:</strong> Placed in the Rudimentary band (1-2). The essay is weakly connected to the epistemological demands of the prescribed title. Arguments are largely descriptive and rest on unsupported assertions rather than reasoned analysis. Examples cited (flat earth, Pluto, s…</p>
-      <h2>What a developing essay looks like — 4/10 (band 3-4)</h2>
+      <p><strong>Holistic assessment, global impression, 2/10:</strong> Placed in the Rudimentary band (1-2). The essay is weakly connected to the epistemological demands of the prescribed title. Arguments are largely descriptive and rest on unsupported assertions rather than reasoned analysis. Examples cited (flat earth, Pluto, s…</p>
+      <h2>What a developing essay looks like, 4/10 (band 3-4)</h2>
       <p><em>How we wrote it: Clear structure and standard examples, but descriptive analysis and thin counterclaims.</em></p>
       <p>Excerpt: “To what extent is certainty attainable in the natural sciences and mathematics? In this essay I will define certainty as knowledge that cannot be doubted, and I will look at mathematics first and then the natural sciences. In mathematics, knowledge comes from proofs. Once something is proven, it stays proven.…”</p>
-      <p><strong>Holistic assessment — global impression — 4/10:</strong> The essay falls within the Basic band (3–4). It is connected to the title and the two areas of knowledge (mathematics and natural sciences) are identifiable, but the treatment is largely descriptive. Arguments are stated rather than developed: for instance, th…</p>
-      <h2>What a solid essay looks like — 5/10 (band 5-6)</h2>
-      <p><em>How we wrote it: Precise conditional claims, working examples, a genuine counterclaim — concise but coherent.</em></p>
+      <p><strong>Holistic assessment, global impression, 4/10:</strong> The essay falls within the Basic band (3–4). It is connected to the title and the two areas of knowledge (mathematics and natural sciences) are identifiable, but the treatment is largely descriptive. Arguments are stated rather than developed: for instance, th…</p>
+      <h2>What a solid essay looks like, 5/10 (band 5-6)</h2>
+      <p><em>How we wrote it: Precise conditional claims, working examples, a genuine counterclaim, concise but coherent.</em></p>
       <p>Excerpt: “To what extent is certainty attainable in the natural sciences and mathematics? This essay argues that certainty operates differently across these two areas of knowledge. In mathematics, certainty appears attainable through deductive proof. Once the Pythagorean theorem is proven within Euclidean axioms, it holds with complete certainty inside that system.…”</p>
-      <p><strong>Holistic assessment — global impression — 5/10:</strong> Placed in the Satisfactory band (5–6). The essay is focused on the title and makes recognizable links to mathematics and natural sciences as AOKs. Arguments are offered and examples are cited (Gödel's incompleteness theorems, Popper's falsificationism, Newtoni…</p>
+      <p><strong>Holistic assessment, global impression, 5/10:</strong> Placed in the Satisfactory band (5–6). The essay is focused on the title and makes recognizable links to mathematics and natural sciences as AOKs. Arguments are offered and examples are cited (Gödel's incompleteness theorems, Popper's falsificationism, Newtoni…</p>
       <h2>Why the spread matters</h2>
-      <p>Feedback is only useful if the grade moves when quality moves. IBLens applies the official holistic instrument strictly — if it says band 5–6, that is where the essay reads.</p>
-      <p><a href="/essay">Get this exact report for your own essay — free preview, full report $9.99 →</a></p>
+      <p>Feedback is only useful if the grade moves when quality moves. IBLens applies the official holistic instrument strictly, if it says band 5–6, that is where the essay reads.</p>
+      <p><a href="/essay">Get this exact report for your own essay, free preview, full report $9.99 →</a></p>
     </main>`,
 
   "/resources/academic-integrity": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -115,32 +115,32 @@ export const staticContentResources: Record<string, string> = {
       <h1>AI Feedback and IB Academic Integrity</h1>
       <p>The most common question before using any AI tool on IB work is "will this get me in trouble?" Here is an honest walkthrough of where the line sits, and exactly what IBLens does with your essay.</p>
       <h2>What the IB integrity policy actually cares about</h2>
-      <p>The policy is built around one principle: the work you submit must be your own. Getting feedback on work you wrote yourself — as teachers, EE supervisors and tutors do — is study support, not misconduct. Two caveats: your school may set stricter rules (check with your coordinator, disclose when in doubt), and the line is bright — AI-generated text must never go into your submission.</p>
+      <p>The policy is built around one principle: the work you submit must be your own. Getting feedback on work you wrote yourself, as teachers, EE supervisors and tutors do, is study support, not misconduct. Two caveats: your school may set stricter rules (check with your coordinator, disclose when in doubt), and the line is bright, AI-generated text must never go into your submission.</p>
       <h2>How to use AI feedback with integrity</h2>
       <ul>
         <li><strong>Get feedback, not text:</strong> use the criterion breakdown to find weak points, then fix them in your own words.</li>
-        <li><strong>Keep your drafts</strong> — a draft history is your best evidence the work is yours.</li>
+        <li><strong>Keep your drafts</strong>, a draft history is your best evidence the work is yours.</li>
         <li><strong>Follow your school policy</strong> and disclose AI-assisted feedback if required.</li>
         <li><strong>Never submit AI-written text.</strong> Feedback in, your own writing out.</li>
       </ul>
       <h2>What IBLens does with your essay</h2>
       <ul>
-        <li>No training on your essays — graded and returned, never training data.</li>
+        <li>No training on your essays, graded and returned, never training data.</li>
         <li>No sharing, selling or publishing. No exemplar library built from submissions.</li>
         <li>The essay text is never stored. An anonymous report you did not buy is deleted after 90 days, and anything else on request.</li>
         <li>Nothing is fed to Turnitin or any plagiarism database.</li>
       </ul>
       <h2>Will Turnitin flag me for using AI feedback?</h2>
-      <p>No. Reading feedback adds nothing to similarity databases. What gets flagged is AI-generated prose inside your submission — which is why IBLens returns criterion feedback, never rewritten text.</p>
+      <p>No. Reading feedback adds nothing to similarity databases. What gets flagged is AI-generated prose inside your submission, which is why IBLens returns criterion feedback, never rewritten text.</p>
       <p><a href="/essay">Your first analysis is free →</a></p>
     </main>`,
 
   "/resources/tok-essay-format": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB TOK Essay Format</nav>
-      <h1>IB TOK Essay Format — Everything You Need to Know</h1>
+      <h1>IB TOK Essay Format, Everything You Need to Know</h1>
 
       <p>
-        The IB Theory of Knowledge essay has strict formatting rules. Getting the format wrong — even with excellent ideas — can cost you marks or trigger an automatic penalty. This guide covers every official formatting requirement: word count rules, structural expectations, citation format, what does and does not count toward the limit, and what examiners expect when they open your essay.
+        The IB Theory of Knowledge essay has strict formatting rules. Getting the format wrong, even with excellent ideas, can cost you marks or trigger an automatic penalty. This guide covers every official formatting requirement: word count rules, structural expectations, citation format, what does and does not count toward the limit, and what examiners expect when they open your essay.
       </p>
 
       <h2>Word Count: The 1,600-Word Rule</h2>
@@ -150,11 +150,11 @@ export const staticContentResources: Record<string, string> = {
       </p>
 
       <ul>
-        <li><strong>Essays that exceed 1,600 words:</strong> Examiners are instructed to stop reading at the 1,600-word mark. Any argument, conclusion, or example after that point will not be assessed. This is one of the most costly mistakes IB students make — a brilliant conclusion on page 4 may never be read.</li>
+        <li><strong>Essays that exceed 1,600 words:</strong> Examiners are instructed to stop reading at the 1,600-word mark. Any argument, conclusion, or example after that point will not be assessed. This is one of the most costly mistakes IB students make, a brilliant conclusion on page 4 may never be read.</li>
         <li><strong>The title page and bibliography are NOT counted:</strong> These do not contribute to your 1,600 words.</li>
         <li><strong>Footnotes and endnotes ARE counted:</strong> If you use footnotes for citations or additional commentary, every word counts toward your total.</li>
         <li><strong>Quotations are counted:</strong> Direct quotes from sources are included in the word count.</li>
-        <li><strong>Diagrams, tables, and mathematical notation:</strong> Not typically counted, but avoid using them to circumvent the limit — examiners notice.</li>
+        <li><strong>Diagrams, tables, and mathematical notation:</strong> Not typically counted, but avoid using them to circumvent the limit, examiners notice.</li>
       </ul>
 
       <p>
@@ -166,11 +166,11 @@ export const staticContentResources: Record<string, string> = {
       <p>The IBO specifies the following formal requirements for all submitted TOK essays:</p>
 
       <ul>
-        <li><strong>Title page:</strong> Must include your session number (not your name — essays are marked anonymously), the prescribed title you selected (written in full, exactly as published by the IBO), and your school name.</li>
+        <li><strong>Title page:</strong> Must include your session number (not your name, essays are marked anonymously), the prescribed title you selected (written in full, exactly as published by the IBO), and your school name.</li>
         <li><strong>Word count declaration:</strong> You must declare the word count on the title page. If your declared count differs significantly from the actual count, this can be flagged.</li>
-        <li><strong>Readable font and spacing:</strong> While the IBO does not specify an exact font, essays should be readable — 12pt Times New Roman or Arial with double spacing is standard. Use 1.5 or double spacing, which is what schools ask for and what reads cleanly.</li>
+        <li><strong>Readable font and spacing:</strong> While the IBO does not specify an exact font, essays should be readable, 12pt Times New Roman or Arial with double spacing is standard. Use 1.5 or double spacing, which is what schools ask for and what reads cleanly.</li>
         <li><strong>Page numbering:</strong> Number your pages. This is not required by the rubric but is expected by examiners and makes it easier if pages become separated.</li>
-        <li><strong>No name on the essay body:</strong> Your name must not appear anywhere in the essay itself — only your session number. This protects anonymity during marking.</li>
+        <li><strong>No name on the essay body:</strong> Your name must not appear anywhere in the essay itself, only your session number. This protects anonymity during marking.</li>
       </ul>
 
       <h2>Essay Structure: The Expected Format</h2>
@@ -184,10 +184,10 @@ export const staticContentResources: Record<string, string> = {
       <p>Your introduction should:</p>
 
       <ul>
-        <li><strong>Restate the prescribed title in your own words</strong> — show you understand what it is asking</li>
-        <li><strong>Define key terms</strong> — especially any terms that are ambiguous or central to your argument (e.g., "knowledge," "certainty," "prove")</li>
-        <li><strong>Introduce your thesis</strong> — state your overall position on the prescribed title question</li>
-        <li><strong>Outline your two Areas of Knowledge (AOKs)</strong> — briefly indicate which AOKs you will use to develop your argument</li>
+        <li><strong>Restate the prescribed title in your own words</strong>, show you understand what it is asking</li>
+        <li><strong>Define key terms</strong>, especially any terms that are ambiguous or central to your argument (e.g., "knowledge," "certainty," "prove")</li>
+        <li><strong>Introduce your thesis</strong>, state your overall position on the prescribed title question</li>
+        <li><strong>Outline your two Areas of Knowledge (AOKs)</strong>, briefly indicate which AOKs you will use to develop your argument</li>
       </ul>
 
       <p>
@@ -202,13 +202,13 @@ export const staticContentResources: Record<string, string> = {
 
       <ol>
         <li><strong>Knowledge claim:</strong> An assertion about how knowledge works in this AOK in relation to the title (e.g., "In the natural sciences, mathematical models provide knowledge that is reliable precisely because it can be falsified")</li>
-        <li><strong>Specific example:</strong> A concrete, real-world example that illustrates the claim — not a hypothetical. The example should be described in enough detail that it actually supports the argument.</li>
+        <li><strong>Specific example:</strong> A concrete, real-world example that illustrates the claim, not a hypothetical. The example should be described in enough detail that it actually supports the argument.</li>
         <li><strong>Counter-claim:</strong> A genuine challenge to your claim from within the same AOK or from a different perspective (e.g., "However, models in quantum mechanics show that even formally rigorous science involves probabilistic rather than certain knowledge")</li>
         <li><strong>Mini-conclusion:</strong> What does this AOK tell us about the prescribed title question?</li>
       </ol>
 
       <p>
-        Most high-scoring essays use two AOKs, with two to three knowledge claims per AOK. Do not try to cover four or five AOKs — you will have insufficient depth in each.
+        Most high-scoring essays use two AOKs, with two to three knowledge claims per AOK. Do not try to cover four or five AOKs, you will have insufficient depth in each.
       </p>
 
       <h3>Conclusion (approximately 200–250 words)</h3>
@@ -216,16 +216,16 @@ export const staticContentResources: Record<string, string> = {
       <p>Your conclusion should:</p>
 
       <ul>
-        <li><strong>Answer the prescribed title directly</strong> — do not end with "therefore, this is a complex issue." Take a position.</li>
-        <li><strong>Synthesise rather than summarise</strong> — draw together your AOK analysis into a coherent overall claim about knowledge</li>
-        <li><strong>Acknowledge limitations or implications</strong> — what remains uncertain, or what does your argument imply about knowledge more broadly?</li>
-        <li><strong>Connect to real-world significance</strong> — optional, but a brief statement about why this knowledge question matters often strengthens the conclusion</li>
+        <li><strong>Answer the prescribed title directly</strong>, do not end with "therefore, this is a complex issue." Take a position.</li>
+        <li><strong>Synthesise rather than summarise</strong>, draw together your AOK analysis into a coherent overall claim about knowledge</li>
+        <li><strong>Acknowledge limitations or implications</strong>, what remains uncertain, or what does your argument imply about knowledge more broadly?</li>
+        <li><strong>Connect to real-world significance</strong>, optional, but a brief statement about why this knowledge question matters often strengthens the conclusion</li>
       </ul>
 
       <h2>Citations and Referencing Format</h2>
 
       <p>
-        The IBO does not prescribe a specific citation format for the TOK essay. You may use MLA, APA, Chicago, or any other consistent system — your school may have a preference. What matters is:
+        The IBO does not prescribe a specific citation format for the TOK essay. You may use MLA, APA, Chicago, or any other consistent system, your school may have a preference. What matters is:
       </p>
 
       <ul>
@@ -254,9 +254,9 @@ export const staticContentResources: Record<string, string> = {
       </p>
 
       <ul>
-        <li><strong>No title is given to sections:</strong> Unlike the EE, the TOK essay does not use labelled sections (Introduction, Body, Conclusion) — these are implicit</li>
+        <li><strong>No title is given to sections:</strong> Unlike the EE, the TOK essay does not use labelled sections (Introduction, Body, Conclusion), these are implicit</li>
         <li><strong>No table of contents:</strong> At 1,600 words, a table of contents would be absurd and is not expected</li>
-        <li><strong>No abstract:</strong> Unlike the EE, there is no abstract or research question box — you begin directly with the essay</li>
+        <li><strong>No abstract:</strong> Unlike the EE, there is no abstract or research question box, you begin directly with the essay</li>
         <li><strong>Shorter but denser:</strong> The EE allows up to 4,000 words across a structured research document; the TOK essay packs comparable analytical depth into 1,600 words of continuous argument</li>
       </ul>
 
@@ -272,13 +272,13 @@ export const staticContentResources: Record<string, string> = {
         <li>Word count is declared on the title page</li>
         <li>No name appears in the essay body</li>
         <li>Bibliography is present and consistently formatted</li>
-        <li>Essay is in paragraph form — no bullets or subheadings in the body</li>
+        <li>Essay is in paragraph form, no bullets or subheadings in the body</li>
         <li>Font is readable and spacing is at least 1.5</li>
         <li>Pages are numbered</li>
       </ul>
 
       <p>
-        The format itself does not earn marks — but violating it costs them. Use IBLens to check that your TOK essay argument is as strong as its presentation.
+        The format itself does not earn marks, but violating it costs them. Use IBLens to check that your TOK essay argument is as strong as its presentation.
       </p>
 
       <p>
@@ -329,7 +329,7 @@ export const staticContentResources: Record<string, string> = {
       <h3>Common Research Question Mistakes</h3>
       <p>
         The most frequent error is a question that is too broad. "How does temperature
-        affect enzyme activity?" is not an EE question — it is a review article topic.
+        affect enzyme activity?" is not an EE question, it is a review article topic.
         "How does temperature (10-50 degrees C, in 10 degree increments) affect the rate of
         starch hydrolysis by salivary amylase, measured by iodine absorbance at 580 nm?"
         is an EE question.
@@ -369,7 +369,7 @@ export const staticContentResources: Record<string, string> = {
         <li><strong>Microbiology and antimicrobial activity:</strong> Testing the effect of plant extracts on bacterial growth using disk diffusion assays. Yields measurable quantitative data and connects to antibiotic resistance literature.</li>
         <li><strong>Ecology and population studies:</strong> Comparing species richness across disturbed and undisturbed habitats using quadrat sampling. Strong for Criterion C because you can compare findings to published biodiversity indices.</li>
         <li><strong>Plant physiology:</strong> Effect of different light spectra on chlorophyll production, stomatal density, or growth rate. Feasible with school equipment and produces clear quantitative results.</li>
-        <li><strong>Biochemistry and enzymes:</strong> The classic choice, but only when you go beyond basic kinetics — calculating the Michaelis constant, investigating inhibitors, or comparing enzyme activity across pH and ionic strength.</li>
+        <li><strong>Biochemistry and enzymes:</strong> The classic choice, but only when you go beyond basic kinetics, calculating the Michaelis constant, investigating inhibitors, or comparing enzyme activity across pH and ionic strength.</li>
       </ul>
 
       <h2>The RPPF: What Examiners Look For</h2>
@@ -387,7 +387,7 @@ export const staticContentResources: Record<string, string> = {
       <p>
         IBLens analyses IB extended essays against the official assessment criteria.
         Upload a draft of your Biology EE to receive criterion-by-criterion feedback
-        identifying where you are losing marks — especially on Criterion C and the
+        identifying where you are losing marks, especially on Criterion C and the
         focus of your research question in Criterion A.
       </p>
       <p>
@@ -397,10 +397,10 @@ export const staticContentResources: Record<string, string> = {
   </main>`,
   "/resources/ib-ia-grader": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB IA Grader</nav>
-      <h1>IB IA Grader — Free AI Feedback on Your Internal Assessment</h1>
+      <h1>IB IA Grader, Free AI Feedback on Your Internal Assessment</h1>
 
       <p>
-        An IB Internal Assessment is worth between 20% and 30% of your final subject grade. Most students submit without knowing whether they are on track for a 6 or a 3 — because getting meaningful feedback before submission is hard. A teacher review is one or two sessions a year. Tutors charge by the hour. Peer feedback misses the nuance of what examiners actually look for.
+        An IB Internal Assessment is worth between 20% and 30% of your final subject grade. Most students submit without knowing whether they are on track for a 6 or a 3, because getting meaningful feedback before submission is hard. A teacher review is one or two sessions a year. Tutors charge by the hour. Peer feedback misses the nuance of what examiners actually look for.
       </p>
 
       <p>
@@ -416,28 +416,28 @@ export const staticContentResources: Record<string, string> = {
       <p>IBLens grades Internal Assessments for all major IB subjects, each evaluated against the specific rubric for that subject:</p>
 
       <ul>
-        <li><strong><a href="/essay/biology-ia">IB Biology IA</a></strong> — Sciences IA (2025 scientific investigation): Research design, Data analysis, Conclusion, Evaluation (24 marks; SL and HL)</li>
-        <li><strong><a href="/essay/chemistry-ia">IB Chemistry IA</a></strong> — Sciences IA: same four criteria as Biology (24 marks)</li>
-        <li><strong><a href="/essay/physics-ia">IB Physics IA</a></strong> — Sciences IA: same four criteria (24 marks)</li>
-        <li><strong><a href="/essay/math-ia">IB Mathematics IA (Exploration)</a></strong> — Math IA rubric: Presentation, Mathematical communication, Personal engagement, Reflection, Use of mathematics (20 marks)</li>
-        <li><strong><a href="/essay/economics-ia">IB Economics IA</a></strong> — Per-commentary rubric: Diagrams, Terminology, Application and analysis, Key concept, Evaluation (14 per commentary; portfolio 45)</li>
-        <li><strong><a href="/essay/business-management-ia">IB Business Management IA</a></strong> — Business research project: Integration of a key concept, Supporting documents, Tools and theories, Analysis and evaluation, Conclusions, Structure, Presentation (25 marks)</li>
-        <li><strong><a href="/essay/history-ia">IB History IA</a></strong> — Historical Investigation: Identification and evaluation of sources (6), Investigation (15), Reflection (4) — 25 marks</li>
-        <li><strong><a href="/essay/psychology-ia">IB Psychology IA</a></strong> — Introduction, Exploration, Analysis, Evaluation (22 marks)</li>
-        <li><strong><a href="/essay/computer-science-ia">IB Computer Science IA</a></strong> — Planning, Solution overview, Development, Functionality and extensibility, Evaluation (34 marks)</li>
-        <li><strong>IB English A IA (Literature / Language & Literature)</strong> — assessed against the subject-specific oral or written commentary rubric</li>
-        <li><strong>IB Visual Arts, Music and Film coursework (externally assessed)</strong> — assessed against subject-specific criteria</li>
+        <li><strong><a href="/essay/biology-ia">IB Biology IA</a></strong>, Sciences IA (2025 scientific investigation): Research design, Data analysis, Conclusion, Evaluation (24 marks; SL and HL)</li>
+        <li><strong><a href="/essay/chemistry-ia">IB Chemistry IA</a></strong>, Sciences IA: same four criteria as Biology (24 marks)</li>
+        <li><strong><a href="/essay/physics-ia">IB Physics IA</a></strong>, Sciences IA: same four criteria (24 marks)</li>
+        <li><strong><a href="/essay/math-ia">IB Mathematics IA (Exploration)</a></strong>, Math IA rubric: Presentation, Mathematical communication, Personal engagement, Reflection, Use of mathematics (20 marks)</li>
+        <li><strong><a href="/essay/economics-ia">IB Economics IA</a></strong>, Per-commentary rubric: Diagrams, Terminology, Application and analysis, Key concept, Evaluation (14 per commentary; portfolio 45)</li>
+        <li><strong><a href="/essay/business-management-ia">IB Business Management IA</a></strong>, Business research project: Integration of a key concept, Supporting documents, Tools and theories, Analysis and evaluation, Conclusions, Structure, Presentation (25 marks)</li>
+        <li><strong><a href="/essay/history-ia">IB History IA</a></strong>, Historical Investigation: Identification and evaluation of sources (6), Investigation (15), Reflection (4), 25 marks</li>
+        <li><strong><a href="/essay/psychology-ia">IB Psychology IA</a></strong>, Introduction, Exploration, Analysis, Evaluation (22 marks)</li>
+        <li><strong><a href="/essay/computer-science-ia">IB Computer Science IA</a></strong>, Planning, Solution overview, Development, Functionality and extensibility, Evaluation (34 marks)</li>
+        <li><strong>IB English A IA (Literature / Language & Literature)</strong>, assessed against the subject-specific oral or written commentary rubric</li>
+        <li><strong>IB Visual Arts, Music and Film coursework (externally assessed)</strong>, assessed against subject-specific criteria</li>
       </ul>
 
       <p>
-        Subjects outside the list are not offered, because there would be no published criteria to mark them against — not subject-specific rubric scoring.
+        Subjects outside the list are not offered, because there would be no published criteria to mark them against, not subject-specific rubric scoring.
       </p>
 
       <h2>How the IB IA Grader Works</h2>
 
       <ol>
         <li><strong>Choose your essay type and subject.</strong> Select "Internal Assessment (IA)" and your IB subject from the dropdown.</li>
-        <li><strong>Paste your IA text.</strong> Copy the full text of your Internal Assessment — methodology, analysis, evaluation, everything.</li>
+        <li><strong>Paste your IA text.</strong> Copy the full text of your Internal Assessment, methodology, analysis, evaluation, everything.</li>
         <li><strong>Enter your research question.</strong> This helps the AI assess whether your investigation stays focused on a specific, answerable question.</li>
         <li><strong>Get your grade report.</strong> Within about 90 seconds you receive a criterion-by-criterion score, a predicted grade, the marks you are losing and why, and specific steps to recover them.</li>
       </ol>
@@ -445,11 +445,11 @@ export const staticContentResources: Record<string, string> = {
       <h2>What You Get in the Grade Report</h2>
 
       <ul>
-        <li><strong>Predicted score and IB band</strong> — how your IA scores overall against the rubric, with the mark range the draft currently sits in</li>
-        <li><strong>Criterion breakdown</strong> — each criterion scored individually with an explanation of why you received that score</li>
-        <li><strong>Risk areas</strong> — the specific parts of your IA that are losing marks and why</li>
-        <li><strong>Leverage zones</strong> — criteria where a small improvement would gain the most marks</li>
-        <li><strong>Actionable next steps</strong> — concrete changes to make before submission</li>
+        <li><strong>Predicted score and IB band</strong>, how your IA scores overall against the rubric, with the mark range the draft currently sits in</li>
+        <li><strong>Criterion breakdown</strong>, each criterion scored individually with an explanation of why you received that score</li>
+        <li><strong>Risk areas</strong>, the specific parts of your IA that are losing marks and why</li>
+        <li><strong>Leverage zones</strong>, criteria where a small improvement would gain the most marks</li>
+        <li><strong>Actionable next steps</strong>, concrete changes to make before submission</li>
       </ul>
 
       <h2>IBLens vs Other IB IA Graders</h2>
@@ -459,21 +459,21 @@ export const staticContentResources: Record<string, string> = {
       </p>
 
       <ul>
-        <li><strong>vs. RevisionDojo:</strong> RevisionDojo bundles IA grading inside a $19/month subscription that also includes videos and practice papers. IBLens is pay-per-analysis — $9.99 for a single analysis, $24.99 for 5. No subscription required. If you just need feedback on one or two IAs, IBLens is significantly cheaper.</li>
+        <li><strong>vs. RevisionDojo:</strong> RevisionDojo bundles IA grading inside a $19/month subscription that also includes videos and practice papers. IBLens is pay-per-analysis, $9.99 for a single analysis, $24.99 for 5. No subscription required. If you just need feedback on one or two IAs, IBLens is significantly cheaper.</li>
         <li><strong>vs. ChatGPT / Claude directly:</strong> Generic AI models don't know the specific IB rubric for your subject. IBLens is built on the official IBO marking criteria and formats the feedback to match how real IB examiners score work.</li>
-        <li><strong>vs. a tutor:</strong> A tutor commonly charges $50 to $150 an hour and may give you subjective feedback. IBLens applies the rubric mechanically — the same way an examiner does — and identifies specific mark losses by criterion.</li>
+        <li><strong>vs. a tutor:</strong> A tutor commonly charges $50 to $150 an hour and may give you subjective feedback. IBLens applies the rubric mechanically, the same way an examiner does, and identifies specific mark losses by criterion.</li>
       </ul>
 
       <h2>Is the First IB IA Analysis Really Free?</h2>
 
       <p>
-        Your first analysis is free and shows a preview: the predicted band range, your weakest criterion with full feedback, and the top risks in your draft. The complete report — exact score, the full report with comments and a ranked fix list — is $9.99, and includes two free re-checks of the same draft within 14 days. Packs work out at $5.00 per essay (5 for $24.99) or $4.50 (10 for $44.99).
+        Your first analysis is free and shows a preview: the predicted band range, your weakest criterion with full feedback, and the top risks in your draft. The complete report, exact score, the full report with comments and a ranked fix list, is $9.99, and includes two free re-checks of the same draft within 14 days. Packs work out at $5.00 per essay (5 for $24.99) or $4.50 (10 for $44.99).
       </p>
 
       <h2>How Accurate Is the AI Grade?</h2>
 
       <p>
-        The grader applies the official IB rubric criteria as written in IBO subject guides. It cannot perfectly predict what a human moderator will decide on boundary cases — no tool can. But it is reliable for identifying which criteria are underdeveloped, what the mark range is, and where to focus revision effort. The point of running it before your supervisor sees the draft is to spend that one round of comments on substance.
+        The grader applies the official IB rubric criteria as written in IBO subject guides. It cannot perfectly predict what a human moderator will decide on boundary cases, no tool can. But it is reliable for identifying which criteria are underdeveloped, what the mark range is, and where to focus revision effort. The point of running it before your supervisor sees the draft is to spend that one round of comments on substance.
       </p>
 
       <p>
@@ -482,19 +482,19 @@ export const staticContentResources: Record<string, string> = {
     
   </main>`,
   "/resources/ib-extended-essay-new-criteria-2027": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Extended Essay New Criteria 2027 — What Changed and How to Check Your Draft</h1>
-  <p style="line-height:1.7;margin:0 0 14px">If you started the IB Diploma Programme in 2025 and will sit exams in May 2027 or later, your Extended Essay is assessed under new criteria — marked out of 30, not 34. Sessions through November 2026 keep the current 34-mark criteria. Most guides online still describe the old rubric; this page covers the new one.</p>
+  <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Extended Essay New Criteria 2027, What Changed and How to Check Your Draft</h1>
+  <p style="line-height:1.7;margin:0 0 14px">If you started the IB Diploma Programme in 2025 and will sit exams in May 2027 or later, your Extended Essay is assessed under new criteria, marked out of 30, not 34. Sessions through November 2026 keep the current 34-mark criteria. Most guides online still describe the old rubric; this page covers the new one.</p>
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">The new EE criteria (marked out of 30)</h2>
   <table style="border-collapse:collapse;width:100%;margin:0 0 14px"><tr><th style="border:1px solid #ddd;padding:8px;text-align:left">Criterion</th><th style="border:1px solid #ddd;padding:8px">Marks</th></tr>
-  <tr><td style="border:1px solid #ddd;padding:8px">A: Framework for the essay — research question, scope, methodology and structure</td><td style="border:1px solid #ddd;padding:8px">6</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px">A: Framework for the essay, research question, scope, methodology and structure</td><td style="border:1px solid #ddd;padding:8px">6</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">B: Knowledge and understanding</td><td style="border:1px solid #ddd;padding:8px">6</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">C: Analysis and line of argument</td><td style="border:1px solid #ddd;padding:8px">6</td></tr>
-  <tr><td style="border:1px solid #ddd;padding:8px">D: Discussion and evaluation — the heaviest criterion</td><td style="border:1px solid #ddd;padding:8px">8</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px">D: Discussion and evaluation, the heaviest criterion</td><td style="border:1px solid #ddd;padding:8px">8</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">E: Reflection</td><td style="border:1px solid #ddd;padding:8px">4</td></tr></table>
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">What changed from the 34-mark rubric</h2>
   <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px">
   <li>Total marks: 34 → 30.</li>
-  <li>Critical thinking (12) is split into Analysis and line of argument (6) and Discussion and evaluation (8) — Discussion and evaluation is now the single heaviest criterion at more than a quarter of the grade.</li>
+  <li>Critical thinking (12) is split into Analysis and line of argument (6) and Discussion and evaluation (8), Discussion and evaluation is now the single heaviest criterion at more than a quarter of the grade.</li>
   <li>Presentation (4) is removed as a separate criterion; structural expectations move into Criterion A: Framework for the essay.</li>
   <li>Engagement (6) becomes Reflection (4).</li>
   <li>A new interdisciplinary pathway is introduced alongside the classic subject-focused EE.</li></ul>
@@ -503,19 +503,19 @@ export const staticContentResources: Record<string, string> = {
   <li><strong>Framework:</strong> can a reader state your research question, scope and method after two pages?</li>
   <li><strong>Knowledge:</strong> is subject terminology accurate and consistent?</li>
   <li><strong>Analysis:</strong> does each section advance one sustained argument, or read as summaries?</li>
-  <li><strong>Discussion and evaluation:</strong> is every major piece of evidence weighed — strength, limitation, competing interpretation — and does the conclusion follow from that weighing?</li>
+  <li><strong>Discussion and evaluation:</strong> is every major piece of evidence weighed, strength, limitation, competing interpretation, and does the conclusion follow from that weighing?</li>
   <li><strong>Reflection:</strong> do reflections show real decisions and turning points?</li></ul>
   <p style="line-height:1.7;margin:0 0 14px">IBLens grades Extended Essays against both rubrics: set "Exam session" to May 2027 in the analyzer for the new 30-mark criteria, or leave it on May/Nov 2026 for the current 34-mark rubric. Your first analysis is free; a full report is $9.99 with no subscription and includes two free re-checks of the same draft within 14 days, so you can revise and check whether the fix landed.</p>
   <p style="line-height:1.7;margin:0 0 14px"><a href="/essay/extended-essay">Check your EE draft against the 2027 criteria</a> · <a href="/resources/ib-extended-essay-guide">IB Extended Essay Guide</a> · <a href="/resources/ib-extended-essay-examples">EE Examples</a></p>
   
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is my Extended Essay marked out of 30 or 34?", "acceptedAnswer": {"@type": "Answer", "text": "Sessions through November 2026 are marked out of 34 with the current criteria. From the May 2027 session the EE is marked out of 30 with new criteria: Framework 6, Knowledge and understanding 6, Analysis and line of argument 6, Discussion and evaluation 8, Reflection 4."}}, {"@type": "Question", "name": "Which criterion is worth the most under the new 2027 EE rubric?", "acceptedAnswer": {"@type": "Answer", "text": "Criterion D, Discussion and evaluation, at 8 of 30 marks — the single heaviest criterion in the new rubric."}}, {"@type": "Question", "name": "Does IBLens support the new 2027 criteria?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Choose May 2027 as the exam session in the analyzer and your EE is graded out of 30 against the new criteria; the May 2027 Psychology and Computer Science IA formats are supported the same way."}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is my Extended Essay marked out of 30 or 34?", "acceptedAnswer": {"@type": "Answer", "text": "Sessions through November 2026 are marked out of 34 with the current criteria. From the May 2027 session the EE is marked out of 30 with new criteria: Framework 6, Knowledge and understanding 6, Analysis and line of argument 6, Discussion and evaluation 8, Reflection 4."}}, {"@type": "Question", "name": "Which criterion is worth the most under the new 2027 EE rubric?", "acceptedAnswer": {"@type": "Answer", "text": "Criterion D, Discussion and evaluation, at 8 of 30 marks, the single heaviest criterion in the new rubric."}}, {"@type": "Question", "name": "Does IBLens support the new 2027 criteria?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Choose May 2027 as the exam session in the analyzer and your EE is graded out of 30 against the new criteria; the May 2027 Psychology and Computer Science IA formats are supported the same way."}}]}</script>
   
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Also changing for May 2027</h2>
   <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-rpf-extended-essay-2027">The EE RPF (500-word statement)</a> · <a href="/resources/ib-psychology-ia-2027">Psychology IA 2027</a> · <a href="/resources/ib-computer-science-ia-2027">Computer Science IA 2027</a></p>
   </main>`,
   "/resources/tok-essay-checklist": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">TOK Essay Checklist — How to Check Your Essay Against the IB Criteria (Without a Tutor)</h1>
-  <p style="line-height:1.7;margin:0 0 14px">The TOK essay is marked with a single holistic instrument out of 10 — there are no separate criteria. Examiners ask one question: does the essay provide a clear, coherent and critical exploration of the essay title? That makes rigorous self-checking possible. The limit is 1,600 words, and together with the Extended Essay the TOK grade contributes up to 3 bonus points to the Diploma.</p>
+  <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">TOK Essay Checklist, How to Check Your Essay Against the IB Criteria (Without a Tutor)</h1>
+  <p style="line-height:1.7;margin:0 0 14px">The TOK essay is marked with a single holistic instrument out of 10, there are no separate criteria. Examiners ask one question: does the essay provide a clear, coherent and critical exploration of the essay title? That makes rigorous self-checking possible. The limit is 1,600 words, and together with the Extended Essay the TOK grade contributes up to 3 bonus points to the Diploma.</p>
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">The five bands</h2>
   <table style="border-collapse:collapse;width:100%;margin:0 0 14px"><tr><th style="border:1px solid #ddd;padding:8px;text-align:left">Band</th><th style="border:1px solid #ddd;padding:8px">Marks</th><th style="border:1px solid #ddd;padding:8px;text-align:left">What it looks like</th></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">Excellent</td><td style="border:1px solid #ddd;padding:8px">9–10</td><td style="border:1px solid #ddd;padding:8px">Clear, coherent and critical throughout; specific examples do real argumentative work</td></tr>
@@ -526,49 +526,49 @@ export const staticContentResources: Record<string, string> = {
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">The checklist</h2>
   <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px">
   <li><strong>Title focus:</strong> every paragraph connects to the prescribed title as written; the title question is explicitly answered; ambiguous terms are unpacked early.</li>
-  <li><strong>Knowledge questions:</strong> the essay explores how knowledge is produced and tested — not just facts about a topic; two Areas of Knowledge in real depth.</li>
+  <li><strong>Knowledge questions:</strong> the essay explores how knowledge is produced and tested, not just facts about a topic; two Areas of Knowledge in real depth.</li>
   <li><strong>Examples:</strong> each claim has a specific, named real-world example that is analysed, not decorated.</li>
-  <li><strong>Counter-arguments:</strong> every major claim meets a genuine counter-claim or perspective — and gets a response.</li>
+  <li><strong>Counter-arguments:</strong> every major claim meets a genuine counter-claim or perspective, and gets a response.</li>
   <li><strong>Coherence:</strong> a reader can state your thesis after one read; the conclusion goes beyond the introduction.</li></ul>
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Common reasons essays stay in the 5–6 band</h2>
-  <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li>Description instead of criticism — the most common ceiling</li><li>Generic examples that could support any essay</li><li>"Some think X, others think Y" without evaluating either</li><li>Title drift: introduction addresses the title, body addresses the topic</li></ul>
-  <p style="line-height:1.7;margin:0 0 14px">Run this checklist before your teacher's feedback round so it is spent on substance. For a second opinion in about 90 seconds, IBLens applies the holistic instrument to your draft and shows the band range it currently sits in — free, before any payment.</p>
+  <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li>Description instead of criticism, the most common ceiling</li><li>Generic examples that could support any essay</li><li>"Some think X, others think Y" without evaluating either</li><li>Title drift: introduction addresses the title, body addresses the topic</li></ul>
+  <p style="line-height:1.7;margin:0 0 14px">Run this checklist before your teacher's feedback round so it is spent on substance. For a second opinion in about 90 seconds, IBLens applies the holistic instrument to your draft and shows the band range it currently sits in, free, before any payment.</p>
   <p style="line-height:1.7;margin:0 0 14px"><a href="/essay/tok-essay">Check your TOK essay against the IB criteria</a> · <a href="/resources/tok-essay-structure">TOK Essay Structure</a> · <a href="/resources/tok-essay-format">TOK Essay Format</a></p>
   
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How is the TOK essay marked — are there separate criteria?", "acceptedAnswer": {"@type": "Answer", "text": "No. The TOK essay uses one holistic assessment instrument out of 10. Examiners judge the essay as a whole against the question 'does the essay provide a clear, coherent and critical exploration of the essay title?' and place it in one of five bands."}}, {"@type": "Question", "name": "How many points is the TOK essay worth for the IB Diploma?", "acceptedAnswer": {"@type": "Answer", "text": "The essay is marked out of 10 and determines most of the TOK grade, which combines with the Extended Essay grade to award up to 3 bonus points. An E in either component is a failing condition."}}, {"@type": "Question", "name": "Can ChatGPT check my TOK essay?", "acceptedAnswer": {"@type": "Answer", "text": "A generic chatbot comments on writing quality but does not apply the TOK holistic instrument unless you supply the exact assessment language, and it tends to grade generously. A rubric-specific check asks the examiner's actual question."}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How is the TOK essay marked, are there separate criteria?", "acceptedAnswer": {"@type": "Answer", "text": "No. The TOK essay uses one holistic assessment instrument out of 10. Examiners judge the essay as a whole against the question 'does the essay provide a clear, coherent and critical exploration of the essay title?' and place it in one of five bands."}}, {"@type": "Question", "name": "How many points is the TOK essay worth for the IB Diploma?", "acceptedAnswer": {"@type": "Answer", "text": "The essay is marked out of 10 and determines most of the TOK grade, which combines with the Extended Essay grade to award up to 3 bonus points. An E in either component is a failing condition."}}, {"@type": "Question", "name": "Can ChatGPT check my TOK essay?", "acceptedAnswer": {"@type": "Answer", "text": "A generic chatbot comments on writing quality but does not apply the TOK holistic instrument unless you supply the exact assessment language, and it tends to grade generously. A rubric-specific check asks the examiner's actual question."}}]}</script>
   </main>`,
   "/resources/ib-psychology-ia-2027": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Psychology IA Changes 2027 — The Research Proposal, Explained</h1>
+  <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Psychology IA Changes 2027, The Research Proposal, Explained</h1>
   <p style="line-height:1.7;margin:0 0 14px">From the May 2027 session the IB Psychology Internal Assessment changes format completely: instead of conducting an experiment, you write a research proposal for a study that is never carried out. It is marked out of 24 (up from 22 for the experimental report). Sessions through November 2026 keep the current report (Introduction 6, Exploration 4, Analysis 6, Evaluation 6 = 22).</p>
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">The new criteria (marked out of 24)</h2>
   <table style="border-collapse:collapse;width:100%;margin:0 0 14px"><tr><th style="border:1px solid #ddd;padding:8px;text-align:left">Criterion</th><th style="border:1px solid #ddd;padding:8px">Marks</th></tr>
-  <tr><td style="border:1px solid #ddd;padding:8px">A: Introduction — research question, background theory and rationale</td><td style="border:1px solid #ddd;padding:8px">6</td></tr>
-  <tr><td style="border:1px solid #ddd;padding:8px">B: Research methodology — method, design and participant considerations</td><td style="border:1px solid #ddd;padding:8px">6</td></tr>
-  <tr><td style="border:1px solid #ddd;padding:8px">C: Data collection — planned materials, procedure and ethics</td><td style="border:1px solid #ddd;padding:8px">6</td></tr>
-  <tr><td style="border:1px solid #ddd;padding:8px">D: Discussion — anticipated outcomes, limitations and implications</td><td style="border:1px solid #ddd;padding:8px">6</td></tr></table>
-  <p style="line-height:1.7;margin:0 0 14px">Word limit 2,200 — examiners stop reading beyond it. SL and HL write the same proposal against the same criteria. No experiment is conducted, so analysis of collected data disappears as a criterion; the discussion is forward-looking — what your design could and could not show.</p>
+  <tr><td style="border:1px solid #ddd;padding:8px">A: Introduction, research question, background theory and rationale</td><td style="border:1px solid #ddd;padding:8px">6</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px">B: Research methodology, method, design and participant considerations</td><td style="border:1px solid #ddd;padding:8px">6</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px">C: Data collection, planned materials, procedure and ethics</td><td style="border:1px solid #ddd;padding:8px">6</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px">D: Discussion, anticipated outcomes, limitations and implications</td><td style="border:1px solid #ddd;padding:8px">6</td></tr></table>
+  <p style="line-height:1.7;margin:0 0 14px">Word limit 2,200, examiners stop reading beyond it. SL and HL write the same proposal against the same criteria. No experiment is conducted, so analysis of collected data disappears as a criterion; the discussion is forward-looking, what your design could and could not show.</p>
   <p style="line-height:1.7;margin:0 0 14px">IBLens is session-aware: choose Internal Assessment, Psychology, and set Exam session to May 2027 to have a proposal graded out of 24 against these criteria, with a free preview. <a href="/essay/psychology-ia">Check your Psychology IA</a> · <a href="/resources/ib-extended-essay-new-criteria-2027">EE New Criteria 2027</a></p>
   
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do I still run an experiment for the IB Psychology IA?", "acceptedAnswer": {"@type": "Answer", "text": "Not from the May 2027 session onward. The new IA is a research proposal marked out of 24 — you design a study, justify methodology and data collection, and discuss anticipated outcomes, but no experiment is conducted."}}, {"@type": "Question", "name": "Is the new Psychology IA different for SL and HL?", "acceptedAnswer": {"@type": "Answer", "text": "No — SL and HL students write the same research proposal and are assessed against the same four criteria of 6 marks each."}}, {"@type": "Question", "name": "What is the word limit for the Psychology IA research proposal?", "acceptedAnswer": {"@type": "Answer", "text": "2,200 words. Material beyond the limit is not read or credited."}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do I still run an experiment for the IB Psychology IA?", "acceptedAnswer": {"@type": "Answer", "text": "Not from the May 2027 session onward. The new IA is a research proposal marked out of 24, you design a study, justify methodology and data collection, and discuss anticipated outcomes, but no experiment is conducted."}}, {"@type": "Question", "name": "Is the new Psychology IA different for SL and HL?", "acceptedAnswer": {"@type": "Answer", "text": "No, SL and HL students write the same research proposal and are assessed against the same four criteria of 6 marks each."}}, {"@type": "Question", "name": "What is the word limit for the Psychology IA research proposal?", "acceptedAnswer": {"@type": "Answer", "text": "2,200 words. Material beyond the limit is not read or credited."}}]}</script>
   </main>`,
   "/resources/ib-computer-science-ia-2027": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Computer Science IA Changes 2027 — What Changed and How to Check Your Project</h1>
+  <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Computer Science IA Changes 2027, What Changed and How to Check Your Project</h1>
   <p style="line-height:1.7;margin:0 0 14px">From the May 2027 session the IB Computer Science IA is a computational solution marked out of 30, down from 34, with a new criterion structure. Documentation is capped at 2,000 words (excluding code and diagrams) plus a 3-minute video, and the former client requirement is removed.</p>
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">The new criteria (marked out of 30)</h2>
   <table style="border-collapse:collapse;width:100%;margin:0 0 14px"><tr><th style="border:1px solid #ddd;padding:8px;text-align:left">Criterion</th><th style="border:1px solid #ddd;padding:8px">Marks</th></tr>
-  <tr><td style="border:1px solid #ddd;padding:8px">A: Problem specification — the problem and success criteria</td><td style="border:1px solid #ddd;padding:8px">4</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px">A: Problem specification, the problem and success criteria</td><td style="border:1px solid #ddd;padding:8px">4</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">B: Planning</td><td style="border:1px solid #ddd;padding:8px">4</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">C: System overview</td><td style="border:1px solid #ddd;padding:8px">6</td></tr>
-  <tr><td style="border:1px solid #ddd;padding:8px">D: Development — appropriate techniques, sources acknowledged</td><td style="border:1px solid #ddd;padding:8px">12</td></tr>
-  <tr><td style="border:1px solid #ddd;padding:8px">E: Evaluation — against the success criteria</td><td style="border:1px solid #ddd;padding:8px">4</td></tr></table>
+  <tr><td style="border:1px solid #ddd;padding:8px">D: Development, appropriate techniques, sources acknowledged</td><td style="border:1px solid #ddd;padding:8px">12</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px">E: Evaluation, against the success criteria</td><td style="border:1px solid #ddd;padding:8px">4</td></tr></table>
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">What changed from the 34-mark rubric</h2>
-  <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li>Total 34 → 30; Development stays at 12 marks — now 40% of the grade.</li>
+  <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li>Total 34 → 30; Development stays at 12 marks, now 40% of the grade.</li>
   <li>New first criterion: Problem specification (4). Success criteria set here are what Evaluation tests against.</li>
   <li>Functionality and extensibility of product (4) no longer exists as a separate criterion; Planning drops 6→4, Evaluation 6→4.</li>
   <li>Client requirement removed; documentation capped at 2,000 words plus a 3-minute video.</li></ul>
   <p style="line-height:1.7;margin:0 0 14px">Sessions through November 2026 keep the current rubric (Planning 6, Solution overview 6, Development 12, Functionality and extensibility 4, Evaluation 6 = 34). IBLens grades both: set Exam session to May 2027 in the analyzer for the new criteria. <a href="/essay/computer-science-ia">Check your CS IA</a> · <a href="/resources/ib-psychology-ia-2027">Psychology IA 2027</a></p>
   
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the IB Computer Science IA still marked out of 34?", "acceptedAnswer": {"@type": "Answer", "text": "Only through the November 2026 session. From May 2027 the IA is marked out of 30: Problem specification 4, Planning 4, System overview 6, Development 12, Evaluation 4."}}, {"@type": "Question", "name": "Do I still need a client for my CS IA?", "acceptedAnswer": {"@type": "Answer", "text": "Not under the May 2027 syllabus — the client requirement is removed. Documentation is capped at 2,000 words plus a 3-minute video."}}, {"@type": "Question", "name": "Which criterion is worth the most in the 2027 CS IA?", "acceptedAnswer": {"@type": "Answer", "text": "Development, at 12 of 30 marks — 40% of the total."}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the IB Computer Science IA still marked out of 34?", "acceptedAnswer": {"@type": "Answer", "text": "Only through the November 2026 session. From May 2027 the IA is marked out of 30: Problem specification 4, Planning 4, System overview 6, Development 12, Evaluation 4."}}, {"@type": "Question", "name": "Do I still need a client for my CS IA?", "acceptedAnswer": {"@type": "Answer", "text": "Not under the May 2027 syllabus, the client requirement is removed. Documentation is capped at 2,000 words plus a 3-minute video."}}, {"@type": "Question", "name": "Which criterion is worth the most in the 2027 CS IA?", "acceptedAnswer": {"@type": "Answer", "text": "Development, at 12 of 30 marks, 40% of the total."}}]}</script>
   </main>`,
   "/resources/ib-extended-essay-feedback": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">How to Get Feedback on Your IB Extended Essay Before You Submit</h1>
@@ -579,84 +579,84 @@ export const staticContentResources: Record<string, string> = {
   <tr><td style="border:1px solid #ddd;padding:8px">Peers and family</td><td style="border:1px solid #ddd;padding:8px">A fresh reader for clarity</td><td style="border:1px solid #ddd;padding:8px">They do not know the criteria</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">Self-check against criteria</td><td style="border:1px solid #ddd;padding:8px">Free, unlimited, the examiner instrument</td><td style="border:1px solid #ddd;padding:8px">Hard to be objective</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">AI rubric check</td><td style="border:1px solid #ddd;padding:8px">Criterion-level read in about 90 seconds, any time</td><td style="border:1px solid #ddd;padding:8px">An estimate, not an official mark</td></tr></table>
-  <p style="line-height:1.7;margin:0 0 14px">Use the sequence: self-check first (can a reader state your research question and answer? does every section argue rather than report? is evidence evaluated?), then an AI read, and spend your one supervisor draft on what only an expert can see. Which criteria apply depends on your session: through November 2026 the EE is marked /34; from May 2027 it is marked /30 under new criteria — see <a href="/resources/ib-extended-essay-new-criteria-2027">what changed</a>.</p>
-  <p style="line-height:1.7;margin:0 0 14px">IBLens grades your EE against the official criteria for your session — both rubrics supported. First analysis free; full report $9.99, no subscription. Feedback on your own work is legitimate; editing by AI or tutors is not — see <a href="/resources/academic-integrity">AI feedback and academic integrity</a>. <a href="/essay/extended-essay">Get EE feedback in about 90 seconds</a></p>
+  <p style="line-height:1.7;margin:0 0 14px">Use the sequence: self-check first (can a reader state your research question and answer? does every section argue rather than report? is evidence evaluated?), then an AI read, and spend your one supervisor draft on what only an expert can see. Which criteria apply depends on your session: through November 2026 the EE is marked /34; from May 2027 it is marked /30 under new criteria, see <a href="/resources/ib-extended-essay-new-criteria-2027">what changed</a>.</p>
+  <p style="line-height:1.7;margin:0 0 14px">IBLens grades your EE against the official criteria for your session, both rubrics supported. First analysis free; full report $9.99, no subscription. Feedback on your own work is legitimate; editing by AI or tutors is not, see <a href="/resources/academic-integrity">AI feedback and academic integrity</a>. <a href="/essay/extended-essay">Get EE feedback in about 90 seconds</a></p>
   
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many drafts of the Extended Essay can my supervisor read?", "acceptedAnswer": {"@type": "Answer", "text": "Your supervisor may provide written comments on one complete draft. Reflection sessions offer additional guidance, but full-draft feedback happens once."}}, {"@type": "Question", "name": "Can I pay someone to edit my Extended Essay?", "acceptedAnswer": {"@type": "Answer", "text": "No. Feedback that identifies weaknesses is legitimate; editing or rewriting the essay is no longer your own work and risks the essay under IB academic integrity rules — that applies to tutors, services and AI alike."}}, {"@type": "Question", "name": "When should I get feedback on my EE?", "acceptedAnswer": {"@type": "Answer", "text": "Early on the research question, mid-way on structure and argument with self-checks and an AI read, and near the end your one full supervisor draft — with time left to act on it."}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many drafts of the Extended Essay can my supervisor read?", "acceptedAnswer": {"@type": "Answer", "text": "Your supervisor may provide written comments on one complete draft. Reflection sessions offer additional guidance, but full-draft feedback happens once."}}, {"@type": "Question", "name": "Can I pay someone to edit my Extended Essay?", "acceptedAnswer": {"@type": "Answer", "text": "No. Feedback that identifies weaknesses is legitimate; editing or rewriting the essay is no longer your own work and risks the essay under IB academic integrity rules, that applies to tutors, services and AI alike."}}, {"@type": "Question", "name": "When should I get feedback on my EE?", "acceptedAnswer": {"@type": "Answer", "text": "Early on the research question, mid-way on structure and argument with self-checks and an AI read, and near the end your one full supervisor draft, with time left to act on it."}}]}</script>
   </main>`,
   "/resources/ib-coursework-review-tools": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">AI Tools IB Students Use to Review Coursework Before Submission (2026)</h1>
-  <p style="line-height:1.7;margin:0 0 14px">An honest comparison of the tools IB students use to review IAs, Extended Essays and TOK work against the assessment criteria. Details checked in August 2026 — verify current pricing and features on each site.</p>
+  <p style="line-height:1.7;margin:0 0 14px">An honest comparison of the tools IB students use to review IAs, Extended Essays and TOK work against the assessment criteria. Details checked in August 2026, verify current pricing and features on each site.</p>
   <table style="border-collapse:collapse;width:100%;margin:0 0 14px"><tr><th style="border:1px solid #ddd;padding:8px;text-align:left">Tool</th><th style="border:1px solid #ddd;padding:8px;text-align:left">What it reviews</th><th style="border:1px solid #ddd;padding:8px;text-align:left">Pricing model</th><th style="border:1px solid #ddd;padding:8px;text-align:left">May 2027 EE rubric</th></tr>
-  <tr><td style="border:1px solid #ddd;padding:8px">IBLens</td><td style="border:1px solid #ddd;padding:8px">coursework in 14 subjects, EE, TOK essay, TOK exhibition</td><td style="border:1px solid #ddd;padding:8px">First analysis free; full report $9.99, no subscription</td><td style="border:1px solid #ddd;padding:8px">Yes — both the 34-mark and new 30-mark criteria</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px">IBLens</td><td style="border:1px solid #ddd;padding:8px">coursework in 14 subjects, EE, TOK essay, TOK exhibition</td><td style="border:1px solid #ddd;padding:8px">First analysis free; full report $9.99, no subscription</td><td style="border:1px solid #ddd;padding:8px">Yes, both the 34-mark and new 30-mark criteria</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">RevisionDojo</td><td style="border:1px solid #ddd;padding:8px">Coursework grader plus a large IB resource library</td><td style="border:1px solid #ddd;padding:8px">See site</td><td style="border:1px solid #ddd;padding:8px">Not stated on the grader as of August 2026</td></tr>
-  <tr><td style="border:1px solid #ddd;padding:8px">MyRevisionAgent</td><td style="border:1px solid #ddd;padding:8px">TOK (/10), EE, IA across 27 subject-levels</td><td style="border:1px solid #ddd;padding:8px">2 free tokens on signup; packs from £4.99</td><td style="border:1px solid #ddd;padding:8px">No — EE graded /34 as of August 2026</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px">MyRevisionAgent</td><td style="border:1px solid #ddd;padding:8px">TOK (/10), EE, IA across 27 subject-levels</td><td style="border:1px solid #ddd;padding:8px">2 free tokens on signup; packs from £4.99</td><td style="border:1px solid #ddd;padding:8px">No, EE graded /34 as of August 2026</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">Clastify</td><td style="border:1px solid #ddd;padding:8px">AI grader plus paid human review by IB examiners</td><td style="border:1px solid #ddd;padding:8px">See site</td><td style="border:1px solid #ddd;padding:8px">Not stated on the grader as of August 2026</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">Generic chatbots</td><td style="border:1px solid #ddd;padding:8px">Anything you paste</td><td style="border:1px solid #ddd;padding:8px">Free tiers and subscriptions</td><td style="border:1px solid #ddd;padding:8px">Only if you paste the criteria yourself</td></tr></table>
-  <p style="line-height:1.7;margin:0 0 14px">What matters: does the tool apply the real criteria for your subject and session (an EE drafted for May 2027 is marked /30 — a /34 check tests the wrong rubric); does it give a per-criterion breakdown with a weakest criterion; is there a free look before paying; and does it give feedback rather than edit — see <a href="/resources/academic-integrity">academic integrity</a>.</p>
+  <p style="line-height:1.7;margin:0 0 14px">What matters: does the tool apply the real criteria for your subject and session (an EE drafted for May 2027 is marked /30, a /34 check tests the wrong rubric); does it give a per-criterion breakdown with a weakest criterion; is there a free look before paying; and does it give feedback rather than edit, see <a href="/resources/academic-integrity">academic integrity</a>.</p>
   <p style="line-height:1.7;margin:0 0 14px"><a href="/essay">Try IBLens on your draft</a> · <a href="/resources/ib-extended-essay-feedback">How to get EE feedback</a> · <a href="/resources/ib-extended-essay-new-criteria-2027">EE New Criteria 2027</a></p>
   
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are AI coursework review tools allowed under IB rules?", "acceptedAnswer": {"@type": "Answer", "text": "Using AI for feedback on work you wrote is a different activity from having AI produce the work. Feedback tools are like a peer pointing out weaknesses; submitting AI-written text as your own is academic misconduct."}}, {"@type": "Question", "name": "Which tool supports the new May 2027 Extended Essay criteria?", "acceptedAnswer": {"@type": "Answer", "text": "As of August 2026, IBLens grades against the new 30-mark criteria with a session switch for the current 34-mark rubric. MyRevisionAgent's EE grader used the 34-mark rubric, and RevisionDojo and Clastify did not state 2027 support on their grader pages when checked."}}, {"@type": "Question", "name": "Can an AI tool predict my exact IB mark?", "acceptedAnswer": {"@type": "Answer", "text": "No tool can promise an exact final mark — moderation and examiner judgement are real. A rubric-calibrated tool can place a draft in a band range and show which criterion costs you most."}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are AI coursework review tools allowed under IB rules?", "acceptedAnswer": {"@type": "Answer", "text": "Using AI for feedback on work you wrote is a different activity from having AI produce the work. Feedback tools are like a peer pointing out weaknesses; submitting AI-written text as your own is academic misconduct."}}, {"@type": "Question", "name": "Which tool supports the new May 2027 Extended Essay criteria?", "acceptedAnswer": {"@type": "Answer", "text": "As of August 2026, IBLens grades against the new 30-mark criteria with a session switch for the current 34-mark rubric. MyRevisionAgent's EE grader used the 34-mark rubric, and RevisionDojo and Clastify did not state 2027 support on their grader pages when checked."}}, {"@type": "Question", "name": "Can an AI tool predict my exact IB mark?", "acceptedAnswer": {"@type": "Answer", "text": "No tool can promise an exact final mark, moderation and examiner judgement are real. A rubric-calibrated tool can place a draft in a band range and show which criterion costs you most."}}]}</script>
   </main>`,
   "/resources/tok-exhibition-checklist": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">TOK Exhibition Checklist — How to Check Your Commentary Against the IB Criteria</h1>
+  <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">TOK Exhibition Checklist, How to Check Your Commentary Against the IB Criteria</h1>
   <p style="line-height:1.7;margin:0 0 14px">The TOK exhibition is marked holistically out of 10 against one question: does the exhibition successfully show how TOK manifests in the world around us? Bands: Excellent 9–10, Good 7–8, Satisfactory 5–6, Basic 3–4, Rudimentary 1–2. The top band rewards three objects with specific real-world contexts, clear and well-explained links to one selected IA prompt, strong justification of each object's contribution, and points supported by evidence with explicit references to the prompt.</p>
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">The checklist</h2>
   <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li><strong>One prompt:</strong> all three objects respond to the same IA prompt, stated as worded; every section refers back to it explicitly.</li>
-  <li><strong>Specific objects:</strong> each object has an identifiable real-world context — this photograph from this event — not a generic image; the three do different work.</li>
+  <li><strong>Specific objects:</strong> each object has an identifiable real-world context, this photograph from this event, not a generic image; the three do different work.</li>
   <li><strong>Justification:</strong> for each object you argue why it belongs in an exhibition on this prompt, not just what it is.</li>
   <li><strong>Evidence:</strong> claims about what an object shows are supported by its context, and the TOK point is explicit.</li></ul>
   <p style="line-height:1.7;margin:0 0 14px">Common 5–6 band ceilings: description instead of justification, generic objects, prompt drift, three parallel mini-essays with no single argument.</p>
   <p style="line-height:1.7;margin:0 0 14px">IBLens applies the holistic instrument to your commentary: band range and weakest area free, full report $9.99. <a href="/essay/tok-exhibition">Check your exhibition commentary</a> · <a href="/resources/tok-essay-checklist">TOK Essay Checklist</a></p>
   
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the TOK exhibition marked with criteria like the EE?", "acceptedAnswer": {"@type": "Answer", "text": "No — it is marked holistically out of 10 against one instrument, guided by the question 'does the exhibition successfully show how TOK manifests in the world around us?'"}}, {"@type": "Question", "name": "Can my three exhibition objects use different IA prompts?", "acceptedAnswer": {"@type": "Answer", "text": "No. The exhibition responds to one IA prompt and all three objects must connect to that same prompt — explicit links to it are what the top band rewards."}}, {"@type": "Question", "name": "Do TOK exhibition objects have to be physical?", "acceptedAnswer": {"@type": "Answer", "text": "Objects need specific real-world contexts — a particular tweet, photograph or document with an identifiable origin. Specificity of context matters, not physicality."}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the TOK exhibition marked with criteria like the EE?", "acceptedAnswer": {"@type": "Answer", "text": "No, it is marked holistically out of 10 against one instrument, guided by the question 'does the exhibition successfully show how TOK manifests in the world around us?'"}}, {"@type": "Question", "name": "Can my three exhibition objects use different IA prompts?", "acceptedAnswer": {"@type": "Answer", "text": "No. The exhibition responds to one IA prompt and all three objects must connect to that same prompt, explicit links to it are what the top band rewards."}}, {"@type": "Question", "name": "Do TOK exhibition objects have to be physical?", "acceptedAnswer": {"@type": "Answer", "text": "Objects need specific real-world contexts, a particular tweet, photograph or document with an identifiable origin. Specificity of context matters, not physicality."}}]}</script>
   </main>`,
   "/resources/ib-ia-feedback": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">How to Check Your IB IA Against the Official Criteria (Without a Tutor)</h1>
-  <p style="line-height:1.7;margin:0 0 14px">Every IB Internal Assessment is marked against published criteria with fixed allocations — so you can check a draft against the same instrument your examiner uses. Start from where the marks are:</p>
+  <p style="line-height:1.7;margin:0 0 14px">Every IB Internal Assessment is marked against published criteria with fixed allocations, so you can check a draft against the same instrument your examiner uses. Start from where the marks are:</p>
   <table style="border-collapse:collapse;width:100%;margin:0 0 14px"><tr><th style="border:1px solid #ddd;padding:8px;text-align:left">Subject</th><th style="border:1px solid #ddd;padding:8px">Marked out of</th><th style="border:1px solid #ddd;padding:8px;text-align:left">Heaviest criterion</th></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">Biology, Chemistry, Physics</td><td style="border:1px solid #ddd;padding:8px">24</td><td style="border:1px solid #ddd;padding:8px">Four equal criteria of 6 (Research design, Data analysis, Conclusion, Evaluation)</td></tr>
-  <tr><td style="border:1px solid #ddd;padding:8px">History</td><td style="border:1px solid #ddd;padding:8px">25</td><td style="border:1px solid #ddd;padding:8px">Section B — 15 of 25 marks</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px">History</td><td style="border:1px solid #ddd;padding:8px">25</td><td style="border:1px solid #ddd;padding:8px">Section B, 15 of 25 marks</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">Business Management</td><td style="border:1px solid #ddd;padding:8px">25</td><td style="border:1px solid #ddd;padding:8px">Key concept (5) and Analysis and evaluation (5)</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">Economics</td><td style="border:1px solid #ddd;padding:8px">14 per commentary</td><td style="border:1px solid #ddd;padding:8px">Even spread; different key concept each commentary; 800 words</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">Mathematics (AA/AI)</td><td style="border:1px solid #ddd;padding:8px">20</td><td style="border:1px solid #ddd;padding:8px">Criterion E: Use of mathematics (6)</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">Psychology (through Nov 2026)</td><td style="border:1px solid #ddd;padding:8px">22</td><td style="border:1px solid #ddd;padding:8px">Introduction, Analysis, Evaluation at 6 each</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">Computer Science (through Nov 2026)</td><td style="border:1px solid #ddd;padding:8px">34</td><td style="border:1px solid #ddd;padding:8px">Criterion C: Development (12)</td></tr></table>
-  <p style="line-height:1.7;margin:0 0 14px">Psychology and Computer Science change from May 2027 — a research proposal /24 and a computational solution /30: see <a href="/resources/ib-psychology-ia-2027">Psychology 2027</a> and <a href="/resources/ib-computer-science-ia-2027">Computer Science 2027</a>.</p>
+  <p style="line-height:1.7;margin:0 0 14px">Psychology and Computer Science change from May 2027, a research proposal /24 and a computational solution /30: see <a href="/resources/ib-psychology-ia-2027">Psychology 2027</a> and <a href="/resources/ib-computer-science-ia-2027">Computer Science 2027</a>.</p>
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">The self-check sequence</h2>
-  <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li>Check the heaviest criterion first — it moves the most marks.</li>
-  <li>Check word limits — examiners stop crediting beyond them.</li>
+  <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li>Check the heaviest criterion first, it moves the most marks.</li>
+  <li>Check word limits, examiners stop crediting beyond them.</li>
   <li>Read one criterion at a time and point to the paragraph that evidences the top markband.</li>
   <li>Fix the weakest criterion before polishing the strongest.</li></ul>
   <p style="line-height:1.7;margin:0 0 14px">IBLens grades coursework drafts in 14 subjects against the official criteria for your session: mark range and weakest criterion free, full report $9.99, no subscription. <a href="/resources/ib-ia-grader">How the IA grader works</a> · <a href="/essay">Check your draft</a></p>
   
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which IB IA has the heaviest single criterion?", "acceptedAnswer": {"@type": "Answer", "text": "History — Section B carries 15 of 25 marks. Computer Science's Development criterion (12 marks) is the other outlier."}}, {"@type": "Question", "name": "Are the science IAs marked identically?", "acceptedAnswer": {"@type": "Answer", "text": "Biology, Chemistry and Physics share the 2025 instrument: Research design, Data analysis, Conclusion and Evaluation at 6 marks each, 24 in total."}}, {"@type": "Question", "name": "Can I check my IA against the criteria myself?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — the criteria are published. The hard part is objectivity about your own writing, which is where a second reader or a rubric-calibrated AI check helps."}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which IB IA has the heaviest single criterion?", "acceptedAnswer": {"@type": "Answer", "text": "History, Section B carries 15 of 25 marks. Computer Science's Development criterion (12 marks) is the other outlier."}}, {"@type": "Question", "name": "Are the science IAs marked identically?", "acceptedAnswer": {"@type": "Answer", "text": "Biology, Chemistry and Physics share the 2025 instrument: Research design, Data analysis, Conclusion and Evaluation at 6 marks each, 24 in total."}}, {"@type": "Question", "name": "Can I check my IA against the criteria myself?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, the criteria are published. The hard part is objectivity about your own writing, which is where a second reader or a rubric-calibrated AI check helps."}}]}</script>
   </main>`,
   "/about": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">About IBLens</h1>
-  <p style="line-height:1.7;margin:0 0 14px">IBLens gives IB students an honest, criterion-level read on their coursework before submission: coursework in 14 subjects, the Extended Essay, the TOK essay and exhibition. It started as a tool built inside one IB family — for checking our own student's drafts against the actual assessment criteria — and grew into a public product. IBLens is an independent project, not affiliated with or endorsed by the International Baccalaureate Organization.</p>
+  <p style="line-height:1.7;margin:0 0 14px">IBLens gives IB students an honest, criterion-level read on their coursework before submission: coursework in 14 subjects, the Extended Essay, the TOK essay and exhibition. It started as a tool built inside one IB family, for checking our own student's drafts against the actual assessment criteria, and grew into a public product. IBLens is an independent project, not affiliated with or endorsed by the International Baccalaureate Organization.</p>
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">How the grader works</h2>
-  <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li>The grading engine carries the official assessment criteria for each component — criterion names, their mark allocations and what each one assesses — including both EE rubrics (current 34-mark and new 30-mark May 2027) and the 2027 Psychology and Computer Science IA formats.</li>
+  <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li>The grading engine carries the official assessment criteria for each component, criterion names, their mark allocations and what each one assesses, including both EE rubrics (current 34-mark and new 30-mark May 2027) and the 2027 Psychology and Computer Science IA formats.</li>
   <li>Analysis runs on a large language model (Anthropic's Claude) instructed with the relevant criteria; every submission gets a criterion-by-criterion assessment with a predicted band range.</li>
-  <li>Scores are AI estimates, not guarantees — real marking involves examiner judgement and moderation. The tool's job is to show which criterion costs you most while there is time to act.</li></ul>
+  <li>Scores are AI estimates, not guarantees, real marking involves examiner judgement and moderation. The tool's job is to show which criterion costs you most while there is time to act.</li></ul>
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">What IBLens will not do</h2>
-  <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li>Write, rewrite or edit your essay — feedback identifies weaknesses; the writing stays yours (<a href="/resources/academic-integrity">academic integrity</a>).</li>
+  <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li>Write, rewrite or edit your essay, feedback identifies weaknesses; the writing stays yours (<a href="/resources/academic-integrity">academic integrity</a>).</li>
   <li>Publish invented statistics or accuracy claims it cannot demonstrate.</li>
   <li>Sell your essays (<a href="/privacy">Privacy Policy</a>).</li></ul>
   <p style="line-height:1.7;margin:0 0 14px">First analysis free; a full report is $9.99 with no subscription and a <a href="/refund-policy">7-day money-back guarantee</a>. Contact: glushkovim@gmail.com. More: <a href="/resources/how-iblens-works">How IBLens Works</a> · <a href="/resources/sample-reports">Sample Reports</a></p>
   </main>`,
   "/resources/ib-rpf-extended-essay-2027": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
-  <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">The EE Reflective Statement (RPF) — What Replaces the RPPF in 2027</h1>
-  <p style="line-height:1.7;margin:0 0 14px">From the May 2027 session the Extended Essay RPPF is replaced by the RPF — a single reflective statement of up to 500 words, assessed under Criterion E: Reflection, worth 4 of the essay's 30 marks (about 13%). Students who began the DP in 2025 submit the RPF; sessions through November 2026 keep the RPPF under the 34-mark rubric.</p>
+  <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">The EE Reflective Statement (RPF), What Replaces the RPPF in 2027</h1>
+  <p style="line-height:1.7;margin:0 0 14px">From the May 2027 session the Extended Essay RPPF is replaced by the RPF, a single reflective statement of up to 500 words, assessed under Criterion E: Reflection, worth 4 of the essay's 30 marks (about 13%). Students who began the DP in 2025 submit the RPF; sessions through November 2026 keep the RPPF under the 34-mark rubric.</p>
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">What a strong reflective statement shows</h2>
   <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li><strong>Decisions with reasons:</strong> where the investigation could have gone another way and why you chose as you did.</li>
-  <li><strong>Turning points:</strong> the moment evidence pushed back — a surprising result, a counter-argument that forced a rethink.</li>
+  <li><strong>Turning points:</strong> the moment evidence pushed back, a surprising result, a counter-argument that forced a rethink.</li>
   <li><strong>Honesty about limits:</strong> what you would do differently and what the essay still cannot claim.</li></ul>
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">What to avoid</h2>
-  <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li>A timeline ("first I chose a topic, then I found sources") — describes what every student does.</li><li>Generic struggle ("time management was hard") — says nothing about this investigation.</li><li>Summarising your findings — the essay presents the research; the RPF reflects on the researching.</li></ul>
-  <p style="line-height:1.7;margin:0 0 14px">Checklist: under 500 words; two concrete decisions with reasoning; one genuine turning point; one honest limitation; no timeline padding. Reflection is 4 of 30 marks — the heaviest criterion in the 2027 rubric is Discussion and evaluation (8). <a href="/essay/extended-essay">Check your EE draft against the 2027 criteria</a> · <a href="/resources/ib-extended-essay-new-criteria-2027">The full 2027 rubric</a></p>
+  <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li>A timeline ("first I chose a topic, then I found sources"), describes what every student does.</li><li>Generic struggle ("time management was hard"), says nothing about this investigation.</li><li>Summarising your findings, the essay presents the research; the RPF reflects on the researching.</li></ul>
+  <p style="line-height:1.7;margin:0 0 14px">Checklist: under 500 words; two concrete decisions with reasoning; one genuine turning point; one honest limitation; no timeline padding. Reflection is 4 of 30 marks, the heaviest criterion in the 2027 rubric is Discussion and evaluation (8). <a href="/essay/extended-essay">Check your EE draft against the 2027 criteria</a> · <a href="/resources/ib-extended-essay-new-criteria-2027">The full 2027 rubric</a></p>
   
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the RPF marked separately from the essay?", "acceptedAnswer": {"@type": "Answer", "text": "No — it feeds Criterion E: Reflection, 4 of the 30 marks for the Extended Essay under the May 2027 rubric."}}, {"@type": "Question", "name": "How long should the EE RPF be?", "acceptedAnswer": {"@type": "Answer", "text": "Up to 500 words — a ceiling, not a target. A focused 400-word statement with real decisions beats 500 words of timeline."}}, {"@type": "Question", "name": "Do November 2026 students write an RPF?", "acceptedAnswer": {"@type": "Answer", "text": "No. Sessions through November 2026 follow the 34-mark rubric with the RPPF. The RPF applies from May 2027."}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the RPF marked separately from the essay?", "acceptedAnswer": {"@type": "Answer", "text": "No, it feeds Criterion E: Reflection, 4 of the 30 marks for the Extended Essay under the May 2027 rubric."}}, {"@type": "Question", "name": "How long should the EE RPF be?", "acceptedAnswer": {"@type": "Answer", "text": "Up to 500 words, a ceiling, not a target. A focused 400-word statement with real decisions beats 500 words of timeline."}}, {"@type": "Question", "name": "Do November 2026 students write an RPF?", "acceptedAnswer": {"@type": "Answer", "text": "No. Sessions through November 2026 follow the 34-mark rubric with the RPPF. The RPF applies from May 2027."}}]}</script>
   </main>`,
   "/resources/ib-extended-essay-guide": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Extended Essay Guide</nav>
@@ -678,7 +678,7 @@ export const staticContentResources: Record<string, string> = {
       </p>
 
       <p>
-        The EE is supervised by a teacher at the student's school, but the research and writing must be the student's own work. The IBO allocates approximately 40 hours of work to the Extended Essay, spread across the final two years of the Diploma Programme. Students are expected to meet regularly with their supervisor, who provides guidance on methodology, structure, and academic conventions — but does not edit or rewrite the essay.
+        The EE is supervised by a teacher at the student's school, but the research and writing must be the student's own work. The IBO allocates approximately 40 hours of work to the Extended Essay, spread across the final two years of the Diploma Programme. Students are expected to meet regularly with their supervisor, who provides guidance on methodology, structure, and academic conventions, but does not edit or rewrite the essay.
       </p>
 
       <h2>Word Count and Timeline</h2>
@@ -740,7 +740,7 @@ export const staticContentResources: Record<string, string> = {
         <li><strong>Introduction (300–400 words):</strong> Context, research question, scope, methodology overview</li>
         <li><strong>Body (3,000–3,200 words):</strong> Organized into logical sections with clear headings, presenting evidence, analysis, and argumentation</li>
         <li><strong>Conclusion (200–300 words):</strong> Direct answer to the RQ, summary of findings, acknowledgment of limitations, suggestions for further research</li>
-        <li><strong>Bibliography:</strong> Consistent citation style (MLA, APA, Chicago, or Harvard — pick one and use it throughout)</li>
+        <li><strong>Bibliography:</strong> Consistent citation style (MLA, APA, Chicago, or Harvard, pick one and use it throughout)</li>
         <li><strong>Appendices (if needed):</strong> Raw data, interview transcripts, supplementary materials</li>
       </ul>
 
@@ -796,7 +796,7 @@ export const staticContentResources: Record<string, string> = {
       </p>
 
       <p>
-        <strong>Criterion E (Engagement)</strong> is assessed through the Reflections on Planning and Progress Form (RPPF), which holds three reflections written at different stages of the research process — the third of these is the viva voce reflection — and is limited to 500 words in total. This criterion evaluates intellectual engagement, decision-making, and the student's ability to reflect on their learning process.
+        <strong>Criterion E (Engagement)</strong> is assessed through the Reflections on Planning and Progress Form (RPPF), which holds three reflections written at different stages of the research process, the third of these is the viva voce reflection, and is limited to 500 words in total. This criterion evaluates intellectual engagement, decision-making, and the student's ability to reflect on their learning process.
       </p>
 
       <h2>Common Mistakes</h2>
@@ -864,7 +864,7 @@ export const staticContentResources: Record<string, string> = {
       </ul>
 
       <p>
-        If you want objective, criterion-based feedback on your Extended Essay before submission, <a href="/essay/extended-essay">IBLens can grade your Extended Essay</a> against the official IB EE criteria — focus &amp; method, knowledge, critical thinking, presentation, and engagement — in about 90 seconds.
+        If you want objective, criterion-based feedback on your Extended Essay before submission, <a href="/essay/extended-essay">IBLens can grade your Extended Essay</a> against the official IB EE criteria, focus &amp; method, knowledge, critical thinking, presentation, and engagement, in about 90 seconds.
       </p>
 
       <p>
@@ -878,10 +878,10 @@ export const staticContentResources: Record<string, string> = {
   "/resources/ib-internal-assessment-guide": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Internal Assessment Guide</nav>
       <h1>The Complete IB Internal Assessment Guide</h1>
-  <p style="line-height:1.7;margin:0 0 14px"><strong>In short: every IB subject includes an internally assessed component marked against published criteria — sciences out of 24, History and Business Management out of 25, Mathematics out of 20, Economics 14 per commentary. Your teacher marks it and the IB moderates samples, so the criteria are the whole game.</strong></p>
+  <p style="line-height:1.7;margin:0 0 14px"><strong>In short: every IB subject includes an internally assessed component marked against published criteria, sciences out of 24, History and Business Management out of 25, Mathematics out of 20, Economics 14 per commentary. Your teacher marks it and the IB moderates samples, so the criteria are the whole game.</strong></p>
 
       <p>
-        Internal Assessments (IAs) are a core component of every IB Diploma Programme subject. Unlike externally examined papers, IAs are completed during the course, supervised by your teacher, and then externally moderated by IBO examiners. They typically account for 20–25% of your final subject grade, making them one of the most controllable elements of your IB score — you have weeks or months to refine them, unlike a timed exam.
+        Internal Assessments (IAs) are a core component of every IB Diploma Programme subject. Unlike externally examined papers, IAs are completed during the course, supervised by your teacher, and then externally moderated by IBO examiners. They typically account for 20–25% of your final subject grade, making them one of the most controllable elements of your IB score, you have weeks or months to refine them, unlike a timed exam.
       </p>
 
       <p>
@@ -895,8 +895,8 @@ export const staticContentResources: Record<string, string> = {
       </p>
 
       <ul>
-        <li><strong>Group 1 (Language & Literature):</strong> Individual Oral (IO) — a recorded oral commentary and discussion</li>
-        <li><strong>Group 2 (Language Acquisition):</strong> Individual Oral — a recorded oral assessment based on literary/non-literary works</li>
+        <li><strong>Group 1 (Language & Literature):</strong> Individual Oral (IO), a recorded oral commentary and discussion</li>
+        <li><strong>Group 2 (Language Acquisition):</strong> Individual Oral, a recorded oral assessment based on literary/non-literary works</li>
         <li><strong>Group 3 (Individuals & Societies):</strong> Written investigation (History: 2,200 words; Economics: 800 words per commentary × 3; Psychology: experimental study report through November 2026; from May 2027 it becomes a research proposal marked out of 24)</li>
         <li><strong>Group 4 (Sciences):</strong> Scientific investigation (Biology, Chemistry, Physics: up to 3,000 words, marked out of 24)</li>
         <li><strong>Group 5 (Mathematics):</strong> Mathematical Exploration (12–20 pages)</li>
@@ -916,13 +916,13 @@ export const staticContentResources: Record<string, string> = {
       <h3>Sciences (Group 4)</h3>
 
       <p>
-        Science IAs require you to design and conduct an original experiment (or simulation/modeling in some cases). The emphasis is on the <strong>scientific method</strong>: formulating a testable hypothesis, controlling variables, collecting sufficient data, processing results with appropriate statistical tools, and evaluating the methodology. Examiners want to see that you understand why you made each methodological choice, not just what you did. A common misconception is that complex experiments score higher — in reality, a simple experiment executed with rigorous methodology and thoughtful evaluation often outscores an ambitious experiment with poor controls.
+        Science IAs require you to design and conduct an original experiment (or simulation/modeling in some cases). The emphasis is on the <strong>scientific method</strong>: formulating a testable hypothesis, controlling variables, collecting sufficient data, processing results with appropriate statistical tools, and evaluating the methodology. Examiners want to see that you understand why you made each methodological choice, not just what you did. A common misconception is that complex experiments score higher, in reality, a simple experiment executed with rigorous methodology and thoughtful evaluation often outscores an ambitious experiment with poor controls.
       </p>
 
       <h3>History (Group 3)</h3>
 
       <p>
-        The History IA is a 2,200-word investigation into a historical question. It requires you to identify and evaluate sources (Section 1), investigate the topic using evidence (Section 2), and reflect on the methods used by historians (Section 3). The key differentiator for top marks is <strong>genuine engagement with historiography</strong> — showing that you understand how different historians have interpreted the same events and why their interpretations differ based on methodology, perspective, or available evidence.
+        The History IA is a 2,200-word investigation into a historical question. It requires you to identify and evaluate sources (Section 1), investigate the topic using evidence (Section 2), and reflect on the methods used by historians (Section 3). The key differentiator for top marks is <strong>genuine engagement with historiography</strong>, showing that you understand how different historians have interpreted the same events and why their interpretations differ based on methodology, perspective, or available evidence.
       </p>
 
       <h3>Mathematics (Group 5)</h3>
@@ -934,7 +934,7 @@ export const staticContentResources: Record<string, string> = {
       <h3>Economics (Group 3)</h3>
 
       <p>
-        Economics requires three commentaries of 800 words each, based on published news articles. Each commentary must apply economic theory to explain a real-world event, use appropriate diagrams, and evaluate the economic implications. The challenge is demonstrating <strong>depth of analysis within a tight word limit</strong> — every sentence must contribute to the argument. Examiners penalize commentaries that merely describe the article without applying economic models.
+        Economics requires three commentaries of 800 words each, based on published news articles. Each commentary must apply economic theory to explain a real-world event, use appropriate diagrams, and evaluate the economic implications. The challenge is demonstrating <strong>depth of analysis within a tight word limit</strong>, every sentence must contribute to the argument. Examiners penalize commentaries that merely describe the article without applying economic models.
       </p>
 
       <h2>Assessment Criteria Explained</h2>
@@ -999,7 +999,7 @@ export const staticContentResources: Record<string, string> = {
       </p>
 
       <p>
-        <strong>Analysis:</strong> The single biggest pitfall is <strong>describing rather than analyzing</strong>. Stating "the graph shows an upward trend" is description. Explaining why the trend occurs, whether it matches theoretical predictions, what anomalies suggest, and what the limitations of the data are — that is analysis.
+        <strong>Analysis:</strong> The single biggest pitfall is <strong>describing rather than analyzing</strong>. Stating "the graph shows an upward trend" is description. Explaining why the trend occurs, whether it matches theoretical predictions, what anomalies suggest, and what the limitations of the data are, that is analysis.
       </p>
 
       <p>
@@ -1025,10 +1025,10 @@ export const staticContentResources: Record<string, string> = {
       </p>
 
       <ul>
-        <li>Your IA must be self-explanatory — the moderator has never met you and cannot ask clarifying questions</li>
+        <li>Your IA must be self-explanatory, the moderator has never met you and cannot ask clarifying questions</li>
         <li>Clarity of communication matters enormously; if the moderator cannot follow your argument, they cannot award marks for it</li>
         <li>Following the prescribed structure and format for your subject makes it easier for moderators to find evidence of each criterion</li>
-        <li>Your teacher's feedback is valuable but not final — aim to exceed the criteria rather than just meeting your teacher's expectations</li>
+        <li>Your teacher's feedback is valuable but not final, aim to exceed the criteria rather than just meeting your teacher's expectations</li>
       </ul>
 
       <h2>Time Management for IA</h2>
@@ -1065,7 +1065,7 @@ export const staticContentResources: Record<string, string> = {
       </p>
 
       <p>
-        <strong>Second pass: Criteria alignment.</strong> Go through each criterion for your subject and highlight where in your IA you have addressed each one. If you cannot find clear evidence for a criterion, you need to add content. This is where tools like <a href="/essay">IBLens</a> can help — by analyzing your IA against the specific criteria for your subject, you can identify which areas need strengthening before submission.
+        <strong>Second pass: Criteria alignment.</strong> Go through each criterion for your subject and highlight where in your IA you have addressed each one. If you cannot find clear evidence for a criterion, you need to add content. This is where tools like <a href="/essay">IBLens</a> can help, by analyzing your IA against the specific criteria for your subject, you can identify which areas need strengthening before submission.
       </p>
 
       <p>
@@ -1081,7 +1081,7 @@ export const staticContentResources: Record<string, string> = {
       </p>
 
       <p>
-        Get AI feedback in about 90 seconds on your IA: <a href="/essay/biology-ia">Biology IA</a>, <a href="/essay/chemistry-ia">Chemistry IA</a>, <a href="/essay/physics-ia">Physics IA</a>, <a href="/essay/economics-ia">Economics IA</a>, <a href="/essay/history-ia">History IA</a>, <a href="/essay/business-management-ia">Business Management IA</a>, <a href="/essay/math-ia">Mathematics IA</a>, or <a href="/essay/psychology-ia">Psychology IA</a> — each graded against the official IB rubric in about 90 seconds.
+        Get AI feedback in about 90 seconds on your IA: <a href="/essay/biology-ia">Biology IA</a>, <a href="/essay/chemistry-ia">Chemistry IA</a>, <a href="/essay/physics-ia">Physics IA</a>, <a href="/essay/economics-ia">Economics IA</a>, <a href="/essay/history-ia">History IA</a>, <a href="/essay/business-management-ia">Business Management IA</a>, <a href="/essay/math-ia">Mathematics IA</a>, or <a href="/essay/psychology-ia">Psychology IA</a>, each graded against the official IB rubric in about 90 seconds.
       </p>
     
   
@@ -1091,10 +1091,10 @@ export const staticContentResources: Record<string, string> = {
   "/resources/tok-essay-guide": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB TOK Essay Guide</nav>
       <h1>The Complete IB TOK Essay Guide</h1>
-  <p style="line-height:1.7;margin:0 0 14px"><strong>In short: the TOK essay is up to 1,600 words on one of six prescribed titles, marked holistically out of 10 — one instrument, five bands, no separate criteria. With the Extended Essay it contributes up to 3 bonus points to your Diploma.</strong></p>
+  <p style="line-height:1.7;margin:0 0 14px"><strong>In short: the TOK essay is up to 1,600 words on one of six prescribed titles, marked holistically out of 10, one instrument, five bands, no separate criteria. With the Extended Essay it contributes up to 3 bonus points to your Diploma.</strong></p>
 
       <p>
-        The Theory of Knowledge (TOK) essay is one of the most distinctive and challenging components of the IB Diploma Programme. Unlike subject-specific essays that test your knowledge of content, the TOK essay asks you to reflect on the nature of knowledge itself — how we know what we claim to know, what counts as evidence, and how different ways of knowing interact with different areas of knowledge.
+        The Theory of Knowledge (TOK) essay is one of the most distinctive and challenging components of the IB Diploma Programme. Unlike subject-specific essays that test your knowledge of content, the TOK essay asks you to reflect on the nature of knowledge itself, how we know what we claim to know, what counts as evidence, and how different ways of knowing interact with different areas of knowledge.
       </p>
 
       <p>
@@ -1116,13 +1116,13 @@ export const staticContentResources: Record<string, string> = {
       </ul>
 
       <p>
-        The most common misconception about TOK is that it is about expressing opinions. It is not. TOK requires <strong>reasoned argumentation</strong> — claims must be supported with evidence and reasoning, and counter-claims must be genuinely engaged with rather than dismissed.
+        The most common misconception about TOK is that it is about expressing opinions. It is not. TOK requires <strong>reasoned argumentation</strong>, claims must be supported with evidence and reasoning, and counter-claims must be genuinely engaged with rather than dismissed.
       </p>
 
       <h2>The Prescribed Titles Structure</h2>
 
       <p>
-        Each examination session, the IBO releases six prescribed titles. These are carefully crafted questions that invite exploration of knowledge issues across multiple areas of knowledge (AOKs). You must choose one title and respond to it directly — you cannot modify the title or create your own question.
+        Each examination session, the IBO releases six prescribed titles. These are carefully crafted questions that invite exploration of knowledge issues across multiple areas of knowledge (AOKs). You must choose one title and respond to it directly, you cannot modify the title or create your own question.
       </p>
 
       <p>
@@ -1143,11 +1143,11 @@ export const staticContentResources: Record<string, string> = {
       <h2>Building Knowledge Claims and Counter-Claims</h2>
 
       <p>
-        The backbone of a TOK essay is the claim/counter-claim structure. A <strong>knowledge claim</strong> is an assertion about knowledge — for example, "Mathematical knowledge is more certain than historical knowledge because it is based on logical proof rather than interpretation of evidence."
+        The backbone of a TOK essay is the claim/counter-claim structure. A <strong>knowledge claim</strong> is an assertion about knowledge, for example, "Mathematical knowledge is more certain than historical knowledge because it is based on logical proof rather than interpretation of evidence."
       </p>
 
       <p>
-        A <strong>counter-claim</strong> challenges or qualifies the initial claim — for example, "However, the certainty of mathematical knowledge depends on accepting axioms that cannot themselves be proven, suggesting that mathematics also rests on assumptions."
+        A <strong>counter-claim</strong> challenges or qualifies the initial claim, for example, "However, the certainty of mathematical knowledge depends on accepting axioms that cannot themselves be proven, suggesting that mathematics also rests on assumptions."
       </p>
 
       <p>
@@ -1163,13 +1163,13 @@ export const staticContentResources: Record<string, string> = {
       </ul>
 
       <p>
-        The evaluation step is crucial. Weak essays present claims and counter-claims but never resolve the tension between them. Strong essays show <strong>nuanced judgment</strong> — perhaps the claim holds in one context but not another, or perhaps the truth lies in a synthesis of both perspectives.
+        The evaluation step is crucial. Weak essays present claims and counter-claims but never resolve the tension between them. Strong essays show <strong>nuanced judgment</strong>, perhaps the claim holds in one context but not another, or perhaps the truth lies in a synthesis of both perspectives.
       </p>
 
       <h2>Areas of Knowledge</h2>
 
       <p>
-        The TOK framework organizes knowledge into <strong>Areas of Knowledge (AOKs)</strong> — broad disciplines that produce knowledge using characteristic methods:
+        The TOK framework organizes knowledge into <strong>Areas of Knowledge (AOKs)</strong>, broad disciplines that produce knowledge using characteristic methods:
       </p>
 
       <ul>
@@ -1182,11 +1182,11 @@ export const staticContentResources: Record<string, string> = {
       </ul>
 
       <p>
-        The pre-2022 TOK course also used a framework of <strong>Ways of Knowing</strong> — reason, sense perception, language, emotion, imagination, faith, intuition and memory. These were <strong>removed</strong> in the 2022 syllabus and are no longer part of the course or the assessment, so you should not build your essay around them. The underlying ideas can still inform how you discuss the way knowledge is produced and justified within an area of knowledge.
+        The pre-2022 TOK course also used a framework of <strong>Ways of Knowing</strong>, reason, sense perception, language, emotion, imagination, faith, intuition and memory. These were <strong>removed</strong> in the 2022 syllabus and are no longer part of the course or the assessment, so you should not build your essay around them. The underlying ideas can still inform how you discuss the way knowledge is produced and justified within an area of knowledge.
       </p>
 
       <p>
-        Most prescribed titles require you to draw examples from at least two different AOKs. The strongest essays show how the same knowledge question plays out differently across AOKs — for example, how "evidence" means something different in natural science (empirical data) versus history (primary sources) versus mathematics (logical proof).
+        Most prescribed titles require you to draw examples from at least two different AOKs. The strongest essays show how the same knowledge question plays out differently across AOKs, for example, how "evidence" means something different in natural science (empirical data) versus history (primary sources) versus mathematics (logical proof).
       </p>
 
       <h2>Assessment Criteria</h2>
@@ -1226,7 +1226,7 @@ export const staticContentResources: Record<string, string> = {
           </tr>
           <tr>
             <td><strong>Implications of arguments</strong></td>
-            <td>Consider what follows if the argument holds — the examiner instrument asks for the implications of arguments to be considered</td>
+            <td>Consider what follows if the argument holds, the examiner instrument asks for the implications of arguments to be considered</td>
             <td>Reproduce generic arguments found in TOK textbooks</td>
           </tr>
         </tbody>
@@ -1243,11 +1243,11 @@ export const staticContentResources: Record<string, string> = {
       </p>
 
       <p>
-        <strong>Weak approach:</strong> "Yes, certainty is achievable in mathematics because 2+2=4 is always true. No, certainty is not achievable in history because we cannot go back in time." This is superficial — it makes obvious claims without analysis and uses trivial examples.
+        <strong>Weak approach:</strong> "Yes, certainty is achievable in mathematics because 2+2=4 is always true. No, certainty is not achievable in history because we cannot go back in time." This is superficial, it makes obvious claims without analysis and uses trivial examples.
       </p>
 
       <p>
-        <strong>Strong approach:</strong> "Mathematical certainty appears absolute within formal systems — the Pythagorean theorem, for instance, has been proven with logical necessity. However, Gödel's incompleteness theorems demonstrate that any sufficiently complex formal system contains statements that are true but unprovable within that system, suggesting that even mathematical certainty has boundaries. In contrast, historical knowledge operates through inference from evidence rather than proof. The historian's claim that 'the Treaty of Versailles contributed to World War II' cannot be proven with mathematical certainty, yet the weight of evidence makes it a highly justified belief. This suggests that certainty exists on a spectrum rather than as a binary — and that the appropriate standard of certainty varies by area of knowledge."
+        <strong>Strong approach:</strong> "Mathematical certainty appears absolute within formal systems, the Pythagorean theorem, for instance, has been proven with logical necessity. However, Gödel's incompleteness theorems demonstrate that any sufficiently complex formal system contains statements that are true but unprovable within that system, suggesting that even mathematical certainty has boundaries. In contrast, historical knowledge operates through inference from evidence rather than proof. The historian's claim that 'the Treaty of Versailles contributed to World War II' cannot be proven with mathematical certainty, yet the weight of evidence makes it a highly justified belief. This suggests that certainty exists on a spectrum rather than as a binary, and that the appropriate standard of certainty varies by area of knowledge."
       </p>
 
       <p>
@@ -1271,7 +1271,7 @@ export const staticContentResources: Record<string, string> = {
       </ul>
 
       <p>
-        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <a href="/essay/tok-essay">IBLens can provide criterion-based feedback on your TOK essay</a> — scored against the official IB TOK rubric in about 90 seconds. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <a href="/resources/ib-grade-boundaries">IB Grade Boundaries</a> guide. For a broader look at how IB criteria work across essay types, read our <a href="/resources/ib-essay-criteria-explained">IB Essay Criteria Explained</a> article.
+        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <a href="/essay/tok-essay">IBLens can provide criterion-based feedback on your TOK essay</a>, scored against the official IB TOK rubric in about 90 seconds. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <a href="/resources/ib-grade-boundaries">IB Grade Boundaries</a> guide. For a broader look at how IB criteria work across essay types, read our <a href="/resources/ib-essay-criteria-explained">IB Essay Criteria Explained</a> article.
       </p>
     
   
@@ -1284,7 +1284,7 @@ export const staticContentResources: Record<string, string> = {
   <p style="line-height:1.7;margin:0 0 14px"><strong>In short: Most IB coursework is marked against published criteria with fixed mark allocations. The TOK essay and exhibition are the exception: they are marked holistically, as a single global impression. The fastest way to raise a grade is to find the heaviest criterion for your component and check your draft against its top markband first.</strong></p>
 
       <p>
-        One of the most distinctive features of the IB Diploma Programme is its use of <strong>criterion-based assessment</strong>. Unlike norm-referenced systems (where your grade depends on how you perform relative to other students), the IB assesses each piece of work against fixed criteria with defined descriptors. This means that in theory, every student in a cohort could achieve a 7 — or every student could receive a 3 — depending on how well their work meets the criteria.
+        One of the most distinctive features of the IB Diploma Programme is its use of <strong>criterion-based assessment</strong>. Unlike norm-referenced systems (where your grade depends on how you perform relative to other students), the IB assesses each piece of work against fixed criteria with defined descriptors. This means that in theory, every student in a cohort could achieve a 7, or every student could receive a 3, depending on how well their work meets the criteria.
       </p>
 
       <p>
@@ -1302,7 +1302,7 @@ export const staticContentResources: Record<string, string> = {
       </p>
 
       <p>
-        <strong>Transparency:</strong> Students can read the criteria before they begin their work and understand exactly what is expected. There are no hidden requirements or subjective preferences — the criteria are published and available to all students.
+        <strong>Transparency:</strong> Students can read the criteria before they begin their work and understand exactly what is expected. There are no hidden requirements or subjective preferences, the criteria are published and available to all students.
       </p>
 
       <p>
@@ -1321,7 +1321,7 @@ export const staticContentResources: Record<string, string> = {
 
       <h3>Knowledge and Understanding</h3>
       <p>
-        Every IB subject assesses whether you understand the relevant content, concepts, and terminology. At lower levels, this means accurate recall and basic application. At higher levels, it means demonstrating <strong>deep, nuanced understanding</strong> — seeing connections between concepts, understanding why something works (not just that it works), and using terminology precisely rather than loosely.
+        Every IB subject assesses whether you understand the relevant content, concepts, and terminology. At lower levels, this means accurate recall and basic application. At higher levels, it means demonstrating <strong>deep, nuanced understanding</strong>, seeing connections between concepts, understanding why something works (not just that it works), and using terminology precisely rather than loosely.
       </p>
 
       <h3>Application and Analysis</h3>
@@ -1346,15 +1346,15 @@ export const staticContentResources: Record<string, string> = {
       </p>
 
       <p>
-        <strong>Best-fit approach:</strong> Examiners do not mark individual sentences or paragraphs. Instead, they read the entire piece of work and then determine which band descriptor best fits the overall quality for each criterion. This means that a few weak paragraphs will not necessarily drag down your mark if the overall quality is strong — but it also means that one brilliant paragraph cannot compensate for generally weak work.
+        <strong>Best-fit approach:</strong> Examiners do not mark individual sentences or paragraphs. Instead, they read the entire piece of work and then determine which band descriptor best fits the overall quality for each criterion. This means that a few weak paragraphs will not necessarily drag down your mark if the overall quality is strong, but it also means that one brilliant paragraph cannot compensate for generally weak work.
       </p>
 
       <p>
-        <strong>Positive marking:</strong> IB examiners are trained to look for evidence of achievement rather than counting errors. They ask "What has this student demonstrated?" rather than "What mistakes did they make?" This is why it is important to <strong>show your thinking</strong> — even if your conclusion is slightly off, demonstrating strong analytical reasoning will earn marks.
+        <strong>Positive marking:</strong> IB examiners are trained to look for evidence of achievement rather than counting errors. They ask "What has this student demonstrated?" rather than "What mistakes did they make?" This is why it is important to <strong>show your thinking</strong>, even if your conclusion is slightly off, demonstrating strong analytical reasoning will earn marks.
       </p>
 
       <p>
-        <strong>Holistic reading:</strong> Examiners read the entire response before assigning marks. They do not allocate marks paragraph by paragraph. This means your essay needs to work as a coherent whole — a strong introduction that sets up the argument, a body that develops it logically, and a conclusion that synthesizes the findings.
+        <strong>Holistic reading:</strong> Examiners read the entire response before assigning marks. They do not allocate marks paragraph by paragraph. This means your essay needs to work as a coherent whole, a strong introduction that sets up the argument, a body that develops it logically, and a conclusion that synthesizes the findings.
       </p>
 
       <p>
@@ -1410,7 +1410,7 @@ export const staticContentResources: Record<string, string> = {
       </table>
 
       <p>
-        The fundamental difference is <strong>depth of thinking</strong>. Band 5 work shows competence — the student understands the material and can apply it. Band 7 work shows <strong>intellectual sophistication</strong> — the student can evaluate, synthesize, and generate original insight.
+        The fundamental difference is <strong>depth of thinking</strong>. Band 5 work shows competence, the student understands the material and can apply it. Band 7 work shows <strong>intellectual sophistication</strong>, the student can evaluate, synthesize, and generate original insight.
       </p>
 
       <h2>Self-Assessment Using Criteria</h2>
@@ -1420,7 +1420,7 @@ export const staticContentResources: Record<string, string> = {
       </p>
 
       <p>
-        <strong>Step 1: Obtain the criteria.</strong> Every IB subject guide contains the assessment criteria for each component. Your teacher should have shared these with you. If not, ask — you have a right to see exactly how your work will be assessed.
+        <strong>Step 1: Obtain the criteria.</strong> Every IB subject guide contains the assessment criteria for each component. Your teacher should have shared these with you. If not, ask, you have a right to see exactly how your work will be assessed.
       </p>
 
       <p>
@@ -1453,7 +1453,7 @@ export const staticContentResources: Record<string, string> = {
       </ul>
 
       <p>
-        This is particularly valuable because self-assessment is inherently limited — it is difficult to objectively evaluate your own work, especially when you have been immersed in it for weeks. An external perspective (whether from a teacher, peer, or AI tool) can identify blind spots that you cannot see yourself.
+        This is particularly valuable because self-assessment is inherently limited, it is difficult to objectively evaluate your own work, especially when you have been immersed in it for weeks. An external perspective (whether from a teacher, peer, or AI tool) can identify blind spots that you cannot see yourself.
       </p>
 
       <p>
@@ -1483,7 +1483,7 @@ export const staticContentResources: Record<string, string> = {
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Extended Essay Word Count</nav>\n      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Extended Essay Word Count</h1>
       <p>
         The IB Extended Essay has a maximum word count of 4000 words. This is one of
-        the most misunderstood rules in the entire IB programme — students frequently
+        the most misunderstood rules in the entire IB programme, students frequently
         ask whether footnotes count, whether the bibliography counts, and what happens if they go over by fifty words. This guide
         answers all of those questions and explains the strategy behind hitting the
         word count effectively.
@@ -1531,7 +1531,7 @@ export const staticContentResources: Record<string, string> = {
         not exist as far as your mark is concerned.
       </p>
       <p>
-        Going over the word count does not result in an automatic penalty beyond this —
+        Going over the word count does not result in an automatic penalty beyond this -
         there is no "minus 5 marks for exceeding the limit." The penalty is subtler and
         worse: your work is simply cut off. If you write 4500 words, the last 500 are
         invisible to the examiner.
@@ -1562,7 +1562,7 @@ export const staticContentResources: Record<string, string> = {
       </p>
       <p>
         The abstract was abolished in the May 2018 session and has not been required or
-        assessed since. Do not include one — if a template still asks for a 300-word
+        assessed since. Do not include one, if a template still asks for a 300-word
         abstract, it is out of date. Orient the examiner with a clear introduction and
         a table of contents instead.
       </p>
@@ -1574,7 +1574,7 @@ export const staticContentResources: Record<string, string> = {
         Science EEs often include data tables, graphs, and calculations. These elements
         (as figures and tables with captions) do not count toward the word count, so
         students sometimes find they have significant content but are under 3000 words
-        of prose. This is fine — the analysis and evaluation of that data is what
+        of prose. This is fine, the analysis and evaluation of that data is what
         must reach the required depth in the word-counted sections. Do not pad with
         description; deepen the analysis.
       </p>
@@ -1591,7 +1591,7 @@ export const staticContentResources: Record<string, string> = {
       <h3>Humanities (History, Geography, Economics, Philosophy)</h3>
       <p>
         Humanities EEs are usually prose-heavy and most naturally approach the 4000-word
-        limit. History EEs in particular need careful word management — it is easy to
+        limit. History EEs in particular need careful word management, it is easy to
         spend 600 words on historical context and have only 2400 for analysis and
         evaluation. Keep context brief and keep returning to your research question.
       </p>
@@ -1619,15 +1619,15 @@ export const staticContentResources: Record<string, string> = {
 
       <h2>Does Word Count Affect Your IB Grade?</h2>
       <p>
-        The word count itself is not a graded criterion — there is no criterion that
+        The word count itself is not a graded criterion, there is no criterion that
         says "you used X words, therefore you score Y." The word count matters because
         it determines how much of your essay the examiner reads, which affects every
         criterion that depends on reading the full essay: Critical Thinking,
         Presentation, and Engagement.
       </p>
       <p>
-        The most efficient essay — the one that makes every word count toward the
-        argument — is usually also the best essay. Students who write to fill space
+        The most efficient essay, the one that makes every word count toward the
+        argument, is usually also the best essay. Students who write to fill space
         rather than to make a point typically score lower on Critical Thinking even
         when they stay within the limit.
       </p>
@@ -1651,12 +1651,12 @@ export const staticContentResources: Record<string, string> = {
   "/resources/ib-economics-ia": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Economics IA</nav>\n      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Economics IA</h1>
       <p>
-        The IB Economics Internal Assessment consists of three commentaries — one each
-        on Microeconomics, Macroeconomics, and The global economy — each written
+        The IB Economics Internal Assessment consists of three commentaries, one each
+        on Microeconomics, Macroeconomics, and The global economy, each written
         in response to a real news article published after the start of your IB course.
         Each commentary is worth a third of the overall IA mark, which contributes 20%
         to your final grade. Most students find the IA easier to score well on than
-        the Papers — but the difference between a 6 and a 7 comes down to a handful
+        the Papers, but the difference between a 6 and a 7 comes down to a handful
         of consistently applied skills that this guide covers.
       </p>
 
@@ -1664,16 +1664,16 @@ export const staticContentResources: Record<string, string> = {
       <p>
         Each commentary is marked on five criteria (A–E), for a maximum of 14 marks per
         commentary. The portfolio of three commentaries is marked out of 45: 42 across
-        the commentaries plus 3 for Criterion F (Rubric requirements — different units,
+        the commentaries plus 3 for Criterion F (Rubric requirements, different units,
         different sources, and articles published within a year of writing). Each
         commentary must also use a different key concept.
       </p>
       <ul>
-        <li><strong>Criterion A — Diagrams (3 marks):</strong> Are diagrams used? Are they accurately labelled? Do they directly illustrate the economics being discussed?</li>
-        <li><strong>Criterion B — Terminology (2 marks):</strong> Is economic terminology used correctly and consistently throughout?</li>
-        <li><strong>Criterion C — Application and analysis (3 marks):</strong> Is relevant economic theory applied to the article, with developed and accurate analysis?</li>
-        <li><strong>Criterion D — Key concept (3 marks):</strong> Is one key concept identified and effectively linked to the article?</li>
-        <li><strong>Criterion E — Evaluation (3 marks):</strong> Are judgments supported by reasoned argument — short-run versus long-run, who gains and who loses, and underlying assumptions?</li>
+        <li><strong>Criterion A, Diagrams (3 marks):</strong> Are diagrams used? Are they accurately labelled? Do they directly illustrate the economics being discussed?</li>
+        <li><strong>Criterion B, Terminology (2 marks):</strong> Is economic terminology used correctly and consistently throughout?</li>
+        <li><strong>Criterion C, Application and analysis (3 marks):</strong> Is relevant economic theory applied to the article, with developed and accurate analysis?</li>
+        <li><strong>Criterion D, Key concept (3 marks):</strong> Is one key concept identified and effectively linked to the article?</li>
+        <li><strong>Criterion E, Evaluation (3 marks):</strong> Are judgments supported by reasoned argument, short-run versus long-run, who gains and who loses, and underlying assumptions?</li>
       </ul>
       <p>
         A common profile for a strong-but-not-top commentary is Criterion A = 2, B = 2,
@@ -1727,7 +1727,7 @@ export const staticContentResources: Record<string, string> = {
         the welfare loss triangle before the tax, shows how the tax corrects the
         externality by internalising the external cost, then evaluates: will
         producers pass the tax on to consumers (depends on PED/PES)? Is the tax
-        set at the right level? What are the distributional effects — does the
+        set at the right level? What are the distributional effects, does the
         tax burden fall disproportionately on lower-income households?
       </p>
 
@@ -1772,7 +1772,7 @@ export const staticContentResources: Record<string, string> = {
 
       <h2>Diagrams: The Cheapest Marks in the IA</h2>
       <p>
-        Criterion A (Diagrams) is worth 3 marks per commentary — and losing 1 mark
+        Criterion A (Diagrams) is worth 3 marks per commentary, and losing 1 mark
         here is extremely common. The most frequent errors are:
       </p>
       <ul>
@@ -1793,7 +1793,7 @@ export const staticContentResources: Record<string, string> = {
         <li><strong>Short run vs. long run:</strong> The policy may have one effect immediately and a different effect over time. Rent control reduces rents in the short run but reduces housing supply in the long run as developers exit the market.</li>
         <li><strong>Winners and losers:</strong> Who gains from this policy and who loses? A minimum wage helps low-wage workers but may reduce employment for the most marginally employed workers.</li>
         <li><strong>Magnitude depends on elasticity:</strong> The size of the effect always depends on PED, PES, or YED. A sin tax on cigarettes has a small effect on quantity demanded if demand is inelastic.</li>
-        <li><strong>Limitations of the policy:</strong> Why might the policy fail to achieve its stated goal? Externality taxes only work if set at the correct Pigouvian level, which requires accurate measurement of external cost — which is practically very difficult.</li>
+        <li><strong>Limitations of the policy:</strong> Why might the policy fail to achieve its stated goal? Externality taxes only work if set at the correct Pigouvian level, which requires accurate measurement of external cost, which is practically very difficult.</li>
       </ol>
       <p>
         Apply two or three of these frameworks to your specific article context and
@@ -1807,9 +1807,9 @@ export const staticContentResources: Record<string, string> = {
         works best:
       </p>
       <ul>
-        <li><strong>Opening context (50–80 words):</strong> Briefly describe what the article is about and identify the main economic concept. Do not summarise the article — you are analysing it.</li>
+        <li><strong>Opening context (50–80 words):</strong> Briefly describe what the article is about and identify the main economic concept. Do not summarise the article, you are analysing it.</li>
         <li><strong>Economic analysis (300–400 words):</strong> Explain the economics using diagrams, correct terminology, and the relevant theory. Describe cause and effect precisely.</li>
-        <li><strong>Evaluation (250–350 words):</strong> Weigh up the effects, consider limitations, discuss who gains and loses. Use two to three distinct evaluation points — do not make one point three times.</li>
+        <li><strong>Evaluation (250–350 words):</strong> Weigh up the effects, consider limitations, discuss who gains and loses. Use two to three distinct evaluation points, do not make one point three times.</li>
         <li><strong>Conclusion (50–80 words):</strong> State your overall judgement. Is the policy likely to achieve its goal? Under what conditions?</li>
       </ul>
 
@@ -1817,7 +1817,7 @@ export const staticContentResources: Record<string, string> = {
       <p>
         The most common experience after receiving IA marks is: "I didn't realise my
         diagram was missing labels" or "my evaluation was describing, not evaluating."
-        These are easy marks to recover — if you catch them in time.
+        These are easy marks to recover, if you catch them in time.
       </p>
       <p>
         IBLens analyses your IB essay and commentary drafts against the official IB
@@ -1837,7 +1837,7 @@ export const staticContentResources: Record<string, string> = {
         secondary sources, evaluate two specific sources in detail, and write an
         analytical argument supported by evidence. It is worth 25% of your final grade
         at SL and 20% at HL. Most students find the IA less difficult than Paper 2
-        or Paper 3 — but the specific structure and the source evaluation sections
+        or Paper 3, but the specific structure and the source evaluation sections
         trip up a significant number of students who don't understand exactly what
         each section requires.
       </p>
@@ -1848,7 +1848,7 @@ export const staticContentResources: Record<string, string> = {
         what each section requires is more important than general writing skill.
       </p>
 
-      <h3>Section 1 — Identification and Evaluation of Sources (approx. 500 words)</h3>
+      <h3>Section 1, Identification and Evaluation of Sources (approx. 500 words)</h3>
       <p>
         This section focuses on two sources specifically relevant to your research
         question. For each source, you must analyse it using the OPCVL framework:
@@ -1858,7 +1858,7 @@ export const staticContentResources: Record<string, string> = {
         <strong>What examiners want:</strong> Not a description of what the source says,
         but an analysis of what its origin and purpose mean for its value and
         limitations. A speech by a government minister on the eve of a controversial
-        decision is valuable as evidence of the official government position — but
+        decision is valuable as evidence of the official government position, but
         limited because it was designed to persuade, not to inform, and likely
         omits inconvenient facts. That is the level of analysis required.
       </p>
@@ -1873,10 +1873,10 @@ export const staticContentResources: Record<string, string> = {
         <strong>Source selection:</strong> One primary source (a document, speech,
         photograph, or statistical record produced at the time) and one secondary
         source (a historian's analysis) works well. Both must be specifically relevant
-        to your research question — not just to the general topic.
+        to your research question, not just to the general topic.
       </p>
 
-      <h3>Section 2 — Investigation (approx. 1300 words)</h3>
+      <h3>Section 2, Investigation (approx. 1300 words)</h3>
       <p>
         This is the analytical body of your IA. It should directly answer your
         research question using evidence from multiple sources. Think of it as a
@@ -1889,16 +1889,16 @@ export const staticContentResources: Record<string, string> = {
         what happened. Students who score 7 organise their argument thematically,
         weigh competing interpretations, and maintain a consistent answer to the
         research question throughout. Every paragraph should either advance or
-        qualify the argument — not just add more information.
+        qualify the argument, not just add more information.
       </p>
       <p>
         Use a minimum of 8–10 sources in the Investigation. Footnote or parenthetically
-        cite every piece of evidence you use. Do not quote at excessive length —
+        cite every piece of evidence you use. Do not quote at excessive length -
         short, precise quotations with analysis are better than long block quotes
         that consume word count.
       </p>
 
-      <h3>Section 3 — Reflection (approx. 400 words)</h3>
+      <h3>Section 3, Reflection (approx. 400 words)</h3>
       <p>
         This section asks you to reflect on the methods historians use and the
         challenges involved. It is the most misunderstood section of the History IA.
@@ -1913,7 +1913,7 @@ export const staticContentResources: Record<string, string> = {
         examiners look for engagement with questions like:
       </p>
       <ul>
-        <li>What kinds of sources were available to you — and what kinds were not? How did this shape what you could know?</li>
+        <li>What kinds of sources were available to you, and what kinds were not? How did this shape what you could know?</li>
         <li>How did the perspective of your sources affect the conclusions you could draw?</li>
         <li>What does the existence of contradictory historical interpretations tell you about the nature of historical knowledge?</li>
         <li>How would a historian with access to different archives or sources approach this question differently?</li>
@@ -1932,7 +1932,7 @@ export const staticContentResources: Record<string, string> = {
       </p>
       <ul>
         <li><strong>Narrow enough to answer in 1300 words of analysis.</strong> "What caused World War One?" cannot be answered in 1300 words. "To what extent did the Schlieffen Plan's failure determine Germany's military strategy in 1914?" can.</li>
-        <li><strong>Debatable — requiring evaluation of evidence, not just description.</strong> A question that can be answered by reciting a sequence of events is not suitable. A question where historians disagree — where you must weigh evidence and come to a justified position — is ideal.</li>
+        <li><strong>Debatable, requiring evaluation of evidence, not just description.</strong> A question that can be answered by reciting a sequence of events is not suitable. A question where historians disagree, where you must weigh evidence and come to a justified position, is ideal.</li>
         <li><strong>Supported by accessible sources.</strong> You need primary sources for Section 1. Topics where primary sources are available in translation, digitised, or held in a local archive are preferable to topics where all relevant sources are in an archive in another country.</li>
         <li><strong>Distinct from Paper 2 and Paper 3 topics.</strong> The IB prefers (though does not strictly require) that your IA topic is different from your examined topics. Using the same topic risks formulaic writing; using a genuinely new topic demonstrates independent historical thinking.</li>
       </ul>
@@ -1949,9 +1949,9 @@ export const staticContentResources: Record<string, string> = {
         <tbody>
           <tr><td>Origin</td><td>Who produced this? When? Where? Under what conditions?</td><td>Context affects what the source could and could not contain.</td></tr>
           <tr><td>Purpose</td><td>Why was this produced? For what audience?</td><td>Purpose shapes what is included, what is omitted, and how it is framed.</td></tr>
-          <tr><td>Content</td><td>What does it say that is relevant to the research question?</td><td>Brief — the main value/limitation analysis flows from content, not from it.</td></tr>
+          <tr><td>Content</td><td>What does it say that is relevant to the research question?</td><td>Brief, the main value/limitation analysis flows from content, not from it.</td></tr>
           <tr><td>Value</td><td>What makes this source useful for investigating the research question?</td><td>Value comes from origin + purpose, not just content.</td></tr>
-          <tr><td>Limitation</td><td>What does this source not tell us, or tell us unreliably?</td><td>All sources have limitations — pretending they don't is a mark loss.</td></tr>
+          <tr><td>Limitation</td><td>What does this source not tell us, or tell us unreliably?</td><td>All sources have limitations, pretending they don't is a mark loss.</td></tr>
         </tbody>
       </table>
 
@@ -1977,7 +1977,7 @@ export const staticContentResources: Record<string, string> = {
       </p>
       <p>
         IBLens analyses your History IA against the official IB marking criteria
-        and provides criterion-by-criterion feedback — so you know exactly what
+        and provides criterion-by-criterion feedback, so you know exactly what
         to change before you submit the final version.
       </p>
       <p>
@@ -1987,15 +1987,15 @@ export const staticContentResources: Record<string, string> = {
   </main>`,
   "/resources/tok-essay-structure": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB TOK Essay Structure</nav>
-      <h1>IB TOK Essay Structure — The Complete 2026 Guide</h1>
-      <p>The IB Theory of Knowledge essay does not have a rigid prescribed structure — but examiners expect a specific analytical architecture. Students who understand how to structure a TOK essay score significantly higher than those who write well but structure loosely.</p>
+      <h1>IB TOK Essay Structure, The Complete 2026 Guide</h1>
+      <p>The IB Theory of Knowledge essay does not have a rigid prescribed structure, but examiners expect a specific analytical architecture. Students who understand how to structure a TOK essay score significantly higher than those who write well but structure loosely.</p>
       <h2>The Standard TOK Essay Structure (1,600 words)</h2>
       <h3>Introduction: 150–200 words</h3>
       <p>Your introduction must: unpack the prescribed title in your own words, define key terms, state your thesis, and signpost your two Areas of Knowledge.</p>
-      <h3>Body Section 1 — First Area of Knowledge: 500–600 words</h3>
+      <h3>Body Section 1, First Area of Knowledge: 500–600 words</h3>
       <p>Each AOK body section follows four steps: (1) knowledge claim, (2) specific real-world example, (3) counter-claim, (4) mini-synthesis.</p>
-      <h3>Body Section 2 — Second Area of Knowledge: 500–600 words</h3>
-      <p>Follow the same four-part structure. Choose an AOK that creates meaningful contrast with the first — Sciences vs. Arts, or History vs. Mathematics.</p>
+      <h3>Body Section 2, Second Area of Knowledge: 500–600 words</h3>
+      <p>Follow the same four-part structure. Choose an AOK that creates meaningful contrast with the first, Sciences vs. Arts, or History vs. Mathematics.</p>
       <h3>Conclusion: 200–250 words</h3>
       <p>Answer the prescribed title directly, synthesise both AOKs (don't summarise), acknowledge a genuine limitation, and connect to broader significance.</p>
       <h2>The Claim-Counter-Claim Cycle</h2>
@@ -2005,19 +2005,19 @@ export const staticContentResources: Record<string, string> = {
         <li><strong>Three or more AOKs:</strong> You cannot give adequate depth to three AOKs in 1,600 words.</li>
         <li><strong>Claims without examples:</strong> Abstract claims with no concrete illustration are what the middle bands describe.</li>
         <li><strong>No counter-claims:</strong> A claim without a counter-claim keeps the essay in the lower bands of the holistic rubric.</li>
-        <li><strong>Using subheadings:</strong> TOK essays should be continuous prose — subheadings signal a formulaic approach.</li>
+        <li><strong>Using subheadings:</strong> TOK essays should be continuous prose, subheadings signal a formulaic approach.</li>
       </ul>
       <p><a href="/essay/tok-essay">Check your TOK essay structure with IBLens →</a></p>
     </main>`,
   "/resources/ib-university-consultant-cost": `  <main style="max-width:800px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › University Guidance</nav>
-      <h1>IB University Guidance — being rebuilt</h1>
+      <h1>IB University Guidance, being rebuilt</h1>
       <p>We have taken our university guidance and strategy tools offline while we rebuild them on verified, official university requirements and deadlines from primary sources. We would rather show nothing than show admission estimates we cannot stand behind.</p>
       <p>In the meantime, grade your IB essays free: <a href="/essay">IB Essay Analyzer →</a></p>
     </main>`,
   "/resources/ib-university-chances": `  <main style="max-width:800px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › University Guidance</nav>
-      <h1>IB University Guidance — being rebuilt</h1>
+      <h1>IB University Guidance, being rebuilt</h1>
       <p>We have taken our university guidance and strategy tools offline while we rebuild them on verified, official university requirements and deadlines from primary sources. We would rather show nothing than show admission estimates we cannot stand behind.</p>
       <p>In the meantime, grade your IB essays free: <a href="/essay">IB Essay Analyzer →</a></p>
     </main>`,

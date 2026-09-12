@@ -158,8 +158,8 @@ export default function RemarkChecker() {
   return (
     <>
       <SEOHead
-        title="IB Remark 2026 — Is an EUR Worth It? Check Before You Pay | IBLens"
-        description="An IB remark costs around $100–120, your grade can go down, and the deadline is mid-September. Grade your EE or TOK essay with a strict AI first — know if you are near a boundary before you pay."
+        title="IB Remark 2026: Is an EUR Worth It? Check Before You Pay | IBLens"
+        description="An IB remark costs around $100–120, your grade can go down, and the deadline is mid-September. Grade your EE or TOK essay with a strict AI first, know if you are near a boundary before you pay."
         canonical="/remark"
       />
       <div className="min-h-screen bg-background">
