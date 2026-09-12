@@ -23,18 +23,14 @@ import {
   CheckCircle2, XCircle, Lock, Share2, Twitter, Copy, BookmarkPlus, CreditCard
 } from "lucide-react";
 import { PurchaseModal } from "@/components/PurchaseModal";
-import { type ProductKey } from "@shared/pricing";
+import { PRICE_LABELS, type ProductKey } from "@shared/pricing";
+import { IA_RUBRIC_SUBJECTS } from "@shared/rubrics";
 import { analytics } from "@/lib/analytics";
 import { trackEssaySubmitted, trackEssayUploadStarted } from "@/lib/analytics/track";
 
 const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
-const IB_SUBJECTS = [
-  "Business Management", "Economics", "History", "Biology", "Chemistry",
-  "Physics", "Mathematics", "English A: Language and Literature", "English A: Literature",
-  "Psychology", "Computer Science", "Geography", "Visual Arts", "Music", "Film",
-  "Environmental Systems and Societies", "Philosophy",
-];
+const IB_SUBJECTS: string[] = [...IA_RUBRIC_SUBJECTS];
 
 const ESSAY_TYPES = [
   { value: "IA", label: "Internal Assessment (IA)" },
@@ -178,13 +174,15 @@ export default function EssayAnalyzer() {
     const q = new URLSearchParams(window.location.search);
     const type = q.get("type");
     const session = q.get("session");
+    const subject = q.get("subject");
     return {
       type: ESSAY_TYPES.some((t) => t.value === type) ? (type as string) : undefined,
       session: session === "nov2026" || session === "may2027" ? (session as "nov2026" | "may2027") : undefined,
+      subject: subject && IB_SUBJECTS.includes(subject) ? subject : undefined,
     };
   })();
   const [essayType, setEssayType] = useState(handoff.type ?? "IA");
-  const [subject, setSubject] = useState("Business Management");
+  const [subject, setSubject] = useState(handoff.subject ?? "Business Management");
   const [researchQuestion, setResearchQuestion] = useState("");
   const [examSession, setExamSession] = useState<"nov2026" | "may2027">(handoff.session ?? "may2027");
   // ?rerun=<analysisId> — a paid report includes two free re-checks of the same draft.
@@ -238,7 +236,7 @@ export default function EssayAnalyzer() {
       window.dataLayer.push({ event: 'essay_submit', essay_type: essayType, subject, word_count: wordCount });
       window.dataLayer.push({ event: 'sign_up', method: 'free_essay_analysis' });
       if (data.wasFree) {
-        toast.success("Free analysis complete! Future analyses cost $5.");
+        toast.success(`Free analysis complete. The full report unlocks for ${PRICE_LABELS.ESSAY_SINGLE}.`);
       } else {
         toast.success("Analysis complete!");
       }
@@ -281,6 +279,21 @@ export default function EssayAnalyzer() {
     { fingerprint: anonFp },
     { enabled: isAuthenticated && !result }
   );
+  // Coming back from a guest checkout. The webhook has already unlocked the report,
+  // so there is nothing to click: read it and show it.
+  const paidReturn = typeof window !== "undefined"
+    && new URLSearchParams(window.location.search).get("payment") === "success";
+  const paidReportQ = trpc.essay.anonymousReport.useQuery(
+    { fingerprint: anonFp },
+    { enabled: paidReturn && !isAuthenticated && !result, refetchInterval: (d: any) => (d?.unlocked ? false : 4000) }
+  );
+  useEffect(() => {
+    if (paidReportQ.data?.unlocked && !result) {
+      setResult(paidReportQ.data.result as EssayResult);
+      toast.success("Payment confirmed. Your full report is open below.");
+    }
+  }, [paidReportQ.data, result]);
+
   const pageUnlock = trpc.essay.unlockAnalysis.useMutation({
     onSuccess: (d: any) => { setResult(d.result as EssayResult); lockedQ.refetch(); },
     onError: (e: any) => toast.error(e.message || "Unlock failed"),
@@ -884,7 +897,7 @@ export default function EssayAnalyzer() {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    const text = `I just scored ${result.predicted_score}/${result.max_score} (Band ${result.band_range}) on my IB ${essayType} in ${subject} using IBLens! 🎓 Get your free analysis at iblens.com`;
+                    const text = `IBLens estimates my IB ${essayType} in ${subject} at ${result.predicted_score}/${result.max_score} against the published criteria. Free preview at iblens.com`;
                     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
                   }}
                 >
@@ -895,7 +908,7 @@ export default function EssayAnalyzer() {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    const text = `I just scored ${result.predicted_score}/${result.max_score} (Band ${result.band_range}) on my IB ${essayType} in ${subject} using IBLens! 🎓 Get your free analysis at iblens.com`;
+                    const text = `IBLens estimates my IB ${essayType} in ${subject} at ${result.predicted_score}/${result.max_score} against the published criteria. Free preview at iblens.com`;
                     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
                   }}
                 >

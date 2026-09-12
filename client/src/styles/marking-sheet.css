@@ -371,3 +371,11 @@
 [data-marking-sheet] .ms-faq { margin: 0; display: grid; gap: 1.5rem; max-width: 74ch; }
 [data-marking-sheet] .ms-faq dt { font-family: var(--ms-form); font-size: .8rem; font-weight: 700; margin-bottom: .35rem; }
 [data-marking-sheet] .ms-faq dd { margin: 0; padding-left: 1rem; border-left: 2px solid var(--ms-rule); color: #4A443C; font-size: .97rem; }
+
+/* cover: the price of trying, stated before the fold */
+[data-marking-sheet] .ms-coverfree {
+  font-family: var(--ms-form); font-size: .74rem; line-height: 1.9; color: var(--ms-faint);
+  margin: 1.4rem 0 0; max-width: 52ch;
+}
+[data-marking-sheet] .ms-f1 { margin-bottom: 1.2rem; }
+[data-marking-sheet] .ms-slipnote a { color: var(--ms-mod); }

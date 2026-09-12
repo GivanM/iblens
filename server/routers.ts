@@ -24,7 +24,6 @@ import {
   consumePaidEssayCredit,
   getLatestAnonymousEssay,
   setAnonymousUnlocked,
-  setAnalysisUnlocked,
   markAnalysisUnlocked,
   consumeAnalysisRerun,
 } from "./db";
@@ -230,7 +229,7 @@ const essayRouter = router({
         if (!rec || rec.userId !== ctx.user.id || !rec.resultJson) throw new Error("Report not found");
         if (!(rec as any).unlocked) {
           await consumePaidEssayCredit(ctx.user.id);
-          await setAnalysisUnlocked(rec.id);
+          await markAnalysisUnlocked(rec.id);
         }
         return { result: rec.resultJson };
       }
@@ -241,7 +240,7 @@ const essayRouter = router({
           await consumePaidEssayCredit(ctx.user.id);
           await setAnonymousUnlocked(rec.id);
           // Keep a copy in the user's dashboard history
-          await createAnalysis({
+          const copy = await createAnalysis({
             userId: ctx.user.id,
             type: "essay",
             essayType: rec.essayType,
@@ -251,6 +250,7 @@ const essayRouter = router({
             predictedGrade: rec.predictedGrade,
             unlocked: true,
           });
+          if (copy?.id) await markAnalysisUnlocked(copy.id);
         }
         return { result: rec.resultJson };
       }
@@ -393,6 +393,19 @@ const essayRouter = router({
         console.error("[UCAS PS Review] Error:", error);
         throw new Error(error.message || "Review failed. Please try again.");
       }
+    }),
+
+  /**
+   * The full report for an anonymous device, returned only once the purchase has
+   * unlocked it. This is how a guest reads what they paid for: they never sign in,
+   * so the authenticated unlock path is closed to them.
+   */
+  anonymousReport: publicProcedure
+    .input(z.object({ fingerprint: z.string().min(1) }))
+    .query(async ({ input }) => {
+      const rec = await getLatestAnonymousEssay(input.fingerprint);
+      if (!rec || !rec.resultJson || !(rec as any).unlocked) return { unlocked: false as const };
+      return { unlocked: true as const, result: rec.resultJson };
     }),
 
   lockedReport: publicProcedure
@@ -709,6 +722,8 @@ const paymentRouter = router({
     .input(z.object({
       productKey: z.enum(["ESSAY_SINGLE", "ESSAY_PACK_5", "ESSAY_PACK_10", "UNIVERSITY_SINGLE"]),
       email: z.string().email("Please enter a valid email address"),
+      /** Device the locked report sits on, so the payment can open it without an account. */
+      fingerprint: z.string().min(1).optional(),
     }))
     .mutation(async ({ input }) => {
       if (input.productKey === "UNIVERSITY_SINGLE") {
@@ -751,6 +766,7 @@ const paymentRouter = router({
         input.email,
         sku,
         product.priceAmount,
+        input.productKey === "ESSAY_SINGLE" ? input.fingerprint : undefined,
       );
 
       return { checkoutUrl, orderId };

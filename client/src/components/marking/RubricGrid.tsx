@@ -5,24 +5,29 @@ import { Sheet, Slug } from "./Sheet";
  * Commentary for the worked example, keyed by the official criterion label.
  * The criteria, their marks and the total come from `shared/rubrics.ts` — the
  * same module the grader runs on — so this sheet cannot drift away from what
- * the product actually marks against. A criterion with no entry here renders
- * an empty note rather than borrowed text from another criterion.
+ * the product actually marks against. A criterion with no entry here is shown
+ * as unmarked rather than borrowing another criterion's text.
+ *
+ * Criterion E is deliberately absent. It is marked on the reflective statement
+ * (RPF), not on the essay, and this draft came in without one. The grader makes
+ * the same distinction: see `isNotAssessableFromText` in server/routers.ts.
  */
 const DEMO: Record<string, { awarded: number; note: string; weak?: boolean }> = {
-  "Criterion A": { awarded: 5, note: "Question is focused. The scope arrives on page four instead of page one." },
-  "Criterion B": { awarded: 5, note: "Sources are listed rather than put in conversation with each other." },
-  "Criterion C": { awarded: 3, note: "Counter-argument named, never evaluated. This is where the marks are.", weak: true },
-  "Criterion D": { awarded: 7, note: "The argument closes. Hedging in the final paragraph costs the last mark." },
-  "Criterion E": { awarded: 1, note: "Reflection describes the process. It does not say what changed in your thinking.", weak: true },
+  "Criterion A": { awarded: 5, note: "Question is focused and properly bounded. The scope only arrives on page four." },
+  "Criterion B": { awarded: 4, note: "One piece of real subject knowledge, the 1985 debt standstill. The rest stays general." },
+  "Criterion C": { awarded: 3, note: "Two readings named, neither weighed against the other.", weak: true },
+  "Criterion D": { awarded: 4, note: "The counter-argument is reported, not evaluated. This is the most expensive gap in the draft.", weak: true },
 };
+
+const UNMARKED_NOTE = "Marked on the reflective statement (RPF), which this draft did not include.";
 
 const keyOf = (name: string) => name.split(":")[0].trim();
 
-/** A ladder of marks 0..max with the awarded one ringed in red. */
+/** A ladder of marks 0..max with the awarded one ringed in red. Zero is a real mark. */
 function MarkLadder({ max, awarded }: { max: number; awarded: number }) {
   return (
     <span className="ms-ladder" aria-hidden="true">
-      {Array.from({ length: max }, (_, i) => i + 1).map((m) => (
+      {Array.from({ length: max + 1 }, (_, i) => i).map((m) => (
         <span key={m} className={m === awarded ? "ms-rung ms-rung-hit" : "ms-rung"}>
           {m}
         </span>
@@ -37,6 +42,7 @@ export function RubricGrid() {
 
   const rows = rubric.criteria.map((c) => ({ ...c, demo: DEMO[keyOf(c.name)] }));
   const awarded = rows.reduce((sum, r) => sum + (r.demo?.awarded ?? 0), 0);
+  const assessable = rows.reduce((sum, r) => sum + (r.demo ? r.max : 0), 0);
 
   return (
     <Sheet id="rubric">
@@ -80,7 +86,7 @@ export function RubricGrid() {
                     <span className="ms-faintcell">not marked</span>
                   )}
                 </td>
-                <td>{r.demo?.note ?? ""}</td>
+                <td>{r.demo?.note ?? UNMARKED_NOTE}</td>
               </tr>
             ))}
             <tr className="ms-total">
@@ -88,9 +94,12 @@ export function RubricGrid() {
               <td />
               <td className="ms-band">{rubric.totalMarks}</td>
               <td className="ms-band">
-                {awarded}/{rubric.totalMarks}
+                {awarded}/{assessable}
               </td>
-              <td>Estimate produced from the published criteria, not an IB mark.</td>
+              <td>
+                Estimate on the {assessable} marks an essay alone can earn, produced from the published criteria.
+                It is not an IB mark.
+              </td>
             </tr>
           </tbody>
         </table>
@@ -102,7 +111,7 @@ export function RubricGrid() {
         <span>
           <b>○</b> criterion where marks are most recoverable
         </span>
-        <span>Psychology and Computer Science also move to new grids in May 2027</span>
+        <span>Psychology, Computer Science, Design Technology and Visual Arts also move to new guides for May 2027</span>
       </p>
       {rubric.notes ? <p className="ms-grid-foot">{rubric.notes}</p> : null}
     </Sheet>

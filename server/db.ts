@@ -1,4 +1,4 @@
-import { eq, desc, sql, and } from "drizzle-orm";
+import { eq, desc, sql, and, lt } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import {
   InsertUser, users, analyses, InsertAnalysis, payments, InsertPayment,
@@ -589,6 +589,52 @@ export async function findOrCreateGuestUserByEmail(email: string): Promise<{ id:
 }
 
 
+/**
+ * Move anything bought as a guest onto the account the same person signs in with.
+ * A guest purchase creates a `guest:<email>` row that nobody can ever log into,
+ * because sign-in is Google only. Packs bought that way would otherwise be lost.
+ * Returns the number of essay credits moved.
+ */
+export async function absorbGuestAccount(email: string, targetUserId: number): Promise<number> {
+  const db = await getDb();
+  if (!db) return 0;
+
+  const guestOpenId = `guest:${email}`;
+  const rows = await db.select().from(users).where(eq(users.openId, guestOpenId)).limit(1);
+  const guest: any = rows[0];
+  if (!guest || guest.id === targetUserId) return 0;
+
+  const essay = guest.essayCredits ?? 0;
+  const university = guest.universityCredits ?? 0;
+  if (essay <= 0 && university <= 0) return 0;
+
+  await db.update(users)
+    .set({ essayCredits: 0, universityCredits: 0 })
+    .where(eq(users.id, guest.id));
+  await grantCreditsViaLedger(targetUserId, essay, university, `guest-merge:${guest.id}`);
+  await db.update(orders).set({ userId: targetUserId }).where(eq(orders.userId, guest.id));
+
+  console.log(`[Merge] Guest ${guest.id} absorbed into user ${targetUserId}: essay=${essay}, university=${university}`);
+  return essay;
+}
+
+/**
+ * Anonymous reports are kept only as long as they are useful. A report nobody paid
+ * for is deleted after 90 days; the row holds the analysis and the research
+ * question, and the research question alone can identify a student at their school.
+ * A purchased report is kept, because it was bought. Essay text is never stored.
+ */
+export async function purgeOldAnonymousAnalyses(maxAgeDays = 90): Promise<number> {
+  const db = await getDb();
+  if (!db) return 0;
+  const cutoff = new Date(Date.now() - maxAgeDays * 86400000);
+  const result: any = await db.delete(anonymousAnalyses)
+    .where(and(lt(anonymousAnalyses.createdAt, cutoff), eq(anonymousAnalyses.unlocked, false)));
+  const removed = Number(result?.[0]?.affectedRows ?? result?.affectedRows ?? 0);
+  if (removed > 0) console.log(`[Retention] Deleted ${removed} anonymous analyses older than ${maxAgeDays} days`);
+  return removed;
+}
+
 /** Consume strictly a PAID essay credit (never the free slot). Used by report unlock. */
 export async function consumePaidEssayCredit(userId: number) {
   const db = await getDb();
@@ -619,13 +665,6 @@ export async function setAnonymousUnlocked(id: number) {
   if (!db) throw new Error("Database not available");
   await db.update(anonymousAnalyses).set({ unlocked: true }).where(eq(anonymousAnalyses.id, id));
 }
-
-export async function setAnalysisUnlocked(id: number) {
-  const db = await getDb();
-  if (!db) throw new Error("Database not available");
-  await db.update(analyses).set({ unlocked: true }).where(eq(analyses.id, id));
-}
-
 
 /** Paid unlock starts the free re-run window (14 days, 2 re-runs of the same draft). */
 export async function markAnalysisUnlocked(id: number) {

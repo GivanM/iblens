@@ -415,4 +415,34 @@ export function getTokExhibitionRubric(): Rubric {
 }
 
 // Re-export for testing
+/**
+ * IA subjects we can mark against published criteria. This is the list the UI
+ * offers and the number the marketing copy is allowed to quote. Geography,
+ * Environmental Systems and Societies and Philosophy are deliberately absent:
+ * no rubric is loaded for them, so the grader would fall back to generic
+ * feedback while the site promises the published criteria.
+ */
+export const IA_RUBRIC_SUBJECTS = [
+  "Business Management",
+  "Economics",
+  "History",
+  "Biology",
+  "Chemistry",
+  "Physics",
+  "Mathematics",
+  "English A: Language and Literature",
+  "English A: Literature",
+  "Psychology",
+  "Computer Science",
+  "Visual Arts",
+  "Music",
+  "Film",
+] as const;
+
+/** Every subject above has to resolve, or the claim on the page stops being true. */
+const MISSING_IA_RUBRICS = IA_RUBRIC_SUBJECTS.filter((s) => !getRubric("IA", s));
+if (MISSING_IA_RUBRICS.length > 0) {
+  console.warn(`[rubrics] IA subjects offered without a rubric: ${MISSING_IA_RUBRICS.join(", ")}`);
+}
+
 export { RUBRIC_REGISTRY };

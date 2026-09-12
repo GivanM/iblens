@@ -127,7 +127,7 @@ export default function Home() {
                 name: "Which IB essay types does IBLens support?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "IBLens supports Internal Assessments (IA) for 17 subjects, Extended Essays (EE), and Theory of Knowledge (TOK) essays. Each type is analyzed against its specific IB criteria.",
+                  text: "IBLens supports Internal Assessments (IA) in 14 subjects, Extended Essays (EE), TOK essays and the TOK exhibition. Each type is analyzed against its own published criteria.",
                 },
               },
               {
@@ -167,7 +167,7 @@ export default function Home() {
                 name: "Can I use IBLens for multiple subjects?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes! IBLens supports all IB subjects including Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English Literature, Psychology, and more. Each analysis is tailored to the specific subject's criteria.",
+                  text: "IBLens marks Internal Assessments in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Each analysis uses that subject's own criteria. Subjects outside this list are not offered, because we would have no published criteria to mark them against.",
                 },
               },
               {
@@ -499,7 +499,7 @@ export default function Home() {
               />
               <FAQItem
                 question="Which IB essay types does IBLens support?"
-                answer="IBLens supports Internal Assessments (IA) for 17 subjects, Extended Essays (EE), and Theory of Knowledge (TOK) essays. Each type is analyzed against its specific IB criteria."
+                answer="IBLens supports Internal Assessments (IA) in 14 subjects, Extended Essays (EE), TOK essays and the TOK exhibition. Each type is analyzed against its own published criteria."
               />
               <FAQItem
                 question="Is my first essay analysis really free?"
@@ -519,7 +519,7 @@ export default function Home() {
               />
               <FAQItem
                 question="Can I use IBLens for multiple subjects?"
-                answer="Yes! IBLens supports all IB subjects including Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English Literature, Psychology, and more. Each analysis is tailored to the specific subject's criteria."
+                answer="IBLens marks Internal Assessments in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Each analysis uses that subject's own criteria. Subjects outside this list are not offered, because we would have no published criteria to mark them against."
               />
               <FAQItem
                 question="What if I'm not satisfied with my analysis?"

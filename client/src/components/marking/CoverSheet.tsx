@@ -37,6 +37,10 @@ export function CoverSheet() {
           <b>Examiner's mark</b>
           <i>to be awarded</i>
         </div>
+        <p className="ms-coverfree">
+          The first script is marked free: mark range, weakest criterion in full, and the risks costing the most.
+          The complete report is $9.99, no account and no subscription.
+        </p>
         <p className="ms-cue">
           <svg width="13" height="17" viewBox="0 0 13 17" fill="none" aria-hidden="true">
             <path d="M6.5 0v14M1 9l5.5 6L12 9" stroke="#726A5E" strokeWidth="1.4" />

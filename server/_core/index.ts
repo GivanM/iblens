@@ -8,6 +8,7 @@ import { registerOAuthRoutes } from "./oauth";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
+import { purgeOldAnonymousAnalyses } from "../db";
 import { registerLemonsqueezyWebhook } from "../lemonsqueezy/lemonsqueezy";
 import { ENV } from "./env";
 
@@ -67,6 +68,14 @@ async function startServer() {
   server.listen(port, () => {
     console.log(`Server running on http://localhost:${port}/`);
   });
+
+  // Retention. The privacy page says anonymous reports are not kept indefinitely,
+  // so something has to actually delete them. Runs at boot and once a day after.
+  const runRetention = () => {
+    purgeOldAnonymousAnalyses().catch((err) => console.warn("[Retention] failed:", err));
+  };
+  runRetention();
+  setInterval(runRetention, 24 * 60 * 60 * 1000).unref();
 }
 
 startServer().catch(console.error);

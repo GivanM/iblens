@@ -11,6 +11,9 @@ import {
   grantCreditsViaLedger,
   getUserById,
   getUserCredits,
+  getLatestAnonymousEssay,
+  setAnonymousUnlocked,
+  consumePaidEssayCredit,
 } from "../db";
 import { sendPaymentConfirmationEmail, getSkuHumanName } from "../email";
 import { sendGA4PurchaseEvent } from "../ga4mp";
@@ -219,6 +222,26 @@ export function registerLemonsqueezyWebhook(app: Express) {
             console.log(`[LemonSqueezy] Credits granted to user ${order.userId}: essay=${credits.essay}, university=${credits.university}`);
           }
 
+          // A guest bought the report sitting on their device. Open it here, because
+          // they cannot sign in to spend the credit themselves: sign-in is Google
+          // only and the credit lives on a guest:<email> account.
+          const unlockFp = String(customData.unlock_fp || "");
+          if (unlockFp && (credits.essay > 0)) {
+            try {
+              const rec = await getLatestAnonymousEssay(unlockFp);
+              if (rec && rec.resultJson && !(rec as any).unlocked) {
+                await consumePaidEssayCredit(order.userId);
+                await setAnonymousUnlocked(rec.id);
+                console.log(`[LemonSqueezy] Anonymous report ${rec.id} unlocked for order ${order.id}`);
+              } else if (!rec) {
+                console.warn(`[LemonSqueezy] No anonymous report for fingerprint on order ${order.id}; credit left on the account`);
+              }
+            } catch (unlockErr) {
+              // The credit stays on the account either way, so this never fails the webhook.
+              console.warn("[LemonSqueezy] Guest unlock failed (non-fatal):", unlockErr);
+            }
+          }
+
           // Update webhook event status
           if (webhookEventId) {
             await updateWebhookEvent(webhookEventId, { paymentStatus: "processed" }).catch(() => {});
@@ -326,6 +349,8 @@ export async function createLemonsqueezyCheckout(
   userEmail: string | null,
   productSlug?: string,
   valueUsd?: number,
+  /** Anonymous device id. Present when a guest is buying the report they just ran. */
+  unlockFingerprint?: string,
 ): Promise<{ checkoutUrl: string }> {
   const slug = productSlug || "essay_single";
   const baseUrl = LEMONSQUEEZY_BUY_URLS[slug];
@@ -336,12 +361,17 @@ export async function createLemonsqueezyCheckout(
 
   const url = new URL(baseUrl);
   url.searchParams.set("checkout[custom][order_id]", orderId);
+  if (unlockFingerprint) {
+    url.searchParams.set("checkout[custom][unlock_fp]", unlockFingerprint);
+  }
   if (userEmail) {
     url.searchParams.set("checkout[email]", userEmail);
   }
+  // A guest has no dashboard to come back to. Send them to the report they paid for.
+  const landing = unlockFingerprint ? "essay" : "dashboard";
   url.searchParams.set(
     "checkout[redirect_url]",
-    `https://iblens.com/dashboard?payment=success&order=${orderId}&product=${slug}&value=${((valueUsd ?? 0) / 100).toFixed(2)}&method=lemonsqueezy`,
+    `https://iblens.com/${landing}?payment=success&order=${orderId}&product=${slug}&value=${((valueUsd ?? 0) / 100).toFixed(2)}&method=lemonsqueezy`,
   );
 
   console.log(`[LemonSqueezy] Direct checkout URL built for order ${orderId}, product ${slug}`);

@@ -1,18 +1,22 @@
 import { Sheet, Slug, Hand } from "./Sheet";
 
-/** Margin notes. Word counts drive the handwriting reveal in `useMarkingInk`. */
+/**
+ * Margin notes. Each one answers one underlined passage in the draft, in the
+ * order they appear, so the pen marks and the notes are the same marking rather
+ * than two decorations. Word counts drive the handwriting reveal in `useMarkingInk`.
+ */
 const NOTES: { criterion: string; text: string; blue?: boolean }[] = [
   {
-    criterion: "Criterion A, 5 of 6",
-    text: "Focused question. Say so on page one, not in the conclusion.",
+    criterion: "Criterion B, 4 of 6",
+    text: "Good. This is the only place real subject knowledge does any work.",
   },
   {
     criterion: "Criterion C, 3 of 6",
-    text: "Two readings named, neither evaluated. Which do you reject, and on what evidence?",
+    text: "Two readings named, neither weighed against the other. Which do you reject, and on what evidence?",
   },
   {
-    criterion: "Criterion E, 1 of 4",
-    text: "Weakest criterion. The reflection describes the process. What changed in your thinking?",
+    criterion: "Criterion D, 4 of 8",
+    text: "You say it yourself and then do not do it. Evaluating the two cases against each other is worth the most marks here.",
     blue: true,
   },
 ];
@@ -20,13 +24,14 @@ const NOTES: { criterion: string; text: string; blue?: boolean }[] = [
 export function MarkedScript() {
   return (
     <Sheet id="work">
-      <Slug left="Sheet 1 of 5" middle="Candidate draft, marked" right="Red pen: examiner. Blue: moderation" />
+      <Slug left="Sheet 1 of 5" middle="Candidate draft, marked" right="Red pen: first read. Blue: second read" />
       <div className="ms-work">
         <div className="ms-col-text">
           <h2 className="ms-penline">Here is where your marks are going.</h2>
           <p className="ms-subline">
-            Paste a draft and the report comes back in about a minute. The first one is a free preview: band range,
-            your weakest criterion with its full feedback, and the risks costing the most marks.
+            Paste a draft and the report comes back in a minute or two. The first one is a free preview: your mark
+            range, your weakest criterion with its full feedback, and the risks costing the most marks. Nothing is
+            charged to see it.
           </p>
           <p className="ms-qn">
             "To what extent did economic sanctions contribute to the end of apartheid in South Africa, 1985 to 1994?"
@@ -46,7 +51,6 @@ export function MarkedScript() {
             that external pressure simply removed the last commercial argument for delay.
           </p>
           <p className="ms-body" data-ink>
-            The reading for this essay began with the sanctions literature and stayed there.{" "}
             <mark>A fuller account would have set the economic case against the internal political one</mark> rather
             than treating them as separate chapters.
           </p>
@@ -56,8 +60,8 @@ export function MarkedScript() {
           </p>
           <div className="ms-stampwrap">
             <div className="ms-stamp" data-stamp>
-              <b>21/30</b>
-              <span>Estimate, May 2027 scale</span>
+              <b>16/26</b>
+              <span>Estimate, RPF not marked</span>
             </div>
           </div>
         </div>

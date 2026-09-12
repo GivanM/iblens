@@ -127,7 +127,7 @@ export const staticContentResources: Record<string, string> = {
       <ul>
         <li>No training on your essays — graded and returned, never training data.</li>
         <li>No sharing, selling or publishing. No exemplar library built from submissions.</li>
-        <li>Anonymous analyses are not stored permanently; deletion on request.</li>
+        <li>The essay text is never stored. An anonymous report you did not buy is deleted after 90 days, and anything else on request.</li>
         <li>Nothing is fed to Turnitin or any plagiarism database.</li>
       </ul>
       <h2>Will Turnitin flag me for using AI feedback?</h2>
@@ -588,7 +588,7 @@ export const staticContentResources: Record<string, string> = {
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">AI Tools IB Students Use to Review Coursework Before Submission (2026)</h1>
   <p style="line-height:1.7;margin:0 0 14px">An honest comparison of the tools IB students use to review IAs, Extended Essays and TOK work against the assessment criteria. Details checked in August 2026 — verify current pricing and features on each site.</p>
   <table style="border-collapse:collapse;width:100%;margin:0 0 14px"><tr><th style="border:1px solid #ddd;padding:8px;text-align:left">Tool</th><th style="border:1px solid #ddd;padding:8px;text-align:left">What it reviews</th><th style="border:1px solid #ddd;padding:8px;text-align:left">Pricing model</th><th style="border:1px solid #ddd;padding:8px;text-align:left">May 2027 EE rubric</th></tr>
-  <tr><td style="border:1px solid #ddd;padding:8px">IBLens</td><td style="border:1px solid #ddd;padding:8px">IA across 17 subjects, EE, TOK essay, TOK exhibition</td><td style="border:1px solid #ddd;padding:8px">First analysis free; full report $9.99, no subscription</td><td style="border:1px solid #ddd;padding:8px">Yes — both the 34-mark and new 30-mark criteria</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px">IBLens</td><td style="border:1px solid #ddd;padding:8px">IA in 14 subjects, EE, TOK essay, TOK exhibition</td><td style="border:1px solid #ddd;padding:8px">First analysis free; full report $9.99, no subscription</td><td style="border:1px solid #ddd;padding:8px">Yes — both the 34-mark and new 30-mark criteria</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">RevisionDojo</td><td style="border:1px solid #ddd;padding:8px">Coursework grader plus a large IB resource library</td><td style="border:1px solid #ddd;padding:8px">See site</td><td style="border:1px solid #ddd;padding:8px">Not stated on the grader as of August 2026</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">MyRevisionAgent</td><td style="border:1px solid #ddd;padding:8px">TOK (/10), EE, IA across 27 subject-levels</td><td style="border:1px solid #ddd;padding:8px">2 free tokens on signup; packs from £4.99</td><td style="border:1px solid #ddd;padding:8px">No — EE graded /34 as of August 2026</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">Clastify</td><td style="border:1px solid #ddd;padding:8px">AI grader plus paid human review by IB examiners</td><td style="border:1px solid #ddd;padding:8px">See site</td><td style="border:1px solid #ddd;padding:8px">Not stated on the grader as of August 2026</td></tr>
@@ -628,13 +628,13 @@ export const staticContentResources: Record<string, string> = {
   <li>Check word limits — examiners stop crediting beyond them.</li>
   <li>Read one criterion at a time and point to the paragraph that evidences the top markband.</li>
   <li>Fix the weakest criterion before polishing the strongest.</li></ul>
-  <p style="line-height:1.7;margin:0 0 14px">IBLens grades IA drafts for 17 subjects against the official criteria for your session: band range and weakest criterion free, full report $9.99, no subscription. <a href="/resources/ib-ia-grader">How the IA grader works</a> · <a href="/essay">Check your draft</a></p>
+  <p style="line-height:1.7;margin:0 0 14px">IBLens grades IA drafts in 14 subjects against the official criteria for your session: mark range and weakest criterion free, full report $9.99, no subscription. <a href="/resources/ib-ia-grader">How the IA grader works</a> · <a href="/essay">Check your draft</a></p>
   
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which IB IA has the heaviest single criterion?", "acceptedAnswer": {"@type": "Answer", "text": "History — Section B carries 15 of 25 marks. Computer Science's Development criterion (12 marks) is the other outlier."}}, {"@type": "Question", "name": "Are the science IAs marked identically?", "acceptedAnswer": {"@type": "Answer", "text": "Biology, Chemistry and Physics share the 2025 instrument: Research design, Data analysis, Conclusion and Evaluation at 6 marks each, 24 in total."}}, {"@type": "Question", "name": "Can I check my IA against the criteria myself?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — the criteria are published. The hard part is objectivity about your own writing, which is where a second reader or a rubric-calibrated AI check helps."}}]}</script>
   </main>`,
   "/about": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">About IBLens</h1>
-  <p style="line-height:1.7;margin:0 0 14px">IBLens gives IB students an honest, criterion-level read on their coursework before submission: Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and exhibition. It started as a tool built inside one IB family — for checking our own student's drafts against the actual assessment criteria — and grew into a public product. IBLens is an independent project, not affiliated with or endorsed by the International Baccalaureate Organization.</p>
+  <p style="line-height:1.7;margin:0 0 14px">IBLens gives IB students an honest, criterion-level read on their coursework before submission: Internal Assessments in 14 subjects, the Extended Essay, the TOK essay and exhibition. It started as a tool built inside one IB family — for checking our own student's drafts against the actual assessment criteria — and grew into a public product. IBLens is an independent project, not affiliated with or endorsed by the International Baccalaureate Organization.</p>
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">How the grader works</h2>
   <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li>The grading engine carries the official assessment criteria for each component — names, mark allocations, band descriptors — including both EE rubrics (current 34-mark and new 30-mark May 2027) and the 2027 Psychology and Computer Science IA formats.</li>
   <li>Analysis runs on a large language model (Anthropic's Claude) instructed with the relevant criteria; every submission gets a criterion-by-criterion assessment with a predicted band range.</li>
@@ -819,7 +819,7 @@ export const staticContentResources: Record<string, string> = {
       <h2>How to Score an A</h2>
 
       <p>
-        An A grade on the Extended Essay (equivalent to 27–34 marks out of 34) requires excellence across all five criteria. Based on analysis of high-scoring essays and examiner commentary, here are the key characteristics of A-grade Extended Essays:
+        An A grade on the Extended Essay is 27–34 marks out of 34 under the criteria in force through November 2026. For May 2027 onward the essay is marked out of 30 against rewritten criteria, and the IB sets those grade boundaries only after the session is marked, so no A threshold exists for the new scale yet. Either way an A requires excellence across all criteria. Based on analysis of high-scoring essays and examiner commentary, here are the key characteristics of A-grade Extended Essays:
       </p>
 
       <p>
@@ -855,7 +855,8 @@ export const staticContentResources: Record<string, string> = {
         <li>Conclusion directly answers the research question with evidence from the body</li>
         <li>All sources are cited consistently using one citation style throughout</li>
         <li>Bibliography is complete and properly formatted</li>
-        <li>RPPF contains three reflections in total, the last of which is the viva voce reflection, within a 500-word limit</li>
+        <li>November 2026 and earlier: the RPPF contains three reflections in total, the last of which is the viva voce reflection, within a 500-word limit</li>
+        <li>May 2027 onward: the RPPF is replaced by the RPF, a single reflective statement of up to 500 words written after the viva voce, and Criterion E is marked on that statement rather than on the essay</li>
         <li>Table of contents has accurate page numbers</li>
         <li>Headers and formatting are consistent throughout</li>
         <li>No material in appendices that should be in the main body</li>

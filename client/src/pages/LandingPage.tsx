@@ -220,7 +220,7 @@ export default function LandingPage() {
               />
               <FAQItem
                 question="Which essay types and subjects does IBLens support?"
-                answer="IBLens grades Internal Assessments (IA), Extended Essays (EE), and TOK essays across all IB subjects — Business, Economics, History, Biology, Chemistry, Physics, English Literature, Psychology, and more."
+                answer="IBLens grades Extended Essays, TOK essays, the TOK exhibition and Internal Assessments in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film."
               />
               <FAQItem
                 question="How accurate is the AI grade?"

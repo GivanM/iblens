@@ -23,12 +23,14 @@ export default function Privacy() {
           </ul>
 
           <h2>How your essay is processed (AI disclosure)</h2>
-          <p>To produce your analysis, the text you submit is transmitted over an encrypted connection to our AI provider, <strong>Anthropic PBC</strong>, which processes it on our behalf solely to generate the feedback you receive. We do not use your essay to train any AI model, and we do not sell it. Anonymous analyses are not stored permanently; if you are signed in, your analysis history is stored in your account until you delete it.</p>
+          <p>To produce your analysis, the text you submit is transmitted over an encrypted connection to our AI provider, <strong>Anthropic PBC</strong>, which processes it on our behalf solely to generate the feedback you receive. We do not use your essay to train any AI model, and we do not sell it.</p>
+          <p>One detail most services leave out, and we would rather state it: the request does not travel to Anthropic directly. It passes through <strong>a relay server we operate in Helsinki, Finland</strong> (Hetzner Online GmbH), which exists because the connection to the model is not reliable from where this service is run. The relay holds the request and the answer only for as long as the analysis takes, and nobody else has access to it. The text of your essay is never written to our database, at any stage.</p>
 
           <h2>Who we share data with</h2>
           <p>We do not sell your personal data. We share it only with the service providers needed to run IBLens, each acting under their own terms:</p>
           <ul>
             <li><strong>Anthropic PBC</strong> - AI processing of your essay to generate analysis.</li>
+            <li><strong>Hetzner Online GmbH</strong> (Helsinki, Finland) - the server we operate to reach the AI provider; your text passes through it in transit.</li>
             <li><strong>LemonSqueezy</strong> - payment processing and receipts (they handle your card data; we never see full card numbers).</li>
             <li><strong>Google</strong> - analytics, advertising measurement, and sign-in.</li>
           </ul>
@@ -36,7 +38,7 @@ export default function Privacy() {
 
           <h2>How long we keep it</h2>
           <ul>
-            <li>Anonymous analyses: not stored permanently.</li>
+            <li>Anonymous analyses: the report and the research question are deleted 90 days after the analysis, unless the report was purchased. The essay text itself is never stored.</li>
             <li>Signed-in analysis history: kept until you delete it or ask us to.</li>
             <li>Account email: kept while your account is active, then on request.</li>
           </ul>

@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useLocation } from "wouter";
+import { Link, useLocation } from "wouter";
 import { PRICE_LABELS } from "@shared/pricing";
+import { IA_RUBRIC_SUBJECTS } from "@shared/rubrics";
 import { analytics } from "@/lib/analytics";
 import { Sheet, Slug } from "./Sheet";
 
@@ -16,20 +17,28 @@ const SESSIONS = [
   { value: "nov2026", label: "November 2026" },
 ];
 
+const SUBJECTS: string[] = [...IA_RUBRIC_SUBJECTS];
+
 /**
  * The slip hands the choice to the analyzer instead of duplicating its form.
  * One submit path means one place where `startEssayAnalysis` fires and one set
- * of validation rules.
+ * of validation rules. Subject travels too: it goes into the prompt, and a
+ * History essay marked as Business Management is marked on the wrong vocabulary.
  */
 export function RequestSlip() {
   const [, navigate] = useLocation();
   const [task, setTask] = useState("EE");
+  const [subject, setSubject] = useState("History");
   const [session, setSession] = useState("may2027");
+
+  const needsSubject = task === "EE" || task === "IA";
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     analytics.clickAnalyzeEssay();
-    navigate(`/essay?type=${encodeURIComponent(task)}&session=${encodeURIComponent(session)}`);
+    const params = new URLSearchParams({ type: task, session });
+    if (needsSubject) params.set("subject", subject);
+    navigate(`/essay?${params.toString()}`);
   };
 
   return (
@@ -39,7 +48,7 @@ export function RequestSlip() {
         <form onSubmit={submit}>
           <h2>Submit a script</h2>
           <p className="ms-sub">
-            No account needed for the first one. The free preview returns your band range, the weakest criterion with
+            No account needed for the first one. The free preview returns your mark range, the weakest criterion with
             its full feedback, and the risks costing the most marks.
           </p>
           <div className="ms-f2">
@@ -68,6 +77,20 @@ export function RequestSlip() {
               </select>
             </div>
           </div>
+          {needsSubject && (
+            <div className="ms-f1">
+              <label className="ms-label" htmlFor="ms-subject">
+                Subject
+              </label>
+              <select className="ms-inp" id="ms-subject" value={subject} onChange={(e) => setSubject(e.target.value)}>
+                {SUBJECTS.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
           <button className="ms-btn" type="submit">
             Mark this script
           </button>
@@ -80,7 +103,7 @@ export function RequestSlip() {
             <b>Free preview</b>
           </div>
           <div className="ms-fr">
-            <span>Full report</span>
+            <span>Full report, one piece of work</span>
             <b>{PRICE_LABELS.ESSAY_SINGLE}</b>
           </div>
           <div className="ms-fr">
@@ -88,18 +111,25 @@ export function RequestSlip() {
             <b>Twice, included</b>
           </div>
           <div className="ms-fr">
-            <span>Pack of five</span>
+            <span>Five reports, no expiry</span>
             <b>{PRICE_LABELS.ESSAY_PACK_5}</b>
           </div>
           <div className="ms-fr">
-            <span>Pack of ten</span>
+            <span>Ten reports, no expiry</span>
             <b>{PRICE_LABELS.ESSAY_PACK_10}</b>
           </div>
           <div className="ms-fr">
             <span>Refund window</span>
             <b>7 days</b>
           </div>
+          <div className="ms-fr">
+            <span>Payments handled by</span>
+            <b>LemonSqueezy</b>
+          </div>
           <p className="ms-hand">No subscription. Nothing renews.</p>
+          <p className="ms-slipnote">
+            <Link href="/resources/sample-reports">Read a full report before you buy one</Link>
+          </p>
         </aside>
       </div>
     </Sheet>

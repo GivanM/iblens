@@ -49,6 +49,16 @@ export function registerOAuthRoutes(app: Express) {
         lastSignedIn: new Date(),
       });
 
+      // Anything bought as a guest with this email belongs to this person.
+      if (userInfo.email) {
+        try {
+          const signedIn = await db.getUserByOpenId(userInfo.id);
+          if (signedIn?.id) await db.absorbGuestAccount(userInfo.email, signedIn.id);
+        } catch (mergeErr) {
+          console.warn("[OAuth] Guest merge failed (non-fatal)", mergeErr);
+        }
+      }
+
       const sessionToken = await sdk.createSessionToken(userInfo.id, {
         name: userInfo.name || "",
         expiresInMs: ONE_YEAR_MS,

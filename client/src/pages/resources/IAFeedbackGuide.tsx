@@ -57,7 +57,7 @@ export default function IAFeedbackGuide() {
       <h2>Teacher feedback and where AI fits</h2>
 
       <p>
-        Your teacher gives guidance during the IA process and feedback on a draft — use it for what only a subject expert can judge: whether your method is sound and your subject content accurate. What AI adds is unlimited, instant iterations against the criteria between teacher rounds. IBLens grades IA drafts for 17 subjects against the official criteria for your session — predicted band range and weakest criterion free, full criterion-by-criterion report $9.99, no subscription.
+        Your teacher gives guidance during the IA process and feedback on a draft — use it for what only a subject expert can judge: whether your method is sound and your subject content accurate. What AI adds is unlimited, instant iterations against the criteria between teacher rounds. IBLens grades IA drafts in 14 subjects against the official criteria for your session — predicted band range and weakest criterion free, full criterion-by-criterion report $9.99, no subscription.
       </p>
 
       <p>

@@ -172,7 +172,7 @@ export default function ExtendedEssayGuide() {
       <h2>How to Score an A</h2>
 
       <p>
-        An A grade on the Extended Essay (27–34 marks out of 34 under the current criteria; the 2027 rubric is marked out of 30) requires excellence across all five criteria. Based on analysis of high-scoring essays and examiner commentary, here are the key characteristics of A-grade Extended Essays:
+        An A grade on the Extended Essay is 27–34 marks out of 34 under the criteria in force through November 2026. For May 2027 onward the essay is marked out of 30 against rewritten criteria, and the IB sets those grade boundaries only after the session is marked, so no A threshold exists for the new scale yet. Either way an A requires excellence across all criteria. Based on analysis of high-scoring essays and examiner commentary, here are the key characteristics of A-grade Extended Essays:
       </p>
 
       <p>
@@ -208,7 +208,8 @@ export default function ExtendedEssayGuide() {
         <li>Conclusion directly answers the research question with evidence from the body</li>
         <li>All sources are cited consistently using one citation style throughout</li>
         <li>Bibliography is complete and properly formatted</li>
-        <li>RPPF contains three reflections in total, the last of which is the viva voce reflection, within a 500-word limit</li>
+        <li>November 2026 and earlier: the RPPF contains three reflections in total, the last of which is the viva voce reflection, within a 500-word limit</li>
+        <li>May 2027 onward: the RPPF is replaced by the RPF, a single reflective statement of up to 500 words written after the viva voce, and Criterion E is marked on that statement rather than on the essay</li>
         <li>Table of contents has accurate page numbers</li>
         <li>Headers and formatting are consistent throughout</li>
         <li>No material in appendices that should be in the main body</li>

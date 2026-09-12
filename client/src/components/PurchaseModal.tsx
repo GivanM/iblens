@@ -84,7 +84,15 @@ export function PurchaseModal({ open, onOpenChange, sku }: PurchaseModalProps) {
       }
       setLoading(true);
       trackBeginCheckout(SKU_TO_SLUG[sku], PRICES[sku] / 100, "lemonsqueezy");
-      createGuestCheckout.mutate({ productKey: sku, email: trimmedEmail });
+      // The device id travels with the payment so the webhook can open the report
+      // this guest just ran. Without it they would pay and stay locked out.
+      let fingerprint: string | undefined;
+      try {
+        fingerprint = localStorage.getItem("iblens_anon_fp") || undefined;
+      } catch {
+        fingerprint = undefined;
+      }
+      createGuestCheckout.mutate({ productKey: sku, email: trimmedEmail, fingerprint });
       return;
     }
 

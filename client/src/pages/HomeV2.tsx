@@ -19,31 +19,35 @@ import { usePaperTexture, useMarkingInk } from "@/components/marking/useMarkingS
 const FAQ = [
   {
     q: "How does IBLens analyze my IB essay?",
-    a: "A large language model is given the official assessment criteria for your task and session, and marks your draft criterion by criterion. The report gives a predicted band, the criterion losing the most marks, the risks in the text, and what to change.",
+    a: "A large language model is given the official assessment criteria for your task and session, and marks your draft criterion by criterion. The report gives a mark range, the criterion losing the most marks, the risks in the text, and what to change.",
   },
   {
     q: "Which IB essay types does IBLens support?",
-    a: "Internal Assessments in 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition. Each is marked against its own criteria.",
+    a: "The Extended Essay, the TOK essay, the TOK exhibition, and the Internal Assessment in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Each is marked against its own criteria.",
   },
   {
     q: "Is my first essay analysis really free?",
-    a: "The first one returns a free preview: your band range, your weakest criterion with its full feedback, and the top risks in the draft. The complete report, with every criterion scored and a ranked fix list, unlocks for $9.99.",
+    a: "The first one returns a free preview: your mark range, your weakest criterion with its full feedback, and the top risks in the draft. That is one free preview per device or account, not one per essay. The complete report, with every criterion scored and a ranked fix list, unlocks for $9.99.",
   },
   {
     q: "How accurate is the predicted IB score?",
-    a: "It is an estimate, not a mark. No tool can promise an exact score. The model is instructed with the published criteria for your subject and session, and the value of the report is in which criterion it flags and why, not in the number.",
+    a: "It is an estimate, not a mark. No tool can promise an exact score, and for the May 2027 Extended Essay the grade boundaries do not exist yet: the IB sets them after the session is marked. The value of the report is in which criterion it flags and why, not in the number.",
   },
   {
-    q: "Is my essay data kept private and secure?",
-    a: "Your essay is sent to Anthropic PBC over an encrypted connection for the sole purpose of producing the analysis. It is not used to train models, not sold, and not shared with your school, universities or other students. Anonymous analyses are not stored permanently.",
+    q: "Do I have to tell my school that I used this?",
+    a: "IBLens returns feedback and never text you could hand in, so there is nothing of ours to cite in your essay. Schools set their own rules on disclosing AI-assisted feedback, and some require it, so follow your coordinator's policy. Whatever you change, you have to be able to explain it in your own words at the viva voce.",
+  },
+  {
+    q: "Where does my essay actually go?",
+    a: "It travels over an encrypted connection through our own server in Finland, which exists because the model cannot be reached directly from where this service is run, and then to Anthropic PBC, which produces the analysis. It is not used to train models, not sold, and not shared with your school, universities or other students. The essay text itself is never written to our database. An anonymous report that nobody paid for is deleted after 90 days.",
   },
   {
     q: "What happens if I revise and want a second opinion?",
-    a: "A paid report includes two re-checks of the same piece of work within 14 days, at no extra cost. Revise, run it again, and see whether the criterion moved.",
+    a: "A paid report includes two re-checks of the same piece of work within 14 days of the payment, at no extra cost. Revise, run it again, and see whether the criterion moved.",
   },
   {
     q: "What if I am not satisfied with my analysis?",
-    a: "Email glushkovim@gmail.com within 7 days of your purchase for a full refund, no questions asked. Refunds go back to the original payment method within 3 to 5 business days.",
+    a: "Email glushkovim@gmail.com within 7 days of your purchase for a full refund, no questions asked. Payments run through LemonSqueezy, which is the merchant of record, so the refund goes back to the card you paid with. We start it within 3 to 5 business days and the bank can take another 5 to 10 to show it.",
   },
 ];
 
@@ -60,7 +64,7 @@ export default function HomeV2() {
     <div className="ms-root" data-marking-sheet ref={rootRef}>
       <SEOHead
         title="IBLens, IB essay grader marked like a script"
-        description="Paste an IB draft and get it marked against the published criteria, criterion by criterion, in about a minute. Free preview on the first one. Full report $9.99, no subscription."
+        description="Paste an IB draft and get it marked against the published criteria, criterion by criterion, in a minute or two. Free preview on the first one. Full report $9.99, no subscription."
         canonical="/"
         jsonLd={[
           {

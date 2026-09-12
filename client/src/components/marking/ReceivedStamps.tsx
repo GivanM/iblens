@@ -5,7 +5,7 @@ const STAMPS = [
     head: "Received",
     when: "3 weeks out",
     rot: "-1.8deg",
-    body: "Structural fixes are still open. A weak question or a missing counter-argument can be rewritten. This is where a report changes a grade.",
+    body: "Structural fixes are still open. A weak research question, a missing counter-argument, a section that describes where it should argue: all of it can still be rewritten.",
   },
   {
     head: "Received",
@@ -24,7 +24,7 @@ const STAMPS = [
     when: "too late",
     rot: "2deg",
     dead: true,
-    body: "Nothing left to do. Waiting a week for feedback is expensive in something other than money.",
+    body: "Nothing left to do. This is the case the service exists to avoid, and the reason waiting a week for feedback costs something other than money.",
   },
 ];
 
