@@ -119,7 +119,7 @@ export default function Home() {
                 name: "How does IBLens analyze my IB essay?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "IBLens uses advanced AI trained on IB marking criteria to analyze your essay. It evaluates each criterion (e.g., Knowledge and Understanding, Application, Analysis) and provides a predicted score, identifies risk areas that could lose marks, and suggests specific improvements.",
+                  text: "IBLens uses a large language model instructed with the official IB marking criteria to analyze your essay. It evaluates each criterion (for example Knowledge and understanding, Analysis, Evaluation — the exact set depends on your subject) and provides a predicted score, identifies risk areas that could lose marks, and suggests specific improvements.",
                 },
               },
               {
@@ -127,7 +127,7 @@ export default function Home() {
                 name: "Which IB essay types does IBLens support?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "IBLens supports Internal Assessments (IA) for all IB subjects, Extended Essays (EE), and Theory of Knowledge (TOK) essays. Each type is analyzed against its specific IB criteria.",
+                  text: "IBLens supports Internal Assessments (IA) for 17 subjects, Extended Essays (EE), and Theory of Knowledge (TOK) essays. Each type is analyzed against its specific IB criteria.",
                 },
               },
               {
@@ -143,7 +143,7 @@ export default function Home() {
                 name: "How accurate is the predicted IB score?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "IBLens provides a predicted score band based on IB marking criteria analysis. While no tool can guarantee exact scores, our AI is trained on IB standards and provides reliable estimates to help you understand where your essay stands and how to improve it.",
+                  text: "IBLens provides a predicted score band based on IB marking criteria analysis. While no tool can guarantee exact scores, the model is instructed with the official IB criteria for your subject and session and provides reliable estimates to help you understand where your essay stands and how to improve it.",
                 },
               },
               {
@@ -394,7 +394,7 @@ export default function Home() {
                 <div className="text-3xl mb-3">😐</div>
                 <p className="font-semibold mb-1">IB Teacher</p>
                 <div className="text-2xl font-bold text-muted-foreground mb-1">Free</div>
-                <p className="text-xs text-muted-foreground">When available. Generic feedback. No criterion scores. Wait days.</p>
+                <p className="text-xs text-muted-foreground">When available. Knows you and your school. Marks your IA against the criteria — but written feedback is limited and takes days.</p>
               </div>
               <div className="bg-primary/5 border-2 border-primary rounded-xl p-5 text-center relative">
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">Recommended</div>
@@ -495,11 +495,11 @@ export default function Home() {
             <div className="max-w-2xl mx-auto bg-background rounded-xl border p-6 md:p-8">
               <FAQItem
                 question="How does IBLens analyze my IB essay?"
-                answer="IBLens uses advanced AI trained on IB marking criteria to analyze your essay. It evaluates each criterion (e.g., Knowledge and Understanding, Application, Analysis) and provides a predicted score, identifies risk areas that could lose marks, and suggests specific improvements."
+                answer="IBLens uses a large language model instructed with the official IB marking criteria to analyze your essay. It evaluates each criterion (for example Knowledge and understanding, Analysis, Evaluation — the exact set depends on your subject) and provides a predicted score, identifies risk areas that could lose marks, and suggests specific improvements."
               />
               <FAQItem
                 question="Which IB essay types does IBLens support?"
-                answer="IBLens supports Internal Assessments (IA) for all IB subjects, Extended Essays (EE), and Theory of Knowledge (TOK) essays. Each type is analyzed against its specific IB criteria."
+                answer="IBLens supports Internal Assessments (IA) for 17 subjects, Extended Essays (EE), and Theory of Knowledge (TOK) essays. Each type is analyzed against its specific IB criteria."
               />
               <FAQItem
                 question="Is my first essay analysis really free?"
@@ -507,7 +507,7 @@ export default function Home() {
               />
               <FAQItem
                 question="How accurate is the predicted IB score?"
-                answer="IBLens provides a predicted score band based on IB marking criteria analysis. While no tool can guarantee exact scores, our AI is trained on IB standards and provides reliable estimates to help you understand where your essay stands and how to improve it."
+                answer="IBLens provides a predicted score band based on IB marking criteria analysis. While no tool can guarantee exact scores, the model is instructed with the official IB criteria for your subject and session and provides reliable estimates to help you understand where your essay stands and how to improve it."
               />
               <FAQItem
                 question="Is my essay data kept private and secure?"

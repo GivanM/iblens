@@ -796,7 +796,7 @@ export const staticContentResources: Record<string, string> = {
       </p>
 
       <p>
-        <strong>Criterion E (Engagement)</strong> is assessed through the Reflections on Planning and Progress Form (RPPF), which consists of three reflections written at different stages of the research process plus a final reflection after the viva voce. This criterion evaluates intellectual engagement, decision-making, and the student's ability to reflect on their learning process.
+        <strong>Criterion E (Engagement)</strong> is assessed through the Reflections on Planning and Progress Form (RPPF), which holds three reflections written at different stages of the research process — the third of these is the viva voce reflection — and is limited to 500 words in total. This criterion evaluates intellectual engagement, decision-making, and the student's ability to reflect on their learning process.
       </p>
 
       <h2>Common Mistakes</h2>
@@ -819,7 +819,7 @@ export const staticContentResources: Record<string, string> = {
       <h2>How to Score an A</h2>
 
       <p>
-        An A grade on the Extended Essay (equivalent to approximately 28–34 marks out of 34) requires excellence across all five criteria. Based on analysis of high-scoring essays and examiner commentary, here are the key characteristics of A-grade Extended Essays:
+        An A grade on the Extended Essay (equivalent to 27–34 marks out of 34) requires excellence across all five criteria. Based on analysis of high-scoring essays and examiner commentary, here are the key characteristics of A-grade Extended Essays:
       </p>
 
       <p>
@@ -855,7 +855,7 @@ export const staticContentResources: Record<string, string> = {
         <li>Conclusion directly answers the research question with evidence from the body</li>
         <li>All sources are cited consistently using one citation style throughout</li>
         <li>Bibliography is complete and properly formatted</li>
-        <li>RPPF contains three substantive reflections plus the viva voce reflection</li>
+        <li>RPPF contains three reflections in total, the last of which is the viva voce reflection, within a 500-word limit</li>
         <li>Table of contents has accurate page numbers</li>
         <li>Headers and formatting are consistent throughout</li>
         <li>No material in appendices that should be in the main body</li>
@@ -896,8 +896,8 @@ export const staticContentResources: Record<string, string> = {
       <ul>
         <li><strong>Group 1 (Language & Literature):</strong> Individual Oral (IO) — a recorded oral commentary and discussion</li>
         <li><strong>Group 2 (Language Acquisition):</strong> Individual Oral — a recorded oral assessment based on literary/non-literary works</li>
-        <li><strong>Group 3 (Individuals & Societies):</strong> Written investigation (History: 2,200 words; Economics: 800 words per commentary × 3; Psychology: experimental study report)</li>
-        <li><strong>Group 4 (Sciences):</strong> Scientific investigation report (Biology, Chemistry, Physics: 6–12 pages)</li>
+        <li><strong>Group 3 (Individuals & Societies):</strong> Written investigation (History: 2,200 words; Economics: 800 words per commentary × 3; Psychology: experimental study report through November 2026; from May 2027 it becomes a research proposal marked out of 24)</li>
+        <li><strong>Group 4 (Sciences):</strong> Scientific investigation (Biology, Chemistry, Physics: up to 3,000 words, marked out of 24)</li>
         <li><strong>Group 5 (Mathematics):</strong> Mathematical Exploration (12–20 pages)</li>
         <li><strong>Group 6 (The Arts):</strong> Varies by subject (Visual Arts: comparative study; Music: creating/performing)</li>
       </ul>
@@ -1177,7 +1177,7 @@ export const staticContentResources: Record<string, string> = {
         <li>Human Sciences</li>
         <li>History</li>
         <li>The Arts</li>
-        <li>Ethics (added in the 2022 curriculum revision)</li>
+        <li>ethics is not an area of knowledge: since 2022 it is one of the four knowledge framework elements (scope, perspectives, methods and tools, ethics) applied within every AOK</li>
       </ul>
 
       <p>
@@ -1224,8 +1224,8 @@ export const staticContentResources: Record<string, string> = {
             <td>Treat AOKs in isolation without drawing connections</td>
           </tr>
           <tr>
-            <td><strong>Personal engagement</strong></td>
-            <td>Demonstrate genuine thinking and original perspective</td>
+            <td><strong>Implications of arguments</strong></td>
+            <td>Consider what follows if the argument holds — the examiner instrument asks for the implications of arguments to be considered</td>
             <td>Reproduce generic arguments found in TOK textbooks</td>
           </tr>
         </tbody>

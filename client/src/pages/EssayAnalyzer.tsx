@@ -375,7 +375,7 @@ export default function EssayAnalyzer() {
           <div className="grid grid-cols-3 gap-3">
             {[
               { label: "Predicted Score", value: "18/25", color: "text-amber-600" },
-              { label: "IB Band", value: "Band 6", color: "text-foreground" },
+              { label: "Weakest criterion", value: "D: Analysis", color: "text-foreground" },
               { label: "Criteria Total", value: "72%", color: "text-foreground" },
             ].map((s) => (
               <div key={s.label} className="text-center p-4 bg-muted/50 rounded-lg border border-border">
@@ -723,7 +723,7 @@ export default function EssayAnalyzer() {
                 </div>
                 <div className="text-center p-4 bg-muted/50 rounded-lg">
                   <div style={SERIF} className="text-3xl font-bold">{result.band_range}</div>
-                  <div className="text-xs text-muted-foreground mt-1">IB Band</div>
+                  <div className="text-xs text-muted-foreground mt-1">Band range</div>
                 </div>
                 <div className="text-center p-4 bg-muted/50 rounded-lg">
                   <div style={SERIF} className="text-3xl font-bold">

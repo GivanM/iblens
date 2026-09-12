@@ -197,7 +197,7 @@ export default function UniversityAdmissionsGuide() {
       <h2>How IBLens University Strategy Helps</h2>
 
       <p>
-        Navigating the complexity of IB-to-university pathways is exactly what <Link href="/essay" className="text-primary hover:underline">IBLens's University Strategy tool</Link> is designed for. Based on your predicted scores, subject combination, and preferences (country, program, campus size), it identifies:
+        If you are applying through UCAS, the part we can help with is the writing: our <Link href="/ucas-personal-statement" className="text-primary hover:underline">personal statement checker</Link> reviews each of the three answers against what admissions tutors look for. For entry requirements and deadlines, use the university's own course pages and UCAS. What a strong application needs:
       </p>
 
       <ul>

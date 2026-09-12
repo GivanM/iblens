@@ -28,7 +28,7 @@ export default function IBChemistryIAExamples() {
         <li><strong>Exploration (6 marks):</strong> Clear research question, relevant background theory, correct identification of variables (independent, dependent, controlled), and a reproducible methodology.</li>
         <li><strong>Analysis (6 marks):</strong> Quantitative data processing (means, uncertainties, graphs), correct use of units, and a conclusion supported by the data. Error propagation is expected at HL.</li>
         <li><strong>Evaluation (6 marks):</strong> Specific assessment of methodological limitations, systematic and random errors, and concrete improvements. The most under-scored criterion.</li>
-        <li><strong>Communication (4 marks):</strong> Clear structure, appropriate scientific notation, correct citations, and appropriate length (6–12 pages).</li>
+        <li><strong>Communication (4 marks):</strong> Clear structure, appropriate scientific notation, correct citations, and appropriate length (up to 3,000 words).</li>
       </ul>
 
       <h2>IB Chemistry IA Topics That Score Well</h2>

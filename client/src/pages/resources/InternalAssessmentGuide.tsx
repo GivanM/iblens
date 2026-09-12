@@ -33,8 +33,8 @@ export default function InternalAssessmentGuide() {
       <ul>
         <li><strong>Group 1 (Language & Literature):</strong> Individual Oral (IO) — a recorded oral commentary and discussion</li>
         <li><strong>Group 2 (Language Acquisition):</strong> Individual Oral — a recorded oral assessment based on literary/non-literary works</li>
-        <li><strong>Group 3 (Individuals & Societies):</strong> Written investigation (History: 2,200 words; Economics: 800 words per commentary × 3; Psychology: experimental study report)</li>
-        <li><strong>Group 4 (Sciences):</strong> Scientific investigation report (Biology, Chemistry, Physics: 6–12 pages)</li>
+        <li><strong>Group 3 (Individuals & Societies):</strong> Written investigation (History: 2,200 words; Economics: 800 words per commentary × 3; Psychology: experimental study report through November 2026; from May 2027 it becomes a research proposal marked out of 24)</li>
+        <li><strong>Group 4 (Sciences):</strong> Scientific investigation (Biology, Chemistry, Physics: up to 3,000 words, marked out of 24)</li>
         <li><strong>Group 5 (Mathematics):</strong> Mathematical Exploration (12–20 pages)</li>
         <li><strong>Group 6 (The Arts):</strong> Varies by subject (Visual Arts: comparative study; Music: creating/performing)</li>
       </ul>

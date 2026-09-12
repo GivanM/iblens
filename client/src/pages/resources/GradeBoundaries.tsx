@@ -82,7 +82,7 @@ export default function GradeBoundaries() {
       </table>
 
       <p>
-        <strong>Important:</strong> These ranges are approximate and vary significantly between subjects and sessions. Mathematics Analysis & Approaches HL might have a grade 7 boundary at 74%, while History HL might set it at 70% in the same session. The IBO adjusts boundaries to maintain consistent standards across years — if a paper was unusually difficult, boundaries are lowered so that a similar proportion of students achieve each grade.
+        <strong>Important:</strong> These ranges are approximate and vary significantly between subjects and sessions. Two subjects in the same session can have noticeably different grade 7 boundaries, because each is set from the difficulty of that session's papers. The IBO adjusts boundaries to maintain consistent standards across years — if a paper was unusually difficult, boundaries are lowered so that a similar proportion of students achieve each grade.
       </p>
 
       <p>
@@ -133,7 +133,7 @@ export default function GradeBoundaries() {
 
       <h3>Mathematics</h3>
       <p>
-        Mathematics Analysis & Approaches HL is known for having some of the lowest grade 7 boundaries in the IB (sometimes as low as 70–74%) because the papers are designed to be challenging. Mathematics Applications & Interpretation tends to have slightly higher boundaries. The key insight: in mathematics, you do not need to answer every question correctly to achieve a 7.
+        Mathematics Analysis & Approaches HL is known among teachers for comparatively low grade 7 boundaries, because the papers are designed to be challenging. Published boundaries for your session are in the subject reports your school receives. The key insight: in mathematics, you do not need to answer every question correctly to achieve a 7.
       </p>
 
       <h3>Humanities (History, Economics, Psychology)</h3>
@@ -143,7 +143,7 @@ export default function GradeBoundaries() {
 
       <h3>Languages (Group 1 and Group 2)</h3>
       <p>
-        Language subjects often have the highest grade 7 boundaries (sometimes 85%+) because the marking is more generous on individual components. However, the Individual Oral (IO) can be unpredictable, and many students find it harder to achieve consistent marks across all four skills (reading, writing, speaking, listening).
+        Language subjects tend towards higher grade 7 boundaries, because marking on individual components is comparatively generous. However, the Individual Oral (IO) can be unpredictable, and Language B is assessed across reading, writing, speaking and listening, while Language A (Group 1) has no listening component — its assessment is Paper 1, Paper 2, the HL essay and the individual oral.
       </p>
 
       <h2>Bonus Points from the EE/TOK Matrix</h2>
@@ -270,7 +270,7 @@ export default function GradeBoundaries() {
       </p>
 
       <p>
-        For personalized guidance on which universities match your predicted scores and subject combination, <Link href="/essay" className="text-primary hover:underline">IBLens's University Strategy tool</Link> can help you identify realistic targets and reach schools based on historical admissions data.
+        For entry requirements and deadlines, use the university's own course pages and UCAS — they are the only sources that stay current. If you are writing a UCAS personal statement, our <Link href="/ucas-personal-statement" className="text-primary hover:underline">checker</Link> reviews it against the 2026 three-question format.
       </p>
 
       <h2>How to Maximize Your Total Score</h2>

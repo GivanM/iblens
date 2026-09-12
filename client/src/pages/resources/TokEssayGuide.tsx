@@ -101,7 +101,7 @@ export default function TokEssayGuide() {
         <li>Human Sciences</li>
         <li>History</li>
         <li>The Arts</li>
-        <li>Ethics (added in the 2022 curriculum revision)</li>
+        <li>ethics is not an area of knowledge: since 2022 it is one of the four knowledge framework elements (scope, perspectives, methods and tools, ethics) applied within every AOK</li>
       </ul>
 
       <p>
@@ -148,8 +148,8 @@ export default function TokEssayGuide() {
             <td>Treat AOKs in isolation without drawing connections</td>
           </tr>
           <tr>
-            <td><strong>Personal engagement</strong></td>
-            <td>Demonstrate genuine thinking and original perspective</td>
+            <td><strong>Implications of arguments</strong></td>
+            <td>Consider what follows if the argument holds — the examiner instrument asks for the implications of arguments to be considered</td>
             <td>Reproduce generic arguments found in TOK textbooks</td>
           </tr>
         </tbody>

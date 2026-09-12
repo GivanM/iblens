@@ -430,7 +430,7 @@ export const staticContent: Record<string, string> = {
     <dt style="font-weight:600;margin-top:16px">Does this work for both Math AA and Math AI?</dt>
     <dd style="margin-top:4px">Yes — the IB Math IA rubric is identical for both Mathematics: Analysis and Approaches and Mathematics: Applications and Interpretation. See also our dedicated <a href="/essay/maths-aa-ia">Math AA IA grader</a> and <a href="/essay/maths-ai-ia">Math AI IA grader</a> pages.</dd>
     <dt style="font-weight:600;margin-top:16px">What is the word limit for the Math IA?</dt>
-    <dd style="margin-top:4px">The IB recommends 6–12 pages, with no strict word limit. Typically 1,500–3,000 words plus mathematical working.</dd>
+    <dd style="margin-top:4px">The IB recommends up to 3,000 words, with no strict word limit. Typically 1,500–3,000 words plus mathematical working.</dd>
     <dt style="font-weight:600;margin-top:16px">Is the Math IA grader free?</dt>
     <dd style="margin-top:4px">Your first analysis is free (band range, weakest criterion, top risks). The full report is $9.99.</dd>
   </dl>
@@ -1361,7 +1361,7 @@ export const staticContent: Record<string, string> = {
       </p>
 
       <p>
-        <strong>Criterion E (Engagement)</strong> is assessed through the Reflections on Planning and Progress Form (RPPF), which consists of three reflections written at different stages of the research process plus a final reflection after the viva voce. This criterion evaluates intellectual engagement, decision-making, and the student's ability to reflect on their learning process.
+        <strong>Criterion E (Engagement)</strong> is assessed through the Reflections on Planning and Progress Form (RPPF), which holds three reflections written at different stages of the research process — the third of these is the viva voce reflection — and is limited to 500 words in total. This criterion evaluates intellectual engagement, decision-making, and the student's ability to reflect on their learning process.
       </p>
 
       <h2>Common Mistakes</h2>
@@ -1384,7 +1384,7 @@ export const staticContent: Record<string, string> = {
       <h2>How to Score an A</h2>
 
       <p>
-        An A grade on the Extended Essay (equivalent to approximately 28–34 marks out of 34) requires excellence across all five criteria. Based on analysis of high-scoring essays and examiner commentary, here are the key characteristics of A-grade Extended Essays:
+        An A grade on the Extended Essay (equivalent to 27–34 marks out of 34) requires excellence across all five criteria. Based on analysis of high-scoring essays and examiner commentary, here are the key characteristics of A-grade Extended Essays:
       </p>
 
       <p>
@@ -1420,7 +1420,7 @@ export const staticContent: Record<string, string> = {
         <li>Conclusion directly answers the research question with evidence from the body</li>
         <li>All sources are cited consistently using one citation style throughout</li>
         <li>Bibliography is complete and properly formatted</li>
-        <li>RPPF contains three substantive reflections plus the viva voce reflection</li>
+        <li>RPPF contains three reflections in total, the last of which is the viva voce reflection, within a 500-word limit</li>
         <li>Table of contents has accurate page numbers</li>
         <li>Headers and formatting are consistent throughout</li>
         <li>No material in appendices that should be in the main body</li>
@@ -1460,8 +1460,8 @@ export const staticContent: Record<string, string> = {
       <ul>
         <li><strong>Group 1 (Language & Literature):</strong> Individual Oral (IO) — a recorded oral commentary and discussion</li>
         <li><strong>Group 2 (Language Acquisition):</strong> Individual Oral — a recorded oral assessment based on literary/non-literary works</li>
-        <li><strong>Group 3 (Individuals & Societies):</strong> Written investigation (History: 2,200 words; Economics: 800 words per commentary × 3; Psychology: experimental study report)</li>
-        <li><strong>Group 4 (Sciences):</strong> Scientific investigation report (Biology, Chemistry, Physics: 6–12 pages)</li>
+        <li><strong>Group 3 (Individuals & Societies):</strong> Written investigation (History: 2,200 words; Economics: 800 words per commentary × 3; Psychology: experimental study report through November 2026; from May 2027 it becomes a research proposal marked out of 24)</li>
+        <li><strong>Group 4 (Sciences):</strong> Scientific investigation (Biology, Chemistry, Physics: up to 3,000 words, marked out of 24)</li>
         <li><strong>Group 5 (Mathematics):</strong> Mathematical Exploration (12–20 pages)</li>
         <li><strong>Group 6 (The Arts):</strong> Varies by subject (Visual Arts: comparative study; Music: creating/performing)</li>
       </ul>
@@ -1740,7 +1740,7 @@ export const staticContent: Record<string, string> = {
         <li>Human Sciences</li>
         <li>History</li>
         <li>The Arts</li>
-        <li>Ethics (added in the 2022 curriculum revision)</li>
+        <li>ethics is not an area of knowledge: since 2022 it is one of the four knowledge framework elements (scope, perspectives, methods and tools, ethics) applied within every AOK</li>
       </ul>
 
       <p>
@@ -2736,7 +2736,7 @@ export const staticContent: Record<string, string> = {
       <h2>How IBLens University Strategy Helps</h2>
 
       <p>
-        Navigating the complexity of IB-to-university pathways is exactly what <a href="/university">IBLens's University Strategy tool</a> is designed for. Based on your predicted scores, subject combination, and preferences (country, program, campus size), it identifies:
+        If you are applying through UCAS, the part we help with is the writing: our <a href="/ucas-personal-statement">personal statement checker</a> reviews each of the three answers against what admissions tutors look for. For entry requirements and deadlines, use the university's own course pages and UCAS. What a strong application needs:
       </p>
 
       <ul>
@@ -3318,7 +3318,7 @@ export const staticContent: Record<string, string> = {
         <li><strong>Exploration (6 marks):</strong> Clear research question, relevant background theory, correct identification of variables (independent, dependent, controlled), and a reproducible methodology.</li>
         <li><strong>Analysis (6 marks):</strong> Quantitative data processing (means, uncertainties, graphs), correct use of units, and a conclusion supported by the data. Error propagation is expected at HL.</li>
         <li><strong>Evaluation (6 marks):</strong> Specific assessment of methodological limitations, systematic and random errors, and concrete improvements. The most under-scored criterion.</li>
-        <li><strong>Communication (4 marks):</strong> Clear structure, appropriate scientific notation, correct citations, and appropriate length (6–12 pages).</li>
+        <li><strong>Communication (4 marks):</strong> Clear structure, appropriate scientific notation, correct citations, and appropriate length (up to 3,000 words).</li>
       </ul>
 
       <h2>IB Chemistry IA Topics That Score Well</h2>
@@ -4648,7 +4648,7 @@ export const staticContent: Record<string, string> = {
       </table>
 
       <p>
-        <strong>Important:</strong> These ranges are approximate and vary significantly between subjects and sessions. Mathematics Analysis & Approaches HL might have a grade 7 boundary at 74%, while History HL might set it at 70% in the same session. The IBO adjusts boundaries to maintain consistent standards across years — if a paper was unusually difficult, boundaries are lowered so that a similar proportion of students achieve each grade.
+        <strong>Important:</strong> These ranges are approximate and vary significantly between subjects and sessions. Two subjects in the same session can have noticeably different grade 7 boundaries, because each is set from the difficulty of that session's papers. The IBO adjusts boundaries to maintain consistent standards across years — if a paper was unusually difficult, boundaries are lowered so that a similar proportion of students achieve each grade.
       </p>
 
       <p>
@@ -4699,7 +4699,7 @@ export const staticContent: Record<string, string> = {
 
       <h3>Mathematics</h3>
       <p>
-        Mathematics Analysis & Approaches HL is known for having some of the lowest grade 7 boundaries in the IB (sometimes as low as 70–74%) because the papers are designed to be challenging. Mathematics Applications & Interpretation tends to have slightly higher boundaries. The key insight: in mathematics, you do not need to answer every question correctly to achieve a 7.
+        Mathematics Analysis & Approaches HL is known among teachers for comparatively low grade 7 boundaries, because the papers are designed to be challenging. Published boundaries for your session are in the subject reports your school receives. The key insight: in mathematics, you do not need to answer every question correctly to achieve a 7.
       </p>
 
       <h3>Humanities (History, Economics, Psychology)</h3>
@@ -4709,7 +4709,7 @@ export const staticContent: Record<string, string> = {
 
       <h3>Languages (Group 1 and Group 2)</h3>
       <p>
-        Language subjects often have the highest grade 7 boundaries (sometimes 85%+) because the marking is more generous on individual components. However, the Individual Oral (IO) can be unpredictable, and many students find it harder to achieve consistent marks across all four skills (reading, writing, speaking, listening).
+        Language subjects tend towards higher grade 7 boundaries, because marking on individual components is comparatively generous. However, the Individual Oral (IO) can be unpredictable, and Language B is assessed across reading, writing, speaking and listening, while Language A (Group 1) has no listening component — its assessment is Paper 1, Paper 2, the HL essay and the individual oral.
       </p>
 
       <h2>Bonus Points from the EE/TOK Matrix</h2>
@@ -4836,7 +4836,7 @@ export const staticContent: Record<string, string> = {
       </p>
 
       <p>
-        For personalized guidance on which universities match your predicted scores and subject combination, <a href="/university">IBLens's University Strategy tool</a> can help you identify realistic targets and reach schools based on historical admissions data.
+        For entry requirements and deadlines, use the university's own course pages and UCAS — they are the only sources that stay current. If you are writing a UCAS personal statement, our <a href="/ucas-personal-statement">checker</a> reviews it against the 2026 three-question format.
       </p>
 
       <h2>How to Maximize Your Total Score</h2>
