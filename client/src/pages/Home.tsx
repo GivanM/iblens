@@ -93,7 +93,7 @@ export default function Home() {
             name: "IBLens",
             url: "https://iblens.com",
             description: "AI-powered IB essay grader providing criterion-based feedback and predicted grades for Extended Essays, Internal Assessments, and TOK essays.",
-            sameAs: [],
+            
           },
           {
             "@context": "https://schema.org",
@@ -105,7 +105,7 @@ export default function Home() {
             offers: {
               "@type": "AggregateOffer",
               lowPrice: "0",
-              highPrice: "34.99",
+              highPrice: "44.99",
               priceCurrency: "USD",
             },
             description: "AI-powered IB essay grader providing criterion-by-criterion feedback and predicted grades.",
@@ -452,7 +452,7 @@ export default function Home() {
                 <CardContent className="p-6 text-center">
                   <h3 className="font-semibold mb-1">Essay Pack (5)</h3>
                   <div style={SERIF} className="text-3xl font-bold mb-1">{PRICE_LABELS.ESSAY_PACK_5}</div>
-                  <p className="text-xs text-muted-foreground mb-4">$4.00 per analysis</p>
+                  <p className="text-xs text-muted-foreground mb-4">$5.00 per analysis</p>
                   <Button variant="outline" size="sm" className="w-full" onClick={() => openPurchase("ESSAY_PACK_5")}>
                     Buy Pack
                   </Button>
@@ -466,7 +466,7 @@ export default function Home() {
                 <CardContent className="p-6 text-center">
                   <h3 className="font-semibold mb-1">Essay Pack (10)</h3>
                   <div style={SERIF} className="text-3xl font-bold mb-1">{PRICE_LABELS.ESSAY_PACK_10}</div>
-                  <p className="text-xs text-muted-foreground mb-4">$3.50 per analysis</p>
+                  <p className="text-xs text-muted-foreground mb-4">$4.50 per analysis</p>
                   <Button size="sm" className="w-full" onClick={() => openPurchase("ESSAY_PACK_10")}>
                     Buy Pack
                   </Button>

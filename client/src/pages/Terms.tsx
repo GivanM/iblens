@@ -11,7 +11,7 @@ export default function Terms() {
       />
       <div className="container max-w-3xl">
         <h1 className="text-3xl font-bold tracking-tight mb-2">Terms of Use</h1>
-        <p className="text-sm text-muted-foreground mb-8">Last updated: 16 July 2026</p>
+        <p className="text-sm text-muted-foreground mb-8">Last updated: 12 September 2026</p>
         <div className="prose prose-sm max-w-none text-foreground space-y-6 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:mt-8 [&_h2]:mb-3 [&_p]:text-muted-foreground [&_p]:leading-relaxed [&_li]:text-muted-foreground [&_ul]:list-disc [&_ul]:list-inside [&_ul]:space-y-1.5">
           <p>By using IBLens you agree to these terms. If you do not agree, please do not use the service.</p>
 
@@ -37,7 +37,26 @@ export default function Terms() {
           <h2>No warranty and limitation of liability</h2>
           <p>IBLens is provided "as is", without warranty that its feedback is accurate, complete, or suitable for a particular purpose. To the extent permitted by law, we are not liable for any loss arising from reliance on the tool's output, including grades, admissions outcomes, or re-mark decisions.</p>
 
-          <h2>Changes</h2>
+          <h2>Age and parental consent</h2>
+
+      <p>
+        IBLens is built for students in the IB Diploma Programme, most of whom are 16 to 18 years old.
+        You may use the free preview at any age with the awareness of a parent, guardian or teacher.
+      </p>
+
+      <p>
+        <strong>If you are under 18, you may only make a purchase with the permission of the person who
+        owns the payment card.</strong> By paying, you confirm that you either own the card or have that
+        permission. If a payment was made without it, email us and we will refund it, regardless of the
+        7-day window in our <Link href="/refund-policy">refund policy</Link>.
+      </p>
+
+      <p>
+        If you are below the digital-consent age in your country (13 to 16 depending on where you live),
+        please ask a parent, guardian or teacher before submitting work for analysis.
+      </p>
+
+      <h2>Changes</h2>
           <p>We may update these terms; the date above reflects the latest version. Questions: <a href="mailto:glushkovim@gmail.com" className="text-primary hover:underline">glushkovim@gmail.com</a>. See also our <Link href="/privacy" className="text-primary hover:underline">Privacy Policy</Link>.</p>
         </div>
       </div>

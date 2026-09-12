@@ -11,7 +11,7 @@ export default function Privacy() {
       />
       <div className="container max-w-3xl">
         <h1 className="text-3xl font-bold tracking-tight mb-2">Privacy Policy</h1>
-        <p className="text-sm text-muted-foreground mb-8">Last updated: 16 July 2026</p>
+        <p className="text-sm text-muted-foreground mb-8">Last updated: 12 September 2026</p>
         <div className="prose prose-sm max-w-none text-foreground space-y-6 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:mt-8 [&_h2]:mb-3 [&_p]:text-muted-foreground [&_p]:leading-relaxed [&_li]:text-muted-foreground [&_ul]:list-disc [&_ul]:list-inside [&_ul]:space-y-1.5">
           <p>This policy explains what personal data IBLens collects, why, who processes it, how long we keep it, and the rights you have. IBLens is operated by an independent developer; for any privacy request, contact <a href="mailto:glushkovim@gmail.com" className="text-primary hover:underline">glushkovim@gmail.com</a>.</p>
 

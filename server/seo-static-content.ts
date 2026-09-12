@@ -100,7 +100,7 @@ export const staticContent: Record<string, string> = {
     <li><strong>Pack of 10 — $44.99</strong> — ten analyses, best value per essay.</li>
   </ul>
   <h2 style="font-size:20px;font-weight:700;margin:28px 0 12px">How IBLens compares to an IB tutor</h2>
-  <p style="color:#374151;line-height:1.7;margin-bottom:20px">IB tutors charge $50–150 per hour. A single IBLens analysis costs $9.99 and returns criterion-by-criterion feedback against the official IB rubric in about a minute, any time of day. Credits never expire, and every purchase is covered by a 7-day money-back guarantee.</p>
+  <p style="color:#374151;line-height:1.7;margin-bottom:20px">IB tutors charge $50–150 per hour. A single IBLens analysis costs $9.99 and returns criterion-by-criterion feedback against the official IB rubric in about a minute, any time of day. Credits stay on your account and we do not expire them, and every purchase is covered by a 7-day money-back guarantee.</p>
   <p><a href="/essay">Start free →</a></p>
 </main>`),
 
@@ -1210,7 +1210,7 @@ export const staticContent: Record<string, string> = {
       <h2>Is the First IB IA Analysis Really Free?</h2>
 
       <p>
-        Yes. Every new user gets one complete analysis free — no credit card, no account required. You see the full grade report: predicted score, criterion breakdown, risk areas, and next steps. After that, individual analyses are $9.99 or $3.50–$3.99 per analysis in packs.
+        Your first analysis is free and shows a preview: the predicted band range, your weakest criterion with full feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments and a ranked fix list — is $9.99, and includes two free re-checks of the same draft within 14 days. Packs work out at $5.00 per essay (5 for $24.99) or $4.50 (10 for $44.99).
       </p>
 
       <h2>How Accurate Is the AI Grade?</h2>

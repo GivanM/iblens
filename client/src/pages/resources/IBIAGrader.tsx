@@ -80,7 +80,7 @@ export default function IBIAGrader() {
       <h2>Is the First IB IA Analysis Really Free?</h2>
 
       <p>
-        Yes — your first analysis is free: band range, your weakest criterion with full feedback, and top risks. The complete report unlocks for $9.99, or $4.00 per analysis in packs.
+        Yes — your first analysis is free: band range, your weakest criterion with full feedback, and top risks. The complete report unlocks for $9.99 and includes two free re-checks of the same draft within 14 days. In packs it works out at $5.00 per essay (5 for $24.99) or $4.50 (10 for $44.99).
       </p>
 
       <h2>How Accurate Is the AI Grade?</h2>

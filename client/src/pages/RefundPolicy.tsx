@@ -11,7 +11,7 @@ export default function RefundPolicy() {
       />
       <div className="container max-w-3xl">
         <h1 className="text-3xl font-bold tracking-tight mb-2">Refund Policy</h1>
-        <p className="text-sm text-muted-foreground mb-8">Last updated: April 30, 2026</p>
+        <p className="text-sm text-muted-foreground mb-8">Last updated: 12 September 2026</p>
 
         <div className="prose prose-sm max-w-none text-foreground space-y-6">
           <section>

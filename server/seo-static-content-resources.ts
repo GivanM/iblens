@@ -467,7 +467,7 @@ export const staticContentResources: Record<string, string> = {
       <h2>Is the First IB IA Analysis Really Free?</h2>
 
       <p>
-        Yes. Every new user gets one complete analysis free — no credit card, no account required. You see the full grade report: predicted score, criterion breakdown, risk areas, and next steps. After that, individual analyses are $9.99 or $3.50–$3.99 per analysis in packs.
+        Your first analysis is free and shows a preview: the predicted band range, your weakest criterion with full feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments and a ranked fix list — is $9.99, and includes two free re-checks of the same draft within 14 days. Packs work out at $5.00 per essay (5 for $24.99) or $4.50 (10 for $44.99).
       </p>
 
       <h2>How Accurate Is the AI Grade?</h2>

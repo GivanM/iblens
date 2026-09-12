@@ -49,7 +49,7 @@ const plans: Array<{
       "$5.00 per essay — 50% off the single price",
       "Two free re-checks of each draft within 14 days",
       "Use across any subjects",
-      "No expiration date",
+      "No expiry date while the service operates",
       "Perfect for exam prep",
     ],
     cta: "Get Started",
@@ -66,7 +66,7 @@ const plans: Array<{
       "$4.50 per essay — 55% off the single price",
       "Two free re-checks of each draft within 14 days",
       "Use across any subjects",
-      "No expiration date",
+      "No expiry date while the service operates",
       "Best value for serious students",
     ],
     cta: "Get Started",
@@ -105,7 +105,7 @@ export default function Pricing() {
           <h1 style={SERIF} className="text-4xl md:text-5xl font-bold mb-4">
             Simple, transparent pricing.
           </h1>
-          <p className="text-sm text-muted-foreground mt-2">No subscription. Credits never expire. No ads.</p>
+          <p className="text-sm text-muted-foreground mt-2">No subscription. Credits stay on your account and we do not expire them. No ads.</p>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             No subscriptions. No hidden fees. Pay only for what you use.
             Your first essay analysis is always free.
