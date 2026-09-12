@@ -98,7 +98,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => { rotateAnonFingerprint(); logout(); }} className="text-destructive">
+                  <DropdownMenuItem
+                    onClick={async () => {
+                      // Claim first, rotate second: a report unlocked since the last
+                      // page load would otherwise lose its only key on sign-out.
+                      try { await claim.mutateAsync({ fingerprint: getAnonFingerprint() }); } catch { /* nothing to claim */ }
+                      rotateAnonFingerprint();
+                      logout();
+                    }}
+                    className="text-destructive"
+                  >
                     <LogOut className="w-4 h-4 mr-2" />
                     Sign out
                   </DropdownMenuItem>

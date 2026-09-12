@@ -232,7 +232,14 @@ function buildTeaser(result: any) {
   if (m && typeof result?.predicted_score === "number") {
     const lo = parseInt(m[1], 10);
     const hi = parseInt(m[2], 10);
-    nearEdge = result.predicted_score <= lo || result.predicted_score >= hi;
+    // A two-mark band (TOK reports 9-10, 7-8 and so on) has no inside, so the old
+    // test was true for every TOK score and /remark always advised paying. The
+    // client-side copy of this logic was fixed last round and is never rendered;
+    // this is the one the page actually shows.
+    const width = hi - lo + 1;
+    nearEdge = width <= 2
+      ? result.predicted_score >= hi
+      : result.predicted_score <= lo || result.predicted_score >= hi;
   }
   // The model sometimes writes "14-18 out of 26" into band_range. The number of
   // marks it is out of is already max_score, so keep the range and drop the tail.

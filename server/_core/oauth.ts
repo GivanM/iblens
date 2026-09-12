@@ -32,6 +32,19 @@ export function registerOAuthRoutes(app: Express) {
       return;
     }
 
+    // Reject a callback whose state does not match the one this browser started
+    // with. This is what stops a sign-in being completed on someone else's behalf.
+    const returnedState = getQueryParam(req, "state") || "";
+    const cookieHeader = String(req.headers.cookie || "");
+    const expectedState = cookieHeader.split(";").map((c) => c.trim())
+      .find((c) => c.startsWith("iblens_oauth_state="))?.slice("iblens_oauth_state=".length) || "";
+    res.clearCookie("iblens_oauth_state", { path: "/api/oauth" });
+    if (!returnedState || !expectedState || returnedState !== expectedState) {
+      console.warn("[OAuth] State mismatch, sign-in refused");
+      res.redirect("/auth/signin?auth_error=state");
+      return;
+    }
+
     try {
       const redirectUri = getRedirectUri(req);
       const userInfo = await sdk.exchangeCodeForToken(code, redirectUri);
@@ -59,8 +72,11 @@ export function registerOAuthRoutes(app: Express) {
         }
       }
 
+      // The session check requires a non-empty name, and some Google accounts
+      // have none: those users were signed in, bounced, and signed in again for
+      // ever. Fall back to the e-mail.
       const sessionToken = await sdk.createSessionToken(userInfo.id, {
-        name: userInfo.name || "",
+        name: userInfo.name || userInfo.email || "IBLens user",
         expiresInMs: ONE_YEAR_MS,
       });
 

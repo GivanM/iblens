@@ -115,7 +115,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/university": {
     title: "IB University Strategy: No Longer Offered | IBLens",
-    description: "This part of IBLens is no longer offered on verified, official university requirements and deadlines. In the meantime, grade your IB essays free with IBLens.",
+    description: "This part of IBLens is no longer offered. We withdrew it rather than sell university guidance we cannot keep current. In the meantime, grade your IB essays free with IBLens.",
     ogType: "website",
     canonical: "/university",
     schemaType: "WebPage",
@@ -399,14 +399,14 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/ib-university-consultant-cost": {
     title: "IB University Guidance: No Longer Offered | IBLens",
-    description: "This part of IBLens is no longer offered on verified, official university requirements and deadlines. In the meantime, grade your IB essays free with IBLens.",
+    description: "This part of IBLens is no longer offered. We withdrew it rather than sell university guidance we cannot keep current. In the meantime, grade your IB essays free with IBLens.",
     ogType: "website",
     canonical: "/resources/ib-university-consultant-cost",
     schemaType: "WebPage",
   },
   "/resources/ib-university-chances": {
     title: "IB University Chances: No Longer Offered | IBLens",
-    description: "This part of IBLens is no longer offered on verified, official university requirements and deadlines. In the meantime, grade your IB essays free with IBLens.",
+    description: "This part of IBLens is no longer offered. We withdrew it rather than sell university guidance we cannot keep current. In the meantime, grade your IB essays free with IBLens.",
     ogType: "website",
     canonical: "/resources/ib-university-chances",
     schemaType: "WebPage",

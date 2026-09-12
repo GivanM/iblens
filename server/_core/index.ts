@@ -63,7 +63,11 @@ async function startServer() {
     const calls = path.replace(/^\//, "").split(",").filter((p) => EXPENSIVE.test(p)).length || 1;
     const hits = (analysisHits.get(ip) || []).filter((t) => now - t < windowMs);
     if (hits.length + calls > 30) {
-      res.status(429).json({ error: { message: "Too many analyses from this network in the last hour. Try again later." } });
+      // In tRPC's own error shape, so the page shows this sentence instead of a
+      // parsing failure.
+      res.status(429).json({
+        error: { json: { message: "Too many analyses from this network in the last hour. Try again later.", code: -32029, data: { code: "TOO_MANY_REQUESTS", httpStatus: 429 } } },
+      });
       return;
     }
     for (let i = 0; i < calls; i++) hits.push(now);

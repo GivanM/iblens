@@ -183,25 +183,19 @@ export async function consumeEssayCredit(userId: number): Promise<"free" | "cred
   const db = await getDb();
   if (!db) throw new Error("Database not available");
 
-  const credits = await getUserCredits(userId);
-  if (!credits) throw new Error("User not found");
+  // Each step is a single conditional UPDATE, so a second request racing the first
+  // finds nothing to take instead of taking the same thing twice.
+  const free: any = await db.update(users)
+    .set({ freeEssayUsed: true })
+    .where(and(eq(users.id, userId), eq(users.freeEssayUsed, false)));
+  if (Number(free?.[0]?.affectedRows ?? free?.affectedRows ?? 0) > 0) return "free";
 
-  if (!credits.freeEssayUsed) {
-    // Use the free essay
-    await db.update(users)
-      .set({ freeEssayUsed: true })
-      .where(eq(users.id, userId));
-    return "free";
-  }
+  const paid: any = await db.update(users)
+    .set({ essayCredits: sql`${users.essayCredits} - 1` })
+    .where(and(eq(users.id, userId), sql`${users.essayCredits} > 0`));
+  if (Number(paid?.[0]?.affectedRows ?? paid?.affectedRows ?? 0) > 0) return "credit";
 
-  if (credits.essayCredits <= 0) {
-    throw new Error("No essay credits remaining");
-  }
-
-  await db.update(users)
-    .set({ essayCredits: sql`GREATEST(${users.essayCredits} - 1, 0)` })
-    .where(eq(users.id, userId));
-  return "credit";
+  throw new Error("No essay credits remaining");
 }
 
 export async function consumeUniversityCredit(userId: number) {
@@ -671,14 +665,14 @@ export async function purgeOldAnonymousAnalyses(maxAgeDays = 90): Promise<number
 export async function consumePaidEssayCredit(userId: number) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
-  const credits = await getUserCredits(userId);
-  if (!credits) throw new Error("User not found");
-  if (credits.essayCredits <= 0) {
+  // One conditional UPDATE: reading the balance and writing it in two statements
+  // let two simultaneous requests both see one credit and both spend it.
+  const res: any = await db.update(users)
+    .set({ essayCredits: sql`${users.essayCredits} - 1` })
+    .where(and(eq(users.id, userId), sql`${users.essayCredits} > 0`));
+  if (Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0) === 0) {
     throw new Error("Unlocking the full report requires a paid credit. Buy one for $9.99.");
   }
-  await db.update(users)
-    .set({ essayCredits: sql`GREATEST(${users.essayCredits} - 1, 0)` })
-    .where(eq(users.id, userId));
 }
 
 /** Latest anonymous essay analysis for a fingerprint (with stored full result). */
@@ -790,7 +784,6 @@ export async function addDeviceCredits(fingerprint: string, amount: number) {
     .onDuplicateKeyUpdate({ set: {
       credits: sql`${deviceCredits.credits} + ${amount}`,
       claimedAmount: sql`${deviceCredits.claimedAmount} + ${amount}`,
-      claimedByUserId: sql`NULL`,
     } });
   console.log(`[DeviceCredits] +${amount} for ${fingerprint.slice(0, 8)}...`);
 }
@@ -838,8 +831,23 @@ export async function debitAccountCredits(userId: number, amount: number) {
 export async function adoptDeviceReports(fingerprint: string, userId: number): Promise<number> {
   const db = await getDb();
   if (!db) return 0;
-  const rows = await db.select().from(anonymousAnalyses)
+  // Only reports this person paid for. A report is theirs when the order that
+  // unlocked it belongs to their account or to a guest record with their e-mail.
+  // Copying every unlocked report on the device handed a shared computer's paid
+  // work, research questions included, to the next person who signed in.
+  const me = await db.select({ email: users.email }).from(users).where(eq(users.id, userId)).limit(1);
+  const email = String(me[0]?.email || "").trim().toLowerCase();
+  const ownerIds = new Set<number>([userId]);
+  if (email) {
+    const guest = await db.select({ id: users.id }).from(users).where(eq(users.openId, guestOpenIdFor(email))).limit(1);
+    if (guest[0]?.id) ownerIds.add(guest[0].id);
+  }
+  const paidOrders = await db.select({ id: orders.id }).from(orders)
+    .where(sql`${orders.userId} IN (${sql.join(Array.from(ownerIds).map((i) => sql`${i}`), sql`, `)})`);
+  const orderIds = new Set((paidOrders as any[]).map((o) => o.id));
+  const candidates = await db.select().from(anonymousAnalyses)
     .where(and(eq(anonymousAnalyses.fingerprint, fingerprint), eq(anonymousAnalyses.unlocked, true)));
+  const rows = (candidates as any[]).filter((r) => r.unlockOrderId && orderIds.has(r.unlockOrderId));
   let copied = 0;
   for (const rec of rows as any[]) {
     // By the source row id. Comparing a JSON column to a bound string is always
@@ -882,6 +890,31 @@ export async function refundEssayConsumption(userId: number, wasFree: boolean) {
   }
 }
 
+/** How many essay credits a given order granted, as recorded when it was paid. */
+export async function ledgerAmountForOrder(orderId: string): Promise<number> {
+  const db = await getDb();
+  if (!db) return 0;
+  const rows = await db.select().from(creditLedger).where(eq(creditLedger.orderId, orderId));
+  return (rows as any[]).reduce((sum, r) => sum + (r.creditType === "essay" && r.delta > 0 ? r.delta : 0), 0);
+}
+
+/**
+ * The account that should hold credits bought with this e-mail: a real account
+ * if one exists, otherwise the guest record. Never creates anything.
+ */
+export async function findCreditHolderByEmail(email: string): Promise<number | null> {
+  const db = await getDb();
+  if (!db) return null;
+  const normalised = email.trim().toLowerCase();
+  const real = await db.select({ id: users.id, openId: users.openId }).from(users)
+    .where(sql`LOWER(${users.email}) = ${normalised}`);
+  const account = (real as any[]).find((u) => !String(u.openId).startsWith("guest"));
+  if (account) return account.id;
+  const guest = await db.select({ id: users.id }).from(users)
+    .where(eq(users.openId, guestOpenIdFor(email))).limit(1);
+  return guest[0]?.id ?? null;
+}
+
 /** Has this exact grant already been recorded? Used to make retries harmless. */
 export async function ledgerHasEntry(reason: string, orderId: string): Promise<boolean> {
   const db = await getDb();
@@ -908,8 +941,6 @@ export async function takeAllDeviceCredits(fingerprint: string, claimedBy: numbe
     const rec: any = rows[0];
     const balance = rec?.credits ?? 0;
     if (!rec || balance <= 0) return 0;
-    // A wallet already taken by someone else is not up for grabs.
-    if (rec.claimedByUserId && rec.claimedByUserId !== claimedBy) return 0;
     const res: any = await db.update(deviceCredits)
       .set({ credits: 0, claimedByUserId: claimedBy })
       .where(and(eq(deviceCredits.fingerprint, fingerprint), eq(deviceCredits.credits, balance)));

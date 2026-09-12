@@ -20,6 +20,8 @@ import {
   addDeviceCredits,
   findOrCreateGuestUserByEmail,
   ledgerHasEntry,
+  ledgerAmountForOrder,
+  findCreditHolderByEmail,
   removeDeviceCredits,
   debitAccountCredits,
   isGuestAccount,
@@ -244,8 +246,12 @@ export function registerLemonsqueezyWebhook(app: Express) {
                   console.log(`[LemonSqueezy] Storefront purchase ${dataId} already credited`);
                   return res.status(200).json({ ok: true, message: "Already credited" });
                 }
-                const { id: guestId } = await findOrCreateGuestUserByEmail(buyerEmail);
-                await grantCreditsViaLedger(guestId, guessed, 0, `lemonsqueezy:storefront:${variantName || "unknown"}`, dataId);
+                // A customer who already has a real account gets the credits there.
+                // Parking them on a guest record meant a signed-in buyer paid and saw
+                // nothing until they happened to sign out and in again.
+                const holderId = await findCreditHolderByEmail(buyerEmail)
+                  ?? (await findOrCreateGuestUserByEmail(buyerEmail)).id;
+                await grantCreditsViaLedger(holderId, guessed, 0, `lemonsqueezy:storefront:${variantName || "unknown"}`, dataId);
                 console.warn(`[LemonSqueezy] Storefront purchase with no order_id: ${guessed} credit(s) granted to ${buyerEmail}`);
                 if (webhookEventId) {
                   await updateWebhookEvent(webhookEventId, { paymentStatus: "storefront_credited" }).catch(() => {});
@@ -394,12 +400,15 @@ export function registerLemonsqueezyWebhook(app: Express) {
             const buyerEmail = String(attrs.user_email || attrs.customer_email || "").trim();
             if (buyerEmail) {
               try {
-                const { id: guestId } = await findOrCreateGuestUserByEmail(buyerEmail);
-                const credits = await getUserCredits(guestId);
-                const take = Math.min(credits?.essayCredits ?? 0, 10);
-                if (take > 0) {
-                  await grantCreditsViaLedger(guestId, -take, 0, `lemonsqueezy:storefront-refund`, dataId);
-                  console.log(`[LemonSqueezy] Storefront refund: ${take} credit(s) taken back from ${buyerEmail}`);
+                // Take back what this purchase granted and nothing more: the ledger
+                // recorded the amount against the LemonSqueezy order id. Taking the
+                // whole balance could remove credits from a different purchase.
+                const granted = await ledgerAmountForOrder(dataId);
+                const holderId = await findCreditHolderByEmail(buyerEmail);
+                if (granted > 0 && holderId) {
+                  await debitAccountCredits(holderId, granted);
+                  await grantCreditsViaLedger(holderId, 0, 0, `lemonsqueezy:storefront-refund:${granted}`, dataId);
+                  console.log(`[LemonSqueezy] Storefront refund: ${granted} credit(s) taken back from ${buyerEmail}`);
                 }
                 if (webhookEventId) {
                   await updateWebhookEvent(webhookEventId, { paymentStatus: "storefront_refunded" }).catch(() => {});
