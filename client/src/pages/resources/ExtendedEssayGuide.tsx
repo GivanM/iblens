@@ -222,6 +222,17 @@ export default function ExtendedEssayGuide() {
       <p>
         For more on how IB assessment criteria work across all essay types, see our guide on <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB Essay Criteria Explained</Link>. If you are working on an IA instead, check our <Link href="/resources/ib-internal-assessment-guide" className="text-primary hover:underline">Internal Assessment Guide</Link>.
       </p>
+      <h2>Extended Essay by subject</h2>
+
+      <ul>
+        <li><Link href="/resources/ib-biology-extended-essay">Biology Extended Essay</Link></li>
+        <li><Link href="/resources/ib-chemistry-extended-essay">Chemistry Extended Essay</Link></li>
+        <li><Link href="/resources/ib-history-extended-essay">History Extended Essay</Link></li>
+        <li><Link href="/resources/ib-english-extended-essay">English Extended Essay</Link></li>
+        <li><Link href="/resources/ib-economics-extended-essay">Economics Extended Essay</Link></li>
+        <li><Link href="/resources/ib-psychology-extended-essay">Psychology Extended Essay</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }

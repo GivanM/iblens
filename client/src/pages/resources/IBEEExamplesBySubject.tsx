@@ -211,6 +211,17 @@ export default function IBEEExamplesBySubject() {
       <p>
         <Link to="/essay">Paste your Extended Essay draft into IBLens for rubric-based feedback →</Link>
       </p>
+      <h2>Subject-specific Extended Essay guides</h2>
+
+      <ul>
+        <li><Link href="/resources/ib-biology-extended-essay">Biology Extended Essay</Link></li>
+        <li><Link href="/resources/ib-chemistry-extended-essay">Chemistry Extended Essay</Link></li>
+        <li><Link href="/resources/ib-history-extended-essay">History Extended Essay</Link></li>
+        <li><Link href="/resources/ib-english-extended-essay">English Extended Essay</Link></li>
+        <li><Link href="/resources/ib-economics-extended-essay">Economics Extended Essay</Link></li>
+        <li><Link href="/resources/ib-psychology-extended-essay">Psychology Extended Essay</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }

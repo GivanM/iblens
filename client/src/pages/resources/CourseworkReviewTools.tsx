@@ -88,6 +88,14 @@ export default function CourseworkReviewTools() {
         <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE New Criteria 2027</Link></li>
         <li><Link href="/resources/how-iblens-works">How IBLens Works</Link></li>
       </ul>
+      <h2>Related</h2>
+
+      <ul>
+        <li><Link href="/ucas-personal-statement">UCAS Personal Statement Checker</Link></li>
+        <li><Link href="/resources/ib-extended-essay-feedback">How to get EE feedback before you submit</Link></li>
+        <li><Link href="/resources/ib-ia-feedback">Check your IA against the criteria</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }

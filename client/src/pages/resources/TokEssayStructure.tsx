@@ -118,6 +118,15 @@ export default function TokEssayStructure() {
       <p>
         <Link href="/essay/tok-essay">Check your TOK essay structure with IBLens →</Link>
       </p>
+      <h2>More on TOK</h2>
+
+      <ul>
+        <li><Link href="/resources/tok-essay-guide">TOK Essay Guide</Link></li>
+        <li><Link href="/resources/tok-essay-format">TOK Essay Format</Link></li>
+        <li><Link href="/resources/tok-essay-checklist">TOK Essay Checklist</Link></li>
+        <li><Link href="/resources/tok-exhibition-checklist">TOK Exhibition Checklist</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }

@@ -166,6 +166,16 @@ export default function IBPsychologyExtendedEssay() {
       <p>
         <Link href="/essay/extended-essay">Grade your Psychology EE with IBLens</Link>
       </p>
+      <h2>Extended Essays in other subjects</h2>
+
+      <ul>
+        <li><Link href="/resources/ib-biology-extended-essay">Biology Extended Essay</Link></li>
+        <li><Link href="/resources/ib-chemistry-extended-essay">Chemistry Extended Essay</Link></li>
+        <li><Link href="/resources/ib-history-extended-essay">History Extended Essay</Link></li>
+        <li><Link href="/resources/ib-english-extended-essay">English Extended Essay</Link></li>
+        <li><Link href="/resources/ib-psychology-ia-2027">Psychology IA 2027: research proposal</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }

@@ -122,6 +122,15 @@ export default function EENewCriteria2027() {
         <li><Link href="/resources/ib-extended-essay-examples">IB Extended Essay Examples</Link></li>
         <li><Link href="/resources/ib-extended-essay-word-count">The 4,000-Word Limit Explained</Link></li>
       </ul>
+      <h2>Also changing for May 2027</h2>
+
+      <ul>
+        <li><Link href="/resources/ib-rpf-extended-essay-2027">The EE RPF: 500-word reflective statement</Link></li>
+        <li><Link href="/resources/ib-psychology-ia-2027">Psychology IA 2027: research proposal</Link></li>
+        <li><Link href="/resources/ib-computer-science-ia-2027">Computer Science IA 2027</Link></li>
+        <li><Link href="/resources/ib-extended-essay-feedback">How to get EE feedback before you submit</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }

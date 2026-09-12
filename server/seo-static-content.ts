@@ -155,6 +155,9 @@ export const staticContent: Record<string, string> = {
   </ul></section>
 
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-biology-ia-examples">Biology IA examples</a> · <a href="/resources/ib-biology-extended-essay">Biology Extended Essay</a> · <a href="/resources/ib-ia-feedback">Check your IA against the criteria</a></p>
   </main>`),
 
   "/essay/economics-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -201,6 +204,9 @@ export const staticContent: Record<string, string> = {
   </ul></section>
 
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-economics-ia">Economics IA guide</a> · <a href="/resources/ib-economics-extended-essay">Economics Extended Essay</a> · <a href="/resources/ib-ia-feedback">Check your IA against the criteria</a></p>
   </main>`),
 
   "/essay/history-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -244,6 +250,9 @@ export const staticContent: Record<string, string> = {
   </ul></section>
 
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-history-ia">History IA guide</a> · <a href="/resources/ib-history-extended-essay">History Extended Essay</a></p>
   </main>`),
 
   "/essay/extended-essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -290,6 +299,9 @@ export const staticContent: Record<string, string> = {
   </ul></section>
 
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-extended-essay-guide">IB Extended Essay Guide</a> · <a href="/resources/ib-extended-essay-new-criteria-2027">New criteria for May 2027</a> · <a href="/resources/ib-extended-essay-feedback">How to get feedback before you submit</a> · <a href="/resources/ib-ee-examples-by-subject">EE examples by subject</a></p>
   </main>`),
 
   "/essay/tok-essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -336,6 +348,9 @@ export const staticContent: Record<string, string> = {
   </ul></section>
 
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/tok-essay-guide">TOK Essay Guide</a> · <a href="/resources/tok-essay-checklist">TOK Essay Checklist</a> · <a href="/resources/tok-essay-structure">TOK Essay Structure</a></p>
   </main>`),
 
   "/essay/tok-exhibition": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -382,6 +397,9 @@ export const staticContent: Record<string, string> = {
   </ul></section>
 
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/tok-exhibition-checklist">TOK Exhibition Checklist</a> · <a href="/resources/tok-essay-guide">TOK Essay Guide</a></p>
   </main>`),
 
   "/essay/math-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -427,6 +445,9 @@ export const staticContent: Record<string, string> = {
   </ul></section>
 
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-math-ia-examples">Math IA examples</a> · <a href="/essay/maths-aa-ia">Maths AA IA grader</a> · <a href="/essay/maths-ai-ia">Maths AI IA grader</a></p>
   </main>`),
 
   "/essay/psychology-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -468,6 +489,9 @@ export const staticContent: Record<string, string> = {
   </ul></section>
 
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-psychology-ia">Psychology IA guide</a> · <a href="/resources/ib-psychology-ia-2027">What changes in 2027</a> · <a href="/resources/ib-psychology-extended-essay">Psychology Extended Essay</a></p>
   </main>`),
 
   "/essay/chemistry-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -510,6 +534,9 @@ export const staticContent: Record<string, string> = {
   </ul></section>
 
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-chemistry-ia-examples">Chemistry IA examples</a> · <a href="/resources/ib-chemistry-extended-essay">Chemistry Extended Essay</a> · <a href="/resources/ib-ia-feedback">Check your IA against the criteria</a></p>
   </main>`),
 
   "/essay/physics-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -552,6 +579,9 @@ export const staticContent: Record<string, string> = {
   </ul></section>
 
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-physics-ia-examples">Physics IA examples</a> · <a href="/resources/ib-ia-feedback">Check your IA against the criteria</a></p>
   </main>`),
 
   "/essay/business-management-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -597,6 +627,9 @@ export const staticContent: Record<string, string> = {
   </ul></section>
 
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-ia-feedback">Check your IA against the criteria</a> · <a href="/resources/ib-internal-assessment-guide">IB Internal Assessment Guide</a></p>
   </main>`),
 
   "/essay/english-essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -638,6 +671,9 @@ export const staticContent: Record<string, string> = {
   </ul></section>
 
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-english-extended-essay">English Extended Essay</a> · <a href="/resources/ib-ia-feedback">Check your IA against the criteria</a></p>
   </main>`),
 
   "/essay/computer-science-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -680,6 +716,9 @@ export const staticContent: Record<string, string> = {
   </ul></section>
 
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-computer-science-ia-2027">What changes in 2027</a> · <a href="/resources/ib-ia-feedback">Check your IA against the criteria</a></p>
   </main>`),
 
   "/essay/maths-aa-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -715,6 +754,9 @@ export const staticContent: Record<string, string> = {
   </ul></section>
 
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-math-ia-examples">Math IA examples</a> · <a href="/essay/math-ia">General Math IA grader</a> · <a href="/essay/maths-ai-ia">Maths AI IA grader</a></p>
   </main>`),
 
   "/essay/maths-ai-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -752,6 +794,9 @@ export const staticContent: Record<string, string> = {
   </ul></section>
 
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "IBLens", "applicationCategory": "EducationalApplication", "operatingSystem": "Web", "url": "https://iblens.com/essay", "description": "AI feedback on IB coursework against the official assessment criteria: Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark and the new May 2027 30-mark rubrics), the TOK essay and the TOK exhibition.", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "USD", "description": "Criterion-by-criterion report plus two free re-checks of the same draft within 14 days — enough to revise and confirm the fix before you submit; free preview first"}}</script>
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Guides for this component</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-math-ia-examples">Math IA examples</a> · <a href="/essay/math-ia">General Math IA grader</a> · <a href="/essay/maths-aa-ia">Maths AA IA grader</a></p>
   </main>`),
 
   "/ucas-personal-statement": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -1390,6 +1435,9 @@ export const staticContent: Record<string, string> = {
         For more on how IB assessment criteria work across all essay types, see our guide on <a href="/resources/ib-essay-criteria-explained">IB Essay Criteria Explained</a>. If you are working on an IA instead, check our <a href="/resources/ib-internal-assessment-guide">Internal Assessment Guide</a>.
       </p>
     
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Extended Essay by subject</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-biology-extended-essay">Biology Extended Essay</a> · <a href="/resources/ib-chemistry-extended-essay">Chemistry Extended Essay</a> · <a href="/resources/ib-history-extended-essay">History Extended Essay</a> · <a href="/resources/ib-english-extended-essay">English Extended Essay</a> · <a href="/resources/ib-economics-extended-essay">Economics Extended Essay</a> · <a href="/resources/ib-psychology-extended-essay">Psychology Extended Essay</a></p>
   </main>`,
   "/resources/ib-internal-assessment-guide": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Internal Assessment Guide</nav>
@@ -1599,6 +1647,9 @@ export const staticContent: Record<string, string> = {
         Get instant AI feedback on your IA: <a href="/essay/biology-ia">Biology IA</a>, <a href="/essay/chemistry-ia">Chemistry IA</a>, <a href="/essay/physics-ia">Physics IA</a>, <a href="/essay/economics-ia">Economics IA</a>, <a href="/essay/history-ia">History IA</a>, <a href="/essay/business-management-ia">Business Management IA</a>, <a href="/essay/math-ia">Mathematics IA</a>, or <a href="/essay/psychology-ia">Psychology IA</a> — each graded against the official IB rubric in about a minute.
       </p>
     
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Subject-specific IA guides</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-biology-ia-examples">Biology IA Examples</a> · <a href="/resources/ib-chemistry-ia-examples">Chemistry IA Examples</a> · <a href="/resources/ib-physics-ia-examples">Physics IA Examples</a> · <a href="/resources/ib-math-ia-examples">Math IA Examples</a> · <a href="/resources/ib-ia-feedback">Check your IA against the criteria</a></p>
   </main>`,
   "/resources/tok-essay-guide": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB TOK Essay Guide</nav>
@@ -1785,6 +1836,9 @@ export const staticContent: Record<string, string> = {
         If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <a href="/essay/tok-essay">IBLens can provide criterion-based feedback on your TOK essay</a> — scored against the official IB TOK rubric in about a minute. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <a href="/resources/ib-grade-boundaries">IB Grade Boundaries</a> guide. For a broader look at how IB criteria work across essay types, read our <a href="/resources/ib-essay-criteria-explained">IB Essay Criteria Explained</a> article.
       </p>
     
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">More on TOK</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/tok-essay-checklist">TOK Essay Checklist</a> · <a href="/resources/tok-exhibition-checklist">TOK Exhibition Checklist</a> · <a href="/resources/tok-essay-structure">TOK Essay Structure</a></p>
   </main>`,
   "/resources/ib-essay-criteria-explained": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Essay Criteria Explained</nav>
@@ -2699,7 +2753,10 @@ export const staticContent: Record<string, string> = {
       <p>
         For understanding how your current essay quality maps to predicted grades, use <a href="/essay">IBLens essay analysis</a> to get criterion-based predictions. For more on how the IB scoring system works, see our <a href="/resources/ib-grade-boundaries">Grade Boundaries Guide</a>. To understand how to maximize your IA marks (which directly affect your subject grades and therefore your university competitiveness), read our <a href="/resources/ib-internal-assessment-guide">Internal Assessment Guide</a>.
       </p>
-</main>`,
+
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Applying through UCAS</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/ucas-personal-statement">UCAS Personal Statement Checker</a></p>
+  </main>`,
 
   "/resources/ib-math-ia-examples": `<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Math IA Examples</nav>\n      <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Math IA Examples</h1>
@@ -4332,6 +4389,9 @@ export const staticContent: Record<string, string> = {
   <p style="line-height:1.7;margin:0 0 14px">To see what criterion-level marking looks like on a real piece of work, we publish three complete IBLens reports on the same essay title at three quality levels, with the commentary explaining each band placement: <a href="/resources/sample-reports">Sample IBLens Reports</a>. They are our own demonstration essays, so we can show them in full.</p>
   <h3 style="font-size:18px;font-weight:700;margin:20px 0 8px">The faster route: check your own draft</h3>
   <p style="line-height:1.7;margin:0 0 14px">Reading someone else's work tells you what good looks like in general. It cannot tell you what is missing from yours. IBLens marks your draft against these exact criteria and names your weakest one — the predicted band range and that weakest criterion are free, no account needed. <a href="/essay/extended-essay">Check my Extended Essay against the criteria</a></p>
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Subject-specific Extended Essay guides</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-biology-extended-essay">Biology Extended Essay</a> · <a href="/resources/ib-chemistry-extended-essay">Chemistry Extended Essay</a> · <a href="/resources/ib-economics-extended-essay">Economics Extended Essay</a> · <a href="/resources/ib-psychology-extended-essay">Psychology Extended Essay</a></p>
   </main>`,
 
   "/resources/ib-biology-ia-examples": `<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
@@ -4804,5 +4864,8 @@ export const staticContent: Record<string, string> = {
       <p>
         For more on how to achieve top marks on your essays and IAs, see our guides on <a href="/resources/ib-essay-criteria-explained">IB Essay Criteria Explained</a> and <a href="/resources/ib-internal-assessment-guide">Internal Assessment Guide</a>. Understanding the <a href="/pricing">pricing</a> of essay analysis tools can help you decide how to invest in your preparation.
       </p>
-</main>`,
+
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">After results day</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/remark">Is an IB remark worth it?</a> · <a href="/resources/ib-ia-feedback">Check your IA against the criteria</a></p>
+  </main>`,
 };

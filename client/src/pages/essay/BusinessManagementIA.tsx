@@ -20,6 +20,10 @@ const config: SubjectConfig = {
     { name: "Criterion F: Structure", max: 2, sampleScore: 1 },
     { name: "Criterion G: Presentation", max: 2, sampleScore: 2 },
   ],
+  relatedResources: [
+    { label: "Check your IA against the criteria", href: "/resources/ib-ia-feedback" },
+    { label: "IB Internal Assessment Guide", href: "/resources/ib-internal-assessment-guide" },
+  ],
   relatedSubjects: [
     { label: "Economics IA", href: "/essay/economics-ia" },
     { label: "History IA", href: "/essay/history-ia" },

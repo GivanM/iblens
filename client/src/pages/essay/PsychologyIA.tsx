@@ -17,6 +17,11 @@ const config: SubjectConfig = {
     { name: "Analysis", max: 6, sampleScore: 3 },
     { name: "Evaluation", max: 6, sampleScore: 3 },
   ],
+  relatedResources: [
+    { label: "Psychology IA guide", href: "/resources/ib-psychology-ia" },
+    { label: "What changes in 2027", href: "/resources/ib-psychology-ia-2027" },
+    { label: "Psychology Extended Essay", href: "/resources/ib-psychology-extended-essay" },
+  ],
   relatedSubjects: [
     { label: "Biology IA", href: "/essay/biology-ia" },
     { label: "History IA", href: "/essay/history-ia" },

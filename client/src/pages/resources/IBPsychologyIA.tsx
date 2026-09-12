@@ -144,6 +144,15 @@ export default function IBPsychologyIA() {
       <p>
         <Link to="/essay">Upload your Psychology IA draft to IBLens for rubric-based feedback →</Link>
       </p>
+      <h2>Internal Assessment in other subjects</h2>
+
+      <ul>
+        <li><Link href="/resources/ib-psychology-ia-2027">Psychology IA 2027: research proposal</Link></li>
+        <li><Link href="/resources/ib-economics-ia">Economics IA</Link></li>
+        <li><Link href="/resources/ib-history-ia">History IA</Link></li>
+        <li><Link href="/resources/ib-ia-feedback">Check your IA against the criteria</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }

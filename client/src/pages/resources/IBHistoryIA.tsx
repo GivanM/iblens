@@ -162,6 +162,15 @@ export default function IBHistoryIA() {
       <p>
         <Link to="/essay">Upload your History IA draft to IBLens for rubric-based feedback →</Link>
       </p>
+      <h2>Internal Assessment in other subjects</h2>
+
+      <ul>
+        <li><Link href="/resources/ib-economics-ia">Economics IA</Link></li>
+        <li><Link href="/resources/ib-psychology-ia">Psychology IA</Link></li>
+        <li><Link href="/resources/ib-ia-feedback">Check your IA against the criteria</Link></li>
+        <li><Link href="/resources/ib-ia-grader">IB IA Grader</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }

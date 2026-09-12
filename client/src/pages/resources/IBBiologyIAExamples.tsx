@@ -182,6 +182,15 @@ export default function IBBiologyIAExamples() {
       <p>
         <Link to="/essay">Paste your Biology IA draft into IBLens for rubric-based feedback →</Link>
       </p>
+      <h2>Internal Assessment in other subjects</h2>
+
+      <ul>
+        <li><Link href="/resources/ib-chemistry-ia-examples">Chemistry IA Examples</Link></li>
+        <li><Link href="/resources/ib-physics-ia-examples">Physics IA Examples</Link></li>
+        <li><Link href="/resources/ib-math-ia-examples">Math IA Examples</Link></li>
+        <li><Link href="/resources/ib-ia-feedback">Check your IA against the criteria</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }

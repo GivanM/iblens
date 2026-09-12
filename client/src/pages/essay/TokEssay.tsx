@@ -14,6 +14,11 @@ const config: SubjectConfig = {
   criteria: [
     { name: "Holistic assessment: clear, coherent, critical exploration of the title", max: 10, sampleScore: 6 },
   ],
+  relatedResources: [
+    { label: "TOK Essay Guide", href: "/resources/tok-essay-guide" },
+    { label: "TOK Essay Checklist", href: "/resources/tok-essay-checklist" },
+    { label: "TOK Essay Structure", href: "/resources/tok-essay-structure" },
+  ],
   relatedSubjects: [
     { label: "Extended Essay", href: "/essay/extended-essay" },
     { label: "English Essay", href: "/essay/english-essay" },

@@ -101,6 +101,14 @@ export default function IBScoreCalculator() {
       <h2>Improve Your Essay Scores — Improve Your Diploma Total</h2>
       <p>The Extended Essay and TOK essay directly affect both your bonus points and your teacher's confidence in your predicted score. A weak EE draft can cost you up to 3 bonus points and reduce your predicted grade — a double penalty at the worst possible time.</p>
       <p><Link to="/essay">IBLens analyses your IB essay against the official criteria and shows you exactly where marks are being lost →</Link></p>
+      <h2>Related tools</h2>
+
+      <ul>
+        <li><Link href="/remark">Is an IB remark worth it?</Link></li>
+        <li><Link href="/resources/ib-grade-boundaries">IB Grade Boundaries</Link></li>
+        <li><Link href="/resources/ib-ia-score-predictor">IA Score Predictor</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }

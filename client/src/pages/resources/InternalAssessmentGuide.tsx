@@ -219,6 +219,17 @@ export default function InternalAssessmentGuide() {
       <p>
         Get instant AI feedback on your IA: <Link href="/essay/biology-ia" className="text-primary hover:underline">Biology IA</Link>, <Link href="/essay/chemistry-ia" className="text-primary hover:underline">Chemistry IA</Link>, <Link href="/essay/physics-ia" className="text-primary hover:underline">Physics IA</Link>, <Link href="/essay/economics-ia" className="text-primary hover:underline">Economics IA</Link>, <Link href="/essay/history-ia" className="text-primary hover:underline">History IA</Link>, <Link href="/essay/business-management-ia" className="text-primary hover:underline">Business Management IA</Link>, <Link href="/essay/math-ia" className="text-primary hover:underline">Mathematics IA</Link>, or <Link href="/essay/psychology-ia" className="text-primary hover:underline">Psychology IA</Link> — each graded against the official IB rubric in about a minute.
       </p>
+      <h2>Subject-specific IA guides</h2>
+
+      <ul>
+        <li><Link href="/resources/ib-biology-ia-examples">Biology IA Examples</Link></li>
+        <li><Link href="/resources/ib-chemistry-ia-examples">Chemistry IA Examples</Link></li>
+        <li><Link href="/resources/ib-physics-ia-examples">Physics IA Examples</Link></li>
+        <li><Link href="/resources/ib-math-ia-examples">Math IA Examples</Link></li>
+        <li><Link href="/resources/ib-economics-ia">Economics IA</Link></li>
+        <li><Link href="/resources/ib-history-ia">History IA</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }

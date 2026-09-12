@@ -18,6 +18,13 @@ const config: SubjectConfig = {
     { name: "Criterion D: Presentation", max: 4, sampleScore: 3 },
     { name: "Criterion E: Engagement", max: 6, sampleScore: 4 },
   ],
+  relatedResources: [
+    { label: "IB Extended Essay Guide", href: "/resources/ib-extended-essay-guide" },
+    { label: "New criteria for May 2027", href: "/resources/ib-extended-essay-new-criteria-2027" },
+    { label: "How to get feedback before you submit", href: "/resources/ib-extended-essay-feedback" },
+    { label: "The 4,000-word limit", href: "/resources/ib-extended-essay-word-count" },
+    { label: "EE examples by subject", href: "/resources/ib-ee-examples-by-subject" },
+  ],
   relatedSubjects: [
     { label: "Business Management IA", href: "/essay/business-management-ia" },
     { label: "Economics IA", href: "/essay/economics-ia" },

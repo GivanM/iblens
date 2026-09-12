@@ -17,6 +17,10 @@ const config: SubjectConfig = {
     { name: "Conclusion", max: 6, sampleScore: 3 },
     { name: "Evaluation", max: 6, sampleScore: 3 },
   ],
+  relatedResources: [
+    { label: "Physics IA examples", href: "/resources/ib-physics-ia-examples" },
+    { label: "Check your IA against the criteria", href: "/resources/ib-ia-feedback" },
+  ],
   relatedSubjects: [
     { label: "Chemistry IA", href: "/essay/chemistry-ia" },
     { label: "Biology IA", href: "/essay/biology-ia" },

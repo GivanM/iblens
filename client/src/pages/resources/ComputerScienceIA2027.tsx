@@ -97,6 +97,14 @@ export default function ComputerScienceIA2027() {
         <li><Link href="/resources/ib-psychology-ia-2027">IB Psychology IA Changes 2027</Link></li>
         <li><Link href="/resources/ib-internal-assessment-guide">IB Internal Assessment Guide</Link></li>
       </ul>
+      <h2>Other 2027 syllabus changes</h2>
+
+      <ul>
+        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE New Criteria 2027 (marked /30)</Link></li>
+        <li><Link href="/resources/ib-psychology-ia-2027">Psychology IA 2027: research proposal</Link></li>
+        <li><Link href="/resources/ib-rpf-extended-essay-2027">The EE RPF: 500-word reflective statement</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }

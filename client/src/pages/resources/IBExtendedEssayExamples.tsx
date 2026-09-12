@@ -112,6 +112,16 @@ export default function IBExtendedEssayExamples() {
         <li>Have you completed your RPPF with genuine reflection?</li>
       </ul>
       <p>The Extended Essay rewards students who treat it as an intellectual exercise. Choose a question you are genuinely curious about, narrow it until it feels almost too specific, and build an argument you are willing to defend.</p>
+      <h2>Extended Essay by subject</h2>
+
+      <ul>
+        <li><Link href="/resources/ib-biology-extended-essay">Biology Extended Essay</Link></li>
+        <li><Link href="/resources/ib-chemistry-extended-essay">Chemistry Extended Essay</Link></li>
+        <li><Link href="/resources/ib-history-extended-essay">History Extended Essay</Link></li>
+        <li><Link href="/resources/ib-english-extended-essay">English Extended Essay</Link></li>
+        <li><Link href="/resources/ib-extended-essay-feedback">How to get EE feedback before you submit</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }

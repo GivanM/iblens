@@ -16,6 +16,10 @@ const config: SubjectConfig = {
     { name: "Section 2: Investigation", max: 15, sampleScore: 9 },
     { name: "Section 3: Reflection", max: 4, sampleScore: 2 },
   ],
+  relatedResources: [
+    { label: "History IA guide", href: "/resources/ib-history-ia" },
+    { label: "History Extended Essay", href: "/resources/ib-history-extended-essay" },
+  ],
   relatedSubjects: [
     { label: "English Essay", href: "/essay/english-essay" },
     { label: "Economics IA", href: "/essay/economics-ia" },

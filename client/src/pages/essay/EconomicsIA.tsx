@@ -18,6 +18,11 @@ const config: SubjectConfig = {
     { name: "Criterion D: Key concept", max: 3, sampleScore: 2 },
     { name: "Criterion E: Evaluation", max: 3, sampleScore: 2 },
   ],
+  relatedResources: [
+    { label: "Economics IA guide", href: "/resources/ib-economics-ia" },
+    { label: "Economics Extended Essay", href: "/resources/ib-economics-extended-essay" },
+    { label: "Check your IA against the criteria", href: "/resources/ib-ia-feedback" },
+  ],
   relatedSubjects: [
     { label: "Business Management IA", href: "/essay/business-management-ia" },
     { label: "History IA", href: "/essay/history-ia" },

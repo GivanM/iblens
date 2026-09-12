@@ -509,6 +509,9 @@ export const staticContentResources: Record<string, string> = {
   <p style="line-height:1.7;margin:0 0 14px"><a href="/essay/extended-essay">Check your EE draft against the 2027 criteria</a> · <a href="/resources/ib-extended-essay-guide">IB Extended Essay Guide</a> · <a href="/resources/ib-extended-essay-examples">EE Examples</a></p>
   
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is my Extended Essay marked out of 30 or 34?", "acceptedAnswer": {"@type": "Answer", "text": "Sessions through November 2026 are marked out of 34 with the current criteria. From the May 2027 session the EE is marked out of 30 with new criteria: Framework 6, Knowledge and understanding 6, Analysis and line of argument 6, Discussion and evaluation 8, Reflection 4."}}, {"@type": "Question", "name": "Which criterion is worth the most under the new 2027 EE rubric?", "acceptedAnswer": {"@type": "Answer", "text": "Criterion D, Discussion and evaluation, at 8 of 30 marks — the single heaviest criterion in the new rubric."}}, {"@type": "Question", "name": "Does IBLens support the new 2027 criteria?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Choose May 2027 as the exam session in the analyzer and your EE is graded out of 30 against the new criteria; the May 2027 Psychology and Computer Science IA formats are supported the same way."}}]}</script>
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Also changing for May 2027</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-rpf-extended-essay-2027">The EE RPF (500-word statement)</a> · <a href="/resources/ib-psychology-ia-2027">Psychology IA 2027</a> · <a href="/resources/ib-computer-science-ia-2027">Computer Science IA 2027</a></p>
   </main>`,
   "/resources/tok-essay-checklist": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">TOK Essay Checklist — How to Check Your Essay Against the IB Criteria (Without a Tutor)</h1>
@@ -867,6 +870,9 @@ export const staticContentResources: Record<string, string> = {
         For more on how IB assessment criteria work across all essay types, see our guide on <a href="/resources/ib-essay-criteria-explained">IB Essay Criteria Explained</a>. If you are working on an IA instead, check our <a href="/resources/ib-internal-assessment-guide">Internal Assessment Guide</a>.
       </p>
     
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Extended Essay by subject</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-biology-extended-essay">Biology Extended Essay</a> · <a href="/resources/ib-chemistry-extended-essay">Chemistry Extended Essay</a> · <a href="/resources/ib-history-extended-essay">History Extended Essay</a> · <a href="/resources/ib-english-extended-essay">English Extended Essay</a> · <a href="/resources/ib-economics-extended-essay">Economics Extended Essay</a> · <a href="/resources/ib-psychology-extended-essay">Psychology Extended Essay</a></p>
   </main>`,
   "/resources/ib-internal-assessment-guide": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Internal Assessment Guide</nav>
@@ -1077,6 +1083,9 @@ export const staticContentResources: Record<string, string> = {
         Get instant AI feedback on your IA: <a href="/essay/biology-ia">Biology IA</a>, <a href="/essay/chemistry-ia">Chemistry IA</a>, <a href="/essay/physics-ia">Physics IA</a>, <a href="/essay/economics-ia">Economics IA</a>, <a href="/essay/history-ia">History IA</a>, <a href="/essay/business-management-ia">Business Management IA</a>, <a href="/essay/math-ia">Mathematics IA</a>, or <a href="/essay/psychology-ia">Psychology IA</a> — each graded against the official IB rubric in about a minute.
       </p>
     
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">Subject-specific IA guides</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/ib-biology-ia-examples">Biology IA Examples</a> · <a href="/resources/ib-chemistry-ia-examples">Chemistry IA Examples</a> · <a href="/resources/ib-physics-ia-examples">Physics IA Examples</a> · <a href="/resources/ib-math-ia-examples">Math IA Examples</a> · <a href="/resources/ib-ia-feedback">Check your IA against the criteria</a></p>
   </main>`,
   "/resources/tok-essay-guide": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB TOK Essay Guide</nav>
@@ -1264,6 +1273,9 @@ export const staticContentResources: Record<string, string> = {
         If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <a href="/essay/tok-essay">IBLens can provide criterion-based feedback on your TOK essay</a> — scored against the official IB TOK rubric in about a minute. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <a href="/resources/ib-grade-boundaries">IB Grade Boundaries</a> guide. For a broader look at how IB criteria work across essay types, read our <a href="/resources/ib-essay-criteria-explained">IB Essay Criteria Explained</a> article.
       </p>
     
+  
+  <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">More on TOK</h2>
+  <p style="line-height:1.8;margin:0 0 14px"><a href="/resources/tok-essay-checklist">TOK Essay Checklist</a> · <a href="/resources/tok-exhibition-checklist">TOK Exhibition Checklist</a> · <a href="/resources/tok-essay-structure">TOK Essay Structure</a></p>
   </main>`,
   "/resources/ib-essay-criteria-explained": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › IB Essay Criteria Explained</nav>

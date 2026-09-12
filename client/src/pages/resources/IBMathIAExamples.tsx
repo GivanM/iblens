@@ -199,6 +199,15 @@ export default function IBMathIAExamples() {
       <p>
         <Link to="/essay">Upload your Math IA draft to IBLens for rubric-based feedback →</Link>
       </p>
+      <h2>Internal Assessment in other subjects</h2>
+
+      <ul>
+        <li><Link href="/resources/ib-biology-ia-examples">Biology IA Examples</Link></li>
+        <li><Link href="/resources/ib-chemistry-ia-examples">Chemistry IA Examples</Link></li>
+        <li><Link href="/resources/ib-physics-ia-examples">Physics IA Examples</Link></li>
+        <li><Link href="/resources/ib-ia-feedback">Check your IA against the criteria</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }

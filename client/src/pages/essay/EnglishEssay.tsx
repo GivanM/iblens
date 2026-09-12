@@ -17,6 +17,10 @@ const config: SubjectConfig = {
     { name: "Criterion C: Focus & Organization", max: 5, sampleScore: 4 },
     { name: "Criterion D: Language", max: 5, sampleScore: 4 },
   ],
+  relatedResources: [
+    { label: "English Extended Essay", href: "/resources/ib-english-extended-essay" },
+    { label: "Check your IA against the criteria", href: "/resources/ib-ia-feedback" },
+  ],
   relatedSubjects: [
     { label: "History IA", href: "/essay/history-ia" },
     { label: "Psychology IA", href: "/essay/psychology-ia" },

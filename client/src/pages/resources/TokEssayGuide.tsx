@@ -196,6 +196,15 @@ export default function TokEssayGuide() {
       <p>
         If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <Link href="/essay/tok-essay" className="text-primary hover:underline">IBLens can provide criterion-based feedback on your TOK essay</Link> — scored against the official IB TOK rubric in about a minute. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">IB Grade Boundaries</Link> guide. For a broader look at how IB criteria work across essay types, read our <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB Essay Criteria Explained</Link> article.
       </p>
+      <h2>More on TOK</h2>
+
+      <ul>
+        <li><Link href="/resources/tok-essay-structure">TOK Essay Structure</Link></li>
+        <li><Link href="/resources/tok-essay-format">TOK Essay Format</Link></li>
+        <li><Link href="/resources/tok-essay-checklist">TOK Essay Checklist</Link></li>
+        <li><Link href="/resources/tok-exhibition-checklist">TOK Exhibition Checklist</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }

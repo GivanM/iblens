@@ -214,6 +214,13 @@ export default function UniversityAdmissionsGuide() {
       <p>
         For understanding how your current essay quality maps to predicted grades, use <Link href="/essay" className="text-primary hover:underline">IBLens essay analysis</Link> to get criterion-based predictions. For more on how the IB scoring system works, see our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">Grade Boundaries Guide</Link>. To understand how to maximize your IA marks (which directly affect your subject grades and therefore your university competitiveness), read our <Link href="/resources/ib-internal-assessment-guide" className="text-primary hover:underline">Internal Assessment Guide</Link>.
       </p>
+      <h2>Applying through UCAS</h2>
+
+      <ul>
+        <li><Link href="/ucas-personal-statement">UCAS Personal Statement Checker</Link></li>
+        <li><Link href="/resources/academic-integrity">AI feedback and academic integrity</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }

@@ -298,6 +298,14 @@ export default function GradeBoundaries() {
       <p>
         For more on how to achieve top marks on your essays and IAs, see our guides on <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB Essay Criteria Explained</Link> and <Link href="/resources/ib-internal-assessment-guide" className="text-primary hover:underline">Internal Assessment Guide</Link>. Understanding the <Link href="/pricing" className="text-primary hover:underline">pricing</Link> of essay analysis tools can help you decide how to invest in your preparation.
       </p>
+      <h2>After results day</h2>
+
+      <ul>
+        <li><Link href="/remark">Is an IB remark worth it?</Link></li>
+        <li><Link href="/resources/ib-score-calculator">IB Score Calculator</Link></li>
+        <li><Link href="/resources/ib-ia-score-predictor">IA Score Predictor</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }

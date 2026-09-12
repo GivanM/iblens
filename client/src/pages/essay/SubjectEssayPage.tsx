@@ -238,6 +238,23 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
           </div>
         </section>
 
+        {config.relatedResources && config.relatedResources.length > 0 && (
+          <section className="py-10 border-t bg-background">
+            <div className="container max-w-3xl mx-auto">
+              <h2 className="text-sm font-bold text-muted-foreground uppercase tracking-wider mb-5">
+                Guides for {config.subject}
+              </h2>
+              <div className="flex flex-wrap gap-3">
+                {config.relatedResources.map((r) => (
+                  <Link key={r.href} href={r.href} className="text-sm underline hover:no-underline">
+                    {r.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Related subjects */}
         {config.relatedSubjects.length > 0 && (
           <section className="py-10 border-t bg-background">

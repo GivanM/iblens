@@ -88,6 +88,16 @@ export default function IAFeedbackGuide() {
         <li><Link href="/resources/ib-ia-grader">IB IA Grader — all subjects</Link></li>
         <li><Link href="/resources/ib-ia-score-predictor">IB IA Score Predictor</Link></li>
       </ul>
+      <h2>Subject-specific IA guides</h2>
+
+      <ul>
+        <li><Link href="/resources/ib-biology-ia-examples">Biology IA Examples</Link></li>
+        <li><Link href="/resources/ib-economics-ia">Economics IA</Link></li>
+        <li><Link href="/resources/ib-history-ia">History IA</Link></li>
+        <li><Link href="/resources/ib-psychology-ia-2027">Psychology IA 2027: research proposal</Link></li>
+        <li><Link href="/resources/ib-ia-grader">IB IA Grader</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }

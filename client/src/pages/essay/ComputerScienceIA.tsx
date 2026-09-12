@@ -18,6 +18,10 @@ const config: SubjectConfig = {
     { name: "Criterion D: Functionality & Extensibility", max: 4, sampleScore: 3 },
     { name: "Criterion E: Evaluation", max: 6, sampleScore: 4 },
   ],
+  relatedResources: [
+    { label: "What changes in 2027", href: "/resources/ib-computer-science-ia-2027" },
+    { label: "Check your IA against the criteria", href: "/resources/ib-ia-feedback" },
+  ],
   relatedSubjects: [
     { label: "Mathematics IA", href: "/essay/math-ia" },
     { label: "Physics IA", href: "/essay/physics-ia" },

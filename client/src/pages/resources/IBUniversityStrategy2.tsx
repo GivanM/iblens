@@ -344,6 +344,12 @@ export default function IBUniversityStrategy() {
         before your predicted grades are set,{" "}
         <Link to="/essay">try IBLens now</Link>.
       </p>
+      <h2>Applying through UCAS</h2>
+
+      <ul>
+        <li><Link href="/ucas-personal-statement">UCAS Personal Statement Checker</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }

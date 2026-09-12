@@ -14,6 +14,10 @@ const config: SubjectConfig = {
   criteria: [
     { name: "Holistic assessment: how well the exhibition shows TOK in the world", max: 10, sampleScore: 6 },
   ],
+  relatedResources: [
+    { label: "TOK Exhibition Checklist", href: "/resources/tok-exhibition-checklist" },
+    { label: "TOK Essay Guide", href: "/resources/tok-essay-guide" },
+  ],
   relatedSubjects: [
     { label: "TOK Essay", href: "/essay/tok-essay" },
     { label: "Extended Essay", href: "/essay/extended-essay" },

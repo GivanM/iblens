@@ -18,6 +18,11 @@ const config: SubjectConfig = {
     { name: "Reflection", max: 3, sampleScore: 1 },
     { name: "Use of mathematics", max: 6, sampleScore: 4 },
   ],
+  relatedResources: [
+    { label: "Math IA examples", href: "/resources/ib-math-ia-examples" },
+    { label: "Maths AA IA grader", href: "/essay/maths-aa-ia" },
+    { label: "Maths AI IA grader", href: "/essay/maths-ai-ia" },
+  ],
   relatedSubjects: [
     { label: "Physics IA", href: "/essay/physics-ia" },
     { label: "Chemistry IA", href: "/essay/chemistry-ia" },

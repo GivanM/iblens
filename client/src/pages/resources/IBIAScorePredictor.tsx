@@ -74,6 +74,14 @@ export default function IBIAScorePredictor() {
 
       <h3>Which IB subjects have the most variable IA moderation?</h3>
       <p>History, Psychology, and Group 1 language and literature IAs tend to see wider variation. Sciences and Mathematics IAs are more stable because criteria are more explicitly defined.</p>
+      <h2>Related tools</h2>
+
+      <ul>
+        <li><Link href="/resources/ib-score-calculator">IB Score Calculator</Link></li>
+        <li><Link href="/resources/ib-grade-boundaries">IB Grade Boundaries</Link></li>
+        <li><Link href="/remark">Is an IB remark worth it?</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }

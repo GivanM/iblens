@@ -160,6 +160,16 @@ export default function IBEnglishExtendedEssay() {
       <p>
         <Link href="/essay/extended-essay">Grade your English EE with IBLens</Link>
       </p>
+      <h2>Extended Essays in other subjects</h2>
+
+      <ul>
+        <li><Link href="/resources/ib-biology-extended-essay">Biology Extended Essay</Link></li>
+        <li><Link href="/resources/ib-chemistry-extended-essay">Chemistry Extended Essay</Link></li>
+        <li><Link href="/resources/ib-history-extended-essay">History Extended Essay</Link></li>
+        <li><Link href="/resources/ib-economics-extended-essay">Economics Extended Essay</Link></li>
+        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE New Criteria 2027 (marked /30)</Link></li>
+      </ul>
+
     </ResourceArticle>
   );
 }
