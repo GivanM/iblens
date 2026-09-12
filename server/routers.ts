@@ -1,4 +1,5 @@
 import { COOKIE_NAME } from "@shared/const";
+import { TRPCError } from "@trpc/server";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
@@ -320,7 +321,7 @@ const essayRouter = router({
       q3: z.string().default(""),
       clientFingerprint: z.string().min(1),
     }))
-    .mutation(async ({ input }) => {
+    .mutation(async ({ input, ctx }) => {
       const answers = { q1: input.q1, q2: input.q2, q3: input.q3 };
       const mechanics = checkUcasMechanics(answers);
 
@@ -331,11 +332,28 @@ const essayRouter = router({
         throw new Error(`Your answers total ${mechanics.totalChars} characters. UCAS allows ${UCAS_TOTAL_CHAR_LIMIT}; trim the draft before reviewing it.`);
       }
 
-      const fingerprint = input.clientFingerprint;
-      const usage = await canAnonymousAnalyze(fingerprint);
-      if (!usage.allowed) {
-        throw new Error(usage.reason || "You have used your free review from this device. A full review is $9.99.");
+      // A signed-in user with a paid credit gets the full review; everyone else gets the free
+      // preview once per device. Telling someone who is already signed in to "sign in" was the
+      // old behaviour and it read as a broken site.
+      const user = (ctx as any).user;
+      let paidCredit = false;
+      if (user) {
+        const credits = await getUserCredits(user.id);
+        paidCredit = (credits?.essayCredits ?? 0) > 0;
       }
+
+      if (!paidCredit) {
+        const usage = await canAnonymousAnalyze(input.clientFingerprint);
+        if (!usage.allowed) {
+          throw new TRPCError({
+            code: "FORBIDDEN",
+            message: user
+              ? "You have used your free review. Unlock a full review for $9.99 to continue."
+              : "You have used your free review from this device. A full review is $9.99 — no account needed.",
+          });
+        }
+      }
+      const fingerprint = input.clientFingerprint;
 
       try {
         const systemPrompt = buildUcasSystemPrompt(input.course, input.universityType);
@@ -366,6 +384,10 @@ const essayRouter = router({
           predictedGrade: null,
         });
 
+        if (paidCredit) {
+          await consumePaidEssayCredit(user.id);
+          return { result, wasAnonymous: false, unlocked: true as const };
+        }
         return { result: buildUcasTeaser(result), wasAnonymous: true };
       } catch (error: any) {
         console.error("[UCAS PS Review] Error:", error);
