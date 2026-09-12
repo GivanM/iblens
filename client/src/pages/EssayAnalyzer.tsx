@@ -308,8 +308,8 @@ export default function EssayAnalyzer() {
   const analyzingLabel = ANALYZING_STEPS[Math.min(analyzingStep, ANALYZING_STEPS.length - 1)];
 
   const handleAnalyze = () => {
-    if (essayText.length < 150) {
-      toast.error("Please paste at least 200 words for meaningful analysis.");
+    if (essayText.length < 300) {
+      toast.error("Paste at least 300 characters, roughly 50 words, or there is nothing to mark.");
       return;
     }
 
@@ -541,7 +541,7 @@ export default function EssayAnalyzer() {
             )}
             <Label>{essayType === "TOK Exhibition" ? "Paste your commentary on all three objects" : "Paste your essay or IA text"}</Label>
             <Textarea
-              placeholder={essayType === "TOK Exhibition" ? "Paste your commentary for all three objects, including how each links to the prompt." : "Paste the full text of your work here. Minimum 200 words for a meaningful analysis."}
+              placeholder={essayType === "TOK Exhibition" ? "Paste your commentary for all three objects, including how each links to the prompt." : "Paste the full text of your work here. A short extract can be marked, but the report is only as good as what it sees. Anything past 30,000 characters, about 5,000 words, is not sent."}
               rows={10}
               value={essayText}
               onChange={(e) => setEssayText(e.target.value)}
