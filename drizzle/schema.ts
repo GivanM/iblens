@@ -33,6 +33,8 @@ export const analyses = mysqlTable("analyses", {
   resultJson: json("resultJson"),
   predictedGrade: varchar("predictedGrade", { length: 20 }),
     unlocked: boolean("unlocked").notNull().default(true),
+  rerunsUsed: int("rerunsUsed").notNull().default(0),
+  unlockedAt: timestamp("unlockedAt"),
 createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
 

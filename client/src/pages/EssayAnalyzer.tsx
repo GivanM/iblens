@@ -166,7 +166,13 @@ export default function EssayAnalyzer() {
   const [essayType, setEssayType] = useState("IA");
   const [subject, setSubject] = useState("Business Management");
   const [researchQuestion, setResearchQuestion] = useState("");
-  const [examSession, setExamSession] = useState<"nov2026" | "may2027">("nov2026");
+  const [examSession, setExamSession] = useState<"nov2026" | "may2027">("may2027");
+  // ?rerun=<analysisId> — a paid report includes two free re-checks of the same draft.
+  const rerunId = (() => {
+    if (typeof window === "undefined") return null;
+    const v = new URLSearchParams(window.location.search).get("rerun");
+    return v && /^\d+$/.test(v) ? Number(v) : null;
+  })();
   const [essayText, setEssayText] = useState("");
   const [result, setResult] = useState<EssayResult | null>(null);
   const [essayPurchaseOpen, setEssayPurchaseOpen] = useState(false);
@@ -188,6 +194,18 @@ export default function EssayAnalyzer() {
     { enabled: !isAuthenticated }
   );
   const canAnonAnalyze = !isAuthenticated ? (anonCheckQuery.data?.canAnalyze ?? !localStorage.getItem('iblens_anon_used')) : false;
+
+  const rerunMutation = trpc.essay.rerunAnalysis.useMutation({
+    onSuccess: (data: any) => {
+      setResult(data.result as EssayResult);
+      setLastAnalysisId(data.id);
+      setStep(0);
+      toast({ title: "Re-check complete", description: `${data.rerunsLeft} free re-check(s) left for this draft.` });
+    },
+    onError: (err: any) => {
+      toast({ title: "Re-check unavailable", description: err.message, variant: "destructive" });
+    },
+  });
 
   const analyzeMutation = trpc.essay.analyze.useMutation({
     onSuccess: (data) => {
@@ -230,7 +248,7 @@ export default function EssayAnalyzer() {
     },
   });
 
-  const isAnalyzing = analyzeMutation.isPending || anonAnalyzeMutation.isPending;
+  const isAnalyzing = analyzeMutation.isPending || anonAnalyzeMutation.isPending || rerunMutation.isPending;
 
   const [reportEmail, setReportEmail] = useState("");
   const [reportEmailSaved, setReportEmailSaved] = useState(false);
@@ -272,6 +290,10 @@ export default function EssayAnalyzer() {
     if (isAuthenticated) {
       if (!credits?.canAnalyzeEssay) {
         setEssayPurchaseOpen(true);
+        return;
+      }
+      if (rerunId) {
+        rerunMutation.mutate({ analysisId: rerunId, essayText, examSession });
         return;
       }
       const authParams = getApiEssayParams(essayType, subject);
@@ -463,8 +485,8 @@ export default function EssayAnalyzer() {
                     <SelectItem value="may2027">May 2027 — new syllabus</SelectItem>
                   </SelectContent>
                 </Select>
-                {essayType === "EE" && examSession === "nov2026" && (
-                  <p className="text-xs text-muted-foreground">Writing your EE for May 2027 (started the DP in 2025)? Switch to the new 30-mark criteria.</p>
+                {essayType === "EE" && examSession === "may2027" && (
+                  <p className="text-xs text-muted-foreground">Sitting your exams in November 2026 or earlier? Switch to the current 34-mark criteria.</p>
                 )}
               </div>
             )}
@@ -480,6 +502,11 @@ export default function EssayAnalyzer() {
           </div>
 
           <div className="space-y-2">
+            {rerunId && (
+              <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 text-sm">
+                <strong>Re-checking your paid draft.</strong> Paste the revised version below — this re-check is free and does not use a credit.
+              </div>
+            )}
             <Label>Paste your essay or IA text</Label>
             <Textarea
               placeholder="Paste the full text of your work here. Minimum 200 words for a meaningful analysis."

@@ -17,13 +17,13 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        This page explains exactly how IBLens works: what happens when you upload an essay, how the AI generates its feedback, what the output looks like, what the tool can and cannot do, and how it compares to alternatives like private tutors or peer review. We believe in transparency about our technology so you can make an informed decision about whether it is useful for your preparation.
+        This page explains exactly how IBLens works: what happens when you paste an essay, how the AI generates its feedback, what the output looks like, what the tool can and cannot do, and how it compares to alternatives like private tutors or peer review. We believe in transparency about our technology so you can make an informed decision about whether it is useful for your preparation.
       </p>
 
       <h2>What IBLens Does</h2>
 
       <p>
-        When you upload an essay to IBLens, the system performs a comprehensive analysis that includes:
+        When you paste an essay to IBLens, the system performs a comprehensive analysis that includes:
       </p>
 
       <ul>

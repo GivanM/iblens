@@ -61,8 +61,8 @@ export const staticContentResources: Record<string, string> = {
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/resources">Resources</a> › How IBLens Works</nav>
       <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">How IBLens Works</h1>
       <p style="color:#374151;line-height:1.75;margin-bottom:16px">IBLens is an AI-powered essay analysis tool designed specifically for IB Diploma Programme students. It provides criterion-by-criterion feedback on Internal Assessments, Extended Essays, and Theory of Knowledge essays — the same type of detailed assessment that an experienced IB examiner would provide, delivered in approximately 60 seconds.</p>
-      <p style="color:#374151;line-height:1.75;margin-bottom:16px">This page explains exactly how IBLens works: what happens when you upload an essay, how the AI generates its feedback, what the output looks like, what the tool can and cannot do, and how it compares to alternatives like private tutors or peer review. We believe in transparency about our technology so you can make an informed decision about whether it is useful for your preparation.</p>
-      <p style="color:#374151;line-height:1.75;margin-bottom:16px">When you upload an essay to IBLens, the system performs a comprehensive analysis that includes a predicted band, criterion-level comments, and prioritised next steps.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">This page explains exactly how IBLens works: what happens when you paste an essay, how the AI generates its feedback, what the output looks like, what the tool can and cannot do, and how it compares to alternatives like private tutors or peer review. We believe in transparency about our technology so you can make an informed decision about whether it is useful for your preparation.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">When you paste an essay to IBLens, the system performs a comprehensive analysis that includes a predicted band, criterion-level comments, and prioritised next steps.</p>
       <p style="margin-top:20px"><a href="/essay" style="color:#7B1D2E;font-weight:600">Grade your IB essay free →</a></p>
     </main>`,
 
@@ -505,7 +505,7 @@ export const staticContentResources: Record<string, string> = {
   <li><strong>Analysis:</strong> does each section advance one sustained argument, or read as summaries?</li>
   <li><strong>Discussion and evaluation:</strong> is every major piece of evidence weighed — strength, limitation, competing interpretation — and does the conclusion follow from that weighing?</li>
   <li><strong>Reflection:</strong> do reflections show real decisions and turning points?</li></ul>
-  <p style="line-height:1.7;margin:0 0 14px">IBLens grades Extended Essays against both rubrics: set "Exam session" to May 2027 in the analyzer for the new 30-mark criteria, or leave it on May/Nov 2026 for the current 34-mark rubric. Free preview on every essay; a full report costs $4.99 with no subscription.</p>
+  <p style="line-height:1.7;margin:0 0 14px">IBLens grades Extended Essays against both rubrics: set "Exam session" to May 2027 in the analyzer for the new 30-mark criteria, or leave it on May/Nov 2026 for the current 34-mark rubric. Your first analysis is free; a full report costs $4.99 with no subscription.</p>
   <p style="line-height:1.7;margin:0 0 14px"><a href="/essay/extended-essay">Check your EE draft against the 2027 criteria</a> · <a href="/resources/ib-extended-essay-guide">IB Extended Essay Guide</a> · <a href="/resources/ib-extended-essay-examples">EE Examples</a></p>
   
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is my Extended Essay marked out of 30 or 34?", "acceptedAnswer": {"@type": "Answer", "text": "Sessions through November 2026 are marked out of 34 with the current criteria. From the May 2027 session the EE is marked out of 30 with new criteria: Framework 6, Knowledge and understanding 6, Analysis and line of argument 6, Discussion and evaluation 8, Reflection 4."}}, {"@type": "Question", "name": "Which criterion is worth the most under the new 2027 EE rubric?", "acceptedAnswer": {"@type": "Answer", "text": "Criterion D, Discussion and evaluation, at 8 of 30 marks — the single heaviest criterion in the new rubric."}}, {"@type": "Question", "name": "Does IBLens support the new 2027 criteria?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Choose May 2027 as the exam session in the analyzer and your EE is graded out of 30 against the new criteria; the May 2027 Psychology and Computer Science IA formats are supported the same way."}}]}</script>
@@ -577,7 +577,7 @@ export const staticContentResources: Record<string, string> = {
   <tr><td style="border:1px solid #ddd;padding:8px">Self-check against criteria</td><td style="border:1px solid #ddd;padding:8px">Free, unlimited, the examiner instrument</td><td style="border:1px solid #ddd;padding:8px">Hard to be objective</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">AI rubric check</td><td style="border:1px solid #ddd;padding:8px">Instant criterion-level read, any time</td><td style="border:1px solid #ddd;padding:8px">An estimate, not an official mark</td></tr></table>
   <p style="line-height:1.7;margin:0 0 14px">Use the sequence: self-check first (can a reader state your research question and answer? does every section argue rather than report? is evidence evaluated?), then an AI read, and spend your one supervisor draft on what only an expert can see. Which criteria apply depends on your session: through November 2026 the EE is marked /34; from May 2027 it is marked /30 under new criteria — see <a href="/resources/ib-extended-essay-new-criteria-2027">what changed</a>.</p>
-  <p style="line-height:1.7;margin:0 0 14px">IBLens grades your EE against the official criteria for your session — both rubrics supported. Free preview; full report $4.99, no subscription. Feedback on your own work is legitimate; editing by AI or tutors is not — see <a href="/resources/academic-integrity">AI feedback and academic integrity</a>. <a href="/essay/extended-essay">Get instant EE feedback</a></p>
+  <p style="line-height:1.7;margin:0 0 14px">IBLens grades your EE against the official criteria for your session — both rubrics supported. First analysis free; full report $4.99, no subscription. Feedback on your own work is legitimate; editing by AI or tutors is not — see <a href="/resources/academic-integrity">AI feedback and academic integrity</a>. <a href="/essay/extended-essay">Get instant EE feedback</a></p>
   
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many drafts of the Extended Essay can my supervisor read?", "acceptedAnswer": {"@type": "Answer", "text": "Your supervisor may provide written comments on one complete draft. Reflection sessions offer additional guidance, but full-draft feedback happens once."}}, {"@type": "Question", "name": "Can I pay someone to edit my Extended Essay?", "acceptedAnswer": {"@type": "Answer", "text": "No. Feedback that identifies weaknesses is legitimate; editing or rewriting the essay is no longer your own work and risks the essay under IB academic integrity rules — that applies to tutors, services and AI alike."}}, {"@type": "Question", "name": "When should I get feedback on my EE?", "acceptedAnswer": {"@type": "Answer", "text": "Early on the research question, mid-way on structure and argument with self-checks and an AI read, and near the end your one full supervisor draft — with time left to act on it."}}]}</script>
   </main>`,
@@ -585,7 +585,7 @@ export const staticContentResources: Record<string, string> = {
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">AI Tools IB Students Use to Review Coursework Before Submission (2026)</h1>
   <p style="line-height:1.7;margin:0 0 14px">An honest comparison of the tools IB students use to review IAs, Extended Essays and TOK work against the assessment criteria. Details checked in August 2026 — verify current pricing and features on each site.</p>
   <table style="border-collapse:collapse;width:100%;margin:0 0 14px"><tr><th style="border:1px solid #ddd;padding:8px;text-align:left">Tool</th><th style="border:1px solid #ddd;padding:8px;text-align:left">What it reviews</th><th style="border:1px solid #ddd;padding:8px;text-align:left">Pricing model</th><th style="border:1px solid #ddd;padding:8px;text-align:left">May 2027 EE rubric</th></tr>
-  <tr><td style="border:1px solid #ddd;padding:8px">IBLens</td><td style="border:1px solid #ddd;padding:8px">IA across 17 subjects, EE, TOK essay, TOK exhibition</td><td style="border:1px solid #ddd;padding:8px">Free preview; full report $4.99, no subscription</td><td style="border:1px solid #ddd;padding:8px">Yes — both the 34-mark and new 30-mark criteria</td></tr>
+  <tr><td style="border:1px solid #ddd;padding:8px">IBLens</td><td style="border:1px solid #ddd;padding:8px">IA across 17 subjects, EE, TOK essay, TOK exhibition</td><td style="border:1px solid #ddd;padding:8px">First analysis free; full report $4.99, no subscription</td><td style="border:1px solid #ddd;padding:8px">Yes — both the 34-mark and new 30-mark criteria</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">RevisionDojo</td><td style="border:1px solid #ddd;padding:8px">Coursework grader plus a large IB resource library</td><td style="border:1px solid #ddd;padding:8px">See site</td><td style="border:1px solid #ddd;padding:8px">Not stated on the grader as of August 2026</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">MyRevisionAgent</td><td style="border:1px solid #ddd;padding:8px">TOK (/10), EE, IA across 27 subject-levels</td><td style="border:1px solid #ddd;padding:8px">2 free tokens on signup; packs from £4.99</td><td style="border:1px solid #ddd;padding:8px">No — EE graded /34 as of August 2026</td></tr>
   <tr><td style="border:1px solid #ddd;padding:8px">Clastify</td><td style="border:1px solid #ddd;padding:8px">AI grader plus paid human review by IB examiners</td><td style="border:1px solid #ddd;padding:8px">See site</td><td style="border:1px solid #ddd;padding:8px">Not stated on the grader as of August 2026</td></tr>
@@ -640,7 +640,7 @@ export const staticContentResources: Record<string, string> = {
   <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li>Write, rewrite or edit your essay — feedback identifies weaknesses; the writing stays yours (<a href="/resources/academic-integrity">academic integrity</a>).</li>
   <li>Publish invented statistics or accuracy claims it cannot demonstrate.</li>
   <li>Sell your essays (<a href="/privacy">Privacy Policy</a>).</li></ul>
-  <p style="line-height:1.7;margin:0 0 14px">Free preview on every essay; a full report is $4.99 with no subscription and a <a href="/refund-policy">7-day money-back guarantee</a>. Contact: glushkovim@gmail.com. More: <a href="/resources/how-iblens-works">How IBLens Works</a> · <a href="/resources/sample-reports">Sample Reports</a></p>
+  <p style="line-height:1.7;margin:0 0 14px">First analysis free; a full report is $4.99 with no subscription and a <a href="/refund-policy">7-day money-back guarantee</a>. Contact: glushkovim@gmail.com. More: <a href="/resources/how-iblens-works">How IBLens Works</a> · <a href="/resources/sample-reports">Sample Reports</a></p>
   </main>`,
   "/resources/ib-rpf-extended-essay-2027": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">The EE Reflective Statement (RPF) — What Replaces the RPPF in 2027</h1>
@@ -748,7 +748,7 @@ export const staticContentResources: Record<string, string> = {
       <h2>Assessment Criteria (A–E)</h2>
 
       <p>
-        The Extended Essay is assessed against five criteria, totaling 34 marks. The criteria were updated in 2018 and apply uniformly across all subjects:
+        The Extended Essay is assessed against five criteria totalling 34 marks for sessions through November 2026 (from May 2027 the essay is marked out of 30 under new criteria). The criteria were updated in 2018 and apply uniformly across all subjects:
       </p>
 
       <table>
@@ -782,7 +782,7 @@ export const staticContentResources: Record<string, string> = {
           </tr>
           <tr>
             <td><strong>E: Engagement</strong></td>
-            <td>Reflections on planning and progress (RPPF)</td>
+            <td>Reflections on planning and progress (RPPF; replaced by the 500-word RPF from May 2027)</td>
             <td>6</td>
           </tr>
         </tbody>
@@ -1429,7 +1429,7 @@ export const staticContentResources: Record<string, string> = {
       <h2>How AI Feedback Maps to Criteria</h2>
 
       <p>
-        Tools like <a href="/essay">IBLens</a> are designed to replicate this criterion-based assessment process. When you upload an essay, the AI evaluates your work against the specific criteria for your subject and essay type, providing:
+        Tools like <a href="/essay">IBLens</a> are designed to replicate this criterion-based assessment process. When you paste an essay, the AI evaluates your work against the specific criteria for your subject and essay type, providing:
       </p>
 
       <ul>
@@ -1631,7 +1631,7 @@ export const staticContentResources: Record<string, string> = {
         and gives you specific, actionable feedback on each criterion before you submit.
       </p>
       <p>
-        <a href="/essay">Upload your Extended Essay draft to IBLens for rubric-based feedback →</a>
+        <a href="/essay">Paste your Extended Essay draft into IBLens for rubric-based feedback →</a>
       </p>
     
   </main>`,

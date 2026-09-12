@@ -86,7 +86,7 @@ export default function EENewCriteria2027() {
       <h2>Check your draft with IBLens</h2>
 
       <p>
-        IBLens grades Extended Essays against <strong>both</strong> rubrics. In the analyzer, set "Exam session" to <em>May 2027 — new syllabus</em> and your draft is scored out of 30 against the new criteria A–E above, criterion by criterion. Leave it on <em>May / Nov 2026</em> for the current 34-mark rubric. Every essay gets a free preview — predicted band range and your weakest criterion — and a full report costs $4.99, no subscription.
+        IBLens grades Extended Essays against <strong>both</strong> rubrics. In the analyzer, set "Exam session" to <em>May 2027 — new syllabus</em> and your draft is scored out of 30 against the new criteria A–E above, criterion by criterion. Leave it on <em>May / Nov 2026</em> for the current 34-mark rubric. Your first analysis is free — predicted band range and your weakest criterion — and a full report costs $4.99, no subscription.
       </p>
 
       <p>

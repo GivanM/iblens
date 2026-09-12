@@ -104,7 +104,7 @@ export default function ExtendedEssayGuide() {
       <h2>Assessment Criteria (A–E)</h2>
 
       <p>
-        The Extended Essay is assessed against five criteria, totaling 34 marks. The criteria were updated in 2018 and apply uniformly across all subjects:
+        The criteria below are the <strong>current 34-mark criteria, used for sessions through November 2026</strong>. If you sit your exams in May 2027 or later, your essay is marked out of 30 under a different set — see <Link href="/resources/ib-extended-essay-new-criteria-2027">what changed in 2027</Link>. The current criteria apply uniformly across all subjects:
       </p>
 
       <table>
@@ -149,7 +149,7 @@ export default function ExtendedEssayGuide() {
       </p>
 
       <p>
-        <strong>Criterion E (Engagement)</strong> is assessed through the Reflections on Planning and Progress Form (RPPF), which consists of three reflections written at different stages of the research process plus a final reflection after the viva voce. This criterion evaluates intellectual engagement, decision-making, and the student's ability to reflect on their learning process.
+        <strong>Criterion E (Engagement)</strong> is assessed through the Reflections on Planning and Progress Form (RPPF), which consists of three reflections written at different stages of the research process plus a final reflection after the viva voce. From the May 2027 session the RPPF is replaced by the <Link href="/resources/ib-rpf-extended-essay-2027">RPF</Link>, a single reflective statement of up to 500 words assessed under Criterion E: Reflection (4 of 30 marks). This criterion evaluates intellectual engagement, decision-making, and the student's ability to reflect on their learning process.
       </p>
 
       <h2>Common Mistakes</h2>
@@ -172,7 +172,7 @@ export default function ExtendedEssayGuide() {
       <h2>How to Score an A</h2>
 
       <p>
-        An A grade on the Extended Essay (equivalent to approximately 28–34 marks out of 34) requires excellence across all five criteria. Based on analysis of high-scoring essays and examiner commentary, here are the key characteristics of A-grade Extended Essays:
+        An A grade on the Extended Essay (roughly 28–34 marks out of 34 under the current criteria; the 2027 rubric is marked out of 30) requires excellence across all five criteria. Based on analysis of high-scoring essays and examiner commentary, here are the key characteristics of A-grade Extended Essays:
       </p>
 
       <p>

@@ -164,7 +164,7 @@ export default function IBPhysicsIAExamples() {
         teacher finalises the moderated submission.
       </p>
       <p>
-        <Link to="/essay">Upload your Physics IA draft to IBLens for rubric-based feedback →</Link>
+        <Link to="/essay">Paste your Physics IA draft into IBLens for rubric-based feedback →</Link>
       </p>
     </ResourceArticle>
   );

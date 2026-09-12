@@ -194,7 +194,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
                 { text: "Criterion-by-criterion breakdown, not just a single score" },
                 { text: "Identifies exactly which marks you're losing and why" },
                 { text: "Prioritised action plan to improve before submission" },
-                { text: "Free preview for every essay — no sign-up required" },
+                { text: "First analysis free — no sign-up required" },
                 { text: "Results in under 60 seconds, any time of day" },
               ].map(({ text }) => (
                 <div key={text} className="flex items-start gap-3">
@@ -214,7 +214,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
               <ul className="space-y-3 text-sm text-muted-foreground list-disc pl-5">
                 <li>Marks against the official IB assessment criteria for each subject and component — including both Extended Essay rubrics: the current 34-mark criteria (through November 2026) and the new 30-mark May 2027 criteria.</li>
                 <li>$4.99 for a full report — no subscription, you pay per essay.</li>
-                <li>Free preview on every essay: predicted band range and your weakest criterion, no account needed.</li>
+                <li>Your first analysis is free: predicted band range, your weakest criterion with full feedback, and the top risks in your draft. No account needed.</li>
                 <li>Covers Internal Assessments across 17 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
               </ul>
             </div>

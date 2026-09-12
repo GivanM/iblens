@@ -23,7 +23,7 @@ export default function CourseworkReviewTools() {
           <tr><th>Tool</th><th>What it reviews</th><th>Pricing model</th><th>New May 2027 EE rubric</th></tr>
         </thead>
         <tbody>
-          <tr><td>IBLens</td><td>IA across 17 subjects, EE, TOK essay, TOK exhibition</td><td>Free preview on every essay; full report $4.99, no subscription</td><td>Yes — grades against both the 34-mark and the new 30-mark criteria</td></tr>
+          <tr><td>IBLens</td><td>IA across 17 subjects, EE, TOK essay, TOK exhibition</td><td>First analysis free; full report $4.99, no subscription</td><td>Yes — grades against both the 34-mark and the new 30-mark criteria</td></tr>
           <tr><td>RevisionDojo</td><td>Coursework grader for EE, IA and TOK alongside a large IB resource library</td><td>See site</td><td>Not stated on the grader as of August 2026</td></tr>
           <tr><td>MyRevisionAgent</td><td>TOK essay (/10), EE, IA across 27 subject-levels</td><td>2 free grading tokens on signup; token packs from £4.99</td><td>No — EE graded /34 on the current criteria as of August 2026</td></tr>
           <tr><td>Clastify</td><td>AI grader plus paid human review by IB examiners; large library of examiner-verified exemplars</td><td>See site</td><td>Not stated on the grader as of August 2026</td></tr>

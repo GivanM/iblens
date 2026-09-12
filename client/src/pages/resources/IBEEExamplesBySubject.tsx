@@ -209,7 +209,7 @@ export default function IBEEExamplesBySubject() {
         feedback so you know exactly where marks are being lost before you submit.
       </p>
       <p>
-        <Link to="/essay">Upload your Extended Essay draft to IBLens for rubric-based feedback →</Link>
+        <Link to="/essay">Paste your Extended Essay draft into IBLens for rubric-based feedback →</Link>
       </p>
     </ResourceArticle>
   );

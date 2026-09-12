@@ -51,7 +51,7 @@ export default function About() {
       <h2>Pricing, briefly</h2>
 
       <p>
-        Every essay gets a free preview — the predicted band range and your weakest criterion, no account needed. A full report costs $4.99 per essay. There is no subscription, and a <Link href="/refund-policy">7-day money-back guarantee</Link> applies.
+        Your first analysis is free — the predicted band range and your weakest criterion, no account needed. A full report costs $4.99 per essay. There is no subscription, and a <Link href="/refund-policy">7-day money-back guarantee</Link> applies.
       </p>
 
       <h2>Contact</h2>

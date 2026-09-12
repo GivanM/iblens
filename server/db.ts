@@ -625,3 +625,25 @@ export async function setAnalysisUnlocked(id: number) {
   if (!db) throw new Error("Database not available");
   await db.update(analyses).set({ unlocked: true }).where(eq(analyses.id, id));
 }
+
+
+/** Paid unlock starts the free re-run window (14 days, 2 re-runs of the same draft). */
+export async function markAnalysisUnlocked(id: number) {
+  const db = await getDb();
+  if (!db) return;
+  await db.update(analyses).set({ unlocked: true, unlockedAt: new Date() }).where(eq(analyses.id, id));
+}
+
+export async function consumeAnalysisRerun(id: number, userId: number) {
+  const db = await getDb();
+  if (!db) return null;
+  const rows = await db.select().from(analyses).where(and(eq(analyses.id, id), eq(analyses.userId, userId))).limit(1);
+  const rec: any = rows[0];
+  if (!rec || !rec.unlocked) return { ok: false as const, reason: "This report is not unlocked." };
+  const started = rec.unlockedAt ? new Date(rec.unlockedAt).getTime() : new Date(rec.createdAt).getTime();
+  const days = (Date.now() - started) / 86400000;
+  if (days > 14) return { ok: false as const, reason: "Your 14-day re-check window for this draft has ended." };
+  if ((rec.rerunsUsed ?? 0) >= 2) return { ok: false as const, reason: "You have used both re-checks for this draft." };
+  await db.update(analyses).set({ rerunsUsed: (rec.rerunsUsed ?? 0) + 1 }).where(eq(analyses.id, id));
+  return { ok: true as const, record: rec, rerunsLeft: 1 - (rec.rerunsUsed ?? 0) };
+}

@@ -24,6 +24,8 @@ import {
   getLatestAnonymousEssay,
   setAnonymousUnlocked,
   setAnalysisUnlocked,
+  markAnalysisUnlocked,
+  consumeAnalysisRerun,
 } from "./db";
 import { createLemonsqueezyCheckout } from "./lemonsqueezy/lemonsqueezy";
 import { LEMONSQUEEZY_VARIANTS, PRODUCT_KEY_TO_LS_SKU } from "../shared/pricing";
@@ -115,16 +117,41 @@ Respond with this exact JSON structure:
  * (exact score, all criteria, comments, fix lists) never leaves the server
  * until it is unlocked with a paid credit. Do not widen this shape.
  */
+/**
+ * A criterion is "not assessable from the pasted text" when it marks down a document the
+ * submission form never asks for (the EE reflective form, RPF/RPPF). Showing that as the
+ * free weakest-criterion sample burns the single demonstration slot on something the student
+ * could not have supplied, so those criteria are skipped when picking the teaser sample.
+ */
+function isNotAssessableFromText(c: any): boolean {
+  const name = String(c?.name || "").toLowerCase();
+  const comment = String(c?.comment || "").toLowerCase();
+  const isReflection = name.includes("reflection") || name.includes("engagement");
+  if (!isReflection) return false;
+  return /\brpf\b|\brppf\b|reflective (form|statement)|not (been )?(submitted|provided|included|attached)|no reflection|absence of (a )?reflect/.test(comment);
+}
+
+/** Cut at a sentence boundary where possible so the teaser reads as deliberate, not broken. */
+function softTruncate(text: string, limit: number): string {
+  if (typeof text !== "string" || text.length <= limit) return text;
+  const window = text.slice(0, limit);
+  const lastStop = Math.max(window.lastIndexOf(". "), window.lastIndexOf("! "), window.lastIndexOf("? "));
+  if (lastStop > limit * 0.5) return window.slice(0, lastStop + 1);
+  return window.replace(/\s+\S*$/, "") + "\u2026";
+}
+
 function buildTeaser(result: any) {
   const criteria: any[] = Array.isArray(result?.criteria) ? result.criteria : [];
   const scored = criteria.filter((c) => typeof c?.score === "number" && c?.max > 0);
-  let weakest = scored.length
-    ? [...scored].sort((a, b) => a.score / a.max - b.score / b.max)[0]
+  const assessable = scored.filter((c) => !isNotAssessableFromText(c));
+  const pool = assessable.length ? assessable : scored;
+  let weakest = pool.length
+    ? [...pool].sort((a, b) => a.score / a.max - b.score / b.max)[0]
     : null;
   // Holistic instruments have a single criterion whose comment IS the whole verdict —
   // truncate it in the teaser so the full reasoning stays behind the unlock.
-  if (weakest && criteria.length === 1 && typeof weakest.comment === "string" && weakest.comment.length > 220) {
-    weakest = { ...weakest, comment: weakest.comment.slice(0, 220).replace(/\s+\S*$/, "") + "\u2026" };
+  if (weakest && criteria.length === 1 && typeof weakest.comment === "string" && weakest.comment.length > 320) {
+    weakest = { ...weakest, comment: softTruncate(weakest.comment, 320) };
   }
   let nearEdge: boolean | null = null;
   const m = String(result?.band_range || "").match(/(\d+)\s*[-\u2013\u2014]\s*(\d+)/);
@@ -135,7 +162,7 @@ function buildTeaser(result: any) {
   }
   const risks = (Array.isArray(result?.risks) ? result.risks : []).slice(0, 3).map((r: any) => ({
     title: typeof r === "string" ? r : r?.title || "",
-    description: typeof r === "string" ? "" : String(r?.description || "").slice(0, 220),
+    description: typeof r === "string" ? "" : softTruncate(String(r?.description || ""), 280),
   }));
   return {
     locked: true as const,
@@ -203,6 +230,46 @@ const essayRouter = router({
     }),
 
   // Lightweight status for the "you have a locked report" banner. Leaks no scores.
+  // A paid report includes two free re-checks of the same draft within 14 days. Students revise
+  // and want to know whether the fix landed; charging again for that is what pushes them to
+  // a free chatbot instead.
+  rerunAnalysis: protectedProcedure
+    .input(z.object({
+      analysisId: z.number(),
+      essayText: z.string().min(200, "Please paste at least 200 words."),
+      examSession: z.enum(["nov2026", "may2027"]).optional(),
+    }))
+    .mutation(async ({ ctx, input }) => {
+      const gate = await consumeAnalysisRerun(input.analysisId, ctx.user.id);
+      if (!gate) throw new Error("Database unavailable");
+      if (!gate.ok) throw new Error(gate.reason);
+      const rec: any = gate.record;
+
+      const systemPrompt = buildEssaySystemPrompt(rec.essayType, rec.subject, input.examSession);
+      const userPrompt = buildEssayUserPrompt(rec.essayType, rec.subject, rec.researchQuestion || undefined, input.essayText, input.examSession);
+      const raw = await invokeLLM(systemPrompt, userPrompt);
+      const result = extractJson(raw);
+      const rubric = getRubric(rec.essayType, rec.subject, input.examSession);
+      if (rubric) {
+        result._rubricAvailable = true;
+        result._rubricLabel = rubric.label;
+        result._rubricTotalMarks = rubric.totalMarks;
+      }
+
+      const analysis = await createAnalysis({
+        userId: ctx.user.id,
+        type: "essay",
+        essayType: rec.essayType,
+        subject: rec.subject,
+        researchQuestion: rec.researchQuestion,
+        resultJson: result,
+        predictedGrade: `${result.predicted_score}/${result.max_score}`,
+        unlocked: true,
+      });
+
+      return { id: analysis.id, result, rerunsLeft: gate.rerunsLeft };
+    }),
+
   lockedReport: publicProcedure
     .input(z.object({ fingerprint: z.string().min(1) }))
     .query(async ({ input }) => {
@@ -453,7 +520,10 @@ const dashboardRouter = router({
   history: protectedProcedure
     .input(z.object({ limit: z.number().min(1).max(50).optional() }).optional())
     .query(async ({ ctx, input }) => {
-      return getUserAnalyses(ctx.user.id, input?.limit || 20);
+      const rows = await getUserAnalyses(ctx.user.id, input?.limit || 20);
+      // A locked analysis must not expose the exact predicted score anywhere — that score is
+      // the headline of the paid report.
+      return rows.map((r: any) => (r.unlocked ? r : { ...r, predictedGrade: null, resultJson: null }));
     }),
 
   analysis: protectedProcedure
@@ -484,7 +554,10 @@ const dashboardRouter = router({
     }),
 
   orders: protectedProcedure.query(async ({ ctx }) => {
-    return getUserOrders(ctx.user.id);
+    const rows = await getUserOrders(ctx.user.id);
+    // Orders are created when the checkout link is generated, so an abandoned checkout leaves a
+    // "pending" row. Showing it as a purchase makes people think they were charged.
+    return rows.filter((o: any) => o.status === "paid" || o.status === "refunded");
   }),
 });
 

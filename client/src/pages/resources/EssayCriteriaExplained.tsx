@@ -175,7 +175,7 @@ export default function EssayCriteriaExplained() {
       <h2>How AI Feedback Maps to Criteria</h2>
 
       <p>
-        Tools like <Link href="/essay" className="text-primary hover:underline">IBLens</Link> are designed to replicate this criterion-based assessment process. When you upload an essay, the AI evaluates your work against the specific criteria for your subject and essay type, providing:
+        Tools like <Link href="/essay" className="text-primary hover:underline">IBLens</Link> are designed to replicate this criterion-based assessment process. When you paste an essay, the AI evaluates your work against the specific criteria for your subject and essay type, providing:
       </p>
 
       <ul>

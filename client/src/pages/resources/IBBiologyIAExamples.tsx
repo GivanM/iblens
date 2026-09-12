@@ -180,7 +180,7 @@ export default function IBBiologyIAExamples() {
         your moderated grade.
       </p>
       <p>
-        <Link to="/essay">Upload your Biology IA draft to IBLens for rubric-based feedback →</Link>
+        <Link to="/essay">Paste your Biology IA draft into IBLens for rubric-based feedback →</Link>
       </p>
     </ResourceArticle>
   );

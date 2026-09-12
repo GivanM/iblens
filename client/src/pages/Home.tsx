@@ -135,7 +135,7 @@ export default function Home() {
                 name: "Is my first essay analysis really free?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes — every essay gets a free preview: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments, and a ranked fix list — unlocks for $4.99.",
+                  text: "Yes — your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments, and a ranked fix list — unlocks for $4.99.",
                 },
               },
               {
@@ -482,7 +482,7 @@ export default function Home() {
               />
               <FAQItem
                 question="Is my first essay analysis really free?"
-                answer="Yes — every essay gets a free preview: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments, and a ranked fix list — unlocks for $4.99."
+                answer="Yes — your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments, and a ranked fix list — unlocks for $4.99."
               />
               <FAQItem
                 question="How accurate is the predicted IB score?"

@@ -43,8 +43,6 @@ function EssayReportPreview() {
             24/34
           </div>
           <span className="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Grade B</span>
-          <span className="text-[10px] text-gray-500">72nd percentile</span>
-          <span className="bg-emerald-100 text-emerald-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">+2 IB bonus</span>
         </div>
 
         {/* Criteria table */}
