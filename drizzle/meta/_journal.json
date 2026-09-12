@@ -85,6 +85,13 @@
       "when": 1777554665490,
       "tag": "0011_eager_songbird",
       "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "5",
+      "when": 1789225271075,
+      "tag": "0012_lean_hedge_knight",
+      "breakpoints": true
     }
   ]
 }

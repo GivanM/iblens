@@ -26,27 +26,42 @@ jobs:
       - name: Pull, build, restart
         run: |
           ssh -i ~/.ssh/deploy_key -o ServerAliveInterval=30 \
-              ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
-              "set -e
-               cd /opt/iblens
+              ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'bash -s' <<'REMOTE'
+          set -e
+          cd /opt/iblens
 
-               echo '==> git pull'
-               git fetch --prune origin main
-               git reset --hard origin/main
+          # A hotfix applied over ssh as root leaves files this user cannot
+          # replace, and vite then fails to empty dist. Reassert the invariant
+          # instead of failing on it: every deploy from May to September 2026
+          # died on one root-owned file in dist/public.
+          echo '==> ownership'
+          sudo chown -R "$(id -un):$(id -gn)" /opt/iblens
 
-               echo '==> pnpm install'
-               pnpm install
+          # Keep whatever was edited on the server but not committed. The reset
+          # below would otherwise destroy it with no way back.
+          if [ -n "$(git status --porcelain)" ]; then
+            echo '==> stashing uncommitted server changes'
+            git stash push -u -m "pre-deploy $(date -Iseconds)"
+          fi
 
-               echo '==> pnpm build'
-               pnpm build
+          echo '==> git'
+          git fetch --prune origin main
+          git reset --hard origin/main
 
-               echo '==> drizzle migrate'
-               pnpm db:push
+          echo '==> install'
+          pnpm install --frozen-lockfile
 
-               echo '==> restart service'
-               sudo systemctl restart iblens
+          echo '==> build'
+          pnpm build
 
-               echo '==> done'"
+          echo '==> migrate'
+          pnpm db:push
+
+          echo '==> restart'
+          sudo systemctl restart iblens
+
+          echo '==> done'
+          REMOTE
 
       - name: Smoke test
         run: |
