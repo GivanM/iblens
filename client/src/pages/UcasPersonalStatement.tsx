@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { getAnonFingerprint } from "@/lib/fingerprint";
+import { useAuth } from "@/_core/hooks/useAuth";
 import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { SEOHead } from "@/components/SEOHead";
@@ -70,6 +71,10 @@ export default function UcasPersonalStatement() {
     },
     onError: (e: any) => toast.error(e.message || "Re-check unavailable"),
   });
+
+  const { isAuthenticated } = useAuth();
+  const creditsQ = trpc.dashboard.credits.useQuery(undefined, { enabled: isAuthenticated });
+  const hasCredit = (creditsQ.data?.essayCredits ?? 0) > 0;
 
   const review = trpc.essay.analyzeUcasAnonymous.useMutation({
     onSuccess: (data: any) => setResult(data.result),
@@ -224,8 +229,9 @@ export default function UcasPersonalStatement() {
                 q2: answers.q2,
                 q3: answers.q3,
                 clientFingerprint: anonFp,
-                // Never spend a credit behind a button that says free.
-                spendCredit: false,
+                // Only when the button says so, and it says so only when there is
+                // a credit to spend.
+                spendCredit: hasCredit,
               });
             }}
           >
@@ -233,6 +239,8 @@ export default function UcasPersonalStatement() {
               <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Reading your statement…</>
             ) : isUnlocked ? (
               `Re-check my statement (free${rechecksLeft !== null ? `, ${rechecksLeft} left` : ""})`
+            ) : hasCredit ? (
+              "Review my statement in full (1 credit)"
             ) : (
               "Review my statement, free"
             )}
@@ -244,15 +252,17 @@ export default function UcasPersonalStatement() {
         <Card className="animate-in fade-in slide-in-from-bottom-4 duration-500">
           <CardContent className="pt-6 space-y-6">
             <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">Free preview</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">
+                {isUnlocked || result.answers ? "Full review" : "Free preview"}
+              </p>
               <h2 style={SERIF} className="text-2xl font-bold mb-2">{result.verdict}</h2>
               <p className="text-sm text-muted-foreground leading-relaxed">{result.verdict_reason}</p>
             </div>
 
-            {result.mechanics && (
+            {(result.mechanics || result._mechanics) && (
               <div className="rounded-lg border p-4 space-y-2">
                 <p className="text-sm font-semibold">Against the UCAS limits</p>
-                {result.mechanics.perAnswer.map((a: any) => (
+                {(result.mechanics || result._mechanics).perAnswer.map((a: any) => (
                   <div key={a.id} className="flex items-center justify-between text-sm">
                     <span className="text-muted-foreground">{a.id.toUpperCase()}</span>
                     <span className={a.meetsMinimum ? "" : "text-rose-600 font-medium"}>
@@ -263,12 +273,12 @@ export default function UcasPersonalStatement() {
                 ))}
                 <div className="flex items-center justify-between text-sm border-t pt-2">
                   <span className="text-muted-foreground">Total</span>
-                  <span>{result.mechanics.totalChars} of {UCAS_TOTAL_CHAR_LIMIT}</span>
+                  <span>{(result.mechanics || result._mechanics).totalChars} of {UCAS_TOTAL_CHAR_LIMIT}</span>
                 </div>
-                {result.mechanics.problems?.map((p: string, i: number) => (
+                {(result.mechanics || result._mechanics).problems?.map((p: string, i: number) => (
                   <p key={i} className="text-xs text-amber-700 flex gap-2"><AlertTriangle className="w-3.5 h-3.5 shrink-0 mt-0.5" />{p}</p>
                 ))}
-                {result.mechanics.problems?.length === 0 && (
+                {(result.mechanics || result._mechanics).problems?.length === 0 && (
                   <p className="text-xs text-emerald-700 flex gap-2"><CheckCircle2 className="w-3.5 h-3.5 shrink-0 mt-0.5" />Lengths are within the UCAS rules.</p>
                 )}
               </div>

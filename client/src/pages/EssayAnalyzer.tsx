@@ -393,6 +393,8 @@ export default function EssayAnalyzer() {
       }
       const anonParams = getApiEssayParams(essayType, subject);
       anonAnalyzeMutation.mutate({
+        // Only the button that says it costs a credit spends one.
+        spendDeviceCredit: deviceCredits > 0,
         essayType: anonParams.essayType,
         subject: anonParams.subject,
         researchQuestion: researchQuestion || undefined,
@@ -716,7 +718,7 @@ export default function EssayAnalyzer() {
           )}
 
           {/* Paid guest: the two re-checks they were promised */}
-          {anonUnlocked && deviceCredits === 0 && (
+          {anonUnlocked && deviceCredits === 0 && (anonRerunsLeft ?? anonReportQ.data?.rerunsLeft ?? 2) > 0 && (
             <Button
               className="w-full h-11"
               onClick={handleAnalyze}
@@ -730,7 +732,7 @@ export default function EssayAnalyzer() {
               ) : (
                 <>
                   <FileText className="w-4 h-4 mr-2" />
-                  Re-check this draft (free{anonRerunsLeft !== null ? `, ${anonRerunsLeft} left` : ""})
+                  Re-check this draft (free, {anonRerunsLeft ?? anonReportQ.data?.rerunsLeft ?? 2} left)
                 </>
               )}
             </Button>

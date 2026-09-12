@@ -17,6 +17,7 @@ import {
   relockAnonymousAnalysis,
   relockAnalysesForOrder,
   addDeviceCredits,
+  removeDeviceCredits,
   consumePaidEssayCredit,
 } from "../db";
 import { sendPaymentConfirmationEmail, getSkuHumanName } from "../email";
@@ -325,6 +326,17 @@ export function registerLemonsqueezyWebhook(app: Express) {
             return res.status(200).json({ ok: true, message: "Order not found" });
           }
 
+          // Deliveries repeat. Without this, a second copy of the same refund
+          // clawed back another credit and closed a report belonging to a
+          // different purchase.
+          if (order.status === "refunded") {
+            console.log(`[LemonSqueezy] Order ${order.id} already refunded, skipping`);
+            if (webhookEventId) {
+              await updateWebhookEvent(webhookEventId, { paymentStatus: "duplicate" }).catch(() => {});
+            }
+            return res.status(200).json({ ok: true, message: "Already refunded" });
+          }
+
           // Mark order as refunded
           await updateOrderStatus(order.id, "refunded", dataId);
 
@@ -336,6 +348,8 @@ export function registerLemonsqueezyWebhook(app: Express) {
 
           const refundFp = String(customData.unlock_fp || "");
           if (refundFp) {
+            const refundedCredits = lsSkuToCredits(order.sku);
+            await removeDeviceCredits(refundFp, refundedCredits.essay).catch(() => {});
             try {
               const rec = String(customData.unlock_kind || "essay") === "ucas"
                 ? await getLatestAnonymousUcas(refundFp)

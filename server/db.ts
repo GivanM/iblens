@@ -801,6 +801,16 @@ export async function consumeDeviceCredit(fingerprint: string): Promise<boolean>
   return changed > 0;
 }
 
+/** Take back device credits that a refunded purchase had granted. */
+export async function removeDeviceCredits(fingerprint: string, amount: number) {
+  const db = await getDb();
+  if (!db || amount <= 0) return;
+  await db.update(deviceCredits)
+    .set({ credits: sql`GREATEST(${deviceCredits.credits} - ${amount}, 0)` })
+    .where(eq(deviceCredits.fingerprint, fingerprint));
+  console.log(`[DeviceCredits] -${amount} for ${fingerprint.slice(0, 8)} after refund`);
+}
+
 /** Close a report again after its payment was refunded. */
 export async function relockAnonymousAnalysis(id: number) {
   const db = await getDb();
@@ -853,7 +863,11 @@ export async function createRerunAnalysis(prev: any, resultJson: any, predictedG
     predictedGrade: predictedGrade ?? null,
     unlocked: true,
     unlockedAt: prev.unlockedAt ?? new Date(),
-    rerunsUsed: (prev.rerunsUsed ?? 0),
+    // The allowance belongs to the purchase, not to the row. This carries the
+    // count forward including the re-check that just happened; copying the old
+    // number made every re-check hand out two more.
+    rerunsUsed: (prev.rerunsUsed ?? 0) + 1,
+    examSession: prev.examSession ?? null,
   }).$returningId();
   return row;
 }

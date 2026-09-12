@@ -66,7 +66,7 @@ function RemarkQuickCheck() {
   }, [analyze.isPending]);
 
   const errMsg = analyze.error ? String(analyze.error.message || "") : "";
-  const alreadyUsed = /already used|sign in/i.test(errMsg);
+  const alreadyUsed = /already used|used your free|sign in/i.test(errMsg);
   const verdict = result ? bandVerdict(result.predicted_score, result.max_score, result.band_range) : null;
 
   return (
@@ -95,7 +95,8 @@ function RemarkQuickCheck() {
           <div className="flex items-center justify-between gap-3 flex-wrap">
             <span className="text-xs text-muted-foreground">{essayText.trim() ? essayText.trim().split(/\s+/).length + " words" : "No account needed. Never used to train AI. Free preview, full report $9.99."}</span>
             <Button disabled={essayText.trim().length < 300 || analyze.isPending}
-              onClick={() => analyze.mutate({ essayType, subject: essayType === "TOK" ? "Theory of Knowledge" : subject, essayText, clientFingerprint: fp })}>
+              onClick={() => analyze.mutate({
+      spendDeviceCredit: false, essayType, subject: essayType === "TOK" ? "Theory of Knowledge" : subject, essayText, clientFingerprint: fp })}>
               {analyze.isPending ? QUICK_STEPS[Math.min(step, QUICK_STEPS.length - 1)] : "Get my remark verdict"}
             </Button>
           </div>
@@ -103,7 +104,7 @@ function RemarkQuickCheck() {
             <p className="text-xs text-muted-foreground mt-2">Keep pasting, we need the full essay for a meaningful read.</p>
           )}
           {alreadyUsed && (
-            <p className="text-sm mt-3">You have already used your free check on this device. <Link href="/essay" className="text-primary font-medium underline">Sign in on the analyzer page</Link> to run more, $9.99 per essay.</p>
+            <p className="text-sm mt-3">You have already used your free check on this device. A full report is $9.99 on the <Link href="/essay" className="text-primary font-medium underline">analyzer page</Link>, with no account needed.</p>
           )}
           {errMsg && !alreadyUsed && (
             <p className="text-sm mt-3 text-destructive">{errMsg}, please try again.</p>

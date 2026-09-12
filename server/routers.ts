@@ -26,6 +26,7 @@ import {
   getLatestAnonymousUcas,
   getDeviceCredits,
   consumeDeviceCredit,
+  addDeviceCredits,
   deleteAnonymousAnalysis,
   deleteUserAnalysis,
   updateAnonymousResult,
@@ -581,11 +582,18 @@ const essayRouter = router({
   anonymousReport: publicProcedure
     .input(z.object({ fingerprint: z.string().min(1), kind: z.enum(["essay", "ucas"]).optional() }))
     .query(async ({ input }) => {
-      const rec = input.kind === "ucas"
+      const rec: any = input.kind === "ucas"
         ? await getLatestAnonymousUcas(input.fingerprint)
         : await getLatestAnonymousEssay(input.fingerprint);
-      if (!rec || !rec.resultJson || !(rec as any).unlocked) return { unlocked: false as const };
-      return { unlocked: true as const, result: rec.resultJson };
+      if (!rec || !rec.resultJson || !rec.unlocked) return { unlocked: false as const };
+      const started = rec.unlockedAt ? new Date(rec.unlockedAt).getTime() : new Date(rec.createdAt).getTime();
+      const daysLeft = Math.max(0, 14 - (Date.now() - started) / 86400000);
+      return {
+        unlocked: true as const,
+        result: rec.resultJson,
+        rerunsLeft: Math.max(0, 2 - (rec.rerunsUsed ?? 0)),
+        daysLeft: Math.floor(daysLeft),
+      };
     }),
 
   lockedReport: publicProcedure
@@ -617,6 +625,8 @@ const essayRouter = router({
       reflections: z.string().max(8000).optional(),
       clientFingerprint: z.string().min(1),
       examSession: z.enum(["nov2026", "may2027"]).optional(),
+      /** Spend a credit this device owns. Asked for explicitly, never assumed. */
+      spendDeviceCredit: z.boolean().optional(),
     }))
     .mutation(async ({ input }) => {
       // Use client-provided fingerprint (UUID stored in localStorage)
@@ -627,7 +637,7 @@ const essayRouter = router({
       const usage = await canAnonymousAnalyze(fingerprint);
       let paidByDevice = false;
       if (!usage.allowed) {
-        paidByDevice = await consumeDeviceCredit(fingerprint);
+        paidByDevice = input.spendDeviceCredit === true && await consumeDeviceCredit(fingerprint);
         if (!paidByDevice) {
           throw new TRPCError({
             code: "FORBIDDEN",
@@ -702,8 +712,10 @@ const essayRouter = router({
           : { result: buildTeaser(result), wasAnonymous: true };
       } catch (error: any) {
         console.error("[Anonymous Essay Analysis] Error:", error);
-        // A run that produced nothing must not cost the free slot it claimed.
+        // A run that produced nothing must not cost the free slot it claimed, nor
+        // the credit it spent.
         if (claim?.id) await deleteAnonymousAnalysis(claim.id).catch(() => {});
+        if (paidByDevice) await addDeviceCredits(fingerprint, 1).catch(() => {});
         throw new Error(error.message || "Analysis failed. Please try again.");
       }
     }),
@@ -769,6 +781,8 @@ const essayRouter = router({
           resultJson: result,
           predictedGrade: `${result.predicted_score}/${result.max_score}`,
           unlocked: !usage.isFree,
+          // Recorded so a re-check cannot silently move the work to another rubric.
+          examSession: input.examSession ?? null,
         });
 
         await consumeEssayCredit(ctx.user.id);
@@ -866,6 +880,7 @@ Respond with this exact JSON structure:
           fieldOfStudy: input.fieldOfStudy,
           resultJson: result,
           predictedGrade: `${input.predictedScore}/45`,
+          unlocked: true,
         });
 
         await consumeUniversityCredit(ctx.user.id);
@@ -1016,6 +1031,9 @@ const paymentRouter = router({
   createLemonsqueezyCheckout: protectedProcedure
     .input(z.object({
       productKey: z.enum(["ESSAY_SINGLE", "ESSAY_PACK_5", "ESSAY_PACK_10", "UNIVERSITY_SINGLE"]),
+      /** Signed-in buyers have a device too, and their report lives on it. */
+      fingerprint: z.string().min(1).optional(),
+      returnTo: z.enum(["essay", "ucas-personal-statement"]).optional(),
     }))
     .mutation(async ({ ctx, input }) => {
       if (input.productKey === "UNIVERSITY_SINGLE") {
@@ -1049,13 +1067,17 @@ const paymentRouter = router({
         provider: "lemonsqueezy",
       });
 
-      // Create LemonSqueezy checkout
+      // Create LemonSqueezy checkout. The device travels with it for signed-in
+      // buyers too: their report is an anonymous row until they unlock it, and
+      // without this a paid UCAS review could never be opened at all.
       const { checkoutUrl } = await createLemonsqueezyCheckout(
         orderId,
         variantId,
         ctx.user.email || null,
         sku, // productSlug for redirect URL tracking
         product.priceAmount, // valueUsd in cents for redirect URL tracking
+        input.fingerprint,
+        input.returnTo,
       );
 
       return { checkoutUrl, orderId };

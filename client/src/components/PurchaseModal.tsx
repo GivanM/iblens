@@ -95,10 +95,17 @@ export function PurchaseModal({ open, onOpenChange, sku }: PurchaseModalProps) {
       return;
     }
 
-    // Authenticated flow
+    // Authenticated flow. The device goes with it: the report being bought is an
+    // anonymous row, and the webhook needs to know which one and on which page.
     setLoading(true);
     trackBeginCheckout(SKU_TO_SLUG[sku], PRICES[sku] / 100, "lemonsqueezy");
-    createCardCheckout.mutate({ productKey: sku });
+    createCardCheckout.mutate({
+      productKey: sku,
+      fingerprint: getAnonFingerprint(),
+      returnTo: typeof window !== "undefined" && window.location.pathname.startsWith("/ucas")
+        ? ("ucas-personal-statement" as const)
+        : ("essay" as const),
+    });
   };
 
   const price = PRICE_LABELS[sku];
