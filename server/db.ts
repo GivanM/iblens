@@ -596,7 +596,7 @@ export async function consumePaidEssayCredit(userId: number) {
   const credits = await getUserCredits(userId);
   if (!credits) throw new Error("User not found");
   if (credits.essayCredits <= 0) {
-    throw new Error("Unlocking the full report requires a paid credit. Buy one for $4.99.");
+    throw new Error("Unlocking the full report requires a paid credit. Buy one for $9.99.");
   }
   await db.update(users)
     .set({ essayCredits: sql`${users.essayCredits} - 1` })

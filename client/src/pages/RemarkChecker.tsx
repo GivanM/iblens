@@ -97,7 +97,7 @@ function RemarkQuickCheck() {
             placeholder={essayType === "TOK" ? "Paste your full TOK essay (the version you submitted to IB)\u2026" : "Paste your full Extended Essay (the version you submitted to IB)\u2026"}
             className="mb-2 bg-background" />
           <div className="flex items-center justify-between gap-3 flex-wrap">
-            <span className="text-xs text-muted-foreground">{essayText.trim() ? essayText.trim().split(/\s+/).length + " words" : "No account needed. Never used to train AI. Free preview — full report $4.99."}</span>
+            <span className="text-xs text-muted-foreground">{essayText.trim() ? essayText.trim().split(/\s+/).length + " words" : "No account needed. Never used to train AI. Free preview — full report $9.99."}</span>
             <Button disabled={essayText.trim().length < 300 || analyze.isPending}
               onClick={() => analyze.mutate({ essayType, subject: essayType === "TOK" ? "Theory of Knowledge" : subject, essayText, clientFingerprint: fp })}>
               {analyze.isPending ? QUICK_STEPS[Math.min(step, QUICK_STEPS.length - 1)] : "Get my remark verdict"}
@@ -107,7 +107,7 @@ function RemarkQuickCheck() {
             <p className="text-xs text-muted-foreground mt-2">Keep pasting — we need the full essay for a meaningful read.</p>
           )}
           {alreadyUsed && (
-            <p className="text-sm mt-3">You have already used your free check on this device. <Link href="/essay" className="text-primary font-medium underline">Sign in on the analyzer page</Link> to run more — $4.99 per essay.</p>
+            <p className="text-sm mt-3">You have already used your free check on this device. <Link href="/essay" className="text-primary font-medium underline">Sign in on the analyzer page</Link> to run more — $9.99 per essay.</p>
           )}
           {errMsg && !alreadyUsed && (
             <p className="text-sm mt-3 text-destructive">{errMsg} — please try again.</p>
@@ -141,8 +141,8 @@ function RemarkQuickCheck() {
               ))}
             </ul>
           )}
-          <p className="text-sm text-muted-foreground mb-3">The full report — exact score, every criterion with comments, and a ranked fix list — unlocks for $4.99 on the analyzer page.</p>
-          <Button asChild><Link href="/essay">Unlock the full report — $4.99</Link></Button>
+          <p className="text-sm text-muted-foreground mb-3">The full report — exact score, every criterion with comments, and a ranked fix list — unlocks for $9.99 on the analyzer page.</p>
+          <Button asChild><Link href="/essay">Unlock the full report — $9.99</Link></Button>
           {emailSaved ? (
             <p className="text-sm font-medium mt-4">Saved — your report link and improvement tips are on the way.</p>
           ) : (
@@ -223,7 +223,7 @@ export default function RemarkChecker() {
               <li>If it lands near a grade boundary, a remark has genuine upside. If it sits mid-band, save your money.</li>
             </ol>
             <p className="text-sm text-muted-foreground mb-5">
-              First analysis free, then $4.99 - versus a $110 gamble with a grade that can drop.
+              First analysis free, then $9.99 - versus a $110 gamble with a grade that can drop.
             </p>
             <Button size="lg" asChild>
               <Link href="/essay">Grade my submitted essay <ArrowRight className="w-4 h-4 ml-2" /></Link>

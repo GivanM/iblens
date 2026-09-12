@@ -57,7 +57,7 @@ export default function ExtendedEssayFeedback() {
       <h2>Where AI feedback fits</h2>
 
       <p>
-        An AI check is not a replacement for your supervisor — it is what you run <em>before</em> spending that one draft. IBLens grades your EE against the official criteria for your session (both the 34-mark and the new 30-mark May 2027 rubrics), criterion by criterion: predicted band range and your weakest criterion free, the full report $4.99 with no subscription. Using AI for feedback on your own work is a different thing from having AI write it — see our guide to <Link href="/resources/academic-integrity">AI feedback and IB academic integrity</Link> for where the line sits.
+        An AI check is not a replacement for your supervisor — it is what you run <em>before</em> spending that one draft. IBLens grades your EE against the official criteria for your session (both the 34-mark and the new 30-mark May 2027 rubrics), criterion by criterion: predicted band range and your weakest criterion free, the full report $9.99 with no subscription. Using AI for feedback on your own work is a different thing from having AI write it — see our guide to <Link href="/resources/academic-integrity">AI feedback and IB academic integrity</Link> for where the line sits.
       </p>
 
       <p>

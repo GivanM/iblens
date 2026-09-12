@@ -527,7 +527,7 @@ describe("Centralized pricing", () => {
     expect(PRICES.ESSAY_PACK_10).toBe(3499);
     expect(PRICES.UNIVERSITY_SINGLE).toBe(2500);
 
-    expect(PRICE_LABELS.ESSAY_SINGLE).toBe("$4.99");
+    expect(PRICE_LABELS.ESSAY_SINGLE).toBe("$9.99");
     expect(PRICE_LABELS.ESSAY_PACK_5).toBe("$19.99");
     expect(PRICE_LABELS.ESSAY_PACK_10).toBe("$34.99");
     expect(PRICE_LABELS.UNIVERSITY_SINGLE).toBe("$25");

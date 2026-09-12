@@ -23,7 +23,7 @@ export default function CourseworkReviewTools() {
           <tr><th>Tool</th><th>What it reviews</th><th>Pricing model</th><th>New May 2027 EE rubric</th></tr>
         </thead>
         <tbody>
-          <tr><td>IBLens</td><td>IA across 17 subjects, EE, TOK essay, TOK exhibition</td><td>First analysis free; full report $4.99, no subscription</td><td>Yes — grades against both the 34-mark and the new 30-mark criteria</td></tr>
+          <tr><td>IBLens</td><td>IA across 17 subjects, EE, TOK essay, TOK exhibition</td><td>First analysis free; full report $9.99, no subscription</td><td>Yes — grades against both the 34-mark and the new 30-mark criteria</td></tr>
           <tr><td>RevisionDojo</td><td>Coursework grader for EE, IA and TOK alongside a large IB resource library</td><td>See site</td><td>Not stated on the grader as of August 2026</td></tr>
           <tr><td>MyRevisionAgent</td><td>TOK essay (/10), EE, IA across 27 subject-levels</td><td>2 free grading tokens on signup; token packs from £4.99</td><td>No — EE graded /34 on the current criteria as of August 2026</td></tr>
           <tr><td>Clastify</td><td>AI grader plus paid human review by IB examiners; large library of examiner-verified exemplars</td><td>See site</td><td>Not stated on the grader as of August 2026</td></tr>
@@ -57,7 +57,7 @@ export default function CourseworkReviewTools() {
       <h2>How IBLens works</h2>
 
       <p>
-        Paste your draft, pick the work type, subject and exam session, and IBLens grades it against the official criteria for that combination — including both Extended Essay rubrics and the 2027 formats for Psychology and Computer Science. The preview (predicted band range and weakest criterion) is free with no account; the full criterion-by-criterion report is $4.99 per essay, with no subscription to cancel.
+        Paste your draft, pick the work type, subject and exam session, and IBLens grades it against the official criteria for that combination — including both Extended Essay rubrics and the 2027 formats for Psychology and Computer Science. The preview (predicted band range and weakest criterion) is free with no account; the full criterion-by-criterion report is $9.99 per essay, with no subscription to cancel.
       </p>
 
       <p>

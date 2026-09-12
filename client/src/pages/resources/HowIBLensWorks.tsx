@@ -148,8 +148,8 @@ export default function HowIBLensWorks() {
           </tr>
           <tr>
             <td><strong>Single Analysis</strong></td>
-            <td>$4.99</td>
-            <td>$4.99</td>
+            <td>$9.99</td>
+            <td>$9.99</td>
             <td>One-off feedback on a final draft before submission</td>
           </tr>
           <tr>

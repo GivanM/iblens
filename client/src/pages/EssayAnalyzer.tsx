@@ -132,7 +132,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
         <div className="rounded-lg bg-primary/5 border border-primary/30 p-4">
           {!isAuthenticated ? (
             <div className="flex flex-col sm:flex-row items-center gap-3">
-              <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report — $4.99.</strong> Sign in first so the report is saved to your account.</p>
+              <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report — $9.99.</strong> Sign in first so the report is saved to your account.</p>
               <Button asChild><a href={getLoginUrl()}>Sign in to unlock</a></Button>
             </div>
           ) : hasPaidCredit ? (
@@ -142,8 +142,8 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
             </div>
           ) : (
             <div className="flex flex-col sm:flex-row items-center gap-3">
-              <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report — $4.99.</strong> Exact score, every criterion with comments, and your ranked fix list.</p>
-              <Button onClick={onBuy}>Buy &amp; unlock — $4.99</Button>
+              <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report — $9.99.</strong> Exact score, every criterion with comments, and your ranked fix list.</p>
+              <Button onClick={onBuy}>Buy &amp; unlock — $9.99</Button>
             </div>
           )}
         </div>
@@ -435,7 +435,7 @@ export default function EssayAnalyzer() {
 
           <div className="pt-3 border-t text-center">
             <p className="text-sm font-medium mb-1">↑ This is the depth of feedback you'll get for YOUR essay</p>
-            <p className="text-xs text-muted-foreground">Paste your essay below → <strong>first one free</strong>, then $4.99/analysis</p>
+            <p className="text-xs text-muted-foreground">Paste your essay below → <strong>first one free</strong>, then $9.99/analysis</p>
           </div>
         </div>
       </div>
@@ -543,7 +543,7 @@ export default function EssayAnalyzer() {
           {!isAuthenticated && canAnonAnalyze && (
             <div className="text-sm p-3 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
-              <span>Every essay gets a <strong>free preview</strong> — the full report unlocks for $4.99.</span>
+              <span>Every essay gets a <strong>free preview</strong> — the full report unlocks for $9.99.</span>
             </div>
           )}
 
@@ -551,7 +551,7 @@ export default function EssayAnalyzer() {
           {!isAuthenticated && !canAnonAnalyze && (
             <div className="text-sm p-3 rounded-lg bg-amber-50 text-amber-700 border border-amber-200">
               You've used your free analysis.{" "}
-              <a href={getLoginUrl()} className="underline font-medium">Sign in</a> to get more — starting at $4.99.
+              <a href={getLoginUrl()} className="underline font-medium">Sign in</a> to get more — starting at $9.99.
             </div>
           )}
 
@@ -580,7 +580,7 @@ export default function EssayAnalyzer() {
           {!isAuthenticated && !canAnonAnalyze && (
             <Button className="w-full h-11" onClick={() => setEssayPurchaseOpen(true)}>
               <CreditCard className="w-4 h-4 mr-2" />
-              Buy Credits to Analyze ($4.99)
+              Buy Credits to Analyze ($9.99)
             </Button>
           )}
 
@@ -650,7 +650,7 @@ export default function EssayAnalyzer() {
                 {pageUnlock.isPending ? "Unlocking…" : "Unlock full report (1 credit)"}
               </Button>
             ) : (
-              <Button size="sm" onClick={() => setEssayPurchaseOpen(true)}>Buy &amp; unlock — $4.99</Button>
+              <Button size="sm" onClick={() => setEssayPurchaseOpen(true)}>Buy &amp; unlock — $9.99</Button>
             )}
           </CardContent>
         </Card>
@@ -925,7 +925,7 @@ export default function EssayAnalyzer() {
                   <div>
                     <h3 style={SERIF} className="font-bold text-xl mb-1">Save this report & analyze Draft 2</h3>
                     <p className="text-sm text-muted-foreground">
-                      Sign in free to save your results and unlock your full action plan. Next analysis is <strong>$4.99</strong> — or a 5-pack for $19.99 ($4 each).
+                      Sign in free to save your results and unlock your full action plan. Next analysis is <strong>$9.99</strong> — or a 5-pack for $19.99 ($4 each).
                     </p>
                   </div>
                 </div>
@@ -938,7 +938,7 @@ export default function EssayAnalyzer() {
                   </Button>
                   <Button variant="outline" size="lg" className="h-12" onClick={() => { (window as any).dataLayer?.push({ event: "recheck_cta_click", auth: "anon" }); setEssayPurchaseOpen(true); }}>
                     <CreditCard className="w-4 h-4 mr-2" />
-                    Buy Credits ($4.99)
+                    Buy Credits ($9.99)
                   </Button>
                 </div>
                 <p className="text-xs text-center text-muted-foreground">7-day money-back guarantee · Secure checkout</p>

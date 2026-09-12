@@ -103,8 +103,8 @@ const routeMeta = {
     schemaType: "WebPage",
   },
   "/pricing": {
-    title: "Pricing \u2014 IB Essay Analysis from $4.99 | IBLens",
-    description: "Affordable IB essay feedback: first analysis free, single essays from $4.99, packs of 5 for $19.99, packs of 10 for $34.99. 7-day money-back guarantee.",
+    title: "Pricing \u2014 IB Essay Analysis from $9.99 | IBLens",
+    description: "Affordable IB essay feedback: first analysis free, single essays from $9.99, packs of 5 for $19.99, packs of 10 for $34.99. 7-day money-back guarantee.",
     ogType: "website",
     schemaType: "WebPage",
   },

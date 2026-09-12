@@ -56,7 +56,7 @@ export default function TokExhibitionChecklist() {
       <h2>Check your commentary with IBLens</h2>
 
       <p>
-        IBLens applies the official holistic instrument to your exhibition commentary: paste all three object sections and you get the band range the commentary currently sits in and the weakest area of the exploration — free, before any payment. The full report costs $4.99, no subscription.
+        IBLens applies the official holistic instrument to your exhibition commentary: paste all three object sections and you get the band range the commentary currently sits in and the weakest area of the exploration — free, before any payment. The full report costs $9.99, no subscription.
       </p>
 
       <p>

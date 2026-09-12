@@ -135,7 +135,7 @@ export default function Home() {
                 name: "Is my first essay analysis really free?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes — your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments, and a ranked fix list — unlocks for $4.99.",
+                  text: "Yes — your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments, and a ranked fix list — unlocks for $9.99.",
                 },
               },
               {
@@ -305,7 +305,7 @@ export default function Home() {
                 </ul>
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">First analysis free</span>
-                  <span className="text-xs text-muted-foreground">then $4.99/analysis</span>
+                  <span className="text-xs text-muted-foreground">then $9.99/analysis</span>
                 </div>
                 <Button variant="outline" asChild>
                   <Link href="/essay">Try it now <ArrowRight className="w-4 h-4 ml-1" /></Link>
@@ -379,7 +379,7 @@ export default function Home() {
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">Recommended</div>
                 <div className="text-3xl mb-3">⚡</div>
                 <p className="font-semibold mb-1">IBLens</p>
-                <div style={SERIF} className="text-2xl font-bold text-primary mb-1">$4.99</div>
+                <div style={SERIF} className="text-2xl font-bold text-primary mb-1">$9.99</div>
                 <p className="text-xs text-muted-foreground">Full criterion breakdown. Predicted score. Risk areas. 60 seconds.</p>
               </div>
             </div>
@@ -482,7 +482,7 @@ export default function Home() {
               />
               <FAQItem
                 question="Is my first essay analysis really free?"
-                answer="Yes — your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments, and a ranked fix list — unlocks for $4.99."
+                answer="Yes — your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments, and a ranked fix list — unlocks for $9.99."
               />
               <FAQItem
                 question="How accurate is the predicted IB score?"
