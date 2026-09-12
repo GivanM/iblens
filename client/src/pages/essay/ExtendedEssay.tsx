@@ -10,7 +10,7 @@ const config: SubjectConfig = {
   canonicalPath: "/essay/extended-essay",
   heroHeadline: "Know your Extended Essay grade before you submit",
   heroSubline:
-    "Paste your Extended Essay and get a full criterion-level report — focus, knowledge, critical thinking, presentation, and engagement — in 60 seconds.",
+    "Paste your Extended Essay and get a criterion-level report — focus, knowledge, critical thinking, presentation, and engagement — free preview first, full report $9.99.",
   criteria: [
     { name: "Criterion A: Focus & Method", max: 6, sampleScore: 4 },
     { name: "Criterion B: Knowledge & Understanding", max: 6, sampleScore: 4 },

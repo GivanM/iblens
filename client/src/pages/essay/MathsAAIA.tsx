@@ -10,7 +10,7 @@ const config: SubjectConfig = {
   canonicalPath: "/essay/maths-aa-ia",
   heroHeadline: "Is your IB Math AA exploration heading for a 6 or a 4?",
   heroSubline:
-    "Paste your Mathematics: Analysis and Approaches IA and get criterion-by-criterion feedback — including Use of mathematics and Personal engagement — in 60 seconds. Free first check.",
+    "Paste your Mathematics: Analysis and Approaches IA and get criterion-by-criterion feedback — including Use of mathematics and Personal engagement — free preview first, full report $9.99. Free first check.",
   criteria: [
     { name: "Presentation", max: 4, sampleScore: 3 },
     { name: "Mathematical communication", max: 4, sampleScore: 3 },

@@ -10,7 +10,7 @@ const config: SubjectConfig = {
   canonicalPath: "/essay/computer-science-ia",
   heroHeadline: "Is your Computer Science IA losing marks you can't see?",
   heroSubline:
-    "Paste your IB CS IA and get criterion-by-criterion feedback against the official IB Computer Science rubric — free in 60 seconds.",
+    "Paste your IB CS IA and get criterion-by-criterion feedback against the official IB Computer Science rubric — free in about a minute.",
   criteria: [
     { name: "Criterion A: Planning", max: 6, sampleScore: 4 },
     { name: "Criterion B: Solution Overview", max: 6, sampleScore: 4 },

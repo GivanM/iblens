@@ -67,7 +67,7 @@ export const staticContent: Record<string, string> = {
   "/": S(`  <main style="max-width:1100px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <p style="font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#7B1D2E;margin-bottom:12px">IB Essay Grader</p>
   <h1 style="font-size:34px;font-weight:800;line-height:1.2;margin:0 0 16px">Know your IB score before the exam</h1>
-  <p style="font-size:17px;color:#374151;line-height:1.7;margin-bottom:24px">IBLens is a free AI IB essay grader that scores your Internal Assessment (IA), Extended Essay (EE), or Theory of Knowledge (TOK) essay against the official IB rubric in 60 seconds. Get a criterion-by-criterion breakdown, a predicted band, the exact marks you are losing, and specific improvements. Your first analysis is free — no account required, no subscription. IBLens is calibrated to grade like a strict examiner — no inflated scores.</p>
+  <p style="font-size:17px;color:#374151;line-height:1.7;margin-bottom:24px">IBLens is a free AI IB essay grader that scores your Internal Assessment (IA), Extended Essay (EE), or Theory of Knowledge (TOK) essay against the official IB rubric in about a minute. Get a criterion-by-criterion breakdown, a predicted band, the exact marks you are losing, and specific improvements. Your first analysis is free — no account required, no subscription. IBLens is calibrated to grade like a strict examiner — no inflated scores.</p>
   <h2 style="font-size:22px;font-weight:700;margin:28px 0 12px">What IBLens grades</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:24px">
     <li><strong>Internal Assessments (IA)</strong> for every IB subject — Biology, Chemistry, Physics, Economics, History, Psychology, Business Management, Maths AA/AI, Computer Science and more.</li>
@@ -97,7 +97,7 @@ export const staticContent: Record<string, string> = {
     <li><strong>Pack of 10 — $34.99</strong> — ten analyses, best value per essay.</li>
   </ul>
   <h2 style="font-size:20px;font-weight:700;margin:28px 0 12px">How IBLens compares to an IB tutor</h2>
-  <p style="color:#374151;line-height:1.7;margin-bottom:20px">IB tutors charge $50–150 per hour. A single IBLens analysis costs $9.99 and returns criterion-by-criterion feedback against the official IB rubric in 60 seconds, any time of day. Credits never expire, and every purchase is covered by a 7-day money-back guarantee.</p>
+  <p style="color:#374151;line-height:1.7;margin-bottom:20px">IB tutors charge $50–150 per hour. A single IBLens analysis costs $9.99 and returns criterion-by-criterion feedback against the official IB rubric in about a minute, any time of day. Credits never expire, and every purchase is covered by a 7-day money-back guarantee.</p>
   <p><a href="/essay">Start free →</a></p>
 </main>`),
 
@@ -110,7 +110,7 @@ export const staticContent: Record<string, string> = {
   "/essay/biology-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Biology IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Biology IA Grader — Free AI Feedback on Lab Reports</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Biology Internal Assessment against the official IB Biology IA rubric — criterion by criterion — and gives you a predicted score in 60 seconds. Paste your lab report, get specific, actionable feedback on every criterion. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Biology Internal Assessment against the official IB Biology IA rubric — criterion by criterion — and gives you a predicted score in about a minute. Paste your lab report, get specific, actionable feedback on every criterion. A free preview is included; the full report is $9.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Biology IA rubric: what examiners look for (24 marks)</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">The Biology IA is worth 20% of your final IB grade. Under the current (first assessment 2025) scientific investigation, examiners assess four criteria worth 6 marks each, and the same rubric applies at SL and HL. The report has a maximum of 3,000 words.</p>
@@ -157,7 +157,7 @@ export const staticContent: Record<string, string> = {
   "/essay/economics-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Economics IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Economics IA Grader — Free AI Feedback on Your Commentary</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Economics Internal Assessment commentary against the official IB Economics IA rubric. Get criterion-by-criterion feedback on Diagrams, Terminology, Application and analysis, Key concept, and Evaluation in 60 seconds. First analysis free — no account needed.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Economics Internal Assessment commentary against the official IB Economics IA rubric. Get criterion-by-criterion feedback on Diagrams, Terminology, Application and analysis, Key concept, and Evaluation in about a minute. First analysis free — no account needed.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Economics IA rubric: five criteria per commentary (14 marks each)</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">You submit a portfolio of three commentaries, one for each unit — Microeconomics, Macroeconomics, and The global economy — and each commentary must be built around a different key concept. Each commentary is marked out of 14 across five criteria (A–E). The whole portfolio is marked out of 45: three commentaries at 14 marks each (42) plus Criterion F — Rubric requirements (3 marks), which rewards using different units, different sources and articles published within one year of writing.</p>
@@ -203,7 +203,7 @@ export const staticContent: Record<string, string> = {
   "/essay/history-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB History IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB History IA Grader — Free AI Feedback on Your Historical Investigation</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB History Internal Assessment (Historical Investigation) against the official IB History IA rubric. Get criterion-by-criterion feedback on your Section A, B, and C in 60 seconds. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB History Internal Assessment (Historical Investigation) against the official IB History IA rubric. Get criterion-by-criterion feedback on your Section A, B, and C in about a minute. A free preview is included; the full report is $9.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB History IA rubric: three sections (25 marks)</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
@@ -246,7 +246,7 @@ export const staticContent: Record<string, string> = {
   "/essay/extended-essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › Extended Essay</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Extended Essay Grader — Free AI Feedback on Your EE</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Extended Essay against the official IB EE rubric — all five criteria — and gives you criterion-by-criterion feedback in 60 seconds. Paste up to 4,000 words (or your full EE) and get a predicted score with specific improvement suggestions. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Extended Essay against the official IB EE rubric — all five criteria — and gives you criterion-by-criterion feedback in about a minute. Paste up to 4,000 words (or your full EE) and get a predicted score with specific improvement suggestions. A free preview is included; the full report is $9.99.</p>
   <p style="background:#fef3c7;border:1px solid #f59e0b;border-radius:8px;padding:12px 16px;color:#92400e;font-size:14px;line-height:1.6"><strong>Which criteria apply to you?</strong> Sessions through November 2026 use the 34-mark EE criteria below. The <strong>May 2027 cohort</strong> (students who began the DP in 2025 — including current drafts) is assessed on the new 30-mark criteria (Framework 6, Knowledge 6, Analysis and line of argument 6, Discussion and evaluation 8, Reflection 4). Select your session in the analyzer.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Extended Essay rubric: five criteria (34 marks)</h2>
@@ -292,7 +292,7 @@ export const staticContent: Record<string, string> = {
   "/essay/tok-essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › TOK Essay</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB TOK Essay Grader — Free AI Feedback on Theory of Knowledge</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Theory of Knowledge essay against the official IB TOK rubric and gives you criterion-by-criterion feedback in 60 seconds. Find out if your knowledge claims are developed enough, whether your counter-claims are genuinely addressed, and whether your essay actually answers the prescribed title. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Theory of Knowledge essay against the official IB TOK rubric and gives you criterion-by-criterion feedback in about a minute. Find out if your knowledge claims are developed enough, whether your counter-claims are genuinely addressed, and whether your essay actually answers the prescribed title. A free preview is included; the full report is $9.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB TOK Essay rubric: how it is marked (holistic, out of 10)</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">Since the 2022 syllabus the TOK essay is marked holistically against a single global-impression instrument, scored out of 10. There are no sub-criteria. The examiner works from one guiding question — "Does the student provide a clear, coherent and critical exploration of the essay title?" — and places your 1,600-word essay in one of five bands:</p>
@@ -338,7 +338,7 @@ export const staticContent: Record<string, string> = {
   "/essay/tok-exhibition": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › TOK Exhibition</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB TOK Exhibition Grader — Free AI Feedback on All 3 Objects</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Theory of Knowledge Exhibition commentary against the official IB TOK Exhibition rubric — all three criteria — and gives you specific feedback in 60 seconds. Find out if your object justifications make convincing links to the IA prompt and to TOK concepts. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Theory of Knowledge Exhibition commentary against the official IB TOK Exhibition rubric — all three criteria — and gives you specific feedback in about a minute. Find out if your object justifications make convincing links to the IA prompt and to TOK concepts. A free preview is included; the full report is $9.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB TOK Exhibition rubric: how it is marked (holistic, out of 10)</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">Since the 2022 syllabus the TOK exhibition is marked holistically against a single global-impression instrument, out of 10, with no sub-criteria. The examiner works from one guiding question — "Does the exhibition successfully show how TOK manifests in the world around us?" — and places your commentary in one of five bands: Excellent (9–10), Good (7–8), Satisfactory (5–6), Basic (3–4), Rudimentary (1–2).</p>
@@ -384,7 +384,7 @@ export const staticContent: Record<string, string> = {
   "/essay/math-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Math IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Math IA Grader — Free AI Feedback on Your Exploration</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Mathematics Internal Assessment (Exploration) against the official IB Math IA rubric — all five criteria — in 60 seconds. Works for both Mathematics: Analysis and Approaches (AA) and Mathematics: Applications and Interpretation (AI). A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Mathematics Internal Assessment (Exploration) against the official IB Math IA rubric — all five criteria — free preview first, full report $9.99. Works for both Mathematics: Analysis and Approaches (AA) and Mathematics: Applications and Interpretation (AI). A free preview is included; the full report is $9.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Math IA rubric: five criteria (20 marks)</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
@@ -429,7 +429,7 @@ export const staticContent: Record<string, string> = {
   "/essay/psychology-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Psychology IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Psychology IA Grader — Free AI Feedback on Your Experimental Report</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Psychology Internal Assessment experimental report against the official IB Psychology IA rubric — all four criteria — in 60 seconds. Get specific feedback on your Introduction, Exploration, Analysis, and Evaluation. A free preview is included; the full report is $9.99. From May 2027 the IA becomes a research proposal marked out of 24 — select your session in the analyzer.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Psychology Internal Assessment experimental report against the official IB Psychology IA rubric — all four criteria — free preview first, full report $9.99. Get specific feedback on your Introduction, Exploration, Analysis, and Evaluation. A free preview is included; the full report is $9.99. From May 2027 the IA becomes a research proposal marked out of 24 — select your session in the analyzer.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Psychology IA rubric: four criteria (22 marks)</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
@@ -470,7 +470,7 @@ export const staticContent: Record<string, string> = {
   "/essay/chemistry-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Chemistry IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Chemistry IA Grader — Free AI Feedback on Your Lab Report</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Chemistry Internal Assessment against the official IB Chemistry IA rubric — all four criteria — in 60 seconds. Get feedback on Research design, Data analysis, Conclusion, and Evaluation. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Chemistry Internal Assessment against the official IB Chemistry IA rubric — all four criteria — free preview first, full report $9.99. Get feedback on Research design, Data analysis, Conclusion, and Evaluation. A free preview is included; the full report is $9.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Chemistry IA rubric (24 marks)</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">The Chemistry IA uses the current (first assessment 2025) scientific investigation rubric — four criteria worth 6 marks each, identical at SL and HL, with a 3,000-word maximum — but Chemistry-specific expectations apply:</p>
@@ -512,7 +512,7 @@ export const staticContent: Record<string, string> = {
   "/essay/physics-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Physics IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Physics IA Grader — Free AI Feedback on Your Lab Report</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Physics Internal Assessment against the official IB Physics IA rubric — criterion by criterion — in 60 seconds. Get feedback on your exploration, data analysis, uncertainty propagation, and evaluation. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Physics Internal Assessment against the official IB Physics IA rubric — criterion by criterion — free preview first, full report $9.99. Get feedback on your exploration, data analysis, uncertainty propagation, and evaluation. A free preview is included; the full report is $9.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Physics IA rubric (24 marks)</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">The Physics IA uses the current (first assessment 2025) scientific investigation rubric: four criteria worth 6 marks each, identical at SL and HL, with a 3,000-word maximum.</p>
@@ -554,7 +554,7 @@ export const staticContent: Record<string, string> = {
   "/essay/business-management-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Business Management IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Business Management IA Grader — Free AI Feedback on Your IA</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Business Management Internal Assessment (the Business research project, first assessment 2024) against the official IB BM IA rubric. Get criterion-by-criterion feedback in 60 seconds on your key concept, supporting documents, and analysis. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Business Management Internal Assessment (the Business research project, first assessment 2024) against the official IB BM IA rubric. Get criterion-by-criterion feedback in about a minute on your key concept, supporting documents, and analysis. A free preview is included; the full report is $9.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Business Management IA rubric: seven criteria (25 marks)</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">The current Business research project is a business report of up to 1,800 words, supported by 3–5 supporting documents published within three years, and built around one key concept — change, creativity, ethics or sustainability. It is marked out of 25 across seven criteria (A–G):</p>
@@ -599,7 +599,7 @@ export const staticContent: Record<string, string> = {
   "/essay/english-essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB English Essay</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB English IA Grader — Free AI Feedback on Your Individual Oral</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB English A Individual Oral (IA) transcript or written commentary against the official IB English rubric — all four criteria — in 60 seconds. Works for both English A: Language and Literature and English A: Literature. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB English A Individual Oral (IA) transcript or written commentary against the official IB English rubric — all four criteria — free preview first, full report $9.99. Works for both English A: Language and Literature and English A: Literature. A free preview is included; the full report is $9.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB English IA rubric: four criteria (40 marks)</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
@@ -640,7 +640,7 @@ export const staticContent: Record<string, string> = {
   "/essay/computer-science-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Computer Science IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Computer Science IA Grader — Free AI Feedback on Your Solution</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Computer Science Internal Assessment report against the official IB CS IA rubric — all five criteria — in 60 seconds. Get feedback on your planning, design, development, and evaluation. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Computer Science Internal Assessment report against the official IB CS IA rubric — all five criteria — free preview first, full report $9.99. Get feedback on your planning, design, development, and evaluation. A free preview is included; the full report is $9.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">IB Computer Science IA rubric: five criteria (34 marks)</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:28px">
@@ -682,7 +682,7 @@ export const staticContent: Record<string, string> = {
   "/essay/maths-aa-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Math AA IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Math AA IA Grader — Free AI Feedback on Analysis & Approaches</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Mathematics: Analysis and Approaches Internal Assessment exploration against the official IB Math rubric — all five criteria — in 60 seconds. Works for both SL and HL. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Mathematics: Analysis and Approaches Internal Assessment exploration against the official IB Math rubric — all five criteria — free preview first, full report $9.99. Works for both SL and HL. A free preview is included; the full report is $9.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Math AA IA: how the rubric works (20 marks)</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">The IB Math AA IA uses the same five criteria as Math AI. However, examiners apply them with an expectation of more abstract, proof-oriented, or algebraic mathematics for AA students — especially at HL.</p>
@@ -717,7 +717,7 @@ export const staticContent: Record<string, string> = {
   "/essay/maths-ai-ia": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › <a href="/essay">Essay Grader</a> › IB Math AI IA</nav>
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Math AI IA Grader — Free AI Feedback on Applications & Interpretation</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Mathematics: Applications and Interpretation Internal Assessment exploration against the official IB Math rubric in 60 seconds. Works for both SL and HL. Get feedback on communication, personal engagement, reflection, and use of mathematics. A free preview is included; the full report is $9.99.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens grades your IB Mathematics: Applications and Interpretation Internal Assessment exploration against the official IB Math rubric in about a minute. Works for both SL and HL. Get feedback on communication, personal engagement, reflection, and use of mathematics. A free preview is included; the full report is $9.99.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Math AI IA: what examiners look for (20 marks)</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">Math AI students are expected to apply mathematics to real-world contexts. Examiners look for meaningful data collection, statistical modelling, and genuine mathematical analysis of a real-world phenomenon.</p>
@@ -753,7 +753,7 @@ export const staticContent: Record<string, string> = {
 
   "/essay": S(`<main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">IB Essay Grader — Free AI Feedback on IA, Extended Essay & TOK</h1>
-  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens is a free AI essay grader for IB students. Paste your Internal Assessment, Extended Essay, or TOK Essay and get criterion-by-criterion feedback with a predicted score in 60 seconds — against the official IB rubric for your subject. No account required for your first analysis.</p>
+  <p style="font-size:16px;color:#374151;line-height:1.75;margin-bottom:28px">IBLens is a free AI essay grader for IB students. Paste your Internal Assessment, Extended Essay, or TOK Essay and get criterion-by-criterion feedback with a predicted score in about a minute — against the official IB rubric for your subject. No account required for your first analysis.</p>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">Subjects and work types supported</h2>
   <p style="color:#374151;line-height:1.75;margin-bottom:16px">IBLens grades all major IB assessment types:</p>
@@ -768,7 +768,7 @@ export const staticContent: Record<string, string> = {
     <li><strong>Select your work type and subject</strong> — IBLens loads the official IB rubric for your specific assessment</li>
     <li><strong>Paste your text</strong> — copy and paste from your word processor; no file upload required</li>
     <li><strong>Add your research question or title</strong> (optional) — helps the AI evaluate whether your analysis addresses the question</li>
-    <li><strong>Get your feedback in 60 seconds</strong> — a predicted score for each criterion with specific, actionable improvement suggestions</li>
+    <li><strong>Get your feedback in about a minute</strong> — a predicted score for each criterion with specific, actionable improvement suggestions</li>
   </ol>
 
   <h2 style="font-size:20px;font-weight:600;margin:32px 0 12px">How IBLens compares to RevisionDojo</h2>
@@ -1109,7 +1109,7 @@ export const staticContent: Record<string, string> = {
         <li><strong>Choose your essay type and subject.</strong> Select "Internal Assessment (IA)" and your IB subject from the dropdown.</li>
         <li><strong>Paste your IA text.</strong> Copy the full text of your Internal Assessment — methodology, analysis, evaluation, everything.</li>
         <li><strong>Enter your research question.</strong> This helps the AI assess whether your investigation stays focused on a specific, answerable question.</li>
-        <li><strong>Get your grade report.</strong> Within 60 seconds you receive a criterion-by-criterion score, a predicted grade, the marks you are losing and why, and specific steps to recover them.</li>
+        <li><strong>Get your grade report.</strong> Within about a minute you receive a criterion-by-criterion score, a predicted grade, the marks you are losing and why, and specific steps to recover them.</li>
       </ol>
 
       <h2>What You Get in the Grade Report</h2>
@@ -1355,7 +1355,7 @@ export const staticContent: Record<string, string> = {
       </ul>
 
       <p>
-        If you want objective, criterion-based feedback on your Extended Essay before submission, <a href="/essay/extended-essay">IBLens can grade your Extended Essay</a> against the official IB EE criteria — focus &amp; method, knowledge, critical thinking, presentation, and engagement — in under 60 seconds.
+        If you want objective, criterion-based feedback on your Extended Essay before submission, <a href="/essay/extended-essay">IBLens can grade your Extended Essay</a> against the official IB EE criteria — focus &amp; method, knowledge, critical thinking, presentation, and engagement — in about a minute.
       </p>
 
       <p>
@@ -1568,7 +1568,7 @@ export const staticContent: Record<string, string> = {
       </p>
 
       <p>
-        Get instant AI feedback on your IA: <a href="/essay/biology-ia">Biology IA</a>, <a href="/essay/chemistry-ia">Chemistry IA</a>, <a href="/essay/physics-ia">Physics IA</a>, <a href="/essay/economics-ia">Economics IA</a>, <a href="/essay/history-ia">History IA</a>, <a href="/essay/business-management-ia">Business Management IA</a>, <a href="/essay/math-ia">Mathematics IA</a>, or <a href="/essay/psychology-ia">Psychology IA</a> — each graded against the official IB rubric in 60 seconds.
+        Get instant AI feedback on your IA: <a href="/essay/biology-ia">Biology IA</a>, <a href="/essay/chemistry-ia">Chemistry IA</a>, <a href="/essay/physics-ia">Physics IA</a>, <a href="/essay/economics-ia">Economics IA</a>, <a href="/essay/history-ia">History IA</a>, <a href="/essay/business-management-ia">Business Management IA</a>, <a href="/essay/math-ia">Mathematics IA</a>, or <a href="/essay/psychology-ia">Psychology IA</a> — each graded against the official IB rubric in about a minute.
       </p>
     
   </main>`,
@@ -1754,7 +1754,7 @@ export const staticContent: Record<string, string> = {
       </ul>
 
       <p>
-        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <a href="/essay/tok-essay">IBLens can provide criterion-based feedback on your TOK essay</a> — scored against the official IB TOK rubric in 60 seconds. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <a href="/resources/ib-grade-boundaries">IB Grade Boundaries</a> guide. For a broader look at how IB criteria work across essay types, read our <a href="/resources/ib-essay-criteria-explained">IB Essay Criteria Explained</a> article.
+        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <a href="/essay/tok-essay">IBLens can provide criterion-based feedback on your TOK essay</a> — scored against the official IB TOK rubric in about a minute. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <a href="/resources/ib-grade-boundaries">IB Grade Boundaries</a> guide. For a broader look at how IB criteria work across essay types, read our <a href="/resources/ib-essay-criteria-explained">IB Essay Criteria Explained</a> article.
       </p>
     
   </main>`,

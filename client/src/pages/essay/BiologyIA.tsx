@@ -10,7 +10,7 @@ const config: SubjectConfig = {
   canonicalPath: "/essay/biology-ia",
   heroHeadline: "Is your Biology IA experiment losing marks you don't know about?",
   heroSubline:
-    "Paste your Biology IA report and get criterion-by-criterion feedback against the official IB Science rubric — free in 60 seconds.",
+    "Paste your Biology IA report and get criterion-by-criterion feedback against the official IB Science rubric — free in about a minute.",
   criteria: [
     { name: "Research design", max: 6, sampleScore: 4 },
     { name: "Data analysis", max: 6, sampleScore: 4 },

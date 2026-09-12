@@ -276,12 +276,16 @@ const essayRouter = router({
       const rec = await getLatestAnonymousEssay(input.fingerprint);
       if (!rec || !rec.resultJson) return { exists: false as const };
       const rj: any = rec.resultJson;
+      const unlocked = !!(rec as any).unlocked;
       return {
         exists: true as const,
-        unlocked: !!(rec as any).unlocked,
+        unlocked,
         essayType: rec.essayType,
         subject: rec.subject,
         band: rj?.band_range ?? null,
+        // Whatever was already shown for free stays available — taking back a preview the
+        // student has already read is the fastest way to lose their trust.
+        preview: unlocked ? null : buildTeaser(rj),
       };
     }),
 

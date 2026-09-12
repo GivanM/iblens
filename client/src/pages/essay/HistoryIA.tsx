@@ -10,7 +10,7 @@ const config: SubjectConfig = {
   canonicalPath: "/essay/history-ia",
   heroHeadline: "Find out if your History IA will pass before it's too late",
   heroSubline:
-    "Get your History IA scored across all three sections — sources, investigation, and reflection — against the official IB rubric in 60 seconds.",
+    "Get your History IA scored across all three sections — sources, investigation, and reflection — against the official IB rubric in about a minute.",
   criteria: [
     { name: "Section 1: Identification & Evaluation of Sources", max: 6, sampleScore: 4 },
     { name: "Section 2: Investigation", max: 15, sampleScore: 9 },

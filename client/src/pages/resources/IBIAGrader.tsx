@@ -52,7 +52,7 @@ export default function IBIAGrader() {
         <li><strong>Choose your essay type and subject.</strong> Select "Internal Assessment (IA)" and your IB subject from the dropdown.</li>
         <li><strong>Paste your IA text.</strong> Copy the full text of your Internal Assessment — methodology, analysis, evaluation, everything.</li>
         <li><strong>Enter your research question.</strong> This helps the AI assess whether your investigation stays focused on a specific, answerable question.</li>
-        <li><strong>Get your grade report.</strong> Within 60 seconds you receive a criterion-by-criterion score, a predicted grade, the marks you are losing and why, and specific steps to recover them.</li>
+        <li><strong>Get your grade report.</strong> Within about a minute you receive a criterion-by-criterion score, a predicted grade, the marks you are losing and why, and specific steps to recover them.</li>
       </ol>
 
       <h2>What You Get in the Grade Report</h2>

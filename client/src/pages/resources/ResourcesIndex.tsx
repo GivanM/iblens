@@ -314,7 +314,7 @@ export default function ResourcesIndex() {
           {/* CTA */}
           <div className="mt-16 text-center">
             <p className="text-muted-foreground mb-4">
-              Want specific feedback on your essay? Upload it and get criterion-by-criterion analysis in 60 seconds.
+              Want specific feedback on your essay? Upload it and get criterion-by-criterion analysis in about a minute.
             </p>
             <Link href="/essay" className="inline-flex items-center gap-2 text-primary font-medium hover:underline">
               Try IBLens Free →

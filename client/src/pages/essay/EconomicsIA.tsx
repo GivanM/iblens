@@ -10,7 +10,7 @@ const config: SubjectConfig = {
   canonicalPath: "/essay/economics-ia",
   heroHeadline: "Get your IB Economics IA graded before your teacher does",
   heroSubline:
-    "Paste your Economics IA commentary and find out exactly which criteria are costing you marks — in under 60 seconds.",
+    "Paste your Economics IA commentary and find out exactly which criteria are costing you marks — in about a minute.",
   criteria: [
     { name: "Criterion A: Diagrams", max: 3, sampleScore: 2 },
     { name: "Criterion B: Terminology", max: 2, sampleScore: 2 },

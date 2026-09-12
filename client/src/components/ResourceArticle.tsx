@@ -64,7 +64,7 @@ export function ResourceArticle({
               Ready to get specific feedback on your essay?
             </h2>
             <p className="text-muted-foreground mb-6 max-w-lg mx-auto text-sm leading-relaxed">
-              Upload your IA, EE, or TOK essay and get criterion-by-criterion analysis with a predicted score in 60 seconds. First analysis free.
+              Upload your IA, EE, or TOK essay and get criterion-by-criterion analysis with a predicted score in about a minute. First analysis free.
             </p>
             <Link href="/essay">
               <Button size="lg">

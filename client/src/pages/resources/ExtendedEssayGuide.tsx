@@ -216,7 +216,7 @@ export default function ExtendedEssayGuide() {
       </ul>
 
       <p>
-        If you want objective, criterion-based feedback on your Extended Essay before submission, <Link href="/essay/extended-essay" className="text-primary hover:underline">IBLens can grade your Extended Essay</Link> against the official IB EE criteria — focus &amp; method, knowledge, critical thinking, presentation, and engagement — in under 60 seconds.
+        If you want objective, criterion-based feedback on your Extended Essay before submission, <Link href="/essay/extended-essay" className="text-primary hover:underline">IBLens can grade your Extended Essay</Link> against the official IB EE criteria — focus &amp; method, knowledge, critical thinking, presentation, and engagement — in about a minute.
       </p>
 
       <p>

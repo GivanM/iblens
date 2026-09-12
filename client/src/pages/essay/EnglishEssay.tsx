@@ -8,7 +8,7 @@ const config: SubjectConfig = {
   metaDescription:
     "AI feedback on IB English Language & Literature essays and HL essays. Criterion-by-criterion scoring on knowledge, analysis, and language. First analysis free.",
   canonicalPath: "/essay/english-essay",
-  heroHeadline: "Get your IB English essay graded in 60 seconds",
+  heroHeadline: "Get your IB English essay graded in about a minute",
   heroSubline:
     "Paste your IB English Language & Literature essay or HL essay and receive instant criterion-level feedback — free, no account required.",
   criteria: [

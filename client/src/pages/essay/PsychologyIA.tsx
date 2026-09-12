@@ -10,7 +10,7 @@ const config: SubjectConfig = {
   canonicalPath: "/essay/psychology-ia",
   heroHeadline: "Get your IB Psychology IA scored against the real IB rubric",
   heroSubline:
-    "Paste your Psychology IA research report and find out exactly where you're losing marks — criterion by criterion, in 60 seconds.",
+    "Paste your Psychology IA research report and find out exactly where you're losing marks — criterion by criterion, in about a minute.",
   criteria: [
     { name: "Introduction", max: 6, sampleScore: 4 },
     { name: "Exploration", max: 4, sampleScore: 3 },

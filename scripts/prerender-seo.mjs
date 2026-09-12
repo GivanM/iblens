@@ -85,7 +85,7 @@ const routeMeta = {
 
   "/": {
     title: "IBLens \u2014 AI-Powered IB Essay Feedback & Score Prediction",
-    description: "Upload your IB Extended Essay, Internal Assessment, or TOK essay and get criterion-by-criterion feedback with a predicted score in 60 seconds. First analysis free.",
+    description: "Upload your IB Extended Essay, Internal Assessment, or TOK essay and get criterion-by-criterion feedback with a predicted score in about a minute. First analysis free.",
     ogType: "website",
     schemaType: "WebSite",
   },
@@ -152,7 +152,7 @@ const routeMeta = {
   },
   "/resources/how-iblens-works": {
     title: "How IBLens Works \u2014 AI-Powered IB Essay Analysis",
-    description: "How the IBLens AI analyzes IB essays against official criteria, predicts scores, and generates personalized feedback in under 60 seconds.",
+    description: "How the IBLens AI analyzes IB essays against official criteria, predicts scores, and generates personalized feedback in about a minute.",
     ogType: "article",
     schemaType: "Article",
   },
@@ -434,7 +434,7 @@ const routeMeta = {
   },
   "/grade": {
     title: "IBLens \u2014 AI-Powered IB Essay Feedback & Score Prediction",
-    description: "Upload your IB Extended Essay, Internal Assessment, or TOK essay and get criterion-by-criterion feedback with a predicted score in 60 seconds. First analysis free.",
+    description: "Upload your IB Extended Essay, Internal Assessment, or TOK essay and get criterion-by-criterion feedback with a predicted score in about a minute. First analysis free.",
     ogType: "website",
     schemaType: "WebPage",
   },

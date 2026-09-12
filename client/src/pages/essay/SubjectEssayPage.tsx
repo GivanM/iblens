@@ -79,7 +79,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
               </Link>
             </Button>
             <p className="text-xs text-muted-foreground">
-              No account needed · Results in 60 seconds · Official IB rubric · 7-day money-back guarantee
+              No account needed · Results in about a minute · Official IB rubric · 7-day money-back guarantee
             </p>
           </div>
         </section>
@@ -171,7 +171,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
 
                 <div className="mt-6 pt-5 border-t flex flex-col sm:flex-row gap-3 items-center justify-between">
                   <p className="text-xs text-muted-foreground">
-                    Grade your own essay to see the full breakdown + action plan
+                    Grade your own essay — free preview now, full breakdown and action plan for $9.99
                   </p>
                   <Button size="sm" asChild>
                     <Link href="/essay">
@@ -195,7 +195,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
                 { text: "Identifies exactly which marks you're losing and why" },
                 { text: "Prioritised action plan to improve before submission" },
                 { text: "First analysis free — no sign-up required" },
-                { text: "Results in under 60 seconds, any time of day" },
+                { text: "Results in about a minute, any time of day" },
               ].map(({ text }) => (
                 <div key={text} className="flex items-start gap-3">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
@@ -228,7 +228,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
               Ready to find out your real score?
             </h2>
             <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-              Paste your {config.subject} text and get a full criterion-level grade report in 60 seconds. Free.
+              Paste your {config.subject} text and get a full criterion-level grade report in about a minute. Free.
             </p>
             <Button size="lg" className="text-base px-10 shadow-lg shadow-primary/25" asChild>
               <Link href="/essay">

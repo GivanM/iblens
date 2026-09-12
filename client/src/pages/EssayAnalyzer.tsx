@@ -434,7 +434,7 @@ export default function EssayAnalyzer() {
           </div>
 
           <div className="pt-3 border-t text-center">
-            <p className="text-sm font-medium mb-1">↑ This is the depth of feedback you'll get for YOUR essay</p>
+            <p className="text-sm font-medium mb-1">↑ This is the full report, unlocked for $9.99. Your free preview shows the band range, your weakest criterion in full, and the top risks.</p>
             <p className="text-xs text-muted-foreground">Paste your essay below → <strong>first one free</strong>, then $9.99/analysis</p>
           </div>
         </div>
@@ -638,20 +638,27 @@ export default function EssayAnalyzer() {
       </Card>
 
       {/* Results */}
-      {isAuthenticated && !result && lockedQ.data?.exists && !lockedQ.data.unlocked && (
+      {!result && lockedQ.data?.exists && !lockedQ.data.unlocked && (
         <Card className="border-primary/40 bg-primary/5">
           <CardContent className="pt-6 flex flex-col sm:flex-row items-center gap-3">
             <div className="flex-1">
-              <p className="text-sm font-semibold">You have a locked report from this device</p>
+              <p className="text-sm font-semibold">Your report from this device is still here</p>
               <p className="text-xs text-muted-foreground">{lockedQ.data.essayType} · {lockedQ.data.subject} · Band {lockedQ.data.band}</p>
             </div>
-            {(credits?.essayCredits ?? 0) > 0 ? (
-              <Button size="sm" disabled={pageUnlock.isPending} onClick={() => pageUnlock.mutate({ fingerprint: anonFp })}>
-                {pageUnlock.isPending ? "Unlocking…" : "Unlock full report (1 credit)"}
-              </Button>
-            ) : (
-              <Button size="sm" onClick={() => setEssayPurchaseOpen(true)}>Buy &amp; unlock — $9.99</Button>
-            )}
+            <div className="flex items-center gap-2">
+              {(lockedQ.data as any).preview && (
+                <Button size="sm" variant="outline" onClick={() => setResult((lockedQ.data as any).preview as EssayResult)}>
+                  Reopen my free preview
+                </Button>
+              )}
+              {(credits?.essayCredits ?? 0) > 0 ? (
+                <Button size="sm" disabled={pageUnlock.isPending} onClick={() => pageUnlock.mutate({ fingerprint: anonFp })}>
+                  {pageUnlock.isPending ? "Unlocking…" : "Unlock full report (1 credit)"}
+                </Button>
+              ) : (
+                <Button size="sm" onClick={() => setEssayPurchaseOpen(true)}>Buy &amp; unlock — $9.99</Button>
+              )}
+            </div>
           </CardContent>
         </Card>
       )}

@@ -84,7 +84,7 @@ export default function Home() {
       <PurchaseModal open={purchaseModalOpen} onOpenChange={setPurchaseModalOpen} sku={purchaseSku} />
       <SEOHead
         title="IBLens — Free IB Essay Grader & Feedback Tool"
-        description="Free IB essay grader — upload your Extended Essay, IA, or TOK and get AI feedback with a predicted grade in 60 seconds. No credit card required."
+        description="Free IB essay grader — upload your Extended Essay, IA, or TOK and get AI feedback with a predicted grade in about a minute. No credit card required."
         canonical="/"
         jsonLd={[
           {
@@ -205,7 +205,7 @@ export default function Home() {
                   Know your<br />IB score<br /><em className="text-primary">before the exam.</em>
                 </h1>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-md">
-                  Paste your essay. AI grades it against the official IB rubric — criterion by criterion — in under 60 seconds.
+                  Paste your essay. AI grades it against the official IB rubric — criterion by criterion — in about a minute.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 mb-4">
                   <Button size="lg" className="text-base px-8 shadow-lg shadow-primary/25" asChild>
@@ -270,7 +270,7 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {[
                 { n: "01", title: "Official criteria", desc: "Same assessment criteria as IB examiners — no simplified versions. Every band descriptor, every criterion." },
-                { n: "02", title: "Criterion feedback", desc: "Specific written feedback on every criterion, not just a total score. Know exactly where marks are lost." },
+                { n: "02", title: "Criterion feedback", desc: "Specific written feedback on every criterion in the full report, not just a total score. Know exactly where marks are lost." },
                 { n: "03", title: "60-second results", desc: "Paste, click, done. Full breakdown in under a minute. No account required for your first analysis." },
               ].map(f => (
                 <div key={f.n} className="border-t-2 border-primary pt-6">
@@ -521,7 +521,7 @@ export default function Home() {
                 Start Your Free Analysis <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
-            <p className="text-xs text-muted-foreground mt-4">No credit card required. Results in 60 seconds.</p>
+            <p className="text-xs text-muted-foreground mt-4">No credit card required. Results in about a minute.</p>
           </div>
         </section>
 

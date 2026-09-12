@@ -45,7 +45,8 @@ const plans: Array<{
     popular: true,
     features: [
       "Everything in single analysis",
-      "Save 20% vs single price",
+      "$4.00 per essay — 60% off the single price",
+      "Two free re-checks of each draft within 14 days",
       "Use across any subjects",
       "No expiration date",
       "Perfect for exam prep",
@@ -61,7 +62,8 @@ const plans: Array<{
     popular: false,
     features: [
       "Everything in single analysis",
-      "Save 30% vs single price",
+      "$3.50 per essay — 65% off the single price",
+      "Two free re-checks of each draft within 14 days",
       "Use across any subjects",
       "No expiration date",
       "Best value for serious students",
@@ -118,7 +120,7 @@ export default function Pricing() {
             <div className="flex-1">
               <h3 className="font-semibold">First essay analysis is free</h3>
               <p className="text-sm text-muted-foreground mt-0.5">
-                Paste your essay — no sign-in, no credit card required. Get criterion scores and feedback instantly.
+                Paste your essay — no sign-in, no credit card required. You get a free preview: your band range, your weakest criterion with full feedback, and the top risks in your draft.
               </p>
             </div>
             <Button size="sm" asChild className="flex-shrink-0">

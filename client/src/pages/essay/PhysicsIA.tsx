@@ -10,7 +10,7 @@ const config: SubjectConfig = {
   canonicalPath: "/essay/physics-ia",
   heroHeadline: "Your IB Physics IA scored by the same criteria your examiner uses",
   heroSubline:
-    "Paste your Physics IA investigation and get a full criterion-level breakdown with a prioritised improvement plan — free in 60 seconds.",
+    "Paste your Physics IA investigation and get a full criterion-level breakdown with a prioritised improvement plan — free in about a minute.",
   criteria: [
     { name: "Research design", max: 6, sampleScore: 4 },
     { name: "Data analysis", max: 6, sampleScore: 4 },

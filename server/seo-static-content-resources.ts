@@ -85,7 +85,7 @@ export const staticContentResources: Record<string, string> = {
   "/grade": `  <main style="max-width:860px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <nav style="font-size:13px;color:#6b7280;margin-bottom:20px"><a href="/">Home</a> › Grade Your IB Essay in 60 Seconds</nav>
       <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">Grade Your IB Essay in 60 Seconds</h1>
-      <p style="color:#374151;line-height:1.75;margin-bottom:16px">Paste your IB essay and get a predicted grade in 60 seconds. AI feedback on every criterion \u2014 Extended Essay, IA, or TOK. No account, no credit card required.</p>
+      <p style="color:#374151;line-height:1.75;margin-bottom:16px">Paste your IB essay and get a predicted grade in about a minute. AI feedback on every criterion \u2014 Extended Essay, IA, or TOK. No account, no credit card required.</p>
       <p style="margin-top:20px"><a href="/essay" style="color:#7B1D2E;font-weight:600">Grade your IB essay free →</a></p>
     </main>`,
 
@@ -439,7 +439,7 @@ export const staticContentResources: Record<string, string> = {
         <li><strong>Choose your essay type and subject.</strong> Select "Internal Assessment (IA)" and your IB subject from the dropdown.</li>
         <li><strong>Paste your IA text.</strong> Copy the full text of your Internal Assessment — methodology, analysis, evaluation, everything.</li>
         <li><strong>Enter your research question.</strong> This helps the AI assess whether your investigation stays focused on a specific, answerable question.</li>
-        <li><strong>Get your grade report.</strong> Within 60 seconds you receive a criterion-by-criterion score, a predicted grade, the marks you are losing and why, and specific steps to recover them.</li>
+        <li><strong>Get your grade report.</strong> Within about a minute you receive a criterion-by-criterion score, a predicted grade, the marks you are losing and why, and specific steps to recover them.</li>
       </ol>
 
       <h2>What You Get in the Grade Report</h2>
@@ -860,7 +860,7 @@ export const staticContentResources: Record<string, string> = {
       </ul>
 
       <p>
-        If you want objective, criterion-based feedback on your Extended Essay before submission, <a href="/essay/extended-essay">IBLens can grade your Extended Essay</a> against the official IB EE criteria — focus &amp; method, knowledge, critical thinking, presentation, and engagement — in under 60 seconds.
+        If you want objective, criterion-based feedback on your Extended Essay before submission, <a href="/essay/extended-essay">IBLens can grade your Extended Essay</a> against the official IB EE criteria — focus &amp; method, knowledge, critical thinking, presentation, and engagement — in about a minute.
       </p>
 
       <p>
@@ -1074,7 +1074,7 @@ export const staticContentResources: Record<string, string> = {
       </p>
 
       <p>
-        Get instant AI feedback on your IA: <a href="/essay/biology-ia">Biology IA</a>, <a href="/essay/chemistry-ia">Chemistry IA</a>, <a href="/essay/physics-ia">Physics IA</a>, <a href="/essay/economics-ia">Economics IA</a>, <a href="/essay/history-ia">History IA</a>, <a href="/essay/business-management-ia">Business Management IA</a>, <a href="/essay/math-ia">Mathematics IA</a>, or <a href="/essay/psychology-ia">Psychology IA</a> — each graded against the official IB rubric in 60 seconds.
+        Get instant AI feedback on your IA: <a href="/essay/biology-ia">Biology IA</a>, <a href="/essay/chemistry-ia">Chemistry IA</a>, <a href="/essay/physics-ia">Physics IA</a>, <a href="/essay/economics-ia">Economics IA</a>, <a href="/essay/history-ia">History IA</a>, <a href="/essay/business-management-ia">Business Management IA</a>, <a href="/essay/math-ia">Mathematics IA</a>, or <a href="/essay/psychology-ia">Psychology IA</a> — each graded against the official IB rubric in about a minute.
       </p>
     
   </main>`,
@@ -1261,7 +1261,7 @@ export const staticContentResources: Record<string, string> = {
       </ul>
 
       <p>
-        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <a href="/essay/tok-essay">IBLens can provide criterion-based feedback on your TOK essay</a> — scored against the official IB TOK rubric in 60 seconds. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <a href="/resources/ib-grade-boundaries">IB Grade Boundaries</a> guide. For a broader look at how IB criteria work across essay types, read our <a href="/resources/ib-essay-criteria-explained">IB Essay Criteria Explained</a> article.
+        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <a href="/essay/tok-essay">IBLens can provide criterion-based feedback on your TOK essay</a> — scored against the official IB TOK rubric in about a minute. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <a href="/resources/ib-grade-boundaries">IB Grade Boundaries</a> guide. For a broader look at how IB criteria work across essay types, read our <a href="/resources/ib-essay-criteria-explained">IB Essay Criteria Explained</a> article.
       </p>
     
   </main>`,

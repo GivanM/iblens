@@ -10,7 +10,7 @@ const config: SubjectConfig = {
   canonicalPath: "/essay/maths-ai-ia",
   heroHeadline: "Is your IB Math AI exploration on track for a top score?",
   heroSubline:
-    "Paste your Mathematics: Applications and Interpretation IA and get criterion-by-criterion feedback in 60 seconds — including Use of Mathematics and Reflection. Free first check.",
+    "Paste your Mathematics: Applications and Interpretation IA and get criterion-by-criterion feedback in about a minute — including Use of Mathematics and Reflection. Free first check.",
   criteria: [
     { name: "Presentation", max: 4, sampleScore: 3 },
     { name: "Mathematical communication", max: 4, sampleScore: 3 },

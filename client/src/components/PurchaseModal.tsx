@@ -110,6 +110,16 @@ export function PurchaseModal({ open, onOpenChange, sku }: PurchaseModalProps) {
             <p className="text-sm text-muted-foreground mb-1">{label}</p>
             <p className="text-4xl font-bold tracking-tight">{price}</p>
             <p className="text-xs text-muted-foreground mt-1">One-time payment</p>
+            {sku === "ESSAY_SINGLE" && (
+              <div className="mt-3 rounded-lg bg-muted/50 p-3 text-left">
+                <p className="text-xs font-medium mb-1">What you get</p>
+                <ul className="text-xs text-muted-foreground space-y-1 list-disc pl-4">
+                  <li>Your current report unlocked in full: exact score, every criterion with comments, ranked fix list</li>
+                  <li>Two free re-checks of the same draft within 14 days</li>
+                  <li>Saved to your account so you can reopen it any time</li>
+                </ul>
+              </div>
+            )}
           </div>
 
           {/* Guest: email input */}

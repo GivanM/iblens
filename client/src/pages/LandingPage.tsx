@@ -61,7 +61,7 @@ export default function LandingPage() {
     <>
       <SEOHead
         title="Free IB Essay Grader — Grade My IB Essay in 60 Seconds | IBLens"
-        description="Grade your IB Extended Essay, IA, or TOK essay instantly. AI-powered IB essay grader gives criterion-by-criterion feedback and predicted band in 60 seconds. Free."
+        description="Grade your IB Extended Essay, IA, or TOK essay instantly. AI-powered IB essay grader gives criterion-by-criterion feedback and predicted band in about a minute. Free."
         canonical="/grade"
       />
 
@@ -101,7 +101,7 @@ export default function LandingPage() {
                 Grade My Essay Free
               </Link>
             </Button>
-            <p className="text-xs text-muted-foreground">No account needed · Results in 60 seconds · All IB subjects · 7-day money-back guarantee</p>
+            <p className="text-xs text-muted-foreground">No account needed · Results in about a minute · All IB subjects · 7-day money-back guarantee</p>
           </div>
         </section>
 
@@ -202,7 +202,7 @@ export default function LandingPage() {
           <div className="container">
             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 text-sm text-muted-foreground">
               <div className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-emerald-500" /><span>Scored against official IB rubric</span></div>
-              <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-amber-500" /><span>Results in under 60 seconds</span></div>
+              <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-amber-500" /><span>Results in about a minute</span></div>
               <div className="flex items-center gap-2"><Shield className="w-4 h-4 text-blue-500" /><span>Essays never stored</span></div>
               <div className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /><span>All IB subjects supported</span></div>
             </div>
