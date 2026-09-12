@@ -801,6 +801,15 @@ export async function consumeDeviceCredit(fingerprint: string): Promise<boolean>
   return changed > 0;
 }
 
+/** Move credits off an account and onto the device that bought them, exactly once. */
+export async function debitAccountCredits(userId: number, amount: number) {
+  const db = await getDb();
+  if (!db || amount <= 0) return;
+  await db.update(users)
+    .set({ essayCredits: sql`GREATEST(${users.essayCredits} - ${amount}, 0)` })
+    .where(eq(users.id, userId));
+}
+
 /** Take back device credits that a refunded purchase had granted. */
 export async function removeDeviceCredits(fingerprint: string, amount: number) {
   const db = await getDb();

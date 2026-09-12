@@ -242,18 +242,26 @@ export default function EssayAnalyzer() {
   });
 
   const anonAnalyzeMutation = trpc.essay.analyzeAnonymous.useMutation({
-    onSuccess: (data) => {
+    onSuccess: (data: any) => {
       setResult(data.result as EssayResult);
       setLastAnalysisId(null);
+      // A run paid for with a device credit comes back open. Without this the
+      // page kept treating it as the locked preview and blurred the fix list
+      // the buyer had just paid for.
+      if (data.unlocked === true) {
+        setPaidRunUnlocked(true);
+        deviceCreditsQ.refetch();
+      }
       localStorage.setItem('iblens_anon_used', 'true');
       anonCheckQuery.refetch();
+      anonReportQ.refetch();
       const r = data.result as EssayResult;
       analytics.completeEssayAnalysis(subject, `${r.predicted_score}/${r.max_score}`);
       const wordCount = essayText.split(/\s+/).filter(Boolean).length;
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'essay_submit', essay_type: essayType, subject, word_count: wordCount });
       window.dataLayer.push({ event: 'sign_up', method: 'free_essay_analysis' });
-      toast.success("Free analysis complete! Sign in to save results and get more analyses.");
+      toast.success(data.unlocked ? "Your paid report is open below." : `Free analysis complete. The full report unlocks for ${PRICE_LABELS.ESSAY_SINGLE}.`);
     },
     onError: (error: { message: string }) => {
       toast.error(error.message);
@@ -296,7 +304,9 @@ export default function EssayAnalyzer() {
     { fingerprint: anonFp },
     { enabled: !isAuthenticated }
   );
-  const anonUnlocked = !isAuthenticated && anonReportQ.data?.unlocked === true;
+  const [paidRunUnlocked, setPaidRunUnlocked] = useState(false);
+  const [rerunIntent, setRerunIntent] = useState(false);
+  const anonUnlocked = !isAuthenticated && (anonReportQ.data?.unlocked === true || paidRunUnlocked);
   const deviceCreditsQ = trpc.essay.deviceCredits.useQuery(
     { fingerprint: anonFp },
     { enabled: !isAuthenticated }
@@ -377,8 +387,10 @@ export default function EssayAnalyzer() {
       });
     } else {
       // A credit on this device pays for a new report, which is not the same as a
-      // re-check of the old one.
-      if (anonUnlocked && deviceCredits === 0) {
+      // re-check of the old one. Someone holding both gets asked which they meant,
+      // because spending a credit on what should have been free is the worse
+      // mistake of the two.
+      if (anonUnlocked && (deviceCredits === 0 || rerunIntent)) {
         rerunAnonMutation.mutate({
           fingerprint: anonFp,
           essayText,
@@ -708,20 +720,20 @@ export default function EssayAnalyzer() {
 
           {/* Guest holding credits bought without an account */}
           {!isAuthenticated && deviceCredits > 0 && (
-            <Button className="w-full h-11" onClick={handleAnalyze} disabled={isAnalyzing}>
+            <Button className="w-full h-11" onClick={() => { setRerunIntent(false); handleAnalyze(); }} disabled={isAnalyzing}>
               {isAnalyzing ? (
                 <><Loader2 className="w-4 h-4 mr-2 animate-spin" />{analyzingLabel}</>
               ) : (
-                <><FileText className="w-4 h-4 mr-2" />Mark this work ({deviceCredits} paid {deviceCredits === 1 ? "report" : "reports"} left)</>
+                <><FileText className="w-4 h-4 mr-2" />Mark a new piece of work ({deviceCredits} paid {deviceCredits === 1 ? "report" : "reports"} left)</>
               )}
             </Button>
           )}
 
           {/* Paid guest: the two re-checks they were promised */}
-          {anonUnlocked && deviceCredits === 0 && (anonRerunsLeft ?? anonReportQ.data?.rerunsLeft ?? 2) > 0 && (
+          {anonUnlocked && (anonRerunsLeft ?? anonReportQ.data?.rerunsLeft ?? 2) > 0 && (
             <Button
               className="w-full h-11"
-              onClick={handleAnalyze}
+              onClick={() => { setRerunIntent(true); handleAnalyze(); }}
               disabled={rerunAnonMutation.isPending}
             >
               {rerunAnonMutation.isPending ? (

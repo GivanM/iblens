@@ -17,7 +17,9 @@ import {
   relockAnonymousAnalysis,
   relockAnalysesForOrder,
   addDeviceCredits,
+  findOrCreateGuestUserByEmail,
   removeDeviceCredits,
+  debitAccountCredits,
   consumePaidEssayCredit,
 } from "../db";
 import { sendPaymentConfirmationEmail, getSkuHumanName } from "../email";
@@ -193,6 +195,27 @@ export function registerLemonsqueezyWebhook(app: Express) {
 
         if (eventName === "order_created") {
           if (!orderId) {
+            // A purchase made straight from the LemonSqueezy storefront carries no
+            // order of ours. It used to be logged and dropped, so the money was
+            // taken and nothing was given. Credit it to the buyer's e-mail so it
+            // can be claimed by signing in with that address.
+            const attrs: any = (body as any)?.data?.attributes || {};
+            const buyerEmail = String(attrs.user_email || attrs.customer_email || "").trim();
+            const variantName = String(attrs.first_order_item?.variant_name || attrs.product_name || "").toLowerCase();
+            const guessed = /10/.test(variantName) ? 10 : /5|five/.test(variantName) ? 5 : 1;
+            if (buyerEmail) {
+              try {
+                const { id: guestId } = await findOrCreateGuestUserByEmail(buyerEmail);
+                await grantCreditsViaLedger(guestId, guessed, 0, `lemonsqueezy:storefront:${variantName || "unknown"}`, dataId);
+                console.warn(`[LemonSqueezy] Storefront purchase with no order_id: ${guessed} credit(s) granted to ${buyerEmail}`);
+                if (webhookEventId) {
+                  await updateWebhookEvent(webhookEventId, { paymentStatus: "storefront_credited" }).catch(() => {});
+                }
+                return res.status(200).json({ ok: true, message: "Credited to buyer email" });
+              } catch (e) {
+                console.error("[LemonSqueezy] Could not credit storefront purchase:", e);
+              }
+            }
             const errMsg = "order_created without order_id in custom_data. meta=" + JSON.stringify(meta);
             console.warn(`[LemonSqueezy Webhook] ${errMsg}`);
             if (webhookEventId) {
@@ -251,10 +274,16 @@ export function registerLemonsqueezyWebhook(app: Express) {
               // A pack is several reports. One of them opens what the buyer is
               // looking at; the rest stay with this device so they can be spent
               // without an account, which is what "no account needed" has to mean.
+              // Everything this purchase bought belongs to the device: one report
+              // opens now, the rest wait there. The same credits were also granted
+              // to the guest account a moment ago, and leaving both in place handed
+              // out a pack twice over, so the account side is taken back.
               const spentNow = rec && rec.resultJson && !(rec as any).unlocked ? 1 : 0;
-              if (credits.essay - spentNow > 0) {
-                await addDeviceCredits(unlockFp, credits.essay - spentNow);
-              }
+              const toDevice = credits.essay - spentNow;
+              if (toDevice > 0) await addDeviceCredits(unlockFp, toDevice);
+              // Only the part that moved to the device. The one credit the unlock
+              // below consumes stays on the account until it is spent there.
+              if (toDevice > 0) await debitAccountCredits(order.userId, toDevice);
               if (rec && rec.resultJson && !(rec as any).unlocked) {
                 // Open the report first. If the charge against the credit then fails,
                 // the buyer still has what they paid for and we are out one credit,

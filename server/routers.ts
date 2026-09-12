@@ -399,6 +399,8 @@ const essayRouter = router({
       clientFingerprint: z.string().min(1),
       /** Explicitly buy this review with a credit the user already owns. */
       spendCredit: z.boolean().optional(),
+      /** Or with a credit this device owns, bought without an account. */
+      spendDeviceCredit: z.boolean().optional(),
     }))
     .mutation(async ({ input, ctx }) => {
       const answers = { q1: input.q1, q2: input.q2, q3: input.q3 };
@@ -418,6 +420,7 @@ const essayRouter = router({
       // from any signed-in user who had one, behind a button saying "free".
       const user = (ctx as any).user;
       let paidCredit = false;
+      let paidByDevice = false;
       if (user && input.spendCredit) {
         const credits = await getUserCredits(user.id);
         paidCredit = (credits?.essayCredits ?? 0) > 0;
@@ -426,7 +429,10 @@ const essayRouter = router({
 
       if (!paidCredit) {
         const usage = await canAnonymousAnalyze(input.clientFingerprint, "ucas");
-        if (!usage.allowed) {
+        if (!usage.allowed && input.spendDeviceCredit === true) {
+          paidByDevice = await consumeDeviceCredit(input.clientFingerprint);
+        }
+        if (!usage.allowed && !paidByDevice) {
           throw new TRPCError({
             code: "FORBIDDEN",
             message: user
@@ -436,6 +442,19 @@ const essayRouter = router({
         }
       }
       const fingerprint = input.clientFingerprint;
+
+      // Claim the free slot before the model is called: the check and the write
+      // were eighty seconds apart, which is a free second review for anyone who
+      // submits twice.
+      const claim = (paidCredit || paidByDevice) ? null : await createAnonymousAnalysis({
+        fingerprint,
+        type: "essay",
+        essayType: "UCAS",
+        subject: input.course.slice(0, 100),
+        researchQuestion: null,
+        resultJson: null,
+        predictedGrade: null,
+      });
 
       try {
         const systemPrompt = buildUcasSystemPrompt(input.course, input.universityType);
@@ -459,27 +478,36 @@ const essayRouter = router({
         result._format = "ucas_2026";
         result._universityType = input.universityType;
 
-        const saved = await createAnonymousAnalysis({
-          fingerprint,
-          type: "essay",
-          essayType: "UCAS",
-          subject: input.course.slice(0, 100),
-          researchQuestion: null,
-          resultJson: result,
-          predictedGrade: null,
-          // A paid review is unlocked from the start. Without this it had no
-          // re-checks, could not be reopened, and retention would delete it.
-          unlocked: paidCredit,
-          unlockedAt: paidCredit ? new Date() : null,
-        });
+        const paid = paidCredit || paidByDevice;
+        let saved: any = null;
+        if (claim?.id) {
+          await updateAnonymousResult(claim.id, result, null);
+          saved = { id: claim.id };
+        } else {
+          saved = await createAnonymousAnalysis({
+            fingerprint,
+            type: "essay",
+            essayType: "UCAS",
+            subject: input.course.slice(0, 100),
+            researchQuestion: null,
+            resultJson: result,
+            predictedGrade: null,
+            // A paid review is unlocked from the start. Without this it had no
+            // re-checks, could not be reopened, and retention would delete it.
+            unlocked: paid,
+            unlockedAt: paid ? new Date() : null,
+          });
+        }
 
-        if (paidCredit) {
-          await consumePaidEssayCredit(user.id);
-          return { result, wasAnonymous: false, unlocked: true as const, id: saved?.id };
+        if (paid) {
+          if (paidCredit) await consumePaidEssayCredit(user.id);
+          return { result, wasAnonymous: !paidCredit, unlocked: true as const, id: saved?.id };
         }
         return { result: buildUcasTeaser(result), wasAnonymous: true };
       } catch (error: any) {
         console.error("[UCAS PS Review] Error:", error);
+        if (claim?.id) await deleteAnonymousAnalysis(claim.id).catch(() => {});
+        if (paidByDevice) await addDeviceCredits(fingerprint, 1).catch(() => {});
         throw new Error(error.message || "Review failed. Please try again.");
       }
     }),

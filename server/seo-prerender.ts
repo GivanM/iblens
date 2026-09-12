@@ -101,7 +101,7 @@ const routeMeta: Record<string, PageMeta> = {
     schemaType: "WebPage",
     faq: [
       { question: "Which IB essay types can IBLens grade?", answer: "IBLens grades all IB essay types: coursework in 14 subjects (the IA in eleven, plus the externally assessed coursework in Visual Arts, Music and Film), Extended Essays (EE), and Theory of Knowledge (TOK) essays. Each is scored against the official IB rubric for that specific essay type." },
-      { question: "How accurate is the AI grade prediction?", answer: "IBLens is trained on official IB marking criteria and provides reliable score predictions. It evaluates each criterion individually and identifies specific areas where marks are being lost, giving you actionable feedback to improve before submission." },
+      { question: "How accurate is the AI grade prediction?", answer: "IBLens is given the official IB marking criteria for your task and provides reliable score predictions. It evaluates each criterion individually and identifies specific areas where marks are being lost, giving you actionable feedback to improve before submission." },
       { question: "Is the first analysis really free?", answer: "Yes — your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments, and a ranked fix list — unlocks for $9.99." },
       { question: "How long does it take to get feedback?", answer: "Results are ready in about 90 seconds. Paste your essay text, select your subject and essay type, and the AI delivers a complete grade report within a minute." },
     ],
@@ -121,7 +121,7 @@ const routeMeta: Record<string, PageMeta> = {
     schemaType: "WebPage",
   },
   "/pricing": {
-    title: "IB Essay Analysis from $9.99 \u2014 Cheaper Than 3 Minutes With a Tutor | IBLens",
+    title: "IB Essay Analysis from $9.99 \u2014 No Subscription, No Account Needed | IBLens",
     description: "First IB essay analysis free. Single analysis $9.99, pack of 5 for $24.99, pack of 10 for $44.99. No subscription. 7-day money-back guarantee. IB tutors charge $50\u2013150/hr \u2014 IBLens is instant.",
     ogType: "website",
     canonical: "/pricing",

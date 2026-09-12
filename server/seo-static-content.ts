@@ -71,7 +71,7 @@ export const staticContent: Record<string, string> = {
   <h2 style="font-size:22px;font-weight:700;margin:28px 0 12px">What IBLens grades</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:24px">
     <li><strong>Internal Assessments (IA)</strong> in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film.</li>
-    <li><strong>Extended Essay (EE)</strong> across all subjects, against the five official EE criteria.</li>
+    <li><strong>Extended Essay (EE)</strong> in the 14 subjects listed above, against the five official EE criteria.</li>
     <li><strong>Theory of Knowledge (TOK)</strong> essays and the TOK Exhibition.</li>
   </ul>
   <h2 style="font-size:22px;font-weight:700;margin:28px 0 12px">How the IB essay grader works</h2>
