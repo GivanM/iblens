@@ -347,7 +347,7 @@ export const staticContentResources: Record<string, string> = {
         <li><strong>Criterion E - Engagement (6 marks):</strong> Assessed via the RPPF (three written reflections). Rewards intellectual honesty about challenges and genuine personal investment.</li>
       </ul>
       <p>
-        A score of 28/34 or above typically corresponds to Grade A. The most common
+        A score of 27 out of 34 or above is a grade A. The most common
         reason students score Grade B instead of A is weak Critical Thinking (Criterion C):
         they summarise results without connecting them to published research or evaluating
         why their findings deviate from what the literature predicts.
@@ -426,7 +426,7 @@ export const staticContentResources: Record<string, string> = {
         <li><strong><a href="/essay/psychology-ia">IB Psychology IA</a></strong> — Introduction, Exploration, Analysis, Evaluation (22 marks)</li>
         <li><strong><a href="/essay/computer-science-ia">IB Computer Science IA</a></strong> — Planning, Solution overview, Development, Functionality and extensibility, Evaluation (34 marks)</li>
         <li><strong>IB English A IA (Literature / Language & Literature)</strong> — assessed against the subject-specific oral or written commentary rubric</li>
-        <li><strong>IB Visual Arts IA, Music IA, Film IA</strong> — assessed against subject-specific criteria</li>
+        <li><strong>IB Visual Arts, Music and Film coursework (externally assessed)</strong> — assessed against subject-specific criteria</li>
       </ul>
 
       <p>
@@ -445,7 +445,7 @@ export const staticContentResources: Record<string, string> = {
       <h2>What You Get in the Grade Report</h2>
 
       <ul>
-        <li><strong>Predicted score and IB band</strong> — how your IA scores overall against the rubric, with the corresponding IB grade (1–7)</li>
+        <li><strong>Predicted score and IB band</strong> — how your IA scores overall against the rubric, with the mark range the draft currently sits in</li>
         <li><strong>Criterion breakdown</strong> — each criterion scored individually with an explanation of why you received that score</li>
         <li><strong>Risk areas</strong> — the specific parts of your IA that are losing marks and why</li>
         <li><strong>Leverage zones</strong> — criteria where a small improvement would gain the most marks</li>
@@ -461,7 +461,7 @@ export const staticContentResources: Record<string, string> = {
       <ul>
         <li><strong>vs. RevisionDojo:</strong> RevisionDojo bundles IA grading inside a $19/month subscription that also includes videos and practice papers. IBLens is pay-per-analysis — $9.99 for a single analysis, $24.99 for 5. No subscription required. If you just need feedback on one or two IAs, IBLens is significantly cheaper.</li>
         <li><strong>vs. ChatGPT / Claude directly:</strong> Generic AI models don't know the specific IB rubric for your subject. IBLens is built on the official IBO marking criteria and formats the feedback to match how real IB examiners score work.</li>
-        <li><strong>vs. a tutor:</strong> A tutor charges $50–120 per hour and may give you subjective feedback. IBLens applies the rubric mechanically — the same way an examiner does — and identifies specific mark losses by criterion.</li>
+        <li><strong>vs. a tutor:</strong> A tutor commonly charges $50 to $150 an hour and may give you subjective feedback. IBLens applies the rubric mechanically — the same way an examiner does — and identifies specific mark losses by criterion.</li>
       </ul>
 
       <h2>Is the First IB IA Analysis Really Free?</h2>
@@ -473,7 +473,7 @@ export const staticContentResources: Record<string, string> = {
       <h2>How Accurate Is the AI Grade?</h2>
 
       <p>
-        The grader applies the official IB rubric criteria as written in IBO subject guides. It cannot perfectly predict what a human moderator will decide on boundary cases — no tool can. But it is reliable for identifying which criteria are underdeveloped, what the mark range is, and where to focus revision effort. Students consistently report that the AI flags the same issues their teachers later point out.
+        The grader applies the official IB rubric criteria as written in IBO subject guides. It cannot perfectly predict what a human moderator will decide on boundary cases — no tool can. But it is reliable for identifying which criteria are underdeveloped, what the mark range is, and where to focus revision effort. The point of running it before your supervisor sees the draft is to spend that one round of comments on substance.
       </p>
 
       <p>
@@ -636,7 +636,7 @@ export const staticContentResources: Record<string, string> = {
   <h1 style="font-size:28px;font-weight:700;line-height:1.3;margin:0 0 16px">About IBLens</h1>
   <p style="line-height:1.7;margin:0 0 14px">IBLens gives IB students an honest, criterion-level read on their coursework before submission: coursework in 14 subjects, the Extended Essay, the TOK essay and exhibition. It started as a tool built inside one IB family — for checking our own student's drafts against the actual assessment criteria — and grew into a public product. IBLens is an independent project, not affiliated with or endorsed by the International Baccalaureate Organization.</p>
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">How the grader works</h2>
-  <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li>The grading engine carries the official assessment criteria for each component — names, mark allocations, band descriptors — including both EE rubrics (current 34-mark and new 30-mark May 2027) and the 2027 Psychology and Computer Science IA formats.</li>
+  <ul style="line-height:1.8;padding-left:20px;margin:0 0 14px"><li>The grading engine carries the official assessment criteria for each component — criterion names, their mark allocations and what each one assesses — including both EE rubrics (current 34-mark and new 30-mark May 2027) and the 2027 Psychology and Computer Science IA formats.</li>
   <li>Analysis runs on a large language model (Anthropic's Claude) instructed with the relevant criteria; every submission gets a criterion-by-criterion assessment with a predicted band range.</li>
   <li>Scores are AI estimates, not guarantees — real marking involves examiner judgement and moderation. The tool's job is to show which criterion costs you most while there is time to act.</li></ul>
   <h2 style="font-size:22px;font-weight:700;margin:24px 0 10px">What IBLens will not do</h2>

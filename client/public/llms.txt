@@ -1,18 +1,18 @@
 # IBLens
 
-> IBLens is an independent AI feedback tool for IB (International Baccalaureate) coursework. It grades drafts against the official assessment criteria — Internal Assessments across 17 subjects, the Extended Essay (both the current 34-mark rubric and the new 30-mark May 2027 rubric), the TOK essay and the TOK exhibition. Free preview on every essay; a full criterion-by-criterion report is $4.99 with no subscription. Not affiliated with the IBO. Scores are AI estimates, not guarantees.
+> IBLens is an independent AI feedback tool for IB (International Baccalaureate) coursework. It grades drafts against the official assessment criteria, coursework in 14 subjects (the Internal Assessment in eleven, plus the externally assessed coursework in Visual Arts, Music and Film), the Extended Essay (both the current 34-mark rubric and the new 30-mark May 2027 rubric), the TOK essay and the TOK exhibition. One free preview per device; a full criterion-by-criterion report is $9.99, with no subscription. Not affiliated with the IBO. Scores are AI estimates, not guarantees.
 
 ## Product
 
 - [Essay Analyzer](https://iblens.com/essay): paste a draft, pick work type, subject and exam session, get criterion-level feedback
 - [How IBLens Works](https://iblens.com/resources/how-iblens-works): the grading pipeline explained
 - [Sample Reports](https://iblens.com/resources/sample-reports): real example outputs at three quality levels
-- [Pricing](https://iblens.com/pricing): free preview, $4.99 full report, no subscription
+- [Pricing](https://iblens.com/pricing): free preview, $9.99 full report, packs of five and ten, no subscription
 - [About](https://iblens.com/about): who is behind IBLens and what it will not do
 
 ## May 2027 syllabus changes
 
-- [EE New Criteria 2027](https://iblens.com/resources/ib-extended-essay-new-criteria-2027): the 30-mark rubric — Framework 6, Knowledge 6, Analysis 6, Discussion and evaluation 8, Reflection 4
+- [EE New Criteria 2027](https://iblens.com/resources/ib-extended-essay-new-criteria-2027): the 30-mark rubric, Framework 6, Knowledge 6, Analysis 6, Discussion and evaluation 8, Reflection 4
 - [EE RPF 2027](https://iblens.com/resources/ib-rpf-extended-essay-2027): the 500-word reflective statement replacing the RPPF
 - [Psychology IA 2027](https://iblens.com/resources/ib-psychology-ia-2027): research proposal marked /24, no experiment conducted
 - [Computer Science IA 2027](https://iblens.com/resources/ib-computer-science-ia-2027): computational solution marked /30, client requirement removed

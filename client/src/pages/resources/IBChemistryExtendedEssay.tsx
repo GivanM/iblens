@@ -69,7 +69,7 @@ export default function IBChemistryExtendedEssay() {
         <li><strong>Criterion E - Engagement (6 marks):</strong> Assessed through the RPPF (three reflections). Rewards genuine intellectual engagement with the research process, including honest discussion of challenges and how you responded to them.</li>
       </ul>
       <p>
-        A score of 28/34 or above corresponds to Grade A. Chemistry students most
+        A score of 27 out of 34 or above is a grade A. Chemistry students most
         often lose Criterion C marks by presenting data without context: they
         calculate a rate constant but do not compare it to a published value, or
         they note an anomaly but do not investigate whether it reflects a systematic

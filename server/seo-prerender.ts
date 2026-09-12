@@ -64,13 +64,13 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/sample-reports": {
     title: "Sample IBLens Reports \u2014 Three Essays, Three Honest Grades | IBLens",
-    description: "Real, unedited IBLens output: the same TOK title at three quality levels, graded 2/10, 4/10 and 5/10 with criterion-level feedback. This is what calibrated strictness looks like.",
+    description: "Real, unedited IBLens output: the same TOK title at three quality levels, graded 2/10, 4/10 and 5/10 with criterion-level feedback. This is what strict marking against the criteria looks like.",
     ogType: "article",
     canonical: "/resources/sample-reports",
     schemaType: "Article",
     faq: [
-      { question: "Are the sample reports real IBLens output?", answer: "Yes. The three demo essays were written by our team at deliberately different quality levels, then run through the live grader. The scores and every word of feedback are unedited IBLens output." },
-      { question: "Does IBLens give everyone a similar score?", answer: "No \u2014 that is the point of the demonstration. The weak essay scored 2/10, the developing one 4/10, the strong one 5/10. The grader is calibrated to spread scores the way a strict examiner does." },
+      { question: "Are the sample reports real IBLens output?", answer: "Yes. The three demo essays were written for this demonstration at deliberately different quality levels, then run through the live grader. The scores and every word of feedback are unedited IBLens output." },
+      { question: "Does IBLens give everyone a similar score?", answer: "No \u2014 that is the point of the demonstration. The weak essay scored 2/10, the developing one 4/10, the strong one 5/10. The grader is instructed to mark strictly, and these three reports show the spread that produces." },
     ],
   },
   "/resources/academic-integrity": {
@@ -101,9 +101,9 @@ const routeMeta: Record<string, PageMeta> = {
     schemaType: "WebPage",
     faq: [
       { question: "Which IB essay types can IBLens grade?", answer: "IBLens grades all IB essay types: coursework in 14 subjects (the IA in eleven, plus the externally assessed coursework in Visual Arts, Music and Film), Extended Essays (EE), and Theory of Knowledge (TOK) essays. Each is scored against the official IB rubric for that specific essay type." },
-      { question: "How accurate is the AI grade prediction?", answer: "IBLens is given the official IB marking criteria for your task and provides reliable score predictions. It evaluates each criterion individually and identifies specific areas where marks are being lost, giving you actionable feedback to improve before submission." },
+      { question: "How accurate is the AI grade prediction?", answer: "IBLens is given the official IB marking criteria for your task and produces an estimate from those criteria, which is not a measured match to examiner marks. It evaluates each criterion individually and identifies specific areas where marks are being lost, giving you actionable feedback to improve before submission." },
       { question: "Is the first analysis really free?", answer: "Yes — your first analysis is free: your band range, your weakest criterion with full examiner-style feedback, and the top risks in your draft. The complete report — exact score, every criterion with comments, and a ranked fix list — unlocks for $9.99." },
-      { question: "How long does it take to get feedback?", answer: "Results are ready in about 90 seconds. Paste your essay text, select your subject and essay type, and the AI delivers a complete grade report within a minute." },
+      { question: "How long does it take to get feedback?", answer: "Results are ready in about 90 seconds. Paste your essay text, select your subject and essay type, and the report comes back in about 90 seconds." },
     ],
   },
   "/grade": {
@@ -538,8 +538,8 @@ const routeMeta: Record<string, PageMeta> = {
     schemaType: "WebPage",
   },
   "/essay/english-essay": {
-    title: "IB English Essay Grader \u2014 Free AI Feedback on HL Essay & IA | IBLens",
-    description: "AI feedback on IB English Language & Literature essays and HL essays. Knowledge, analysis, focus, and language scored against official IB English criteria. Free.",
+    title: "IB English Individual Oral Grader: Free AI Feedback | IBLens",
+    description: "AI feedback on the IB English A Individual Oral, marked out of 40 against the four published criteria. The HL essay is a different component and is not covered.",
     ogType: "website",
     canonical: "/essay/english-essay",
     schemaType: "WebPage",

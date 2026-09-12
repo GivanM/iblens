@@ -140,6 +140,10 @@ export const anonymousAnalyses = mysqlTable("anonymous_analyses", {
 export const deviceCredits = mysqlTable("device_credits", {
   fingerprint: varchar("fingerprint", { length: 64 }).primaryKey(),
   credits: int("credits").notNull().default(0),
+  /** Everything ever put here, so a refund can be traced even after a claim. */
+  claimedAmount: int("claimedAmount").notNull().default(0),
+  /** The account that took these credits when their owner signed in. */
+  claimedByUserId: int("claimedByUserId"),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
 

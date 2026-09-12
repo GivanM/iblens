@@ -51,13 +51,16 @@ async function startServer() {
   const analysisHits = new Map<string, number[]>();
   app.use("/api/trpc", (req, res, next) => {
     const path = String(req.path || "");
-    if (!/analyze|rerun/i.test(path)) return next();
+    // Only the calls that actually run a model. canAnalyzeAnonymous is a status
+    // check made on every page load and must not count against the budget.
+    const EXPENSIVE = /(^|\.|,)(analyze|analyzeAnonymous|analyzeUcasAnonymous|rerunAnalysis|rerunAnonymous|analyzeUniversity)(,|$)/i;
+    if (!EXPENSIVE.test(path)) return next();
     const ip = String(req.headers["x-forwarded-for"] || req.socket.remoteAddress || "unknown").split(",")[0].trim();
     const now = Date.now();
     const windowMs = 60 * 60 * 1000;
     // tRPC batches several calls into one request, so counting requests let a
     // single HTTP call run as many analyses as it liked.
-    const calls = path.replace(/^\//, "").split(",").filter((p) => /analyze|rerun/i.test(p)).length || 1;
+    const calls = path.replace(/^\//, "").split(",").filter((p) => EXPENSIVE.test(p)).length || 1;
     const hits = (analysisHits.get(ip) || []).filter((t) => now - t < windowMs);
     if (hits.length + calls > 30) {
       res.status(429).json({ error: { message: "Too many analyses from this network in the last hour. Try again later." } });

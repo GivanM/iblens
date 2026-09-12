@@ -67,7 +67,7 @@ export const staticContent: Record<string, string> = {
   "/": S(`  <main style="max-width:1100px;margin:0 auto;padding:32px 16px;font-family:system-ui,sans-serif;color:#111">
   <p style="font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#7B1D2E;margin-bottom:12px">IB Essay Grader</p>
   <h1 style="font-size:34px;font-weight:800;line-height:1.2;margin:0 0 16px">Know your IB score before the exam</h1>
-  <p style="font-size:17px;color:#374151;line-height:1.7;margin-bottom:24px">IBLens is a free AI IB essay grader that scores your Internal Assessment (IA), Extended Essay (EE), or Theory of Knowledge (TOK) essay against the official IB rubric in about 90 seconds. Get a criterion-by-criterion breakdown, a predicted band, the exact marks you are losing, and specific improvements. Your first analysis is free — no account required, no subscription. IBLens is calibrated to grade like a strict examiner — no inflated scores.</p>
+  <p style="font-size:17px;color:#374151;line-height:1.7;margin-bottom:24px">IBLens is a free AI IB essay grader that scores your Internal Assessment (IA), Extended Essay (EE), or Theory of Knowledge (TOK) essay against the official IB rubric in about 90 seconds. Get a criterion-by-criterion breakdown, a predicted band, the exact marks you are losing, and specific improvements. Your first analysis is free — no account required, no subscription. IBLens is instructed to mark strictly against the published criteria — no inflated scores.</p>
   <h2 style="font-size:22px;font-weight:700;margin:28px 0 12px">What IBLens grades</h2>
   <ul style="color:#374151;line-height:1.9;padding-left:20px;margin-bottom:24px">
     <li><strong>Coursework</strong> in 14 subjects (the IA in eleven, plus the externally assessed coursework in Visual Arts, Music and Film): Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film.</li>
@@ -283,8 +283,8 @@ export const staticContent: Record<string, string> = {
   <dl style="color:#374151;line-height:1.75">
     <dt style="font-weight:600;margin-top:16px">Can I paste my full 4,000-word EE?</dt>
     <dd style="margin-top:4px">Yes — IBLens accepts up to 30,000 characters. A 4,000-word EE is approximately 24,000 characters and will be fully analysed.</dd>
-    <dt style="font-weight:600;margin-top:16px">Does the grader work for all EE subjects?</dt>
-    <dd style="margin-top:4px">Yes — the EE rubric is the same across all subjects. Select your subject in the dropdown so the AI can give subject-specific feedback on knowledge and terminology.</dd>
+    <dt style="font-weight:600;margin-top:16px">Which EE subjects does the grader cover?</dt>
+    <dd style="margin-top:4px">The EE criteria are the same across subjects, and the selector offers the 14 subjects we hold rubrics for. Pick yours so the feedback on knowledge and terminology is subject-specific.</dd>
     <dt style="font-weight:600;margin-top:16px">Is the Extended Essay grader free?</dt>
     <dd style="margin-top:4px">Your first analysis is free (band range, weakest criterion with full feedback, top risks). The full report — exact score and every criterion with comments — unlocks for $9.99, or $24.99 for a pack of five.</dd>
   </dl>
@@ -1088,7 +1088,7 @@ export const staticContent: Record<string, string> = {
         <li><strong>Criterion E - Engagement (6 marks):</strong> Assessed via the RPPF (three written reflections). Rewards intellectual honesty about challenges and genuine personal investment.</li>
       </ul>
       <p>
-        A score of 28/34 or above typically corresponds to Grade A. The most common
+        A score of 27 out of 34 or above is a grade A. The most common
         reason students score Grade B instead of A is weak Critical Thinking (Criterion C):
         they summarise results without connecting them to published research or evaluating
         why their findings deviate from what the literature predicts.
@@ -1167,7 +1167,7 @@ export const staticContent: Record<string, string> = {
         <li><strong><a href="/essay/psychology-ia">IB Psychology IA</a></strong> — Introduction, Exploration, Analysis, Evaluation (22 marks)</li>
         <li><strong><a href="/essay/computer-science-ia">IB Computer Science IA</a></strong> — Planning, Solution overview, Development, Functionality and extensibility, Evaluation (34 marks)</li>
         <li><strong>IB English A IA (Literature / Language & Literature)</strong> — assessed against the subject-specific oral or written commentary rubric</li>
-        <li><strong>IB Visual Arts IA, Music IA, Film IA</strong> — assessed against subject-specific criteria</li>
+        <li><strong>IB Visual Arts, Music and Film coursework (externally assessed)</strong> — assessed against subject-specific criteria</li>
       </ul>
 
       <p>
@@ -1186,7 +1186,7 @@ export const staticContent: Record<string, string> = {
       <h2>What You Get in the Grade Report</h2>
 
       <ul>
-        <li><strong>Predicted score and IB band</strong> — how your IA scores overall against the rubric, with the corresponding IB grade (1–7)</li>
+        <li><strong>Predicted score and IB band</strong> — how your IA scores overall against the rubric, with the mark range the draft currently sits in</li>
         <li><strong>Criterion breakdown</strong> — each criterion scored individually with an explanation of why you received that score</li>
         <li><strong>Risk areas</strong> — the specific parts of your IA that are losing marks and why</li>
         <li><strong>Leverage zones</strong> — criteria where a small improvement would gain the most marks</li>
@@ -1214,7 +1214,7 @@ export const staticContent: Record<string, string> = {
       <h2>How Accurate Is the AI Grade?</h2>
 
       <p>
-        The grader applies the official IB rubric criteria as written in IBO subject guides. It cannot perfectly predict what a human moderator will decide on boundary cases — no tool can. But it is reliable for identifying which criteria are underdeveloped, what the mark range is, and where to focus revision effort. Students consistently report that the AI flags the same issues their teachers later point out.
+        The grader applies the official IB rubric criteria as written in IBO subject guides. It cannot perfectly predict what a human moderator will decide on boundary cases — no tool can. But it is reliable for identifying which criteria are underdeveloped, what the mark range is, and where to focus revision effort. The point of running it before your supervisor sees the draft is to spend that one round of comments on substance.
       </p>
 
       <p>
@@ -4765,7 +4765,7 @@ export const staticContent: Record<string, string> = {
       <ul>
         <li>An E grade in either TOK or EE results in automatic Diploma failure regardless of your total points</li>
         <li>To get the maximum 3 bonus points, you need at least an A in one component and a B in the other</li>
-        <li>The most common outcome (B/B or B/C) gives 2 or 1 bonus points</li>
+        <li>The most common outcomes, B/B and B/C, both give 2 bonus points; a single point requires a D in one component</li>
         <li>These bonus points can be the difference between a 42 and a 45, or between meeting and missing a university offer</li>
       </ul>
 

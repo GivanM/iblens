@@ -215,7 +215,11 @@ export function registerLemonsqueezyWebhook(app: Express) {
             const attrs: any = (body as any)?.data?.attributes || {};
             const buyerEmail = String(attrs.user_email || attrs.customer_email || "").trim();
             const variantName = String(attrs.first_order_item?.variant_name || attrs.product_name || "").toLowerCase();
-            const guessed = /10/.test(variantName) ? 10 : /5|five/.test(variantName) ? 5 : 1;
+            // Match the pack wording, not any digit in the name: "University
+            // Strategy Report" and a price string both contain digits.
+            const guessed = /\b10[\s-]*pack\b|\bpack of 10\b/.test(variantName) ? 10
+              : /\b5[\s-]*pack\b|\bpack of (5|five)\b/.test(variantName) ? 5
+              : 1;
             if (buyerEmail) {
               try {
                 // The same delivery can arrive twice; the ledger remembers this one.
@@ -286,9 +290,12 @@ export function registerLemonsqueezyWebhook(app: Express) {
           // Only a guest needs credits on a device. A signed-in buyer has an
           // account that holds them, and moving them to a browser id took the
           // whole purchase away from every authenticated path.
+          // Two separate things. Opening the report the buyer is looking at applies
+          // to everyone. Parking the rest of a pack on the device applies only to
+          // someone who has no account to park it on.
           const unlockFp = String(customData.unlock_fp || "");
           const buyerIsGuest = await isGuestAccount(order.userId).catch(() => false);
-          if (unlockFp && buyerIsGuest && credits.essay > 0) {
+          if (unlockFp && credits.essay > 0) {
             try {
               const unlockKind = String(customData.unlock_kind || "essay");
               const rec = unlockKind === "ucas"
@@ -302,7 +309,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
               // to the guest account a moment ago, and leaving both in place handed
               // out a pack twice over, so the account side is taken back.
               const spentNow = rec && rec.resultJson && !(rec as any).unlocked ? 1 : 0;
-              const toDevice = credits.essay - spentNow;
+              const toDevice = buyerIsGuest ? credits.essay - spentNow : 0;
               if (toDevice > 0) {
                 await addDeviceCredits(unlockFp, toDevice);
                 await setOrderDeviceCredits(order.id, toDevice);

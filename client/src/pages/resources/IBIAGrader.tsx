@@ -39,7 +39,7 @@ export default function IBIAGrader() {
         <li><strong><Link href="/essay/psychology-ia">IB Psychology IA</Link></strong>, Introduction, Exploration, Analysis, Evaluation (22 marks)</li>
         <li><strong><Link href="/essay/computer-science-ia">IB Computer Science IA</Link></strong>, Planning, Solution overview, Development, Functionality and extensibility, Evaluation (34 marks)</li>
         <li><strong>IB English A IA (Literature / Language & Literature)</strong>, assessed against the subject-specific oral or written commentary rubric</li>
-        <li><strong>IB Visual Arts IA, Music IA, Film IA</strong>, assessed against subject-specific criteria</li>
+        <li><strong>IB Visual Arts, Music and Film coursework (externally assessed)</strong>, assessed against subject-specific criteria</li>
       </ul>
 
       <p>
@@ -58,7 +58,7 @@ export default function IBIAGrader() {
       <h2>What You Get in the Grade Report</h2>
 
       <ul>
-        <li><strong>Predicted score and IB band</strong>, how your IA scores overall against the rubric, with the corresponding IB grade (1–7)</li>
+        <li><strong>Predicted score and IB band</strong>, how your IA scores overall against the rubric, with the mark range the draft currently sits in</li>
         <li><strong>Criterion breakdown</strong>, each criterion scored individually with an explanation of why you received that score</li>
         <li><strong>Risk areas</strong>, the specific parts of your IA that are losing marks and why</li>
         <li><strong>Leverage zones</strong>, criteria where a small improvement would gain the most marks</li>
@@ -86,7 +86,7 @@ export default function IBIAGrader() {
       <h2>How Accurate Is the AI Grade?</h2>
 
       <p>
-        The grader applies the official IB rubric criteria as written in IBO subject guides. It cannot perfectly predict what a human moderator will decide on boundary cases, no tool can. But it is reliable for identifying which criteria are underdeveloped, what the mark range is, and where to focus revision effort. Students consistently report that the AI flags the same issues their teachers later point out.
+        The grader applies the official IB rubric criteria as written in IBO subject guides. It cannot perfectly predict what a human moderator will decide on boundary cases, no tool can. But it is reliable for identifying which criteria are underdeveloped, what the mark range is, and where to focus revision effort. The point of running it before your supervisor sees the draft is to spend that one round of comments on substance.
       </p>
 
       <p>

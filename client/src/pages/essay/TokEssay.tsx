@@ -6,7 +6,7 @@ const config: SubjectConfig = {
   keyword: "IB TOK Essay",
   metaTitle: "IB TOK Essay Grader, Free AI Feedback on Theory of Knowledge | IBLens",
   metaDescription:
-    "AI feedback on your IB Theory of Knowledge essay. Knowledge claims, counter-claims, Areas of Knowledge, all scored against the official IB TOK criteria. Free first check.",
+    "AI feedback on your IB Theory of Knowledge essay. Knowledge claims, counter-claims and areas of knowledge, read against the single holistic TOK scale. Free first check.",
   canonicalPath: "/essay/tok-essay",
   heroHeadline: "Is your TOK essay actually answering the prescribed title?",
   heroSubline:

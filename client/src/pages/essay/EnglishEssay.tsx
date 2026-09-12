@@ -6,11 +6,11 @@ const config: SubjectConfig = {
   keyword: "IB English essay",
   metaTitle: "IB English IA & Essay Grader, Free AI Feedback | IBLens",
   metaDescription:
-    "AI feedback on IB English Language & Literature essays and HL essays. Criterion-by-criterion scoring on knowledge, analysis, and language. First analysis free.",
+    "AI feedback on the IB English A Individual Oral, marked out of 40 against the four published criteria. The HL essay is a separate component and is not covered. First analysis free.",
   canonicalPath: "/essay/english-essay",
   heroHeadline: "Get your IB English essay graded in about 90 seconds",
   heroSubline:
-    "Paste your IB English Language & Literature essay or HL essay and receive criterion-level feedback in about 90 seconds, free, no account required.",
+    "Paste your IB English A Individual Oral commentary and receive criterion-level feedback in about 90 seconds, free, no account required."
   criteria: [
     { name: "Criterion A: Knowledge & Understanding", max: 5, sampleScore: 3 },
     { name: "Criterion B: Analysis & Evaluation", max: 5, sampleScore: 3 },

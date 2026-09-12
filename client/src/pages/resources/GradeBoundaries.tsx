@@ -214,7 +214,7 @@ export default function GradeBoundaries() {
       <ul>
         <li>An E grade in either TOK or EE results in automatic Diploma failure regardless of your total points</li>
         <li>To get the maximum 3 bonus points, you need at least an A in one component and a B in the other</li>
-        <li>The most common outcome (B/B or B/C) gives 2 or 1 bonus points</li>
+        <li>The most common outcomes, B/B and B/C, both give 2 bonus points; a single point requires a D in one component</li>
         <li>These bonus points can be the difference between a 42 and a 45, or between meeting and missing a university offer</li>
       </ul>
 

@@ -27,6 +27,7 @@ import {
   getLatestAnonymousUcas,
   getDeviceCredits,
   takeAllDeviceCredits,
+  adoptDeviceReports,
   grantCreditsViaLedger,
   consumeDeviceCredit,
   addDeviceCredits,
@@ -432,7 +433,7 @@ const essayRouter = router({
 
       if (!paidCredit) {
         const usage = await canAnonymousAnalyze(input.clientFingerprint, "ucas");
-        if (!usage.allowed && input.spendDeviceCredit === true) {
+        if (input.spendDeviceCredit === true) {
           paidByDevice = await consumeDeviceCredit(input.clientFingerprint);
         }
         if (!usage.allowed && !paidByDevice) {
@@ -527,6 +528,8 @@ const essayRouter = router({
       reflections: z.string().max(8000).optional(),
       examSession: z.enum(["nov2026", "may2027"]).optional(),
       answers: z.object({ q1: z.string(), q2: z.string(), q3: z.string() }).optional(),
+      /** The course as it stands now, in case the applicant changed it. */
+      course: z.string().max(120).optional(),
     }))
     .mutation(async ({ input }) => {
       const gate = await consumeAnonymousRerun(input.fingerprint, input.answers ? "ucas" : "essay");
@@ -541,7 +544,7 @@ const essayRouter = router({
         if (rec.essayType === "UCAS") {
           if (!input.answers) throw new Error("Paste your revised answers to re-check them.");
           mechanics = checkUcasMechanics(input.answers);
-          const course = String(rec.subject || "your course");
+          const course = (input.course || String(rec.subject || "your course")).trim();
           // Keep the standard the first review was written against.
           const level = ((rec.resultJson as any)?._universityType === "competitive" ? "competitive" : "typical") as "typical" | "competitive";
           systemPrompt = buildUcasSystemPrompt(course, level);
@@ -613,12 +616,15 @@ const essayRouter = router({
   claimDeviceCredits: protectedProcedure
     .input(z.object({ fingerprint: z.string().min(1) }))
     .mutation(async ({ ctx, input }) => {
+      // Reports first: they are what was actually bought, and they used to stay
+      // in one browser for ever.
+      const adopted = await adoptDeviceReports(input.fingerprint, ctx.user.id).catch(() => 0);
       const credits = await getDeviceCredits(input.fingerprint);
-      if (credits <= 0) return { moved: 0 };
-      const taken = await takeAllDeviceCredits(input.fingerprint);
-      if (taken <= 0) return { moved: 0 };
+      if (credits <= 0) return { moved: 0, adopted };
+      const taken = await takeAllDeviceCredits(input.fingerprint, ctx.user.id);
+      if (taken <= 0) return { moved: 0, adopted };
       await grantCreditsViaLedger(ctx.user.id, taken, 0, `device-claim:${input.fingerprint.slice(0, 8)}`);
-      return { moved: taken };
+      return { moved: taken, adopted };
     }),
 
   /** Reports this device has already paid for and not yet spent. */
@@ -801,7 +807,9 @@ const essayRouter = router({
       // Take the free slot or the credit before the model runs, and give it back
       // if nothing comes out. Checking first and charging afterwards let two tabs
       // run two free analyses, the same race the anonymous path had.
-      await consumeEssayCredit(ctx.user.id);
+      // What was actually taken, not what we predicted would be taken: the free
+      // slot can be gone by now, and giving back the wrong one loses a credit.
+      const consumed = await consumeEssayCredit(ctx.user.id);
 
       try {
         const startedAt = Date.now();
@@ -850,7 +858,7 @@ const essayRouter = router({
       } catch (error: any) {
         console.error("[Essay Analysis] Error:", error);
         // Nothing was produced, so the free slot or credit comes back.
-        await refundEssayConsumption(ctx.user.id, usage.isFree === true).catch(() => {});
+        await refundEssayConsumption(ctx.user.id, consumed === "free").catch(() => {});
         throw new Error(error.message || "Analysis failed. Please try again.");
       }
     }),
@@ -873,6 +881,10 @@ const universityRouter = router({
       if (!usage.allowed) {
         throw new Error(usage.reason || "No university strategy credits remaining");
       }
+
+      // Charged before the model, given back if nothing comes out, like the essay
+      // path. Charging afterwards handed over the report and then asked for it.
+      await consumeUniversityCredit(ctx.user.id);
 
       const now = new Date();
       const currentDate = now.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
@@ -940,11 +952,10 @@ Respond with this exact JSON structure:
           unlocked: true,
         });
 
-        await consumeUniversityCredit(ctx.user.id);
-
         return { id: analysis.id, result };
       } catch (error: any) {
         console.error("[University Strategy] Error:", error);
+        await grantCreditsViaLedger(ctx.user.id, 0, 1, "refund:university-failed").catch(() => {});
         throw new Error(error.message || "Strategy generation failed. Please try again.");
       }
     }),

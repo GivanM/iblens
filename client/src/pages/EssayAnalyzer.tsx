@@ -316,7 +316,6 @@ export default function EssayAnalyzer() {
     { enabled: !isAuthenticated }
   );
   const [paidRunUnlocked, setPaidRunUnlocked] = useState(false);
-  const [rerunIntent, setRerunIntent] = useState(false);
   const anonUnlocked = !isAuthenticated && (anonReportQ.data?.unlocked === true || paidRunUnlocked);
   const deviceCreditsQ = trpc.essay.deviceCredits.useQuery(
     { fingerprint: anonFp },
@@ -378,7 +377,8 @@ export default function EssayAnalyzer() {
   }, [isAnalyzing]);
   const analyzingLabel = ANALYZING_STEPS[Math.min(analyzingStep, ANALYZING_STEPS.length - 1)];
 
-  const handleAnalyze = () => {
+  type RunMode = "free" | "paid" | "recheck";
+  const handleAnalyze = (mode: RunMode = "free") => {
     if (essayText.length < 300) {
       toast.error("Paste at least 300 characters, roughly 50 words, or there is nothing to mark.");
       return;
@@ -412,11 +412,10 @@ export default function EssayAnalyzer() {
         examSession,
       });
     } else {
-      // A credit on this device pays for a new report, which is not the same as a
-      // re-check of the old one. Someone holding both gets asked which they meant,
-      // because spending a credit on what should have been free is the worse
-      // mistake of the two.
-      if (anonUnlocked && (deviceCredits === 0 || rerunIntent)) {
+      // Which button was pressed decides this. Reading it from state gave the
+      // handler the value from the previous render, so the re-check button spent
+      // a credit on its first click.
+      if (anonUnlocked && (deviceCredits === 0 || mode === "recheck")) {
         rerunAnonMutation.mutate({
           fingerprint: anonFp,
           essayText,
@@ -431,8 +430,9 @@ export default function EssayAnalyzer() {
       }
       const anonParams = getApiEssayParams(essayType, subject);
       anonAnalyzeMutation.mutate({
-        // Only the button that says it costs a credit spends one.
-        spendDeviceCredit: deviceCredits > 0,
+        // Only the button that says it costs a credit spends one. The free button
+        // sitting next to it must never charge.
+        spendDeviceCredit: mode === "paid" && deviceCredits > 0,
         essayType: anonParams.essayType,
         subject: anonParams.subject,
         researchQuestion: researchQuestion || undefined,
@@ -729,7 +729,7 @@ export default function EssayAnalyzer() {
           {!isAuthenticated && canAnonAnalyze && !anonUnlocked && (
             <Button
               className="w-full h-11"
-              onClick={handleAnalyze}
+              onClick={() => handleAnalyze("free")}
               disabled={isAnalyzing}
             >
               {isAnalyzing ? (
@@ -748,7 +748,7 @@ export default function EssayAnalyzer() {
 
           {/* Guest holding credits bought without an account */}
           {!isAuthenticated && deviceCredits > 0 && (
-            <Button className="w-full h-11" onClick={() => { setRerunIntent(false); handleAnalyze(); }} disabled={isAnalyzing}>
+            <Button className="w-full h-11" onClick={() => handleAnalyze("paid")} disabled={isAnalyzing}>
               {isAnalyzing ? (
                 <><Loader2 className="w-4 h-4 mr-2 animate-spin" />{analyzingLabel}</>
               ) : (
@@ -761,7 +761,7 @@ export default function EssayAnalyzer() {
           {anonUnlocked && (anonRerunsLeft ?? anonReportQ.data?.rerunsLeft ?? 2) > 0 && (
             <Button
               className="w-full h-11"
-              onClick={() => { setRerunIntent(true); handleAnalyze(); }}
+              onClick={() => handleAnalyze("recheck")}
               disabled={rerunAnonMutation.isPending}
             >
               {rerunAnonMutation.isPending ? (
@@ -798,7 +798,7 @@ export default function EssayAnalyzer() {
             <>
               <Button
                 className="w-full h-11"
-                onClick={handleAnalyze}
+                onClick={() => handleAnalyze("free")}
                 disabled={isAnalyzing}
               >
                 {isAnalyzing ? (

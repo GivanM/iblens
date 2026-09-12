@@ -69,7 +69,7 @@ export default function IBBiologyExtendedEssay() {
         <li><strong>Criterion E - Engagement (6 marks):</strong> Assessed via the RPPF (three written reflections). Rewards intellectual honesty about challenges and genuine personal investment.</li>
       </ul>
       <p>
-        A score of 28/34 or above typically corresponds to Grade A. The most common
+        A score of 27 out of 34 or above is a grade A. The most common
         reason students score Grade B instead of A is weak Critical Thinking (Criterion C):
         they summarise results without connecting them to published research or evaluating
         why their findings deviate from what the literature predicts.

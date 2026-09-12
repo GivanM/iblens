@@ -179,7 +179,7 @@ export async function canUserAnalyzeUniversity(userId: number): Promise<{ allowe
   return { allowed: false, reason: "No university strategy credits. Purchase to use this feature." };
 }
 
-export async function consumeEssayCredit(userId: number) {
+export async function consumeEssayCredit(userId: number): Promise<"free" | "credit"> {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
 
@@ -191,7 +191,7 @@ export async function consumeEssayCredit(userId: number) {
     await db.update(users)
       .set({ freeEssayUsed: true })
       .where(eq(users.id, userId));
-    return;
+    return "free";
   }
 
   if (credits.essayCredits <= 0) {
@@ -199,8 +199,9 @@ export async function consumeEssayCredit(userId: number) {
   }
 
   await db.update(users)
-    .set({ essayCredits: sql`${users.essayCredits} - 1` })
+    .set({ essayCredits: sql`GREATEST(${users.essayCredits} - 1, 0)` })
     .where(eq(users.id, userId));
+  return "credit";
 }
 
 export async function consumeUniversityCredit(userId: number) {
@@ -213,7 +214,7 @@ export async function consumeUniversityCredit(userId: number) {
   }
 
   await db.update(users)
-    .set({ universityCredits: sql`${users.universityCredits} - 1` })
+    .set({ universityCredits: sql`GREATEST(${users.universityCredits} - 1, 0)` })
     .where(eq(users.id, userId));
 }
 
@@ -672,7 +673,7 @@ export async function consumePaidEssayCredit(userId: number) {
     throw new Error("Unlocking the full report requires a paid credit. Buy one for $9.99.");
   }
   await db.update(users)
-    .set({ essayCredits: sql`${users.essayCredits} - 1` })
+    .set({ essayCredits: sql`GREATEST(${users.essayCredits} - 1, 0)` })
     .where(eq(users.id, userId));
 }
 
@@ -778,8 +779,11 @@ export async function deleteAnonymousAnalysis(id: number) {
 export async function addDeviceCredits(fingerprint: string, amount: number) {
   const db = await getDb();
   if (!db || amount <= 0) return;
-  await db.insert(deviceCredits).values({ fingerprint, credits: amount })
-    .onDuplicateKeyUpdate({ set: { credits: sql`${deviceCredits.credits} + ${amount}` } });
+  await db.insert(deviceCredits).values({ fingerprint, credits: amount, claimedAmount: amount })
+    .onDuplicateKeyUpdate({ set: {
+      credits: sql`${deviceCredits.credits} + ${amount}`,
+      claimedAmount: sql`${deviceCredits.claimedAmount} + ${amount}`,
+    } });
   console.log(`[DeviceCredits] +${amount} for ${fingerprint.slice(0, 8)}...`);
 }
 
@@ -819,6 +823,40 @@ export async function debitAccountCredits(userId: number, amount: number) {
     .where(eq(users.id, userId));
 }
 
+/**
+ * Copy reports bought on a device into the account that just signed in. Without
+ * this, everything a guest paid for lived only in that browser's localStorage.
+ */
+export async function adoptDeviceReports(fingerprint: string, userId: number): Promise<number> {
+  const db = await getDb();
+  if (!db) return 0;
+  const rows = await db.select().from(anonymousAnalyses)
+    .where(and(eq(anonymousAnalyses.fingerprint, fingerprint), eq(anonymousAnalyses.unlocked, true)));
+  let copied = 0;
+  for (const rec of rows as any[]) {
+    const existing = await db.select({ id: analyses.id }).from(analyses)
+      .where(and(eq(analyses.userId, userId), eq(analyses.resultJson, rec.resultJson as any))).limit(1);
+    if (existing.length > 0) continue;
+    await db.insert(analyses).values({
+      userId,
+      type: "essay",
+      essayType: rec.essayType,
+      subject: rec.subject,
+      researchQuestion: rec.researchQuestion,
+      resultJson: rec.resultJson,
+      predictedGrade: rec.predictedGrade,
+      unlocked: true,
+      unlockedAt: rec.unlockedAt ?? new Date(),
+      rerunsUsed: rec.rerunsUsed ?? 0,
+      examSession: rec.examSession ?? null,
+      unlockOrderId: rec.unlockOrderId ?? null,
+    });
+    copied++;
+  }
+  if (copied > 0) console.log(`[Adopt] ${copied} paid report(s) moved to account ${userId}`);
+  return copied;
+}
+
 /** Give back what a failed analysis consumed: the free slot, or one credit. */
 export async function refundEssayConsumption(userId: number, wasFree: boolean) {
   const db = await getDb();
@@ -841,25 +879,46 @@ export async function ledgerHasEntry(reason: string, orderId: string): Promise<b
   return rows.length > 0;
 }
 
-/** Empty the device wallet and say how much was in it. */
-export async function takeAllDeviceCredits(fingerprint: string): Promise<number> {
+/**
+ * Empty the device wallet and say how much was in it, atomically: the read and
+ * the zeroing used to be two statements, so two tabs could claim the same
+ * credits twice. The claimer is remembered, so a later refund knows where the
+ * credits went.
+ */
+export async function takeAllDeviceCredits(fingerprint: string, claimedBy: number): Promise<number> {
   const db = await getDb();
   if (!db) return 0;
+  const res: any = await db.update(deviceCredits)
+    .set({ credits: 0, claimedByUserId: claimedBy })
+    .where(and(eq(deviceCredits.fingerprint, fingerprint), sql`${deviceCredits.credits} > 0`));
+  const changed = Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0);
+  if (changed === 0) return 0;
   const rows = await db.select().from(deviceCredits).where(eq(deviceCredits.fingerprint, fingerprint)).limit(1);
-  const amount = (rows[0] as any)?.credits ?? 0;
-  if (amount <= 0) return 0;
-  await db.update(deviceCredits).set({ credits: 0 }).where(eq(deviceCredits.fingerprint, fingerprint));
-  return amount;
+  return (rows[0] as any)?.claimedAmount ?? 0;
 }
 
 /** Take back device credits that a refunded purchase had granted. */
 export async function removeDeviceCredits(fingerprint: string, amount: number) {
   const db = await getDb();
   if (!db || amount <= 0) return;
-  await db.update(deviceCredits)
-    .set({ credits: sql`GREATEST(${deviceCredits.credits} - ${amount}, 0)` })
-    .where(eq(deviceCredits.fingerprint, fingerprint));
-  console.log(`[DeviceCredits] -${amount} for ${fingerprint.slice(0, 8)} after refund`);
+  const rows = await db.select().from(deviceCredits).where(eq(deviceCredits.fingerprint, fingerprint)).limit(1);
+  const rec: any = rows[0];
+  const onDevice = rec?.credits ?? 0;
+  const fromDevice = Math.min(onDevice, amount);
+  if (fromDevice > 0) {
+    await db.update(deviceCredits)
+      .set({ credits: sql`GREATEST(${deviceCredits.credits} - ${fromDevice}, 0)` })
+      .where(eq(deviceCredits.fingerprint, fingerprint));
+  }
+  // If the owner signed in and took them, the refund follows them to the account.
+  const remainder = amount - fromDevice;
+  if (remainder > 0 && rec?.claimedByUserId) {
+    await db.update(users)
+      .set({ essayCredits: sql`GREATEST(${users.essayCredits} - ${remainder}, 0)` })
+      .where(eq(users.id, rec.claimedByUserId));
+    console.log(`[DeviceCredits] -${remainder} taken back from account ${rec.claimedByUserId} after refund`);
+  }
+  console.log(`[DeviceCredits] -${fromDevice} for ${fingerprint.slice(0, 8)} after refund`);
 }
 
 /** Close a report again after its payment was refunded. */
@@ -937,15 +996,20 @@ export async function createRerunAnalysis(prev: any, resultJson: any, predictedG
     // number made every re-check hand out two more.
     rerunsUsed: (prev.rerunsUsed ?? 0) + 1,
     examSession: prev.examSession ?? null,
+    // The re-check belongs to the purchase that opened the original, so a refund
+    // closes the child as well as the parent.
+    unlockOrderId: prev.unlockOrderId ?? null,
   }).$returningId();
   return row;
 }
 
 /** Paid unlock starts the free re-run window (14 days, 2 re-runs of the same draft). */
-export async function markAnalysisUnlocked(id: number) {
+export async function markAnalysisUnlocked(id: number, orderId?: string) {
   const db = await getDb();
   if (!db) return;
-  await db.update(analyses).set({ unlocked: true, unlockedAt: new Date() }).where(eq(analyses.id, id));
+  await db.update(analyses)
+    .set({ unlocked: true, unlockedAt: new Date(), ...(orderId ? { unlockOrderId: orderId } : {}) })
+    .where(eq(analyses.id, id));
 }
 
 export async function consumeAnalysisRerun(id: number, userId: number) {

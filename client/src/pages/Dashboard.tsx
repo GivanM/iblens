@@ -77,28 +77,6 @@ export default function Dashboard() {
     setModalOpen(true);
   };
 
-  if (authLoading) {
-    return (
-      <div className="min-h-[60vh] flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
-      </div>
-    );
-  }
-
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-[60vh] flex items-center justify-center">
-        <Card className="max-w-md w-full">
-          <CardContent className="p-8 text-center">
-            <h2 style={SERIF} className="text-xl font-bold mb-3">Sign in to access your dashboard</h2>
-            <p className="text-muted-foreground mb-6 text-sm">View your credits, analysis history, and purchase more analyses.</p>
-            <Button asChild><a href={getLoginUrl()}>Sign In</a></Button>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
-
   const deleteAnalysis = trpc.dashboard.deleteAnalysis.useMutation({
     onSuccess: () => { toast.success("Report deleted."); historyQuery.refetch(); },
     onError: (e: any) => toast.error(e.message || "Could not delete that report"),
@@ -126,6 +104,29 @@ export default function Dashboard() {
     }
     setPendingPurchase(null);
   }, [pendingPurchase, ordersQuery.data, user]);
+
+  if (authLoading) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <Card className="max-w-md w-full">
+          <CardContent className="p-8 text-center">
+            <h2 style={SERIF} className="text-xl font-bold mb-3">Sign in to access your dashboard</h2>
+            <p className="text-muted-foreground mb-6 text-sm">View your credits, analysis history, and purchase more analyses.</p>
+            <Button asChild><a href={getLoginUrl()}>Sign In</a></Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   const history = historyQuery.data || [];
   const paymentsList = paymentsQuery.data || [];
   const orders = ordersQuery.data || [];

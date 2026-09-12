@@ -9,6 +9,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Link, useLocation } from "wouter";
+import { useEffect } from "react";
+import { trpc } from "@/lib/trpc";
+import { getAnonFingerprint } from "@/lib/fingerprint";
+import { toast } from "sonner";
 import { FileText, GraduationCap, LayoutDashboard, LogOut, User, Menu, X, DollarSign, BookOpen } from "lucide-react";
 import { useState } from "react";
 
@@ -32,6 +36,23 @@ function NavLink({ href, children, active }: { href: string; children: React.Rea
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { user, isAuthenticated, logout } = useAuth();
   const [location] = useLocation();
+
+  // Anything bought on this device belongs to the person who just signed in,
+  // wherever in the site they did it. This used to happen only on /essay.
+  const claim = trpc.essay.claimDeviceCredits.useMutation({
+    onSuccess: (d: any) => {
+      if (d.moved > 0 || d.adopted > 0) {
+        const parts = [];
+        if (d.moved > 0) parts.push(`${d.moved} credit${d.moved === 1 ? "" : "s"}`);
+        if (d.adopted > 0) parts.push(`${d.adopted} report${d.adopted === 1 ? "" : "s"}`);
+        toast.success(`${parts.join(" and ")} you bought on this device are now on your account.`);
+      }
+    },
+  });
+  useEffect(() => {
+    if (!isAuthenticated || claim.isPending || claim.isSuccess) return;
+    claim.mutate({ fingerprint: getAnonFingerprint() });
+  }, [isAuthenticated]);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const isHome = location === "/";

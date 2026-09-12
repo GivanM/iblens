@@ -70,7 +70,7 @@ export default function SampleReports() {
   return (
     <ResourceArticle
       title="Sample IBLens Reports, Three Essays, Three Honest Grades | IBLens"
-      description="See real, unedited IBLens output: the same TOK title answered at three quality levels, graded 2/10, 4/10 and 5/10. A grader that gives everything 6.5 is useless, this is what calibrated strictness looks like."
+      description="See real, unedited IBLens output: the same TOK-style title answered at three quality levels, graded 2/10, 4/10 and 5/10. A grader that gives everything 6.5 is useless, and these three show the spread strict marking produces."
       canonical="/resources/sample-reports"
       datePublished="2026-07-03"
       dateModified="2026-07-03"
@@ -127,9 +127,9 @@ export default function SampleReports() {
       <h2>Why the spread matters</h2>
       <p>
         The weak essay scored 2, the developing one 4, the strong one 5, each landing in a different official band (Rudimentary, Basic, Satisfactory). That spread is the whole
-        point: feedback is only useful if the grade moves when the quality moves. IBLens is calibrated
-        to read like a strict examiner, if it says 7, we mean it, and if it says 3, you found out
-        before an examiner did.
+        point: feedback is only useful if the grade moves when the quality moves. IBLens is instructed to
+        mark strictly rather than kindly, so a low number is the useful outcome: you found out before an
+        examiner did.
       </p>
 
       <p>
