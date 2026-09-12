@@ -314,7 +314,7 @@ const essayRouter = router({
   rerunAnalysis: protectedProcedure
     .input(z.object({
       analysisId: z.number(),
-      essayText: z.string().min(300, "Paste at least 300 characters, roughly 50 words, or there is nothing to mark."),
+      essayText: z.string().min(300, "Paste at least 300 characters, roughly 50 words, or there is nothing to mark.").max(120000, "That is longer than any IB coursework. Paste the work itself, up to about 20,000 words."),
       reflections: z.string().max(8000).optional(),
       examSession: z.enum(["nov2026", "may2027"]).optional(),
     }))
@@ -491,7 +491,7 @@ const essayRouter = router({
   rerunAnonymous: publicProcedure
     .input(z.object({
       fingerprint: z.string().min(1),
-      essayText: z.string().min(300).optional(),
+      essayText: z.string().min(300).max(120000).optional(),
       reflections: z.string().max(8000).optional(),
       examSession: z.enum(["nov2026", "may2027"]).optional(),
       answers: z.object({ q1: z.string(), q2: z.string(), q3: z.string() }).optional(),
@@ -613,7 +613,7 @@ const essayRouter = router({
       essayType: z.enum(ESSAY_TYPES),
       subject: z.string().min(1),
       researchQuestion: z.string().optional(),
-      essayText: z.string().min(300, "Paste at least 300 characters, roughly 50 words, or there is nothing to mark."),
+      essayText: z.string().min(300, "Paste at least 300 characters, roughly 50 words, or there is nothing to mark.").max(120000, "That is longer than any IB coursework. Paste the work itself, up to about 20,000 words."),
       reflections: z.string().max(8000).optional(),
       clientFingerprint: z.string().min(1),
       examSession: z.enum(["nov2026", "may2027"]).optional(),
@@ -721,7 +721,7 @@ const essayRouter = router({
       essayType: z.enum(ESSAY_TYPES),
       subject: z.string().min(1),
       researchQuestion: z.string().optional(),
-      essayText: z.string().min(300, "Paste at least 300 characters, roughly 50 words, or there is nothing to mark."),
+      essayText: z.string().min(300, "Paste at least 300 characters, roughly 50 words, or there is nothing to mark.").max(120000, "That is longer than any IB coursework. Paste the work itself, up to about 20,000 words."),
       reflections: z.string().max(8000).optional(),
       examSession: z.enum(["nov2026", "may2027"]).optional(),
     }))

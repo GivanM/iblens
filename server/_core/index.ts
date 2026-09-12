@@ -37,12 +37,39 @@ async function startServer() {
   // Payment webhooks must be registered BEFORE body parsers
   registerLemonsqueezyWebhook(app);
   // Configure body parser with larger size limit for file uploads
-  app.use(express.json({ limit: "50mb" }));
-  app.use(express.urlencoded({ limit: "50mb", extended: true }));
+  // Nothing here accepts a file. The largest legitimate body is an essay plus a
+  // reflective statement, which is well under a megabyte.
+  app.use(express.json({ limit: "2mb" }));
+  app.use(express.urlencoded({ limit: "2mb", extended: true }));
   // Serve uploaded files
   app.use("/uploads", express.static(path.resolve(ENV.uploadsDir)));
   // OAuth callback under /api/oauth/callback
   registerOAuthRoutes(app);
+  // A cheap ceiling on the expensive procedures. The free-run gate is a browser
+  // id, so anyone willing to rotate it could spend our model budget in a loop.
+  // This is per address and deliberately generous for a school behind one NAT.
+  const analysisHits = new Map<string, number[]>();
+  app.use("/api/trpc", (req, res, next) => {
+    const path = String(req.path || "");
+    if (!/analyze|rerun/i.test(path)) return next();
+    const ip = String(req.headers["x-forwarded-for"] || req.socket.remoteAddress || "unknown").split(",")[0].trim();
+    const now = Date.now();
+    const windowMs = 60 * 60 * 1000;
+    const hits = (analysisHits.get(ip) || []).filter((t) => now - t < windowMs);
+    if (hits.length >= 30) {
+      res.status(429).json({ error: { message: "Too many analyses from this network in the last hour. Try again later." } });
+      return;
+    }
+    hits.push(now);
+    analysisHits.set(ip, hits);
+    if (analysisHits.size > 5000) {
+      analysisHits.forEach((v: number[], k: string) => {
+        if (v.every((t: number) => now - t >= windowMs)) analysisHits.delete(k);
+      });
+    }
+    next();
+  });
+
   // tRPC API
   app.use(
     "/api/trpc",
