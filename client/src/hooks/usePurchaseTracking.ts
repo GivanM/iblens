@@ -33,7 +33,7 @@ export function usePurchaseTracking() {
   );
   useEffect(() => {
     const d: any = status.data;
-    if (!orderId || !d?.paid) return;
+    if (!orderId || !d?.paid || d?.test) return;
     const key = `iblens_purchase_reported_${orderId}`;
     try {
       if (localStorage.getItem(key) === "1") return;

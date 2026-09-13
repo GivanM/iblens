@@ -544,7 +544,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
           // Best-effort email notification
           try {
             const user = await getUserById(order.userId);
-            if (user?.email) {
+            if (user?.email && !/@example\.(com|org|net)$/i.test(user.email)) {
               const userCredits = await getUserCredits(order.userId);
               await sendPaymentConfirmationEmail({
                 email: user.email,

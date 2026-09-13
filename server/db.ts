@@ -1,4 +1,4 @@
-import { eq, desc, sql, and, lt } from "drizzle-orm";
+import { eq, desc, sql, and, lt, inArray } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import mysql from "mysql2/promise";
 import { InsertUser, users, analyses, InsertAnalysis, payments, InsertPayment, anonymousAnalyses, InsertAnonymousAnalysis, orders, InsertOrder, webhookEvents, InsertWebhookEvent, deviceCredits, creditLedger, InsertCreditLedgerEntry, revokedSessions, creditLots } from "../drizzle/schema";
@@ -869,7 +869,10 @@ export async function consumeAnonymousRerun(fingerprint: string, kind: "essay" |
   // Counting the browser copy separately gave the buyer two more re-checks. UCAS reviews
   // are re-checked on the browser for everyone, so they stay here.
   if (kind === "essay") {
-    const copy = await db.select({ id: analyses.id }).from(analyses).where(and(eq(analyses.adoptedFromId, head.id), eq(analyses.unlocked, true))).limit(1);
+    // Any row of the chain may be the one copied into the account.
+    const chainRows = await db.select({ id: anonymousAnalyses.id }).from(anonymousAnalyses).where(eq(anonymousAnalyses.rerunOf, head.id));
+    const chainIds = [head.id, ...(chainRows as any[]).map((r) => r.id)];
+    const copy = await db.select({ id: analyses.id }).from(analyses).where(and(inArray(analyses.adoptedFromId, chainIds), eq(analyses.unlocked, true))).limit(1);
     if (copy.length > 0) return { ok: false as const, reason: "This report is in your account. Sign in and re-check it from your dashboard." };
   }
   const started = head.unlockedAt ? new Date(head.unlockedAt).getTime() : new Date(head.createdAt).getTime();
@@ -1103,6 +1106,15 @@ export async function getLatestAccountVersion(headId: number, userId: number) {
 }
 
 /** An account's copy of a device report, if the account has one. */
+/** Open a locked account copy and its re-check copies, for the purchase that paid for them. */
+export async function reopenAccountChain(copyId: number, orderId: string | null) {
+  const db = await getDb();
+  if (!db) return;
+  const opened = { unlocked: true, unlockedAt: new Date(), rerunsUsed: 0, ...(orderId ? { unlockOrderId: orderId } : {}) };
+  await db.update(analyses).set(opened).where(and(eq(analyses.id, copyId), eq(analyses.unlocked, false)));
+  await db.update(analyses).set({ unlocked: true, ...(orderId ? { unlockOrderId: orderId } : {}) }).where(and(eq(analyses.rerunOf, copyId), eq(analyses.unlocked, false)));
+}
+
 export async function findAccountCopyOf(userId: number, deviceRowId: number) {
   const db = await getDb();
   if (!db) return null;

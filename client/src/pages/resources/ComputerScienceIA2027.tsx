@@ -39,7 +39,7 @@ export default function ComputerScienceIA2027() {
       </table>
 
       <p>
-        Documentation is capped at 2,000 words (excluding code excerpts, comments and diagrams), accompanied by a video of up to 5 minutes. There is no client requirement: you no longer need to recruit a client and evidence your consultation with them.
+        Documentation is capped at 2,000 words (excluding code excerpts, comments and diagrams), accompanied by a video of up to 5 minutes and an appendix with the full source code: examiners are not required to read the appendix, but without the full source code the techniques in Criterion D cannot receive full marks. There is no client requirement: you no longer need to recruit a client and evidence your consultation with them.
       </p>
 
       <h2>What changed from the 34-mark rubric</h2>

@@ -57,7 +57,7 @@ export default function IAFeedbackGuide() {
       <h2>Teacher feedback and where AI fits</h2>
 
       <p>
-        Your teacher gives guidance during the IA process and, for most IAs, feedback on one draft (for the individual oral, on your outline and practice orals): use it for what only a subject expert can judge, such as whether your method is sound and your content accurate. What AI adds is a check against the criteria, but it is outside help, so check that your teacher and your school allow it before you use it. IBLens marks coursework drafts in 14 subjects against the criteria for your session. A range of totals and, usually, your weakest criterion are free, and the full criterion-by-criterion report is $9.99, with no subscription and two free re-checks.
+        Your teacher gives guidance during the IA process and, for most IAs, feedback on one draft (for the individual oral, on your outline and practice orals): use it for what only a subject expert can judge, such as whether your method is sound and your content accurate. What AI adds is a check against the criteria, but it is outside help, so check that your teacher and your school allow it before you use it. IBLens marks coursework drafts in 14 subjects against the criteria for your session. A range of totals and, for most drafts, your weakest criterion and the top risks are free, and the full criterion-by-criterion report is $9.99, with no subscription and two free re-checks.
       </p>
 
       <p>

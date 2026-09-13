@@ -15,9 +15,9 @@ export default function IBPhysicsIAExamples() {
         The IB Physics Internal Assessment is the scientific investigation, worth 20%
         of your final grade and marked on four criteria of 6 marks each. It can use
         laboratory work, fieldwork, a spreadsheet model, a database or a simulation. Physics IAs are
-        unforgiving on data quality: the criteria look for quantitative analysis,
-        uncertainties carried through the processing, and graphs that actually test the
-        relationship. A clever investigation with careless measurements can end up below
+        unforgiving on data quality: the criteria look for quantitative data processed
+        accurately and relevantly, an appropriate consideration of uncertainties, and a
+        conclusion consistent with that processing. A clever investigation with careless measurements can end up below
         a simpler one measured rigorously. This guide covers topics that tend to work and
         what the criteria ask for.
       </p>
@@ -25,7 +25,7 @@ export default function IBPhysicsIAExamples() {
       <h2>Marking criteria overview</h2>
       <ul>
         <li><strong>Research design (6 marks):</strong> A research question described within a specific and appropriate context, the methodological considerations explained (how the variables are measured, the range and repetition of measurements, how control variables are controlled, and safety, ethical and environmental issues), and a method described well enough to be reproduced.</li>
-        <li><strong>Data analysis (6 marks):</strong> Recording, processing and presenting data in ways relevant to the question, including uncertainties and appropriate graphs.</li>
+        <li><strong>Data analysis (6 marks):</strong> Recording and processing data clearly and precisely (following conventions for tables, graphs, units and significant figures) in ways relevant to the question, with an appropriate consideration of uncertainties.</li>
         <li><strong>Conclusion (6 marks):</strong> A conclusion justified by the analysis, answering the research question and compared with the accepted scientific context.</li>
         <li><strong>Evaluation (6 marks):</strong> The relative impact of specific methodological weaknesses or limitations explained, with realistic improvements relevant to them explained.</li>
       </ul>

@@ -57,7 +57,7 @@ export default function ExtendedEssayFeedback() {
       <h2>Where AI feedback fits</h2>
 
       <p>
-        An AI check is outside help. The EE guide says students must not receive assistance with any aspect of the research, writing or proofreading beyond that which is permitted through their supervisor, so ask your supervisor before you use IBLens or any other tool on your EE, and tell them if you do. If they agree, IBLens marks your EE against the criteria for your session (the 34-mark set or the new 30-mark May 2027 set), criterion by criterion. A range of totals and, usually, your weakest criterion are free, and the full report is $9.99 with no subscription. Using AI for feedback on your own work is a different thing from having AI write it: see our guide to <Link href="/resources/academic-integrity">AI feedback and IB academic integrity</Link> for where the line sits.
+        An AI check is outside help. The EE guide says students must not receive assistance with any aspect of the research, writing or proofreading beyond that which is permitted through their supervisor, so ask your supervisor before you use IBLens or any other tool on your EE, and tell them if you do. If they agree, IBLens marks your EE against the criteria for your session (the 34-mark set or the new 30-mark May 2027 set), criterion by criterion. A range of totals and, for most drafts, your weakest criterion and the top risks are free, and the full report is $9.99 with no subscription. Using AI for feedback on your own work is a different thing from having AI write it: see our guide to <Link href="/resources/academic-integrity">AI feedback and IB academic integrity</Link> for where the line sits.
       </p>
 
       <p>

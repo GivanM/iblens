@@ -21,7 +21,7 @@ export default function EssayCriteriaExplained() {
       </p>
 
       <p>
-        Understanding how criterion-based marking works is one of the most powerful things you can do to improve your IB grades. When you know exactly what examiners are looking for at each level, you can write strategically to demonstrate those qualities. This guide explains the system, shows you what distinguishes different performance levels, and gives you tools for self-assessment.
+        Knowing how criterion-based marking works shows you where to aim your revision. When you know exactly what examiners are looking for at each level, you can write strategically to demonstrate those qualities. This guide explains the system, shows you what distinguishes different performance levels, and gives you tools for self-assessment.
       </p>
 
       <h2>Why criterion-based marking exists</h2>

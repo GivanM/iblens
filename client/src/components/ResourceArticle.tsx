@@ -57,8 +57,7 @@ export function ResourceArticle({
           <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-10">
             <Link href="/" className="hover:text-primary transition-colors">Home</Link>
             <span>/</span>
-            {inResources && <Link href="/resources" className="hover:text-primary transition-colors">Resources</Link>}
-            <span>/</span>
+            {inResources && (<><Link href="/resources" className="hover:text-primary transition-colors">Resources</Link><span>/</span></>)}
             <span className="text-foreground font-medium truncate max-w-[200px]">
               {sentenceCase(name)}
             </span>

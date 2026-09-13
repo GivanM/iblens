@@ -11,7 +11,7 @@ export default function IBScoreCalculator() {
       datePublished="2026-06-06"
       dateModified="2026-09-13"
     >
-      <h1>IB score calculator & grade boundaries: the complete guide</h1>
+      <h1>IB score calculator and grade boundaries</h1>
       <h2>How IB scoring works: the 45-point system explained</h2>
       <p>Every IB diploma candidate takes six subjects, three or four at Higher Level and the rest at Standard Level. Each subject is graded on a scale of 1 to 7, giving a raw maximum of 42 subject points. The remaining 3 points come from the core: Theory of Knowledge (TOK) and the Extended Essay (EE) together award between 0 and 3 bonus points.</p>
       <p><strong>Maximum total: 6 subjects × 7 points = 42 + 3 bonus points = 45 points.</strong></p>

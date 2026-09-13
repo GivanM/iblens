@@ -114,17 +114,17 @@ export default function TokEssayChecklist() {
       <h2>Related resources</h2>
 
       <ul>
-        <li><Link href="/resources/tok-essay-structure">TOK Essay Structure: paragraph by paragraph</Link></li>
-        <li><Link href="/resources/tok-essay-format">TOK Essay Format: word count and formatting rules</Link></li>
-        <li><Link href="/resources/tok-essay-guide">TOK Essay Guide: prescribed titles and knowledge claims</Link></li>
+        <li><Link href="/resources/tok-essay-structure">TOK essay structure: paragraph by paragraph</Link></li>
+        <li><Link href="/resources/tok-essay-format">TOK essay format: word count and formatting rules</Link></li>
+        <li><Link href="/resources/tok-essay-guide">TOK essay guide: prescribed titles and knowledge claims</Link></li>
       </ul>
       <h2>More on TOK</h2>
 
       <ul>
-        <li><Link href="/resources/tok-essay-guide">TOK Essay Guide</Link></li>
-        <li><Link href="/resources/tok-essay-structure">TOK Essay Structure</Link></li>
-        <li><Link href="/resources/tok-essay-format">TOK Essay Format</Link></li>
-        <li><Link href="/resources/tok-exhibition-checklist">TOK Exhibition Checklist</Link></li>
+        <li><Link href="/resources/tok-essay-guide">TOK essay guide</Link></li>
+        <li><Link href="/resources/tok-essay-structure">TOK essay structure</Link></li>
+        <li><Link href="/resources/tok-essay-format">TOK essay format</Link></li>
+        <li><Link href="/resources/tok-exhibition-checklist">TOK exhibition checklist</Link></li>
       </ul>
 
     </ResourceArticle>

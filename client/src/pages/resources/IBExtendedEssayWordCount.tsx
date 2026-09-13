@@ -36,7 +36,7 @@ export default function IBExtendedEssayWordCount() {
       </p>
       <ul>
         <li><strong>The contents page</strong></li>
-        <li><strong>Headers</strong> (listed in the guide for May 2027 onwards)</li>
+        <li><strong>Headers</strong></li>
         <li><strong>Maps, charts, diagrams and annotated illustrations</strong></li>
         <li><strong>Tables</strong></li>
         <li><strong>Equations, formulas and calculations</strong></li>

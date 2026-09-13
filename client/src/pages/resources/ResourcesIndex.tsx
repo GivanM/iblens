@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { SEOHead } from "@/components/SEOHead";
 import { BookOpen, GraduationCap, FileText, BarChart3, Lightbulb, Cpu } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { sentenceCase } from "@shared/pageNames";
 
 const resources = [
   {
@@ -322,7 +323,7 @@ export default function ResourcesIndex() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <h2 className="text-lg font-semibold text-foreground mb-2 leading-tight">
-                            {resource.title}
+                            {sentenceCase(resource.title)}
                           </h2>
                           <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                             {resource.description}

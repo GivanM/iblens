@@ -21,7 +21,7 @@ export default function ExtendedEssayGuide() {
       </p>
 
       <p>
-        This guide covers everything you need to know about the Extended Essay: from choosing a research question to understanding how examiners apply the assessment criteria. Whether you are just starting your EE journey or revising a final draft, the information below will help you understand what examiners are looking for and how to maximise your score.
+        This guide covers everything you need to know about the Extended Essay: from choosing a research question to understanding how examiners apply the assessment criteria. Whether you are choosing a research question or revising a final draft, the information below will help you understand what examiners are looking for and how to maximise your score.
       </p>
 
       <h2>What is the IB Extended Essay?</h2>
@@ -37,7 +37,7 @@ export default function ExtendedEssayGuide() {
       <h2>Word count and timeline</h2>
 
       <p>
-        The maximum word count for the Extended Essay is <strong>4,000 words</strong>. This limit includes the introduction, body, conclusion, quotations, and any footnotes or endnotes that are not references. It does <em>not</em> include the contents page, headers (listed from May 2027), maps, charts, diagrams, annotated illustrations, tables, equations, formulas and calculations, citations and references, the bibliography, or the reflection form. There is no abstract: it was dropped in 2018.
+        The maximum word count for the Extended Essay is <strong>4,000 words</strong>. This limit includes the introduction, body, conclusion, quotations, and any footnotes or endnotes that are not references. It does <em>not</em> include the contents page, headers, maps, charts, diagrams, annotated illustrations, tables, equations, formulas and calculations, citations and references, the bibliography, or the reflection form. There is no abstract: it was dropped in 2018.
       </p>
 
       <p>

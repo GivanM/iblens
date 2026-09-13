@@ -121,7 +121,7 @@ export default function Pricing() {
               <p className="text-sm text-muted-foreground mt-0.5">
                 {previewUsed
                   ? "A full report adds the estimated mark, every comment and the ranked fixes to what the preview showed."
-                  : "Paste your essay with no sign-in and no credit card. The preview shows a range of totals, usually feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks in your draft."}
+                  : "Paste your essay with no sign-in and no credit card. The preview shows a range of totals and, for most drafts, feedback on your weakest criterion and the top risks in your draft (for the TOK essay and exhibition, the band, the start of the explanation and the top risks)."}
               </p>
             </div>
             <Button size="sm" asChild className="flex-shrink-0 self-start sm:self-auto">

@@ -36,6 +36,8 @@ import {
   returnToLot,
   moveDeviceLotsToAccount,
   findAccountCopyOf,
+  reopenAccountChain,
+  getUserById,
   getLatestAccountVersion,
   getOrderById,
   deleteAnonymousAnalysis,
@@ -93,7 +95,7 @@ IMPORTANT FORMATTING RULES:
 - Write to the student in the second person ("you", "your essay"). Never refer to them as "the student" or "the candidate".
 - In every comment longer than three sentences, put a blank line (two newline characters) between separate points, so it reads as short paragraphs.
 - Use British spelling (analyse, organise, recognise, behaviour).
-- Never write a criterion's mark or the total inside a comment, risk, leverage zone, next step or the overall comment: the report shows the marks separately. Describe the level in words (for example "the Good band descriptor"), never as a number, and never say where in a level the mark sits (top, bottom, upper or lower end). Rules the notes ask you to explain, such as a cap or no marks for an essay not on a prescribed title, must still be stated, in words.
+- Never write a criterion's mark or the total inside a comment, risk, leverage zone, next step or the overall comment: the report shows the marks separately. Describe the level in words (for example "the Good band descriptor"), never as a number, and never say where in a level the mark sits (top, bottom, upper or lower end); a cap may name, in words, the highest mark it allows. Rules the notes ask you to explain, such as a cap or no marks for an essay not on a prescribed title, must still be stated, in words.
 - The work arrives as pasted text, so graphs, images, photos, diagrams and screenshots never come through, and tables may lose their layout. Never lower a mark because a graph or image is not visible, and never call one missing. Where the work describes a graph or image, judge what the description shows, and put anything about the graph itself (axes, error bars, labels) as a check for the student to make, not as a reason for the mark. If the criteria require a diagram or graph and the text refers to none, say that none was referred to and ask the student to check.`;
 
   if (rubricFragment) {
@@ -367,11 +369,15 @@ function buildTeaser(result: any) {
     // A preview that names no criterion lists no risks either: with so few totals possible,
     // naming the weak parts of the draft would narrow it to the mark.
     .filter(() => !cell?.hideWeakest)
-    .slice(0, 3)
     .map((r: any) => ({
     title: typeof r === "string" ? r : r?.title || "",
     description: typeof r === "string" ? "" : softTruncate(stripMarks(String(r?.description || ""), { holistic }), 280),
-  }));
+    hadDescription: typeof r !== "string" && !!String(r?.description || "").trim(),
+  }))
+    // A risk whose whole explanation stated marks is left out rather than shown as a bare title.
+    .filter((r: any) => !r.hadDescription || r.description)
+    .slice(0, 3)
+    .map(({ hadDescription, ...r }: any) => r);
   return {
     locked: true as const,
     band_range: bandRange,
@@ -440,7 +446,12 @@ const essayRouter = router({
             // storefront purchase or another email opens the report too, so without a copy of
             // the original, the version itself is kept below rather than lost at sign-out.
             const originalCopy = await findAccountCopyOf(ctx.user.id, (rec as any).rerunOf).catch(() => null);
-            if (originalCopy) return { result: normalizeDashes(rec.resultJson) };
+            if (originalCopy) {
+              // A copy a refund locked, whose device rows this credit has just opened: open it
+              // and its re-check copies too, instead of offering to charge for it again.
+              await reopenAccountChain(originalCopy.id, orderId).catch(() => {});
+              return { result: normalizeDashes(rec.resultJson) };
+            }
           }
           const copy = await upsertAccountCopy({
             userId: ctx.user.id,
@@ -922,16 +933,19 @@ const essayRouter = router({
       if (!rec || !rec.resultJson) return { exists: false as const };
       const rj: any = normalizeDashes(rec.resultJson);
       const unlocked = !!(rec as any).unlocked;
+      // Whatever was already shown for free stays available: taking back a preview the
+      // student has already read, on a reload, is the fastest way to lose their trust.
+      const preview: any = unlocked ? null : ucas ? buildUcasTeaser(rj) : buildTeaser(rj);
       return {
         exists: true as const,
         unlocked,
         essayType: rec.essayType,
         subject: rec.subject,
         createdAt: rec.createdAt,
-        band: ucas ? null : rj?.band_range ?? null,
-        // Whatever was already shown for free stays available: taking back a preview the
-        // student has already read, on a reload, is the fastest way to lose their trust.
-        preview: unlocked ? null : ucas ? buildUcasTeaser(rj) : buildTeaser(rj),
+        // The same range the preview shows: the stored one could differ after a scoring change,
+        // and two ranges side by side narrow the mark.
+        band: ucas ? null : preview?.band_range ?? rj?.band_range ?? null,
+        preview,
       };
     }),
 
@@ -1258,7 +1272,10 @@ const paymentRouter = router({
     .query(async ({ input }) => {
       const order: any = await getOrderById(input.orderId);
       if (!order || order.status !== "paid") return { paid: false as const };
-      return { paid: true as const, sku: String(order.sku), valueUsd: Number(order.amountUsd) / 100 };
+      // QA purchases are made with example.com addresses; the page does not report them to analytics.
+      const buyer: any = await getUserById(order.userId).catch(() => null);
+      const test = /@example\.(com|org|net)$/i.test(String(buyer?.email || ""));
+      return { paid: true as const, sku: String(order.sku), valueUsd: Number(order.amountUsd) / 100, test };
     }),
 
   // Create LemonSqueezy card checkout for guest (unauthenticated) users

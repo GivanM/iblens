@@ -162,7 +162,7 @@ const REPORTS = [
       "Revisit each paragraph where you raise a counter-perspective and expand it to at least three sentences of genuine engagement before offering your response, so that the opposing view is presented at its strongest rather than in a weakened form that is easy to dismiss.",
       "Write a new conclusion that identifies one thing you now think differently about, or one way your initial claim has been qualified by the discussion, so that the ending reflects real intellectual movement rather than a summary of the opening position."
     ],
-    "editorNote": "Its overall comment calls the title prescribed (it is not, see above) and says the essay misses Satisfactory for lack of \"critical reflection\" and of links to areas of knowledge \"as ways of thinking\": neither phrase is in the TOK descriptors, and Satisfactory describes a discussion focused on the title, with some links to areas of knowledge, arguments supported by examples and some awareness of other points of view. It says Good is out of reach partly because implications are not followed through, but implications appear only in the Excellent descriptor, and one risk calls missing engagement with opposing views a defining feature of Basic, which the Basic descriptor does not mention. Read as a whole, this essay could reasonably receive 5 rather than 4."
+    "editorNote": "Its overall comment calls the title prescribed (it is not, see above) and says the essay misses Satisfactory for lack of \"critical reflection\" and of links to areas of knowledge \"as ways of thinking\": neither phrase is in the TOK descriptors, and Satisfactory describes a discussion focused on the title, with some links to areas of knowledge, arguments supported by examples and some awareness of other points of view. It says Good is out of reach partly because implications are not followed through, but implications appear only in the Excellent descriptor, and one risk calls missing engagement with opposing views a defining feature of Basic, which the Basic descriptor does not mention. Read as a whole, this essay could reasonably receive 5 rather than 4. It also says the Satisfactory band requires a moderate degree of critical analysis and genuine engagement with different viewpoints; the Satisfactory descriptor asks only for some awareness of different points of view."
   },
   {
     "tier": "strong",
@@ -246,8 +246,8 @@ export default function SampleReports() {
       <p>
         A grader is only useful if the mark moves when the quality of the work moves. To show how IBLens behaves, we wrote three
         demonstration essays on one TOK-style title, <em>To what extent is certainty attainable in the natural sciences and
-        mathematics?</em> (the weak essay words it slightly differently), at deliberately different levels of quality, and ran each one through the grader the way a student
-        would: pasted into the grader, with no account.
+        mathematics?</em> (the weak essay words it slightly differently), at deliberately different levels of quality, and ran each one through the grader's own marking path, the one the form
+        uses, then copied each full report exactly as the grader wrote it.
       </p>
       <p>
         A TOK essay has no separate criteria. It is marked out of 10 against one holistic instrument, so each report places the
@@ -262,8 +262,10 @@ export default function SampleReports() {
         The title is TOK-style, not one of the IB's prescribed titles, so an essay submitted on it for a session would
         receive 0; the weak report says so. Before publishing, we read every report against the TOK instrument. Earlier runs
         asked for things the instrument does not, such as a named thinker, and one placed essays by checklist, which the TOK
-        guide rules out. We changed the grader's TOK instructions to the guide's own whole-essay method, which every
-        TOK report now uses, and ran all three essays again. Each report carries a note on the clearest places where its
+        guide rules out. We changed the grader's TOK instructions to the guide's own whole-essay method and ran all
+        three essays again on 13 September 2026. Since then the grader has also been told not to write marks, or where a
+        mark sits within its level, inside its comments, so a report made today explains the level in the descriptor's
+        words only. Each report carries a note on the clearest places where its
         explanation describes a level in words its descriptor does not use; the reports are otherwise left exactly as the
         grader wrote them.
       </p>

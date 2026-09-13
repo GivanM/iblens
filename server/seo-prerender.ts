@@ -120,7 +120,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/essay": {
     title: "IB Essay Grader: AI Feedback on IA, Extended Essay and TOK | IBLens",
-    description: "AI feedback on your IB Internal Assessment, Extended Essay or TOK work in 14 subjects: a free preview with a range of totals and, usually, your weakest criterion, then a full report against the published criteria.",
+    description: "AI feedback on your IB Internal Assessment, Extended Essay or TOK work in 14 subjects: a free preview with a range of totals and, for most drafts, your weakest criterion and the top risks, then a full report against the published criteria.",
     ogType: "website",
     canonical: "/essay",
     schemaType: "WebPage",

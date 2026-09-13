@@ -19,7 +19,7 @@ const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 const TIMELINE = [
   { date: "Early July", event: "May session results released on candidates.ibo.org" },
   { date: "15 September", event: "Last day for enquiry upon results requests for the May session, made through your school" },
-  { date: "Mid-December", event: "November session results released, usually in mid-December (17 December in 2025): your coordinator confirms the date" },
+  { date: "Mid-December", event: "November session results released in mid-December (16 December in 2025, to schools from 7pm GMT and on candidates.ibo.org a few hours later): your coordinator confirms the date" },
   { date: "15 March", event: "Last day for enquiry upon results requests for the November session, made through your school" },
 ];
 
@@ -83,7 +83,7 @@ function RemarkQuickCheck() {
         <p className="text-sm text-muted-foreground mb-4">You are signed in, so the check runs on the grader page, where it uses your account's free preview or paid reports and is saved to your dashboard. None of this predicts what a re-mark would do, so do not decide on it alone (see our <Link href="/terms" className="underline">Terms</Link>).</p>
         <div className="flex flex-col sm:flex-row gap-2">
           <Button asChild><Link href={`/essay?type=TOK&session=${LATEST_RESULTS_SESSION}`}>Check a TOK essay</Link></Button>
-          <Button variant="outline" asChild><Link href="/essay?type=EE&session=nov2026">Check an Extended Essay</Link></Button>
+          <Button variant="outline" asChild><Link href={`/essay?type=EE&session=${LATEST_RESULTS_SESSION}`}>Check an Extended Essay</Link></Button>
         </div>
       </div>
     );
@@ -91,7 +91,7 @@ function RemarkQuickCheck() {
   return (
     <div className="rounded-xl border-2 border-primary bg-card p-6 mb-12 shadow-sm">
       <h2 style={SERIF} className="text-2xl font-bold mb-1">{previewUsed && !result ? "Check your essay on the grader page" : "Check your essay right here, free"}</h2>
-      <p className="text-sm text-muted-foreground mb-4">{previewUsed ? <>On the grader page, a full report gives the estimated mark for the EE or TOK essay you submitted, criterion by criterion where the instrument has criteria, with the reasons and the ranked fixes. None of this predicts what a re-mark would do, so do not decide on it alone (see our <Link href="/terms" className="underline">Terms</Link>).</> : <>Paste the exact EE or TOK essay you submitted. In about a minute you see how it reads against the published criteria: a range of totals that contains the estimate (for the TOK essay, its band), usually your weakest criterion (for TOK, the start of the explanation) and the top risks. The estimated mark is in the full report. None of this predicts what a re-mark would do, so do not decide on it alone (see our <Link href="/terms" className="underline">Terms</Link>). For the Extended Essay, Criterion E is marked on your reflections, which this check does not include, so the range covers the other criteria.</>}</p>
+      <p className="text-sm text-muted-foreground mb-4">{previewUsed ? <>On the grader page, a full report gives the estimated mark for the EE or TOK essay you submitted, criterion by criterion where the instrument has criteria, with the reasons and the ranked fixes. None of this predicts what a re-mark would do, so do not decide on it alone (see our <Link href="/terms" className="underline">Terms</Link>).</> : <>Paste the exact EE or TOK essay you submitted. In about a minute you see how it reads against the published criteria: a range of totals that contains the estimate and, for most drafts, your weakest criterion and the top risks (for the TOK essay, its band, the start of the explanation and the top risks). The estimated mark is in the full report. None of this predicts what a re-mark would do, so do not decide on it alone (see our <Link href="/terms" className="underline">Terms</Link>). For the Extended Essay, Criterion E is marked on your reflections, which this check does not include, so the range covers the other criteria.</>}</p>
 
       {!result && (
         <>

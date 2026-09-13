@@ -204,7 +204,7 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPrev
             <div className="space-y-1.5">
               <Label htmlFor="guest-email" className="text-sm font-medium flex items-center gap-1.5">
                 <Mail className="w-3.5 h-3.5" />
-                Your email, for the receipt and for signing in later
+                Your email, for the receipt. Sign in later with a Google account on this address to keep your reports in an account.
               </Label>
               <input
                 id="guest-email"

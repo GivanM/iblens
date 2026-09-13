@@ -19,7 +19,7 @@ export function isNotAssessableFromText(c: any): boolean {
   // The Maths "Reflection" and History "Reflection" criteria are marked on the text, so the
   // comment must be about the separate reflection form, and say it was absent.
   const aboutForm = /\brpf\b|\brppf\b|reflective statement|reflection (and|&) progress form|reflections on planning (and|&) progress/.test(comment);
-  const absent = /not (been )?(submitted|provided|included|attached|pasted)|not assessed|absence of|was not part of|were not part of/.test(comment);
+  const absent = /not (been )?(submitted|provided|included|attached|pasted)|not assessed|absence of|was not part of|were not part of|\bno (separate )?(rpf|rppf|reflective statement|reflection (and|&) progress form)|not appear to have been (submitted|provided|included|attached|pasted)|without (the |a |your )?(rpf|rppf|reflective statement)|(has|have) not been (submitted|provided|included)/.test(comment);
   return aboutForm && absent;
 }
 
@@ -145,16 +145,21 @@ const COUNTED_NOUN = String.raw`(?!\s+(?:of\s+)?(?:your\s+|the\s+)?(?:key\s+)?(?
 const FRACTION = /\d+(?:\.\d+)?\s*(?:\/|out of)\s*\d+/i;
 const COUNTED = /\b(?:\d+(?:\.\d+)?|one|two|three|four|five|six)\s*(?:marks?|points?)\b/i;
 const GIVEN = /\b(?:award(?:s|ed)?|scor(?:e|es|ed|ing)|mark(?:s|ed)?|receiv(?:e|es|ed|ing)|earn(?:s|ed|ing)?|gain(?:s|ed|ing)?|lean(?:s|ing)?\s+towards?|sits?\s+at|placed\s+at|level)\s+(?:of\s+|at\s+|a\s+|an\s+|around\s+|about\s+|roughly\s+)?\d+(?:\.\d+)?\b/i;
-const RANGE_MARK = /\d+\s*[-–—]\s*\d+\s*(?:\/|out of|of)\s*\d+|\b\d+\s*[-–—]\s*\d+\s+(?:in|for|on)\s+criterion\b/i;
+const RANGE_MARK = /\d+\s*[-–—]\s*\d+\s*(?:\/|out of|of)\s*\d+|\b\d+\s*[-–—]\s*\d+\s+(?:in|for|on)\s+criterion\b|\bthe\s+\d+\s*[-–—]\s*\d+\s+(?:band|level|range)\b/i;
+const CRITERION_NUMBER = /\bcriterion\s+[a-g][12]?\s+\d+\b(?!\s*(?:words?|%))|^\s*[A-Z][A-Za-z ]{2,40}:\s*\d{1,2}\s*\.?\s*$|\bworth\s+\d+\s+of\s+the\s+\d+\b|\b(?:high|low|mid)\s+(?:teens|twenties|thirties)\b|\bmid-band\b/i;
 const N_OF_N = new RegExp(String.raw`\b\d+(?:\.\d+)?\s+of\s+\d+\b` + COUNTED_NOUN, "i");
 const TOTAL_IS = /\b(?:total|overall)\s+(?:mark\s+|score\s+)?(?:is\s+|of\s+|would be\s+|at\s+|comes to\s+)?(?:about\s+|around\s+|roughly\s+)?\d+(?![\d,]*\s*(?:words?|characters?|%|pages?))/i;
 const CRITERION_COLON = /\bcriterion\s+[a-g][12]?\s*[:=]\s*\d+\b/i;
 const CAPPED = /\b(?:scor(?:e|es|ing)|mark(?:s|ed)?)\s+(?:above|below|at|of|higher than|more than|lower than)\s+\d+\b|\bcapped at\s+\d+\b|\bcannot (?:score|get|go|be awarded) (?:above|higher than|more than|beyond)\s+\d+\b|\b(?:puts?|places?)\s+criterion\s+[a-g][12]?\s+at\s+\d+\b|\bis an?\s+\d+\b(?![\d,.]*\s*(?:-|words?|%|pages?|minutes?|°|degrees?))/i;
 const GOT = /\b(?:got|gets|get|getting|achiev(?:e|es|ed|ing)|reach(?:es|ed)?)\s+(?:a\s+|an\s+)?\d+\b(?!\s*(?:words?|%|sources?|pages?))/i;
 const WORD_MARK = new RegExp(String.raw`\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\s+(?:out of|of)\s+(?:\d+|four|five|six|eight|ten|twelve)\b` + COUNTED_NOUN + String.raw`|\bout of (?:four|five|six|eight|ten|twelve)\b` + COUNTED_NOUN, "i");
-const AT_TOP = /\b(?:full marks|top band|top of the (?:band|scale|range)|highest band|maximum mark|the maximum|top mark|bottom of the (?:band|scale|range)|lowest band)\b/i;
+const AT_TOP = /\b(?:full marks|top band|top of the (?:band|scale|range)|highest band|maximum mark|the maximum (?:mark|marks|score|band|level)|at the maximum(?!\s+(?:of|point|value|height|speed))|top mark|bottom of the (?:band|scale|range)|lowest band)\b/i;
 // Where in a level a mark sits: "at the top of the Satisfactory band", "the upper end of that level".
 const POSITION = /\b(?:top|bottom|upper|lower|higher|highest|lowest|high|low)\s+(?:end|mark|boundary|edge|half|part|limit|reaches)\b|\b(?:top|bottom|upper|lower)\s+of\s+(?:the\s+|this\s+|that\s+|its\s+)?(?:[a-z]+\s+)?(?:band|level|range|scale)\b/i;
+// A level named next to a nearness word says which half of the band the mark is in:
+// "approaching Good", "between Good and Excellent", "satisfactory to approaching-good".
+const LEVEL_NAME = String.raw`(?:excellent|good|satisfactory|basic|rudimentary)`;
+const NEAR_LEVEL = new RegExp(String.raw`\b(?:approach\w*|toward\w*|between|closer|nearer|cusp|border\w*|edg\w*|short of|not quite|just|reach\w*|beyond|above|below|strong|solid|secure|high|low|upper|lower)\b[^.;:]{0,30}\b${LEVEL_NAME}\b|\b${LEVEL_NAME}\b[^.;:]{0,12}\bto\b[^.;:]{0,20}\b${LEVEL_NAME}\b|\b(?:great|greater|lesser|large|full|limited)\s+extent\b`, "i");
 // A task marked as a whole shows its band already; any sentence about band, level or mark says more.
 const HOLISTIC_MARK_WORDS = /\b(?:band|bands|level|levels|boundary|mark|marks|marked|marking|score|scored|scores|grade|graded)\b/i;
 const SMALL_WORD = /\b(?:a|an)\s+(?:one|two|three|four|five|six|seven|eight|nine|ten)\b(?!-)/i;
@@ -171,7 +176,9 @@ export type MarkTextOptions = { allow?: string; holistic?: boolean };
  */
 export function stripMarksDetailed(text: string, opts: MarkTextOptions = {}): { text: string; dropped: number } {
   if (typeof text !== "string" || !text) return { text, dropped: 0 };
-  const parts = text.split(/((?<=[.!?])\s+)/);
+  // Sentences end at a full stop or a line break: a list with no full stops was one "sentence"
+  // and went whole when a single line stated a mark.
+  const parts = text.split(/((?<=[.!?])\s+|\n+)/);
   let out = "";
   let pendingBreak = "";
   let dropped = 0;
@@ -195,19 +202,24 @@ export function stripMarks(text: string, opts: MarkTextOptions = {}): string {
   return stripMarksDetailed(text, opts).text;
 }
 
+// A rule the student must know, not their mark: "receives no marks", "no higher than three",
+// "marking stops at the limit". Removing these hid consequences the guide attaches to the work.
+const RULE = /\b(?:no marks|receives? zero|awarded zero|no higher than|cannot be higher than|marking stops|stops? reading|examiners? (?:do not|will not) read)\b/i;
+
 export function statesMark(s: string, opts: MarkTextOptions = {}): boolean {
   let t = String(s || "");
+  if (RULE.test(t) && !FRACTION.test(t) && !POSITION.test(t)) return false;
   if (opts.allow) {
     // The whole token only: removing "1/2" as a substring cut "21/25" down to "2 5".
     const [sc, mx] = opts.allow.split("/").map((x) => x.trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
     t = t.replace(new RegExp(`(?<![\\d.])${sc}\\s*\\/\\s*${mx}(?!\\.?\\d)`, "g"), " ");
   }
-  if (opts.holistic && (POSITION.test(t) || HOLISTIC_MARK_WORDS.test(t))) return true;
+  if (opts.holistic && (POSITION.test(t) || HOLISTIC_MARK_WORDS.test(t) || NEAR_LEVEL.test(t))) return true;
   if (POSITION.test(t)) return true;
   // With the criterion's own mark shown, "the top band descriptor asks for" gives nothing
   // away; it still does when it is about the total.
   const aboutTotal = /\b(?:total|overall)\b/i.test(t);
-  if (RANGE_MARK.test(t) || WORD_MARK.test(t) || CRITERION_COLON.test(t) || TOTAL_IS.test(t) || CAPPED.test(t)) return true;
+  if (RANGE_MARK.test(t) || WORD_MARK.test(t) || CRITERION_COLON.test(t) || CRITERION_NUMBER.test(t) || TOTAL_IS.test(t) || CAPPED.test(t)) return true;
   if ((AT_TOP.test(t) || GOT.test(t)) && (!opts.allow || aboutTotal)) return true;
   t = t.replace(RANGE, " ");
   if (FRACTION.test(t) || COUNTED.test(t) || GIVEN.test(t) || N_OF_N.test(t)) return true;

@@ -37,13 +37,13 @@ export default function About() {
       </ul>
 
       <p>
-        The full pipeline is described in <Link href="/resources/how-iblens-works">How IBLens Works</Link>, and you can read real example outputs in <Link href="/resources/sample-reports">Sample Reports</Link>.
+        The full pipeline is described in <Link href="/resources/how-iblens-works">How IBLens works</Link>, and you can read real example outputs in <Link href="/resources/sample-reports">Sample IBLens reports</Link>.
       </p>
 
       <h2>What IBLens will not do</h2>
 
       <ul>
-        <li>It will not write, rewrite or edit your essay. Feedback identifies weaknesses; the writing stays yours. Where the academic integrity line sits is covered in <Link href="/resources/academic-integrity">AI Feedback and IB Academic Integrity</Link>.</li>
+        <li>It will not write, rewrite or edit your essay. Feedback identifies weaknesses; the writing stays yours. Where the academic integrity line sits is covered in <Link href="/resources/academic-integrity">AI feedback and IB academic integrity</Link>.</li>
         <li>It will not claim accuracy it cannot demonstrate. We publish no invented statistics, and scores are always presented as estimates.</li>
         <li>It will not sell your essays. How texts are processed and stored is set out in the <Link href="/privacy">Privacy Policy</Link>.</li>
       </ul>
@@ -51,7 +51,7 @@ export default function About() {
       <h2>Pricing, briefly</h2>
 
       <p>
-        The first preview is free, with no account needed: a range of totals, usually feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks. A full report costs $9.99 and includes two free re-checks of a revised version of the same work, within 14 days of the report opening. There is no subscription, and a <Link href="/refund-policy">7-day money-back guarantee</Link> applies.
+        The first preview is free, with no account needed: a range of totals and, for most drafts, feedback on your weakest criterion and the top risks (for the TOK essay and exhibition, the band, the start of the explanation and the top risks). A full report costs $9.99 and includes two free re-checks of a revised version of the same work, within 14 days of the report opening. There is no subscription, and a <Link href="/refund-policy">7-day money-back guarantee</Link> applies.
       </p>
 
       <h2>Contact</h2>

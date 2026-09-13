@@ -47,7 +47,7 @@ export default function RefundPolicy() {
           <section>
             <h2 className="text-xl font-semibold mb-3">Partly used packs</h2>
             <p className="text-muted-foreground leading-relaxed">
-              If you bought a pack of 5 or 10 reports and have used some of them, we will still issue a full refund within the 7-day window. We believe in making this process simple and fair.
+              If you bought a pack of 5 or 10 reports and have used some of them, we will still issue a full refund within the 7-day window.
             </p>
           </section>
 

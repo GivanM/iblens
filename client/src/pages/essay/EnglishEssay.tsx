@@ -8,7 +8,7 @@ const config: SubjectConfig = {
   metaDescription:
     "AI feedback on the IB English A Individual Oral against the four published criteria: a practice transcript is marked out of 40, an outline on the first three. The HL essay is a separate component and is not covered.",
   canonicalPath: "/essay/english-essay",
-  heroHeadline: "Get your IB English Individual Oral checked in about a minute",
+  heroHeadline: "Get feedback on your English A individual oral outline or a practice oral in about a minute",
   heroSubline:
     "Paste your outline for the English A individual oral, or a transcript of a practice oral that uses works and a global issue different from those of your assessed oral: the Language A guides let your teacher give feedback on practice orals like that, but not rehearse the actual oral with you. A transcript is marked on all four criteria, an outline on the first three. Free preview, no account required.",
   analyzerHref: "/essay?type=IA",

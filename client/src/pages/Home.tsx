@@ -124,7 +124,7 @@ export default function Home() {
                 name: "Is the first preview really free?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes. The first preview is free: a range of totals, usually feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark, a mark and comment for each criterion that can be judged from your text (for the TOK essay and exhibition, the whole explanation) and a ranked list of fixes, unlocks for $9.99.",
+                  text: "Yes. The first preview is free: a range of totals and, for most drafts, feedback on your weakest criterion and the top risks in your draft (for the TOK essay and exhibition, which are marked as a whole, the band, the start of the explanation and the top risks). The complete report, with an estimated mark, a mark and comment for each criterion that can be judged from your text (for the TOK essay and exhibition, the whole explanation) and a ranked list of fixes, unlocks for $9.99.",
                 },
               },
               {
@@ -199,8 +199,7 @@ export default function Home() {
               {/* Right column, score card */}
               <div className="rounded-xl border border-border bg-card shadow-sm p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Business Management IA · Sample</p>
-                  <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">Sample</span>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Business Management IA</p>
                 </div>
                 <div style={SERIF} className="text-5xl font-bold mb-1">16 <span className="text-muted-foreground text-3xl">/</span> 25</div>
                 <p className="text-sm text-muted-foreground mb-4">Sample report · illustrative</p>
@@ -305,7 +304,7 @@ export default function Home() {
                 </ul>
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded whitespace-nowrap">{ucasPreviewUsed ? "Full review" : "Free preview"}</span>
-                  <span className="text-xs text-muted-foreground">{ucasPreviewUsed ? "$9.99, with no invented score, because UCAS publishes no mark scheme" : "No invented score, because UCAS publishes no mark scheme"}</span>
+                  <span className="text-xs text-muted-foreground">{ucasPreviewUsed ? (paidLeft > 0 ? "Uses one of your paid reports, with no invented score, because UCAS publishes no mark scheme" : "$9.99, with no invented score, because UCAS publishes no mark scheme") : "No invented score, because UCAS publishes no mark scheme"}</span>
                 </div>
                 <Button variant="outline" asChild>
                   <Link href="/ucas-personal-statement">Check my statement <ArrowRight className="w-4 h-4 ml-1" /></Link>
@@ -363,12 +362,12 @@ export default function Home() {
             <h2 style={SERIF} className="text-2xl font-bold mb-10">What does IB feedback actually cost?</h2>
             <div className="grid md:grid-cols-3 gap-4 max-w-2xl mx-auto mb-8">
               <div className="bg-background border-2 border-border rounded-xl p-5 text-center">
-                <p className="font-semibold mb-1">IB Tutor</p>
+                <p className="font-semibold mb-1">Tutor</p>
                 <div className="text-2xl font-bold text-muted-foreground mb-1">By the hour</div>
                 <p className="text-xs text-muted-foreground">Subject judgement no tool has, but paid per session and booked around someone else's calendar.</p>
               </div>
               <div className="bg-background border-2 border-border rounded-xl p-5 text-center">
-                <p className="font-semibold mb-1">IB Teacher</p>
+                <p className="font-semibold mb-1">Teacher</p>
                 <div className="text-2xl font-bold text-muted-foreground mb-1">Free</div>
                 <p className="text-xs text-muted-foreground">Knows you and your school, and marks your IA against the criteria, but comments on coursework drafts are limited, usually to one.</p>
               </div>
@@ -480,7 +479,7 @@ export default function Home() {
               />
               <FAQItem
                 question="Is the first preview really free?"
-                answer="Yes. The first preview is free: a range of totals, usually feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark, a mark and comment for each criterion that can be judged from your text (for the TOK essay and exhibition, the whole explanation) and a ranked list of fixes, unlocks for $9.99."
+                answer="Yes. The first preview is free: a range of totals and, for most drafts, feedback on your weakest criterion and the top risks in your draft (for the TOK essay and exhibition, which are marked as a whole, the band, the start of the explanation and the top risks). The complete report, with an estimated mark, a mark and comment for each criterion that can be judged from your text (for the TOK essay and exhibition, the whole explanation) and a ranked list of fixes, unlocks for $9.99."
               />
               <FAQItem
                 question="How accurate is the estimated mark?"

@@ -53,8 +53,9 @@ export default function IBMathIAExamples() {
         engagement something to reward: the context is self-chosen and the data is
         their own. The mathematics involves solving the logistic equation,
         fitting parameters to data, and comparing the model against observed values.
-        At HL, the top levels of Criterion E reward mathematics that is precise and
-        shows sophistication and rigour, with thorough understanding throughout. A
+        At HL, level 5 of Criterion E asks for correct mathematics that shows sophistication
+        or rigour, and level 6 for precise mathematics that shows sophistication and rigour,
+        both with thorough knowledge and understanding. A
         delayed-response model helps only if it serves the aim and is fully
         understood: the guide says mathematics beyond the syllabus is not required for
         the highest levels.

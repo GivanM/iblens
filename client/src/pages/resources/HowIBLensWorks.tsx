@@ -13,17 +13,17 @@ export default function HowIBLensWorks() {
       <h1>How IBLens works</h1>
 
       <p>
-        IBLens is an AI-powered essay analysis tool designed specifically for IB Diploma Programme students. It reads coursework against the published assessment criteria: criterion by criterion for the Internal Assessment and the Extended Essay, and against the single holistic scale for TOK, which has no sub-criteria. The report comes back in about a minute.
+        IBLens gives AI feedback on IB Diploma coursework. It reads coursework against the published assessment criteria: criterion by criterion for the Internal Assessment and the Extended Essay, and against the single holistic scale for TOK, which has no sub-criteria. The report comes back in about a minute.
       </p>
 
       <p>
-        This page explains exactly how IBLens works: what happens when you paste an essay, how the AI generates its feedback, what the output looks like, what the tool can and cannot do, and how it compares to alternatives like private tutors or peer review. We believe in transparency about our technology so you can make an informed decision about whether it is useful for your preparation.
+        This page explains exactly how IBLens works: what happens when you paste an essay, how the AI generates its feedback, what the output looks like, what the tool can and cannot do, and how it compares to alternatives like private tutors or peer review.
       </p>
 
       <h2>What IBLens does</h2>
 
       <p>
-        When you paste an essay to IBLens, the system performs a comprehensive analysis that includes:
+        When you paste an essay into IBLens, the full report includes:
       </p>
 
       <ul>
@@ -36,7 +36,7 @@ export default function HowIBLensWorks() {
       </ul>
 
       <p>
-        The analysis is tailored to your specific subject and essay type. A Biology IA is assessed against different criteria from a History IA or an Extended Essay in English Literature. IBLens recognises the subject context and applies the appropriate framework.
+        A Biology IA is assessed against different criteria from a History IA or an Extended Essay in English Literature.
       </p>
 
       <h2>How the criteria reach the model</h2>
@@ -54,7 +54,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        <strong>Contextual understanding:</strong> The AI understands subject-specific conventions. It knows, for example, that a science IA is marked on research design, data analysis, conclusion and evaluation, that a History IA opens with an evaluation of the sources it relies on, and that a TOK essay is marked on its focus on the title, its links to areas of knowledge and how well its arguments and examples hold up.
+        <strong>Contextual understanding:</strong> The model is given each task's conventions, for example that a science IA is marked on research design, data analysis, conclusion and evaluation, that a History IA opens with an evaluation of the sources it relies on, and that a TOK essay is marked on its focus on the title, its links to areas of knowledge and how well its arguments and examples hold up.
       </p>
 
       <p>
@@ -64,7 +64,7 @@ export default function HowIBLensWorks() {
       <h2>What feedback looks like</h2>
 
       <p>
-        When you receive your IBLens analysis, the output is structured to be immediately actionable. Here is what a typical analysis includes:
+        When you receive your IBLens analysis, the output is laid out in this order. Here is what a typical analysis includes:
       </p>
 
       <p>
@@ -86,7 +86,7 @@ export default function HowIBLensWorks() {
       <h2>Limitations and what AI can and cannot do</h2>
 
       <p>
-        We believe in being transparent about what IBLens can and cannot do. No AI tool is a perfect substitute for human judgement, and understanding the limitations helps you use the tool effectively:
+        No AI tool is a perfect substitute for human judgement, and understanding the limitations helps you use the tool effectively:
       </p>
 
       <h3>What the report looks for</h3>
@@ -110,19 +110,19 @@ export default function HowIBLensWorks() {
       <h2>Privacy and data handling</h2>
 
       <p>
-        We take student privacy seriously. Here is how IBLens handles your data:
+        Here is how IBLens handles your data:
       </p>
 
       <ul>
         <li><strong>Storage:</strong> The essay text is never written to our database. An anonymous report you did not buy is deleted after 90 days. A purchased report is kept. If you sign in, your history stays in your account until you delete it, and every report there has a delete button. Essay content goes only through our relay server to Anthropic, which marks it, and is never used to train AI models.</li>
         <li><strong>Processed only to produce your report:</strong> Your essay passes over an encrypted connection through our relay server in Helsinki to our AI provider, Anthropic, solely to generate your analysis. IBLens never stores the text itself. It is not used to train any model, not sold, and not shared with schools, universities or other students.</li>
-        <li><strong>Encrypted transmission:</strong> All data is transmitted over HTTPS with industry-standard encryption.</li>
+        <li><strong>Encrypted transmission:</strong> every connection, from your browser to our server, the relay and Anthropic, uses HTTPS.</li>
         <li><strong>No training on your data:</strong> Your essays are not used to train or improve the AI model. Your intellectual property remains yours.</li>
         <li><strong>What is kept:</strong> the reports themselves (which can quote short passages) and, if you sign in, your email and history. How long each is kept is set out in the <Link href="/privacy">Privacy Policy</Link>, and everything can be deleted on request.</li>
       </ul>
 
       <p>
-        If you have specific privacy concerns or need to comply with school policies about external tools, contact us at glushkovim@gmail.com and we can provide additional documentation.
+        If your school needs details about how IBLens handles data, email glushkovim@gmail.com.
       </p>
 
       <h2>Pricing overview</h2>
@@ -145,7 +145,7 @@ export default function HowIBLensWorks() {
             <td><strong>Free preview</strong></td>
             <td>$0</td>
             <td>n/a</td>
-            <td>A range of totals, usually feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks, one per device or account</td>
+            <td>A range of totals and, for most drafts, feedback on your weakest criterion and the top risks (for the TOK essay and exhibition, the band, the start of the explanation and the top risks), one per device or account</td>
           </tr>
           <tr>
             <td><strong>Full report</strong></td>
@@ -231,7 +231,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        Ready to try it? <Link href="/essay" className="text-primary hover:underline">Paste your first essay for a free preview</Link> and see how your work maps to the IB criteria. For more on how IB assessment works, explore our guides on <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB Essay Criteria</Link>, the <Link href="/resources/ib-extended-essay-guide" className="text-primary hover:underline">Extended Essay</Link>, and <Link href="/resources/ib-internal-assessment-guide" className="text-primary hover:underline">Internal Assessments</Link>.
+        Ready to try it? <Link href="/essay" className="text-primary hover:underline">Paste your first essay for a free preview</Link> and see how your work maps to the IB criteria. For more on how IB assessment works, explore our guides on <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB essay criteria</Link>, the <Link href="/resources/ib-extended-essay-guide" className="text-primary hover:underline">Extended Essay</Link>, and <Link href="/resources/ib-internal-assessment-guide" className="text-primary hover:underline">Internal Assessments</Link>.
       </p>
     </ResourceArticle>
   );

@@ -12,8 +12,8 @@ export default function IBExtendedEssayExamples() {
       dateModified="2026-09-13"
     >
       <h1>IB Extended Essay examples: what high-scoring EEs do differently</h1>
-      <p>The Extended Essay is one of the most intimidating pieces of work in the IB Diploma Programme. At 4,000 words, it is longer than anything most 16 and 17-year-olds have written, and the open format (choose your own topic, design your own research question, argue your own thesis) leaves many students stuck. The best way to break through that paralysis is to study strong IB extended essay examples and understand <em>why</em> they worked, not just what they said.</p>
-      <p>This guide walks through what examiners actually reward, gives you concrete example research questions by subject, shows the most common mistakes that drag scores down, and explains the mindset shift that separates a C-grade EE from one that earns a coveted A.</p>
+      <p>The Extended Essay is one of the most intimidating pieces of work in the IB Diploma Programme. At 4,000 words, it is longer than anything most 16 and 17-year-olds have written, and the open format (choose your own topic, design your own research question, argue your own thesis) leaves many students stuck. The best way to get started is to study strong IB extended essay examples and understand <em>why</em> they worked, not just what they said.</p>
+      <p>This guide walks through what examiners actually reward, gives you concrete example research questions by subject, shows the most common mistakes that drag scores down, and explains what separates a C-grade EE from an A.</p>
 
       <h2>What makes a high-scoring IB Extended Essay?</h2>
       <p>From May 2027 the IB marks Extended Essays out of 30 on five criteria: Framework for the essay (Criterion A), Knowledge and understanding (B), Analysis and line of argument (C), Discussion and evaluation (D) and Reflection (E). Discussion and evaluation carries the most marks, 8 of 30. Through November 2026 the essay is marked out of 34 on the older criteria, where an A has been 27 or more in recent sessions and Critical thinking carries 12 marks.</p>
