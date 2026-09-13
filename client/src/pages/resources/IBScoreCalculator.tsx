@@ -97,7 +97,7 @@ export default function IBScoreCalculator() {
       <h2>Related tools</h2>
 
       <ul>
-        <li><Link href="/remark">Is an IB remark worth it?</Link></li>
+        <li><Link href="/remark">Is an IB re-mark worth it?</Link></li>
         <li><Link href="/resources/ib-grade-boundaries">IB Grade Boundaries</Link></li>
         <li><Link href="/resources/ib-ia-score-predictor">IA Score Predictor</Link></li>
       </ul>

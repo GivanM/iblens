@@ -169,6 +169,28 @@ export const revokedSessions = mysqlTable("revoked_sessions", {
  * keyed by e-mail that Google sign-in never matches. So the credits live on the
  * device that bought them, which is the same thing the report is tied to.
  */
+/**
+ * One row per purchase: how many of its reports are still unused, and where they are
+ * now, on an account or in a browser. A spend takes from a purchase and names it on
+ * the report; moving credits at sign-in moves the rows. A refund then closes exactly
+ * what that purchase opened and removes exactly what it left. Guessing the purchase
+ * from order dates charged reports to purchases whose credits were somewhere else.
+ */
+export const creditLots = mysqlTable("credit_lots", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Our order id, or "ls:<LemonSqueezy order id>" for a purchase made on the storefront. */
+  lotKey: varchar("lotKey", { length: 64 }).notNull(),
+  place: mysqlEnum("place", ["account", "device"]).notNull(),
+  userId: int("userId"),
+  fingerprint: varchar("fingerprint", { length: 64 }),
+  granted: int("granted").notNull(),
+  remaining: int("remaining").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+}, (table) => [
+  uniqueIndex("uniq_credit_lot_key").on(table.lotKey),
+]);
+
 export const deviceCredits = mysqlTable("device_credits", {
   fingerprint: varchar("fingerprint", { length: 64 }).primaryKey(),
   credits: int("credits").notNull().default(0),

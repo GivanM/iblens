@@ -1,6 +1,6 @@
 import { eq, desc, sql, and, lt } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, analyses, InsertAnalysis, payments, InsertPayment, anonymousAnalyses, InsertAnonymousAnalysis, orders, InsertOrder, webhookEvents, InsertWebhookEvent, deviceCredits, creditLedger, InsertCreditLedgerEntry, revokedSessions } from "../drizzle/schema";
+import { InsertUser, users, analyses, InsertAnalysis, payments, InsertPayment, anonymousAnalyses, InsertAnonymousAnalysis, orders, InsertOrder, webhookEvents, InsertWebhookEvent, deviceCredits, creditLedger, InsertCreditLedgerEntry, revokedSessions, creditLots } from "../drizzle/schema";
 import crypto from "crypto";
 import { ENV } from './_core/env';
 
@@ -669,6 +669,7 @@ export async function absorbGuestAccount(email: string, targetUserId: number): P
   // bought has nothing left to transfer, and their purchase history was
   // disappearing because of it.
   await db.update(orders).set({ userId: targetUserId }).where(eq(orders.userId, guest.id));
+  await moveAccountLots(guest.id, targetUserId);
   if (essay <= 0 && university <= 0) return 0;
 
   await db.update(users)
@@ -952,47 +953,132 @@ export async function addDeviceCredits(fingerprint: string, amount: number, orde
   console.log(`[DeviceCredits] +${amount} for ${fingerprint.slice(0, 8)}...`);
 }
 
+// ---- Purchases as lots: where each purchase's unused reports are ----
+
+/** Record a purchase's reports. A second delivery of the same purchase changes nothing. */
+export async function createCreditLot(lot: { lotKey: string; place: "account" | "device"; userId?: number | null; fingerprint?: string | null; granted: number; remaining: number }) {
+  const db = await getDb();
+  if (!db || lot.granted <= 0) return;
+  await db.insert(creditLots).values({
+    lotKey: lot.lotKey,
+    place: lot.place,
+    userId: lot.place === "account" ? (lot.userId ?? null) : null,
+    fingerprint: lot.place === "device" ? (lot.fingerprint ?? null) : null,
+    granted: lot.granted,
+    remaining: Math.max(0, Math.min(lot.granted, lot.remaining)),
+  }).onDuplicateKeyUpdate({ set: { lotKey: lot.lotKey } });
+}
+
+export async function getCreditLot(lotKey: string) {
+  const db = await getDb();
+  if (!db) return null;
+  const rows = await db.select().from(creditLots).where(eq(creditLots.lotKey, lotKey)).limit(1);
+  return (rows[0] as any) ?? null;
+}
+
 /**
- * The purchase a report opened with a paid credit is charged to: the oldest paid
- * purchase that still has reports left, first in, first out. For a device that means
- * the purchases whose reports went to that browser; for an account, the account's
- * purchases. A refund closes the reports its purchase paid for, so every spend has
- * to name one. Charging device reports to the newest purchase, and account reports
- * to none, closed the wrong reports or none at all.
+ * Take one report from the oldest purchase that still has one, where the credit was
+ * spent: the account's purchases for an account credit, the browser's for a device
+ * credit. Returns the purchase, which the opened report records. Call it only after
+ * the balance itself was lowered.
  */
-export async function orderForCreditSpend(owner: { fingerprint?: string; userId?: number }): Promise<string | null> {
+export async function takeFromOldestLot(owner: { userId?: number; fingerprint?: string }): Promise<string | null> {
   const db = await getDb();
   if (!db) return null;
   const scope = owner.fingerprint
-    ? eq(orders.deviceFingerprint, owner.fingerprint)
-    : owner.userId ? eq(orders.userId, owner.userId) : null;
-  if (scope) {
-    const lots = await db.select({ id: orders.id, createdAt: orders.createdAt }).from(orders)
-      .where(and(scope, eq(orders.status, "paid")));
-    // In the order the purchases were credited. Timestamps have one-second resolution and
-    // order ids are random, so two purchases in the same second sorted at random; the
-    // ledger's own sequence says which was paid first.
-    const firstGrant = new Map<string, number>();
-    for (const lot of lots as any[]) {
-      const rows = await db.select({ first: sql<number>`MIN(${creditLedger.id})` }).from(creditLedger)
-        .where(and(eq(creditLedger.orderId, lot.id), sql`${creditLedger.delta} > 0`));
-      firstGrant.set(lot.id, Number((rows[0] as any)?.first ?? Number.MAX_SAFE_INTEGER));
-    }
-    const ordered = (lots as any[]).sort((a, b) =>
-      (firstGrant.get(a.id)! - firstGrant.get(b.id)!) || (new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()));
-    for (const lot of ordered) {
-      if ((await countReportsOpenedByOrder(lot.id)) < (await ledgerAmountForOrder(lot.id))) return lot.id;
-    }
+    ? and(eq(creditLots.place, "device"), eq(creditLots.fingerprint, owner.fingerprint))
+    : owner.userId ? and(eq(creditLots.place, "account"), eq(creditLots.userId, owner.userId)) : null;
+  if (!scope) return null;
+  for (let attempt = 0; attempt < 5; attempt++) {
+    const rows = await db.select({ id: creditLots.id, lotKey: creditLots.lotKey }).from(creditLots)
+      .where(and(scope, sql`${creditLots.remaining} > 0`))
+      .orderBy(creditLots.id)
+      .limit(1);
+    const lot: any = rows[0];
+    if (!lot) return null;
+    const res: any = await db.update(creditLots)
+      .set({ remaining: sql`${creditLots.remaining} - 1` })
+      .where(and(eq(creditLots.id, lot.id), sql`${creditLots.remaining} > 0`));
+    if (Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0) > 0) return lot.lotKey;
   }
-  if (!owner.fingerprint) return null;
-  const rows = await db.select({ lastOrderId: deviceCredits.lastOrderId }).from(deviceCredits)
-    .where(eq(deviceCredits.fingerprint, owner.fingerprint)).limit(1);
-  return (rows[0] as any)?.lastOrderId ?? null;
+  return null;
 }
 
-export async function getDeviceCreditOrderId(fingerprint: string): Promise<string | null> {
-  return orderForCreditSpend({ fingerprint });
+/** Take one report from a named purchase: the report its own payment opened. */
+export async function takeFromLot(lotKey: string): Promise<boolean> {
+  const db = await getDb();
+  if (!db) return false;
+  const res: any = await db.update(creditLots)
+    .set({ remaining: sql`${creditLots.remaining} - 1` })
+    .where(and(eq(creditLots.lotKey, lotKey), sql`${creditLots.remaining} > 0`));
+  return Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0) > 0;
 }
+
+/** Give a report back to its purchase when the run that took it produced nothing. */
+export async function returnToLot(lotKey: string | null | undefined) {
+  const db = await getDb();
+  if (!db || !lotKey) return;
+  await db.update(creditLots)
+    .set({ remaining: sql`${creditLots.remaining} + 1` })
+    .where(and(eq(creditLots.lotKey, lotKey), sql`${creditLots.remaining} < ${creditLots.granted}`));
+}
+
+/** A browser's unused reports moved onto an account at sign-in: their purchases move with them. */
+export async function moveDeviceLotsToAccount(fingerprint: string, userId: number) {
+  const db = await getDb();
+  if (!db) return;
+  await db.update(creditLots)
+    .set({ place: "account", userId, fingerprint: null })
+    .where(and(eq(creditLots.place, "device"), eq(creditLots.fingerprint, fingerprint), sql`${creditLots.remaining} > 0`));
+}
+
+/** An account's copy of a device report, if the account has one. */
+export async function findAccountCopyOf(userId: number, deviceRowId: number) {
+  const db = await getDb();
+  if (!db) return null;
+  const rows = await db.select({ id: analyses.id }).from(analyses)
+    .where(and(eq(analyses.userId, userId), eq(analyses.adoptedFromId, deviceRowId))).limit(1);
+  return (rows[0] as any) ?? null;
+}
+
+/** A guest record merged into an account: its purchases held on that record move too. */
+export async function moveAccountLots(fromUserId: number, toUserId: number) {
+  const db = await getDb();
+  if (!db) return;
+  await db.update(creditLots)
+    .set({ userId: toUserId })
+    .where(and(eq(creditLots.place, "account"), eq(creditLots.userId, fromUserId)));
+}
+
+/**
+ * Close a refunded purchase: returns what it still had and where, and leaves nothing.
+ * Compare and swap, so two copies of one refund cannot both take the same reports.
+ */
+export async function closeCreditLot(lotKey: string): Promise<{ remaining: number; place: "account" | "device"; userId: number | null; fingerprint: string | null } | null> {
+  const db = await getDb();
+  if (!db) return null;
+  for (let attempt = 0; attempt < 5; attempt++) {
+    const lot: any = await getCreditLot(lotKey);
+    if (!lot) return null;
+    const res: any = await db.update(creditLots)
+      .set({ remaining: 0 })
+      .where(and(eq(creditLots.id, lot.id), eq(creditLots.remaining, lot.remaining)));
+    if (Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0) > 0) {
+      return { remaining: lot.remaining, place: lot.place, userId: lot.userId ?? null, fingerprint: lot.fingerprint ?? null };
+    }
+  }
+  return null;
+}
+
+/** Lower a browser's balance after a refund, never below zero and never touching an account. */
+export async function takeDeviceCreditsBack(fingerprint: string, amount: number) {
+  const db = await getDb();
+  if (!db || amount <= 0) return;
+  await db.update(deviceCredits)
+    .set({ credits: sql`GREATEST(${deviceCredits.credits} - ${amount}, 0)` })
+    .where(eq(deviceCredits.fingerprint, fingerprint));
+}
+
 
 export async function getDeviceCredits(fingerprint: string): Promise<number> {
   const db = await getDb();
@@ -1225,12 +1311,15 @@ export async function relockAnalysesForOrder(userId: number, orderId: string) {
 export async function countReportsOpenedByOrder(orderId: string): Promise<number> {
   const db = await getDb();
   if (!db) return 0;
-  const dev = await db.select({ id: anonymousAnalyses.id }).from(anonymousAnalyses)
-    .where(and(eq(anonymousAnalyses.unlockOrderId, orderId), eq(anonymousAnalyses.unlocked, true), sql`${anonymousAnalyses.rerunOf} IS NULL`));
-  const devIds = new Set((dev as any[]).map((r) => r.id));
+  const dev = await db.select({ id: anonymousAnalyses.id, rerunOf: anonymousAnalyses.rerunOf }).from(anonymousAnalyses)
+    .where(and(eq(anonymousAnalyses.unlockOrderId, orderId), eq(anonymousAnalyses.unlocked, true)));
+  // Every device row of the order, re-checks included: an account copy of any of them is
+  // that row, not a report of its own. Only head rows count as reports.
+  const allDevIds = new Set((dev as any[]).map((r) => r.id));
+  const headCount = (dev as any[]).filter((r) => r.rerunOf == null).length;
   const acct = await db.select({ id: analyses.id, adoptedFromId: analyses.adoptedFromId }).from(analyses)
     .where(and(eq(analyses.unlockOrderId, orderId), eq(analyses.unlocked, true), sql`${analyses.rerunOf} IS NULL`));
-  return devIds.size + (acct as any[]).filter((r) => !r.adoptedFromId || !devIds.has(r.adoptedFromId)).length;
+  return headCount + (acct as any[]).filter((r) => !r.adoptedFromId || !allDevIds.has(r.adoptedFromId)).length;
 }
 
 /** Close the anonymous report a given order opened. */
@@ -1331,14 +1420,23 @@ export async function claimAnonymousUnlock(id: number, orderId?: string | null):
 export async function hasEarlierVerifiedWebhookEvent(eventKey: string, thisId?: number): Promise<boolean> {
   const db = await getDb();
   if (!db) return false;
-  const rows = await db.select({ id: webhookEvents.id, status: webhookEvents.paymentStatus }).from(webhookEvents)
+  // Age measured by the database itself: it stamps receivedAt in its own time zone, and
+  // reading that back as a JavaScript date put every row hours into the future.
+  const rows = await db.select({ id: webhookEvents.id, status: webhookEvents.paymentStatus, recent: sql<number>`(${webhookEvents.receivedAt} > NOW() - INTERVAL 10 MINUTE)` }).from(webhookEvents)
     .where(and(
       eq(webhookEvents.provider, "lemonsqueezy"),
       eq(webhookEvents.npPaymentId, eventKey),
       eq(webhookEvents.signatureValid, true),
     ));
   if (!thisId) return false;
-  return (rows as any[]).some((r) => r.id < thisId && r.status !== "processing_error");
+  // A delivery still marked "verified" either is being processed right now or was cut off
+  // by a restart before it finished. Only a recent one counts, so a retry can repair a
+  // payment the restart interrupted.
+  return (rows as any[]).some((r) => {
+    if (r.id >= thisId || r.status === "processing_error") return false;
+    if (r.status === "verified" || r.status === "received") return Number(r.recent) === 1;
+    return true;
+  });
 }
 
 export async function markAnalysisUnlocked(id: number, orderId?: string) {

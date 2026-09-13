@@ -8,7 +8,7 @@ export default function GradeBoundaries() {
       description="How IB grade boundaries work: the 1 to 7 scale, how subject grades and the EE and TOK bonus points make up the 45-point Diploma score, and why boundaries move every session."
       canonical="/resources/ib-grade-boundaries"
       datePublished="2026-05-01"
-      dateModified="2026-05-01"
+      dateModified="2026-09-13"
     >
       <h1>IB Grade Boundaries Explained</h1>
 
@@ -184,7 +184,7 @@ export default function GradeBoundaries() {
       <h2>After results day</h2>
 
       <ul>
-        <li><Link href="/remark">Is an IB remark worth it?</Link></li>
+        <li><Link href="/remark">Is an IB re-mark worth it?</Link></li>
         <li><Link href="/resources/ib-score-calculator">IB Score Calculator</Link></li>
         <li><Link href="/resources/ib-ia-score-predictor">IA Score Predictor</Link></li>
       </ul>

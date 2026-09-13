@@ -62,7 +62,14 @@ export default function UcasPersonalStatement() {
   const paidOpens = typeof window !== "undefined"
     && new URLSearchParams(window.location.search).get("opened") !== "0";
   const [pageOpenedAt] = useState(() => Date.now());
-  usePurchaseTracking();
+  const purchase = usePurchaseTracking();
+  // Polling stops after two minutes; this re-renders once then, so the fallback shows.
+  const [, setWaitedOut] = useState(false);
+  useEffect(() => {
+    if (!paidReturn) return;
+    const t = setTimeout(() => setWaitedOut(true), 121_000);
+    return () => clearTimeout(t);
+  }, [paidReturn]);
   const paidReviewQ = trpc.essay.anonymousReport.useQuery(
     { fingerprint: anonFp, kind: "ucas" },
     // Keep asking until the full review is on the page. Stopping as soon as any result was
@@ -125,10 +132,13 @@ export default function UcasPersonalStatement() {
       // Back from buying a report for new work: poll until it lands on this browser.
       refetchInterval: (q: any) => {
         const d = q?.state?.data ?? q;
-        return paidReturn && !paidOpens && !((d as any)?.credits > 0) ? 4000 : false;
+        return paidReturn && !paidOpens && !purchase.paid && Date.now() - pageOpenedAt <= 120_000 ? 4000 : false;
       },
     }
   );
+  useEffect(() => {
+    if (purchase.paid) deviceCreditsQ.refetch();
+  }, [purchase.paid]);
   const deviceCredits = isAuthenticated ? 0 : (deviceCreditsQ.data?.credits ?? 0);
   const canPayHere = hasCredit || deviceCredits > 0;
   // Whether this device's free UCAS preview has been used, asked of the server. A saved
@@ -140,7 +150,10 @@ export default function UcasPersonalStatement() {
     setLimitReached(null);
     unlockedQ.refetch();
     lockedUcasQ.refetch();
-    creditsQ.refetch();
+    ucasFreeQ.refetch();
+    // Credits are an account query: asked for by a guest, the refused request sent them
+    // to the sign-in page a few seconds after their review appeared.
+    if (isAuthenticated) creditsQ.refetch();
     deviceCreditsQ.refetch();
     toast.success("Your full review is open below.");
   };
@@ -160,14 +173,16 @@ export default function UcasPersonalStatement() {
       setResult(data.result);
       setRechecksLeft(null);
       unlockedQ.refetch();
-      creditsQ.refetch();
+      if (isAuthenticated) creditsQ.refetch();
       deviceCreditsQ.refetch();
       lockedUcasQ.refetch();
       ucasReportsQ.refetch();
+      ucasFreeQ.refetch();
     },
     onError: (err: any) => {
       const msg = err?.message || "Review failed";
-      if (/free review/i.test(msg)) setLimitReached(msg);
+      // By the refusal itself, not its wording, which changes.
+      if (err?.data?.code === "FORBIDDEN") { setLimitReached(msg); ucasFreeQ.refetch(); }
       else toast.error(msg);
     },
   });
@@ -251,6 +266,7 @@ export default function UcasPersonalStatement() {
               <Label htmlFor="course">Course you are applying for</Label>
               <Input
                 id="course"
+                maxLength={120}
                 placeholder="e.g. Economics, Medicine, History"
                 value={course}
                 onChange={(e) => setCourse(e.target.value)}
@@ -302,15 +318,17 @@ export default function UcasPersonalStatement() {
             <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 text-sm">
               {Date.now() - pageOpenedAt > 120_000
                 ? "Your payment went through but the review has not opened yet. Reload the page, and if it still has not opened, email glushkovim@gmail.com with your order number and we will open it or refund you."
-                : "Payment received. Opening your full review, this takes a few seconds."}
+                : "Payment received. Opening your full review, this takes a few seconds. If it has not opened within two minutes, email glushkovim@gmail.com with your order number and we will open it or refund you."}
             </div>
           )}
 
           {paidReturn && !paidOpens && !isAuthenticated && (
             <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 text-sm">
-              {deviceCredits > 0
-                ? `Payment confirmed. This browser has ${deviceCredits} paid ${deviceCredits === 1 ? "report" : "reports"}: paste your answers and press "Review my statement in full".`
-                : "Payment received. Adding your report to this browser, this takes a few seconds. If nothing changes within two minutes, email glushkovim@gmail.com with your order number."}
+              {purchase.paid && deviceCredits > 0
+                ? `Payment confirmed. This browser has ${deviceCredits} paid ${deviceCredits === 1 ? "report" : "reports"}: paste your answers and choose the button marked "uses 1 paid report".`
+                : Date.now() - pageOpenedAt > 120_000
+                  ? "Your payment went through but the report has not arrived on this browser. Email glushkovim@gmail.com with your order number and we will add it or refund you."
+                  : "Payment received. Adding your report to this browser, this takes a few seconds."}
             </div>
           )}
 
@@ -342,8 +360,12 @@ export default function UcasPersonalStatement() {
 
           {isUnlocked && (
             <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 text-sm mb-3">
-              <strong>Your full review is unlocked on this device.</strong> Revise the answers above and re-check them.
-              Two re-checks are included for 14 days and cost nothing.
+              {effectiveRechecks === null || effectiveRechecks > 0 ? (
+                <><strong>Your full review is unlocked on this device.</strong> Revise the answers above and re-check them.
+                Two re-checks are included for 14 days and cost nothing.</>
+              ) : (
+                <><strong>Your full review is open on this device.</strong> Both re-checks for it have been used, or its 14 days have ended.</>
+              )}
             </div>
           )}
 
@@ -380,12 +402,15 @@ export default function UcasPersonalStatement() {
                 ? (isUnlocked ? "Review a new statement: free preview" : "Review my statement, free")
                 : mode === "paid"
                   ? (isUnlocked ? "Review a new statement (uses 1 paid report)" : "Review my statement in full (uses 1 paid report)")
-                  : (isUnlocked ? "Review a new statement, $9.99" : "Buy a full review of these answers, $9.99");
+                  : (isUnlocked ? "Buy a review of a new statement, $9.99" : "Buy a full review, $9.99");
             return (
               <>
                 <Button size="lg" className="w-full min-h-11 h-auto whitespace-normal" disabled={blockers.length > 0 || busy} onClick={onMain}>
                   {busy ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Reading your statement…</> : mainLabel}
                 </Button>
+                {mode === "buy" && (
+                  <p className="text-xs text-muted-foreground">The answers are not kept through checkout: after paying, paste them again and choose the button marked "uses 1 paid report".</p>
+                )}
                 {mode === "recheck" && !previewUsed && (
                   <Button variant="outline" className="w-full min-h-11 h-auto whitespace-normal" disabled={blockers.length > 0 || busy} onClick={() => run("free")}>
                     Review a different statement: free preview

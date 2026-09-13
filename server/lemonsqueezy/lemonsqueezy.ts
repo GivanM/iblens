@@ -32,6 +32,10 @@ import {
   createAnalysis,
   claimAnonymousUnlock,
   countReportsOpenedByOrder,
+  createCreditLot,
+  getCreditLot,
+  closeCreditLot,
+  takeDeviceCreditsBack,
 } from "../db";
 import { sendPaymentConfirmationEmail, getSkuHumanName } from "../email";
 import { sendGA4PurchaseEvent } from "../ga4mp";
@@ -314,6 +318,8 @@ export function registerLemonsqueezyWebhook(app: Express) {
                 const holderId = await findCreditHolderByEmail(buyerEmail)
                   ?? (await findOrCreateGuestUserByEmail(buyerEmail)).id;
                 await grantCreditsViaLedger(holderId, guessed, 0, `lemonsqueezy:storefront:${variantName || "unknown"}`, dataId);
+                await createCreditLot({ lotKey: `ls:${dataId}`, place: "account", userId: holderId, granted: guessed, remaining: guessed })
+                  .catch((lotErr) => console.warn("[LemonSqueezy] Could not record the storefront purchase lot:", lotErr));
                 console.warn(`[LemonSqueezy] Storefront purchase with no order_id: ${guessed} credit(s) granted to ${buyerEmail}`);
                 if (webhookEventId) {
                   await updateWebhookEvent(webhookEventId, { paymentStatus: "storefront_credited" }).catch(() => {});
@@ -375,6 +381,10 @@ export function registerLemonsqueezyWebhook(app: Express) {
             console.log(`[LemonSqueezy] Credits granted to user ${order.userId}: essay=${credits.essay}, university=${credits.university}`);
           }
           await updateOrderStatus(order.id, "paid", dataId);
+          // What this payment did with its reports, recorded as its lot below: how many it
+          // opened straight away, and how many it placed on the buyer's browser.
+          let openedAtPurchase = 0;
+          let placedOnDevice = 0;
 
           // A guest bought the report sitting on their device. Open it here, because
           // they cannot sign in to spend the credit themselves: sign-in is Google
@@ -398,6 +408,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
               const target: any = await getAnalysisById(unlockAnalysisId, order.userId);
               if (target && target.userId === order.userId && target.resultJson && !target.unlocked) {
                 await markAnalysisUnlocked(target.id, order.id);
+                openedAtPurchase += 1;
                 await consumePaidEssayCredit(order.userId).catch((creditErr) => {
                   console.warn(`[LemonSqueezy] Report ${target.id} opened but credit not consumed:`, creditErr);
                 });
@@ -427,6 +438,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
               if (toDevice > 0) {
                 await addDeviceCredits(unlockFp, toDevice, order.id);
                 await setOrderDeviceCredits(order.id, toDevice, unlockFp);
+                placedOnDevice = toDevice;
               }
               // Only the part that moved to the device. The one credit the unlock
               // below consumes stays on the account until it is spent there.
@@ -439,6 +451,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
                 // report the device already owned opened it a moment earlier, this
                 // purchase's report goes where the buyer can still use it.
                 const opened = await claimAnonymousUnlock(rec.id, order.id);
+                if (opened) openedAtPurchase += 1;
                 if (opened) {
                   await consumePaidEssayCredit(order.userId).catch((creditErr) => {
                     console.warn(`[LemonSqueezy] Report ${rec.id} opened but credit not consumed:`, creditErr);
@@ -446,6 +459,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
                 } else if (buyerIsGuest) {
                   await addDeviceCredits(unlockFp, 1, order.id);
                   await setOrderDeviceCredits(order.id, toDevice + 1, unlockFp);
+                  placedOnDevice = toDevice + 1;
                   await debitAccountCredits(order.userId, 1);
                 }
                 // A signed-in buyer keeps what they paid for in the account. The device
@@ -474,6 +488,15 @@ export function registerLemonsqueezyWebhook(app: Express) {
               // The credits stay on the account, so the purchase is not lost either way.
               console.warn("[LemonSqueezy] Guest unlock failed (non-fatal):", unlockErr);
             }
+          }
+
+          // The purchase's lot: its unused reports are on the browser if they went there,
+          // otherwise on the account that paid.
+          if (credits.essay > 0) {
+            await createCreditLot(placedOnDevice > 0
+              ? { lotKey: order.id, place: "device", fingerprint: unlockFp, granted: credits.essay, remaining: placedOnDevice }
+              : { lotKey: order.id, place: "account", userId: order.userId, granted: credits.essay, remaining: credits.essay - openedAtPurchase },
+            ).catch((lotErr) => console.warn("[LemonSqueezy] Could not record the purchase lot:", lotErr));
           }
 
           // Update webhook event status
@@ -534,7 +557,20 @@ export function registerLemonsqueezyWebhook(app: Express) {
                 // refund is now a negative ledger entry, which both debits the balance
                 // and marks the order as refunded for any later copy.
                 const alreadyRefunded = await ledgerHasEntry("lemonsqueezy:storefront-refund", dataId);
-                if (granted > 0 && holderId && !alreadyRefunded) {
+                // Recorded as a lot: close what it opened and remove only what it has left.
+                const storefrontLot = await getCreditLot(`ls:${dataId}`).catch(() => null);
+                if (storefrontLot) {
+                  const lotKey = `ls:${dataId}`;
+                  await relockAnalysesForOrder(0, lotKey).catch(() => {});
+                  await relockAnonymousForOrder(lotKey).catch(() => {});
+                  const left = await closeCreditLot(lotKey);
+                  if (left && left.remaining > 0 && left.place === "account" && left.userId) {
+                    const balance = (await getUserCredits(left.userId).catch(() => null))?.essayCredits ?? 0;
+                    const fromAccount = Math.min(left.remaining, balance);
+                    if (fromAccount > 0) await grantCreditsViaLedger(left.userId, -fromAccount, 0, "lemonsqueezy:storefront-refund", dataId);
+                  }
+                  console.log(`[LemonSqueezy] Storefront refund ${dataId}: reports it opened re-locked, ${left?.remaining ?? 0} unused removed`);
+                } else if (granted > 0 && holderId && !alreadyRefunded) {
                   await grantCreditsViaLedger(holderId, -granted, 0, "lemonsqueezy:storefront-refund", dataId);
                   console.log(`[LemonSqueezy] Storefront refund: ${granted} credit(s) taken back from ${buyerEmail}`);
                 } else if (alreadyRefunded) {
@@ -571,9 +607,34 @@ export function registerLemonsqueezyWebhook(app: Express) {
           // Mark order as refunded
           await updateOrderStatus(order.id, "refunded", dataId);
 
-          // Take back what this order granted, once, in order: the reports it opened,
-          // then what it still has on the device, then the account for the rest.
-          // Doing all three in full removed credits that other purchases had paid for.
+          // A purchase recorded as a lot: close the reports it opened, then remove exactly
+          // the reports it has left, from wherever they are now.
+          const lot = await getCreditLot(order.id).catch(() => null);
+          if (lot) {
+            await relockAnalysesForOrder(order.userId, order.id).catch((e) =>
+              console.warn("[LemonSqueezy] Re-lock of account reports failed:", e));
+            await relockAnonymousForOrder(order.id).catch((e) =>
+              console.warn("[LemonSqueezy] Anonymous re-lock failed:", e));
+            const left = await closeCreditLot(order.id);
+            if (left && left.remaining > 0) {
+              if (left.place === "device" && left.fingerprint) {
+                await takeDeviceCreditsBack(left.fingerprint, left.remaining);
+              } else if (left.place === "account" && left.userId) {
+                const balance = (await getUserCredits(left.userId).catch(() => null))?.essayCredits ?? 0;
+                const fromAccount = Math.min(left.remaining, balance);
+                if (fromAccount > 0) await grantCreditsViaLedger(left.userId, -fromAccount, 0, `refund:${order.id}`, order.id);
+              }
+            }
+            console.log(`[LemonSqueezy] Refund of ${order.id}: reports it opened re-locked, ${left?.remaining ?? 0} unused removed from the ${left?.place ?? "lot"}`);
+            if (webhookEventId) {
+              await updateWebhookEvent(webhookEventId, { paymentStatus: "processed" }).catch(() => {});
+            }
+            return res.status(200).json({ ok: true });
+          }
+
+          // Orders from before lots were recorded. Take back what this order granted,
+          // once, in order: the reports it opened, then what it still has on the device,
+          // then the account for the rest.
           const grantedEssay = await ledgerAmountForOrder(order.id).catch(() => 0);
           const opened = await countReportsOpenedByOrder(order.id).catch(() => 0);
 

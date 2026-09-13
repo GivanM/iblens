@@ -5,7 +5,7 @@ export default function ExtendedEssayFeedback() {
   return (
     <ResourceArticle
       title="IB Extended Essay Feedback: How to Get It Before You Submit | IBLens"
-      description="Every legitimate way to get feedback on your IB Extended Essay before submission: supervisor rules, self-checking against the criteria, peers, and where AI feedback fits, with the limits of each channel."
+      description="The feedback the IB allows on your Extended Essay: what your supervisor may and may not do, how to check your own draft against the criteria, and why any other help, AI feedback included, needs your supervisor's agreement first."
       canonical="/resources/ib-extended-essay-feedback"
       datePublished="2026-08-11"
       dateModified="2026-09-13"
@@ -25,9 +25,9 @@ export default function ExtendedEssayFeedback() {
         <tbody>
           <tr><td>Supervisor</td><td>Expert, subject-aware comments; the only person who formally guides the EE</td><td>Written comments on one complete draft; cannot edit or proof-read; sessions are short</td></tr>
           <tr><td>Reflection sessions</td><td>Three mandatory reflection sessions with your supervisor (first, interim and the viva voce), separate from informal check-ins</td><td>Guidance on process and thinking, not line-by-line feedback</td></tr>
-          <tr><td>Peers and family</td><td>A fresh reader: do the argument and structure make sense to a non-expert?</td><td>They do not know the criteria; encouragement is not assessment</td></tr>
+          <tr><td>Peers and family</td><td>Talking through your topic</td><td>The EE guide says students must not receive assistance with any aspect of the research, writing or proofreading beyond that which is permitted through their supervisor, so do not ask them to read, correct or proofread the essay</td></tr>
           <tr><td>Self-check against criteria</td><td>Free, unlimited, and exactly what examiners use</td><td>Hard to be objective about your own writing</td></tr>
-          <tr><td>AI rubric check</td><td>A criterion-by-criterion read in about a minute, at any time, before your one supervisor draft</td><td>An estimate, not an official mark; quality depends on the tool applying the real criteria</td></tr>
+          <tr><td>AI rubric check</td><td>A criterion-by-criterion estimate of a draft</td><td>Outside help: use it only if your supervisor agrees and your school's AI policy allows it; an estimate, not an official mark</td></tr>
         </tbody>
       </table>
 
@@ -57,7 +57,7 @@ export default function ExtendedEssayFeedback() {
       <h2>Where AI feedback fits</h2>
 
       <p>
-        An AI check is not a replacement for your supervisor; it is what you run <em>before</em> spending that one draft. IBLens marks your EE against the criteria for your session (the 34-mark set or the new 30-mark May 2027 set), criterion by criterion. The estimated band range and your weakest criterion are free, and the full report is $9.99 with no subscription. Using AI for feedback on your own work is a different thing from having AI write it: see our guide to <Link href="/resources/academic-integrity">AI feedback and IB academic integrity</Link> for where the line sits.
+        An AI check is outside help. The EE guide says students must not receive assistance with any aspect of the research, writing or proofreading beyond that which is permitted through their supervisor, so ask your supervisor before you use IBLens or any other tool on your EE, and tell them if you do. If they agree, IBLens marks your EE against the criteria for your session (the 34-mark set or the new 30-mark May 2027 set), criterion by criterion. The estimated band range and your weakest criterion are free, and the full report is $9.99 with no subscription. Using AI for feedback on your own work is a different thing from having AI write it: see our guide to <Link href="/resources/academic-integrity">AI feedback and IB academic integrity</Link> for where the line sits.
       </p>
 
       <p>
@@ -78,7 +78,7 @@ export default function ExtendedEssayFeedback() {
 
       <h3>When should I get feedback?</h3>
       <p>
-        Early on the research question (a supervisor conversation), mid-way on structure and argument (self-check and an AI read), and near the end your one full supervisor draft, leaving yourself time to act on it.
+        Early on the research question (a supervisor conversation), mid-way on structure and argument (your own check against the criteria, and an AI read only if your supervisor agrees), and near the end your one full supervisor draft, leaving yourself time to act on it.
       </p>
 
       <h2>Related resources</h2>

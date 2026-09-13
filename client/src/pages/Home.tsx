@@ -118,7 +118,7 @@ export default function Home() {
                 name: "Is the first preview really free?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes. The first preview is free: your band range, feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark and comments for every criterion and a ranked list of fixes, unlocks for $9.99.",
+                  text: "Yes. The first preview is free: your band range, feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark, a mark and comment for each criterion that can be judged from your text (for the TOK essay and exhibition, the whole explanation) and a ranked list of fixes, unlocks for $9.99.",
                 },
               },
               {
@@ -225,7 +225,7 @@ export default function Home() {
             <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-2 text-sm text-muted-foreground">
               <span><strong className="text-foreground">No account</strong> needed for your first essay</span>
               <span className="hidden sm:block text-border">|</span>
-              <span><strong className="text-foreground">Every criterion</strong> in the full report</span>
+              <span><strong className="text-foreground">Every criterion your text can show</strong>, in the full report</span>
               <span className="hidden sm:block text-border">|</span>
               <span><strong className="text-foreground">IA · EE · TOK</strong></span>
               <span className="hidden sm:block text-border">|</span>
@@ -398,7 +398,7 @@ export default function Home() {
                   <div style={SERIF} className="text-3xl font-bold mb-2">$0</div>
                   <p className="text-xs text-muted-foreground mb-4">Band range, weakest criterion and top risks. No credit card required.</p>
                   <Button variant="outline" className="w-full min-h-11" asChild>
-                    <Link href="/essay">Get a free preview</Link>
+                    <Link href="/essay">{previewUsed ? "Mark my essay" : "Get a free preview"}</Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -472,7 +472,7 @@ export default function Home() {
               />
               <FAQItem
                 question="Is the first preview really free?"
-                answer="Yes. The first preview is free: your band range, feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark and comments for every criterion and a ranked list of fixes, unlocks for $9.99."
+                answer="Yes. The first preview is free: your band range, feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark, a mark and comment for each criterion that can be judged from your text (for the TOK essay and exhibition, the whole explanation) and a ranked list of fixes, unlocks for $9.99."
               />
               <FAQItem
                 question="How accurate is the estimated mark?"
@@ -508,7 +508,7 @@ export default function Home() {
             </p>
             <Button size="lg" className="text-base px-8 h-12 shadow-lg shadow-primary/25" asChild>
               <Link href="/essay">
-                Start your free preview <ArrowRight className="w-4 h-4 ml-2" />
+                {previewUsed ? "Mark my essay" : "Start your free preview"} <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
             <p className="text-xs text-muted-foreground mt-4">No credit card required. Results in about a minute.</p>

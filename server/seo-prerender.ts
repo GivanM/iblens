@@ -104,7 +104,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/academic-integrity": {
     title: "AI Feedback and IB Academic Integrity: Is It Allowed? | IBLens",
-    description: "What the IB academic integrity policy means for AI feedback on your EE, TOK essay or IA, and how IBLens handles your data: no training on your essays, no sharing beyond the AI provider that marks them, deletion on request.",
+    description: "What the IB academic integrity policy means for AI feedback on your EE, TOK essay or IA, and how IBLens handles your data: no training on your essays, no sharing beyond our relay server and the AI provider that marks them, deletion on request.",
     ogType: "article",
     canonical: "/resources/academic-integrity",
     schemaType: "Article",
@@ -344,7 +344,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/ib-extended-essay-feedback": {
     title: "IB Extended Essay Feedback: How to Get It Before You Submit | IBLens",
-    description: "Every legitimate way to get feedback on your IB Extended Essay before submission: supervisor rules, self-checking against the criteria, peers, and where AI feedback fits, with the limits of each channel.",
+    description: "The feedback the IB allows on your Extended Essay: what your supervisor may and may not do, how to check your own draft against the criteria, and why any other help, AI feedback included, needs your supervisor's agreement first.",
     ogType: "article",
     canonical: "/resources/ib-extended-essay-feedback",
     schemaType: "Article",
@@ -464,10 +464,28 @@ const routeMeta: Record<string, PageMeta> = {
     schemaType: "Article",
   },
   "/auth/signin": {
-    title: "Sign In: IBLens",
-    description: "Sign in to IBLens with Google to keep new reports, your credits and your purchase history in one account. Reports bought without an account move in when you sign in on the same device with the email you paid with.",
+    title: "Sign in | IBLens",
+    description: "Sign in to IBLens with Google to keep new reports, your paid reports and your purchase history in one account. Reports you opened without an account move in when you sign in on this device with the email you paid with; unused reports move to the first account that signs in here.",
+    noindex: true,
     ogType: "website",
     canonical: "/auth/signin",
+    schemaType: "WebPage",
+  },
+  // Private pages: an account's dashboard and its saved reports are never indexed.
+  "/dashboard": {
+    title: "Your dashboard | IBLens",
+    description: "Your IBLens reports, paid reports left and purchases.",
+    noindex: true,
+    ogType: "website",
+    canonical: "/dashboard",
+    schemaType: "WebPage",
+  },
+  "/dashboard/analysis": {
+    title: "Your IBLens report | IBLens",
+    description: "Your saved IBLens report.",
+    noindex: true,
+    ogType: "website",
+    canonical: "/dashboard/analysis",
     schemaType: "WebPage",
   },
   // Programmatic subject pages
@@ -674,7 +692,8 @@ ${JSON.stringify(faqSchema, null, 6)}
 // Runs server-side so crawlers and social bots see the correct tags without JS.
 export function injectSeoMeta(html: string, url: string, _userAgent: string): string {
   const cleanPath = url.split("?")[0].split("#")[0].replace(/\/$/, "") || "/";
-  const meta = routeMeta[cleanPath];
+  // Every saved report shares one entry: its address carries the report's id.
+  const meta = routeMeta[cleanPath] ?? (cleanPath.startsWith("/dashboard/analysis/") ? routeMeta["/dashboard/analysis"] : undefined);
 
   if (!meta) return html;
 

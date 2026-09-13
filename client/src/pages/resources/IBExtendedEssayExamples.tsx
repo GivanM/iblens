@@ -35,7 +35,7 @@ export default function IBExtendedEssayExamples() {
       </ul>
 
       <h3>History Extended Essay Examples</h3>
-      <p>Very recent events make risky History EE topics. The History guide rules out anything from the last 10 years for the internal assessment, because the topic must be historical; the Extended Essay guide sets no fixed cut-off, but recent events rarely have a body of historical writing to engage with. The strongest essays work with historiographical debate.</p>
+      <p>Very recent events make risky History EE topics. The History guide rules out anything from the last 10 years for the internal assessment, because the topic must be historical; the Extended Essay guide for May 2027 sets no fixed cut-off, but recent events rarely have a body of historical writing to engage with. The strongest essays work with historiographical debate.</p>
       <ul>
         <li><em>"To what extent was Stalin's collectivisation policy driven by ideological commitment to Marxism rather than pragmatic economic necessity, 1929-1933?"</em></li>
         <li><em>"How significant was the role of Japanese-American internment in shaping domestic opposition to civil liberties restrictions in post-war America?"</em></li>
@@ -99,7 +99,7 @@ export default function IBExtendedEssayExamples() {
 
       <h2>Before You Submit: Get Feedback on Your Draft</h2>
       <p>One of the hardest parts of the EE process is getting objective feedback. Your supervisor may be encouraging but not specific. By the time you have spent months on a topic, it is almost impossible to read your own essay with fresh eyes.</p>
-      <p><Link href="/essay/extended-essay">IBLens reads your Extended Essay draft against the criteria for your session</Link> and gives you feedback on each criterion before you hand it in: where the argument loses coherence, where the sources need strengthening, and whether the conclusion actually answers the research question.</p>
+      <p>Check with your supervisor first: the EE guide allows no assistance with the research, writing or proofreading beyond what your supervisor permits. If they agree, <Link href="/essay/extended-essay">IBLens reads your Extended Essay draft against the criteria for your session</Link> and gives you feedback on each criterion before you hand it in: where the argument loses coherence, where the sources need strengthening, and whether the conclusion actually answers the research question.</p>
 
       <h2>Final Checklist Before Submitting</h2>
       <ul>

@@ -31,8 +31,10 @@ import {
   grantCreditsViaLedger,
   consumeDeviceCredit,
   addDeviceCredits,
-  getDeviceCreditOrderId,
-  orderForCreditSpend,
+  takeFromOldestLot,
+  returnToLot,
+  moveDeviceLotsToAccount,
+  findAccountCopyOf,
   getOrderById,
   deleteAnonymousAnalysis,
   deleteUserAnalysis,
@@ -233,12 +235,55 @@ function isRiskAboutMissingReflection(r: any): boolean {
   return /missing|not submitted|absence|no reflection|without a reflect|automatic 0|automatic zero/.test(text);
 }
 
-/** Cut at a sentence boundary where possible so the teaser reads as deliberate, not broken. */
 /**
- * What a student sees when a run fails. Messages written for people pass through;
- * transport and parsing failures ("relay poll timeout after 240s", "Failed to parse
- * AI response") do not, because they read as a broken site and say nothing useful.
+ * The totals, worked out from the criteria. The model writes the total separately from
+ * the criterion marks, and the two did not always agree (16 out of 25 over marks adding
+ * up to 11), while the report shows both side by side. A task marked as a whole keeps
+ * its one mark. The band keeps its width and moves to contain the total. Criteria that
+ * cannot be judged from pasted text never carry a mark: an Extended Essay's reflection
+ * without the reflections, and the Music exercises, which are recordings and scores.
  */
+function reconcileScores(result: any, opts: { essayType: string; subject: string; reflectionsPasted: boolean }) {
+  const criteria: any[] = Array.isArray(result?.criteria) ? result.criteria : [];
+  for (const c of criteria) {
+    const name = String(c?.name || "");
+    const lower = name.toLowerCase();
+    const reflectionMissing = opts.essayType === "EE" && !opts.reflectionsPasted && (lower.includes("reflection") || lower.includes("engagement"));
+    const musicExercise = opts.essayType === "IA" && opts.subject === "Music" && /^criterion c[12]\b/i.test(name);
+    if ((reflectionMissing || musicExercise) && c.score != null) {
+      c.score = null;
+      if (!isNotAssessableFromText(c)) {
+        c.comment = reflectionMissing
+          ? "Not assessed: this criterion is marked on your reflections, which were not pasted."
+          : "Not assessed: this criterion is judged on the exercise itself, the score or recording, which text cannot carry.";
+      }
+    }
+  }
+  if (criteria.length <= 1) return result;
+  const marked = criteria.filter((c) => typeof c?.score === "number" && typeof c?.max === "number" && c.max > 0);
+  if (!marked.length) return result;
+  for (const c of marked) c.score = Math.max(0, Math.min(c.max, Math.round(c.score)));
+  const total = marked.reduce((s, c) => s + c.score, 0);
+  const max = marked.reduce((s, c) => s + c.max, 0);
+  result.predicted_score = total;
+  result.max_score = max;
+  const m = String(result.band_range || "").match(/(\d+)\s*-\s*(\d+)/);
+  let lo = total > 0 ? total - 1 : 0;
+  let hi = Math.min(max, total + 1);
+  if (m) {
+    lo = Math.min(Number(m[1]), Number(m[2]));
+    hi = Math.max(Number(m[1]), Number(m[2]));
+    const width = Math.min(hi - lo, max);
+    if (total < lo || total > hi || hi > max) {
+      lo = Math.max(0, total - Math.floor(width / 2));
+      hi = Math.min(max, lo + width);
+      lo = Math.max(0, hi - width);
+    }
+  }
+  result.band_range = `${lo}-${hi}`;
+  return result;
+}
+
 /**
  * The exam session a stored report was marked on. Checks from /remark and older rows
  * saved none, and re-checking those on whatever the form showed moved a 34-mark
@@ -268,6 +313,11 @@ function previousScores(prev: any) {
   };
 }
 
+/**
+ * What a student sees when a run fails. Messages written for people pass through;
+ * transport and parsing failures ("relay poll timeout after 240s", "Failed to parse
+ * AI response") do not, because they read as a broken site and say nothing useful.
+ */
 function friendlyRunError(error: any, what: string): string {
   const msg = String(error?.message || "");
   if (!msg || /relay|timeout|timed out|parse|json|fetch|econn|socket|network|status code|\b5\d\d\b|overloaded|rate.?limit|anthropic|invalid response|unexpected token|undefined|null/i.test(msg)) {
@@ -298,6 +348,7 @@ function normalizeDashes<T>(value: T): T {
   return value;
 }
 
+/** Cut at a sentence boundary where possible so the teaser reads as deliberate, not broken. */
 function softTruncate(text: string, limit: number): string {
   if (typeof text !== "string" || text.length <= limit) return text;
   const window = text.slice(0, limit);
@@ -411,12 +462,13 @@ const essayRouter = router({
         if (!rec || rec.userId !== ctx.user.id || !rec.resultJson) throw new Error("Report not found");
         if (!(rec as any).unlocked) {
           await consumePaidEssayCredit(ctx.user.id);
-          // The purchase this report is charged to, so a refund of it closes this report.
-          const orderId = await orderForCreditSpend({ userId: ctx.user.id });
+          // The purchase the credit came from, so a refund of it closes this report.
+          const orderId = await takeFromOldestLot({ userId: ctx.user.id });
           // A double click sends two of these; only the one that opens the report
           // keeps the credit, the other gives it straight back.
           if (!(await claimAnalysisUnlock(rec.id, orderId))) {
             await refundEssayConsumption(ctx.user.id, false);
+            await returnToLot(orderId);
           }
         }
         return { result: normalizeDashes(rec.resultJson) };
@@ -428,11 +480,12 @@ const essayRouter = router({
         if (!rec || !rec.resultJson) throw new Error("No report found for this device");
         if (!(rec as any).unlocked) {
           await consumePaidEssayCredit(ctx.user.id);
-          const orderId = await orderForCreditSpend({ userId: ctx.user.id });
+          const orderId = await takeFromOldestLot({ userId: ctx.user.id });
           // As above: the request that lost the race returns its credit and does
           // not add a second copy to the dashboard.
           if (!(await claimAnonymousUnlock(rec.id, orderId))) {
             await refundEssayConsumption(ctx.user.id, false);
+            await returnToLot(orderId);
             return { result: normalizeDashes(rec.resultJson) };
           }
           // Keep a copy in the user's dashboard history
@@ -502,6 +555,7 @@ const essayRouter = router({
           result._rubricTotalMarks = rubric.totalMarks;
         }
         result._wordCheck = storableWordCheck(checkWordLimit(rubric, input.essayText));
+        reconcileScores(result, { essayType: rec.essayType, subject: rec.subject, reflectionsPasted: !!input.reflections?.trim() });
 
         const analysis = await createAnalysis({
           userId: ctx.user.id,
@@ -595,8 +649,8 @@ const essayRouter = router({
       // on one credit produced two full reviews.
       if (paidCredit) await consumePaidEssayCredit(user.id);
       // The purchase each paid review is charged to, so a refund of it closes the review.
-      const creditOrderId = paidCredit ? await orderForCreditSpend({ userId: user.id }) : null;
-      const deviceOrderId = paidByDevice ? await getDeviceCreditOrderId(input.clientFingerprint) : null;
+      const creditOrderId = paidCredit ? await takeFromOldestLot({ userId: user.id }) : null;
+      const deviceOrderId = paidByDevice ? await takeFromOldestLot({ fingerprint: input.clientFingerprint }) : null;
 
       // Claim the free slot before the model is called: the check and the write
       // were eighty seconds apart, which is a free second review for anyone who
@@ -682,9 +736,15 @@ const essayRouter = router({
       } catch (error: any) {
         console.error("[UCAS PS Review] Error:", error);
         if (claim?.id) await deleteAnonymousAnalysis(claim.id).catch(() => {});
-        if (paidByDevice) await addDeviceCredits(fingerprint, 1).catch(() => {});
+        if (paidByDevice) {
+          await addDeviceCredits(fingerprint, 1).catch(() => {});
+          await returnToLot(deviceOrderId).catch(() => {});
+        }
         // The account credit comes back too: nothing was produced.
-        if (paidCredit && user) await grantCreditsViaLedger(user.id, 1, 0, "refund:ucas-failed").catch(() => {});
+        if (paidCredit && user) {
+          await grantCreditsViaLedger(user.id, 1, 0, "refund:ucas-failed").catch(() => {});
+          await returnToLot(creditOrderId).catch(() => {});
+        }
         throw new Error(friendlyRunError(error, "review"));
       }
     }),
@@ -700,7 +760,7 @@ const essayRouter = router({
       essayText: z.string().min(300).max(120000).optional(),
       reflections: z.string().max(8000).optional(),
       examSession: z.enum(["nov2026", "may2027"]).optional(),
-      answers: z.object({ q1: z.string(), q2: z.string(), q3: z.string() }).optional(),
+      answers: z.object({ q1: z.string().max(4000), q2: z.string().max(4000), q3: z.string().max(4000) }).optional(),
       /** The course as it stands now, in case the applicant changed it. */
       course: z.string().max(120).optional(),
       /** Which report on this device to re-check; the newest of its kind when absent. */
@@ -726,6 +786,9 @@ const essayRouter = router({
         if (rec.essayType === "UCAS") {
           if (!input.answers) throw new Error("Paste your revised answers to re-check them.");
           mechanics = checkUcasMechanics(input.answers);
+          if (mechanics.totalChars > UCAS_TOTAL_CHAR_LIMIT + 2000) {
+            throw new TRPCError({ code: "BAD_REQUEST", message: `Your answers total ${mechanics.totalChars.toLocaleString("en-GB")} characters. UCAS allows ${UCAS_TOTAL_CHAR_LIMIT.toLocaleString("en-GB")}; trim the draft before re-checking it.` });
+          }
           systemPrompt = buildUcasSystemPrompt(ucasCourse, ucasLevel);
           userPrompt = buildUcasUserPrompt(ucasCourse, input.answers, mechanics);
         } else {
@@ -762,11 +825,15 @@ const essayRouter = router({
           result._rubricLabel = rubric?.label ?? null;
           result._rubricTotalMarks = rubric?.totalMarks ?? null;
           result._wordCheck = storableWordCheck(checkWordLimit(rubric, input.essayText ?? ""));
+          reconcileScores(result, { essayType: rec.essayType, subject: rec.subject, reflectionsPasted: !!input.reflections?.trim() });
         }
 
         const child = await createRerunAnalysis(rec, result, result?.predicted_score != null ? String(result.predicted_score) : undefined, headId);
         const signedIn = (ctx as any).user;
         if (signedIn && child?.id && rec.essayType === "UCAS") {
+          // A re-check of the review that was bought, not a review of its own: counted as
+          // one, it made a refund think the purchase had opened more than it had.
+          const parentCopy = await findAccountCopyOf(signedIn.id, headId).catch(() => null);
           await createAnalysis({
             userId: signedIn.id,
             type: "essay",
@@ -779,6 +846,7 @@ const essayRouter = router({
             unlockedAt: new Date(),
             unlockOrderId: rec.unlockOrderId ?? null,
             adoptedFromId: child.id,
+            rerunOf: parentCopy?.id ?? null,
           }).catch((copyErr) => console.warn("[Re-check] Account copy failed:", copyErr));
         }
         return {
@@ -817,6 +885,8 @@ const essayRouter = router({
       if (credits <= 0) return { moved: 0, adopted };
       const taken = await takeAllDeviceCredits(input.fingerprint, ctx.user.id);
       if (taken <= 0) return { moved: 0, adopted };
+      // The purchases those reports came from move with them, so a refund still finds them.
+      await moveDeviceLotsToAccount(input.fingerprint, ctx.user.id);
       await grantCreditsViaLedger(ctx.user.id, taken, 0, `device-claim:${input.fingerprint.slice(0, 8)}`);
       return { moved: taken, adopted };
     }),
@@ -839,13 +909,14 @@ const essayRouter = router({
         : await getLatestAnonymousEssay(input.fingerprint);
       if (!rec || !rec.resultJson) throw new TRPCError({ code: "NOT_FOUND", message: "There is no preview on this device to open." });
       if (rec.unlocked) return { result: normalizeDashes(rec.resultJson) };
-      const orderId = await getDeviceCreditOrderId(input.fingerprint);
       if (!(await consumeDeviceCredit(input.fingerprint))) {
         throw new TRPCError({ code: "FORBIDDEN", message: "This browser has no paid reports left. A full report is $9.99." });
       }
+      const orderId = await takeFromOldestLot({ fingerprint: input.fingerprint });
       // Two taps at once: the second finds the row already open and returns its report.
       if (!(await claimAnonymousUnlock(rec.id, orderId))) {
         await addDeviceCredits(input.fingerprint, 1).catch(() => {});
+        await returnToLot(orderId).catch(() => {});
       }
       return { result: normalizeDashes(rec.resultJson) };
     }),
@@ -863,6 +934,8 @@ const essayRouter = router({
       return {
         unlocked: true as const,
         id: rec.id as number,
+        essayType: rec.essayType as string | null,
+        subject: rec.subject as string | null,
         result: normalizeDashes(rec.resultJson),
         // Past the 14 days there are none, whatever the counter says: the page offered
         // "2 left" and the server then refused every one.
@@ -961,7 +1034,7 @@ const essayRouter = router({
         throw new TRPCError({ code: "FORBIDDEN", message: "You have used the free preview on this device." });
       }
       // The purchase this report is charged to, fixed when the credit is taken.
-      const deviceOrderId = paidByDevice ? await getDeviceCreditOrderId(fingerprint) : null;
+      const deviceOrderId = paidByDevice ? await takeFromOldestLot({ fingerprint }) : null;
 
       const systemPrompt = buildEssaySystemPrompt(input.essayType, input.subject, input.examSession);
       const userPrompt = buildEssayUserPrompt(input.essayType, input.subject, input.researchQuestion, input.essayText, input.examSession, input.reflections);
@@ -992,6 +1065,7 @@ const essayRouter = router({
           result._rubricTotalMarks = rubric.totalMarks;
         }
         result._wordCheck = storableWordCheck(checkWordLimit(rubric, input.essayText));
+        reconcileScores(result, { essayType: input.essayType, subject: input.subject, reflectionsPasted: !!input.reflections?.trim() });
 
         // Fill in the slot claimed before the model ran, or write a fresh row for
         // a run paid with a device credit.
@@ -1022,7 +1096,10 @@ const essayRouter = router({
         // A run that produced nothing must not cost the free slot it claimed, nor
         // the credit it spent.
         if (claim?.id) await deleteAnonymousAnalysis(claim.id).catch(() => {});
-        if (paidByDevice) await addDeviceCredits(fingerprint, 1).catch(() => {});
+        if (paidByDevice) {
+          await addDeviceCredits(fingerprint, 1).catch(() => {});
+          await returnToLot(deviceOrderId).catch(() => {});
+        }
         throw new Error(friendlyRunError(error, "marking"));
       }
     }),
@@ -1076,7 +1153,7 @@ const essayRouter = router({
       // Decided by what was taken. The earlier read can say "free" when a second
       // tab took the free slot first, and this run then spends a paid credit.
       const wasFree = consumed === "free";
-      const creditOrderId = wasFree ? null : await orderForCreditSpend({ userId: ctx.user.id });
+      const creditOrderId = wasFree ? null : await takeFromOldestLot({ userId: ctx.user.id });
 
       try {
         const startedAt = Date.now();
@@ -1104,6 +1181,7 @@ const essayRouter = router({
           result._rubricTotalMarks = rubric.totalMarks;
         }
         result._wordCheck = storableWordCheck(checkWordLimit(rubric, input.essayText));
+        reconcileScores(result, { essayType: input.essayType, subject: input.subject, reflectionsPasted: !!input.reflections?.trim() });
 
         const analysis = await createAnalysis({
           userId: ctx.user.id,
@@ -1129,6 +1207,7 @@ const essayRouter = router({
         console.error("[Essay Analysis] Error:", error);
         // Nothing was produced, so the free slot or credit comes back.
         await refundEssayConsumption(ctx.user.id, consumed === "free").catch(() => {});
+        if (!wasFree) await returnToLot(creditOrderId).catch(() => {});
         throw new Error(friendlyRunError(error, "marking"));
       }
     }),

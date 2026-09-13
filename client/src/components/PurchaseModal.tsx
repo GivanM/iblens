@@ -187,6 +187,9 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPrev
                 <li>{count > 1
                   ? "Two free re-checks of revised versions of the same work with each report, within 14 days of that report opening"
                   : "Two free re-checks of revised versions of the same work, within 14 days of the report opening"}</li>
+                {kind === "ucas" && (
+                  <li>UCAS re-checks run only in this browser, on the UCAS page. Signing out or clearing this browser's site data ends them{isAuthenticated ? "; the review itself stays in your account" : ""}.</li>
+                )}
                 {isAuthenticated
                   ? <li>{opensPreview && count === 1 ? "The report opens in your account" : opensPreview ? "The report opens in your account and the rest are added to it" : count > 1 ? "The reports are added to your account" : "The report is added to your account"} as soon as the payment clears</li>
                   : <>

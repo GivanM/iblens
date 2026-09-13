@@ -60,7 +60,7 @@ export default function IBHistoryExtendedEssay() {
         One more constraint is worth taking seriously: very recent events make risky
         History EE topics. The History guide rules out anything from the last 10 years
         for the internal assessment, because the topic must be historical. The Extended
-        Essay guide sets no fixed cut-off, but the subject rewards engagement with a body
+        Essay guide for May 2027 sets no fixed cut-off, but the subject rewards engagement with a body
         of historical writing, and recent events rarely have one. Choose something old
         enough that historians have already argued about it, and confirm the topic with
         your supervisor before committing.
@@ -157,7 +157,7 @@ export default function IBHistoryExtendedEssay() {
       <h2>Frequently Asked Questions</h2>
       <h3>Can I write my History EE on a recent event?</h3>
       <p>
-        Very recent topics are risky. The Extended Essay guide sets no fixed cut-off
+        Very recent topics are risky. The Extended Essay guide for May 2027 sets no fixed cut-off
         (the History internal assessment rules out the last 10 years), but the History
         EE rewards engagement with historiography, and recent events rarely have an
         established body of historical writing. Choose a topic old enough that

@@ -42,7 +42,7 @@ export function DeviceReportsList({ reports, selectedId, onOpen, onRecheck, open
       <CardContent className="pt-6 space-y-3">
         <div>
           <p className="text-sm font-semibold">Reports bought on this browser ({reports.length})</p>
-          <p className="text-xs text-muted-foreground">Each keeps its own two re-checks for 14 days from opening. Sign in with Google to keep them in an account.</p>
+          <p className="text-xs text-muted-foreground">Each keeps its own two re-checks for 14 days from opening. Sign in with Google on this device, with the email you paid with, to keep them in an account.</p>
         </div>
         <ul className="divide-y divide-border">
           {reports.map((r) => {

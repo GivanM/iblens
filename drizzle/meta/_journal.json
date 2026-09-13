@@ -169,6 +169,13 @@
       "when": 1789279008101,
       "tag": "0023_crazy_pixie",
       "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "5",
+      "when": 1789299387566,
+      "tag": "0024_rainy_justin_hammer",
+      "breakpoints": true
     }
   ]
 }

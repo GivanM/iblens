@@ -142,7 +142,7 @@ export default function IBPsychologyIA() {
       </p>
       <p>
         IBLens reads your Psychology IA report against the assessment criteria and gives
-        an estimated mark for each one, with what it would take to reach the next level.
+        an estimated mark for each one, with the reason for each mark.
       </p>
       <p>
         <Link href="/essay/psychology-ia">Paste your Psychology IA draft into IBLens for criterion-by-criterion feedback →</Link>

@@ -9,6 +9,7 @@ const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
 export default function SignIn() {
   const [loginUrl, setLoginUrl] = useState("");
+  const [authFailed] = useState(() => typeof window !== "undefined" && new URLSearchParams(window.location.search).has("auth_error"));
 
   useEffect(() => {
     setLoginUrl(getGoogleOAuthUrl());
@@ -21,8 +22,8 @@ export default function SignIn() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">
       <SEOHead
-        title="Sign In: IBLens"
-        description="Sign in to IBLens with Google to keep new reports, your credits and your purchase history in one account. Reports bought without an account move in when you sign in on the same device with the email you paid with."
+        title="Sign in | IBLens"
+        description="Sign in to IBLens with Google to keep new reports, your paid reports and your purchase history in one account. Reports you opened without an account move in when you sign in on this device with the email you paid with; unused reports move to the first account that signs in here."
         canonical="/auth/signin"
       />
       <div className="max-w-md w-full mx-4">
@@ -36,12 +37,16 @@ export default function SignIn() {
             </h1>
           </div>
 
+          {authFailed && (
+            <p className="text-sm rounded-lg border border-amber-300 bg-amber-50 text-amber-900 p-3" role="alert">Sign-in did not finish. Please try again.</p>
+          )}
+
           <div className="bg-muted/50 rounded-lg p-4">
             <div className="flex items-start gap-2">
               <Shield className="w-4 h-4 text-primary mt-0.5 shrink-0" />
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Sign in securely with your <strong className="text-foreground">Google account</strong>.
-                Google shares your name, email address and profile picture; we keep only your name and email address.
+                Google shares your name, email address and profile picture. We keep your name, your email address and the account ID Google gives us, not the picture.
               </p>
             </div>
           </div>

@@ -20,10 +20,24 @@ export function registerOAuthRoutes(app: Express) {
   app.get("/api/oauth/callback", async (req: Request, res: Response) => {
     const code = getQueryParam(req, "code");
     const error = getQueryParam(req, "error");
+    const cookieHeader = String(req.headers.cookie || "");
+    // Where the reader was when they chose to sign in. Only a path on this site.
+    const rawReturn = (() => {
+      try {
+        return decodeURIComponent(cookieHeader.split(";").map((c) => c.trim())
+          .find((c) => c.startsWith("iblens_return_to="))?.slice("iblens_return_to=".length) || "");
+      } catch {
+        return "";
+      }
+    })();
+    const returnTo = /^\/(?!\/)[^\\\s]*$/.test(rawReturn) && !rawReturn.startsWith("/api/") ? rawReturn : "/";
+    // Back to the sign-in page, which says what happened and still knows where to return.
+    const signInAgain = () => `/auth/signin?auth_error=1&returnTo=${encodeURIComponent(returnTo)}`;
 
     if (error) {
       console.error("[OAuth] Google returned error:", error);
-      res.redirect("/?auth_error=" + encodeURIComponent(error));
+      res.clearCookie("iblens_return_to", { path: "/api/oauth" });
+      res.redirect(signInAgain());
       return;
     }
 
@@ -35,24 +49,13 @@ export function registerOAuthRoutes(app: Express) {
     // Reject a callback whose state does not match the one this browser started
     // with. This is what stops a sign-in being completed on someone else's behalf.
     const returnedState = getQueryParam(req, "state") || "";
-    const cookieHeader = String(req.headers.cookie || "");
     const expectedState = cookieHeader.split(";").map((c) => c.trim())
       .find((c) => c.startsWith("iblens_oauth_state="))?.slice("iblens_oauth_state=".length) || "";
     res.clearCookie("iblens_oauth_state", { path: "/api/oauth" });
-    // Where the reader was when they chose to sign in. Only a path on this site.
-    const rawReturn = (() => {
-      try {
-        return decodeURIComponent(cookieHeader.split(";").map((c) => c.trim())
-          .find((c) => c.startsWith("iblens_return_to="))?.slice("iblens_return_to=".length) || "");
-      } catch {
-        return "";
-      }
-    })();
-    const returnTo = /^\/(?!\/)[^\\\s]*$/.test(rawReturn) && !rawReturn.startsWith("/api/") ? rawReturn : "/";
     res.clearCookie("iblens_return_to", { path: "/api/oauth" });
     if (!returnedState || !expectedState || returnedState !== expectedState) {
       console.warn("[OAuth] State mismatch, sign-in refused");
-      res.redirect("/auth/signin?auth_error=state");
+      res.redirect(signInAgain());
       return;
     }
 

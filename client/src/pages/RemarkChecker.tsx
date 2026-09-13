@@ -30,8 +30,14 @@ const QUICK_STEPS = [
 ];
 
 
+// The session a re-mark request is most likely about: November 2026 and earlier essays
+// were marked on the 34-mark Extended Essay criteria, and from the May 2027 results in
+// July 2027 on the 30-mark ones. A student can still choose.
+const LATEST_RESULTS_SESSION: "nov2026" | "may2027" = Date.now() < Date.parse("2027-07-01T00:00:00Z") ? "nov2026" : "may2027";
+
 function RemarkQuickCheck() {
   const [essayType, setEssayType] = useState<"EE" | "TOK">("TOK");
+  const [sessionSat, setSessionSat] = useState<"nov2026" | "may2027">(LATEST_RESULTS_SESSION);
   const [subject, setSubject] = useState("History");
   const [essayText, setEssayText] = useState("");
   const [result, setResult] = useState<any>(null);
@@ -78,6 +84,15 @@ function RemarkQuickCheck() {
                 </select>
               </label>
             )}
+            {essayType === "EE" && (
+              <label className="w-full flex items-center gap-2 text-sm text-muted-foreground">
+                Session you sat
+                <select value={sessionSat} onChange={(e) => setSessionSat(e.target.value as "nov2026" | "may2027")} className="flex-1 sm:flex-none min-h-11 text-sm border border-border rounded-md px-2 bg-background text-foreground cursor-pointer">
+                  <option value="nov2026">November 2026 or earlier (EE marked out of 34)</option>
+                  <option value="may2027">May 2027 or later (EE marked out of 30)</option>
+                </select>
+              </label>
+            )}
           </div>
           <Textarea value={essayText} onChange={(e) => setEssayText(e.target.value)} rows={7}
             placeholder={essayType === "TOK" ? "Paste your full TOK essay (the version you submitted to IB)\u2026" : "Paste your full Extended Essay (the version you submitted to IB)\u2026"}
@@ -86,8 +101,8 @@ function RemarkQuickCheck() {
             <span className="text-xs text-muted-foreground">{essayText.trim() ? essayText.trim().split(/\s+/).length.toLocaleString("en-GB") + " words" : "Uses this device's free essay preview, one per device or account. No account needed. Full report $9.99."}</span>
             <Button disabled={essayText.trim().length < 300 || analyze.isPending}
               onClick={() => analyze.mutate({
-      // Every essay checked here was submitted, so it was marked on the criteria in force through November 2026.
-      spendDeviceCredit: false, essayType, subject: essayType === "TOK" ? "Theory of Knowledge" : subject, essayText, clientFingerprint: fp, examSession: "nov2026" as const })}>
+      // Marked on the criteria of the session the essay was submitted in, which the student chooses.
+      spendDeviceCredit: false, essayType, subject: essayType === "TOK" ? "Theory of Knowledge" : subject, essayText, clientFingerprint: fp, examSession: essayType === "EE" ? sessionSat : LATEST_RESULTS_SESSION })}>
               {analyze.isPending ? QUICK_STEPS[Math.min(step, QUICK_STEPS.length - 1)] : "See where my essay stands"}
             </Button>
           </div>
@@ -96,7 +111,7 @@ function RemarkQuickCheck() {
             <p className="text-xs text-muted-foreground mt-2">Keep pasting: the check needs the full essay.</p>
           )}
           {alreadyUsed && (
-            <p className="text-sm mt-3">You have already used the free preview on this device. A full report is $9.99 on the <Link href="/essay?session=nov2026" className="text-primary font-medium underline">grader page</Link>, with no account needed.</p>
+            <p className="text-sm mt-3">You have already used the free preview on this device. A full report is $9.99 on the <Link href={`/essay?session=${sessionSat}`} className="text-primary font-medium underline">grader page</Link>, with no account needed.</p>
           )}
           {errMsg && !alreadyUsed && (
             <p className="text-sm mt-3 text-destructive">{errMsg.replace(/[.\s]*$/, ".")} Please try again.</p>
@@ -141,7 +156,7 @@ function RemarkQuickCheck() {
             </ul>
           )}
           <p className="text-sm text-muted-foreground mb-3">The full report, with the estimated mark, the full comments and a ranked list of fixes, unlocks for $9.99 on the grader page, where this preview is saved. Everything here is an estimate from a language model, not the IB's mark.</p>
-          <Button asChild><Link href="/essay?session=nov2026">Unlock it on the grader page, $9.99</Link></Button>
+          <Button asChild><Link href={`/essay?session=${sessionSat}`}>Unlock it on the grader page, $9.99</Link></Button>
         </div>
       )}
     </div>
@@ -212,7 +227,7 @@ export default function RemarkChecker() {
           <div className="rounded-xl border-2 border-primary bg-primary/5 p-6 mb-12">
             <h2 style={SERIF} className="text-2xl font-bold mb-3">Get more to go on before you pay</h2>
             <ol className="space-y-2 text-sm text-muted-foreground mb-5 list-decimal pl-5">
-              <li>Ask your coordinator for your component mark and the grade boundaries. They decide whether a re-mark can change your grade.</li>
+              <li>Ask your coordinator for your marks and the grade boundaries (for TOK, the overall TOK mark, not the essay mark alone). They decide whether a re-mark can change your grade.</li>
               <li>Paste the exact EE or TOK essay you submitted and see how it reads against the published criteria, criterion by criterion where the instrument has criteria.</li>
               <li>Read the two together. The estimate shows where the essay is strong and weak; it cannot predict what a second examiner will do.</li>
             </ol>
@@ -220,7 +235,7 @@ export default function RemarkChecker() {
               The first preview is free; the full report is $9.99.
             </p>
             <Button size="lg" asChild>
-              <Link href="/essay?session=nov2026">Grade my submitted essay <ArrowRight className="w-4 h-4 ml-2" /></Link>
+              <Link href={`/essay?session=${LATEST_RESULTS_SESSION}`}>Grade my submitted essay <ArrowRight className="w-4 h-4 ml-2" /></Link>
             </Button>
           </div>
 
@@ -238,7 +253,7 @@ export default function RemarkChecker() {
           <div className="space-y-3 mb-12">
             <div className="flex gap-3 items-start">
               <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
-              <p className="text-sm text-muted-foreground"><strong className="text-foreground">Re-mark:</strong> when your component mark is one or two marks from a grade boundary. No new work, but the grade can drop as well as rise.</p>
+              <p className="text-sm text-muted-foreground"><strong className="text-foreground">Re-mark:</strong> when your mark is one or two marks from a grade boundary (for TOK, your overall TOK mark). No new work, but the grade can drop as well as rise.</p>
             </div>
             <div className="flex gap-3 items-start">
               <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
@@ -263,7 +278,7 @@ export default function RemarkChecker() {
           <div className="text-center border-t border-border pt-10">
             <p style={SERIF} className="text-xl font-bold mb-3">Know before you pay.</p>
             <Button size="lg" asChild>
-              <Link href="/essay?session=nov2026">Mark my essay: the first preview is free <ArrowRight className="w-4 h-4 ml-2" /></Link>
+              <Link href={`/essay?session=${LATEST_RESULTS_SESSION}`}>Mark my essay: the first preview is free <ArrowRight className="w-4 h-4 ml-2" /></Link>
             </Button>
           </div>
         </div>

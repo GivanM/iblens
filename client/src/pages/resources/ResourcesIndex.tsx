@@ -63,7 +63,7 @@ const resources = [
   {
     slug: "/resources/ib-extended-essay-feedback",
     title: "How to Get EE Feedback",
-    description: "Every legitimate feedback channel for your Extended Essay (your supervisor, self-checks, peers and AI) with the honest limits of each.",
+    description: "The feedback the IB allows on your Extended Essay: your supervisor's role, checking your own draft against the criteria, and why other help needs your supervisor's agreement.",
     icon: FileText,
     readTime: "3 min read",
   },

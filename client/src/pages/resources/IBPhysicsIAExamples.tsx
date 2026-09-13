@@ -12,8 +12,9 @@ export default function IBPhysicsIAExamples() {
       dateModified="2026-09-13"
     >
       <p>
-        The IB Physics Internal Assessment is a practical investigation worth 20%
-        of your final grade, marked on four criteria of 6 marks each. Physics IAs are
+        The IB Physics Internal Assessment is the scientific investigation, worth 20%
+        of your final grade and marked on four criteria of 6 marks each. It can use
+        laboratory work, fieldwork, a spreadsheet model, a database or a simulation. Physics IAs are
         unforgiving on data quality: the criteria look for quantitative analysis,
         uncertainties carried through the processing, and graphs that actually test the
         relationship. A clever investigation with careless measurements can end up below

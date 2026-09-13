@@ -9,6 +9,11 @@ const t = initTRPC.context<TrpcContext>().create({
   // database error is the SQL statement and its parameters. Only errors thrown on
   // purpose carry their message out; anything else is logged and said plainly.
   errorFormatter({ shape, error }) {
+    // A rejected input comes back as the first thing that is wrong with it, in words;
+    // the raw validation report used to reach the page as JSON.
+    if (error.code === "BAD_REQUEST" && (error.cause as any)?.issues?.length) {
+      return { ...shape, message: String((error.cause as any).issues[0]?.message || "Please check what you entered.") };
+    }
     const internal = error.code === "INTERNAL_SERVER_ERROR" && /Failed query|ER_[A-Z_]+|SQL|ECONN|ETIMEDOUT|drizzle/i.test(String(error.cause?.message ?? error.message));
     if (!internal) return shape;
     console.error("[tRPC] internal error:", error.cause ?? error);

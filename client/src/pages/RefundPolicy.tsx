@@ -40,7 +40,7 @@ export default function RefundPolicy() {
           <section>
             <h2 className="text-xl font-semibold mb-3">Eligibility</h2>
             <p className="text-muted-foreground leading-relaxed">
-              All paid products are eligible for a refund within the 7-day window, including full reports, packs of 5 or 10 reports and UCAS personal statement reviews. The free preview is not refundable, as no payment was made.
+              All paid products are eligible for a refund within the 7-day window, including full reports, packs of 5 or 10 reports and UCAS personal statement reviews. The free preview is not refundable, as no payment was made. If you are under 18 and paid without the permission of the person who owns the card, email us and we will refund the payment, even after the 7 days.
             </p>
           </section>
 
@@ -54,7 +54,7 @@ export default function RefundPolicy() {
           <section>
             <h2 className="text-xl font-semibold mb-3">What a refund closes</h2>
             <p className="text-muted-foreground leading-relaxed">
-              A refund cancels what that purchase paid for. The reports it opened lock again, showing only their free preview, and their re-checks end. Any reports from it you have not used yet are removed. Reports and packs you paid for separately are not affected.
+              A refund cancels what that purchase paid for. The reports it opened close again and their re-checks end: an essay report shows only its free preview, and a UCAS review is no longer shown. Any reports from it you have not used yet are removed. Reports and packs you paid for separately are not affected.
             </p>
           </section>
 

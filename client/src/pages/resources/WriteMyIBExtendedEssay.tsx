@@ -131,16 +131,16 @@ export default function WriteMyIBExtendedEssay() {
         which sections are weak on which criteria, and fixing them before submission.
       </p>
       <p>
-        The challenge is that your supervisor can only give one full draft review,
-        and general feedback ("your analysis could be deeper") does not tell you where
-        to make changes. What you need is specific, criterion-by-criterion feedback:
-        "Your Criterion C score is limited because your argument in Section 2 describes
-        the sources rather than analysing them."
+        Your supervisor comments in writing on one full draft, and the EE guide does not
+        allow other assistance with the research, writing or proofreading beyond what your
+        supervisor permits. General feedback ("your analysis could be deeper") does not tell
+        you where to make changes; criterion-by-criterion feedback does: "Your Criterion C
+        score is limited because your argument in Section 2 describes the sources rather than
+        analysing them."
       </p>
       <p>
-        That is the kind of feedback IBLens gives. Paste your Extended Essay draft and get
-        feedback on each criterion for your exam session: what to change and why. It does
-        not write the change for you.
+        If your supervisor agrees, IBLens gives feedback on each criterion for your exam
+        session: what to change and why. It does not write the change for you.
       </p>
       <p>
         <Link href="/essay/extended-essay">Get criterion-by-criterion feedback on your Extended Essay draft →</Link>

@@ -218,7 +218,7 @@ export default function ExtendedEssayGuide() {
         <li>Table of contents has accurate page numbers</li>
         <li>Headers and formatting are consistent throughout</li>
         <li>No material in appendices that should be in the main body</li>
-        <li>The essay has been proofread for grammar, spelling, and clarity</li>
+        <li>You have proofread the essay yourself for grammar, spelling and clarity (the guide says you must do your own proofreading)</li>
       </ul>
 
       <p>

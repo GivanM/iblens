@@ -246,7 +246,7 @@ function describeRecheck(previous: any, now: any): RecheckChange | null {
 
 export default function EssayAnalyzer() {
   const { isAuthenticated, loading: authLoading } = useAuth();
-  usePurchaseTracking();
+  const purchase = usePurchaseTracking();
   // The homepage submission slip hands over the task and session it was filled
   // in with, so the same choice is not asked for twice.
   const handoff = (() => {
@@ -293,6 +293,15 @@ export default function EssayAnalyzer() {
     label: [essayType === "EE" ? "Extended Essay" : essayType === "TOK" ? "TOK essay" : essayType === "TOK Exhibition" ? "TOK exhibition" : "IA", essayType === "TOK" || essayType === "TOK Exhibition" ? null : subject].filter(Boolean).join(", "),
     kind: (essayType === "TOK" || essayType === "TOK Exhibition" ? "tok" : "essay") as "essay" | "tok",
   });
+  // The form follows the report being reopened or re-checked, so the right boxes show
+  // (an Extended Essay's reflections) and the report's own task is what gets checked.
+  const formFromReport = (type?: string | null, subj?: string | null) => {
+    if (type === "TOK") { setEssayType(subj === "Exhibition" ? "TOK Exhibition" : "TOK"); return; }
+    if (type === "IA" || type === "EE") {
+      setEssayType(type);
+      if (subj) setSubject(subj);
+    }
+  };
   const openBuy = (kind: "preview" | "new", label: string | null = null, work: "essay" | "tok" = "essay", criteria: CriterionScope[] | null = null) => {
     setBuyFor(kind);
     setBuyLabel(label);
@@ -329,6 +338,7 @@ export default function EssayAnalyzer() {
     onSuccess: (data) => {
       setResult(data.result as EssayResult);
       setResultAnalysisId((data as any).id ?? null);
+      setRerunDelta(null);
       creditsQuery.refetch();
       const r = data.result as EssayResult;
       analytics.completeEssayAnalysis(subject, `${r.predicted_score}/${r.max_score}`);
@@ -351,6 +361,7 @@ export default function EssayAnalyzer() {
     onSuccess: (data: any) => {
       setResult(data.result as EssayResult);
       setResultAnalysisId(null);
+      setRerunDelta(null);
       // A run paid for with a device credit comes back open. Without this the
       // page kept treating it as the locked preview and blurred the fix list
       // the buyer had just paid for.
@@ -418,6 +429,9 @@ export default function EssayAnalyzer() {
     if (paidReportQ.data?.unlocked && !result) {
       setResult(paidReportQ.data.result as EssayResult);
       setResultAnalysisId(null);
+      setRerunDelta(null);
+      const pr: any = paidReportQ.data;
+      if (pr.essayType) setResultWork({ label: deviceReportLabel({ essayType: pr.essayType, subject: pr.subject }), kind: pr.essayType === "TOK" ? "tok" : "essay" });
       // A pack opened here also put reports on the device.
       deviceCreditsQ.refetch();
       deviceReportsQ.refetch();
@@ -451,6 +465,9 @@ export default function EssayAnalyzer() {
       if (d?.found) {
         setResultWork({ label: deviceReportLabel(r), kind: r.essayType === "TOK" || r.essayType === "TOK Exhibition" ? "tok" : "essay" });
         setResult(d.result as EssayResult);
+        setRerunDelta(null);
+        formFromReport(d.essayType, d.subject);
+        if (d.examSession === "nov2026" || d.examSession === "may2027") setExamSession(d.examSession);
         setResultAnalysisId(null);
         setRecheckTargetId(r.id);
       }
@@ -466,10 +483,14 @@ export default function EssayAnalyzer() {
       enabled: true,
       refetchInterval: (q: any) => {
         const d = q?.state?.data ?? q;
-        return paidReturn && !paidOpens && !((d as any)?.credits > 0) && waitedFor <= 120000 ? 4000 : false;
+        return paidReturn && !paidOpens && !purchase.paid && waitedFor <= 120000 ? 4000 : false;
       },
     }
   );
+  // The payment is confirmed: read the browser's reports once more, now that they are there.
+  useEffect(() => {
+    if (purchase.paid) deviceCreditsQ.refetch();
+  }, [purchase.paid]);
   // Signing in must not strand what was bought before signing in.
   const claimCredits = trpc.essay.claimDeviceCredits.useMutation({
     onSuccess: (d: any) => {
@@ -492,6 +513,13 @@ export default function EssayAnalyzer() {
     if (anonReportQ.data?.unlocked && !result) {
       setResult(anonReportQ.data.result as EssayResult);
       setResultAnalysisId(null);
+      setRerunDelta(null);
+      const ar: any = anonReportQ.data;
+      // Named after the report itself: the form's defaults named it "IA" on a reload.
+      if (ar.essayType) {
+        setResultWork({ label: deviceReportLabel({ essayType: ar.essayType, subject: ar.subject }), kind: ar.essayType === "TOK" ? "tok" : "essay" });
+        formFromReport(ar.essayType, ar.subject);
+      }
     }
   }, [anonReportQ.data, result]);
   const rerunAnonMutation = trpc.essay.rerunAnonymous.useMutation({
@@ -507,13 +535,14 @@ export default function EssayAnalyzer() {
   });
 
   const pageUnlock = trpc.essay.unlockAnalysis.useMutation({
-    onSuccess: (d: any) => { setResult(d.result as EssayResult); setResultAnalysisId(null); lockedQ.refetch(); creditsQuery.refetch(); },
+    onSuccess: (d: any) => { setResult(d.result as EssayResult); setResultAnalysisId(null); setRerunDelta(null); lockedQ.refetch(); if (isAuthenticated) creditsQuery.refetch(); },
     onError: (e: any) => toast.error(e.message || "Unlock failed"),
   });
   const deviceUnlock = trpc.essay.unlockPreviewWithDeviceCredit.useMutation({
     onSuccess: (d: any) => {
       setResult(d.result as EssayResult);
       setResultAnalysisId(null);
+      setRerunDelta(null);
       setPaidRunUnlocked(true);
       lockedQ.refetch();
       deviceCreditsQ.refetch();
@@ -553,11 +582,14 @@ export default function EssayAnalyzer() {
 
   type RunMode = "free" | "paid" | "recheck";
   const handleAnalyze = (mode: RunMode = "free") => {
-    if ((essayType === "IA" || essayType === "EE") && !subject) {
+    // A re-check is marked on the task, subject and session of the report it belongs to,
+    // on the server, so the form's own choices must not stop it.
+    const isRecheck = isAuthenticated ? !!rerunId : (anonUnlocked && mode === "recheck");
+    if (!isRecheck && (essayType === "IA" || essayType === "EE") && !subject) {
       toast.error("Choose your subject first, so the work is marked on the right criteria.");
       return;
     }
-    const unmarkable = unmarkableReason(essayType, subject, examSession);
+    const unmarkable = isRecheck ? null : unmarkableReason(essayType, subject, examSession);
     if (unmarkable) {
       toast.error(unmarkable);
       return;
@@ -670,6 +702,7 @@ export default function EssayAnalyzer() {
           onOpen={openDeviceReport}
           onRecheck={(r) => {
             setRecheckTargetId(r.id);
+            formFromReport(r.essayType, r.subject);
             document.getElementById("essay-text")?.scrollIntoView({ behavior: "smooth", block: "center" });
           }}
         />
@@ -782,12 +815,18 @@ export default function EssayAnalyzer() {
             <Label htmlFor="rq-input">{essayType === "TOK Exhibition" ? "Your exhibition prompt (one of the 35 prompts in the TOK guide)" : essayType === "TOK" ? "Prescribed title" : (isOral ? "Global issue (optional)" : "Research question or title (optional)")}</Label>
             <Input
               id="rq-input"
+              maxLength={500}
               placeholder={essayType === "TOK Exhibition" ? "e.g. What counts as knowledge?" : essayType === "TOK" ? "The prescribed title, copied exactly" : (isOral ? "The global issue your oral explores" : "Your research question or title")}
               value={researchQuestion}
               onChange={(e) => setResearchQuestion(e.target.value)}
             />
           </div>
 
+          {essayType === "EE" && (
+            <p className="text-xs rounded-md border border-amber-300 bg-amber-50 text-amber-900 px-2.5 py-2">
+              The Extended Essay guide allows no assistance with the research, writing or proofreading beyond what your supervisor permits. Ask your supervisor before you use IBLens on your EE.
+            </p>
+          )}
           {essayType === "EE" && (
             <div className="space-y-2">
               <Label>
@@ -814,8 +853,12 @@ export default function EssayAnalyzer() {
           <div className="space-y-2">
             {anonUnlocked && (
               <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 text-sm">
-                <strong>Your report is unlocked on this device.</strong> Paste a revised version of the same work below and re-check it.
-                Two re-checks are included, within 14 days of the report opening, and they do not use a paid report.
+                {(recheckTarget ? recheckTarget.rerunsLeft : (anonRerunsLeft ?? anonReportQ.data?.rerunsLeft ?? 2)) > 0 ? (
+                  <><strong>Your report is unlocked on this device.</strong> Paste a revised version of the same work below and re-check it.
+                  Two re-checks are included, within 14 days of the report opening, and they do not use a paid report.</>
+                ) : (
+                  <><strong>Your report is open on this device.</strong> Both re-checks for it have been used, or its 14 days have ended.</>
+                )}
               </div>
             )}
             {rerunId && (
@@ -880,9 +923,9 @@ export default function EssayAnalyzer() {
           {/* Paid guest who bought reports for new work */}
           {paidReturn && !paidOpens && !isAuthenticated && !result && (
             <div className="text-sm p-3 rounded-lg bg-primary/5 border border-primary/30 flex items-center gap-2">
-              {deviceCredits > 0 ? <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-primary" /> : <Loader2 className="w-4 h-4 flex-shrink-0 animate-spin" />}
+              {purchase.paid && deviceCredits > 0 ? <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-primary" /> : waitedFor > 120000 ? null : <Loader2 className="w-4 h-4 flex-shrink-0 animate-spin" />}
               <span>
-                {deviceCredits > 0
+                {purchase.paid && deviceCredits > 0
                   ? `Payment confirmed. This browser now has ${deviceCredits} paid ${deviceCredits === 1 ? "report" : "reports"}: paste your work above and press "Mark a new piece of work".`
                   : waitedFor > 120000
                     ? "Your payment went through but the reports have not arrived. This is on us: email glushkovim@gmail.com with your order number and we will add them or refund you."
@@ -989,10 +1032,11 @@ export default function EssayAnalyzer() {
               <CreditCard className="w-4 h-4 mr-2" />
               {anonUnlocked
                 ? `Mark a different piece of work (${PRICE_LABELS.ESSAY_SINGLE})`
-                : essayText.trim()
-                  ? `Buy a report to mark this work (${PRICE_LABELS.ESSAY_SINGLE})`
-                  : `Buy a report (${PRICE_LABELS.ESSAY_SINGLE})`}
+                : `Buy a report (${PRICE_LABELS.ESSAY_SINGLE})`}
             </Button>
+          )}
+          {!authLoading && !isAuthenticated && !canAnonAnalyze && deviceCredits === 0 && essayText.trim() && (
+            <p className="text-xs text-muted-foreground text-center">Your text is not kept through checkout: after paying, paste it here again and press "Mark a new piece of work".</p>
           )}
 
           {/* Authenticated: run analysis or buy credits */}
@@ -1016,7 +1060,7 @@ export default function EssayAnalyzer() {
                 ) : !credits?.canAnalyzeEssay ? (
                   <>
                     <CreditCard className="w-4 h-4 mr-2" />
-                    Buy a report to mark this work ({PRICE_LABELS.ESSAY_SINGLE})
+                    Buy a report ({PRICE_LABELS.ESSAY_SINGLE})
                   </>
                 ) : credits?.freeEssayAvailable ? (
                   <>
@@ -1085,6 +1129,7 @@ export default function EssayAnalyzer() {
             ))}
           </div>
 
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground -mb-3">Overall comment</p>
           <p className="text-sm text-muted-foreground leading-relaxed">
             Your IA demonstrates solid understanding of business concepts, and the supporting documents are well chosen, but their data is used only superficially.
             The main areas for improvement are the depth of analysis in Criterion D and the connection
@@ -1132,10 +1177,10 @@ export default function EssayAnalyzer() {
               <p className="text-xs font-semibold uppercase tracking-wider text-emerald-600 mb-2">Where marks are recoverable</p>
               <div className="space-y-2">
                 <div className="p-3 bg-emerald-50 border-l-2 border-emerald-400 rounded-r text-sm">
-                  <strong>+2 marks possible:</strong> bring figures from your supporting documents into the evaluation of each option.
+                  <strong>Use the documents in Criterion D:</strong> bring figures from your supporting documents into the evaluation of each option.
                 </div>
                 <div className="p-3 bg-emerald-50 border-l-2 border-emerald-400 rounded-r text-sm">
-                  <strong>Easy fix:</strong> answer your research question explicitly in the conclusion.
+                  <strong>Answer the question:</strong> answer your research question explicitly in the conclusion.
                 </div>
               </div>
             </div>
@@ -1179,7 +1224,7 @@ export default function EssayAnalyzer() {
             </div>
           )}
           {(result as any).locked ? (
-            <LockedTeaser essayText={essayText} result={result} isAuthenticated={isAuthenticated} hasPaidCredit={(credits?.essayCredits ?? 0) > 0} fingerprint={anonFp} analysisId={resultAnalysisId} onUnlocked={(full: any) => setResult(full as EssayResult)} deviceCredits={deviceCredits} deviceUnlocking={deviceUnlock.isPending} onDeviceUnlock={() => deviceUnlock.mutate({ fingerprint: anonFp })} onBuy={() => openBuy("preview", resultWork?.label ?? lockedLabel, resultWork?.kind ?? "essay", (result as any)?.criteria_names ?? null)} />
+            <LockedTeaser essayText={essayText} result={result} isAuthenticated={isAuthenticated} hasPaidCredit={(credits?.essayCredits ?? 0) > 0} fingerprint={anonFp} analysisId={resultAnalysisId} onUnlocked={(full: any) => { setResult(full as EssayResult); setRerunDelta(null); }} deviceCredits={deviceCredits} deviceUnlocking={deviceUnlock.isPending} onDeviceUnlock={() => deviceUnlock.mutate({ fingerprint: anonFp })} onBuy={() => openBuy("preview", resultWork?.label ?? lockedLabel, resultWork?.kind ?? "essay", (result as any)?.criteria_names ?? null)} />
           ) : (<>
           {/* Overall Score */}
           <Card>
@@ -1432,7 +1477,11 @@ export default function EssayAnalyzer() {
                   {credits?.essayCredits ? `You have ${credits.essayCredits} paid report${credits.essayCredits > 1 ? 's' : ''} left.` : 'A different piece of work needs a new report. Revisions of this one use your free re-checks.'}
                 </p>
                 <div className="flex gap-3 justify-center">
-                  <Button onClick={() => { setResult(null); setResultAnalysisId(null); setRerunDelta(null); window.scrollTo(0, 0); }}>
+                  <Button onClick={() => {
+                    // Still on a re-check address, the only button would re-check the old report.
+                    if (rerunId) { window.location.assign("/essay"); return; }
+                    setResult(null); setResultAnalysisId(null); setRerunDelta(null); window.scrollTo(0, 0);
+                  }}>
                     <FileText className="w-4 h-4 mr-2" />
                     Mark another piece of work
                   </Button>

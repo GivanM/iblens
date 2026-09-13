@@ -113,7 +113,7 @@ export default function AnalysisView() {
   if (a.essayType === "UCAS" && !a.unlocked) {
     return (
       <div className="container max-w-3xl mx-auto py-20 text-center space-y-4">
-        <SEOHead title="Your IBLens Report" description="Your saved IBLens report." canonical="/dashboard" />
+        <SEOHead title="Your IBLens report | IBLens" description="Your saved IBLens report." canonical="/dashboard/analysis" />
         <h1 style={SERIF} className="text-2xl font-bold">{title}</h1>
         <p className="text-muted-foreground">This review was refunded, so it is no longer available.</p>
         <Button asChild variant="outline"><Link href="/dashboard">Back to dashboard</Link></Button>
@@ -123,7 +123,7 @@ export default function AnalysisView() {
   if (a.essayType === "UCAS") {
     return (
       <div className="container max-w-3xl mx-auto py-10 px-4 space-y-6">
-        <SEOHead title="Your IBLens Report" description="Your saved IBLens report." canonical="/dashboard" />
+        <SEOHead title="Your IBLens report | IBLens" description="Your saved IBLens report." canonical="/dashboard/analysis" />
         {header}
         <div>
           <h1 style={SERIF} className="text-2xl font-bold">{title}</h1>
@@ -146,7 +146,7 @@ export default function AnalysisView() {
     const holistic = (p?.criteria_names || []).length === 1;
     return (
       <div className="container max-w-3xl mx-auto py-10 px-4 space-y-6">
-        <SEOHead title="Your IBLens Report" description="Your saved IBLens report." canonical="/dashboard" />
+        <SEOHead title="Your IBLens report | IBLens" description="Your saved IBLens report." canonical="/dashboard/analysis" />
         {header}
         <Card className="border-primary/40">
           <CardHeader>
@@ -212,7 +212,7 @@ export default function AnalysisView() {
 
   return (
     <div className="container max-w-3xl mx-auto py-10 px-4 space-y-6">
-      <SEOHead title="Your IBLens Report" description="Your saved IBLens report." canonical="/dashboard" />
+      <SEOHead title="Your IBLens report | IBLens" description="Your saved IBLens report." canonical="/dashboard/analysis" />
       {header}
 
       <Card>

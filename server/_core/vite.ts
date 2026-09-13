@@ -71,9 +71,11 @@ export function serveStatic(app: Express) {
   app.use((req, res, next) => {
     const p = req.path;
     if (p === "/index.html" || p.endsWith("/index.html")) {
-      const target = p.slice(0, -"index.html".length).replace(/\/+$/, "") || "/";
+      // Rebuilt from its segments, so the target is always one path on this site. Keeping
+      // the path as sent let "//example.org/index.html" redirect to another site.
+      const route = p.slice(0, -"index.html".length).split(/[\/\\]+/).filter((s) => s && s !== "." && s !== "..").join("/");
       const qs = req.originalUrl.includes("?") ? req.originalUrl.slice(req.originalUrl.indexOf("?")) : "";
-      return res.redirect(301, target + qs);
+      return res.redirect(301, "/" + route + qs);
     }
     next();
   });

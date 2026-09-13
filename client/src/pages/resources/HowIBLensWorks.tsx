@@ -29,9 +29,9 @@ export default function HowIBLensWorks() {
       <ul>
         <li><strong>Criterion-by-criterion scoring:</strong> Your essay is evaluated against the specific IB assessment criteria for your subject and essay type. Each criterion receives an estimated score with an explanation of why that score was assigned. A criterion judged on something you cannot paste, such as a Music recording or Extended Essay reflections you left out, is shown as not marked rather than guessed.</li>
         <li><strong>Overall estimate:</strong> based on the criterion scores, an estimated mark out of the total for your task, with the band range the draft currently sits in.</li>
-        <li><strong>Risk areas:</strong> Specific sections or aspects of your essay that are likely to lose marks, with explanations of why and suggestions for improvement.</li>
+        <li><strong>What is losing marks:</strong> Specific sections or aspects of your essay that are likely to lose marks, with explanations of why and suggestions for improvement.</li>
         <li><strong>Where marks are recoverable:</strong> Areas where small improvements would yield the largest mark gains, helping you prioritise your revision time.</li>
-        <li><strong>Next steps:</strong> concrete suggestions for improving the criteria that are losing marks, in plain language, in order of how many marks they are likely to recover.</li>
+        <li><strong>What to fix first:</strong> concrete suggestions for improving the criteria that are losing marks, in plain language, in order of how many marks they are likely to recover.</li>
         <li><strong>Word count:</strong> the words you pasted, counted against the limit for your task where the guide sets one, with what the official count leaves out.</li>
       </ul>
 
@@ -68,11 +68,11 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        <strong>Summary section:</strong> your estimated mark and band, with a brief overview of strengths and areas for improvement.
+        <strong>Overall comment:</strong> your estimated mark and band, with an overview of what works and what does not.
       </p>
 
       <p>
-        <strong>Criterion breakdown:</strong> for each assessment criterion you see an estimated mark (for example "Criterion B: Knowledge and understanding: 4/6"), followed by an explanation of what your essay shows at that level and what the next level would need.
+        <strong>Criteria breakdown:</strong> for each assessment criterion you see an estimated mark (for example "Criterion B: Knowledge and understanding: 4/6"), followed by an explanation of what your essay shows at that level.
       </p>
 
       <p>
@@ -227,7 +227,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        The most effective approach combines multiple feedback sources: use IBLens for rapid, criterion-based feedback during revision, your teacher for authoritative subject guidance, and peers for a reader's perspective. Each source catches different issues.
+        The most effective approach combines multiple feedback sources: use IBLens for rapid, criterion-based feedback during revision, your teacher for authoritative subject guidance, and peers for a reader's perspective. Each source catches different issues. The Extended Essay is the exception: its guide allows no help with the research, writing or proofreading beyond what your supervisor permits, so ask your supervisor before using IBLens or anyone else on it.
       </p>
 
       <p>

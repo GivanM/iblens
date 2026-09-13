@@ -74,7 +74,8 @@ for (const file of walk(pagesDir)) {
   if (!src.includes("<ResourceArticle")) continue;
   const canonical = src.match(/canonical="([^"]+)"/)?.[1];
   if (!canonical) throw new Error(`${path.relative(root, file)} renders ResourceArticle without a canonical`);
-  pages.push({ file, canonical, dynamic: false });
+  // The article's call to action asks whether the free preview is used, so it needs providers.
+  pages.push({ file, canonical, dynamic: true });
 }
 const routes = new Set();
 for (const p of pages) {

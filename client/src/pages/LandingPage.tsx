@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { SEOHead } from "@/components/SEOHead";
+import { usePreviewUsed } from "@/hooks/usePreviewUsed";
 import {
   FileText, ArrowRight, CheckCircle2, ChevronDown, ChevronUp,
   Shield, Zap, Lock, ShieldCheck, Clock, ListOrdered
@@ -46,6 +47,9 @@ const SAMPLE_CRITERIA = [
 ];
 
 export default function LandingPage() {
+  // A device that has used its preview is not promised another one.
+  const previewUsed = usePreviewUsed();
+  const cta = previewUsed ? "Mark my work ($9.99)" : "Get my free preview";
   return (
     <>
       <SEOHead
@@ -65,7 +69,7 @@ export default function LandingPage() {
           </Link>
           <Button size="sm" asChild>
             <Link href="/essay">
-              Get My Free Preview <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+              {cta} <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
             </Link>
           </Button>
         </div>
@@ -87,7 +91,7 @@ export default function LandingPage() {
             <Button size="lg" className="text-base px-10 h-14 shadow-lg shadow-primary/25 mb-4" asChild>
               <Link href="/essay">
                 <FileText className="w-4 h-4 mr-2" />
-                Get My Free Preview
+                {cta}
               </Link>
             </Button>
             <p className="text-xs text-muted-foreground">No account needed · Results in about a minute · Coursework in 14 IB subjects · 7-day money-back guarantee</p>
@@ -176,7 +180,7 @@ export default function LandingPage() {
                     <Button size="sm" asChild>
                       <Link href="/essay">
                         <Lock className="w-3.5 h-3.5 mr-1.5" />
-                        Get a free preview
+                        {previewUsed ? "Mark my work ($9.99)" : "Get a free preview"}
                       </Link>
                     </Button>
                   </div>
@@ -234,7 +238,7 @@ export default function LandingPage() {
             <p className="text-muted-foreground mb-8">Paste your essay now: a free preview in about a minute, with no account needed.</p>
             <Button size="lg" className="text-base px-10 shadow-lg shadow-primary/25" asChild>
               <Link href="/essay">
-                Get My Free Preview <ArrowRight className="w-4 h-4 ml-2" />
+                {cta} <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
             <p className="text-xs text-muted-foreground mt-4">No account needed · 7-day money-back guarantee on paid reports</p>

@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import { PRICE_LABELS, type ProductKey } from "@shared/pricing";
 import { PurchaseModal } from "@/components/PurchaseModal";
+import { usePreviewUsed } from "@/hooks/usePreviewUsed";
 import {
   CheckCircle2, ArrowRight, Shield, Gift, CreditCard
 } from "lucide-react";
@@ -76,6 +77,7 @@ const plans: Array<{
 export default function Pricing() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalSku, setModalSku] = useState<ProductKey>("ESSAY_SINGLE");
+  const previewUsed = usePreviewUsed();
 
   const handleBuyNow = (productKey: ProductKey) => {
     setModalSku(productKey);
@@ -121,7 +123,7 @@ export default function Pricing() {
               </p>
             </div>
             <Button size="sm" asChild className="flex-shrink-0 self-start sm:self-auto">
-              <Link href="/essay">Get a free preview</Link>
+              <Link href="/essay">{previewUsed ? "Mark my work" : "Get a free preview"}</Link>
             </Button>
           </div>
         </div>
@@ -177,7 +179,7 @@ export default function Pricing() {
           <Link href="/refund-policy" className="underline">Refund policy</Link>
         </p>
         <p className="max-w-3xl mx-auto mt-3 text-sm text-muted-foreground text-center">
-          Without an account, this browser keeps every report you buy, with its re-checks, and any unused paid reports, for as long as its site data is kept. To keep every report you buy in an account, with the re-checks of IB work, sign in with Google on this device, using the email you pay with: reports you have opened move to an account with that email, and unused reports move to whichever Google account signs in here first (UCAS re-checks stay with the browser the review was made in). Buying for your child or someone else? Pay on their device, or have them sign in with their own Google account first: reports then follow that account to any device. Paid on the wrong device? Email glushkovim@gmail.com with your order number and we will move the reports.
+          Without an account, this browser keeps every report you buy, with its re-checks, and any unused paid reports, for as long as its site data is kept. To keep every report you buy in an account, with the re-checks of IB work, sign in with Google on this device, using the email you pay with: reports you have opened move to an account with that email, and unused reports move to whichever Google account signs in here first (UCAS re-checks run only in the browser the review was made in, and signing out there ends them). Buying for your child or someone else? Pay on their device, or have them sign in with their own Google account first: reports then follow that account to any device. Paid on the wrong device? Email glushkovim@gmail.com with your order number and we will move the reports.
         </p>
 
         {/* Payment methods */}
@@ -201,7 +203,7 @@ export default function Pricing() {
           <p className="text-muted-foreground mb-4">Not sure yet? Start with the free preview.</p>
           <Button size="lg" asChild>
             <Link href="/essay">
-              Start your free preview <ArrowRight className="w-4 h-4 ml-2" />
+              {previewUsed ? "Mark my work" : "Start your free preview"} <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </Button>
         </div>

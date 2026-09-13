@@ -266,7 +266,7 @@ const FILM_IA: Rubric = {
   totalMarks: 28,
   criteria: [
     { name: "Criterion A: Cultural context", max: 8, descriptor: "Understanding of the cultural context of the film text, supported by research from appropriate and relevant sources" },
-    { name: "Criterion B: Film elements", max: 12, descriptor: "Analysis of how film elements construct meaning in the extract" },
+    { name: "Criterion B: Film elements", max: 12, descriptor: "Evaluation of the ways the extract uses the identified film elements to convey meaning, with relevant film vocabulary (explaining them is the 7-9 band, outlining 4-6, listing 1-3)" },
     { name: "Criterion C: Relationships within the film text", max: 8, descriptor: "How the cultural context and the identified film elements in the extract relate to each other and to the film text as a whole (and, where appropriate, to other films)" },
   ],
   notes: "This is the textual analysis, externally assessed coursework, not the Film internal assessment (the film portfolio). 1,750 words plus a list of sources.",
