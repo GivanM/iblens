@@ -486,6 +486,35 @@ export const IA_RUBRIC_SUBJECTS = [
   "Film",
 ] as const;
 
+/**
+ * Subjects offered for the Extended Essay. The EE criteria are the same in every subject,
+ * so the list only tells the marker which subject's knowledge and terminology to read the
+ * essay in. It is wider than the coursework list: Geography, Global Politics or Philosophy
+ * students had to pick a wrong subject before.
+ */
+export const EE_SUBJECTS = [
+  "Biology",
+  "Business Management",
+  "Chemistry",
+  "Computer Science",
+  "Economics",
+  "English A: Language and Literature",
+  "English A: Literature",
+  "Film",
+  "Geography",
+  "Global Politics",
+  "History",
+  "Language B",
+  "Mathematics",
+  "Music",
+  "Philosophy",
+  "Physics",
+  "Psychology",
+  "Visual Arts",
+  "Interdisciplinary or World Studies",
+  "Another subject",
+] as const;
+
 /** Every subject above has to resolve, or the claim on the page stops being true. */
 const MISSING_IA_RUBRICS = IA_RUBRIC_SUBJECTS.filter((s) => !getRubric("IA", s));
 if (MISSING_IA_RUBRICS.length > 0) {

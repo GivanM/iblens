@@ -40,7 +40,7 @@ export default function Terms() {
           <h2>Age and parental consent</h2>
 
       <p>
-        IBLens is built for students in the IB Diploma Programme, most of whom are 16 to 18 years old.
+        IBLens is built for secondary-school students preparing IB coursework and UCAS applications, most of whom are under 18.
       </p>
 
       <p>

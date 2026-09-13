@@ -45,10 +45,10 @@ export default function WriteMyIBExtendedEssay() {
         almost every EE subject is:
       </p>
       <ol>
-        <li><strong>Introduction:</strong> State your research question, define key terms, outline the scope of your investigation and how you will answer it. (~300-400 words)</li>
-        <li><strong>Background and existing research:</strong> Give the reader the context they need and show what published research or criticism already says about your topic. A review of the literature is required in every EE, and it can sit here or run through the body. (~400-600 words)</li>
-        <li><strong>Body:</strong> 2-4 focused sections, each making one clear point that advances your answer. Each section presents evidence, analyses it, and connects it back to your research question. (~2000-2500 words)</li>
-        <li><strong>Conclusion:</strong> Answer your research question directly. State what your investigation showed, acknowledge its limitations, and note what further research would be needed. (~300-400 words)</li>
+        <li><strong>Introduction:</strong> State your research question, define key terms, outline the scope of your investigation and how you will answer it. (about 300 to 400 words)</li>
+        <li><strong>Background and existing research:</strong> Give the reader the context they need and show what published research or criticism already says about your topic. A review of the literature is required in every EE, and it can sit here or run through the body. (about 400 to 600 words)</li>
+        <li><strong>Body:</strong> 2-4 focused sections, each making one clear point that advances your answer. Each section presents evidence, analyses it, and connects it back to your research question. (about 2,000 to 2,500 words)</li>
+        <li><strong>Conclusion:</strong> Answer your research question directly. State what your investigation showed, acknowledge its limitations, and note what further research would be needed. (about 300 to 400 words)</li>
       </ol>
       <p>
         If you outline your essay to this structure before writing, the blank page
@@ -89,7 +89,7 @@ export default function WriteMyIBExtendedEssay() {
         <li>Help you narrow and focus your research question</li>
         <li>Advise on appropriate sources and methodology</li>
         <li>Give general feedback on whether your argument is developing well</li>
-        <li>Read one full draft and provide written or verbal feedback</li>
+        <li>Read one full draft and comment on it in writing, without editing it</li>
         <li>Confirm whether your essay is within the required guidelines</li>
       </ul>
       <p>

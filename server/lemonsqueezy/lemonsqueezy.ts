@@ -327,6 +327,11 @@ export function registerLemonsqueezyWebhook(app: Express) {
                 return res.status(200).json({ ok: true, message: "Credited to buyer email" });
               } catch (e) {
                 console.error("[LemonSqueezy] Could not credit storefront purchase:", e);
+                // Marked as failed while processing, so a resend is not taken for a duplicate.
+                if (webhookEventId) {
+                  await updateWebhookEvent(webhookEventId, { paymentStatus: "processing_error", errorMessage: String((e as any)?.message || e).substring(0, 1000) }).catch(() => {});
+                }
+                return res.status(200).json({ ok: true, message: "Processing error (logged)" });
               }
             }
             const errMsg = "order_created without order_id in custom_data. meta=" + JSON.stringify(meta);
@@ -535,6 +540,18 @@ export function registerLemonsqueezyWebhook(app: Express) {
             console.warn("[LemonSqueezy] Email notification failed (non-fatal):", emailErr);
           }
         } else if (eventName === "order_refunded") {
+          // LemonSqueezy sends this for partial refunds too. Only a full refund closes a
+          // purchase: a goodwill refund of part of a pack used to close all of it, and the
+          // full refund that followed was then skipped as a duplicate.
+          const refundAttrs: any = (body as any)?.data?.attributes || {};
+          const fullyRefunded = refundAttrs.refunded === true || String(refundAttrs.status || "") === "refunded";
+          if (!fullyRefunded) {
+            console.warn(`[LemonSqueezy] Partial refund on ${dataId} (status ${refundAttrs.status}); nothing closed`);
+            if (webhookEventId) {
+              await updateWebhookEvent(webhookEventId, { paymentStatus: "partial_refund" }).catch(() => {});
+            }
+            return res.status(200).json({ ok: true, message: "Partial refund recorded" });
+          }
           // An order id we do not hold was credited like a storefront purchase, so its
           // refund has to be taken back the same way.
           const refundOrderRow = orderId ? await getOrderById(orderId) : undefined;
@@ -582,6 +599,10 @@ export function registerLemonsqueezyWebhook(app: Express) {
                 return res.status(200).json({ ok: true, message: "Storefront refund processed" });
               } catch (e) {
                 console.error("[LemonSqueezy] Storefront refund failed:", e);
+                if (webhookEventId) {
+                  await updateWebhookEvent(webhookEventId, { paymentStatus: "processing_error", errorMessage: String((e as any)?.message || e).substring(0, 1000) }).catch(() => {});
+                }
+                return res.status(200).json({ ok: true, message: "Processing error (logged)" });
               }
             }
             console.warn("[LemonSqueezy Webhook] order_refunded without order_id in custom_data");

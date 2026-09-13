@@ -28,7 +28,7 @@ import { usePurchaseTracking } from "@/hooks/usePurchaseTracking";
 import { PRICE_LABELS, type ProductKey } from "@shared/pricing";
 import { WordCheckNote } from "@/components/WordCheckNote";
 import { countWords, type WordCheck } from "@shared/wordcount";
-import { IA_RUBRIC_SUBJECTS, unmarkableReason } from "@shared/rubrics";
+import { IA_RUBRIC_SUBJECTS, EE_SUBJECTS, unmarkableReason } from "@shared/rubrics";
 import { analytics } from "@/lib/analytics";
 import { getAnonFingerprint } from "@/lib/fingerprint";
 import { capitalise, fullReportAdds, type CriterionScope } from "@/lib/reportScope";
@@ -37,6 +37,8 @@ import { trackEssaySubmitted, trackEssayUploadStarted } from "@/lib/analytics/tr
 const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
 const IB_SUBJECTS: string[] = [...IA_RUBRIC_SUBJECTS];
+const EE_SUBJECT_LIST: string[] = [...EE_SUBJECTS];
+const subjectsFor = (type: string) => (type === "EE" ? EE_SUBJECT_LIST : IB_SUBJECTS);
 
 // Three of the coursework subjects are marked on an externally assessed component,
 // not on that subject's internal assessment. Under "Internal Assessment" the bare
@@ -149,7 +151,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
                 <span className="text-xs whitespace-nowrap">?/{c.max}</span>
               </li>
             ))}
-            <li className="flex items-center gap-2 text-sm text-muted-foreground"><Lock className="w-3.5 h-3.5 shrink-0" /> {holistic ? "Your estimated mark within the band, and the full explanation" : unassessed.length ? "Your estimated score, and a mark for every criterion that could be assessed" : "Your estimated score, and a mark for every criterion"}</li>
+            <li className="flex items-center gap-2 text-sm text-muted-foreground"><Lock className="w-3.5 h-3.5 shrink-0" /> {holistic ? "Your estimated mark within the band, and the full explanation" : unassessed.length ? "Your estimated mark, and a mark for every criterion that could be assessed" : "Your estimated mark, and a mark for every criterion"}</li>
             <li className="flex items-center gap-2 text-sm text-muted-foreground"><Lock className="w-3.5 h-3.5 shrink-0" /> The overall comment</li>
             <li className="flex items-center gap-2 text-sm text-muted-foreground"><Lock className="w-3.5 h-3.5 shrink-0" /> Step-by-step fixes, ranked by marks gained</li>
           </ul>
@@ -258,7 +260,7 @@ export default function EssayAnalyzer() {
     return {
       type: ESSAY_TYPES.some((t) => t.value === type) ? (type as string) : undefined,
       session: session === "nov2026" || session === "may2027" ? (session as "nov2026" | "may2027") : undefined,
-      subject: subject && IB_SUBJECTS.includes(subject) ? subject : undefined,
+      subject: subject && (IB_SUBJECTS.includes(subject) || EE_SUBJECT_LIST.includes(subject)) ? subject : undefined,
     };
   })();
   const [essayType, setEssayType] = useState(handoff.type ?? "IA");
@@ -290,7 +292,7 @@ export default function EssayAnalyzer() {
   // Reading the form instead named the wrong work after the task was switched.
   const [resultWork, setResultWork] = useState<{ label: string; kind: "essay" | "tok" } | null>(null);
   const formWork = () => ({
-    label: [essayType === "EE" ? "Extended Essay" : essayType === "TOK" ? "TOK essay" : essayType === "TOK Exhibition" ? "TOK exhibition" : "IA", essayType === "TOK" || essayType === "TOK Exhibition" ? null : subject].filter(Boolean).join(", "),
+    label: deviceReportLabel({ essayType, subject: essayType === "TOK" || essayType === "TOK Exhibition" ? null : subject || null }),
     kind: (essayType === "TOK" || essayType === "TOK Exhibition" ? "tok" : "essay") as "essay" | "tok",
   });
   // The form follows the report being reopened or re-checked, so the right boxes show
@@ -345,7 +347,6 @@ export default function EssayAnalyzer() {
       const wordCount = essayText.split(/\s+/).filter(Boolean).length;
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'essay_submit', essay_type: essayType, subject, word_count: wordCount });
-      window.dataLayer.push({ event: 'sign_up', method: 'free_essay_analysis' });
       if (data.wasFree) {
         toast.success(`Free preview ready. The full report unlocks for ${PRICE_LABELS.ESSAY_SINGLE}.`);
       } else {
@@ -381,7 +382,6 @@ export default function EssayAnalyzer() {
       const wordCount = essayText.split(/\s+/).filter(Boolean).length;
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'essay_submit', essay_type: essayType, subject, word_count: wordCount });
-      window.dataLayer.push({ event: 'sign_up', method: 'free_essay_analysis' });
       toast.success(data.unlocked ? "Your paid report is open below." : `Free preview ready. The full report unlocks for ${PRICE_LABELS.ESSAY_SINGLE}.`);
     },
     onError: (error: { message: string }) => {
@@ -491,21 +491,8 @@ export default function EssayAnalyzer() {
   useEffect(() => {
     if (purchase.paid) deviceCreditsQ.refetch();
   }, [purchase.paid]);
-  // Signing in must not strand what was bought before signing in.
-  const claimCredits = trpc.essay.claimDeviceCredits.useMutation({
-    onSuccess: (d: any) => {
-      if (d.moved > 0) {
-        toast.success(`${d.moved} report${d.moved === 1 ? "" : "s"} you bought on this device moved to your account.`);
-        creditsQuery.refetch();
-        deviceCreditsQ.refetch();
-      }
-    },
-  });
-  useEffect(() => {
-    if (isAuthenticated && (deviceCreditsQ.data?.credits ?? 0) > 0 && !claimCredits.isPending && !claimCredits.isSuccess) {
-      claimCredits.mutate({ fingerprint: anonFp });
-    }
-  }, [isAuthenticated, deviceCreditsQ.data]);
+  // Moving what this browser bought into the account happens once, in the layout, on
+  // every page. A second claim here raced it and copied reports twice.
   const deviceCredits = isAuthenticated ? 0 : (deviceCreditsQ.data?.credits ?? 0);
   // Coming back later, on the same device: the report is bought and paid for, so
   // show it. Before this, a guest who closed the tab could never reach it again.
@@ -759,7 +746,7 @@ export default function EssayAnalyzer() {
           <div className="grid sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label>Type of work</Label>
-              <Select value={essayType} onValueChange={setEssayType}>
+              <Select value={essayType} onValueChange={(t) => { setEssayType(t); if (subject && !subjectsFor(t).includes(subject)) setSubject(""); }}>
                 <SelectTrigger className="w-full data-[size=default]:h-auto min-h-11 sm:min-h-9 py-1.5 whitespace-normal text-left *:data-[slot=select-value]:line-clamp-2" aria-label="Type of work">
                   <SelectValue />
                 </SelectTrigger>
@@ -778,7 +765,7 @@ export default function EssayAnalyzer() {
                     <SelectValue placeholder="Choose your subject" />
                   </SelectTrigger>
                   <SelectContent>
-                    {IB_SUBJECTS.map((s) => (
+                    {subjectsFor(essayType).map((s) => (
                       <SelectItem key={s} value={s}>{essayType === "IA" ? (EXTERNAL_COURSEWORK_LABELS[s] ?? s) : s}</SelectItem>
                     ))}
                   </SelectContent>
@@ -844,7 +831,7 @@ export default function EssayAnalyzer() {
               />
               <p className="text-xs text-muted-foreground">
                 {examSession === "may2027"
-                  ? "Criterion E is marked on the reflective statement from your reflection and progress form (RPF), not on the essay. Leave this empty and the report marks criteria A to D only."
+                  ? "Criterion E is marked on the reflective statement from your reflection and progress form (RPF), not on the essay. An RPF that is blank, not submitted or in a language other than the essay's is awarded zero for Criterion E, so submit yours to your school either way. Leave this box empty and the report marks criteria A to D only."
                   : "Criterion E is marked on your three reflections in the reflections on planning and progress form (RPPF), not on the essay. Leave this empty and the report marks criteria A to D only."}
               </p>
             </div>
@@ -1045,7 +1032,8 @@ export default function EssayAnalyzer() {
               <Button
                 className="w-full min-h-11 h-auto py-2.5 whitespace-normal"
                 onClick={() => handleAnalyze("free")}
-                disabled={isAnalyzing || !!unmarkableNow}
+                // A re-check is marked on its report's own session, so the form's session cannot block it.
+                disabled={isAnalyzing || (!rerunId && !!unmarkableNow)}
               >
                 {isAnalyzing ? (
                   <>
@@ -1118,8 +1106,8 @@ export default function EssayAnalyzer() {
           {/* Score summary */}
           <div className="grid grid-cols-3 gap-3">
             {[
-              { label: "Estimated score", value: "16/25", color: "text-amber-600" },
-              { label: "Band range", value: "15-17", color: "text-foreground" },
+              { label: "Estimated mark", value: "16/25", color: "text-amber-600" },
+              { label: "Band range", value: "14-17", color: "text-foreground" },
               { label: "Share of marks", value: "64%", color: "text-foreground" },
             ].map((s) => (
               <div key={s.label} className="text-center p-2 sm:p-4 bg-muted/50 rounded-lg border border-border min-w-0">
@@ -1249,7 +1237,7 @@ export default function EssayAnalyzer() {
                   <div style={SERIF} className={`text-3xl font-bold ${getScoreColor(result.predicted_score, result.max_score)}`}>
                     {result.predicted_score}/{result.max_score}
                   </div>
-                  <div className="text-xs text-muted-foreground mt-1">Estimated score</div>
+                  <div className="text-xs text-muted-foreground mt-1">Estimated mark</div>
                 </div>
                 <div className="text-center p-4 bg-muted/50 rounded-lg">
                   <div style={SERIF} className="text-3xl font-bold">{result.band_range}</div>
@@ -1368,7 +1356,7 @@ export default function EssayAnalyzer() {
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
                   <Share2 className="w-4 h-4" />
-                  Share Your Score
+                  Share your estimate
                 </h3>
               </div>
               <div className="flex flex-wrap gap-3">
@@ -1398,13 +1386,13 @@ export default function EssayAnalyzer() {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    const text = `IBLens estimates my IB ${resultWork?.label || formWork().label} at ${result.predicted_score}/${result.max_score} (band ${result.band_range}) against the published criteria. Free preview at iblens.com`;
+                    const text = `IBLens estimates my IB ${resultWork?.label || formWork().label} at ${result.predicted_score}/${result.max_score} (estimated range ${result.band_range}) against the published criteria. Free preview at iblens.com`;
                     navigator.clipboard.writeText(text);
                     toast.success("Copied.");
                   }}
                 >
                   <Copy className="w-4 h-4 mr-2" />
-                  Copy Score
+                  Copy estimate
                 </Button>
               </div>
             </CardContent>
@@ -1428,7 +1416,9 @@ export default function EssayAnalyzer() {
                       <li key={c.name} className="text-sm text-muted-foreground"><strong className="text-foreground">{c.name}:</strong> {c.score}/{c.max} now, +{c.max - c.score} available</li>
                     ))}
                   </ul>
-                  <p className="text-sm text-muted-foreground">Fix these in your draft using the comments above, then run a <strong>re-check</strong> of the revised version: you will see which criteria moved and by how much.</p>
+                  {(isAuthenticated || (recheckTarget ? recheckTarget.rerunsLeft : (anonRerunsLeft ?? anonReportQ.data?.rerunsLeft ?? 0)) > 0) && (
+                    <p className="text-sm text-muted-foreground">Fix these in your draft using the comments above, then <strong>re-check</strong> the revised version to see how the {result.criteria.length === 1 ? "mark moves" : "marks move"}.</p>
+                  )}
                   {isAuthenticated && resultAnalysisId && !rerunId && (
                     <Button asChild variant="outline" className="mt-3 min-h-11 h-auto whitespace-normal">
                       <a href={`/essay?rerun=${resultAnalysisId}&session=${examSession}&type=${encodeURIComponent(essayType)}${subject ? `&subject=${encodeURIComponent(subject)}` : ""}`}>Re-check a revised version (free, two per report)</a>

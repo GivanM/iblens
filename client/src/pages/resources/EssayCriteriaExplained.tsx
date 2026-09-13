@@ -180,7 +180,7 @@ export default function EssayCriteriaExplained() {
 
       <ul>
         <li><strong>Per-criterion scores:</strong> An estimated mark for each criterion that can be judged from your text, showing where you are strong and where you need improvement</li>
-        <li><strong>Band-level feedback:</strong> Explanation of which band your work currently matches and what would be needed to reach the next band</li>
+        <li><strong>Band-level feedback:</strong> Explanation of which band your work currently matches</li>
         <li><strong>Specific evidence:</strong> Pointing to particular sections of your essay that demonstrate (or fail to demonstrate) each criterion</li>
         <li><strong>Actionable suggestions:</strong> Concrete steps you can take to improve your score on each criterion</li>
       </ul>

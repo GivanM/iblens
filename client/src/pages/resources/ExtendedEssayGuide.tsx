@@ -222,7 +222,7 @@ export default function ExtendedEssayGuide() {
       </ul>
 
       <p>
-        If you want objective, criterion-based feedback on your Extended Essay before submission, <Link href="/essay/extended-essay" className="text-primary hover:underline">IBLens can mark your Extended Essay</Link> against the EE criteria for your session, the 34-mark set or the new 30-mark set, in about a minute.
+        If you want criterion-based feedback on your Extended Essay before submission, ask your supervisor first, because an AI check is outside help on the EE. If they agree, <Link href="/essay/extended-essay" className="text-primary hover:underline">IBLens can mark your Extended Essay</Link> against the EE criteria for your session, the 34-mark set or the new 30-mark set, in about a minute.
       </p>
 
       <p>

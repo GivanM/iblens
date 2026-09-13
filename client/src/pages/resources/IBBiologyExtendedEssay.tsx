@@ -130,6 +130,9 @@ export default function IBBiologyExtendedEssay() {
         (Criteria C and D) and the focus of your research question in Criterion A.
       </p>
       <p>
+        An AI check is outside help on your EE, so ask your supervisor before you use IBLens or any other tool, and tell them if you do.
+      </p>
+      <p>
         <Link href="/essay/extended-essay">Analyse your Biology EE with IBLens</Link>
       </p>
       <h2>Extended Essays in other subjects</h2>

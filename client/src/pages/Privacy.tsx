@@ -29,7 +29,7 @@ export default function Privacy() {
             <li><strong>To provide what you ask for</strong> (performance of a contract): marking your work, your free preview, purchases, re-checks and your account.</li>
             <li><strong>Your consent</strong>: analytics and advertising cookies. You can withdraw it at any time under "Cookie settings".</li>
             <li><strong>Legal obligation</strong>: keeping purchase records for accounting and tax.</li>
-            <li><strong>Legitimate interests</strong>: keeping the free preview to one per device with the random device identifier, preventing abuse and keeping the service secure; and measuring which ads lead to purchases. When a purchase completes, our server sends Google the order number, the product and the amount, with no name, email address or account, whatever your cookie choice; and before you accept cookies, Google's scripts may send basic signals without cookies. You can object to any of this by emailing us.</li>
+            <li><strong>Legitimate interests</strong>: keeping the free preview to one per device or account with the random device identifier, preventing abuse and keeping the service secure; and measuring which ads lead to purchases. When a purchase completes, our server sends Google the order number, the product and the amount, with no name, email address or account, whatever your cookie choice; and before you accept cookies, Google's scripts may send basic signals without cookies. You can object to any of this by emailing us.</li>
           </ul>
 
           <h2>How your essay is processed (AI disclosure)</h2>
@@ -59,7 +59,7 @@ export default function Privacy() {
           <p>You can ask us to access, correct, or delete your data, or to stop processing it. Email <a href="mailto:glushkovim@gmail.com" className="text-primary hover:underline">glushkovim@gmail.com</a> and we will action deletion promptly. If you are in the UK/EU, you also have the right to complain to your data protection authority.</p>
 
           <h2>Children and young people</h2>
-          <p>IBLens is intended for secondary-school students preparing IB coursework, some of whom are under 18. We collect only what is needed to provide the analysis and, where required by law such as the UK Children's Code, aim to keep data use to a minimum. If you are below the digital-consent age in your country (13 to 16 depending on where you live), please ask a parent, guardian or teacher before submitting work for analysis. We do not knowingly collect more personal data from young users than the service requires.</p>
+          <p>IBLens is intended for secondary-school students preparing IB coursework and UCAS applications, most of whom are under 18. We collect only what is needed to provide the analysis and, where required by law such as the UK Children's Code, aim to keep data use to a minimum. If you are below the digital-consent age in your country (13 to 16 depending on where you live), please ask a parent, guardian or teacher before submitting work for analysis. We do not knowingly collect more personal data from young users than the service requires.</p>
 
           <h2>International processing</h2>
           <p>Our providers may process data in countries outside your own, including the United States. Where required, transfers rely on the safeguards those providers put in place.</p>

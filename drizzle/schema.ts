@@ -44,7 +44,11 @@ export const analyses = mysqlTable("analyses", {
   adoptedFromId: int("adoptedFromId"),
   unlockedAt: timestamp("unlockedAt"),
 createdAt: timestamp("createdAt").defaultNow().notNull(),
-});
+}, (table) => [
+  // One account copy of a device report. Two sign-in claims arriving together each
+  // passed the "already copied" check and copied the same paid report twice.
+  uniqueIndex("uniq_account_copy").on(table.userId, table.adoptedFromId),
+]);
 
 export const payments = mysqlTable("payments", {
   id: int("id").autoincrement().primaryKey(),

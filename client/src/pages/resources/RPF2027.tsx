@@ -49,7 +49,8 @@ export default function RPF2027() {
       <ul>
         <li>Up to 500 words.</li>
         <li>Reflection that evaluates, not a description of the process.</li>
-        <li>At least two specific examples from your own EE.</li>
+        <li>Specific examples from your own EE, used to evaluate what you learned.</li>
+        <li>Written in the language of your essay. An RPF that is blank, not submitted or written in another language is awarded zero for Criterion E.</li>
         <li>A clear statement of how you grew as a learner and where that learning transfers.</li>
         <li>No content summary, no timeline padding.</li>
       </ul>
@@ -57,7 +58,7 @@ export default function RPF2027() {
       <h2>Check the whole essay, not just the RPF</h2>
 
       <p>
-        Reflection is 4 of 30 marks. The other 26 sit in the essay itself, and the heaviest single criterion in the 2027 rubric is Discussion and evaluation, at 8. IBLens marks EE drafts against the full May 2027 criteria (keep "Exam session" on "Exams in May 2027 or later" in the grader, which is the default, and paste your reflective statement to have Criterion E marked on it), with a free preview showing your weakest criterion first.
+        Reflection is 4 of 30 marks. The other 26 sit in the essay itself, and the heaviest single criterion in the 2027 rubric is Discussion and evaluation, at 8. With your supervisor's agreement (an AI check is outside help on the EE), IBLens marks EE drafts against the full May 2027 criteria (keep "Exam session" on "Exams in May 2027 or later" in the grader, which is the default, and paste your reflective statement to have Criterion E marked on it), with a free preview showing your weakest criterion first.
       </p>
 
       <p>

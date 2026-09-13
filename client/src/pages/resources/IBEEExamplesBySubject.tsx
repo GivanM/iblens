@@ -203,8 +203,8 @@ export default function IBEEExamplesBySubject() {
         essay meets that standard is where most students lose marks.
       </p>
       <p>
-        IBLens analyses your Extended Essay draft against the published criteria for your exam session and gives criterion-by-criterion
-        feedback, so you can see where marks are being lost before you submit.
+        If your supervisor agrees, IBLens analyses your Extended Essay draft against the published criteria for your exam session and gives criterion-by-criterion
+        feedback, so you can see where marks are being lost before you submit. Ask them first, because an AI check is outside help on the EE.
       </p>
       <p>
         <Link to="/essay">Paste your Extended Essay draft into IBLens for rubric-based feedback →</Link>

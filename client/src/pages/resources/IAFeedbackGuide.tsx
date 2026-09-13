@@ -86,7 +86,7 @@ export default function IAFeedbackGuide() {
       <ul>
         <li><Link href="/resources/ib-internal-assessment-guide">IB Internal Assessment Guide</Link></li>
         <li><Link href="/resources/ib-ia-grader">IB IA Grader: coursework in 14 subjects</Link></li>
-        <li><Link href="/resources/ib-ia-score-predictor">IB IA Score Predictor</Link></li>
+        <li><Link href="/resources/ib-ia-score-predictor">IB IA Score Estimator</Link></li>
       </ul>
       <h2>Subject-specific IA guides</h2>
 

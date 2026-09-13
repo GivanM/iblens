@@ -16,8 +16,13 @@ export function deviceReportLabel(r: { essayType: string | null; subject: string
   if (r.essayType === "UCAS") return `UCAS statement, ${r.subject || "your course"}`;
   if (r.essayType === "TOK") return r.subject === "Exhibition" ? "TOK exhibition" : "TOK essay";
   if (r.essayType === "TOK Exhibition") return "TOK exhibition";
-  const type = r.essayType === "EE" ? "Extended Essay" : "IA";
-  return r.subject ? `${type}, ${r.subject}` : type;
+  if (r.essayType === "EE") return r.subject ? `Extended Essay (${r.subject})` : "Extended Essay";
+  if (!r.subject) return "IA";
+  // Visual Arts, Music and Film are marked on an externally assessed component and English A
+  // on the individual oral, so "IA" would name the wrong task.
+  if (/^english a/i.test(r.subject)) return `${r.subject} individual oral`;
+  if (/^(visual arts|music|film)$/i.test(r.subject)) return `${r.subject} coursework`;
+  return `${r.subject} IA`;
 }
 
 /**

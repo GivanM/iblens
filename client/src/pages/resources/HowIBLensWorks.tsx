@@ -36,7 +36,7 @@ export default function HowIBLensWorks() {
       </ul>
 
       <p>
-        The analysis is tailored to your specific subject and essay type. A Biology IA is assessed against different criteria than a History IA or an Extended Essay in English Literature. IBLens recognises the subject context and applies the appropriate framework.
+        The analysis is tailored to your specific subject and essay type. A Biology IA is assessed against different criteria from a History IA or an Extended Essay in English Literature. IBLens recognises the subject context and applies the appropriate framework.
       </p>
 
       <h2>How the Criteria Reach the Model</h2>
@@ -114,7 +114,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <ul>
-        <li><strong>Storage:</strong> The essay text is never written to our database. An anonymous report you did not buy is deleted after 90 days. A purchased report is kept. If you sign in, your history stays in your account until you delete it, and every report there has a delete button. Essay content goes only to Anthropic, which marks it, and is never used to train AI models.</li>
+        <li><strong>Storage:</strong> The essay text is never written to our database. An anonymous report you did not buy is deleted after 90 days. A purchased report is kept. If you sign in, your history stays in your account until you delete it, and every report there has a delete button. Essay content goes only through our relay server to Anthropic, which marks it, and is never used to train AI models.</li>
         <li><strong>Processed only to produce your report:</strong> Your essay passes over an encrypted connection through our relay server in Helsinki to our AI provider, Anthropic, solely to generate your analysis. IBLens never stores the text itself. It is not used to train any model, not sold, and not shared with schools, universities or other students.</li>
         <li><strong>Encrypted transmission:</strong> All data is transmitted over HTTPS with industry-standard encryption.</li>
         <li><strong>No training on your data:</strong> Your essays are not used to train or improve the AI model. Your intellectual property remains yours.</li>

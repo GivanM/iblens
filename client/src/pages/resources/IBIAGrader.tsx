@@ -58,11 +58,11 @@ export default function IBIAGrader() {
       <h2>What You Get in the Report</h2>
 
       <ul>
-        <li><strong>Estimated mark and band:</strong> where your IA sits overall against the criteria, with the mark range the draft currently falls in</li>
+        <li><strong>Estimated mark and range:</strong> where your IA sits overall against the criteria, with the mark range the draft currently falls in</li>
         <li><strong>Criterion breakdown:</strong> each criterion marked individually, with the reasons for that mark (one judged on something text cannot carry, such as a Music recording, is shown as not marked)</li>
-        <li><strong>Risk areas:</strong> the specific parts of your IA that are losing marks, and why</li>
-        <li><strong>Leverage zones:</strong> criteria where a small improvement would gain the most marks</li>
-        <li><strong>Next steps:</strong> concrete changes to make before submission</li>
+        <li><strong>What is losing marks:</strong> the specific parts of your IA that are losing marks, and why</li>
+        <li><strong>Where marks are recoverable:</strong> criteria where a small improvement would gain the most marks</li>
+        <li><strong>What to fix first:</strong> concrete changes to make before submission</li>
       </ul>
 
       <h2>IBLens vs Other IB IA Graders</h2>
@@ -72,7 +72,7 @@ export default function IBIAGrader() {
       </p>
 
       <ul>
-        <li><strong>vs. RevisionDojo:</strong> RevisionDojo includes AI coursework feedback in a wider revision platform sold by subscription; check its pricing page for current prices. IBLens charges per report: $9.99 for one, $24.99 for five, with no subscription. Which costs less depends on how many reports you need, so compare current prices on both sites.</li>
+        <li><strong>vs. RevisionDojo:</strong> RevisionDojo includes AI coursework feedback in a wider revision platform; check its site for current prices. IBLens charges per report: $9.99 for one, $24.99 for five, with no subscription. Which costs less depends on how many reports you need, so compare current prices on both sites.</li>
         <li><strong>vs. a general chatbot:</strong> a general AI model marks against whatever it remembers of the criteria, which may be an older version, such as the science criteria retired in 2025. IBLens gives the model the current criteria for your subject and session, and counts the words for you.</li>
         <li><strong>vs. a tutor:</strong> a good tutor brings subject judgement no tool has, at an hourly rate. IBLens gives you an estimate against the criteria in about a minute, for a fixed price, with two re-checks of revised versions within 14 days of the report opening.</li>
       </ul>

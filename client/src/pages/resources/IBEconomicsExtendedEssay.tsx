@@ -172,6 +172,9 @@ export default function IBEconomicsExtendedEssay() {
         the full process from topic choice to final reflection.
       </p>
       <p>
+        An AI check is outside help on your EE, so ask your supervisor before you use IBLens or any other tool, and tell them if you do.
+      </p>
+      <p>
         <Link href="/essay/extended-essay">Grade your Economics EE with IBLens</Link>
       </p>
       <h2>Extended Essays in other subjects</h2>

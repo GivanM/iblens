@@ -56,6 +56,7 @@ export default function GradeBoundaries() {
         <li>Grade 3 or below has been awarded four or more times</li>
         <li>Fewer than 12 points on HL subjects (with four HL subjects, the three highest grades count)</li>
         <li>Fewer than 9 points on SL subjects (with only two SL subjects, at least 5 points at SL)</li>
+        <li>A penalty for academic misconduct has been imposed by the Final Award Committee</li>
       </ul>
 
       <p>
@@ -186,7 +187,7 @@ export default function GradeBoundaries() {
       <ul>
         <li><Link href="/remark">Is an IB re-mark worth it?</Link></li>
         <li><Link href="/resources/ib-score-calculator">IB Score Calculator</Link></li>
-        <li><Link href="/resources/ib-ia-score-predictor">IA Score Predictor</Link></li>
+        <li><Link href="/resources/ib-ia-score-predictor">IA Score Estimator</Link></li>
       </ul>
 
     </ResourceArticle>

@@ -84,7 +84,7 @@ export default function Dashboard() {
           <CardContent className="p-8 text-center">
             <h2 style={SERIF} className="text-xl font-bold mb-3">Sign in to access your dashboard</h2>
             <p className="text-muted-foreground mb-6 text-sm">See your reports, how many paid reports you have left, and your purchases.</p>
-            <Button asChild><a href={getLoginUrl()}>Sign In</a></Button>
+            <Button asChild><a href={getLoginUrl()}>Sign in</a></Button>
           </CardContent>
         </Card>
       </div>
@@ -304,7 +304,7 @@ export default function Dashboard() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-base">
             <Wallet className="w-4 h-4" />
-            Purchase History
+            Purchase history
           </CardTitle>
         </CardHeader>
         <CardContent>

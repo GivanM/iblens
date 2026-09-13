@@ -54,7 +54,7 @@ export default function RefundPolicy() {
           <section>
             <h2 className="text-xl font-semibold mb-3">What a refund closes</h2>
             <p className="text-muted-foreground leading-relaxed">
-              A refund cancels what that purchase paid for. The reports it opened close again and their re-checks end: an essay report shows only its free preview, and a UCAS review is no longer shown. Any reports from it you have not used yet are removed. Reports and packs you paid for separately are not affected.
+              A refund cancels what that purchase paid for. The reports it opened close again and their re-checks end: an essay report shows only its free preview, and a UCAS review shows only its free preview on the UCAS page and is no longer available in your dashboard. Any reports from it you have not used yet are removed. Reports and packs you paid for separately are not affected.
             </p>
           </section>
 

@@ -35,7 +35,7 @@ export default function IBExtendedEssayExamples() {
       </ul>
 
       <h3>History Extended Essay Examples</h3>
-      <p>Very recent events make risky History EE topics. The History guide rules out anything from the last 10 years for the internal assessment, because the topic must be historical; the Extended Essay guide for May 2027 sets no fixed cut-off, but recent events rarely have a body of historical writing to engage with. The strongest essays work with historiographical debate.</p>
+      <p>Very recent events make risky History EE topics. For November 2026 the Extended Essay guide says essays on events of the past 10 years are not acceptable, as current affairs rather than history; the guide for May 2027 onward sets no fixed cut-off, but recent events rarely have a body of historical writing to engage with. The strongest essays work with historiographical debate.</p>
       <ul>
         <li><em>"To what extent was Stalin's collectivisation policy driven by ideological commitment to Marxism rather than pragmatic economic necessity, 1929-1933?"</em></li>
         <li><em>"How significant was the role of Japanese-American internment in shaping domestic opposition to civil liberties restrictions in post-war America?"</em></li>

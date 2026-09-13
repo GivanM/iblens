@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { SEOHead } from "@/components/SEOHead";
-import { usePreviewUsed } from "@/hooks/usePreviewUsed";
+import { useMarkingCta } from "@/hooks/useMarkingCta";
 import {
   FileText, ArrowRight, CheckCircle2, ChevronDown, ChevronUp,
   Shield, Zap, Lock, ShieldCheck, Clock, ListOrdered
@@ -48,8 +48,8 @@ const SAMPLE_CRITERIA = [
 
 export default function LandingPage() {
   // A device that has used its preview is not promised another one.
-  const previewUsed = usePreviewUsed();
-  const cta = previewUsed ? "Mark my work ($9.99)" : "Get my free preview";
+  const { previewUsed, paidLabel } = useMarkingCta();
+  const cta = previewUsed ? paidLabel : "Get my free preview";
   return (
     <>
       <SEOHead
@@ -86,7 +86,7 @@ export default function LandingPage() {
               Grade Your IB Essay<br />in About a Minute
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">
-              Paste your IA, Extended Essay or TOK work. The free preview comes back in about a minute with your band range, weakest criterion and top risks; the full report gives the estimated mark, criterion by criterion (the TOK essay and exhibition as a whole), and ranks the fixes.
+              Paste your IA or TOK work, or your Extended Essay if your supervisor agrees. The free preview comes back in about a minute with your band range, weakest criterion and top risks; the full report gives the estimated mark, criterion by criterion (the TOK essay and exhibition as a whole), and ranks the fixes.
             </p>
             <Button size="lg" className="text-base px-10 h-14 shadow-lg shadow-primary/25 mb-4" asChild>
               <Link href="/essay">
@@ -180,7 +180,7 @@ export default function LandingPage() {
                     <Button size="sm" asChild>
                       <Link href="/essay">
                         <Lock className="w-3.5 h-3.5 mr-1.5" />
-                        {previewUsed ? "Mark my work ($9.99)" : "Get a free preview"}
+                        {previewUsed ? paidLabel : "Get a free preview"}
                       </Link>
                     </Button>
                   </div>

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { SEOHead } from "@/components/SEOHead";
 import { CheckCircle2, ArrowRight, FileText, Clock, ListOrdered } from "lucide-react";
-import { usePreviewUsed } from "@/hooks/usePreviewUsed";
+import { useMarkingCta } from "@/hooks/useMarkingCta";
 
 export interface SubjectConfig {
   subject: string;
@@ -58,7 +58,10 @@ function getBarColor(ratio: number): string {
 }
 
 export default function SubjectEssayPage({ config }: { config: SubjectConfig }) {
-  const previewUsed = usePreviewUsed();
+  const { previewUsed, paidLeft, paidLabel, isAuthenticated } = useMarkingCta();
+  const reportsLeft = `${paidLeft} paid report${paidLeft === 1 ? "" : "s"} left`;
+  // The task name inside a sentence: "your TOK essay", not "your TOK Essay".
+  const taskName = config.subject.replace(/ (Essay|Exhibition|Individual Oral)$/, (m) => m.toLowerCase());
   const totalMax = config.criteria.reduce((s, c) => s + c.max, 0);
   const totalSample = config.criteria.reduce((s, c) => s + c.sampleScore, 0);
   const holistic = config.criteria.length === 1;
@@ -114,7 +117,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
         <section className="bg-gradient-to-b from-primary/5 to-background py-14 md:py-20">
           <div className="container max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold mb-6 uppercase tracking-wide">
-              {previewUsed ? "Full report $9.99 · No account needed · Refundable within 7 days" : "One free preview per device or account · No account needed · No card"}
+              {previewUsed ? (paidLeft > 0 ? `${reportsLeft} · Each includes two re-checks` : "Full report $9.99 · No account needed · Refundable within 7 days") : "One free preview per device or account · No account needed · No card"}
             </div>
             <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
               {config.heroHeadline}
@@ -125,7 +128,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
             <Button size="lg" className="text-base px-10 shadow-lg shadow-primary/25 mb-4 h-auto min-h-11 py-3 whitespace-normal" asChild>
               <Link href={config.analyzerHref}>
                 <FileText className="w-4 h-4 mr-2" />
-                {previewUsed ? "Mark my work ($9.99)" : "Get a free preview"}
+                {previewUsed ? paidLabel : "Get a free preview"}
               </Link>
             </Button>
             <p className="text-xs text-muted-foreground">
@@ -145,7 +148,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
                 { Icon: FileText, title: "Paste your text", desc: "Copy and paste the text of your work. No file upload, and it works on any device." },
                 { Icon: Clock, title: "Marked in about a minute", desc: holistic
                     ? "An AI model applies the published assessment instrument to what you pasted."
-                    : `An AI model applies the published ${config.subject} criteria to what you pasted.` },
+                    : `An AI model applies the published ${taskName} criteria to what you pasted.` },
                 { Icon: ListOrdered, title: "See what to fix", desc: "The marks you are losing, and the changes most likely to recover them, in order." },
               ].map(({ Icon, title, desc }) => (
                 <div key={title} className="flex flex-col items-center text-center gap-3">
@@ -167,7 +170,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
           <div className="container max-w-2xl mx-auto">
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold tracking-tight mb-2">
-                What the {config.subject} breakdown looks like
+                What the {taskName} breakdown looks like
               </h2>
               <p className="text-muted-foreground text-sm">
                 An illustration with made-up scores. Your report marks your own draft and explains every mark.
@@ -216,7 +219,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
 
                 <div className="mt-6 pt-5 border-t flex flex-col sm:flex-row gap-3 items-center justify-between">
                   <p className="text-xs text-muted-foreground">
-                    {previewUsed ? "Your own draft: the full breakdown and fix list for $9.99" : "Your own draft: a free preview first, then the full breakdown and fix list for $9.99"}
+                    {previewUsed ? (paidLeft > 0 ? "Your own draft: the full breakdown and fix list, using one of your paid reports" : "Your own draft: the full breakdown and fix list for $9.99") : "Your own draft: a free preview first, then the full breakdown and fix list for $9.99"}
                   </p>
                   <Button size="sm" className="min-h-11" asChild>
                     <Link href={config.analyzerHref}>
@@ -276,7 +279,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
         {/* What the report covers */}
         <section className="py-12 bg-muted/30 border-y">
           <div className="container max-w-3xl mx-auto">
-            <h2 className="text-xl font-bold text-center mb-8">What the {config.subject} report covers</h2>
+            <h2 className="text-xl font-bold text-center mb-8">What the {taskName} report covers</h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {reportCovers.map((text) => (
                 <div key={text} className="flex items-start gap-3">
@@ -314,12 +317,14 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
             </h2>
             <p className="text-muted-foreground mb-8 max-w-md mx-auto">
               {previewUsed
-                ? `Paste your ${config.subject}: the free preview on this device has been used, and a full report is $9.99 with two re-checks included.`
-                : `Paste your ${config.subject} and get a free preview in about a minute. The full report is $9.99.`}
+                ? paidLeft > 0
+                  ? `Paste your ${taskName} and mark it with one of your paid reports (${reportsLeft}). Each includes two re-checks.`
+                  : `Paste your ${taskName}. The free preview ${isAuthenticated ? "on your account" : "on this device"} has been used, and a full report is $9.99 with two re-checks included.`
+                : `Paste your ${taskName} and get a free preview in about a minute. The full report is $9.99.`}
             </p>
             <Button size="lg" className="text-base px-6 sm:px-10 shadow-lg shadow-primary/25 h-auto min-h-11 py-3 whitespace-normal" asChild>
               <Link href={config.analyzerHref}>
-                Check my {config.subject} <ArrowRight className="w-4 h-4 ml-2" />
+                Check my {taskName} <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
           </div>

@@ -41,7 +41,7 @@ export default function CourseworkReviewTools() {
           <strong>Criterion-level output, not a general impression.</strong> "This is a solid essay" does not tell you what to fix first. Look for a per-criterion breakdown and an identified weakest criterion.
         </li>
         <li>
-          <strong>A free look before you pay.</strong> Every serious tool in the table offers some free entry point: a preview, free tokens or sample feedback. Use it to judge quality on your own draft before paying anything.
+          <strong>A free look before you pay.</strong> Look for a free entry point, such as a preview, free tokens or sample feedback, and use it on your own draft before paying.
         </li>
         <li>
           <strong>Feedback, not editing.</strong> Whatever tool you use, IB academic integrity rules draw the line at work that is no longer yours. Tools that identify weaknesses are on the right side of it; anything that rewrites your draft is not. Our <Link href="/resources/academic-integrity">academic integrity guide</Link> covers where that line sits.
@@ -68,7 +68,7 @@ export default function CourseworkReviewTools() {
 
       <h3>Are these tools allowed under IB rules?</h3>
       <p>
-        Using AI to get feedback on work you wrote is a different activity from having AI produce the work. Feedback tools sit in the same category as a peer pointing out weaknesses; submitting AI-written text as your own is academic misconduct. Keep drafts, use feedback to revise your own writing, and follow your school's AI policy. The Extended Essay is stricter: The Extended Essay guide says students must not receive assistance with any aspect of the research, writing or proofreading beyond that which is permitted through their supervisor. Ask your supervisor before you use any outside feedback on your EE, IBLens included.
+        Using AI to get feedback on work you wrote is a different activity from having AI produce the work. Feedback tools sit in the same category as a peer pointing out weaknesses; submitting AI-written text as your own is academic misconduct. Keep drafts, use feedback to revise your own writing, and follow your school's AI policy. The Extended Essay is stricter: the Extended Essay guide says students must not receive assistance with any aspect of the research, writing or proofreading beyond that which is permitted through their supervisor. Ask your supervisor before you use any outside feedback on your EE, IBLens included.
       </p>
 
       <h3>Which tool supports the new May 2027 Extended Essay criteria?</h3>

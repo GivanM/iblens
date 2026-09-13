@@ -12,7 +12,7 @@ import {
   ChevronDown, ChevronUp, ShieldCheck
 } from "lucide-react";
 import { SampleReports } from "@/components/SampleReports";
-import { usePreviewUsed } from "@/hooks/usePreviewUsed";
+import { useMarkingCta } from "@/hooks/useMarkingCta";
 
 const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
@@ -52,7 +52,7 @@ const SAMPLE_CRITERIA = [
 ];
 
 export default function Home() {
-  const previewUsed = usePreviewUsed();
+  const { previewUsed, paidLabel } = useMarkingCta();
   const { isAuthenticated } = useAuth();
   const [purchaseModalOpen, setPurchaseModalOpen] = useState(false);
   const [purchaseSku, setPurchaseSku] = useState<ProductKey>("ESSAY_PACK_5");
@@ -181,7 +181,7 @@ export default function Home() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 mb-4">
                   <Button size="lg" className="text-base px-8 shadow-lg shadow-primary/25 min-h-11" asChild>
-                    <Link href="/essay">{previewUsed ? "Mark my essay" : "Get my free preview"}</Link>
+                    <Link href="/essay">{previewUsed ? paidLabel : "Get my free preview"}</Link>
                   </Button>
                   <Button size="lg" variant="ghost" asChild>
                     <Link href="/resources/sample-reports">See sample TOK reports</Link>
@@ -265,7 +265,7 @@ export default function Home() {
               <div className="rounded-xl border border-border bg-card p-8">
                 <h3 style={SERIF} className="text-xl font-bold mb-3">Essay Grader</h3>
                 <p className="text-muted-foreground mb-5 leading-relaxed">
-                  Get detailed feedback on your IA, Extended Essay, TOK essay or exhibition, or English A individual oral. Estimated marks against the published criteria, and specific steps to improve.
+                  Get detailed feedback on your IA, TOK essay or exhibition, English A individual oral, or your Extended Essay if your supervisor agrees. Estimated marks against the published criteria, and specific steps to improve.
                 </p>
                 <ul className="space-y-2.5 text-sm mb-6">
                   {["Estimated mark and band", "Criteria breakdown", "What is losing marks", "Where marks are recoverable", "What to fix first"].map((item) => (
@@ -394,11 +394,11 @@ export default function Home() {
                 </div>
                 <CardContent className="p-6 text-center">
                   <Gift className="w-8 h-8 text-primary mx-auto mb-3" />
-                  <h3 style={SERIF} className="text-xl font-bold mb-1">First Essay Preview</h3>
+                  <h3 style={SERIF} className="text-xl font-bold mb-1">First preview</h3>
                   <div style={SERIF} className="text-3xl font-bold mb-2">$0</div>
                   <p className="text-xs text-muted-foreground mb-4">Band range, weakest criterion and top risks. No credit card required.</p>
                   <Button variant="outline" className="w-full min-h-11" asChild>
-                    <Link href="/essay">{previewUsed ? "Mark my essay" : "Get a free preview"}</Link>
+                    <Link href="/essay">{previewUsed ? paidLabel : "Get a free preview"}</Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -508,7 +508,7 @@ export default function Home() {
             </p>
             <Button size="lg" className="text-base px-8 h-12 shadow-lg shadow-primary/25" asChild>
               <Link href="/essay">
-                {previewUsed ? "Mark my essay" : "Start your free preview"} <ArrowRight className="w-4 h-4 ml-2" />
+                {previewUsed ? paidLabel : "Start your free preview"} <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
             <p className="text-xs text-muted-foreground mt-4">No credit card required. Results in about a minute.</p>

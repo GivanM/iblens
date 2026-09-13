@@ -237,7 +237,7 @@ const resources = [
   },
   {
     slug: "/resources/ib-ia-score-predictor",
-    title: "IB IA Score Predictor",
+    title: "IB IA Score Estimator",
     description: "How IA marks are awarded and moderated, where marks are lost subject by subject, and how to estimate your mark before results day.",
     icon: BarChart3,
     readTime: "5 min read",

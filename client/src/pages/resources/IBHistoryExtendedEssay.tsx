@@ -57,11 +57,12 @@ export default function IBHistoryExtendedEssay() {
         <li><strong>Researchable:</strong> Primary and secondary sources exist, are accessible to you, and are in a language you can read.</li>
       </ul>
       <p>
-        One more constraint is worth taking seriously: very recent events make risky
-        History EE topics. The History guide rules out anything from the last 10 years
-        for the internal assessment, because the topic must be historical. The Extended
-        Essay guide for May 2027 sets no fixed cut-off, but the subject rewards engagement with a body
-        of historical writing, and recent events rarely have one. Choose something old
+        One more constraint depends on your session. If you sit your exams in November 2026,
+        the Extended Essay guide says essays that focus on events of the past 10 years are not
+        acceptable, as these are regarded as current affairs, not history, and such an essay will
+        be compromised across all of the criteria. The guide for May 2027 onward sets no fixed
+        cut-off, but the subject rewards engagement with a body of historical writing, and recent
+        events rarely have one. Choose something old
         enough that historians have already argued about it, and confirm the topic with
         your supervisor before committing.
       </p>
@@ -157,10 +158,11 @@ export default function IBHistoryExtendedEssay() {
       <h2>Frequently Asked Questions</h2>
       <h3>Can I write my History EE on a recent event?</h3>
       <p>
-        Very recent topics are risky. The Extended Essay guide for May 2027 sets no fixed cut-off
-        (the History internal assessment rules out the last 10 years), but the History
-        EE rewards engagement with historiography, and recent events rarely have an
-        established body of historical writing. Choose a topic old enough that
+        It depends on your session. For November 2026 the Extended Essay guide says essays that
+        focus on events of the past 10 years are not acceptable, as current affairs rather than
+        history. The guide for May 2027 onward sets no fixed cut-off, but the History EE rewards
+        engagement with historiography, and recent events rarely have an established body of
+        historical writing. Choose a topic old enough that
         historians have debated it, and confirm your choice with your supervisor.
       </p>
       <h3>How many sources does a History EE need?</h3>
@@ -186,6 +188,9 @@ export default function IBHistoryExtendedEssay() {
         a draft into the <Link href="/essay/extended-essay">Extended Essay grader</Link>, where the first preview is free, to
         see where your History EE stands, and read the <Link href="/resources/ib-extended-essay-guide">complete IB Extended Essay guide</Link> for
         the full process from topic choice to final reflection.
+      </p>
+      <p>
+        An AI check is outside help on your EE, so ask your supervisor before you use IBLens or any other tool, and tell them if you do.
       </p>
       <p>
         <Link href="/essay/extended-essay">Grade your History EE with IBLens</Link>

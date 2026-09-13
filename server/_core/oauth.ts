@@ -41,8 +41,9 @@ export function registerOAuthRoutes(app: Express) {
       return;
     }
 
+    // Every way this can fail lands on the sign-in page, which says so, instead of JSON.
     if (!code) {
-      res.status(400).json({ error: "code is required" });
+      res.redirect(signInAgain());
       return;
     }
 
@@ -64,7 +65,7 @@ export function registerOAuthRoutes(app: Express) {
       const userInfo = await sdk.exchangeCodeForToken(code, redirectUri);
 
       if (!userInfo.id) {
-        res.status(400).json({ error: "id missing from Google user info" });
+        res.redirect(signInAgain());
         return;
       }
 
@@ -103,7 +104,7 @@ export function registerOAuthRoutes(app: Express) {
       res.redirect(302, returnTo);
     } catch (err) {
       console.error("[OAuth] Callback failed", err);
-      res.status(500).json({ error: "OAuth callback failed" });
+      res.redirect(signInAgain());
     }
   });
 }

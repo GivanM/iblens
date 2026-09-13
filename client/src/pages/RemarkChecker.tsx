@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, TrendingDown, CalendarClock, ArrowRight, CheckCircle2 } from "lucide-react";
 import { REMARK_FAQ } from "@shared/remarkFaq";
+import { EE_SUBJECTS } from "@shared/rubrics";
 
 const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
@@ -80,7 +81,7 @@ function RemarkQuickCheck() {
               <label className="w-full sm:w-auto sm:ml-auto flex items-center gap-2 text-sm text-muted-foreground">
                 EE subject
                 <select value={subject} onChange={(e) => setSubject(e.target.value)} className="flex-1 sm:flex-none min-h-11 text-sm border border-border rounded-md px-2 bg-background text-foreground cursor-pointer">
-                  {["History","English","Economics","Biology","Chemistry","Physics","Psychology","Business Management","Mathematics","Other"].map((s) => <option key={s}>{s}</option>)}
+                  {EE_SUBJECTS.map((s) => <option key={s}>{s}</option>)}
                 </select>
               </label>
             )}
@@ -122,22 +123,12 @@ function RemarkQuickCheck() {
       {result && (
         <div>
           <div className="flex items-baseline gap-3 mb-2">
-            <span style={SERIF} className="text-3xl font-bold text-primary">Band {result.band_range}</span>
+            <span style={SERIF} className="text-3xl font-bold text-primary">Estimated {result.band_range}</span>
             <span className="text-sm text-muted-foreground">out of {result.max_score}</span>
           </div>
-          {typeof result.near_band_edge === "boolean" && (
-            <div className="rounded-lg p-4 mb-4 border border-border bg-muted/40">
-              <p className="font-semibold text-sm mb-1 text-foreground">{result.near_band_edge ? "The estimate sits at the edge of its band" : "The estimate sits inside its band"}</p>
-              <p className="text-sm text-muted-foreground">{result.near_band_edge
-                ? "A mark at the top or bottom of a band is where a different reading is most likely to move it, in either direction."
-                : "A mark in the middle of a band is less likely to change band on another reading."} This is an estimate from a language model, and it cannot tell you what a second examiner will do. Before you decide, ask your coordinator for your actual component mark and the grade boundaries.</p>
-            </div>
-          )}
-          {result.near_band_edge === null && essayType === "TOK" && (
-            <div className="rounded-lg p-4 mb-4 border border-border bg-muted/40">
-              <p className="text-sm text-muted-foreground">TOK bands are two marks wide, so every mark sits at a band edge and the band alone says little about a re-mark. Ask your coordinator for your actual mark and the grade boundaries before you decide.</p>
-            </div>
-          )}
+          <div className="rounded-lg p-4 mb-4 border border-border bg-muted/40">
+            <p className="text-sm text-muted-foreground">This range is IBLens's estimate of where the total could fall, not an IB band or grade boundary. A re-mark changes your grade only if the new total crosses a grade boundary, which your coordinator can tell you. The estimate comes from a language model and cannot tell you what a second examiner will do.</p>
+          </div>
           {essayType === "EE" && (
             <p className="text-xs text-muted-foreground mb-3">Criterion E is marked on your reflections form, which this check does not include, so the estimate covers the other criteria only.</p>
           )}

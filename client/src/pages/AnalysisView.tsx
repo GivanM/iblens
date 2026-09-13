@@ -236,7 +236,7 @@ export default function AnalysisView() {
           <div className="flex flex-wrap items-center gap-6">
             <div>
               <div style={SERIF} className="text-3xl font-bold">{r.predicted_score}/{r.max_score}</div>
-              <p className="text-xs text-muted-foreground">Estimated score (not an IB mark)</p>
+              <p className="text-xs text-muted-foreground">Estimated mark (not an IB mark)</p>
             </div>
             {r.band_range && (
               <div>

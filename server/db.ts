@@ -1,5 +1,6 @@
 import { eq, desc, sql, and, lt } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
+import mysql from "mysql2/promise";
 import { InsertUser, users, analyses, InsertAnalysis, payments, InsertPayment, anonymousAnalyses, InsertAnonymousAnalysis, orders, InsertOrder, webhookEvents, InsertWebhookEvent, deviceCredits, creditLedger, InsertCreditLedgerEntry, revokedSessions, creditLots } from "../drizzle/schema";
 import crypto from "crypto";
 import { ENV } from './_core/env';
@@ -9,7 +10,13 @@ let _db: ReturnType<typeof drizzle> | null = null;
 export async function getDb() {
   if (!_db && process.env.DATABASE_URL) {
     try {
-      _db = drizzle(process.env.DATABASE_URL);
+      // Every connection talks to MySQL in UTC. Drizzle reads timestamps as UTC, but the
+      // server's own zone is Moscow, so anything the database stamped itself (createdAt,
+      // receivedAt) came back three hours in the future: dates on orders and reports were
+      // late, and a new account looked new for three hours.
+      const pool = mysql.createPool({ uri: process.env.DATABASE_URL, timezone: "Z" });
+      pool.on("connection", (conn: any) => { conn.query("SET time_zone = '+00:00'"); });
+      _db = drizzle(pool) as unknown as NonNullable<typeof _db>;
     } catch (error) {
       console.warn("[Database] Failed to connect:", error);
       _db = null;
@@ -812,6 +819,13 @@ export async function consumeAnonymousRerun(fingerprint: string, kind: "essay" |
   if (!rec.unlocked) return { ok: false as const, reason: "This report is not unlocked." };
   // The allowance and the 14 days belong to the purchase, which is the head of the chain.
   const head: any = await getAnonymousChainHead(rec);
+  // An essay report copied into an account is re-checked there, where its count lives.
+  // Counting the browser copy separately gave the buyer two more re-checks. UCAS reviews
+  // are re-checked on the browser for everyone, so they stay here.
+  if (kind === "essay") {
+    const copy = await db.select({ id: analyses.id }).from(analyses).where(eq(analyses.adoptedFromId, head.id)).limit(1);
+    if (copy.length > 0) return { ok: false as const, reason: "This report is in your account. Sign in and re-check it from your dashboard." };
+  }
   const started = head.unlockedAt ? new Date(head.unlockedAt).getTime() : new Date(head.createdAt).getTime();
   if ((Date.now() - started) / 86400000 > 14) {
     return { ok: false as const, reason: "Your 14-day re-check window for this report has ended." };
@@ -1032,6 +1046,16 @@ export async function moveDeviceLotsToAccount(fingerprint: string, userId: numbe
     .where(and(eq(creditLots.place, "device"), eq(creditLots.fingerprint, fingerprint), sql`${creditLots.remaining} > 0`));
 }
 
+/** The newest re-check of an account report, if it has one. */
+export async function getLatestAccountVersion(headId: number, userId: number) {
+  const db = await getDb();
+  if (!db) return null;
+  const rows = await db.select().from(analyses)
+    .where(and(eq(analyses.userId, userId), eq(analyses.rerunOf, headId)))
+    .orderBy(desc(analyses.id)).limit(1);
+  return (rows[0] as any) ?? null;
+}
+
 /** An account's copy of a device report, if the account has one. */
 export async function findAccountCopyOf(userId: number, deviceRowId: number) {
   const db = await getDb();
@@ -1153,7 +1177,9 @@ export async function adoptDeviceReports(fingerprint: string, userId: number): P
     const existing = await db.select({ id: analyses.id }).from(analyses)
       .where(and(eq(analyses.userId, userId), eq(analyses.adoptedFromId, rec.id))).limit(1);
     if (existing.length > 0) { accountIdFor.set(rec.id, existing[0].id); continue; }
-    const [inserted] = await db.insert(analyses).values({
+    let inserted: { id: number } | undefined;
+    try {
+    [inserted] = await db.insert(analyses).values({
       userId,
       type: "essay",
       essayType: rec.essayType,
@@ -1169,6 +1195,14 @@ export async function adoptDeviceReports(fingerprint: string, userId: number): P
       adoptedFromId: rec.id,
       rerunOf: rec.rerunOf ? (accountIdFor.get(rec.rerunOf) ?? null) : null,
     }).$returningId();
+    } catch (err) {
+      // Another claim copied it a moment earlier: use that copy.
+      if (!isDuplicateKey(err)) throw err;
+      const again = await db.select({ id: analyses.id }).from(analyses)
+        .where(and(eq(analyses.userId, userId), eq(analyses.adoptedFromId, rec.id))).limit(1);
+      if (again[0]) accountIdFor.set(rec.id, again[0].id);
+      continue;
+    }
     if (inserted?.id) accountIdFor.set(rec.id, inserted.id);
     copied++;
   }
@@ -1433,7 +1467,8 @@ export async function hasEarlierVerifiedWebhookEvent(eventKey: string, thisId?: 
   // by a restart before it finished. Only a recent one counts, so a retry can repair a
   // payment the restart interrupted.
   return (rows as any[]).some((r) => {
-    if (r.id >= thisId || r.status === "processing_error") return false;
+    // A partial refund shares its event key with the full refund that may follow it.
+    if (r.id >= thisId || r.status === "processing_error" || r.status === "partial_refund") return false;
     if (r.status === "verified" || r.status === "received") return Number(r.recent) === 1;
     return true;
   });

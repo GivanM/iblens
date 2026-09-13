@@ -1,0 +1,1 @@
+ALTER TABLE `analyses` ADD CONSTRAINT `uniq_account_copy` UNIQUE(`userId`,`adoptedFromId`);

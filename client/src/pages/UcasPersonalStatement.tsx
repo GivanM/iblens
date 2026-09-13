@@ -222,7 +222,7 @@ export default function UcasPersonalStatement() {
           From 2026 entry the personal statement is three separate questions sharing one 4,000-character
           budget, with a 350-character minimum per answer. Paste your draft answers and get a read on
           each one: what a tutor would credit, what they would look for and not find, and what to fix
-          first. No score, UCAS publishes no mark scheme, and inventing one would not help you.
+          first. There is no score: UCAS publishes no mark scheme, and inventing one would not help you.
         </p>
       </div>
 
@@ -335,7 +335,7 @@ export default function UcasPersonalStatement() {
           {!isUnlocked && !canPayHere && !result && (
             <p className="text-xs text-muted-foreground">
               Your first review is a free preview: the verdict, the character checks and your weakest answer reviewed in full.
-              One per device or account, separate from the essay preview. The full review of all three answers is $9.99.
+              One per device, separate from the essay preview. The full review of all three answers is $9.99.
             </p>
           )}
 

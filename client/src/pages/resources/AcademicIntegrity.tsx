@@ -22,8 +22,9 @@ export default function AcademicIntegrity() {
       <h2>What the IB integrity policy actually cares about</h2>
       <p>
         The IB academic integrity policy is built around one principle: the work you submit must be
-        your own. The IB defines academic misconduct as behaviour, deliberate or inadvertent, that gives
-        you or any other student an unfair advantage in assessment. That covers plagiarism and collusion,
+        your own. The IB defines academic misconduct as behaviour, whether deliberate or inadvertent, that results
+        in, or may result in, you or any other student gaining an unfair advantage in one or more
+        components of assessment. Behaviour that may disadvantage another student is also academic misconduct. That covers plagiarism and collusion,
         and also reusing your own work: the same piece of work cannot be submitted for both an internal
         assessment and the extended essay.
       </p>
@@ -31,10 +32,12 @@ export default function AcademicIntegrity() {
         <strong>The Extended Essay is stricter.</strong> The Extended Essay guide says students must not receive assistance with any aspect of the research, writing or proofreading beyond that which is permitted through their supervisor. Ask your supervisor before you use any outside feedback on your EE, IBLens included.
       </p>
       <p>
-        Getting <strong>feedback on work you wrote yourself</strong> is a different category. Teachers do it,
-        supervisors do it on your EE draft, tutors charge for it. Feedback that helps you understand
-        where your own writing loses marks, which you then revise yourself, is study support, not
-        misconduct. The IB has also publicly stated that it will not ban AI tools, and that their use
+        Getting <strong>feedback on work you wrote yourself</strong> is a different category for most coursework.
+        Your teacher comments on a draft of an IA, and your supervisor comments in writing on one full
+        draft of your EE. For an IA or the TOK essay, feedback that helps you see where your own writing
+        loses marks, which you then revise yourself, is study support, not misconduct, if your school's
+        policy allows it. The Extended Essay is the exception set out above: help from a tutor or any
+        other outside source needs your supervisor's permission. The IB has also publicly stated that it will not ban AI tools, and that their use
         must follow its academic integrity policy, which now has an appendix on artificial intelligence
         (see the <a href="https://ibo.org/news/news-about-the-ib/statement-from-the-ib-about-chatgpt-and-artificial-intelligence-in-assessment-and-education/" target="_blank" rel="noopener">IB statement on ChatGPT and AI</a> and the IB page on{" "}
         <a href="https://ibo.org/programmes/artificial-intelligence-ai-in-learning-teaching-and-assessment/" target="_blank" rel="noopener">AI in learning, teaching and assessment</a>).
@@ -50,7 +53,7 @@ export default function AcademicIntegrity() {
       <ul>
         <li><strong>Get feedback, not text.</strong> Use the criterion breakdown to see where marks are lost, then fix it in your own words.</li>
         <li><strong>Keep your drafts.</strong> A visible draft history is your best evidence that the work is yours.</li>
-        <li><strong>Say that you used it.</strong> Follow your school's policy on how. If it has none, mention it to your teacher or supervisor the way you would mention that a tutor read your draft.</li>
+        <li><strong>Say that you used it.</strong> Follow your school's policy on how. If it has none, tell your teacher. For the Extended Essay, ask your supervisor before you use it, not after.</li>
         <li><strong>Never submit AI-written text.</strong> Not sentences, not paragraphs. Feedback in, your own writing out.</li>
       </ul>
 

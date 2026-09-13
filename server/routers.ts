@@ -35,6 +35,7 @@ import {
   returnToLot,
   moveDeviceLotsToAccount,
   findAccountCopyOf,
+  getLatestAccountVersion,
   getOrderById,
   deleteAnonymousAnalysis,
   deleteUserAnalysis,
@@ -59,6 +60,7 @@ import { LEMONSQUEEZY_VARIANTS, PRODUCT_KEY_TO_LS_SKU } from "../shared/pricing"
 import { randomUUID } from "crypto";
 import { PRODUCTS } from "./products";
 import { getRubric, buildRubricPromptFragment, unmarkableReason } from "../shared/rubrics";
+import { reconcileScores, isNotAssessableFromText, bandCell } from "./scores";
 
 const IB_SUBJECTS = [
   "Business Management", "Economics", "History", "Biology", "Chemistry",
@@ -164,7 +166,7 @@ function buildEssayUserPrompt(essayType: string, subject: string, researchQuesti
 REFLECTIVE STATEMENT (the student's ${examSession === "may2027" ? "RPF" : "RPPF"}, submitted separately from the essay):
 ${reflectionText.substring(0, 6000)}
 
-Mark the reflection criterion on this statement alone, never on the essay text.${reflectionOver ? `
+${examSession === "may2027" ? "Mark the reflection criterion on this statement alone, never on the essay text." : "Mark the reflection criterion on these reflections, using the essay only as context for what the reflections describe."}${reflectionOver ? `
 The student pasted ${reflectionWords.length} words; examiners stop reading at 500, so only the first 500 are shown above. Include a risk saying that everything after word 500 of the reflection will not be read.` : ""}`;
     } else {
       reflectionBlock = `
@@ -190,7 +192,8 @@ TEXT:
 ${essayText.substring(0, 30000)}${reflectionBlock}${wordBlock}
 
 Respond with this exact JSON structure:
-{
+{${essayType === "IA" && subject.startsWith("English A") ? `
+  "paste_kind": "<transcript if the paste is a transcript of the spoken oral, outline if it is notes or an outline>",` : ""}
   "band_range": "<range on the same total as max_score, e.g. 18-22>",
   "predicted_score": <integer>,
   "max_score": <total marks of the criteria you assessed>,
@@ -214,74 +217,12 @@ ORDER: list "risks" from the one costing the most marks to the least, "leverage_
  * (exact score, all criteria, comments, fix lists) never leaves the server
  * until it is unlocked with a paid credit. Do not widen this shape.
  */
-/**
- * A criterion is "not assessable from the pasted text" when it marks down a document the
- * submission form never asks for (the EE reflective form, RPF/RPPF). Showing that as the
- * free weakest-criterion sample burns the single demonstration slot on something the student
- * could not have supplied, so those criteria are skipped when picking the teaser sample.
- */
-function isNotAssessableFromText(c: any): boolean {
-  const name = String(c?.name || "").toLowerCase();
-  const comment = String(c?.comment || "").toLowerCase();
-  const isReflection = name.includes("reflection") || name.includes("engagement");
-  if (!isReflection) return false;
-  return /\brpf\b|\brppf\b|reflective (form|statement)|not (been )?(submitted|provided|included|attached)|no reflection|absence of (a )?reflect/.test(comment);
-}
 
 /** Same rule for risks: never bill a student for a document the form did not ask for. */
 function isRiskAboutMissingReflection(r: any): boolean {
   const text = `${r?.title || ""} ${r?.description || ""}`.toLowerCase();
   if (!/\brpf\b|\brppf\b|reflect/.test(text)) return false;
   return /missing|not submitted|absence|no reflection|without a reflect|automatic 0|automatic zero/.test(text);
-}
-
-/**
- * The totals, worked out from the criteria. The model writes the total separately from
- * the criterion marks, and the two did not always agree (16 out of 25 over marks adding
- * up to 11), while the report shows both side by side. A task marked as a whole keeps
- * its one mark. The band keeps its width and moves to contain the total. Criteria that
- * cannot be judged from pasted text never carry a mark: an Extended Essay's reflection
- * without the reflections, and the Music exercises, which are recordings and scores.
- */
-function reconcileScores(result: any, opts: { essayType: string; subject: string; reflectionsPasted: boolean }) {
-  const criteria: any[] = Array.isArray(result?.criteria) ? result.criteria : [];
-  for (const c of criteria) {
-    const name = String(c?.name || "");
-    const lower = name.toLowerCase();
-    const reflectionMissing = opts.essayType === "EE" && !opts.reflectionsPasted && (lower.includes("reflection") || lower.includes("engagement"));
-    const musicExercise = opts.essayType === "IA" && opts.subject === "Music" && /^criterion c[12]\b/i.test(name);
-    if ((reflectionMissing || musicExercise) && c.score != null) {
-      c.score = null;
-      if (!isNotAssessableFromText(c)) {
-        c.comment = reflectionMissing
-          ? "Not assessed: this criterion is marked on your reflections, which were not pasted."
-          : "Not assessed: this criterion is judged on the exercise itself, the score or recording, which text cannot carry.";
-      }
-    }
-  }
-  if (criteria.length <= 1) return result;
-  const marked = criteria.filter((c) => typeof c?.score === "number" && typeof c?.max === "number" && c.max > 0);
-  if (!marked.length) return result;
-  for (const c of marked) c.score = Math.max(0, Math.min(c.max, Math.round(c.score)));
-  const total = marked.reduce((s, c) => s + c.score, 0);
-  const max = marked.reduce((s, c) => s + c.max, 0);
-  result.predicted_score = total;
-  result.max_score = max;
-  const m = String(result.band_range || "").match(/(\d+)\s*-\s*(\d+)/);
-  let lo = total > 0 ? total - 1 : 0;
-  let hi = Math.min(max, total + 1);
-  if (m) {
-    lo = Math.min(Number(m[1]), Number(m[2]));
-    hi = Math.max(Number(m[1]), Number(m[2]));
-    const width = Math.min(hi - lo, max);
-    if (total < lo || total > hi || hi > max) {
-      lo = Math.max(0, total - Math.floor(width / 2));
-      hi = Math.min(max, lo + width);
-      lo = Math.max(0, hi - width);
-    }
-  }
-  result.band_range = `${lo}-${hi}`;
-  return result;
 }
 
 /**
@@ -401,26 +342,15 @@ function buildTeaser(result: any) {
   if (weakest && criteria.length === 1) {
     weakest = { ...weakest, score: null };
   }
-  let nearEdge: boolean | null = null;
-  const m = String(result?.band_range || "").match(/(\d+)\s*[-\u2013\u2014]\s*(\d+)/);
-  if (m && typeof result?.predicted_score === "number") {
-    const lo = parseInt(m[1], 10);
-    const hi = parseInt(m[2], 10);
-    // A two-mark band (TOK reports 9-10, 7-8 and so on) has no inside, so the old
-    // test was true for every TOK score and /remark always advised paying. The
-    // client-side copy of this logic was fixed last round and is never rendered;
-    // this is the one the page actually shows.
-    const width = hi - lo + 1;
-    // In a two-mark band every mark is at an edge, so the question has no answer.
-    nearEdge = width <= 2
-      ? null
-      : result.predicted_score <= lo || result.predicted_score >= hi;
-  }
-  // The model sometimes writes "14-18 out of 26" into band_range. The number of
-  // marks it is out of is already max_score, so keep the range and drop the tail.
-  const bandRange = typeof result?.band_range === "string"
-    ? (result.band_range.match(/\d+\s*[-\u2013\u2014]\s*\d+|\d+/)?.[0] ?? result.band_range).trim()
-    : result?.band_range ?? null;
+  // A report marked on criteria shows the cell of the scale its total falls in, never a
+  // range the model centred on the total, which gave the paid mark away. A task marked as
+  // a whole keeps its IB band. Whether the total sits near a band edge is not shown: it
+  // would say where in the band the mark is.
+  const bandRange = criteria.length > 1 && typeof result?.predicted_score === "number" && typeof result?.max_score === "number"
+    ? bandCell(result.predicted_score, result.max_score)
+    : typeof result?.band_range === "string"
+      ? (result.band_range.match(/\d+\s*[-\u2013\u2014]\s*\d+|\d+/)?.[0] ?? result.band_range).trim()
+      : result?.band_range ?? null;
   const risks = (Array.isArray(result?.risks) ? result.risks : [])
     .filter((r: any) => !isRiskAboutMissingReflection(r))
     .slice(0, 3)
@@ -436,7 +366,6 @@ function buildTeaser(result: any) {
     risks,
     // Unassessed criteria (null score) are not sold as locked marks in the full report.
     criteria_names: criteria.map((c) => ({ name: c?.name, max: c?.max, assessed: typeof c?.score === "number" })),
-    near_band_edge: nearEdge,
     criteria_count: criteria.length,
     _rubricAvailable: result?._rubricAvailable,
     _rubricLabel: result?._rubricLabel,
@@ -555,8 +484,11 @@ const essayRouter = router({
           result._rubricTotalMarks = rubric.totalMarks;
         }
         result._wordCheck = storableWordCheck(checkWordLimit(rubric, input.essayText));
-        reconcileScores(result, { essayType: rec.essayType, subject: rec.subject, reflectionsPasted: !!input.reflections?.trim() });
+        reconcileScores(result, { essayType: rec.essayType, subject: rec.subject, reflectionsPasted: !!input.reflections?.trim(), session });
 
+        // Compared with the newest version before this one, as guest re-checks are: a second
+        // re-check showed the original as "before" and hid what the first one changed.
+        const before: any = await getLatestAccountVersion(rec.id, ctx.user.id).catch(() => null);
         const analysis = await createAnalysis({
           userId: ctx.user.id,
           type: "essay",
@@ -577,7 +509,7 @@ const essayRouter = router({
           id: analysis.id,
           result,
           rerunsLeft: gate.rerunsLeft,
-          previous: previousScores(rec.resultJson || {}),
+          previous: previousScores((before?.resultJson ?? rec.resultJson) || {}),
         };
       } catch (error: any) {
         // The student got nothing back, so the re-check they spent returns.
@@ -825,7 +757,7 @@ const essayRouter = router({
           result._rubricLabel = rubric?.label ?? null;
           result._rubricTotalMarks = rubric?.totalMarks ?? null;
           result._wordCheck = storableWordCheck(checkWordLimit(rubric, input.essayText ?? ""));
-          reconcileScores(result, { essayType: rec.essayType, subject: rec.subject, reflectionsPasted: !!input.reflections?.trim() });
+          reconcileScores(result, { essayType: rec.essayType, subject: rec.subject, reflectionsPasted: !!input.reflections?.trim(), session });
         }
 
         const child = await createRerunAnalysis(rec, result, result?.predicted_score != null ? String(result.predicted_score) : undefined, headId);
@@ -1065,7 +997,7 @@ const essayRouter = router({
           result._rubricTotalMarks = rubric.totalMarks;
         }
         result._wordCheck = storableWordCheck(checkWordLimit(rubric, input.essayText));
-        reconcileScores(result, { essayType: input.essayType, subject: input.subject, reflectionsPasted: !!input.reflections?.trim() });
+        reconcileScores(result, { essayType: input.essayType, subject: input.subject, reflectionsPasted: !!input.reflections?.trim(), session: input.examSession });
 
         // Fill in the slot claimed before the model ran, or write a fresh row for
         // a run paid with a device credit.
@@ -1080,6 +1012,7 @@ const essayRouter = router({
             // Opened with a pack credit: tie it to the pack, so it follows the buyer
             // into their account and closes if the pack is refunded.
             unlockOrderId: deviceOrderId,
+            examSession: input.examSession ?? null,
             essayType: input.essayType,
             subject: input.subject,
             researchQuestion: input.researchQuestion || null,
@@ -1181,7 +1114,7 @@ const essayRouter = router({
           result._rubricTotalMarks = rubric.totalMarks;
         }
         result._wordCheck = storableWordCheck(checkWordLimit(rubric, input.essayText));
-        reconcileScores(result, { essayType: input.essayType, subject: input.subject, reflectionsPasted: !!input.reflections?.trim() });
+        reconcileScores(result, { essayType: input.essayType, subject: input.subject, reflectionsPasted: !!input.reflections?.trim(), session: input.examSession });
 
         const analysis = await createAnalysis({
           userId: ctx.user.id,

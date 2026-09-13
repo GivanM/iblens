@@ -23,7 +23,7 @@ export default function ExtendedEssayFeedback() {
           <tr><th>Channel</th><th>What it gives you</th><th>The limits</th></tr>
         </thead>
         <tbody>
-          <tr><td>Supervisor</td><td>Expert, subject-aware comments; the only person who formally guides the EE</td><td>Written comments on one complete draft; cannot edit or proof-read; sessions are short</td></tr>
+          <tr><td>Supervisor</td><td>Guidance from the one person the IB allows to support your EE: questioning, prompting, suggesting and recommending</td><td>Written comments on one complete draft; cannot edit or proof-read; sessions are short</td></tr>
           <tr><td>Reflection sessions</td><td>Three mandatory reflection sessions with your supervisor (first, interim and the viva voce), separate from informal check-ins</td><td>Guidance on process and thinking, not line-by-line feedback</td></tr>
           <tr><td>Peers and family</td><td>Talking through your topic</td><td>The EE guide says students must not receive assistance with any aspect of the research, writing or proofreading beyond that which is permitted through their supervisor, so do not ask them to read, correct or proofread the essay</td></tr>
           <tr><td>Self-check against criteria</td><td>Free, unlimited, and exactly what examiners use</td><td>Hard to be objective about your own writing</td></tr>
@@ -34,7 +34,7 @@ export default function ExtendedEssayFeedback() {
       <h2>Use your one supervisor draft well</h2>
 
       <p>
-        Because your supervisor may give written feedback on only one complete draft, the worst way to spend that draft is on problems you could have caught yourself: missing signposting, sections that drift from the research question, a conclusion with no evaluation in it. Run a self-check first, fix the obvious, and let the supervisor round go to the things only an expert can see: subject accuracy, the strength of your sources, whether the argument would convince an examiner.
+        Because your supervisor may give written feedback on only one complete draft, the worst way to spend that draft is on problems you could have caught yourself: missing signposting, sections that drift from the research question, a conclusion with no evaluation in it. Run a self-check first, fix the obvious, and let your supervisor's written comments go to what you cannot judge yourself: whether your question, method and sources can carry the argument.
       </p>
 
       <h2>Self-checking against the actual criteria</h2>
@@ -73,7 +73,7 @@ export default function ExtendedEssayFeedback() {
 
       <h3>Can I pay someone to edit or improve my EE?</h3>
       <p>
-        No. Feedback that identifies weaknesses is legitimate; editing, rewriting or improving the essay for you is not your own work and puts the essay at risk under IB academic integrity rules. That applies to tutors, services and AI alike.
+        No. The Extended Essay guide says students must not receive assistance with any aspect of the research, writing or proofreading of the essay beyond that which is permitted through their supervisor, so paying a tutor or a service to read, edit or improve your EE is not allowed. A supervisor who suspects the essay could not have been completed without such help must report it, and it may be investigated as academic misconduct. Any other feedback, AI included, needs your supervisor's agreement first.
       </p>
 
       <h3>When should I get feedback?</h3>

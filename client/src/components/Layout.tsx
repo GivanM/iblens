@@ -39,8 +39,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   // Anything bought on this device belongs to the person who just signed in,
   // wherever in the site they did it. This used to happen only on /essay.
+  const layoutUtils = trpc.useUtils();
   const claim = trpc.essay.claimDeviceCredits.useMutation({
     onSuccess: (d: any) => {
+      // The page's counts change with the move: read them again.
+      if (d.moved > 0 || d.adopted > 0) {
+        layoutUtils.dashboard.credits.invalidate();
+        layoutUtils.essay.deviceCredits.invalidate();
+      }
       if (d.moved > 0 || d.adopted > 0) {
         const parts = [];
         if (d.moved > 0) parts.push(`${d.moved} unused paid report${d.moved === 1 ? "" : "s"}`);

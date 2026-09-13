@@ -158,7 +158,7 @@ export default function IBExtendedEssayWordCount() {
         focused enough for 4,000 words, and where are the marks being lost?
       </p>
       <p>
-        IBLens reads your Extended Essay draft against the criteria for your session,
+        If your supervisor agrees (an AI check is outside help on the EE), IBLens reads your Extended Essay draft against the criteria for your session,
         gives feedback on each one, and counts the words of what you paste against the
         4,000-word limit.
       </p>

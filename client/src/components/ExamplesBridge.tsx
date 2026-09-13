@@ -60,7 +60,7 @@ export function ExamplesBridge({ workLabel, rows, ctaHref, note }: Props) {
       <h3>The faster route: check your own draft</h3>
 
       <p>
-        Reading someone else's work tells you what good looks like in general. It cannot tell you what is missing from <em>yours</em>. IBLens marks your draft against these criteria and names your weakest one. The estimated band range and the full feedback on that weakest criterion are free, with no account needed.
+        Reading someone else's work tells you what good looks like in general. It cannot tell you what is missing from <em>yours</em>. IBLens marks your draft against these criteria and names your weakest one. The estimated band range and the full feedback on that weakest criterion are free, with no account needed.{workLabel === "Extended Essay" && " An AI check is outside help on the EE, so ask your supervisor before you use it."}
       </p>
 
       <p>

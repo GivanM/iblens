@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { SEOHead } from "./SEOHead";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { usePreviewUsed } from "@/hooks/usePreviewUsed";
+import { useMarkingCta } from "@/hooks/useMarkingCta";
 
 const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
@@ -32,7 +32,7 @@ export function ResourceArticle({
   // Seventeen articles never had a heading of their own; the crawler copy gave them
   // one and the page did not. Supply it here unless the article brings its own.
   const hasOwnHeading = Children.toArray(children).some((c) => isValidElement(c) && c.type === "h1");
-  const previewUsed = usePreviewUsed();
+  const { previewUsed, paidLabel } = useMarkingCta();
   const name = shortTitle(title);
   return (
     <>
@@ -77,11 +77,11 @@ export function ResourceArticle({
               Ready to get specific feedback on your essay?
             </h2>
             <p className="text-muted-foreground mb-6 max-w-lg mx-auto text-sm leading-relaxed">
-              Paste your IA, EE or TOK work and see how it reads against the published criteria in about a minute. The first preview is free: your band range, your weakest criterion and the top risks. The full report, with the estimated mark, is $9.99.
+              Paste your IA or TOK work, or your EE if your supervisor agrees, and see how it reads against the published criteria in about a minute. The first preview is free: your band range, your weakest criterion and the top risks. The full report, with the estimated mark, is $9.99.
             </p>
             <Link href="/essay">
               <Button size="lg">
-                {previewUsed ? "Mark my work ($9.99)" : "Get a free preview"}
+                {previewUsed ? paidLabel : "Get a free preview"}
               </Button>
             </Link>
           </div>

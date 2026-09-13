@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import { PRICE_LABELS, type ProductKey } from "@shared/pricing";
 import { PurchaseModal } from "@/components/PurchaseModal";
-import { usePreviewUsed } from "@/hooks/usePreviewUsed";
+import { useMarkingCta } from "@/hooks/useMarkingCta";
 import {
   CheckCircle2, ArrowRight, Shield, Gift, CreditCard
 } from "lucide-react";
@@ -77,7 +77,7 @@ const plans: Array<{
 export default function Pricing() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalSku, setModalSku] = useState<ProductKey>("ESSAY_SINGLE");
-  const previewUsed = usePreviewUsed();
+  const { previewUsed, paidLabel } = useMarkingCta();
 
   const handleBuyNow = (productKey: ProductKey) => {
     setModalSku(productKey);
@@ -123,7 +123,7 @@ export default function Pricing() {
               </p>
             </div>
             <Button size="sm" asChild className="flex-shrink-0 self-start sm:self-auto">
-              <Link href="/essay">{previewUsed ? "Mark my work" : "Get a free preview"}</Link>
+              <Link href="/essay">{previewUsed ? paidLabel : "Get a free preview"}</Link>
             </Button>
           </div>
         </div>
@@ -203,7 +203,7 @@ export default function Pricing() {
           <p className="text-muted-foreground mb-4">Not sure yet? Start with the free preview.</p>
           <Button size="lg" asChild>
             <Link href="/essay">
-              {previewUsed ? "Mark my work" : "Start your free preview"} <ArrowRight className="w-4 h-4 ml-2" />
+              {previewUsed ? paidLabel : "Start your free preview"} <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </Button>
         </div>
