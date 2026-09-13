@@ -165,6 +165,11 @@ export const deviceCredits = mysqlTable("device_credits", {
   claimedAmount: int("claimedAmount").notNull().default(0),
   /** The account that took these credits when their owner signed in. */
   claimedByUserId: int("claimedByUserId"),
+  /**
+   * The purchase that last put credits here. Reports opened with these credits
+   * carry it, so they move to the buyer's account on sign-in and close on refund.
+   */
+  lastOrderId: varchar("lastOrderId", { length: 64 }),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
 

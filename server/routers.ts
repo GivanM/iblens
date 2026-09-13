@@ -31,6 +31,7 @@ import {
   grantCreditsViaLedger,
   consumeDeviceCredit,
   addDeviceCredits,
+  getDeviceCreditOrderId,
   deleteAnonymousAnalysis,
   deleteUserAnalysis,
   updateAnonymousResult,
@@ -555,6 +556,7 @@ const essayRouter = router({
             // re-checks, could not be reopened, and retention would delete it.
             unlocked: paid,
             unlockedAt: paid ? new Date() : null,
+            unlockOrderId: paidByDevice ? await getDeviceCreditOrderId(fingerprint) : null,
           });
         }
 
@@ -820,6 +822,9 @@ const essayRouter = router({
             type: "essay",
             unlocked: paidByDevice,
             unlockedAt: paidByDevice ? new Date() : null,
+            // Opened with a pack credit: tie it to the pack, so it follows the buyer
+            // into their account and closes if the pack is refunded.
+            unlockOrderId: paidByDevice ? await getDeviceCreditOrderId(fingerprint) : null,
             essayType: input.essayType,
             subject: input.subject,
             researchQuestion: input.researchQuestion || null,

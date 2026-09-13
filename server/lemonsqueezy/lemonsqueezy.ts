@@ -354,7 +354,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
               const spentNow = rec && rec.resultJson && !(rec as any).unlocked ? 1 : 0;
               const toDevice = buyerIsGuest ? credits.essay - spentNow : 0;
               if (toDevice > 0) {
-                await addDeviceCredits(unlockFp, toDevice);
+                await addDeviceCredits(unlockFp, toDevice, order.id);
                 await setOrderDeviceCredits(order.id, toDevice);
               }
               // Only the part that moved to the device. The one credit the unlock

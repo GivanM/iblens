@@ -820,18 +820,29 @@ export async function deleteAnonymousAnalysis(id: number) {
 }
 
 /** Credits a guest bought, held against the device that bought them. */
-export async function addDeviceCredits(fingerprint: string, amount: number) {
+export async function addDeviceCredits(fingerprint: string, amount: number, orderId?: string) {
   const db = await getDb();
   if (!db || amount <= 0) return;
   // New money on a device belongs to whoever is using it now, so the claim marker
   // is cleared: a wallet that had been taken by one account used to stay locked
   // to it for ever, and a later purchase on the same browser was unreachable.
-  await db.insert(deviceCredits).values({ fingerprint, credits: amount, claimedAmount: amount })
+  await db.insert(deviceCredits).values({ fingerprint, credits: amount, claimedAmount: amount, ...(orderId ? { lastOrderId: orderId } : {}) })
     .onDuplicateKeyUpdate({ set: {
       credits: sql`${deviceCredits.credits} + ${amount}`,
       claimedAmount: sql`${deviceCredits.claimedAmount} + ${amount}`,
+      // A credit handed back after a failed run keeps the purchase it came from.
+      ...(orderId ? { lastOrderId: orderId } : {}),
     } });
   console.log(`[DeviceCredits] +${amount} for ${fingerprint.slice(0, 8)}...`);
+}
+
+/** The purchase behind the credits on this device, if one is recorded. */
+export async function getDeviceCreditOrderId(fingerprint: string): Promise<string | null> {
+  const db = await getDb();
+  if (!db) return null;
+  const rows = await db.select({ lastOrderId: deviceCredits.lastOrderId }).from(deviceCredits)
+    .where(eq(deviceCredits.fingerprint, fingerprint)).limit(1);
+  return (rows[0] as any)?.lastOrderId ?? null;
 }
 
 export async function getDeviceCredits(fingerprint: string): Promise<number> {

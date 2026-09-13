@@ -1,0 +1,1 @@
+ALTER TABLE `device_credits` ADD `lastOrderId` varchar(64);
