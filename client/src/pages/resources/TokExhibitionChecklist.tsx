@@ -56,7 +56,7 @@ export default function TokExhibitionChecklist() {
       <h2>Check your commentary with IBLens</h2>
 
       <p>
-        IBLens applies the holistic instrument to your exhibition commentary: paste all three object sections, and the band it currently sits in and the opening of the comment explaining why are free, before any payment. The full report costs $9.99, with no subscription, and IBLens also counts the words against the 950-word limit.
+        With your teacher's agreement, IBLens applies the holistic instrument to your exhibition commentary: paste all three object sections, and the band it currently sits in and the opening of the comment explaining why are free, before any payment. The full report costs $9.99, with no subscription, and IBLens also counts the words against the 950-word limit.
       </p>
 
       <p>

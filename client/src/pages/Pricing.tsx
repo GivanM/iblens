@@ -29,7 +29,7 @@ const plans: Array<{
     description: "One report on IB coursework or a UCAS statement",
     popular: false,
     features: [
-      "IB coursework: an estimated mark and band, a mark and comments on each criterion that can be judged from your text (TOK: the whole explanation for the band), the risks and ranked next steps",
+      "IB coursework: an estimated mark, a mark and comments on each criterion that can be judged from your text (TOK: the estimated mark within its band and the whole explanation), the risks and ranked next steps",
       "UCAS statement: all three answers reviewed, issues across the statement and a ranked revision list, with no score, because UCAS publishes no mark scheme",
       "Two free re-checks of a revised version of the same work, within 14 days of the report opening",
       "No account needed to buy",
@@ -119,7 +119,9 @@ export default function Pricing() {
             <div className="flex-1">
               <h3 className="font-semibold">{previewUsed ? "Your free preview is used" : "Your first preview is free"}</h3>
               <p className="text-sm text-muted-foreground mt-0.5">
-                Paste your essay with no sign-in and no credit card. The preview shows your estimated range, feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks in your draft.
+                {previewUsed
+                  ? "A full report adds the estimated mark, every comment and the ranked fixes to what the preview showed."
+                  : "Paste your essay with no sign-in and no credit card. The preview shows a range of totals, feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks in your draft."}
               </p>
             </div>
             <Button size="sm" asChild className="flex-shrink-0 self-start sm:self-auto">

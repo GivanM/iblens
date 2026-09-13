@@ -41,7 +41,7 @@ export default function TokEssayGuide() {
         The most common misconception about TOK is that it is about expressing opinions. It is not. TOK requires <strong>reasoned argument</strong>: claims supported with evidence and reasoning, and counter-claims genuinely engaged with rather than dismissed.
       </p>
 
-      <h2>The Prescribed Titles structure</h2>
+      <h2>The prescribed titles structure</h2>
 
       <p>
         Each examination session, the IBO releases six prescribed titles. These are carefully crafted questions that invite exploration of knowledge issues across multiple areas of knowledge (AOKs). You choose one title and respond to it directly, using it exactly as given: the title must not be altered, and you cannot create your own question.
@@ -114,7 +114,7 @@ export default function TokEssayGuide() {
         Many prescribed titles ask you to work with two areas of knowledge, so follow what your title says. The strongest essays show how the same knowledge question plays out differently across areas, for example how "evidence" means something different in natural science (empirical data) versus history (primary sources) versus mathematics (logical proof).
       </p>
 
-      <h2>Assessment Criteria</h2>
+      <h2>Assessment criteria</h2>
 
       <p>
         The TOK essay is assessed against a single holistic instrument with descriptors at five levels. It asks one question, whether the essay provides a clear, coherent and critical exploration of the title, and its level descriptors separate essays on these points:
@@ -184,7 +184,7 @@ export default function TokEssayGuide() {
         The strong approach demonstrates genuine analysis, uses specific examples (Gödel, Treaty of Versailles), acknowledges nuance, and arrives at a substantive insight about the nature of certainty.
       </p>
 
-      <h2>Common Errors</h2>
+      <h2>Common errors</h2>
 
       <p>
         Common errors in TOK essays:

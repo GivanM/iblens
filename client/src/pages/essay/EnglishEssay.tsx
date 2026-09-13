@@ -6,7 +6,7 @@ const config: SubjectConfig = {
   keyword: "IB English Individual Oral",
   metaTitle: "IB English Individual Oral Grader: AI Feedback on Your IO | IBLens",
   metaDescription:
-    "AI feedback on the IB English A Individual Oral against the four published criteria: a transcript is marked out of 40, an outline on the first three. The HL essay is a separate component and is not covered.",
+    "AI feedback on the IB English A Individual Oral against the four published criteria: a practice transcript is marked out of 40, an outline on the first three. The HL essay is a separate component and is not covered.",
   canonicalPath: "/essay/english-essay",
   heroHeadline: "Get your IB English Individual Oral checked in about a minute",
   heroSubline:
@@ -39,7 +39,7 @@ const config: SubjectConfig = {
       { title: "One work doing all the work", text: "Spending most of the oral on one work and little on the other. Criterion C rewards a balanced oral." },
     ],
     faq: [
-      { q: "Can I paste a transcript of my oral?", a: "Only of a practice oral that uses different works or a different global issue from your assessed oral: the Language A guides allow feedback on practice orals like that and on your outline, but not a rehearsal of the actual oral. A transcript is marked on all four criteria." },
+      { q: "Can I paste a transcript of my oral?", a: "Only of a practice oral that uses different works or a different global issue from your assessed oral: the Language A guides let your teacher give feedback on practice orals like that and on your outline, but not rehearse the actual oral with you, and feedback from anyone else needs your teacher's agreement. A transcript is marked on all four criteria." },
       { q: "Does it cover the HL essay or Paper 1?", a: "No. It covers the Individual Oral only. The HL essay and the exam papers are marked on different criteria." },
       { q: "Literature or Language and Literature?", a: "Choose your course in the grader. The four criteria and their marks are the same, and the wording differs slightly: Language and Literature refers to works and texts, Literature to works." },
       { q: "How accurate is the estimated mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. Your teacher marks the work and the IB moderates that marking, so their mark is the one that counts. Use the report to find what to fix before you submit." },

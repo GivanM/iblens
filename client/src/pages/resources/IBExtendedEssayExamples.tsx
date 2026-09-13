@@ -81,7 +81,7 @@ export default function IBExtendedEssayExamples() {
       <h3>A weak conclusion</h3>
       <p>The conclusion must directly and explicitly answer the research question. It should not introduce new evidence or vaguely state "the issue is complex." A strong conclusion names the answer, acknowledges the strongest counter-argument, and identifies what further research would be needed.</p>
 
-      <h3>Weak Sources</h3>
+      <h3>Weak sources</h3>
       <p>Relying on Wikipedia or student essay banks as main sources tells the examiner the student did not engage seriously with academic literature. In the sciences, peer-reviewed journals are the standard to aim for; in the humanities, scholarly books and academic journals.</p>
 
             <ExamplesBridge

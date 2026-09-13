@@ -52,21 +52,9 @@ export function SEOHead({
     });
   }
 
-  // BreadcrumbList
-  if (breadcrumbs && breadcrumbs.length > 0) {
-    jsonLdArray.push({
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: breadcrumbs.map((crumb, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        name: crumb.name,
-        item: crumb.url.startsWith("http")
-          ? crumb.url
-          : `https://iblens.com${crumb.url}`,
-      })),
-    });
-  }
+  // BreadcrumbList is emitted once, by the server's per-route markup. Emitting it here as
+  // well gave rendered pages two breadcrumb trails with different names.
+  void breadcrumbs;
 
   // Article schema
   if (article) {

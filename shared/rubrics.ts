@@ -62,7 +62,7 @@ const BM_IA: Rubric = {
     { name: "Criterion F: Structure", max: 2, descriptor: "Logical structure of the project" },
     { name: "Criterion G: Presentation", max: 2, descriptor: "All required presentation elements: a title page, an accurate table of contents, appropriate headings and sub-headings, and numbered pages" },
   ],
-  notes: "Word limit 1,800 (moderators do not read beyond it). Requires 3-5 supporting documents no older than 3 years. The key concept must be one of: change, creativity, ethics, sustainability.",
+  notes: "Word limit 1,800 (moderators do not read beyond it). Requires 3-5 supporting documents no older than 3 years. The key concept must be one of: change, creativity, ethics, sustainability. Page numbers and layout do not survive pasted text: do not lower Criterion G for page numbers or table-of-contents page references that cannot be seen, and say so in the comment.",
   wordLimit: { max: 1800, excludes: "acknowledgements, the contents page, tables of statistical data, diagrams or figures, equations and calculations, the supporting documents, citations, references and the bibliography", stopsAt: true },
 };
 
@@ -79,7 +79,7 @@ const ECONOMICS_IA: Rubric = {
     { name: "Criterion D: Key concept", max: 3, descriptor: "Identification and effective linkage of ONE key concept (e.g. scarcity, efficiency, intervention, equity) to the article" },
     { name: "Criterion E: Evaluation", max: 3, descriptor: "Judgments supported by effective and balanced reasoning (for example weighing short run against long run, different stakeholders, and the assumptions behind the prediction)" },
   ],
-  notes: "Word limit 800 per commentary, moderators will not read beyond 800 words. The full portfolio is marked out of 45: three commentaries (14 each) + Criterion F: Rubric requirements (3): different units, different sources, articles no older than one year. Each commentary must use a different key concept.",
+  notes: "Word limit 800 per commentary, moderators will not read beyond 800 words. The full portfolio is marked out of 45: three commentaries (14 each) + Criterion F: Rubric requirements (3): different units, different sources, articles no older than one year. Each commentary must use a different key concept. Diagrams do not come through pasted text: mark Criterion A on the diagrams the commentary identifies and explains, do not lower it because a diagram or its labels cannot be seen, and say in the comment that the diagrams themselves were not seen, so their accuracy and labelling are for the student to check.",
   wordLimit: { max: 800, unit: "per commentary", excludes: "acknowledgements, the contents page, diagrams with their short labels and headings, tables of statistical data, equations and calculations, citations and references", stopsAt: true },
 };
 
@@ -107,7 +107,7 @@ const SCIENCES_IA: Rubric = {
     { name: "Conclusion", max: 6, descriptor: "Conclusion justified by the analysis, answering the research question and compared with the accepted scientific context" },
     { name: "Evaluation", max: 6, descriptor: "The relative impact of specific methodological weaknesses or limitations explained, with realistic improvements relevant to them explained (generic weaknesses are the 1-2 band)" },
   ],
-  notes: "Report maximum 3,000 words. SL and HL use the same criteria. (The pre-2025 rubric, Personal engagement / Exploration / Analysis / Evaluation / Communication, no longer applies to any current candidate.)",
+  notes: "Report maximum 3,000 words. SL and HL use the same criteria. (The pre-2025 rubric, Personal engagement / Exploration / Analysis / Evaluation / Communication, no longer applies to any current candidate.) Graphs may not come through pasted text: judge presentation of data only on what the text shows, and say in the Data analysis comment that graphs were not seen.",
   wordLimit: { max: 3000, excludes: "charts and diagrams, data tables, equations and calculations, citations and references, the bibliography and headers" },
 };
 
@@ -137,7 +137,7 @@ const PSYCHOLOGY_IA: Rubric = {
     { name: "III. Analysis", max: 6, descriptor: "Descriptive and inferential statistics appropriately and accurately applied; a correctly presented graph that addresses the hypothesis; statistical findings interpreted with regard to the data and linked to the hypothesis" },
     { name: "IV. Evaluation", max: 6, descriptor: "Findings discussed with reference to the background theory or model; strengths and limitations of the design, sample and procedure explained; modifications explicitly linked to the limitations and justified" },
   ],
-  notes: "Report 1,800-2,200 words. This rubric applies through November 2026; the May 2027 syllabus replaces it with a research proposal (24 marks).",
+  notes: "Report 1,800-2,200 words. This rubric applies through November 2026; the May 2027 syllabus replaces it with a research proposal (24 marks). The graph does not come through pasted text: judge the graph strand only on what the text describes, and say in the Analysis comment that the graph itself was not seen.",
   wordLimit: { min: 1800, max: 2200, excludes: "the appendices" },
 };
 
@@ -203,7 +203,7 @@ const TOK_EXHIBITION: Rubric = {
 };
 
 // ─── English A: Individual Oral (IA, both Language A courses, FA 2021) ───────
-const ORAL_NOTES = "The individual oral is spoken, so the paste is an outline or a transcript of a practice oral. If it is a transcript, mark all four criteria on it. If it is an outline or notes, mark A to C on the ideas and structure it shows, and return Criterion D with \"score\": null and a comment saying spoken language cannot be judged from notes; \"max_score\" is then the sum of the criteria you did assess and \"band_range\" is expressed on that total. Do not treat the outline format itself as a weakness.";
+const ORAL_NOTES = "The individual oral is spoken, so the paste is an outline or a transcript of a practice oral on works or a global issue different from the assessed oral (the Language A guides do not allow a rehearsal of the actual oral). If the paste presents itself as a rehearsal of the assessed oral, say in the overall comment that feedback on a rehearsal of the actual oral is not allowed. If it is a transcript, mark all four criteria on it. If it is an outline or notes, mark A to C on the ideas and structure it shows, and return Criterion D with \"score\": null and a comment saying spoken language cannot be judged from notes; \"max_score\" is then the sum of the criteria you did assess and \"band_range\" is expressed on that total. Do not treat the outline format itself as a weakness.";
 
 const ENGLISH_LANG_LIT_IA: Rubric = {
   label: "English A: Language and Literature, Individual Oral",
@@ -242,7 +242,7 @@ const VISUAL_ARTS_IA: Rubric = {
     { name: "Criterion D: Making comparisons and connections", max: 6, descriptor: "Critical comparison and connections between the selected pieces" },
     { name: "Criterion E: Presentation and subject-specific language", max: 6, descriptor: "Structured presentation using appropriate subject-specific language" },
   ],
-  notes: "This is the comparative study, externally assessed coursework, not the Visual Arts internal assessment (the exhibition). This is the SL instrument (30). HL is additionally assessed on Criterion F: Making connections to own art-making practice (12), total 42, state which level the work is for. The comparative study is abolished in the 2027 syllabus. Criteria B and C cannot exceed 2 marks unless the study examines and compares at least three artworks by at least two different artists from at least two contrasting cultural contexts, and criterion D cannot exceed 3 unless it examines and compares at least three artworks by at least two different artists.",
+  notes: "This is the comparative study, externally assessed coursework, not the Visual Arts internal assessment (the exhibition). This is the SL instrument (30). HL is additionally assessed on Criterion F: Making connections to own art-making practice (12), total 42, state which level the work is for. The comparative study is abolished in the 2027 syllabus. Criteria B and C cannot exceed 2 marks unless the study examines and compares at least three artworks by at least two different artists from at least two contrasting cultural contexts, and criterion D cannot exceed 3 unless it examines and compares at least three artworks by at least two different artists. Screens, images and layout do not come through pasted text: judge the visual presentation strand of Criterion E only on what the text shows, and say in the comment that it was not seen.",
 };
 
 // ─── Music, Exploring music in context (portfolio, FA 2022) ─────────────────

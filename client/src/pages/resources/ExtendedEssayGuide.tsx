@@ -81,7 +81,7 @@ export default function ExtendedEssayGuide() {
         Common mistakes in research question formulation include choosing a topic that is too broad (resulting in superficial treatment), too narrow (running out of material before 4,000 words), too personal (lacking academic rigour), or too reliant on a single source.
       </p>
 
-      <h2>Structure and Formatting</h2>
+      <h2>Structure and formatting</h2>
 
       <p>
         The Extended Essay guide says these structural elements must be present in every essay: a title page, a contents page, an introduction, the body, a conclusion, and a reference list or bibliography. Within the body, follow the conventions of your subject. For May 2027 onward the guide also sets the format: font size 12, 1.5 line spacing, page numbers on every page after the contents page (mandatory), and no student, supervisor or school name anywhere in the file. The framework below fills in those elements:
@@ -156,7 +156,7 @@ export default function ExtendedEssayGuide() {
         <strong>Criterion E (Reflection)</strong> is marked on the reflective statement in the <Link href="/resources/ib-rpf-extended-essay-2027">RPF</Link>, up to 500 words, written after the final reflection session, the viva voce. It rewards evaluative reflection, with specific examples, on how the EE affected you as a learner, showing growth and transfer of learning; a description of the process is the lowest level. Through November 2026 the equivalent criterion is Engagement, marked on the three RPPF reflections, 500 words in total.
       </p>
 
-      <h2>Common Mistakes</h2>
+      <h2>Common mistakes</h2>
 
       <p>
         Issues that commonly cost Extended Essays marks:
@@ -173,7 +173,7 @@ export default function ExtendedEssayGuide() {
         <li><strong>Exceeding word count:</strong> Including material that will not be read or assessed</li>
       </ul>
 
-      <h2>How to Score an A</h2>
+      <h2>How to score an A</h2>
 
       <p>
         In recent sessions an A on the Extended Essay has been 27 to 34 marks out of 34, under the criteria in force through November 2026. For May 2027 onward the essay is marked out of 30 against rewritten criteria, and the IB sets those grade boundaries only after the session is marked, so no A threshold exists for the new scale yet. Either way, an A needs strong work across the criteria. A-grade Extended Essays tend to share these characteristics:

@@ -13,7 +13,10 @@ export function isNotAssessableFromText(c: any): boolean {
   const comment = String(c?.comment || "").toLowerCase();
   const isReflection = name.includes("reflection") || name.includes("engagement");
   if (!isReflection) return false;
-  return /\brpf\b|\brppf\b|reflective (form|statement)|not (been )?(submitted|provided|included|attached)|no reflection|absence of (a )?reflect|not assessed/.test(comment);
+  // Only a comment saying the reflections were absent. Naming the RPF or RPPF is not enough:
+  // a comment on reflections that were pasted names them too, and the criterion that really
+  // lost the most was then passed over for the preview.
+  return /not (been )?(submitted|provided|included|attached|pasted)|no reflection|absence of (a )?reflect|not assessed|without (the |a |your )?(reflect|rpf|rppf)/.test(comment);
 }
 
 /**
@@ -60,11 +63,22 @@ export function pickWeakest(criteria: any[]) {
  * mark the full report sells. Cells are cut from the totals still possible; when fewer than
  * three remain, the weakest criterion's mark is left out instead.
  */
-export function previewBand(result: any): { band: string; hideWeakestScore: boolean } | null {
+export function previewBand(result: any): { band: string; hideWeakest: boolean } | null {
   const criteria: any[] = Array.isArray(result?.criteria) ? result.criteria : [];
   const total = result?.predicted_score;
   const max = result?.max_score;
   if (criteria.length <= 1 || typeof total !== "number" || typeof max !== "number" || max <= 0) return null;
+  const shown = shownCell(criteria, total, max);
+  if (shown) return { band: shown, hideWeakest: false };
+  // No criterion is shown at all: a hidden mark next to a named criterion was itself a clue.
+  // The range is every total at which that happens for this rubric shape, so seeing no
+  // criterion says nothing more than that.
+  const [a, b] = hiddenRange(criteria, max, total);
+  return { band: `${a}-${b}`, hideWeakest: true };
+}
+
+/** The range for a preview that names its weakest criterion with its mark, or null when fewer than three totals would remain. */
+function shownCell(criteria: any[], total: number, max: number): string | null {
   const width = Math.max(3, Math.round(max / 6));
   const { weakest, pool, scored } = pickWeakest(criteria);
   if (weakest) {
@@ -84,10 +98,68 @@ export function previewBand(result: any): { band: string; hideWeakestScore: bool
     const ceiling = max - (weakest.max - weakest.score);
     if (ceiling - floor + 1 >= 3 && total >= floor && total <= ceiling) {
       const [a, b] = cellIn(total, floor, ceiling, width);
-      return { band: `${a}-${b}`, hideWeakestScore: false };
+      return `${a}-${b}`;
     }
   }
-  return { band: bandCell(total, max), hideWeakestScore: !!weakest };
+  return null;
+}
+
+const hiddenRanges = new Map<string, [number, number]>();
+
+/** Every total, for criteria of these maxima, at which the preview can name no criterion. */
+function hiddenRange(criteria: any[], max: number, total: number): [number, number] {
+  const marked = criteria.map((c) => typeof c?.score === "number" && c?.max > 0);
+  const key = criteria.map((c, i) => (marked[i] ? `${c.max}${isNotAssessableFromText(c) ? "x" : ""}` : "-")).join(",") + `/${max}`;
+  let range = hiddenRanges.get(key);
+  if (!range) {
+    const slots = criteria.map((c, i) => (marked[i] ? i : -1)).filter((i) => i >= 0);
+    const space = slots.reduce((n, i) => n * (criteria[i].max + 1), 1);
+    if (space > 300_000) {
+      range = [0, max];
+    } else {
+      const clone = criteria.map((c) => ({ name: c?.name, comment: c?.comment, max: c?.max, score: c?.score }));
+      let lo = Infinity, hi = -Infinity;
+      const walk = (k: number, sum: number) => {
+        if (k === slots.length) {
+          if (!shownCell(clone, sum, max)) { lo = Math.min(lo, sum); hi = Math.max(hi, sum); }
+          return;
+        }
+        for (let s = 0; s <= clone[slots[k]].max; s++) { clone[slots[k]].score = s; walk(k + 1, sum + s); }
+      };
+      walk(0, 0);
+      range = lo <= hi ? [lo, hi] : [0, max];
+      if (range[1] - range[0] < 2) range = [Math.max(0, range[1] - 2), range[1]];
+    }
+    hiddenRanges.set(key, range);
+  }
+  return total >= range[0] && total <= range[1] ? range : [0, max];
+}
+
+const RANGE = /\b\d[\d,]*\s*[-\u2013\u2014]\s*\d[\d,]*\b/g;
+const FRACTION = /\d+(?:\.\d+)?\s*(?:\/|out of)\s*\d+/i;
+const COUNTED = /\b\d+(?:\.\d+)?\s*(?:marks?|points?)\b/i;
+const GIVEN = /\b(?:award(?:s|ed)?|scor(?:e|es|ed|ing)|mark(?:s|ed)?|receiv(?:e|es|ed|ing)|earn(?:s|ed|ing)?|gain(?:s|ed|ing)?|lean(?:s|ing)?\s+towards?|sits?\s+at|placed\s+at|level)\s+(?:of\s+|at\s+|a\s+|an\s+|around\s+|about\s+|roughly\s+)?\d+(?:\.\d+)?\b/i;
+const SMALL_NUMBER = /\b(?:10|[0-9])\b(?!\s*(?:,\d{3}|words?|%|per ?cent|pages?|sources?|objects?|prompts?|titles?|areas?|examples?|claims?|paragraphs?|sections?|minutes?|hours?|years?|knowers?|perspectives?))/i;
+
+/**
+ * The free preview's text without any sentence that states a mark. The model sometimes
+ * wrote the mark into the explanation or a risk ("awarded 7", "would receive 0/25"), and
+ * the preview quoted it next to the range that was built not to give it away.
+ * `allow` is a mark the preview shows anyway (the weakest criterion's own "3/6").
+ */
+export function stripMarks(text: string, opts: { allow?: string; holistic?: boolean } = {}): string {
+  if (typeof text !== "string" || !text) return text;
+  const sentences = text.split(/(?<=[.!?])\s+/);
+  const kept = sentences.filter((s) => !statesMark(s, opts));
+  return kept.join(" ").trim();
+}
+
+export function statesMark(s: string, opts: { allow?: string; holistic?: boolean } = {}): boolean {
+  let t = String(s || "");
+  if (opts.allow) t = t.split(opts.allow).join(" ");
+  t = t.replace(RANGE, " ");
+  if (FRACTION.test(t) || COUNTED.test(t) || GIVEN.test(t)) return true;
+  return !!opts.holistic && SMALL_NUMBER.test(t);
 }
 
 export type ReconcileOptions = {

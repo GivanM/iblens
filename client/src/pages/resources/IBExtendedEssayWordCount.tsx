@@ -30,7 +30,7 @@ export default function IBExtendedEssayWordCount() {
         <li>Footnotes and endnotes that are not references</li>
       </ul>
 
-      <h2>What Does Not Count</h2>
+      <h2>What does not count</h2>
       <p>
         The same table lists what is not included:
       </p>

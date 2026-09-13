@@ -75,7 +75,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </Link>
 
             <nav className="hidden md:flex items-center gap-1">
-              <NavLink href="/essay" active={location === "/essay"}>Essay Grader</NavLink>
+              <NavLink href="/essay" active={location === "/essay"}>Essay grader</NavLink>
               <NavLink href="/ucas-personal-statement" active={location === "/ucas-personal-statement"}>UCAS Statement</NavLink>
               <NavLink href="/resources" active={location.startsWith("/resources")}>Resources</NavLink>
               <NavLink href="/pricing" active={location === "/pricing"}>Pricing</NavLink>
@@ -109,8 +109,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       // Claim first, rotate second: a report unlocked since the last
                       // page load would otherwise lose its only key on sign-out.
                       try { await claim.mutateAsync({ fingerprint: getAnonFingerprint() }); } catch { /* nothing to claim */ }
+                      // The device id changes only once the sign-out went through: changing it
+                      // while still signed in orphaned what this browser held.
+                      try {
+                        await logout();
+                      } catch {
+                        toast.error("Signing out did not go through. Check your connection and try again.");
+                        return;
+                      }
                       rotateAnonFingerprint();
-                      await logout();
                       // A full reload, so no page keeps the signed-out person's reports on
                       // screen or goes on asking for them with the old device id.
                       window.location.assign("/");

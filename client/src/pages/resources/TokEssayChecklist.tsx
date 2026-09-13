@@ -87,7 +87,7 @@ export default function TokEssayChecklist() {
       <h2>Self-check, teacher feedback, or AI</h2>
 
       <p>
-        Your TOK teacher's comments are the best feedback you will get, but there are not many rounds of it. Running this checklist first means your teacher's time goes on substance rather than on problems you could have caught yourself. For a second opinion in about a minute, IBLens applies the holistic instrument to your draft: the band it currently sits in and the opening of the comment explaining why are free, before any payment.
+        Your TOK teacher's comments are the best feedback you will get, but there are not many rounds of it. Running this checklist first means your teacher's time goes on substance rather than on problems you could have caught yourself. With your teacher's agreement, for a second opinion in about a minute, IBLens applies the holistic instrument to your draft: the band it currently sits in and the opening of the comment explaining why are free, before any payment.
       </p>
 
       <p>

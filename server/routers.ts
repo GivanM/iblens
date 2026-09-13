@@ -61,7 +61,7 @@ import { LEMONSQUEEZY_VARIANTS, PRODUCT_KEY_TO_LS_SKU } from "../shared/pricing"
 import { randomUUID } from "crypto";
 import { PRODUCTS } from "./products";
 import { getRubric, buildRubricPromptFragment, unmarkableReason } from "../shared/rubrics";
-import { reconcileScores, isNotAssessableFromText, pickWeakest, previewBand } from "./scores";
+import { reconcileScores, isNotAssessableFromText, pickWeakest, previewBand, stripMarks, statesMark } from "./scores";
 
 const IB_SUBJECTS = [
   "Business Management", "Economics", "History", "Biology", "Chemistry",
@@ -93,6 +93,7 @@ IMPORTANT FORMATTING RULES:
 - Write to the student in the second person ("you", "your essay"). Never refer to them as "the student" or "the candidate".
 - In every comment longer than three sentences, put a blank line (two newline characters) between separate points, so it reads as short paragraphs.
 - Use British spelling (analyse, organise, recognise, behaviour).
+- Never write a criterion's mark or the total inside a comment, risk, leverage zone, next step or the overall comment: the report shows the marks separately. Describe the level in words (for example "the Good band descriptor"), never as a number.
 - The work arrives as pasted text, so graphs, images, photos, diagrams and screenshots never come through, and tables may lose their layout. Never lower a mark because a graph or image is not visible, and never call one missing. Where the work describes a graph or image, judge what the description shows, and put anything about the graph itself (axes, error bars, labels) as a check for the student to make, not as a reason for the mark.`;
 
   if (rubricFragment) {
@@ -330,16 +331,25 @@ function buildTeaser(result: any) {
   const criteria: any[] = Array.isArray(result?.criteria) ? result.criteria : [];
   let weakest: any = pickWeakest(criteria).weakest;
   const cell = previewBand(result);
-  // Holistic instruments have a single criterion whose comment IS the whole verdict —
+  const holistic = criteria.length === 1;
+  // Nothing in the preview's text may state a mark: only the weakest criterion's own mark,
+  // when it is shown, stays.
+  if (weakest && typeof weakest.comment === "string") {
+    const allow = !holistic && typeof weakest.score === "number" ? `${weakest.score}/${weakest.max}` : undefined;
+    const clean = stripMarks(weakest.comment, { allow, holistic });
+    weakest = { ...weakest, comment: clean || "The full explanation is in the report." };
+  }
+  // Holistic instruments have a single criterion whose comment IS the whole verdict:
   // truncate it in the teaser so the full reasoning stays behind the unlock.
-  if (weakest && criteria.length === 1 && typeof weakest.comment === "string" && weakest.comment.length > 320) {
+  if (weakest && holistic && typeof weakest.comment === "string" && weakest.comment.length > 320) {
     weakest = { ...weakest, comment: softTruncate(weakest.comment, 320) };
   }
   // With a single holistic criterion its score is the exact mark, which the free
   // preview does not include. The band stays visible.
-  if (weakest && (criteria.length === 1 || cell?.hideWeakestScore)) {
+  if (weakest && criteria.length === 1) {
     weakest = { ...weakest, score: null };
   }
+  if (cell?.hideWeakest) weakest = null;
   // A report marked on criteria shows the cell of the scale its total falls in, never a
   // range the model centred on the total, which gave the paid mark away. A task marked as
   // a whole keeps its IB band. Whether the total sits near a band edge is not shown: it
@@ -351,10 +361,11 @@ function buildTeaser(result: any) {
       : result?.band_range ?? null;
   const risks = (Array.isArray(result?.risks) ? result.risks : [])
     .filter((r: any) => !isRiskAboutMissingReflection(r))
+    .filter((r: any) => !statesMark(typeof r === "string" ? r : String(r?.title || ""), { holistic }))
     .slice(0, 3)
     .map((r: any) => ({
     title: typeof r === "string" ? r : r?.title || "",
-    description: typeof r === "string" ? "" : softTruncate(String(r?.description || ""), 280),
+    description: typeof r === "string" ? "" : softTruncate(stripMarks(String(r?.description || ""), { holistic }), 280),
   }));
   return {
     locked: true as const,

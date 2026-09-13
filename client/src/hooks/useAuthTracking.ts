@@ -26,10 +26,11 @@ export function useAuthTracking() {
     const createdAt = user.createdAt ? new Date(user.createdAt).getTime() : 0;
     const isNewUser = now - createdAt < 60_000; // within last 90 seconds
 
+    // No account identifier goes to Google: the Privacy Policy says none does.
     if (isNewUser) {
-      trackSignUp("manus_oauth", user.openId || user.id?.toString() || "");
+      trackSignUp("manus_oauth");
     } else {
-      trackLogin("manus_oauth", user.openId || user.id?.toString() || "");
+      trackLogin("manus_oauth");
     }
   }, [user, isAuthenticated, loading]);
 }

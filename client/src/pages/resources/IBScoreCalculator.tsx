@@ -90,7 +90,7 @@ export default function IBScoreCalculator() {
         <li><strong>Fewer than 9 points on SL subjects</strong> (with only two SL subjects, at least 5 points at SL).</li>
         <li><strong>A penalty for academic misconduct</strong> imposed by the Final Award Committee.</li>
       </ul>
-      <p>Penalties for academic misconduct range from a warning letter to zero marks for the component or no grade for the subject; for the Extended Essay, zero marks and no grade both mean the Diploma is not awarded.</p>
+      <p>Penalties for academic misconduct range from a warning letter to zero marks for a component, no grade ("N") for the subject and, in repeated or very serious cases, no grade in any subject. An N for TOK, the EE or a contributing subject means the Diploma is not awarded; for the Extended Essay the IB does not use a zero-marks penalty, because it has the same result as no grade.</p>
 
       <h2>Improve your essay scores, improve your Diploma total</h2>
       <p>Your Extended Essay grade and your TOK grade decide your bonus points between them (the TOK grade combines the essay, two-thirds, and the exhibition, one-third), and a weak draft usually also shapes the grade your teachers predict. Both are still in your hands while you are drafting. For the Extended Essay, ask your supervisor before you use any outside feedback: its guide allows no help with the research, writing or proofreading beyond what your supervisor permits.</p>

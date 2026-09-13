@@ -376,7 +376,10 @@ export default function UcasPersonalStatement() {
             // then the free preview while it is unused, then a paid report, then buying.
             // The free preview used to disappear as soon as anything had been bought.
             const busy = review.isPending || recheck.isPending;
-            const canRecheck = (isUnlocked && (effectiveRechecks === null || effectiveRechecks > 0)) || (!!ucasTarget && ucasTarget.windowOpen && ucasTarget.rerunsLeft > 0);
+            // Not while a locked preview of another statement is on screen: the answers in the
+            // form belong to that statement, and a re-check is for the review that was bought.
+            const otherStatementOnScreen = !!(result as any)?.locked;
+            const canRecheck = !otherStatementOnScreen && ((isUnlocked && (effectiveRechecks === null || effectiveRechecks > 0)) || (!!ucasTarget && ucasTarget.windowOpen && ucasTarget.rerunsLeft > 0));
             const mode: "recheck" | "free" | "paid" | "buy" = canRecheck ? "recheck" : !previewUsed ? "free" : canPayHere ? "paid" : "buy";
             const run = (m: "free" | "paid") => review.mutate({
               course: course.trim(), universityType,

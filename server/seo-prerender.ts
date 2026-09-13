@@ -125,7 +125,7 @@ const routeMeta: Record<string, PageMeta> = {
     schemaType: "WebPage",
   },
   "/grade": {
-    title: "IB Essay Grader: Free Preview of Your IA, EE or TOK Marks in About a Minute | IBLens",
+    title: "IB Essay Grader: Free Preview of Your IA, EE or TOK Draft in About a Minute | IBLens",
     description: "Paste your IB essay and get a free preview in about a minute: your estimated range, weakest criterion and top risks. The full report gives the estimated mark and the reasons for it. Extended Essay, IA or TOK, no account needed.",
     ogType: "website",
     canonical: "/grade",
@@ -556,7 +556,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/essay/english-essay": {
     title: "IB English Individual Oral Grader: AI Feedback on Your IO | IBLens",
-    description: "AI feedback on the IB English A Individual Oral against the four published criteria: a transcript is marked out of 40, an outline on the first three. The HL essay is a separate component and is not covered.",
+    description: "AI feedback on the IB English A Individual Oral against the four published criteria: a practice transcript is marked out of 40, an outline on the first three. The HL essay is a separate component and is not covered.",
     ogType: "website",
     canonical: "/essay/english-essay",
     schemaType: "WebPage",
@@ -659,8 +659,8 @@ function generateJsonLd(meta: PageMeta): string {
         position: index + 2,
         name:
           index === segments.length - 1
-            ? meta.title.split(", ")[0].split(" | ")[0]
-            : segment.charAt(0).toUpperCase() + segment.slice(1),
+            ? meta.title.split(" | ")[0].split(": ")[0]
+            : ({ essay: "Essay grader", resources: "Resources", dashboard: "Dashboard" } as Record<string, string>)[segment] ?? segment.charAt(0).toUpperCase() + segment.slice(1),
         item: `${SITE_URL}${currentPath}`,
       });
     });

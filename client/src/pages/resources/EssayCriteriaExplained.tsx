@@ -52,7 +52,7 @@ export default function EssayCriteriaExplained() {
         While each IB subject has its own specific criteria, certain competencies appear across nearly all subjects. Understanding these common threads helps you develop transferable skills:
       </p>
 
-      <h3>Knowledge and Understanding</h3>
+      <h3>Knowledge and understanding</h3>
       <p>
         Every IB subject assesses whether you understand the relevant content, concepts and terminology. At lower levels this means accurate recall and basic application. At higher levels it means <strong>deep understanding</strong>: seeing connections between concepts, understanding why something works and not just that it does, and using terminology precisely.
       </p>
@@ -62,12 +62,12 @@ export default function EssayCriteriaExplained() {
         This criterion assesses whether you can apply your knowledge to specific situations and break down complex problems into components. In sciences, this might mean applying a theory to explain experimental results. In humanities, it might mean analysing a primary source by considering its context, purpose, and limitations. The key distinction: <strong>description tells what; analysis tells why and how</strong>.
       </p>
 
-      <h3>Synthesis and Evaluation</h3>
+      <h3>Synthesis and evaluation</h3>
       <p>
         The highest-order thinking skill assessed in the IB. Synthesis means combining ideas from different sources or perspectives to create new understanding. Evaluation means making reasoned judgements about the value, reliability, or significance of evidence, arguments, or methods. In many criteria, evaluation is what separates the upper levels from the middle ones.
       </p>
 
-      <h3>Communication and Presentation</h3>
+      <h3>Communication and presentation</h3>
       <p>
         Assessed directly in many components, and indirectly in all of them: can you communicate your ideas clearly, using appropriate structure, conventions and academic language? This includes proper citation, logical organisation, correct use of subject-specific formats (lab reports, essays, commentaries), and writing that is precise rather than vague.
       </p>
@@ -204,7 +204,7 @@ export default function EssayCriteriaExplained() {
         <li><strong>Make the criterion's work visible, not its vocabulary.</strong> Phrases like "a critical examination reveals" earn nothing on their own; the evaluation itself does. Check that each criterion has somewhere in the work where it is clearly being done.</li>
         <li><strong>Make your question and approach clear early.</strong> Best-fit marking reads the whole piece, and a reader who knows from the first page what you are trying to show can see how each section serves it.</li>
         <li><strong>Do not sacrifice one criterion for another.</strong> A beautifully written essay (high communication marks) that lacks analysis will not score well overall. Balance your effort across all criteria.</li>
-        <li><strong>Check word and page limits.</strong> In most components with a word limit, examiners or moderators stop reading at the limit, and anything beyond it is not assessed.</li>
+        <li><strong>Check word and page limits.</strong> In many components, including the Extended Essay, the TOK essay and exhibition, and the Economics and Business Management IAs, examiners or moderators stop reading at the limit; everywhere else the limit is still a rule.</li>
       </ul>
 
       <p>

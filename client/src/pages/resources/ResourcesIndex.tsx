@@ -345,7 +345,7 @@ export default function ResourcesIndex() {
               Want specific feedback on your essay? Paste it and get feedback against the published criteria in about a minute.
             </p>
             <Link href="/essay" className="inline-flex items-center gap-2 text-primary font-medium hover:underline">
-              Try IBLens Free →
+              Try IBLens →
             </Link>
           </div>
         </div>

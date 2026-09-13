@@ -865,7 +865,7 @@ export default function EssayAnalyzer() {
                 <strong>Re-checking a report you bought.</strong> Paste the revised version of the same work below. This re-check is free and does not use a paid report.
               </div>
             )}
-            <Label htmlFor="essay-text">{essayType === "TOK Exhibition" ? "Paste your commentary on all three objects" : essayType === "TOK" ? "Paste your TOK essay" : essayType === "EE" ? "Paste your Extended Essay" : isOral ? "Paste your oral transcript or outline" : "Paste your work"}</Label>
+            <Label htmlFor="essay-text">{essayType === "TOK Exhibition" ? "Paste your commentary on all three objects" : essayType === "TOK" ? "Paste your TOK essay" : essayType === "EE" ? "Paste your Extended Essay" : isOral ? "Paste your oral outline or practice transcript" : "Paste your work"}</Label>
             <Textarea
               id="essay-text"
               placeholder={essayType === "TOK Exhibition" ? "Paste your commentary for all three objects, including how each links to the prompt." : "Paste the full text of your work here. A short extract can be marked, but the report is only as good as what it sees. Anything past 30,000 characters, about 5,000 words, is not passed to the AI or marked."}
@@ -1121,7 +1121,7 @@ export default function EssayAnalyzer() {
           <div className="grid grid-cols-3 gap-3">
             {[
               { label: "Estimated mark", value: "16/25", color: "text-amber-600" },
-              { label: "Estimated range", value: "14-17", color: "text-foreground" },
+              { label: "Range in the free preview", value: "13-18", color: "text-foreground" },
               { label: "Share of marks", value: "64%", color: "text-foreground" },
             ].map((s) => (
               <div key={s.label} className="text-center p-2 sm:p-4 bg-muted/50 rounded-lg border border-border min-w-0">
@@ -1198,8 +1198,17 @@ export default function EssayAnalyzer() {
           </div>
 
           <div className="pt-3 border-t text-center">
-            <p className="text-sm font-medium mb-1">↑ This is what a full report looks like, unlocked for $9.99. Your free preview shows the estimated range, your weakest criterion in full, and the top risks.</p>
-            <p className="text-xs text-muted-foreground">Paste your work in the form above: <strong>the first preview is free</strong>, then $9.99 per report, with two re-checks included</p>
+            {(isAuthenticated ? !!credits?.freeEssayAvailable : canAnonAnalyze) ? (
+              <>
+                <p className="text-sm font-medium mb-1">↑ This is what a full report looks like, unlocked for $9.99. Your free preview shows a range of totals, your weakest criterion in full, and the top risks.</p>
+                <p className="text-xs text-muted-foreground">Paste your work in the form above: <strong>the first preview is free</strong>, then $9.99 per report, with two re-checks included</p>
+              </>
+            ) : (
+              <>
+                <p className="text-sm font-medium mb-1">↑ This is what a full report looks like.</p>
+                <p className="text-xs text-muted-foreground">Paste your work in the form above: a full report is $9.99, or one of your paid reports, with two re-checks included.</p>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -1255,7 +1264,7 @@ export default function EssayAnalyzer() {
                 </div>
                 <div className="text-center p-4 bg-muted/50 rounded-lg">
                   <div style={SERIF} className="text-3xl font-bold">{result.band_range}</div>
-                  <div className="text-xs text-muted-foreground mt-1">{(result.criteria?.length ?? 0) > 1 ? "Estimated range" : "Band"}</div>
+                  <div className="text-xs text-muted-foreground mt-1">{(result.criteria?.length ?? 0) > 1 ? "Range shown in the free preview" : "Band"}</div>
                 </div>
                 <div className="text-center p-4 bg-muted/50 rounded-lg">
                   <div style={SERIF} className="text-3xl font-bold">
@@ -1400,7 +1409,7 @@ export default function EssayAnalyzer() {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    const text = `IBLens estimates my IB ${resultWork?.label || formWork().label} at ${result.predicted_score}/${result.max_score} (estimated range ${result.band_range}) against the published criteria. Free preview at iblens.com`;
+                    const text = `IBLens estimates my IB ${resultWork?.label || formWork().label} at ${result.predicted_score}/${result.max_score} against the published criteria. Free preview at iblens.com`;
                     navigator.clipboard.writeText(text);
                     toast.success("Copied.");
                   }}

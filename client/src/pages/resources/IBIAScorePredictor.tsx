@@ -10,7 +10,7 @@ export default function IBIAScorePredictor() {
       datePublished="2026-06-06"
       dateModified="2026-09-13"
     >
-      <h1>IB IA Score Estimator: how to estimate your Internal Assessment grade</h1>
+      <h1>IB IA Score Estimator: how to estimate your Internal Assessment mark</h1>
       <p>Your teacher has marked your Internal Assessment and you want to know whether that mark will hold. It may not: the mark is checked against a global standard before it counts. Knowing how that check works, and reading your own work criterion by criterion, gets you a realistic range rather than a single hopeful number.</p>
 
       <div className="not-prose my-6 rounded-xl border border-primary/30 bg-primary/5 p-5">

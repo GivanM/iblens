@@ -100,7 +100,7 @@ jobs:
           pnpm db:push
 
           echo '==> restart'
-          sudo systemctl restart iblens
+          bash scripts/restart.sh
 
           echo '==> done'
           REMOTE

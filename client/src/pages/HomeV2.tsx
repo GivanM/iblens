@@ -35,7 +35,7 @@ const FAQ = [
   },
   {
     q: "Do I have to tell my school that I used this?",
-    a: "For the Extended Essay, ask your supervisor before you use it: the Extended Essay guide says students must not receive assistance with any aspect of the research, writing or proofreading beyond that which is permitted through their supervisor. For other work, check your teacher's and your school's policy first. IBLens returns feedback and never text you could hand in, and whatever you change you must be able to explain in your own words at the viva voce.",
+    a: "For the Extended Essay, ask your supervisor before you use it: the Extended Essay guide says students must not receive assistance with any aspect of the research, writing or proofreading beyond that which is permitted through their supervisor. For other work, check your teacher's and your school's policy first. IBLens returns feedback and never text you could hand in, and you must be able to explain whatever you change in your own words, which for the Extended Essay includes the viva voce.",
   },
   {
     q: "Where does my essay actually go?",

@@ -17,11 +17,11 @@ export default function IBIAGrader() {
       </p>
 
       <p>
-        IBLens is an AI grader that reads your Internal Assessment against the assessment criteria for your subject and gives you an estimated mark for each criterion it can judge from the text, the marks you are losing, and what to change. It takes about a minute, and the first preview is free.
+        IBLens is an AI grader that reads your Internal Assessment against the assessment criteria for your subject and gives you an estimated mark for each criterion it can judge from the text, the marks you are losing, and what to change. It takes about a minute, and the first preview is free. Ask your teacher first: outside feedback on an IA needs their agreement.
       </p>
 
       <p>
-        <Link href="/essay?type=IA">Get a free preview of my IA →</Link>
+        <Link href="/essay?type=IA">Check my IA →</Link>
       </p>
 
       <h2>Which IB subjects does the grader support?</h2>
@@ -38,7 +38,7 @@ export default function IBIAGrader() {
         <li><strong><Link href="/essay/history-ia">IB History IA</Link>:</strong> the historical investigation, marked on Identification and evaluation of sources (6), Investigation (15) and Reflection (4), 25 marks</li>
         <li><strong><Link href="/essay/psychology-ia">IB Psychology IA</Link>:</strong> Introduction, Exploration, Analysis, Evaluation (22 marks) through November 2026; the research proposal marked out of 24 from May 2027</li>
         <li><strong><Link href="/essay/computer-science-ia">IB Computer Science IA</Link>:</strong> Planning, Solution overview, Development, Functionality and extensibility, Evaluation (34 marks) through November 2026; the new 30-mark criteria from May 2027</li>
-        <li><strong>IB English A (Literature, or Language and Literature):</strong> the individual oral, marked on four criteria of 10 marks each; paste your outline or a transcript</li>
+        <li><strong>IB English A (Literature, or Language and Literature):</strong> the individual oral, marked on four criteria of 10 marks each; paste your outline, or a transcript of a practice oral on different works or a different global issue (the Language A guides do not allow a rehearsal of the actual oral)</li>
         <li><strong>IB Visual Arts, Music and Film coursework (externally assessed):</strong> each against its own criteria. Visual Arts is marked for sessions through November 2026 only, because the comparative study is replaced from May 2027, and on the SL criteria out of 30: the extra HL criterion (connections to your own art-making, 12 marks) is not marked</li>
       </ul>
 
@@ -58,7 +58,7 @@ export default function IBIAGrader() {
       <h2>What you get in the report</h2>
 
       <ul>
-        <li><strong>Estimated mark and range:</strong> where your IA sits overall against the criteria, with the mark range the draft currently falls in</li>
+        <li><strong>Estimated mark:</strong> where your IA sits overall against the criteria</li>
         <li><strong>Criterion breakdown:</strong> each criterion marked individually, with the reasons for that mark (one judged on something text cannot carry, such as a Music recording, is shown as not marked)</li>
         <li><strong>What is losing marks:</strong> the specific parts of your IA that are losing marks, and why</li>
         <li><strong>Where marks are recoverable:</strong> criteria where a small improvement would gain the most marks</li>
@@ -86,11 +86,11 @@ export default function IBIAGrader() {
       <h2>How accurate is the AI grade?</h2>
 
       <p>
-        The grader is given the criteria for your subject and session: the name of each criterion, its maximum mark and what it assesses, summarised from the subject guide. Its mark is an estimate from a language model, not a moderated mark, and no tool can predict exactly what a teacher or moderator will decide on a borderline piece of work. Where it is useful is in showing which criteria are underdeveloped, the mark range the draft sits in, and where to spend revision time. Running it before your teacher reads the draft means their comments can go on substance.
+        The grader is given the criteria for your subject and session: the name of each criterion, its maximum mark and what it assesses, summarised from the subject guide. Its mark is an estimate from a language model, not a moderated mark, and no tool can predict exactly what a teacher or moderator will decide on a borderline piece of work. Where it is useful is in showing which criteria are underdeveloped, the mark range the draft sits in, and where to spend revision time. If your teacher agrees to outside feedback, running it before they read the draft means their comments can go on substance.
       </p>
 
       <p>
-        <Link href="/essay?type=IA">Get a free preview of my IA →</Link>
+        <Link href="/essay?type=IA">Check my IA →</Link>
       </p>
       <h2>Subject-specific IA guides</h2>
 

@@ -38,7 +38,7 @@ const QUICK_STEPS = [
 const LATEST_RESULTS_SESSION: "nov2026" | "may2027" = Date.now() < Date.parse("2027-07-01T00:00:00Z") ? "nov2026" : "may2027";
 
 function RemarkQuickCheck() {
-  const { paidLeft, previewUsed } = useMarkingCta();
+  const { paidLeft } = useMarkingCta();
   const utils = trpc.useUtils();
   const [essayType, setEssayType] = useState<"EE" | "TOK">("TOK");
   const [sessionSat, setSessionSat] = useState<"nov2026" | "may2027">(LATEST_RESULTS_SESSION);
@@ -46,6 +46,10 @@ function RemarkQuickCheck() {
   const [essayText, setEssayText] = useState("");
   const [result, setResult] = useState<any>(null);
   const [fp] = useState(getAnonFingerprint);
+  // This check spends the device's free preview even when signed in, so it reads the
+  // device's state, not the account's.
+  const deviceCheck = trpc.essay.canAnalyzeAnonymous.useQuery({ clientFingerprint: fp }, { staleTime: 60_000 });
+  const previewUsed = deviceCheck.data ? deviceCheck.data.canAnalyze === false : false;
 
   const analyze = trpc.essay.analyzeAnonymous.useMutation({
     onSuccess: (data: any) => {
@@ -72,7 +76,7 @@ function RemarkQuickCheck() {
   return (
     <div className="rounded-xl border-2 border-primary bg-card p-6 mb-12 shadow-sm">
       <h2 style={SERIF} className="text-2xl font-bold mb-1">{previewUsed && !result ? "Check your essay on the grader page" : "Check your essay right here, free"}</h2>
-      <p className="text-sm text-muted-foreground mb-4">Paste the exact EE or TOK essay you submitted. In about a minute you see how it reads against the published criteria: an estimated range for the total (for the TOK essay, its band), your weakest criterion (for TOK, the start of the explanation) and the top risks. The estimated mark is in the full report. None of this predicts what a re-mark would do, so do not decide on it alone (see our <Link href="/terms" className="underline">Terms</Link>). For the Extended Essay, Criterion E is marked on your reflections, which this check does not include, so the range covers the other criteria.</p>
+      <p className="text-sm text-muted-foreground mb-4">{previewUsed ? <>On the grader page, a full report gives the estimated mark for the EE or TOK essay you submitted, criterion by criterion where the instrument has criteria, with the reasons and the ranked fixes. None of this predicts what a re-mark would do, so do not decide on it alone (see our <Link href="/terms" className="underline">Terms</Link>).</> : <>Paste the exact EE or TOK essay you submitted. In about a minute you see how it reads against the published criteria: a range of totals that contains the estimate (for the TOK essay, its band), your weakest criterion (for TOK, the start of the explanation) and the top risks. The estimated mark is in the full report. None of this predicts what a re-mark would do, so do not decide on it alone (see our <Link href="/terms" className="underline">Terms</Link>). For the Extended Essay, Criterion E is marked on your reflections, which this check does not include, so the range covers the other criteria.</>}</p>
 
       {!result && (
         <>
@@ -137,7 +141,7 @@ function RemarkQuickCheck() {
           <div className="rounded-lg p-4 mb-4 border border-border bg-muted/40">
             <p className="text-sm text-muted-foreground">{essayType === "TOK"
               ? "This is the band of the TOK assessment instrument that IBLens places your essay in. It is an estimate from a language model, not the IB's mark. A re-mark changes your grade only if your overall TOK mark crosses a grade boundary, which your coordinator can tell you."
-              : "This range is IBLens's estimate of where the total could fall, not an IB band or grade boundary. A re-mark changes your grade only if the new total crosses a grade boundary, which your coordinator can tell you. The estimate comes from a language model and cannot tell you what a second examiner will do."}</p>
+              : "This range contains IBLens's estimated total. It is not a margin of error: the estimate can sit at either end of it, and it is not an IB band or grade boundary. A re-mark changes your grade only if the new total crosses a grade boundary, which your coordinator can tell you. The estimate comes from a language model and cannot tell you what a second examiner will do."}</p>
           </div>
           {essayType === "EE" && (
             <p className="text-xs text-muted-foreground mb-3">Criterion E is marked on your reflections form, which this check does not include, so the estimate covers the other criteria only.</p>

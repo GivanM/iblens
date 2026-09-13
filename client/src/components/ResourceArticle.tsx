@@ -21,6 +21,16 @@ function shortTitle(title: string): string {
   return title.split(" | ")[0].split(": ")[0];
 }
 
+// Names that keep their capitals when a Title Case page title becomes a sentence-case heading.
+const KEEP_CAPS = new Set(["IB", "IA", "IAs", "EE", "EEs", "TOK", "IBLens", "AI", "HL", "SL", "UCAS", "RPF", "RPPF", "OPCVL", "DP", "Extended", "Essay", "Internal", "Assessment", "Biology", "Chemistry", "Physics", "Economics", "History", "Psychology", "English", "Maths", "Math", "Mathematics", "Business", "Management", "Computer", "Science", "Visual", "Arts", "Music", "Film", "Diploma", "Score", "Estimator", "Calculator"]);
+function sentenceCase(name: string): string {
+  const words = name.split(" ");
+  return words.map((w, i) => {
+    if (i === 0 || KEEP_CAPS.has(w.replace(/[^A-Za-z]/g, "")) || /[A-Z].*[A-Z]/.test(w) || /\d/.test(w)) return w;
+    return w.charAt(0).toLowerCase() + w.slice(1);
+  }).join(" ");
+}
+
 export function ResourceArticle({
   title,
   description,
@@ -32,7 +42,7 @@ export function ResourceArticle({
   // Seventeen articles never had a heading of their own; the crawler copy gave them
   // one and the page did not. Supply it here unless the article brings its own.
   const hasOwnHeading = Children.toArray(children).some((c) => isValidElement(c) && c.type === "h1");
-  const { previewUsed, paidLabel } = useMarkingCta();
+  const { previewUsed, paidLabel, paidLeft } = useMarkingCta();
   const name = shortTitle(title);
   return (
     <>
@@ -61,13 +71,13 @@ export function ResourceArticle({
             <Link href="/resources" className="hover:text-primary transition-colors">Resources</Link>
             <span>/</span>
             <span className="text-foreground font-medium truncate max-w-[200px]">
-              {name}
+              {sentenceCase(name)}
             </span>
           </nav>
 
           {/* Article content */}
           <article className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-foreground prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground prose-a:text-primary hover:prose-a:text-primary/80 [&_h1]:font-serif [&_h2]:font-serif [&_h3]:font-serif">
-            {!hasOwnHeading && <h1>{name}</h1>}
+            {!hasOwnHeading && <h1>{sentenceCase(name)}</h1>}
             {children}
           </article>
 
@@ -77,7 +87,9 @@ export function ResourceArticle({
               Ready to get specific feedback on your essay?
             </h2>
             <p className="text-muted-foreground mb-6 max-w-lg mx-auto text-sm leading-relaxed">
-              Paste your IA or TOK work, or your EE if your supervisor agrees, and see how it reads against the published criteria in about a minute. The first preview is free: your estimated range, your weakest criterion and the top risks. The full report, with the estimated mark, is $9.99.
+              {previewUsed
+                ? `Paste your IA, TOK work or Extended Essay, once your teacher or EE supervisor has agreed to outside feedback, and get the full report, with the estimated mark, in about a minute: ${paidLeft > 0 ? "it uses one of your paid reports" : "$9.99"}.`
+                : "Paste your IA, TOK work or Extended Essay, once your teacher or EE supervisor has agreed to outside feedback, and see how it reads against the published criteria in about a minute. The first preview is free: a range of totals, your weakest criterion and the top risks. The full report, with the estimated mark, is $9.99."}
             </p>
             <Link href="/essay">
               <Button size="lg">

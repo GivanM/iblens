@@ -60,7 +60,7 @@ export default function AcademicIntegrity() {
 
       <h2>How to acknowledge AI feedback</h2>
       <ul>
-        <li><strong>AI text in your work must be credited.</strong> The IB academic integrity policy says any text, image or graph produced by an AI tool that you include must be credited in the body of the work, in quotation marks, with the prompt you gave and the date it was generated, and listed in the bibliography. IBLens describes what to change and does not write it for you, so there should be none to credit.</li>
+        <li><strong>AI material in your work must be credited.</strong> The IB academic integrity policy says that if you copy or paraphrase text produced by an AI tool, or use an image, graph or other material from one, you must credit the tool in the body of the work, in quotation marks using your school's referencing style, with the prompt you gave and the date it was generated, and list it in the bibliography. IBLens describes what to change rather than writing text for you, but if any wording from a report goes into your work, even paraphrased, credit it in the same way.</li>
         <li><strong>Mention it to your teacher or supervisor,</strong> as the rule above says. For the Extended Essay, a supervision session is the natural place.</li>
         <li><strong>Keep the reports with your drafts.</strong> Together they show that the revisions came from you. Save each report with your browser's print to PDF (saved reports in an account also have a Save as PDF button).</li>
         <li><strong>Orals and the TOK exhibition work the same way.</strong> The ideas and words in your individual oral or exhibition commentary must be yours. The Language A guides let teachers give feedback on your outline, and on practice orals that use different works and global issues, but not rehearse the actual oral with you, so do not get feedback from anyone, a tool included, on a rehearsal of the oral you will deliver. A script written by a tool is never allowed.</li>
@@ -136,7 +136,7 @@ export default function AcademicIntegrity() {
 
       <p>
         Questions about your data? Email <a href="mailto:glushkovim@gmail.com">glushkovim@gmail.com</a> and we will delete your records, with no forms to fill in.
-        Ready to see where your essay stands? <Link href="/essay">The first preview is free</Link>.
+        Ready to see where your essay stands? <Link href="/essay">Check it against the criteria</Link>.
       </p>
     </ResourceArticle>
   );

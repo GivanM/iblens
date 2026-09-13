@@ -48,12 +48,12 @@ const SAMPLE_CRITERIA = [
 
 export default function LandingPage() {
   // A device that has used its preview is not promised another one.
-  const { previewUsed, paidLabel } = useMarkingCta();
+  const { previewUsed, paidLabel, paidLeft } = useMarkingCta();
   const cta = previewUsed ? paidLabel : "Get my free preview";
   return (
     <>
       <SEOHead
-        title="IB Essay Grader: Free Preview of Your IA, EE or TOK Marks in About a Minute | IBLens"
+        title="IB Essay Grader: Free Preview of Your IA, EE or TOK Draft in About a Minute | IBLens"
         description="Paste your IB essay and get a free preview in about a minute: your estimated range, weakest criterion and top risks. The full report gives the estimated mark and the reasons for it. Extended Essay, IA or TOK, no account needed."
         canonical="/grade"
       />
@@ -80,13 +80,15 @@ export default function LandingPage() {
         <section className="bg-gradient-to-b from-primary/5 to-background py-16 md:py-24">
           <div className="container max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold mb-6 uppercase tracking-wide">
-              {previewUsed ? "Full report $9.99 · No account · Refundable within 7 days" : "First preview free · No account · No card"}
+              {previewUsed ? (paidLeft > 0 ? "Uses 1 of your paid reports · No account" : "Full report $9.99 · No account · Refundable within 7 days") : "First preview free · No account · No card"}
             </div>
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-5 leading-tight">
               Grade your IB essay<br />in about a minute
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">
-              Paste your IA or TOK work, or your Extended Essay if your supervisor agrees. The free preview comes back in about a minute with your estimated range, weakest criterion and top risks; the full report gives the estimated mark, criterion by criterion (the TOK essay and exhibition as a whole), and ranks the fixes.
+              {previewUsed
+                ? "Paste your IA, TOK work or Extended Essay once your teacher or supervisor has agreed to outside feedback. The full report comes back in about a minute with the estimated mark, criterion by criterion (the TOK essay and exhibition as a whole), and ranks the fixes."
+                : "Paste your IA, TOK work or Extended Essay once your teacher or supervisor has agreed to outside feedback. The free preview comes back in about a minute with a range of totals, your weakest criterion and top risks; the full report gives the estimated mark, criterion by criterion (the TOK essay and exhibition as a whole), and ranks the fixes."}
             </p>
             <Button size="lg" className="text-base px-10 h-14 shadow-lg shadow-primary/25 mb-4" asChild>
               <Link href="/essay">
@@ -125,7 +127,7 @@ export default function LandingPage() {
           <div className="container max-w-2xl mx-auto">
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold tracking-tight mb-2">What a full report looks like ($9.99)</h2>
-              <p className="text-muted-foreground text-sm">A mark for each criterion your text lets us judge, with the risks and the fixes. The free preview shows your band, your weakest criterion and the top risks.</p>
+              <p className="text-muted-foreground text-sm">A mark for each criterion your text lets us judge, with the risks and the fixes.{previewUsed ? "" : " The free preview shows a range of totals, your weakest criterion and the top risks."}</p>
             </div>
 
             <Card className="border-2 shadow-lg">

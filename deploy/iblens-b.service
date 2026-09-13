@@ -1,0 +1,21 @@
+[Unit]
+Description=IBLens application (standby on 3001)
+After=network.target mysql.service
+Wants=mysql.service
+
+[Service]
+Type=simple
+User=deploy
+WorkingDirectory=/opt/iblens
+ExecStart=/usr/bin/env PORT=3001 /usr/bin/node dist/index.js
+Restart=always
+RestartSec=5
+EnvironmentFile=/opt/iblens/.env
+Environment=NODE_ENV=production
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=iblens-b
+
+[Install]
+WantedBy=multi-user.target

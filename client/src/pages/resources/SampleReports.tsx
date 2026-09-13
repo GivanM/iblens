@@ -339,7 +339,7 @@ export default function SampleReports() {
       </p>
 
       <p>
-        <Link href="/essay?type=TOK">Get a report like these for your own TOK essay: the first preview is free</Link>
+        <Link href="/essay?type=TOK">Get a report like these for your own TOK essay</Link>
       </p>
     </ResourceArticle>
   );

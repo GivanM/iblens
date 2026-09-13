@@ -20,7 +20,7 @@ export default function HowIBLensWorks() {
         This page explains exactly how IBLens works: what happens when you paste an essay, how the AI generates its feedback, what the output looks like, what the tool can and cannot do, and how it compares to alternatives like private tutors or peer review. We believe in transparency about our technology so you can make an informed decision about whether it is useful for your preparation.
       </p>
 
-      <h2>What IBLens Does</h2>
+      <h2>What IBLens does</h2>
 
       <p>
         When you paste an essay to IBLens, the system performs a comprehensive analysis that includes:
@@ -28,7 +28,7 @@ export default function HowIBLensWorks() {
 
       <ul>
         <li><strong>Criterion-by-criterion scoring:</strong> Your essay is evaluated against the specific IB assessment criteria for your subject and essay type. Each criterion receives an estimated score with an explanation of why that score was assigned. A criterion judged on something you cannot paste, such as a Music recording or Extended Essay reflections you left out, is shown as not marked rather than guessed.</li>
-        <li><strong>Overall estimate:</strong> based on the criterion scores, an estimated mark out of the total for your task, with the estimated range the draft currently sits in.</li>
+        <li><strong>Overall estimate:</strong> based on the criterion scores, an estimated mark out of the total for your task. The free preview shows a range of totals that contains it, not the mark.</li>
         <li><strong>What is losing marks:</strong> Specific sections or aspects of your essay that are likely to lose marks, with explanations of why and suggestions for improvement.</li>
         <li><strong>Where marks are recoverable:</strong> Areas where small improvements would yield the largest mark gains, helping you prioritise your revision time.</li>
         <li><strong>What to fix first:</strong> concrete suggestions for improving the criteria that are losing marks, in plain language, in order of how many marks they are likely to recover.</li>
@@ -58,7 +58,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        <strong>No calibration against marked scripts:</strong> IBLens has not been tested against a set of officially marked scripts. An estimated mark is the model's reading of the published criteria, which is why it is shown as an estimate with an estimated range, and why the criterion it flags matters more than the exact number.
+        <strong>No calibration against marked scripts:</strong> IBLens has not been tested against a set of officially marked scripts. An estimated mark is the model's reading of the published criteria, which is why it is shown as an estimate, and why the criterion it flags matters more than the exact number.
       </p>
 
       <h2>What feedback looks like</h2>
@@ -68,7 +68,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        <strong>Overall comment:</strong> your estimated mark and band, with an overview of what works and what does not.
+        <strong>Overall comment:</strong> your estimated mark, with an overview of what works and what does not.
       </p>
 
       <p>
@@ -125,7 +125,7 @@ export default function HowIBLensWorks() {
         If you have specific privacy concerns or need to comply with school policies about external tools, contact us at glushkovim@gmail.com and we can provide additional documentation.
       </p>
 
-      <h2>Pricing Overview</h2>
+      <h2>Pricing overview</h2>
 
       <p>
         IBLens offers several pricing tiers to match different needs:
@@ -176,7 +176,7 @@ export default function HowIBLensWorks() {
         For current pricing and to purchase, visit the <Link href="/pricing" className="text-primary hover:underline">pricing page</Link>.
       </p>
 
-      <h2>Comparison to Alternatives</h2>
+      <h2>Comparison to alternatives</h2>
 
       <p>
         How does IBLens compare to other ways of getting feedback on your IB essays?
@@ -193,7 +193,7 @@ export default function HowIBLensWorks() {
           <strong>When to use:</strong> If you need ongoing subject support beyond essay feedback, or if you learn best through conversation.
       </p>
 
-      <h3>Peer Review</h3>
+      <h3>Peer review</h3>
       <p>
         <strong>Pros:</strong> Free, builds collaborative skills, can catch obvious errors.
         </p>
@@ -204,7 +204,7 @@ export default function HowIBLensWorks() {
           <strong>When to use:</strong> For catching basic errors and getting a reader's perspective, but not for criterion-level assessment.
       </p>
 
-      <h3>Teacher Feedback</h3>
+      <h3>Teacher feedback</h3>
       <p>
         <strong>Pros:</strong> Authoritative, knows the subject deeply, understands your development, free.
         </p>
@@ -223,7 +223,7 @@ export default function HowIBLensWorks() {
           <strong>Cons:</strong> an estimate from a language model, not a moderated mark; cannot verify factual accuracy, replace subject expertise or assess practical work.
         </p>
         <p>
-          <strong>When to use:</strong> Between teacher feedback rounds, for iterative revision, for a second opinion before submission, for identifying which criteria need the most work.
+          <strong>When to use:</strong> once your teacher (for the EE, your supervisor) and your school's policy allow outside feedback, for a second opinion on a draft before submission and to see which criteria need the most work.
       </p>
 
       <p>

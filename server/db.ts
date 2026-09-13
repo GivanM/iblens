@@ -132,6 +132,7 @@ export async function upsertAccountCopy(data: InsertAnalysis & { adoptedFromId: 
     await db.update(analyses).set({
       unlocked: true,
       unlockedAt: data.unlockedAt ?? new Date(),
+      rerunsUsed: data.rerunsUsed ?? 0,
       unlockOrderId: data.unlockOrderId ?? null,
       resultJson: data.resultJson,
       predictedGrade: data.predictedGrade ?? null,
@@ -1224,7 +1225,7 @@ export async function adoptDeviceReports(fingerprint: string, userId: number): P
     if (existing.length > 0) {
       // A copy a refund locked, whose device row a later purchase opened again, opens too.
       if (!existing[0].unlocked) {
-        await db.update(analyses).set({ unlocked: true, unlockedAt: rec.unlockedAt ?? new Date(), unlockOrderId: rec.unlockOrderId ?? null })
+        await db.update(analyses).set({ unlocked: true, unlockedAt: rec.unlockedAt ?? new Date(), rerunsUsed: rec.rerunsUsed ?? 0, unlockOrderId: rec.unlockOrderId ?? null })
           .where(eq(analyses.id, existing[0].id));
       }
       accountIdFor.set(rec.id, existing[0].id);
@@ -1480,20 +1481,44 @@ export async function createRerunAnalysis(prev: any, resultJson: any, predictedG
 export async function claimAnalysisUnlock(id: number, orderId?: string | null): Promise<boolean> {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
+  // A row opened by a new payment starts with its own re-checks, including one a refund had
+  // locked after both were used.
+  const opened = { unlocked: true, unlockedAt: new Date(), rerunsUsed: 0, ...(orderId ? { unlockOrderId: orderId } : {}) };
   const res: any = await db.update(analyses)
-    .set({ unlocked: true, unlockedAt: new Date(), ...(orderId ? { unlockOrderId: orderId } : {}) })
+    .set(opened)
     .where(and(eq(analyses.id, id), eq(analyses.unlocked, false)));
-  return Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0) > 0;
+  const claimed = Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0) > 0;
+  if (claimed) {
+    // After a refund the newest row can be a re-check. Paying for it opens the report it
+    // belongs to as well, where the re-check allowance is counted.
+    const [row] = await db.select({ rerunOf: analyses.rerunOf }).from(analyses).where(eq(analyses.id, id)).limit(1);
+    if (row?.rerunOf) {
+      await db.update(analyses).set(opened).where(and(eq(analyses.id, row.rerunOf), eq(analyses.unlocked, false)));
+    }
+  }
+  return claimed;
 }
 
 /** The device-row counterpart of claimAnalysisUnlock. */
 export async function claimAnonymousUnlock(id: number, orderId?: string | null): Promise<boolean> {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
+  // A row opened by a new payment starts with its own re-checks, including one a refund had
+  // locked after both were used.
+  const opened = { unlocked: true, unlockedAt: new Date(), rerunsUsed: 0, ...(orderId ? { unlockOrderId: orderId } : {}) };
   const res: any = await db.update(anonymousAnalyses)
-    .set({ unlocked: true, unlockedAt: new Date(), ...(orderId ? { unlockOrderId: orderId } : {}) })
+    .set(opened)
     .where(and(eq(anonymousAnalyses.id, id), eq(anonymousAnalyses.unlocked, false)));
-  return Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0) > 0;
+  const claimed = Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0) > 0;
+  if (claimed) {
+    // After a refund the newest row can be a re-check. Paying for it opens the report it
+    // belongs to as well, where the re-check allowance is counted.
+    const [row] = await db.select({ rerunOf: anonymousAnalyses.rerunOf }).from(anonymousAnalyses).where(eq(anonymousAnalyses.id, id)).limit(1);
+    if (row?.rerunOf) {
+      await db.update(anonymousAnalyses).set(opened).where(and(eq(anonymousAnalyses.id, row.rerunOf), eq(anonymousAnalyses.unlocked, false)));
+    }
+  }
+  return claimed;
 }
 
 /**

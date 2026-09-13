@@ -141,7 +141,7 @@ export default function IBPsychologyIA() {
         which criterion is weakest is while you can still change the report.
       </p>
       <p>
-        IBLens reads your Psychology IA report against the assessment criteria and gives
+        With your teacher's agreement, IBLens reads your Psychology IA report against the assessment criteria and gives
         an estimated mark for each one, with the reason for each mark.
       </p>
       <p>

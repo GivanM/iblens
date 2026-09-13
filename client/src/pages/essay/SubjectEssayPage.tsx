@@ -62,6 +62,9 @@ function getBarColor(ratio: number): string {
 export default function SubjectEssayPage({ config }: { config: SubjectConfig }) {
   const { previewUsed, paidLeft, paidLabel, isAuthenticated } = useMarkingCta();
   const reportsLeft = `${paidLeft} paid report${paidLeft === 1 ? "" : "s"} left`;
+  // The rule to read before pasting: the EE page sets its own; every other task needs the teacher's agreement.
+  const heroNote = config.heroNote
+    ?? `Ask your teacher first: the IB asks students not to receive assistance beyond what the subject guide permits, so check that your teacher and your school allow outside feedback on this work.${/Individual Oral$/.test(config.subject) ? " Never use it on a rehearsal of the oral you will deliver." : ""}`;
   // The task name inside a sentence: "your TOK essay", not "your TOK Essay".
   const taskName = config.subject.replace(/ (Essay|Exhibition|Individual Oral)$/, (m) => m.toLowerCase());
   // What goes into the grader: for the oral, never a rehearsal of the actual oral.
@@ -129,9 +132,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
             <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">
               {previewUsed ? config.heroSubline.split(/(?<=\.)\s+/).filter((s) => !/\bfree\b/i.test(s)).join(" ") : config.heroSubline}
             </p>
-            {config.heroNote && (
-              <p className="text-sm rounded-md border border-amber-300 bg-amber-50 text-amber-900 px-3 py-2 mb-6 max-w-xl mx-auto">{config.heroNote}</p>
-            )}
+            <p className="text-sm rounded-md border border-amber-300 bg-amber-50 text-amber-900 px-3 py-2 mb-6 max-w-xl mx-auto">{heroNote}</p>
             <Button size="lg" className="text-base px-10 shadow-lg shadow-primary/25 mb-4 h-auto min-h-11 py-3 whitespace-normal" asChild>
               <Link href={config.analyzerHref}>
                 <FileText className="w-4 h-4 mr-2" />
@@ -139,7 +140,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
               </Link>
             </Button>
             <p className="text-xs text-muted-foreground">
-              {paidLeft > 0 ? "No account needed · Back in about a minute · Uses 1 of your paid reports" : "No account needed · Back in about a minute · Full report $9.99, refundable within 7 days"}
+              {previewUsed && paidLeft > 0 ? "No account needed · Back in about a minute · Uses 1 of your paid reports" : paidLeft > 0 ? "No account needed · Back in about a minute · The free preview uses none of your paid reports" : "No account needed · Back in about a minute · Full report $9.99, refundable within 7 days"}
             </p>
           </div>
         </section>
@@ -226,7 +227,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
 
                 <div className="mt-6 pt-5 border-t flex flex-col sm:flex-row gap-3 items-center justify-between">
                   <p className="text-xs text-muted-foreground">
-                    {previewUsed ? (paidLeft > 0 ? "Your own draft: the full breakdown and fix list, using one of your paid reports" : "Your own draft: the full breakdown and fix list for $9.99") : "Your own draft: a free preview first, then the full breakdown and fix list for $9.99"}
+                    {previewUsed ? (paidLeft > 0 ? "Your own draft: the full breakdown and fix list, using one of your paid reports" : "Your own draft: the full breakdown and fix list for $9.99") : paidLeft > 0 ? "Your own draft: a free preview first, then the full breakdown and fix list with one of your paid reports" : "Your own draft: a free preview first, then the full breakdown and fix list for $9.99"}
                   </p>
                   <Button size="sm" className="min-h-11" asChild>
                     <Link href={config.analyzerHref}>
@@ -306,9 +307,11 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
               <ul className="space-y-3 text-sm text-muted-foreground list-disc pl-5">
                 <li>Marks against the published IB criteria for each task. Where the syllabus changes in May 2027 (the Extended Essay, the Psychology IA and the Computer Science IA), it holds both sets and uses the one for your session. The Visual Arts comparative study is not set from May 2027, so it is marked only for 2026 sessions.</li>
                 <li>$9.99 for a full report, which includes two re-checks of the same work within 14 days. No subscription.</li>
-                <li>{holistic
-                  ? "The first preview is free and needs no account: the band your work falls in, the start of the explanation, and the top risks in the draft."
-                  : "The first preview is free and needs no account: your estimated range, your weakest criterion with its full feedback, and the top risks in the draft."}</li>
+                <li>{previewUsed
+                  ? `The free preview on this ${isAuthenticated ? "account" : "device"} has been used; a full report is $9.99, or one of your paid reports.`
+                  : holistic
+                    ? "The first preview is free and needs no account: the band your work falls in, the start of the explanation, and the top risks in the draft."
+                    : "The first preview is free and needs no account: a range of totals that contains the estimate, your weakest criterion with its full feedback, and the top risks in the draft."}</li>
                 <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
                 <li>The text you paste passes through our relay server to Anthropic to produce the report. IBLens never stores the text itself; the report is kept as the Privacy Policy describes.</li>
               </ul>
@@ -327,7 +330,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
                 ? paidLeft > 0
                   ? `Paste your ${pasteName} and mark it with one of your paid reports (${reportsLeft}). Each includes two re-checks.`
                   : `Paste your ${pasteName}. The free preview ${isAuthenticated ? "on your account" : "on this device"} has been used, and a full report is $9.99 with two re-checks included.`
-                : `Paste your ${pasteName} and get a free preview in about a minute. The full report is $9.99.`}
+                : `Paste your ${pasteName} and get a free preview in about a minute. ${paidLeft > 0 ? "The full report uses one of your paid reports." : "The full report is $9.99."}`}
             </p>
             <Button size="lg" className="text-base px-6 sm:px-10 shadow-lg shadow-primary/25 h-auto min-h-11 py-3 whitespace-normal" asChild>
               <Link href={config.analyzerHref}>

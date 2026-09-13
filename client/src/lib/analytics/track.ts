@@ -37,19 +37,17 @@ export function trackPageView(path: string, title?: string) {
 }
 
 // ─── Auth Events ────────────────────────────────────────────────────────────
-export function trackSignUp(method: AuthMethod, userId: string) {
+export function trackSignUp(method: AuthMethod, _userId?: string) {
   push({
     event: "sign_up",
     method,
-    user_id: userId,
   });
 }
 
-export function trackLogin(method: AuthMethod, userId: string) {
+export function trackLogin(method: AuthMethod, _userId?: string) {
   push({
     event: "login",
     method,
-    user_id: userId,
   });
 }
 

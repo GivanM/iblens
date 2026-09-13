@@ -57,7 +57,7 @@ export default function IAFeedbackGuide() {
       <h2>Teacher feedback and where AI fits</h2>
 
       <p>
-        Your teacher gives guidance during the IA process and feedback on one draft: use it for what only a subject expert can judge, such as whether your method is sound and your content accurate. What AI adds is a check against the criteria whenever you revise. IBLens marks coursework drafts in 14 subjects against the criteria for your session. The estimated range and your weakest criterion are free, and the full criterion-by-criterion report is $9.99, with no subscription and two free re-checks.
+        Your teacher gives guidance during the IA process and feedback on one draft: use it for what only a subject expert can judge, such as whether your method is sound and your content accurate. What AI adds is a check against the criteria, but it is outside help, so check that your teacher and your school allow it before you use it. IBLens marks coursework drafts in 14 subjects against the criteria for your session. The estimated range and your weakest criterion are free, and the full criterion-by-criterion report is $9.99, with no subscription and two free re-checks.
       </p>
 
       <p>
@@ -78,7 +78,7 @@ export default function IAFeedbackGuide() {
 
       <h3>Can I check my IA against the criteria myself?</h3>
       <p>
-        Yes, the criteria are published, and this page's sequence is designed for exactly that. The hard part is objectivity about your own writing, which is where a second reader, or an AI check built on the criteria, earns its place.
+        Yes, the criteria are published, and this page's sequence is designed for exactly that. The hard part is objectivity about your own writing, which is where a second reader, or an AI check built on the criteria, can help, as long as your teacher and your school allow outside feedback on the work.
       </p>
 
       <h2>Related resources</h2>

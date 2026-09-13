@@ -74,7 +74,7 @@ export default function IBEconomicsIA() {
 
       <h2>IB Economics IA examples by unit</h2>
 
-      <h3>Microeconomics Commentary</h3>
+      <h3>Microeconomics commentary</h3>
       <p>
         Strong topics: price controls (rent ceilings, minimum wage), taxes and
         subsidies, negative externalities (pollution, cigarettes, sugar), positive
@@ -94,7 +94,7 @@ export default function IBEconomicsIA() {
         disproportionately on lower-income households?
       </p>
 
-      <h3>Macroeconomics Commentary</h3>
+      <h3>Macroeconomics commentary</h3>
       <p>
         Strong topics: fiscal policy (government spending, tax cuts), monetary
         policy (interest rate changes), inflation, unemployment, economic growth,
@@ -179,14 +179,15 @@ export default function IBEconomicsIA() {
 
       <h2>Getting your commentary checked before submission</h2>
       <p>
-        A familiar reaction after IA marks come back: "I didn't realise my diagram was
-        missing labels" or "my evaluation was describing, not evaluating". Those marks are
-        easy to recover if you catch them in time.
+        A familiar reaction after IA marks come back: "my evaluation was describing, not
+        evaluating". Those marks are easy to recover if you catch them in time.
       </p>
       <p>
         IBLens reads your commentary against the Economics IA criteria and shows which
         criterion is losing you the most marks, while you can still revise it. It also
-        counts the words against the 800-word limit.
+        counts the words against the 800-word limit. Diagrams do not come through pasted text,
+        so check each diagram's labels yourself: the report judges how your commentary explains
+        them. Ask your teacher first: outside feedback on an IA needs their agreement.
       </p>
       <p>
         <Link href="/essay/economics-ia">Paste your Economics IA commentary into IBLens for criterion-by-criterion feedback →</Link>

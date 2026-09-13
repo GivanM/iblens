@@ -8,7 +8,7 @@ const config: SubjectConfig = {
   metaDescription:
     "AI feedback on your IB Economics IA commentary against the five criteria: diagrams, terminology, application and analysis, key concept and evaluation, with the words counted against 800. Free preview first.",
   canonicalPath: "/essay/economics-ia",
-  heroHeadline: "Get your IB Economics IA commentary checked before your teacher reads it",
+  heroHeadline: "See where your IB Economics IA commentary loses marks before you submit",
   heroSubline:
     "Paste your Economics IA commentary and see which criteria are costing you marks in about a minute, with the words counted against the 800-word limit.",
   analyzerHref: "/essay?type=IA&subject=Economics",

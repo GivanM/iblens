@@ -52,7 +52,7 @@ const SAMPLE_CRITERIA = [
 ];
 
 export default function Home() {
-  const { previewUsed, paidLabel } = useMarkingCta();
+  const { previewUsed, paidLabel, paidLeft } = useMarkingCta();
   const { isAuthenticated } = useAuth();
   const [purchaseModalOpen, setPurchaseModalOpen] = useState(false);
   const [purchaseSku, setPurchaseSku] = useState<ProductKey>("ESSAY_PACK_5");
@@ -158,7 +158,7 @@ export default function Home() {
                 name: "What if I'm not satisfied with my report?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Email us at glushkovim@gmail.com within 7 days of your purchase and we'll refund you in full, no questions asked. We process refunds via the original payment method within 3-5 business days.",
+                  text: "Email us at glushkovim@gmail.com within 7 days of your purchase and we'll refund you in full, no questions asked. We send the refund to the original payment method within 3-5 business days of approving it, and your bank may take a further 5-10 business days to show it.",
                 },
               },
             ],
@@ -265,7 +265,7 @@ export default function Home() {
               <div className="rounded-xl border border-border bg-card p-8">
                 <h3 style={SERIF} className="text-xl font-bold mb-3">Essay Grader</h3>
                 <p className="text-muted-foreground mb-5 leading-relaxed">
-                  Get detailed feedback on your IA, TOK essay or exhibition, English A individual oral, or your Extended Essay if your supervisor agrees. Estimated marks against the published criteria, and specific steps to improve.
+                  Get detailed feedback on your IA, TOK essay or exhibition, English A oral outline or practice oral, or Extended Essay, once your teacher or supervisor has agreed to outside feedback. Estimated marks against the published criteria, and specific steps to improve.
                 </p>
                 <ul className="space-y-2.5 text-sm mb-6">
                   {["Estimated mark and range", "Criteria breakdown", "What is losing marks", "Where marks are recoverable", "What to fix first"].map((item) => (
@@ -367,13 +367,13 @@ export default function Home() {
                 <p className="text-xs text-muted-foreground">Knows you and your school, and marks your IA against the criteria, but comments on coursework drafts are limited, usually to one.</p>
               </div>
               <div className="bg-primary/5 border-2 border-primary rounded-xl p-5 text-center relative">
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full whitespace-nowrap">Between teacher drafts</div>
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full whitespace-nowrap">If your teacher agrees</div>
                 <p className="font-semibold mb-1">IBLens</p>
                 <div style={SERIF} className="text-2xl font-bold text-primary mb-1">$9.99</div>
                 <p className="text-xs text-muted-foreground">Criterion-by-criterion feedback (TOK as a whole), an estimated mark and what is losing marks, in about a minute, with two re-checks.</p>
               </div>
             </div>
-            <p className="text-sm text-muted-foreground">Your first preview is free, one per device or account. No credit card, no account.</p>
+            <p className="text-sm text-muted-foreground">{previewUsed ? `Your free preview is used. A full report is ${paidLeft > 0 ? "one of your paid reports" : "$9.99"}, with two re-checks.` : "Your first preview is free, one per device or account. No credit card, no account."}</p>
           </div>
         </section>
 
@@ -383,7 +383,7 @@ export default function Home() {
             <div className="text-center mb-14">
               <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3">Pricing</p>
               <h2 style={SERIF} className="text-3xl font-bold mb-3">Pay only for what you use.</h2>
-              <p className="text-muted-foreground text-lg">No subscriptions. No commitments. Your first preview is free.</p>
+              <p className="text-muted-foreground text-lg">No subscriptions. No commitments.{previewUsed ? "" : " Your first preview is free."}</p>
             </div>
 
             {/* Free tier highlight */}
@@ -494,7 +494,7 @@ export default function Home() {
               />
               <FAQItem
                 question="What if I'm not satisfied with my report?"
-                answer="Email us at glushkovim@gmail.com within 7 days of your purchase and we'll refund you in full, no questions asked. We process refunds via the original payment method within 3-5 business days."
+                answer="Email us at glushkovim@gmail.com within 7 days of your purchase and we'll refund you in full, no questions asked. We send the refund to the original payment method within 3-5 business days of approving it, and your bank may take a further 5-10 business days to show it."
               />
             </div>
           </div>

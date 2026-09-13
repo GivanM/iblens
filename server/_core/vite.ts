@@ -109,6 +109,14 @@ export function serveStatic(app: Express) {
     let html = fs.readFileSync(htmlPath, "utf-8");
     const userAgent = req.headers["user-agent"] || "";
     html = injectSeoMeta(html, req.originalUrl, userAgent);
+    if (!isValid) {
+      // A 404 used to carry the homepage's title, canonical and "index, follow".
+      html = html
+        .replace(/<meta\s+name="robots"[^>]*>/gi, "")
+        .replace(/<link\s+rel="canonical"[^>]*>/gi, "")
+        .replace(/<title>[^<]*<\/title>/i, "<title>Page not found | IBLens</title>")
+        .replace("</head>", '<meta name="robots" content="noindex" /></head>');
+    }
     res.status(status).set({ "Content-Type": "text/html", ...noCache }).end(html);
   });
 }

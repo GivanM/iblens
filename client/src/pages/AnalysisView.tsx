@@ -238,7 +238,7 @@ export default function AnalysisView() {
             {r.band_range && (
               <div>
                 <div style={SERIF} className="text-3xl font-bold">{r.band_range}</div>
-                <p className="text-xs text-muted-foreground">{(r.criteria?.length ?? 0) > 1 ? "Estimated range" : "Band"}</p>
+                <p className="text-xs text-muted-foreground">{(r.criteria?.length ?? 0) > 1 ? "Range shown in the free preview" : "Band"}</p>
               </div>
             )}
           </div>
