@@ -8,6 +8,7 @@ import { z } from "zod";
 import { invokeLLM } from "./_core/llm";
 import {
   createAnalysis,
+  upsertAccountCopy,
   getUserAnalyses,
   getAnalysisById,
   canUserAnalyzeEssay,
@@ -60,7 +61,7 @@ import { LEMONSQUEEZY_VARIANTS, PRODUCT_KEY_TO_LS_SKU } from "../shared/pricing"
 import { randomUUID } from "crypto";
 import { PRODUCTS } from "./products";
 import { getRubric, buildRubricPromptFragment, unmarkableReason } from "../shared/rubrics";
-import { reconcileScores, isNotAssessableFromText, bandCell } from "./scores";
+import { reconcileScores, isNotAssessableFromText, pickWeakest, previewBand } from "./scores";
 
 const IB_SUBJECTS = [
   "Business Management", "Economics", "History", "Biology", "Chemistry",
@@ -326,12 +327,8 @@ function buildUcasTeaser(result: any) {
 
 function buildTeaser(result: any) {
   const criteria: any[] = Array.isArray(result?.criteria) ? result.criteria : [];
-  const scored = criteria.filter((c) => typeof c?.score === "number" && c?.max > 0);
-  const assessable = scored.filter((c) => !isNotAssessableFromText(c));
-  const pool = assessable.length ? assessable : scored;
-  let weakest = pool.length
-    ? [...pool].sort((a, b) => a.score / a.max - b.score / b.max)[0]
-    : null;
+  let weakest: any = pickWeakest(criteria).weakest;
+  const cell = previewBand(result);
   // Holistic instruments have a single criterion whose comment IS the whole verdict —
   // truncate it in the teaser so the full reasoning stays behind the unlock.
   if (weakest && criteria.length === 1 && typeof weakest.comment === "string" && weakest.comment.length > 320) {
@@ -339,15 +336,15 @@ function buildTeaser(result: any) {
   }
   // With a single holistic criterion its score is the exact mark, which the free
   // preview does not include. The band stays visible.
-  if (weakest && criteria.length === 1) {
+  if (weakest && (criteria.length === 1 || cell?.hideWeakestScore)) {
     weakest = { ...weakest, score: null };
   }
   // A report marked on criteria shows the cell of the scale its total falls in, never a
   // range the model centred on the total, which gave the paid mark away. A task marked as
   // a whole keeps its IB band. Whether the total sits near a band edge is not shown: it
   // would say where in the band the mark is.
-  const bandRange = criteria.length > 1 && typeof result?.predicted_score === "number" && typeof result?.max_score === "number"
-    ? bandCell(result.predicted_score, result.max_score)
+  const bandRange = cell
+    ? cell.band
     : typeof result?.band_range === "string"
       ? (result.band_range.match(/\d+\s*[-\u2013\u2014]\s*\d+|\d+/)?.[0] ?? result.band_range).trim()
       : result?.band_range ?? null;
@@ -418,7 +415,7 @@ const essayRouter = router({
             return { result: normalizeDashes(rec.resultJson) };
           }
           // Keep a copy in the user's dashboard history
-          const copy = await createAnalysis({
+          const copy = await upsertAccountCopy({
             userId: ctx.user.id,
             type: "essay",
             essayType: rec.essayType,
@@ -760,7 +757,7 @@ const essayRouter = router({
           reconcileScores(result, { essayType: rec.essayType, subject: rec.subject, reflectionsPasted: !!input.reflections?.trim(), session });
         }
 
-        const child = await createRerunAnalysis(rec, result, result?.predicted_score != null ? String(result.predicted_score) : undefined, headId);
+        const child = await createRerunAnalysis(rec, result, result?.predicted_score != null ? (result?.max_score != null ? `${result.predicted_score}/${result.max_score}` : String(result.predicted_score)) : undefined, headId);
         const signedIn = (ctx as any).user;
         if (signedIn && child?.id && rec.essayType === "UCAS") {
           // A re-check of the review that was bought, not a review of its own: counted as

@@ -10,7 +10,7 @@ export default function IBIAGrader() {
       datePublished="2026-06-17"
       dateModified="2026-09-13"
     >
-      <h1>IB IA Grader: AI Feedback on Your Internal Assessment</h1>
+      <h1>IB IA grader: AI feedback on your Internal Assessment</h1>
 
       <p>
         An IB Internal Assessment is usually worth 20% to 30% of the final subject grade, and more in some arts subjects. Many students submit without a clear idea of which criterion is costing them marks, because detailed feedback before submission is hard to get. Your teacher can comment on a draft, but not on every revision. Tutors charge by the hour. Classmates rarely know the criteria well enough to mark against them.
@@ -24,7 +24,7 @@ export default function IBIAGrader() {
         <Link href="/essay?type=IA">Get a free preview of my IA →</Link>
       </p>
 
-      <h2>Which IB Subjects Does the Grader Support?</h2>
+      <h2>Which IB subjects does the grader support?</h2>
 
       <p>IBLens marks coursework in 14 subjects, each against the criteria for that subject:</p>
 
@@ -46,7 +46,7 @@ export default function IBIAGrader() {
         Subjects outside this list are not offered: IBLens only marks work it has the published criteria for.
       </p>
 
-      <h2>How the IB IA Grader Works</h2>
+      <h2>How the IB IA grader works</h2>
 
       <ol>
         <li><strong>Choose your essay type and subject.</strong> Select "Internal Assessment (IA) or coursework" and your IB subject from the dropdown.</li>
@@ -55,7 +55,7 @@ export default function IBIAGrader() {
         <li><strong>Get your report.</strong> In about a minute you receive an estimated mark for each criterion your text shows, the marks you are losing and why, and specific steps to recover them. IBLens also counts the words against your subject's limit.</li>
       </ol>
 
-      <h2>What You Get in the Report</h2>
+      <h2>What you get in the report</h2>
 
       <ul>
         <li><strong>Estimated mark and range:</strong> where your IA sits overall against the criteria, with the mark range the draft currently falls in</li>
@@ -65,7 +65,7 @@ export default function IBIAGrader() {
         <li><strong>What to fix first:</strong> concrete changes to make before submission</li>
       </ul>
 
-      <h2>IBLens vs Other IB IA Graders</h2>
+      <h2>IBLens vs other IB IA graders</h2>
 
       <p>
         Several tools claim to grade IB IAs. Here is how IBLens compares:
@@ -77,13 +77,13 @@ export default function IBIAGrader() {
         <li><strong>vs. a tutor:</strong> a good tutor brings subject judgement no tool has, at an hourly rate. IBLens gives you an estimate against the criteria in about a minute, for a fixed price, with two re-checks of revised versions within 14 days of the report opening.</li>
       </ul>
 
-      <h2>Is the First IB IA Preview Really Free?</h2>
+      <h2>Is the first IB IA preview really free?</h2>
 
       <p>
-        Yes, your first preview is free: band range, your weakest criterion with its full feedback, and the top risks. The complete report unlocks for $9.99 and includes two free re-checks of revised versions of the same work within 14 days of the report opening. In packs it works out at $5.00 per report (5 for $24.99) or $4.50 (10 for $44.99).
+        Yes, your first preview is free: estimated range, your weakest criterion with its full feedback, and the top risks. The complete report unlocks for $9.99 and includes two free re-checks of revised versions of the same work within 14 days of the report opening. In packs it works out at $5.00 per report (5 for $24.99) or $4.50 (10 for $44.99).
       </p>
 
-      <h2>How Accurate Is the AI Grade?</h2>
+      <h2>How accurate is the AI grade?</h2>
 
       <p>
         The grader is given the criteria for your subject and session: the name of each criterion, its maximum mark and what it assesses, summarised from the subject guide. Its mark is an estimate from a language model, not a moderated mark, and no tool can predict exactly what a teacher or moderator will decide on a borderline piece of work. Where it is useful is in showing which criteria are underdeveloped, the mark range the draft sits in, and where to spend revision time. Running it before your teacher reads the draft means their comments can go on substance.

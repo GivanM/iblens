@@ -10,7 +10,7 @@ export default function PsychologyIA2027() {
       datePublished="2026-08-11"
       dateModified="2026-09-13"
     >
-      <h1>IB Psychology IA Changes 2027: The Research Proposal, Explained</h1>
+      <h1>IB Psychology IA changes 2027: the research proposal, explained</h1>
 
       <p>
         From the May 2027 session, the IB Psychology Internal Assessment changes format completely: instead of conducting an experiment and writing it up, you write a <strong>research proposal</strong> for a study, and no experiment is carried out at all. The proposal is marked out of 24, up from 22 for the old experimental report, and the criteria are new. If you sit your exams in May 2027 or later, this is the format you are assessed on.

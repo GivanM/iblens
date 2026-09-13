@@ -11,11 +11,11 @@ export default function IBExtendedEssayExamples() {
       datePublished="2026-06-06"
       dateModified="2026-09-13"
     >
-      <h1>IB Extended Essay Examples: What High-Scoring EEs Do Differently</h1>
+      <h1>IB Extended Essay examples: what high-scoring EEs do differently</h1>
       <p>The Extended Essay is one of the most intimidating pieces of work in the IB Diploma Programme. At 4,000 words, it is longer than anything most 16 and 17-year-olds have written, and the open format (choose your own topic, design your own research question, argue your own thesis) leaves many students stuck. The best way to break through that paralysis is to study strong IB extended essay examples and understand <em>why</em> they worked, not just what they said.</p>
       <p>This guide walks through what examiners actually reward, gives you concrete example research questions by subject, shows the most common mistakes that drag scores down, and explains the mindset shift that separates a C-grade EE from one that earns a coveted A.</p>
 
-      <h2>What Makes a High-Scoring IB Extended Essay?</h2>
+      <h2>What makes a high-scoring IB Extended Essay?</h2>
       <p>From May 2027 the IB marks Extended Essays out of 30 on five criteria: Framework for the essay (Criterion A), Knowledge and understanding (B), Analysis and line of argument (C), Discussion and evaluation (D) and Reflection (E). Discussion and evaluation carries the most marks, 8 of 30. Through November 2026 the essay is marked out of 34 on the older criteria, where an A has been 27 or more in recent sessions and Critical thinking carries 12 marks.</p>
       <p>Examiners are not looking for a Wikipedia-style overview of a topic. They want to see a student take a narrow, specific question and subject it to sustained, disciplined analysis. The difference between a mediocre essay and an excellent one almost always comes down to three things:</p>
       <ul>
@@ -24,9 +24,9 @@ export default function IBExtendedEssayExamples() {
         <li><strong>Engagement with counter-evidence.</strong> A sophisticated essay acknowledges evidence that challenges its thesis, explains why it does not overturn the argument, and emerges stronger for it.</li>
       </ul>
 
-      <h2>IB Extended Essay Examples by Subject</h2>
+      <h2>IB Extended Essay examples by subject</h2>
 
-      <h3>Economics Extended Essay Examples</h3>
+      <h3>Economics Extended Essay examples</h3>
       <p>Economics EEs are popular because students feel comfortable with theory, but they are frequently penalised for being too theoretical and not empirical enough. Strong Economics EEs apply specific microeconomic or macroeconomic concepts to a real, local, measurable situation.</p>
       <ul>
         <li><em>"To what extent did the introduction of the sugar tax in the UK (2018) reduce consumption of high-sugar soft drinks among 10-16-year-olds?"</em> This works because it picks a specific policy, a specific country, a specific demographic, and a specific measurable outcome.</li>
@@ -34,7 +34,7 @@ export default function IBExtendedEssayExamples() {
         <li><em>"To what extent does monopsony power explain wage stagnation among supermarket shelf-stackers in regional Australia, 2015-2023?"</em> Strong because it applies a specific market structure theory to a concrete labour market with accessible wage data.</li>
       </ul>
 
-      <h3>History Extended Essay Examples</h3>
+      <h3>History Extended Essay examples</h3>
       <p>Very recent events make risky History EE topics. For November 2026 the Extended Essay guide says essays on events of the past 10 years are not acceptable, as current affairs rather than history; the guide for May 2027 onward sets no fixed cut-off, but recent events rarely have a body of historical writing to engage with. The strongest essays work with historiographical debate.</p>
       <ul>
         <li><em>"To what extent was Stalin's collectivisation policy driven by ideological commitment to Marxism rather than pragmatic economic necessity, 1929-1933?"</em></li>
@@ -42,7 +42,7 @@ export default function IBExtendedEssayExamples() {
         <li><em>"To what extent did the Berlin Airlift (1948-1949) represent a turning point in Western Cold War strategy, rather than a continuation of pre-existing policy?"</em></li>
       </ul>
 
-      <h3>Biology Extended Essay Examples</h3>
+      <h3>Biology Extended Essay examples</h3>
       <p>Many strong Biology EEs are built on a self-designed experiment or other primary data, though a well-chosen published dataset can also work.</p>
       <ul>
         <li><em>"How does the concentration of caffeine in growth medium affect the germination rate and early root elongation of Vigna radiata (mung bean) seeds?"</em></li>
@@ -50,7 +50,7 @@ export default function IBExtendedEssayExamples() {
         <li><em>"What is the relationship between ambient light intensity and the rate of photosynthesis in Elodea canadensis measured by oxygen bubble production?"</em></li>
       </ul>
 
-      <h3>English Extended Essay Examples</h3>
+      <h3>English Extended Essay examples</h3>
       <p>English EEs require close textual analysis focused on literary technique and its effect on meaning.</p>
       <ul>
         <li><em>"How does Kazuo Ishiguro use unreliable first-person narration in Never Let Me Go to explore complicity in systemic injustice?"</em></li>
@@ -58,27 +58,27 @@ export default function IBExtendedEssayExamples() {
         <li><em>"How does Chimamanda Ngozi Adichie's use of code-switching in Americanah function as a marker of cultural identity negotiation?"</em></li>
       </ul>
 
-      <h3>Psychology Extended Essay Examples</h3>
+      <h3>Psychology Extended Essay examples</h3>
       <ul>
         <li><em>"To what extent does the evidence from twin studies support a genetic basis for schizophrenia over environmental explanations?"</em></li>
         <li><em>"How reliable is eyewitness testimony as legal evidence, in light of psychological research on memory reconstruction?"</em></li>
       </ul>
 
-      <h3>Physics Extended Essay Examples</h3>
+      <h3>Physics Extended Essay examples</h3>
       <ul>
         <li><em>"How does the angle of incidence of a laser beam on a diffraction grating affect the spacing of interference fringes?"</em></li>
         <li><em>"What drag coefficient does the relationship between the mass and the terminal velocity of a falling paper cone imply?"</em></li>
       </ul>
 
-      <h2>What Kills an Extended Essay Score</h2>
+      <h2>What kills an Extended Essay score</h2>
 
-      <h3>The "Big Topic" Trap</h3>
+      <h3>The "big topic" trap</h3>
       <p>One of the most common reasons for a low score is a research question that is too broad. "What caused the First World War?" is a subject for a book, not a 4,000-word essay. The problem shows from the first page, and a question that cannot be answered in the space holds down Criterion A and everything that depends on it.</p>
 
-      <h3>Description Masquerading as Analysis</h3>
+      <h3>Description masquerading as analysis</h3>
       <p>Many students describe what sources say without evaluating why it matters. Discussion and evaluation accounts for 8 of the 30 marks from May 2027, as critical thinking did for 12 of 34 before it. In History, engage with historiography. In Biology, discuss limitations of your method. In Economics, apply theory to real data.</p>
 
-      <h3>A Weak Conclusion</h3>
+      <h3>A weak conclusion</h3>
       <p>The conclusion must directly and explicitly answer the research question. It should not introduce new evidence or vaguely state "the issue is complex." A strong conclusion names the answer, acknowledges the strongest counter-argument, and identifies what further research would be needed.</p>
 
       <h3>Weak Sources</h3>
@@ -97,11 +97,11 @@ export default function IBExtendedEssayExamples() {
         ]}
       />
 
-      <h2>Before You Submit: Get Feedback on Your Draft</h2>
+      <h2>Before you submit: get feedback on your draft</h2>
       <p>One of the hardest parts of the EE process is getting objective feedback. Your supervisor may be encouraging but not specific. By the time you have spent months on a topic, it is almost impossible to read your own essay with fresh eyes.</p>
       <p>Check with your supervisor first: the EE guide allows no assistance with the research, writing or proofreading beyond what your supervisor permits. If they agree, <Link href="/essay/extended-essay">IBLens reads your Extended Essay draft against the criteria for your session</Link> and gives you feedback on each criterion before you hand it in: where the argument loses coherence, where the sources need strengthening, and whether the conclusion actually answers the research question.</p>
 
-      <h2>Final Checklist Before Submitting</h2>
+      <h2>Final checklist before submitting</h2>
       <ul>
         <li>Does your research question appear word-for-word in your introduction and conclusion?</li>
         <li>Is every paragraph contributing to your argument, or are some just providing background?</li>

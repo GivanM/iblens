@@ -28,7 +28,7 @@ export default function IBChemistryExtendedEssay() {
         high-scoring Chemistry EEs.
       </p>
 
-      <h2>What Makes Chemistry a Good EE Subject</h2>
+      <h2>What makes Chemistry a good EE subject</h2>
       <p>
         Chemistry lends itself naturally to the EE because it produces measurable,
         quantitative data and connects directly to existing peer-reviewed literature.
@@ -41,7 +41,7 @@ export default function IBChemistryExtendedEssay() {
         compare your results with published values.
       </p>
 
-      <h2>Choosing a Research Question for Chemistry EE</h2>
+      <h2>Choosing a research question for Chemistry EE</h2>
       <p>
         A strong Chemistry EE research question specifies the system being studied,
         the variable being manipulated, the variable being measured, and the
@@ -50,7 +50,7 @@ export default function IBChemistryExtendedEssay() {
         investigation.
       </p>
 
-      <h3>Examples of Strong Chemistry EE Research Questions</h3>
+      <h3>Examples of strong Chemistry EE research questions</h3>
       <ul>
         <li>How does the concentration of ascorbic acid in orange juice change with oxidation time when exposed to air at 25 degrees C, as determined by iodometric titration?</li>
         <li>To what extent does the chain length of primary alcohols (C1-C5) affect the enthalpy of combustion, as measured by calorimetry?</li>
@@ -58,7 +58,7 @@ export default function IBChemistryExtendedEssay() {
         <li>What is the relationship between metal ion concentration and the rate of the iodine clock reaction in a phosphate-buffered solution?</li>
       </ul>
 
-      <h3>Research Question Mistakes in Chemistry EE</h3>
+      <h3>Research question mistakes in Chemistry EE</h3>
       <p>
         The most common error is a question that is essentially confirming a known
         result without adding analytical depth. "How does temperature affect the rate
@@ -68,7 +68,7 @@ export default function IBChemistryExtendedEssay() {
         against the literature value.
       </p>
 
-      <h2>IB Chemistry EE Assessment Criteria</h2>
+      <h2>IB Chemistry EE assessment criteria</h2>
       <p>From May 2027, the Chemistry EE is marked out of 30 on five criteria:</p>
       <ul>
         <li><strong>Criterion A: Framework for the essay (6 marks).</strong> A clear, focused research question, a detailed and reproducible method with a justified choice of variables and equipment, and a structure that serves the question.</li>
@@ -92,7 +92,7 @@ export default function IBChemistryExtendedEssay() {
         error or a genuine chemical phenomenon.
       </p>
 
-      <h2>How to Structure a Chemistry EE</h2>
+      <h2>How to structure a Chemistry EE</h2>
       <ul>
         <li><strong>Introduction (400-500 words):</strong> State the research question precisely. Provide chemical context: why is this system interesting, and what does published literature say about it? State a hypothesis derived from theory, not intuition.</li>
         <li><strong>Background Chemistry (500-700 words):</strong> Explain the chemistry your investigation depends on, going beyond the syllabus where the question needs it: Michaelis-Menten theory for enzyme kinetics, for example, or the Nernst equation for cell potentials that change with concentration. Criterion B marks are won here.</li>
@@ -102,7 +102,7 @@ export default function IBChemistryExtendedEssay() {
         <li><strong>Conclusion (200-300 words):</strong> Answer the research question directly. State the degree of confidence in your answer given the limitations identified.</li>
       </ul>
 
-      <h2>Chemistry EE Topics That Score Well</h2>
+      <h2>Chemistry EE topics that score well</h2>
       <ul>
         <li><strong>Kinetics and reaction rates:</strong> Iodine clock reactions, enzyme-catalysed reactions, or acid-catalysed hydrolysis. These produce clean quantitative data and connect to the Arrhenius equation and activation energy theory.</li>
         <li><strong>Electrochemistry:</strong> Investigating how concentration, temperature, or electrode material affects cell potential or electrolysis efficiency. Strong connection to the Nernst equation (Criterion B).</li>
@@ -111,7 +111,7 @@ export default function IBChemistryExtendedEssay() {
         <li><strong>Thermochemistry:</strong> Measuring enthalpy changes for related reactions (homologous series, isomers, reaction conditions) and comparing to theoretical values from Hess's law or bond enthalpies.</li>
       </ul>
 
-      <h2>Analyse Your Chemistry EE With IBLens</h2>
+      <h2>Analyse your Chemistry EE with IBLens</h2>
       <p>
         IBLens reads Extended Essays against the assessment criteria for your session.
         Paste a draft of your Chemistry EE to receive criterion-by-criterion feedback

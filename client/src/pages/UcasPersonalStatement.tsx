@@ -109,7 +109,9 @@ export default function UcasPersonalStatement() {
   }, [unlockedQ.data, result]);
   const serverRechecks = (unlockedQ.data as any)?.rerunsLeft ?? (paidReviewQ.data as any)?.rerunsLeft ?? null;
   // With several reviews on this browser, the count is the selected review's.
-  const effectiveRechecks = ucasReports.length > 1 && ucasTarget ? ucasTarget.rerunsLeft : (rechecksLeft ?? serverRechecks);
+  // A free preview of another statement becomes the newest review on the device and is
+  // locked, which hid the paid review's re-checks; the list still knows them.
+  const effectiveRechecks = ucasTarget && (ucasReports.length > 1 || !isUnlocked) ? ucasTarget.rerunsLeft : (rechecksLeft ?? serverRechecks);
   const recheck = trpc.essay.rerunAnonymous.useMutation({
     onSuccess: (d: any) => {
       setResult(d.result);
@@ -216,7 +218,7 @@ export default function UcasPersonalStatement() {
       <div>
         <p className="text-xs font-bold uppercase tracking-wider text-primary mb-2">For 2027 entry, and 2028 deferred entry</p>
         <h1 style={SERIF} className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
-          UCAS Personal Statement Checker
+          UCAS personal statement checker
         </h1>
         <p className="text-muted-foreground">
           From 2026 entry the personal statement is three separate questions sharing one 4,000-character
@@ -374,7 +376,7 @@ export default function UcasPersonalStatement() {
             // then the free preview while it is unused, then a paid report, then buying.
             // The free preview used to disappear as soon as anything had been bought.
             const busy = review.isPending || recheck.isPending;
-            const canRecheck = isUnlocked && (effectiveRechecks === null || effectiveRechecks > 0);
+            const canRecheck = (isUnlocked && (effectiveRechecks === null || effectiveRechecks > 0)) || (!!ucasTarget && ucasTarget.windowOpen && ucasTarget.rerunsLeft > 0);
             const mode: "recheck" | "free" | "paid" | "buy" = canRecheck ? "recheck" : !previewUsed ? "free" : canPayHere ? "paid" : "buy";
             const run = (m: "free" | "paid") => review.mutate({
               course: course.trim(), universityType,

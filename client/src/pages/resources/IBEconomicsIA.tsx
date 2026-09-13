@@ -19,7 +19,7 @@ export default function IBEconomicsIA() {
         covers them.
       </p>
 
-      <h2>How the IB Economics IA Is Marked</h2>
+      <h2>How the IB Economics IA is marked</h2>
       <p>
         Each commentary is marked on five criteria (A-E), for a maximum of 14 marks per
         commentary. The portfolio is marked out of 45: 42 across the three commentaries
@@ -43,7 +43,7 @@ export default function IBEconomicsIA() {
         evaluation that describes rather than judges.
       </p>
 
-      <h2>How to Choose a Good Article</h2>
+      <h2>How to choose a good article</h2>
       <p>
         Choosing the article decides much of what follows. A good IA article has three properties:
       </p>
@@ -72,7 +72,7 @@ export default function IBEconomicsIA() {
         your teacher cannot be used.
       </p>
 
-      <h2>IB Economics IA Examples by Unit</h2>
+      <h2>IB Economics IA examples by unit</h2>
 
       <h3>Microeconomics Commentary</h3>
       <p>
@@ -114,7 +114,7 @@ export default function IBEconomicsIA() {
         can actually be addressed by demand-side monetary policy.
       </p>
 
-      <h3>The Global Economy Commentary</h3>
+      <h3>The global economy commentary</h3>
       <p>
         Strong topics: tariffs, quotas, trade agreements, exchange rate changes
         and their effect on trade, current account deficits, protectionism vs
@@ -133,7 +133,7 @@ export default function IBEconomicsIA() {
         partners and the WTO implications.
       </p>
 
-      <h2>Diagrams: The Cheapest Marks in the IA</h2>
+      <h2>Diagrams: the cheapest marks in the IA</h2>
       <p>
         Criterion A (Diagrams) is worth 3 marks per commentary, and a mark is easily lost
         here. The most frequent errors are:
@@ -146,7 +146,7 @@ export default function IBEconomicsIA() {
         <li><strong>Wrong diagram for the scenario:</strong> a supply and demand diagram for a macroeconomics article about fiscal policy, which needs AD/AS, is not a relevant diagram, and relevance is what the descriptors reward first.</li>
       </ul>
 
-      <h2>Evaluation: The Hardest Marks to Get</h2>
+      <h2>Evaluation: the hardest marks to get</h2>
       <p>
         Criterion E (Evaluation) is 3 marks and is where many commentaries fall short.
         There are four reliable evaluation frameworks that work across almost any
@@ -163,7 +163,7 @@ export default function IBEconomicsIA() {
         you have a developed, balanced evaluation.
       </p>
 
-      <h2>Word Count and Structure</h2>
+      <h2>Word count and structure</h2>
       <p>
         Each commentary has an 800-word limit, and moderators do not read beyond 800
         words. Diagrams and their short labels, tables of statistical data, equations and
@@ -177,7 +177,7 @@ export default function IBEconomicsIA() {
         <li><strong>Conclusion (40-60 words):</strong> State your overall judgement. Is the policy likely to achieve its goal? Under what conditions?</li>
       </ul>
 
-      <h2>Getting Your Commentary Checked Before Submission</h2>
+      <h2>Getting your commentary checked before submission</h2>
       <p>
         A familiar reaction after IA marks come back: "I didn't realise my diagram was
         missing labels" or "my evaluation was describing, not evaluating". Those marks are

@@ -20,7 +20,7 @@ export default function WriteMyIBExtendedEssay() {
         what kind of help is actually worth pursuing.
       </p>
 
-      <h2>Why the Extended Essay Feels Impossible (And Why It Isn't)</h2>
+      <h2>Why the Extended Essay feels impossible (and why it isn't)</h2>
 
       <h3>You don't have a focused enough research question</h3>
       <p>
@@ -80,7 +80,7 @@ export default function WriteMyIBExtendedEssay() {
         arguing, or are you describing?
       </p>
 
-      <h2>What Your EE Supervisor Can (and Can't) Do</h2>
+      <h2>What your EE supervisor can (and can't) do</h2>
       <p>
         Your IB Extended Essay supervisor is assigned to give you guidance, but
         within specific limits set by the IBO. They can:
@@ -106,7 +106,7 @@ export default function WriteMyIBExtendedEssay() {
         criterion.
       </p>
 
-      <h2>What Paying Someone to Write Your Essay Actually Costs You</h2>
+      <h2>What paying someone to write your essay actually costs you</h2>
       <p>
         This needs to be said plainly: submitting work written by someone else as
         your own is academic misconduct under IB regulations. If it is found, no grade is
@@ -123,7 +123,7 @@ export default function WriteMyIBExtendedEssay() {
         Reflections that do not match the essay are hard to write and easy to spot.
       </p>
 
-      <h2>What Actually Works: Getting Feedback on Your Own Draft</h2>
+      <h2>What actually works: getting feedback on your own draft</h2>
       <p>
         The most useful thing you can do, apart from the work itself, is get
         criterion-level feedback on a draft you wrote yourself. The difference between a
@@ -146,7 +146,7 @@ export default function WriteMyIBExtendedEssay() {
         <Link href="/essay/extended-essay">Get criterion-by-criterion feedback on your Extended Essay draft →</Link>
       </p>
 
-      <h2>Practical Tips to Get Unstuck Right Now</h2>
+      <h2>Practical tips to get unstuck right now</h2>
       <ul>
         <li><strong>Write a terrible first draft on purpose.</strong> Set a timer for 90 minutes and write from memory, without checking sources. You cannot edit a blank page. Get something on paper and then improve it.</li>
         <li><strong>Reverse-outline your current draft.</strong> Write one sentence summarising each paragraph as it currently exists. If any paragraph does not connect back to your research question, it is probably padding and can be cut or redirected.</li>

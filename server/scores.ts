@@ -17,15 +17,77 @@ export function isNotAssessableFromText(c: any): boolean {
 }
 
 /**
+ * The cell of [lo, hi] that holds the total: cells of `width` counted down from hi, with a
+ * leftover at the bottom narrower than 3 joined to the cell above it, so no cell ever names
+ * fewer than three possible totals.
+ */
+function cellIn(total: number, lo: number, hi: number, width: number): [number, number] {
+  const t = Math.max(lo, Math.min(hi, total));
+  let top = hi - width * Math.floor((hi - t) / width);
+  let bottom = top - width + 1;
+  if (bottom > lo && bottom - lo < 3) bottom = lo;
+  if (bottom <= lo) {
+    bottom = lo;
+    if (top - lo + 1 < 3) top = Math.min(hi, top + width);
+  }
+  return [bottom, top];
+}
+
+/**
  * The band shown with a mark: a fixed cell of the scale, counted down from the top, that
  * contains the total. A band centred on the total, which is what the model tends to write,
  * gave the paid mark away in the free preview as the middle of the band.
  */
 export function bandCell(total: number, max: number): string {
+  const [a, b] = cellIn(total, 0, max, Math.max(3, Math.round(max / 6)));
+  return `${a}-${b}`;
+}
+
+/** The criterion the free preview shows in full: the one losing the largest share of its marks. */
+export function pickWeakest(criteria: any[]) {
+  const scored = criteria.filter((c) => typeof c?.score === "number" && c?.max > 0);
+  const assessable = scored.filter((c) => !isNotAssessableFromText(c));
+  const pool = assessable.length ? assessable : scored;
+  const weakest = pool.length ? [...pool].sort((a, b) => a.score / a.max - b.score / b.max)[0] : null;
+  return { weakest, pool, scored };
+}
+
+/**
+ * The range a report marked on criteria shows, and whether its weakest criterion's mark can
+ * be shown with it. The preview gives that mark and every other maximum, and every other
+ * criterion scores at least the same share, so the total cannot be below a floor the reader
+ * can work out. Cells over the whole scale then sometimes held a single possible total, the
+ * mark the full report sells. Cells are cut from the totals still possible; when fewer than
+ * three remain, the weakest criterion's mark is left out instead.
+ */
+export function previewBand(result: any): { band: string; hideWeakestScore: boolean } | null {
+  const criteria: any[] = Array.isArray(result?.criteria) ? result.criteria : [];
+  const total = result?.predicted_score;
+  const max = result?.max_score;
+  if (criteria.length <= 1 || typeof total !== "number" || typeof max !== "number" || max <= 0) return null;
   const width = Math.max(3, Math.round(max / 6));
-  const hi = Math.max(0, max - width * Math.floor((max - total) / width));
-  const lo = Math.max(0, hi - width + 1);
-  return `${lo}-${hi}`;
+  const { weakest, pool, scored } = pickWeakest(criteria);
+  if (weakest) {
+    const share = weakest.score / weakest.max;
+    // The weakest is the first criterion with the lowest share, so one listed before it
+    // has a strictly higher share and one listed after it at least the same.
+    const at = criteria.indexOf(weakest);
+    let floor = 0;
+    for (const c of scored) {
+      if (c === weakest) floor += c.score;
+      else if (pool.includes(c)) {
+        const least = criteria.indexOf(c) < at ? Math.floor(share * c.max + 1e-9) + 1 : Math.ceil(share * c.max - 1e-9);
+        floor += Math.min(c.max, least);
+      }
+    }
+    // Its own mark is shown, so the most the total can be is that mark plus every other maximum.
+    const ceiling = max - (weakest.max - weakest.score);
+    if (ceiling - floor + 1 >= 3 && total >= floor && total <= ceiling) {
+      const [a, b] = cellIn(total, floor, ceiling, width);
+      return { band: `${a}-${b}`, hideWeakestScore: false };
+    }
+  }
+  return { band: bandCell(total, max), hideWeakestScore: !!weakest };
 }
 
 export type ReconcileOptions = {
@@ -59,7 +121,7 @@ export function reconcileScores(result: any, opts: ReconcileOptions) {
       c.comment = reflectionMissing
         ? opts.session === "may2027"
           ? "Not assessed: this criterion is marked on your reflective statement (RPF), which was not pasted. The IB awards zero for Criterion E if the RPF is blank, not submitted or written in a language other than that of the essay."
-          : "Not assessed: this criterion is marked on your reflections (RPPF), which were not pasted."
+          : "Not assessed: this criterion is marked on your reflections (RPPF), which were not pasted. The IB awards zero for Criterion E if the RPPF is not submitted, is blank or is written in a language other than that of the essay."
         : musicExercise
           ? "Not assessed: this criterion is judged on the exercise itself, the score or recording, which text cannot carry."
           : "Not assessed: language is judged on the spoken oral, and an outline cannot show it.";
@@ -73,6 +135,6 @@ export function reconcileScores(result: any, opts: ReconcileOptions) {
   const max = marked.reduce((s, c) => s + c.max, 0);
   result.predicted_score = total;
   result.max_score = max;
-  result.band_range = bandCell(total, max);
+  result.band_range = previewBand(result)?.band ?? bandCell(total, max);
   return result;
 }

@@ -24,7 +24,7 @@ export default function IBUniversityStrategy() {
         to use.
       </p>
 
-      <h2>Step 1: Build a Balanced List</h2>
+      <h2>Step 1: build a balanced list</h2>
       <p>
         A common mistake is applying mostly to courses that are a stretch and too few that are
         realistic. A balanced list has three parts:
@@ -40,7 +40,7 @@ export default function IBUniversityStrategy() {
         minimum.
       </p>
 
-      <h2>Step 2: Learn How Each System Reads the IB</h2>
+      <h2>Step 2: learn how each system reads the IB</h2>
       <p>
         UK universities make conditional offers on a total and on HL grades, such as "38 points
         including 766 at HL", and you have to meet both. US universities read the IB within a
@@ -52,7 +52,7 @@ export default function IBUniversityStrategy() {
         requirements Oxford, Cambridge and ETH Zurich publish.
       </p>
 
-      <h2>Step 3: Match Your HL Subjects to the Courses You Want</h2>
+      <h2>Step 3: match your HL subjects to the courses you want</h2>
       <p>
         HL subject choice is the academic decision with the longest reach, and it is hard to change
         after the first year.
@@ -64,7 +64,7 @@ export default function IBUniversityStrategy() {
         <li><strong>Humanities and law:</strong> these rarely set strict HL requirements, but clear, well-argued writing matters, and the Extended Essay is good evidence of it.</li>
       </ul>
 
-      <h2>Step 4: Plan Around the Application Systems</h2>
+      <h2>Step 4: plan around the application systems</h2>
       <ul>
         <li><strong>UCAS (UK):</strong> Oxford, Cambridge and most medicine, dentistry and veterinary courses have an October deadline; most other courses have a later deadline in January. The exact dates for your entry year are on ucas.com. The personal statement answers three questions within 4,000 characters in total.</li>
         <li><strong>United States:</strong> early application deadlines usually fall in November and regular deadlines in January. Early Decision is binding, so do not apply Early Decision with essays that are not ready.</li>
@@ -76,7 +76,7 @@ export default function IBUniversityStrategy() {
         are issued, and what your teachers base them on.
       </p>
 
-      <h2>Step 5: The Extended Essay and TOK</h2>
+      <h2>Step 5: the Extended Essay and TOK</h2>
       <p>
         Your EE and TOK grades together give up to 3 bonus points, and at the edge of an offer
         those points can matter. The EE can help your application in another way too: an essay in
@@ -84,14 +84,14 @@ export default function IBUniversityStrategy() {
         concrete to write about in a personal statement or to discuss at interview.
       </p>
 
-      <h2>Step 6: Avoid the Common Mistakes</h2>
+      <h2>Step 6: avoid the common mistakes</h2>
       <ul>
         <li><strong>Subject choices that do not fit the course:</strong> if your HL subjects and your intended course do not obviously match, your application has to explain why.</li>
         <li><strong>Generic writing:</strong> "I have always been fascinated by medicine" opens a great many personal statements. Specific, concrete writing about what you have actually done and thought stands out.</li>
         <li><strong>Finding requirements too late:</strong> a required HL subject or admissions test discovered weeks before a deadline cannot be fixed. Research requirements well before you apply.</li>
       </ul>
 
-      <h2>Where IBLens Fits</h2>
+      <h2>Where IBLens fits</h2>
       <p>
         IBLens no longer offers university recommendations. What it does is help with the writing:
         the <Link href="/ucas-personal-statement">UCAS personal statement checker</Link> reviews your
@@ -100,7 +100,7 @@ export default function IBUniversityStrategy() {
         assessment criteria, which feed into the grades and bonus points your offers depend on.
       </p>
 
-      <h2>A Practical Checklist</h2>
+      <h2>A practical checklist</h2>
       <ul>
         <li><strong>First year of the Diploma:</strong> check that your HL subjects fit the courses you are considering, and choose an EE topic with your intended course in mind.</li>
         <li><strong>Spring and summer before you apply:</strong> build your list across reach, target and safety, and confirm subject requirements, admissions tests and deadlines for each course.</li>

@@ -28,7 +28,7 @@ export default function IBPsychologyExtendedEssay() {
         than a fan, and the mistakes that most often drag essays into the middle bands.
       </p>
 
-      <h2>What a Psychology EE Is, and Is Not</h2>
+      <h2>What a Psychology EE is, and is not</h2>
       <p>
         Through November 2026 the Psychology IA is an experiment based on a published
         study, with your own participants, data and statistics; from May 2027 it is a
@@ -44,7 +44,7 @@ export default function IBPsychologyExtendedEssay() {
         talks and self-help books have no evidential standing in this essay.
       </p>
 
-      <h2>Choosing a Research Question for a Psychology EE</h2>
+      <h2>Choosing a research question for a Psychology EE</h2>
       <p>A strong Psychology EE research question has four characteristics:</p>
       <ul>
         <li><strong>Anchored in a real literature:</strong> Published, peer-reviewed studies exist on both sides of the question, giving you material to evaluate.</li>
@@ -53,7 +53,7 @@ export default function IBPsychologyExtendedEssay() {
         <li><strong>Genuinely contested:</strong> If every study agrees, there is nothing to argue; disagreement in the literature is your raw material.</li>
       </ul>
 
-      <h3>Examples of Strong Psychology EE Research Questions</h3>
+      <h3>Examples of strong Psychology EE research questions</h3>
       <ul>
         <li>
           To what extent does post-event information distort eyewitness memory of a
@@ -78,7 +78,7 @@ export default function IBPsychologyExtendedEssay() {
         </li>
       </ul>
 
-      <h3>Weak Research Questions, and Why They Fail</h3>
+      <h3>Weak research questions, and why they fail</h3>
       <ul>
         <li>
           Why do people dream?
@@ -94,7 +94,7 @@ export default function IBPsychologyExtendedEssay() {
         </li>
       </ul>
 
-      <h2>How the Five EE Criteria Play Out in Psychology</h2>
+      <h2>How the five EE criteria play out in Psychology</h2>
       <p>From May 2027, every Extended Essay is marked out of 30 on five criteria. In Psychology they reward the following:</p>
       <ul>
         <li><strong>Criterion A: Framework for the essay (6 marks).</strong> A precise psychological question, a visible method for a literature-based essay (how you found and selected studies, and why these studies and not others) and a structure organised to answer the question rather than to tour the topic.</li>
@@ -110,7 +110,7 @@ export default function IBPsychologyExtendedEssay() {
         analysis, discussion and evaluation together make up Critical thinking.
       </p>
 
-      <h2>Working With Real Studies, Critically</h2>
+      <h2>Working with real studies, critically</h2>
       <p>
         The evidence base of a Psychology EE is peer-reviewed research: journal
         articles and the studies discussed in academic textbooks. For each study
@@ -135,7 +135,7 @@ export default function IBPsychologyExtendedEssay() {
         the essay cannot separate evidence from folklore.
       </p>
 
-      <h2>Common Mark-Losing Mistakes in Psychology EEs</h2>
+      <h2>Common mark-losing mistakes in Psychology EEs</h2>
       <ul>
         <li><strong>The annotated list:</strong> a parade of study summaries with no argument connecting them. Coverage without evaluation caps Criteria C and D.</li>
         <li><strong>Describing instead of evaluating:</strong> reporting what each study found but never assessing its sample, method or measures.</li>
@@ -145,7 +145,7 @@ export default function IBPsychologyExtendedEssay() {
         <li><strong>Overclaiming in the conclusion:</strong> a confident verdict the mixed evidence cannot carry. A calibrated "the evidence partly supports…" answer scores better than false certainty.</li>
       </ul>
 
-      <h2>Frequently Asked Questions</h2>
+      <h2>Frequently asked questions</h2>
       <h3>Can I run my own experiment for a Psychology EE?</h3>
       <p>
         No. A Psychology EE must be based on secondary sources only, and collecting
@@ -168,7 +168,7 @@ export default function IBPsychologyExtendedEssay() {
         no data collection of your own.
       </p>
 
-      <h2>Grade Your Psychology EE Before You Submit</h2>
+      <h2>Grade your Psychology EE before you submit</h2>
       <p>
         IBLens analyses Extended Essays against the published criteria for your exam session and shows
         you, criterion by criterion, where marks are being lost, including the

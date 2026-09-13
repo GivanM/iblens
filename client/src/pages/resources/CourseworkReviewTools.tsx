@@ -10,7 +10,7 @@ export default function CourseworkReviewTools() {
       datePublished="2026-08-11"
       dateModified="2026-09-13"
     >
-      <h1>AI Tools IB Students Use to Review Coursework Before Submission (2026)</h1>
+      <h1>AI tools IB students use to review coursework before submission (2026)</h1>
 
       <p>
         Before the coursework deadline, most IB students want the same thing: an honest read on where a draft stands against the actual assessment criteria. For the Extended Essay, check with your supervisor first: its guide allows no help with the research, writing or proofreading beyond what the supervisor permits. A handful of tools now do this with AI. Here is how they compare, including where we fit, stated as plainly as we describe everyone else. Details below were checked in August 2026, and the RevisionDojo row again on 13 September 2026; features and prices change, so verify on each site.
@@ -44,7 +44,7 @@ export default function CourseworkReviewTools() {
           <strong>A free look before you pay.</strong> Look for a free entry point, such as a preview, free tokens or sample feedback, and use it on your own draft before paying.
         </li>
         <li>
-          <strong>Feedback, not editing.</strong> Whatever tool you use, IB academic integrity rules draw the line at work that is no longer yours. Tools that identify weaknesses are on the right side of it; anything that rewrites your draft is not. Our <Link href="/resources/academic-integrity">academic integrity guide</Link> covers where that line sits.
+          <strong>Feedback, not editing.</strong> Whatever tool you use, IB academic integrity rules draw the line at work that is no longer yours. A tool that rewrites your draft is over it, and even feedback on your own writing counts as assistance the IB asks you not to receive beyond what the subject guide permits, so check with your teacher first. Our <Link href="/resources/academic-integrity">academic integrity guide</Link> covers where that line sits.
         </li>
       </ul>
 
@@ -57,7 +57,7 @@ export default function CourseworkReviewTools() {
       <h2>How IBLens works</h2>
 
       <p>
-        Paste your draft, pick the work type, subject and exam session, and IBLens marks it against the criteria for that combination, including both Extended Essay rubrics and the 2027 formats for Psychology and Computer Science. It also counts the words against the limit for the task. The preview (band range, weakest criterion and top risks) is free with no account; the full report (criterion by criterion, or for the TOK essay and exhibition one holistic mark, explained) is $9.99 per piece of work, with no subscription to cancel.
+        Paste your draft, pick the work type, subject and exam session, and IBLens marks it against the criteria for that combination, including both Extended Essay rubrics and the 2027 formats for Psychology and Computer Science. It also counts the words against the limit for the task. The preview (estimated range, weakest criterion and top risks) is free with no account; the full report (criterion by criterion, or for the TOK essay and exhibition one holistic mark, explained) is $9.99 per piece of work, with no subscription to cancel.
       </p>
 
       <p>
@@ -68,7 +68,7 @@ export default function CourseworkReviewTools() {
 
       <h3>Are these tools allowed under IB rules?</h3>
       <p>
-        Using AI to get feedback on work you wrote is a different activity from having AI produce the work. Feedback tools sit in the same category as a peer pointing out weaknesses; submitting AI-written text as your own is academic misconduct. Keep drafts, use feedback to revise your own writing, and follow your school's AI policy. The Extended Essay is stricter: the Extended Essay guide says students must not receive assistance with any aspect of the research, writing or proofreading beyond that which is permitted through their supervisor. Ask your supervisor before you use any outside feedback on your EE, IBLens included.
+        Using AI to get feedback on work you wrote is a different activity from having AI produce the work, but the IB academic integrity policy still asks students not to receive assistance beyond what the subject guide permits, so check with your teacher and your school's AI policy before you use one. Submitting AI-written text without crediting it is academic misconduct. Keep drafts and use feedback to revise your own writing. The Extended Essay is stricter: the Extended Essay guide says students must not receive assistance with any aspect of the research, writing or proofreading beyond that which is permitted through their supervisor. Ask your supervisor before you use any outside feedback on your EE, IBLens included.
       </p>
 
       <h3>Which tool supports the new May 2027 Extended Essay criteria?</h3>
@@ -78,7 +78,7 @@ export default function CourseworkReviewTools() {
 
       <h3>Can an AI tool predict my exact mark?</h3>
       <p>
-        No tool can promise your exact final mark: moderation and examiner judgement are real. What a tool built on the criteria can do is place a draft in a band range and show which criterion is costing you most, early enough to act on it.
+        No tool can promise your exact final mark: moderation and examiner judgement are real. What a tool built on the criteria can do is place a draft in an estimated range and show which criterion is costing you most, early enough to act on it.
       </p>
 
       <h2>Related resources</h2>

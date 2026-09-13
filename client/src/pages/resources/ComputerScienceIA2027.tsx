@@ -10,7 +10,7 @@ export default function ComputerScienceIA2027() {
       datePublished="2026-08-11"
       dateModified="2026-09-13"
     >
-      <h1>IB Computer Science IA Changes 2027: What Changed and How to Check Your Project</h1>
+      <h1>IB Computer Science IA changes 2027: what changed and how to check your project</h1>
 
       <p>
         From the May 2027 session, the IB Computer Science Internal Assessment is assessed as a <strong>computational solution marked out of 30</strong>, down from 34, with a new criterion structure and no client requirement. If you sit your exams in May 2027 or later, your IA is marked with the criteria below, not the ones in most older guides.

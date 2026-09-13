@@ -10,7 +10,7 @@ export default function UniversityAdmissionsGuide() {
       datePublished="2026-05-01"
       dateModified="2026-09-13"
     >
-      <h1>IB to University: How Scores Translate to Admissions</h1>
+      <h1>IB to university: how scores translate to admissions</h1>
 
       <p>
         Universities around the world accept the IB Diploma, but they read it in very different ways. Some make offers on the total points, some on grades in particular Higher Level subjects, some convert your grades into a local scale, and some treat the Diploma as one part of a much wider application. This guide explains those approaches, so you know what to look for on the course pages that matter to you.
@@ -20,7 +20,7 @@ export default function UniversityAdmissionsGuide() {
         One thing it deliberately does not do is list score thresholds for groups of universities. Requirements are set course by course and change from year to year, and we withdrew our university guidance rather than publish numbers we cannot keep current. Where a figure appears below, it is one the university itself publishes.
       </p>
 
-      <h2>United Kingdom: Conditional Offers on HL Grades</h2>
+      <h2>United Kingdom: conditional offers on HL grades</h2>
 
       <p>
         UK universities make conditional offers, usually stated as a total and a set of Higher Level grades, for example "38 points including 766 at HL". Three things follow from that:
@@ -42,7 +42,7 @@ export default function UniversityAdmissionsGuide() {
         <strong>UCAS Tariff points:</strong> since 2017 the UCAS Tariff gives points for each IB grade at HL and SL, and for the core, rather than for the overall total, so the old "45 = 720 points" scale no longer applies. Most selective universities make offers in IB points; when a Tariff figure is needed, use the UCAS calculator.
       </p>
 
-      <h2>United States: Holistic Admissions</h2>
+      <h2>United States: holistic admissions</h2>
 
       <p>
         US universities read the IB as part of a holistic application, alongside essays, activities, recommendations and, at some universities, standardised tests. They do not usually publish IB point thresholds.
@@ -80,7 +80,7 @@ export default function UniversityAdmissionsGuide() {
         <strong>Other countries:</strong> universities in the Netherlands, Scandinavia and elsewhere recognise the IB, often with subject requirements for particular programmes. The national recognition rules and each university's programme pages are the sources to check.
       </p>
 
-      <h2>Decisions That Matter Early</h2>
+      <h2>Decisions that matter early</h2>
 
       <p>
         <strong>Match your HL subjects to the courses you are considering.</strong> HL choices are hard to change after the first year of the Diploma, and many UK courses in particular require specific HL subjects. Look up requirements before you commit.
@@ -98,7 +98,7 @@ export default function UniversityAdmissionsGuide() {
         <strong>Look at credit policies where they apply.</strong> Where a university gives credit for HL results, it can shorten or lighten a degree.
       </p>
 
-      <h2>How IBLens Helps With Applications</h2>
+      <h2>How IBLens helps with applications</h2>
 
       <p>
         IBLens no longer offers university recommendations. If you are applying through UCAS, the part we help with is the writing: our <Link href="/ucas-personal-statement" className="text-primary hover:underline">personal statement checker</Link> reviews each of the three answers against what UCAS says admissions tutors look for. For entry requirements and deadlines, use the university's own course pages and UCAS.

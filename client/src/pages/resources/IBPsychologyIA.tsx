@@ -27,7 +27,7 @@ export default function IBPsychologyIA() {
         be between 1,800 and 2,200 words.
       </p>
 
-      <h2>The Four Sections and the Marks Behind Them</h2>
+      <h2>The four sections and the marks behind them</h2>
       <p>
         The report follows the four assessment criteria, 22 marks in total:
       </p>
@@ -44,7 +44,7 @@ export default function IBPsychologyIA() {
         marked, but they must be there.
       </p>
 
-      <h2>Choosing a Study You Can Actually Run</h2>
+      <h2>Choosing a study you can actually run</h2>
       <p>
         The published study sets up everything that follows. A workable one has these
         properties:
@@ -57,7 +57,7 @@ export default function IBPsychologyIA() {
         <li><strong>Ethics the guide allows:</strong> experiments that cause anxiety, stress, pain or discomfort are not permitted, and neither are conformity or obedience experiments. Partial deception is allowed only where full knowledge would change the outcome, no harm is done and participants are fully debriefed. Consent must be given on a consent form, children under 12 cannot take part, and participants aged 12 to 16 need the written consent of a parent or guardian.</li>
       </ol>
 
-      <h2>Studies That Adapt Well</h2>
+      <h2>Studies that adapt well</h2>
 
       <h3>1. Loftus and Palmer (1974): leading questions and eyewitness memory</h3>
       <p>
@@ -92,7 +92,7 @@ export default function IBPsychologyIA() {
         measures design.
       </p>
 
-      <h2>Choosing the Inferential Test</h2>
+      <h2>Choosing the inferential test</h2>
       <p>
         The guide asks for descriptive and inferential statistics suited to your design
         but does not name a test. Choosing one that suits your design is part of
@@ -111,7 +111,7 @@ export default function IBPsychologyIA() {
         original finding, your procedure and the people you sampled.
       </p>
 
-      <h2>Ethics: More Than a Checkbox</h2>
+      <h2>Ethics: more than a checkbox</h2>
       <p>
         Participants must be told the aims of the experiment, give written consent, know
         they can withdraw at any time, and be debriefed. These are part of the design, and
@@ -124,7 +124,7 @@ export default function IBPsychologyIA() {
         <li>No record of the debriefing. It should explain what the experiment was really testing and why any withholding of information was needed.</li>
       </ul>
 
-      <h2>Evaluation: Where Marks Slip Most Easily</h2>
+      <h2>Evaluation: where marks slip most easily</h2>
       <p>
         The Evaluation criterion asks for three things, and many reports do only one:
       </p>
@@ -134,7 +134,7 @@ export default function IBPsychologyIA() {
         <li><strong>Modifications that follow from those limitations:</strong> not "use more participants", but which change, why, and what it would let you conclude that you cannot conclude now.</li>
       </ol>
 
-      <h2>Before Your Teacher Marks the Final Draft</h2>
+      <h2>Before your teacher marks the final draft</h2>
       <p>
         Your teacher marks the report, the IB moderates a sample of the school's work, and
         any moderation factor is applied to every student's mark. The time to find out

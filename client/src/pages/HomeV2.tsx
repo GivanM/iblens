@@ -35,7 +35,7 @@ const FAQ = [
   },
   {
     q: "Do I have to tell my school that I used this?",
-    a: "IBLens returns feedback and never text you could hand in, so there is nothing of ours to cite in your essay. Schools set their own rules on disclosing AI-assisted feedback, and some require it, so follow your coordinator's policy. Whatever you change, you have to be able to explain it in your own words at the viva voce.",
+    a: "For the Extended Essay, ask your supervisor before you use it: the Extended Essay guide says students must not receive assistance with any aspect of the research, writing or proofreading beyond that which is permitted through their supervisor. For other work, check your teacher's and your school's policy first. IBLens returns feedback and never text you could hand in, and whatever you change you must be able to explain in your own words at the viva voce.",
   },
   {
     q: "Where does my essay actually go?",
@@ -112,6 +112,7 @@ export default function HomeV2() {
         <span>Scripts pass through our server in Finland and are processed by Anthropic PBC</span>
         <Link href="/privacy">Privacy</Link>
         <Link href="/terms">Terms</Link>
+        <a href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new Event("iblens:cookie-settings")); }}>Cookie settings</a>
       </footer>
     </div>
   );

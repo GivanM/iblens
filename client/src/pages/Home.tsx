@@ -67,7 +67,7 @@ export default function Home() {
       <PurchaseModal open={purchaseModalOpen} onOpenChange={setPurchaseModalOpen} sku={purchaseSku} />
       <SEOHead
         title="IB Essay Grader 2026: Free Preview, AI Feedback on IA, EE & TOK | IBLens"
-        description="AI feedback on your IB essay in about a minute: marks against the published criteria, an estimated band, the risks costing you marks, and what to fix first. Free preview, no account needed."
+        description="AI feedback on your IB essay in about a minute: marks against the published criteria, an estimated range, the risks costing you marks, and what to fix first. Free preview, no account needed."
         canonical="/"
         jsonLd={[
           {
@@ -118,7 +118,7 @@ export default function Home() {
                 name: "Is the first preview really free?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes. The first preview is free: your band range, feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark, a mark and comment for each criterion that can be judged from your text (for the TOK essay and exhibition, the whole explanation) and a ranked list of fixes, unlocks for $9.99.",
+                  text: "Yes. The first preview is free: your estimated range, feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark, a mark and comment for each criterion that can be judged from your text (for the TOK essay and exhibition, the whole explanation) and a ranked list of fixes, unlocks for $9.99.",
                 },
               },
               {
@@ -285,7 +285,7 @@ export default function Home() {
               </div>
 
               <div className="rounded-xl border border-border bg-card p-8">
-                <h3 style={SERIF} className="text-xl font-bold mb-3">UCAS Personal Statement Checker</h3>
+                <h3 style={SERIF} className="text-xl font-bold mb-3">UCAS personal statement checker</h3>
                 <p className="text-muted-foreground mb-5 leading-relaxed">
                   Applying to UK universities? From 2026 entry the personal statement is three separate questions, not one essay. Get a read on each answer from an admissions-tutor perspective.
                 </p>
@@ -387,6 +387,7 @@ export default function Home() {
             </div>
 
             {/* Free tier highlight */}
+            {!previewUsed && (
             <div className="max-w-md mx-auto mb-8">
               <Card className="border-2 border-primary/20 relative">
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary/20 text-primary text-xs font-semibold rounded-full">
@@ -396,13 +397,14 @@ export default function Home() {
                   <Gift className="w-8 h-8 text-primary mx-auto mb-3" />
                   <h3 style={SERIF} className="text-xl font-bold mb-1">First preview</h3>
                   <div style={SERIF} className="text-3xl font-bold mb-2">$0</div>
-                  <p className="text-xs text-muted-foreground mb-4">Band range, weakest criterion and top risks. No credit card required.</p>
+                  <p className="text-xs text-muted-foreground mb-4">Estimated range, weakest criterion and top risks. No credit card required.</p>
                   <Button variant="outline" className="w-full min-h-11" asChild>
-                    <Link href="/essay">{previewUsed ? paidLabel : "Get a free preview"}</Link>
+                    <Link href="/essay">Get a free preview</Link>
                   </Button>
                 </CardContent>
               </Card>
             </div>
+            )}
 
             {/* Paid plans grid */}
             <div className="grid sm:grid-cols-3 gap-5 max-w-4xl mx-auto">
@@ -472,7 +474,7 @@ export default function Home() {
               />
               <FAQItem
                 question="Is the first preview really free?"
-                answer="Yes. The first preview is free: your band range, feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark, a mark and comment for each criterion that can be judged from your text (for the TOK essay and exhibition, the whole explanation) and a ranked list of fixes, unlocks for $9.99."
+                answer="Yes. The first preview is free: your estimated range, feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark, a mark and comment for each criterion that can be judged from your text (for the TOK essay and exhibition, the whole explanation) and a ranked list of fixes, unlocks for $9.99."
               />
               <FAQItem
                 question="How accurate is the estimated mark?"
@@ -511,7 +513,7 @@ export default function Home() {
                 {previewUsed ? paidLabel : "Start your free preview"} <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
-            <p className="text-xs text-muted-foreground mt-4">No credit card required. Results in about a minute.</p>
+            <p className="text-xs text-muted-foreground mt-4">{previewUsed ? "Results in about a minute. Refundable within 7 days." : "No credit card required. Results in about a minute."}</p>
           </div>
         </section>
 

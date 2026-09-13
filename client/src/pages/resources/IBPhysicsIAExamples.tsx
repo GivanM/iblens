@@ -22,7 +22,7 @@ export default function IBPhysicsIAExamples() {
         what the criteria ask for.
       </p>
 
-      <h2>Marking Criteria Overview</h2>
+      <h2>Marking criteria overview</h2>
       <ul>
         <li><strong>Research design (6 marks):</strong> A focused research question in a genuine context, a methodology with identified variables and controls, and consideration of safety, ethical and environmental issues.</li>
         <li><strong>Data analysis (6 marks):</strong> Recording, processing and presenting data in ways relevant to the question, including uncertainties and appropriate graphs.</li>
@@ -30,7 +30,7 @@ export default function IBPhysicsIAExamples() {
         <li><strong>Evaluation (6 marks):</strong> Honest assessment of methodological weaknesses and limitations, with realistic improvements.</li>
       </ul>
 
-      <h2>IB Physics IA Examples That Score Well</h2>
+      <h2>IB Physics IA examples that score well</h2>
 
       <h3>1. Simple harmonic motion: spring constant or pendulum period</h3>
       <p>
@@ -93,7 +93,7 @@ export default function IBPhysicsIAExamples() {
         or by estimating the heat loss rate and showing its effect on the result.
       </p>
 
-      <h2>Linearisation: The Most Important Analysis Skill</h2>
+      <h2>Linearisation: the most important analysis skill</h2>
       <p>
         Many Physics investigations study a relationship that is not linear as measured.
         Linearising it lets you test the relationship directly and pull a physical
@@ -113,7 +113,7 @@ export default function IBPhysicsIAExamples() {
         then compare to accepted values and calculate percentage error.
       </p>
 
-      <h2>Uncertainty Analysis: What the Criterion Looks For</h2>
+      <h2>Uncertainty analysis: what the criterion looks for</h2>
       <p>
         Incomplete handling of uncertainties is one of the most frequent reasons a
         Physics IA falls short on Data analysis. A complete treatment:
@@ -127,7 +127,7 @@ export default function IBPhysicsIAExamples() {
         <li>Compare your percentage uncertainty to your percentage error from the accepted value, and explain the discrepancy if they differ significantly.</li>
       </ol>
 
-      <h2>Evaluation: How to Write It Well</h2>
+      <h2>Evaluation: how to write it well</h2>
       <p>
         The Evaluation criterion rewards students who go beyond listing errors to
         actually analysing them. A structure that works:
@@ -150,7 +150,7 @@ export default function IBPhysicsIAExamples() {
         ]}
       />
 
-      <h2>Get Feedback Before Your Teacher Marks the Final Report</h2>
+      <h2>Get feedback before your teacher marks the final report</h2>
       <p>
         Physics IA marks often come back lower than expected because a correct
         experiment and a report that earns the marks are not the same thing. A well-run

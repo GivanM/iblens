@@ -10,7 +10,7 @@ export default function InternalAssessmentGuide() {
       datePublished="2026-05-01"
       dateModified="2026-09-13"
     >
-      <h1>The Complete IB Internal Assessment Guide</h1>
+      <h1>The complete IB Internal Assessment guide</h1>
 
       <p>
         <strong>In short: every IB subject includes an internally assessed component marked against published criteria: the sciences out of 24, History and Business Management out of 25, Mathematics out of 20, Economics 14 per commentary. Your teacher marks it and the IB moderates a sample, so the criteria are what count.</strong>
@@ -24,7 +24,7 @@ export default function InternalAssessmentGuide() {
         This guide explains how IAs work across different subject groups, what markers look for when applying the criteria, the most common mistakes students make, and concrete strategies for achieving top marks. Whether you are writing a History IA, a Biology lab report, or a Mathematics exploration, the principles of strong IA work are consistent.
       </p>
 
-      <h2>What Is the Internal Assessment?</h2>
+      <h2>What is the Internal Assessment?</h2>
 
       <p>
         The Internal Assessment is a piece of coursework completed under teacher supervision that demonstrates your ability to apply subject knowledge independently. The format varies significantly by subject:
@@ -36,14 +36,14 @@ export default function InternalAssessmentGuide() {
         <li><strong>Group 3 (Individuals and Societies):</strong> a written investigation (History: 2,200 words; Business Management: 1,800 words; Economics: three commentaries of up to 800 words each; Psychology: an experimental report through November 2026, and from May 2027 a research proposal marked out of 24)</li>
         <li><strong>Group 4 (Sciences):</strong> Scientific investigation (Biology, Chemistry, Physics: up to 3,000 words, marked out of 24)</li>
         <li><strong>Group 5 (Mathematics):</strong> the mathematical exploration (approximately 12 to 20 pages)</li>
-        <li><strong>Group 6 (The Arts):</strong> varies by subject (Visual Arts: the exhibition, replaced from May 2027 by the new internally assessed component; Music: experimenting with music, and at HL also the contemporary music-maker; Film: the film portfolio). The Visual Arts comparative study and the Music and Film coursework IBLens marks are externally assessed components.</li>
+        <li><strong>Group 6 (The Arts):</strong> varies by subject (Visual Arts: the exhibition, replaced from May 2027 by resolved artworks (SL) or selected resolved artworks (HL), which are internally assessed; Music: experimenting with music, and at HL also the contemporary music-maker; Film: the film portfolio). The Visual Arts comparative study and the Music and Film coursework IBLens marks are externally assessed components.</li>
       </ul>
 
       <p>
         Despite these format differences, IAs share common expectations: independent work, engagement with the methods of the subject, and clear communication.
       </p>
 
-      <h2>How IAs Differ by Subject Group</h2>
+      <h2>How IAs differ by subject group</h2>
 
       <p>
         Understanding the specific expectations for your subject is critical. Here is a deeper look at what distinguishes IAs across the major subject groups:
@@ -73,7 +73,7 @@ export default function InternalAssessmentGuide() {
         Economics requires three commentaries of up to 800 words each, based on published news articles. Each commentary must apply economic theory to explain a real-world event, use appropriate diagrams, and evaluate the economic implications. The challenge is <strong>depth of analysis within a tight word limit</strong>: every sentence has to contribute. Commentaries that describe the article without applying economic theory lose marks on application and analysis.
       </p>
 
-      <h2>Assessment Criteria Explained</h2>
+      <h2>Assessment criteria explained</h2>
 
       <p>
         While specific criteria vary by subject, most IAs are assessed against 4-5 criteria that evaluate similar competencies:
@@ -120,7 +120,7 @@ export default function InternalAssessmentGuide() {
         Where the weight sits differs by subject. History puts 15 of its 25 marks on the Investigation, Computer Science 12 on Development, and Mathematics 6 of 20 on Use of mathematics, while the four science criteria are worth 6 marks each. What holds across subjects is that description alone keeps an IA in the middle levels: the higher levels ask you to interpret your findings, weigh their significance and acknowledge their limitations.
       </p>
 
-      <h2>Common Pitfalls Per Criterion</h2>
+      <h2>Common pitfalls per criterion</h2>
 
       <p>
         Issues that commonly cost marks:
@@ -142,7 +142,7 @@ export default function InternalAssessmentGuide() {
         <strong>Evaluation:</strong> Many students treat the evaluation as a place to list "errors" such as "human error" or "the timer was inaccurate". The criteria reward <strong>specific, realistic limitations</strong> that actually affected the results, with concrete suggestions for how the investigation could be improved if repeated.
       </p>
 
-      <h2>How IAs Are Actually Marked</h2>
+      <h2>How IAs are actually marked</h2>
 
       <p>
         Understanding the marking process helps you write for your audience. Here is how IA assessment typically works:
@@ -167,7 +167,7 @@ export default function InternalAssessmentGuide() {
         <li>Your teacher's mark is not final, so aim for what the top levels of the criteria describe rather than only for your teacher's approval</li>
       </ul>
 
-      <h2>Time Management for IA</h2>
+      <h2>Time management for IA</h2>
 
       <p>
         The subject guides allocate a set number of hours to the IA: 10 in the sciences, 20 in Economics, and more in some subjects, such as Computer Science. The biggest time management mistake is leaving the IA until the last few weeks before the deadline. This leads to rushed methodology, insufficient data collection, and superficial analysis.
@@ -190,7 +190,7 @@ export default function InternalAssessmentGuide() {
         Starting early also gives you time to redo experiments if initial results are inconclusive, or to pivot your approach if your original methodology proves unworkable.
       </p>
 
-      <h2>Editing and Revision Strategy</h2>
+      <h2>Editing and revision strategy</h2>
 
       <p>
         The difference between a good IA and an excellent one often comes down to revision. Here is a structured approach to editing your IA:

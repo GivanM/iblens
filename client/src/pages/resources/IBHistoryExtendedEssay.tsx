@@ -29,7 +29,7 @@ export default function IBHistoryExtendedEssay() {
         of the top band.
       </p>
 
-      <h2>How the History EE Differs From the History IA</h2>
+      <h2>How the History EE differs from the History IA</h2>
       <p>
         The History IA is a short, three-part investigation with a prescribed
         structure: an evaluation of two sources, the investigation itself, and a
@@ -45,7 +45,7 @@ export default function IBHistoryExtendedEssay() {
         source-evaluation habit applied throughout instead of quarantined in one section.
       </p>
 
-      <h2>Choosing a Research Question for a History EE</h2>
+      <h2>Choosing a research question for a History EE</h2>
       <p>
         The research question determines most of your ceiling before you write a
         word. A strong History EE question has four characteristics:
@@ -67,7 +67,7 @@ export default function IBHistoryExtendedEssay() {
         your supervisor before committing.
       </p>
 
-      <h3>Examples of Strong History EE Research Questions</h3>
+      <h3>Examples of strong History EE research questions</h3>
       <ul>
         <li>
           To what extent did economic pressures, rather than the moral campaign of
@@ -90,7 +90,7 @@ export default function IBHistoryExtendedEssay() {
         </li>
       </ul>
 
-      <h3>Weak Research Questions, and Why They Fail</h3>
+      <h3>Weak research questions, and why they fail</h3>
       <ul>
         <li>
           What caused the Second World War?
@@ -106,7 +106,7 @@ export default function IBHistoryExtendedEssay() {
         </li>
       </ul>
 
-      <h2>How the Five EE Criteria Play Out in History</h2>
+      <h2>How the five EE criteria play out in History</h2>
       <p>From May 2027, every Extended Essay is marked out of 30 on the same five criteria. Here is what each one rewards in a History essay:</p>
       <ul>
         <li><strong>Criterion A: Framework for the essay (6 marks).</strong> A sharply stated research question that the essay actually answers, a method that can answer it, and a structure that serves the argument. In History, method means your source strategy: which primary material you examined, which historians you read, and why that selection can support an answer.</li>
@@ -122,7 +122,7 @@ export default function IBHistoryExtendedEssay() {
         analysis, discussion and evaluation together make up Critical thinking.
       </p>
 
-      <h2>Sources, Method and Historiography</h2>
+      <h2>Sources, method and historiography</h2>
       <p>
         Examiners expect a History EE to work with both primary and secondary
         sources, and to treat neither as neutral. For primary sources, evaluation
@@ -145,7 +145,7 @@ export default function IBHistoryExtendedEssay() {
         supposed to explore.
       </p>
 
-      <h2>Common Mark-Losing Mistakes in History EEs</h2>
+      <h2>Common mark-losing mistakes in History EEs</h2>
       <ul>
         <li><strong>Narrative instead of argument:</strong> retelling events in chronological order and attaching a judgement only in the conclusion. This caps Criterion C and leaves Criterion D nothing to discuss.</li>
         <li><strong>No historiography:</strong> an essay that never engages with what historians have argued reads as a school report, however accurate it is.</li>
@@ -155,7 +155,7 @@ export default function IBHistoryExtendedEssay() {
         <li><strong>Untraceable claims:</strong> vague or missing citations. Evidence nobody can trace carries no weight in the analysis and discussion the highest criteria reward.</li>
       </ul>
 
-      <h2>Frequently Asked Questions</h2>
+      <h2>Frequently asked questions</h2>
       <h3>Can I write my History EE on a recent event?</h3>
       <p>
         It depends on your session. For November 2026 the Extended Essay guide says essays that
@@ -180,7 +180,7 @@ export default function IBHistoryExtendedEssay() {
         middle bands; students who argue a focused case can score highly.
       </p>
 
-      <h2>Grade Your History EE Before You Submit</h2>
+      <h2>Grade your History EE before you submit</h2>
       <p>
         IBLens analyses Extended Essays against the published criteria for your exam session and shows
         you, criterion by criterion, where marks are being lost, including the most

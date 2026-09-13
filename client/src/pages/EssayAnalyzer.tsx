@@ -119,14 +119,14 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
       </CardHeader>
       <CardContent className="space-y-5">
         <div className="flex items-baseline gap-3">
-          <span style={SERIF} className="text-4xl font-bold">Band {result.band_range}</span>
+          <span style={SERIF} className="text-4xl font-bold">{holistic ? "Band" : "Estimated range"} {result.band_range}</span>
           <span className="text-sm text-muted-foreground">out of {result.max_score}</span>
         </div>
         <WordCheckNote check={result._wordCheck} text={essayText} />
         {weakest && (
           <div className="rounded-lg border border-amber-300 bg-amber-50 p-4">
             <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-1.5">{holistic ? "The start of the explanation" : "Your weakest criterion, full feedback"}</p>
-            <div className="flex justify-between text-sm font-semibold mb-1 text-foreground"><span>{weakest.name}</span><span>{typeof weakest.score === "number" ? `${weakest.score}/${weakest.max}` : `Band ${result.band_range}`}</span></div>
+            <div className="flex justify-between text-sm font-semibold mb-1 text-foreground"><span>{weakest.name}</span><span>{typeof weakest.score === "number" ? `${weakest.score}/${weakest.max}` : holistic ? `Band ${result.band_range}` : `?/${weakest.max}`}</span></div>
             <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{weakest.comment}</p>
           </div>
         )}
@@ -322,7 +322,7 @@ export default function EssayAnalyzer() {
     { clientFingerprint: anonFp },
     { enabled: !isAuthenticated }
   );
-  const canAnonAnalyze = !isAuthenticated ? (anonCheckQuery.data?.canAnalyze ?? !localStorage.getItem('iblens_anon_used')) : false;
+  const canAnonAnalyze = !isAuthenticated ? (anonCheckQuery.data?.canAnalyze ?? !(() => { try { return localStorage.getItem('iblens_anon_used'); } catch { return null; } })()) : false;
 
   const rerunMutation = trpc.essay.rerunAnalysis.useMutation({
     onSuccess: (data: any) => {
@@ -374,7 +374,7 @@ export default function EssayAnalyzer() {
         setRecheckTargetId(null);
         deviceReportsQ.refetch();
       }
-      localStorage.setItem('iblens_anon_used', 'true');
+      try { localStorage.setItem('iblens_anon_used', 'true'); } catch { /* storage blocked */ }
       anonCheckQuery.refetch();
       anonReportQ.refetch();
       const r = data.result as EssayResult;
@@ -543,11 +543,7 @@ export default function EssayAnalyzer() {
   const lockedPreview: any = lockedQ.data?.exists && !lockedQ.data.unlocked ? lockedQ.data : null;
   const typeLabel = (t?: string | null) => t === "EE" ? "Extended Essay" : t === "TOK" ? "TOK essay" : t === "TOK Exhibition" ? "TOK exhibition" : t === "IA" ? "IA" : (t || "");
   // Exhibitions are stored as task "TOK" with subject "Exhibition".
-  const lockedLabel = lockedPreview
-    ? lockedPreview.essayType === "TOK"
-      ? (lockedPreview.subject === "Exhibition" ? "TOK exhibition" : "TOK essay")
-      : [typeLabel(lockedPreview.essayType), lockedPreview.subject].filter(Boolean).join(", ")
-    : null;
+  const lockedLabel = lockedPreview ? deviceReportLabel({ essayType: lockedPreview.essayType, subject: lockedPreview.subject }) : null;
   const unmarkableNow = unmarkableReason(essayType, subject, examSession);
   const isOral = essayType === "IA" && subject.startsWith("English A");
   // Arriving from a page for different work (a History IA link while the saved preview
@@ -669,12 +665,12 @@ export default function EssayAnalyzer() {
     <div className="container py-12 max-w-4xl mx-auto">
       <SEOHead
         title="IB Essay Grader: AI Feedback on IA, Extended Essay and TOK | IBLens"
-        description="AI feedback on your IB Internal Assessment, Extended Essay or TOK work in 14 subjects: a free preview with your band range and weakest criterion, then a full report against the published criteria."
+        description="AI feedback on your IB Internal Assessment, Extended Essay or TOK work in 14 subjects: a free preview with your estimated range and weakest criterion, then a full report against the published criteria."
         canonical="/essay"
       />
       <div className="mb-10">
         <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3">Essay Grader</p>
-        <h1 style={SERIF} className="text-4xl font-bold mb-3">IB Essay Grader</h1>
+        <h1 style={SERIF} className="text-4xl font-bold mb-3">IB essay grader</h1>
         <p className="text-muted-foreground text-lg max-w-2xl">
           AI feedback on your Extended Essay, IA or TOK work in about a minute, against the published criteria, with an estimated mark.
         </p>
@@ -713,7 +709,7 @@ export default function EssayAnalyzer() {
               <p className="text-sm font-semibold">Your free preview is saved on this device</p>
               <p className="text-xs text-muted-foreground">This device's one free preview has been used on it.</p>
               <p className="text-xs text-muted-foreground">
-                {lockedLabel}{lockedPreview.band ? ` · Band ${lockedPreview.band}` : ""}
+                {lockedLabel}{lockedPreview.band ? ` · Estimated range ${lockedPreview.band}` : ""}
                 {lockedPreview.createdAt ? ` · ${new Date(lockedPreview.createdAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}` : ""}
               </p>
             </div>
@@ -809,9 +805,13 @@ export default function EssayAnalyzer() {
             />
           </div>
 
-          {essayType === "EE" && (
+          {essayType === "EE" ? (
             <p className="text-xs rounded-md border border-amber-300 bg-amber-50 text-amber-900 px-2.5 py-2">
               The Extended Essay guide allows no assistance with the research, writing or proofreading beyond what your supervisor permits. Ask your supervisor before you use IBLens on your EE.
+            </p>
+          ) : (
+            <p className="text-xs text-muted-foreground">
+              The IB asks students not to receive assistance beyond what the subject guide permits, so check that your teacher and your school allow outside feedback on this work before you use IBLens.
             </p>
           )}
           {essayType === "EE" && (
@@ -832,7 +832,7 @@ export default function EssayAnalyzer() {
               <p className="text-xs text-muted-foreground">
                 {examSession === "may2027"
                   ? "Criterion E is marked on the reflective statement from your reflection and progress form (RPF), not on the essay. An RPF that is blank, not submitted or in a language other than the essay's is awarded zero for Criterion E, so submit yours to your school either way. Leave this box empty and the report marks criteria A to D only."
-                  : "Criterion E is marked on your three reflections in the reflections on planning and progress form (RPPF), not on the essay. Leave this empty and the report marks criteria A to D only."}
+                  : "Criterion E is marked on your three reflections in the reflections on planning and progress form (RPPF), not on the essay. An RPPF that is blank, not submitted or in a language other than the essay's is awarded zero for Criterion E, so submit yours to your school either way. Leave this box empty and the report marks criteria A to D only."}
               </p>
             </div>
           )}
@@ -875,7 +875,7 @@ export default function EssayAnalyzer() {
               <p className="text-xs text-muted-foreground">Up to 1,600 words. Examiners stop reading at the limit.</p>
             )}
             {isOral && (
-              <p className="text-xs text-muted-foreground">A transcript of a practice run is marked on all four criteria. From an outline, criteria A to C are marked and Criterion D (language) is not, because spoken language cannot be judged from notes.</p>
+              <p className="text-xs text-muted-foreground">A transcript of a practice oral on different works or a different global issue is marked on all four criteria: the Language A guides do not allow a rehearsal of the actual oral. From an outline, criteria A to C are marked and Criterion D (language) is not, because spoken language cannot be judged from notes.</p>
             )}
             {essayType === "IA" && subject === "Music" && (
               <p className="text-xs text-muted-foreground">Paste the written portfolio. Criteria A, B1 and B2 are marked on it. C1 and C2 judge the creating exercise and the performed adaptation themselves, which text cannot carry, so the report leaves them unmarked and gives the estimated mark out of the 18 marks it assessed.</p>
@@ -1107,7 +1107,7 @@ export default function EssayAnalyzer() {
           <div className="grid grid-cols-3 gap-3">
             {[
               { label: "Estimated mark", value: "16/25", color: "text-amber-600" },
-              { label: "Band range", value: "14-17", color: "text-foreground" },
+              { label: "Estimated range", value: "14-17", color: "text-foreground" },
               { label: "Share of marks", value: "64%", color: "text-foreground" },
             ].map((s) => (
               <div key={s.label} className="text-center p-2 sm:p-4 bg-muted/50 rounded-lg border border-border min-w-0">
@@ -1184,7 +1184,7 @@ export default function EssayAnalyzer() {
           </div>
 
           <div className="pt-3 border-t text-center">
-            <p className="text-sm font-medium mb-1">↑ This is what a full report looks like, unlocked for $9.99. Your free preview shows the band range, your weakest criterion in full, and the top risks.</p>
+            <p className="text-sm font-medium mb-1">↑ This is what a full report looks like, unlocked for $9.99. Your free preview shows the estimated range, your weakest criterion in full, and the top risks.</p>
             <p className="text-xs text-muted-foreground">Paste your work in the form above: <strong>the first preview is free</strong>, then $9.99 per report, with two re-checks included</p>
           </div>
         </div>
@@ -1241,7 +1241,7 @@ export default function EssayAnalyzer() {
                 </div>
                 <div className="text-center p-4 bg-muted/50 rounded-lg">
                   <div style={SERIF} className="text-3xl font-bold">{result.band_range}</div>
-                  <div className="text-xs text-muted-foreground mt-1">Band range</div>
+                  <div className="text-xs text-muted-foreground mt-1">{(result.criteria?.length ?? 0) > 1 ? "Estimated range" : "Band"}</div>
                 </div>
                 <div className="text-center p-4 bg-muted/50 rounded-lg">
                   <div style={SERIF} className="text-3xl font-bold">

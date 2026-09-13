@@ -10,7 +10,7 @@ export default function TokEssayChecklist() {
       datePublished="2026-08-11"
       dateModified="2026-09-13"
     >
-      <h1>TOK Essay Checklist: How to Check Your Essay Against the IB Criteria (Without a Tutor)</h1>
+      <h1>TOK essay checklist: how to check your essay against the IB criteria (without a tutor)</h1>
 
       <p>
         The TOK essay is marked with a single holistic instrument out of 10: there are no separate criteria with individual marks. The instrument asks one question: <em>does the student provide a clear, coherent and critical exploration of the essay title?</em> That makes self-checking possible. You do not need to juggle several rubric strands; you need to test your draft against one question, rigorously. This checklist turns that question into concrete checks you can run on your own.
@@ -48,7 +48,7 @@ export default function TokEssayChecklist() {
         <li>Key ambiguous terms in the title are unpacked early, and your working definitions hold for the whole essay.</li>
       </ul>
 
-      <h3>Knowledge questions and Areas of Knowledge</h3>
+      <h3>Knowledge questions and areas of knowledge</h3>
       <ul>
         <li>The essay explores <em>knowledge questions</em>: how knowledge is produced, tested and trusted, not just facts about a topic.</li>
         <li>The areas of knowledge the title involves are linked to the discussion, not just named (a tip: two developed in depth usually serve a 1,600-word essay better than several touched on).</li>

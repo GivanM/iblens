@@ -10,13 +10,13 @@ export default function TokEssayFormat() {
       datePublished="2026-06-17"
       dateModified="2026-09-13"
     >
-      <h1>IB TOK Essay Format: Everything You Need to Know</h1>
+      <h1>IB TOK essay format: everything you need to know</h1>
 
       <p>
         The IB Theory of Knowledge essay has a few firm rules and many conventions. Formatting itself earns no marks, but breaking a rule, such as the word limit, can cost you. This guide separates the two: what the TOK guide requires, what schools usually expect, what does and does not count towards the limit, and how to present citations.
       </p>
 
-      <h2>Word Count: The 1,600-Word Rule</h2>
+      <h2>Word count: the 1,600-word rule</h2>
 
       <p>
         The TOK essay has a <strong>maximum word count of 1,600 words</strong>. This limit is strictly enforced:
@@ -34,7 +34,7 @@ export default function TokEssayFormat() {
         There is no official minimum word count, but an essay far below 1,600 words usually lacks the room to develop and evaluate its arguments. A 900-word essay rarely has space for the depth the top bands describe. Most students aim for 1,400 to 1,600 words.
       </p>
 
-      <h2>Presentation: What Is Required and What Is Convention</h2>
+      <h2>Presentation: what is required and what is convention</h2>
 
       <p>The TOK guide sets few formal requirements. These are the ones that matter, together with the conventions most schools follow:</p>
 
@@ -46,7 +46,7 @@ export default function TokEssayFormat() {
         <li><strong>Page numbers:</strong> the TOK guide does not mention them, but the IB's Assessment procedures require numbered pages in all written eCoursework, which includes the TOK essay.</li>
       </ul>
 
-      <h2>Essay Structure: A Workable Shape</h2>
+      <h2>Essay structure: a workable shape</h2>
 
       <p>
         The TOK essay has no required structure. It is marked holistically on one question: does it provide a clear, coherent and critical exploration of the title? The shape below is a common and workable way to meet that, not a rule.
@@ -67,7 +67,7 @@ export default function TokEssayFormat() {
         Avoid: padding your introduction with general philosophical statements that say nothing specific. "Knowledge is one of the most complex topics that humans have ever grappled with" is a wasted 20 words.
       </p>
 
-      <h3>Body Paragraphs: Claim / Counter-Claim Structure (approximately 1,100-1,200 words)</h3>
+      <h3>Body paragraphs: claim / counter-claim structure (approximately 1,100-1,200 words)</h3>
 
       <p>
         Each body section should examine one Area of Knowledge through the lens of the prescribed title. The standard structure per AOK is:
@@ -95,7 +95,7 @@ export default function TokEssayFormat() {
         <li><strong>Say why it matters:</strong> optional, but a brief statement of why the question matters often strengthens a conclusion.</li>
       </ul>
 
-      <h2>Citations and Referencing Format</h2>
+      <h2>Citations and referencing format</h2>
 
       <p>
         The IB does not prescribe a citation style for the TOK essay. You may use MLA, APA, Chicago or any other consistent system, and your school may have a preference. What matters is:
@@ -120,7 +120,7 @@ export default function TokEssayFormat() {
         <li><strong>Personal information:</strong> no name, candidate session number, school name or photograph.</li>
       </ul>
 
-      <h2>The TOK Essay Format vs. Other IB Essays</h2>
+      <h2>The TOK essay format vs. other IB essays</h2>
 
       <p>
         Students often confuse TOK essay formatting expectations with EE or IA formatting. Key differences:
@@ -133,7 +133,7 @@ export default function TokEssayFormat() {
         <li><strong>Shorter but denser:</strong> The EE allows up to 4,000 words across a structured research document; the TOK essay packs comparable analytical depth into 1,600 words of continuous argument</li>
       </ul>
 
-      <h2>Check Your Essay Against the Marking Criteria</h2>
+      <h2>Check your essay against the marking criteria</h2>
 
       <p>
         Before submission, format checklist:

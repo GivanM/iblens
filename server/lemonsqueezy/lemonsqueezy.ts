@@ -30,6 +30,7 @@ import {
   getAnalysisById,
   markAnalysisUnlocked,
   createAnalysis,
+  upsertAccountCopy,
   claimAnonymousUnlock,
   countReportsOpenedByOrder,
   createCreditLot,
@@ -249,12 +250,21 @@ export function registerLemonsqueezyWebhook(app: Express) {
 
       console.log(`[LemonSqueezy Webhook] Signature VALID for event=${eventName}, dataId=${dataId}`);
 
-      if (await hasEarlierVerifiedWebhookEvent(eventKey, webhookEventId).catch(() => false)) {
+      const earlierDelivery = await hasEarlierVerifiedWebhookEvent(eventKey, webhookEventId).catch(() => false as const);
+      if (earlierDelivery === "handled") {
         console.log(`[LemonSqueezy Webhook] ${eventKey} was already delivered and handled, skipping`);
         if (webhookEventId) {
-          await updateWebhookEvent(webhookEventId, { paymentStatus: "duplicate" }).catch(() => {});
+          await updateWebhookEvent(webhookEventId, { paymentStatus: `duplicate:${webhookEventId}` }).catch(() => {});
         }
         return res.status(200).json({ ok: true, message: "Already processed" });
+      }
+      if (earlierDelivery === "in_flight") {
+        // Another copy is being processed right now. Answering 200 ended LemonSqueezy's
+        // retries, so a copy cut off by a restart was never finished. A 503 asks for a retry.
+        if (webhookEventId) {
+          await updateWebhookEvent(webhookEventId, { paymentStatus: `deferred:${webhookEventId}` }).catch(() => {});
+        }
+        return res.status(503).json({ ok: false, message: "Being processed, retry later" });
       }
 
       // ===== STEP 3: PROCESS EVENT =====
@@ -351,7 +361,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
           if (order.status === "paid" || order.status === "refunded") {
             console.log(`[LemonSqueezy] Order ${order.id} already paid, skipping credit grant`);
             if (webhookEventId) {
-              await updateWebhookEvent(webhookEventId, { paymentStatus: "duplicate" }).catch(() => {});
+              await updateWebhookEvent(webhookEventId, { paymentStatus: `duplicate:${webhookEventId}` }).catch(() => {});
             }
             return res.status(200).json({ ok: true, message: "Already processed" });
           }
@@ -470,7 +480,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
                 // A signed-in buyer keeps what they paid for in the account. The device
                 // row alone was lost the moment they signed out, which rotates the device id.
                 if (opened && !buyerIsGuest) {
-                  await createAnalysis({
+                  await upsertAccountCopy({
                     userId: order.userId,
                     type: "essay",
                     essayType: rec.essayType,
@@ -548,7 +558,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
           if (!fullyRefunded) {
             console.warn(`[LemonSqueezy] Partial refund on ${dataId} (status ${refundAttrs.status}); nothing closed`);
             if (webhookEventId) {
-              await updateWebhookEvent(webhookEventId, { paymentStatus: "partial_refund" }).catch(() => {});
+              await updateWebhookEvent(webhookEventId, { paymentStatus: `partial_refund:${webhookEventId}` }).catch(() => {});
             }
             return res.status(200).json({ ok: true, message: "Partial refund recorded" });
           }
@@ -620,7 +630,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
           if (order.status === "refunded") {
             console.log(`[LemonSqueezy] Order ${order.id} already refunded, skipping`);
             if (webhookEventId) {
-              await updateWebhookEvent(webhookEventId, { paymentStatus: "duplicate" }).catch(() => {});
+              await updateWebhookEvent(webhookEventId, { paymentStatus: `duplicate:${webhookEventId}` }).catch(() => {});
             }
             return res.status(200).json({ ok: true, message: "Already refunded" });
           }

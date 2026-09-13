@@ -10,7 +10,7 @@ export default function EENewCriteria2027() {
       datePublished="2026-08-11"
       dateModified="2026-09-13"
     >
-      <h1>IB Extended Essay New Criteria 2027: What Changed and How to Check Your Draft</h1>
+      <h1>IB Extended Essay new criteria 2027: what changed and how to check your draft</h1>
 
       <p>
         If you sit your exams in May 2027 or later, your Extended Essay is assessed under new criteria and marked out of 30, not 34. Most guides online still describe the old rubric. This page sets out exactly what changed, what examiners now reward most, and what to check in your draft before you hand it to your supervisor.
@@ -86,7 +86,7 @@ export default function EENewCriteria2027() {
       <h2>Check your draft with IBLens</h2>
 
       <p>
-        An AI check is outside help on your EE, so ask your supervisor before you use IBLens, and tell them if you do. If they agree, IBLens grades Extended Essays against <strong>both</strong> rubrics. In the grader, keep "Exam session" on <em>Exams in May 2027 or later</em>, the default, and your draft is scored out of 30 against the new criteria A to E above, criterion by criterion. Switch it to <em>Exams in November 2026, or work submitted in May 2026</em> for the 34-mark rubric. The first preview is free (the estimated band range, your weakest criterion with its feedback, and the top risks), and a full report costs $9.99, with no subscription. For May 2027, you can also paste your RPF so that Criterion E is marked on it.
+        An AI check is outside help on your EE, so ask your supervisor before you use IBLens, and tell them if you do. If they agree, IBLens grades Extended Essays against <strong>both</strong> rubrics. In the grader, keep "Exam session" on <em>Exams in May 2027 or later</em>, the default, and your draft is scored out of 30 against the new criteria A to E above, criterion by criterion. Switch it to <em>Exams in November 2026, or work submitted in May 2026</em> for the 34-mark rubric. The first preview is free (the estimated range, your weakest criterion with its feedback, and the top risks), and a full report costs $9.99, with no subscription. For May 2027, you can also paste your RPF so that Criterion E is marked on it.
       </p>
 
       <p>

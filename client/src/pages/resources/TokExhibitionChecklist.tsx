@@ -10,7 +10,7 @@ export default function TokExhibitionChecklist() {
       datePublished="2026-08-11"
       dateModified="2026-09-13"
     >
-      <h1>TOK Exhibition Checklist: How to Check Your Commentary Against the IB Criteria</h1>
+      <h1>TOK exhibition checklist: how to check your commentary against the IB criteria</h1>
 
       <p>
         Like the TOK essay, the exhibition is marked holistically: one instrument, out of 10, with no separate criteria. It is internally assessed, so your teacher marks it and the IB moderates a sample. The instrument asks a single question: <em>does the exhibition successfully show how TOK manifests in the world around us?</em> Your commentary either demonstrates that through three well-chosen objects, or it does not. This checklist turns the instrument into concrete checks you can run before submitting.

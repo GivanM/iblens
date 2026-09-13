@@ -112,21 +112,21 @@ const routeMeta: Record<string, PageMeta> = {
 
   "/": {
     title: "IB Essay Grader 2026: Free Preview, AI Feedback on IA, EE & TOK | IBLens",
-    description: "AI feedback on your IB essay in about a minute: marks against the published criteria, an estimated band, the risks costing you marks, and what to fix first. Free preview, no account needed.",
+    description: "AI feedback on your IB essay in about a minute: marks against the published criteria, an estimated range, the risks costing you marks, and what to fix first. Free preview, no account needed.",
     ogType: "website",
     canonical: "/",
     schemaType: "WebSite",
   },
   "/essay": {
     title: "IB Essay Grader: AI Feedback on IA, Extended Essay and TOK | IBLens",
-    description: "AI feedback on your IB Internal Assessment, Extended Essay or TOK work in 14 subjects: a free preview with your band range and weakest criterion, then a full report against the published criteria.",
+    description: "AI feedback on your IB Internal Assessment, Extended Essay or TOK work in 14 subjects: a free preview with your estimated range and weakest criterion, then a full report against the published criteria.",
     ogType: "website",
     canonical: "/essay",
     schemaType: "WebPage",
   },
   "/grade": {
     title: "IB Essay Grader: Free Preview of Your IA, EE or TOK Marks in About a Minute | IBLens",
-    description: "Paste your IB essay and get a free preview in about a minute: your band range, weakest criterion and top risks. The full report gives the estimated mark and the reasons for it. Extended Essay, IA or TOK, no account needed.",
+    description: "Paste your IB essay and get a free preview in about a minute: your estimated range, weakest criterion and top risks. The full report gives the estimated mark and the reasons for it. Extended Essay, IA or TOK, no account needed.",
     ogType: "website",
     canonical: "/grade",
     schemaType: "WebPage",
@@ -217,7 +217,7 @@ const routeMeta: Record<string, PageMeta> = {
     schemaType: "Article",
   },
   "/resources/ib-ia-score-predictor": {
-    title: "IB IA Score Predictor: Estimate Your Internal Assessment Grade | IBLens",
+    title: "IB IA Score Estimator: Estimate Your Internal Assessment Mark | IBLens",
     description: "How IB Internal Assessment marks are awarded and moderated, how to self-assess your IA criterion by criterion, and how to estimate your grade before results day.",
     ogType: "article",
     canonical: "/resources/ib-ia-score-predictor",
@@ -462,6 +462,15 @@ const routeMeta: Record<string, PageMeta> = {
     ogType: "article",
     canonical: "/resources/ib-psychology-extended-essay",
     schemaType: "Article",
+  },
+  // A design prototype of the homepage, reachable by link only.
+  "/v2": {
+    title: "IBLens: IB Essay Grader, Marked Like a Script",
+    description: "Paste an IB draft and get it marked against the published criteria, criterion by criterion, in about a minute. Free preview on the first one. Full report $9.99, no subscription.",
+    noindex: true,
+    ogType: "website",
+    canonical: "/",
+    schemaType: "WebPage",
   },
   "/auth/signin": {
     title: "Sign in | IBLens",

@@ -13,6 +13,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { WordCheckNote } from "@/components/WordCheckNote";
 import { usePurchaseTracking } from "@/hooks/usePurchaseTracking";
 import { fullReportAdds } from "@/lib/reportScope";
+import { deviceReportLabel } from "@/components/DeviceReportsList";
 
 const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
@@ -78,11 +79,7 @@ export default function AnalysisView() {
   const r: any = a.resultJson || {};
   const title = a.essayType === "UCAS"
     ? `UCAS personal statement, ${a.subject || "your course"}`
-    : a.essayType === "TOK"
-      ? (a.subject === "Exhibition" ? "TOK exhibition" : "TOK essay")
-      : a.essayType === "TOK Exhibition"
-        ? "TOK exhibition"
-        : `${TYPE_LABEL[a.essayType] || a.essayType}, ${a.subject}`;
+    : deviceReportLabel({ essayType: a.essayType, subject: a.subject });
 
   // Re-checks run for 14 days from the report opening; after that the server refuses
   // them, so the page must not keep offering them.
@@ -157,14 +154,14 @@ export default function AnalysisView() {
           <CardContent className="space-y-5">
             {p?.band_range && (
               <div className="flex items-baseline gap-3">
-                <span style={SERIF} className="text-4xl font-bold">Band {p.band_range}</span>
+                <span style={SERIF} className="text-4xl font-bold">{holistic ? "Band" : "Estimated range"} {p.band_range}</span>
                 {p.max_score ? <span className="text-sm text-muted-foreground">out of {p.max_score}</span> : null}
               </div>
             )}
             {weakest && (
               <div className="rounded-lg border border-amber-300 bg-amber-50 p-4">
                 <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-1.5">{holistic ? "The start of the explanation" : "Your weakest criterion, full feedback"}</p>
-                <div className="flex justify-between gap-3 text-sm font-semibold mb-1 text-foreground"><span>{weakest.name}</span><span className="flex-shrink-0">{typeof weakest.score === "number" ? `${weakest.score}/${weakest.max}` : `Band ${p.band_range}`}</span></div>
+                <div className="flex justify-between gap-3 text-sm font-semibold mb-1 text-foreground"><span>{weakest.name}</span><span className="flex-shrink-0">{typeof weakest.score === "number" ? `${weakest.score}/${weakest.max}` : holistic ? `Band ${p.band_range}` : `?/${weakest.max}`}</span></div>
                 <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{weakest.comment}</p>
               </div>
             )}
@@ -241,7 +238,7 @@ export default function AnalysisView() {
             {r.band_range && (
               <div>
                 <div style={SERIF} className="text-3xl font-bold">{r.band_range}</div>
-                <p className="text-xs text-muted-foreground">Band range</p>
+                <p className="text-xs text-muted-foreground">{(r.criteria?.length ?? 0) > 1 ? "Estimated range" : "Band"}</p>
               </div>
             )}
           </div>

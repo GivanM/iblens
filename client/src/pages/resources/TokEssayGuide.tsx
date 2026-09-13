@@ -10,7 +10,7 @@ export default function TokEssayGuide() {
       datePublished="2026-05-01"
       dateModified="2026-09-13"
     >
-      <h1>The Complete IB TOK Essay Guide</h1>
+      <h1>The complete IB TOK essay guide</h1>
 
       <p>
         <strong>In short: the TOK essay is up to 1,600 words on one of six prescribed titles, marked holistically out of 10 on one instrument with five levels and no separate criteria. Your TOK grade, together with your Extended Essay grade, decides up to 3 bonus points on your Diploma.</strong>
@@ -24,7 +24,7 @@ export default function TokEssayGuide() {
         The TOK essay is 1,600 words maximum and must respond to one of six prescribed titles released by the IB for each examination session. The essay and the TOK exhibition together make up your TOK grade, which combines with your EE grade in the bonus matrix to give up to 3 points. This guide explains what TOK is actually testing, how to structure your essay, and the most common mistakes that cost students marks.
       </p>
 
-      <h2>What TOK Is Testing</h2>
+      <h2>What TOK is testing</h2>
 
       <p>
         TOK is not testing your knowledge of any particular subject. It is testing your ability to think critically about knowledge itself. Specifically, the TOK essay assesses whether you can:
@@ -41,7 +41,7 @@ export default function TokEssayGuide() {
         The most common misconception about TOK is that it is about expressing opinions. It is not. TOK requires <strong>reasoned argument</strong>: claims supported with evidence and reasoning, and counter-claims genuinely engaged with rather than dismissed.
       </p>
 
-      <h2>The Prescribed Titles Structure</h2>
+      <h2>The Prescribed Titles structure</h2>
 
       <p>
         Each examination session, the IBO releases six prescribed titles. These are carefully crafted questions that invite exploration of knowledge issues across multiple areas of knowledge (AOKs). You choose one title and respond to it directly, using it exactly as given: the title must not be altered, and you cannot create your own question.
@@ -62,7 +62,7 @@ export default function TokEssayGuide() {
         When choosing your title, consider: Which title genuinely interests you? Which title can you find strong, specific examples for? Which title connects to areas of knowledge where you have personal experience or deep understanding? The best TOK essays come from genuine intellectual curiosity, not from choosing the title that seems "easiest."
       </p>
 
-      <h2>Building Knowledge Claims and Counter-Claims</h2>
+      <h2>Building knowledge claims and counter-claims</h2>
 
       <p>
         Many students build a TOK essay from claims and counter-claims. The TOK guide does not require this structure; it is one way to develop arguments and weigh different points of view. A <strong>knowledge claim</strong> is an assertion about knowledge, for example: "Mathematical knowledge is more certain than historical knowledge because it is based on logical proof rather than interpretation of evidence."
@@ -166,7 +166,7 @@ export default function TokEssayGuide() {
         The essay is marked holistically out of 10 against a single instrument, with no sub-criteria. Marks fall in five two-mark bands: Excellent (9-10), Good (7-8), Satisfactory (5-6), Basic (3-4), and Rudimentary (1-2).
       </p>
 
-      <h2>Worked Example: Strong vs. Weak Argumentation</h2>
+      <h2>Worked example: strong vs. weak argumentation</h2>
 
       <p>
         Consider this example title, written for this guide and not one of the IB's prescribed titles: "Is certainty achievable in any area of knowledge?"

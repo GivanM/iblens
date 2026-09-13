@@ -21,7 +21,7 @@ export default function IBMathIAExamples() {
         IA examples actually look like and how to replicate their structure.
       </p>
 
-      <h2>What the Criteria Look For</h2>
+      <h2>What the criteria look for</h2>
       <p>
         The IB Math IA is marked out of 20 on five criteria. A and B are worth 4 marks
         each, C and D 3 marks each, and E 6 marks:
@@ -40,7 +40,7 @@ export default function IBMathIAExamples() {
         15, and those are the marks this guide is about.
       </p>
 
-      <h2>IB Math IA Examples by Topic Area</h2>
+      <h2>IB Math IA examples by topic area</h2>
 
       <h3>Analysis and Approaches (AA), SL and HL: topics that work</h3>
 
@@ -119,7 +119,7 @@ export default function IBMathIAExamples() {
         real understanding of what the test can and cannot tell you.
       </p>
 
-      <h2>Structure of a High-Scoring IB Math IA</h2>
+      <h2>Structure of a high-scoring IB Math IA</h2>
       <p>
         Your teacher marks the exploration and a moderator may read it cold. A clear
         structure shows organisation (Criterion A) and makes the mathematics easier to
@@ -139,7 +139,7 @@ export default function IBMathIAExamples() {
         of the mathematical writing matters, not the length.
       </p>
 
-      <h2>The Most Common Reasons IB Math IAs Score Below Expectations</h2>
+      <h2>The most common reasons IB Math IAs score below expectations</h2>
 
       <h3>Choosing a topic that is too broad</h3>
       <p>
@@ -186,7 +186,7 @@ export default function IBMathIAExamples() {
         ]}
       />
 
-      <h2>How Your IA Draft Compares to the Rubric</h2>
+      <h2>How your IA draft compares to the rubric</h2>
       <p>
         Reading high-scoring IB Math IA examples is useful, but the gap between
         understanding a strong example and writing one yourself is where most marks

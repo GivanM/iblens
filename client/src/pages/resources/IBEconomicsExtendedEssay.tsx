@@ -28,7 +28,7 @@ export default function IBEconomicsExtendedEssay() {
         reliably cost marks.
       </p>
 
-      <h2>How the Economics EE Differs From the IA</h2>
+      <h2>How the Economics EE differs from the IA</h2>
       <p>
         The Economics IA is a set of short commentaries, each responding to a
         published news article through one lens of the syllabus. The Extended Essay
@@ -42,7 +42,7 @@ export default function IBEconomicsExtendedEssay() {
         between what the model predicts and what your data shows.
       </p>
 
-      <h2>Choosing a Research Question for an Economics EE</h2>
+      <h2>Choosing a research question for an Economics EE</h2>
       <p>A strong Economics EE research question has four characteristics:</p>
       <ul>
         <li><strong>A defined market or policy:</strong> It names the product, the place and the period, so there is a concrete thing to investigate.</li>
@@ -51,7 +51,7 @@ export default function IBEconomicsExtendedEssay() {
         <li><strong>An evaluative edge:</strong> "To what extent" phrasing that forces a judgement about how far the theory explains the evidence.</li>
       </ul>
 
-      <h3>Examples of Strong Economics EE Research Questions</h3>
+      <h3>Examples of strong Economics EE research questions</h3>
       <ul>
         <li>
           To what extent did the UK sugar levy change the pricing and product range
@@ -76,7 +76,7 @@ export default function IBEconomicsExtendedEssay() {
         </li>
       </ul>
 
-      <h3>Weak Research Questions, and Why They Fail</h3>
+      <h3>Weak research questions, and why they fail</h3>
       <ul>
         <li>
           Is capitalism better than socialism?
@@ -92,7 +92,7 @@ export default function IBEconomicsExtendedEssay() {
         </li>
       </ul>
 
-      <h2>How the Five EE Criteria Play Out in Economics</h2>
+      <h2>How the five EE criteria play out in Economics</h2>
       <p>From May 2027, every Extended Essay is marked out of 30 on five criteria. In Economics they look like this:</p>
       <ul>
         <li><strong>Criterion A: Framework for the essay (6 marks).</strong> A sharply bounded question, a credible research design (what data you gathered, from where, over what period, and which models you applied to it) and a structure that follows the investigation. Examiners check that the method can actually answer the question as worded.</li>
@@ -108,7 +108,7 @@ export default function IBEconomicsExtendedEssay() {
         analysis, discussion and evaluation together make up Critical thinking.
       </p>
 
-      <h2>Theory, Data and Diagrams: What Examiners Expect</h2>
+      <h2>Theory, data and diagrams: what examiners expect</h2>
       <p>
         An Economics EE needs real evidence. That can be primary data, such as prices
         you recorded across shops or weeks or a small survey, or secondary data from
@@ -130,7 +130,7 @@ export default function IBEconomicsExtendedEssay() {
         that changes the conclusion you can honestly draw.
       </p>
 
-      <h2>Common Mark-Losing Mistakes in Economics EEs</h2>
+      <h2>Common mark-losing mistakes in Economics EEs</h2>
       <ul>
         <li><strong>No data:</strong> 4,000 words of pure theory. Without evidence there is nothing to analyse, and Criteria C and D collapse.</li>
         <li><strong>Generic diagrams:</strong> unlabelled textbook figures that are never connected to the market being studied.</li>
@@ -140,7 +140,7 @@ export default function IBEconomicsExtendedEssay() {
         <li><strong>Forced conclusions:</strong> claiming the data proves the theory when it is mixed. Examiners reward calibrated judgement, not confidence.</li>
       </ul>
 
-      <h2>Frequently Asked Questions</h2>
+      <h2>Frequently asked questions</h2>
       <h3>Does an Economics EE need primary data?</h3>
       <p>
         Not necessarily. Strong essays can be built on either primary data (prices
@@ -162,7 +162,7 @@ export default function IBEconomicsExtendedEssay() {
         country over a defined period usually produces a stronger essay.
       </p>
 
-      <h2>Grade Your Economics EE Before You Submit</h2>
+      <h2>Grade your Economics EE before you submit</h2>
       <p>
         IBLens analyses Extended Essays against the published criteria for your exam session and shows
         you, criterion by criterion, where marks are being lost, including the

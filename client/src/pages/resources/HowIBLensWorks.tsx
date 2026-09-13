@@ -10,7 +10,7 @@ export default function HowIBLensWorks() {
       datePublished="2026-05-01"
       dateModified="2026-09-13"
     >
-      <h1>How IBLens Works</h1>
+      <h1>How IBLens works</h1>
 
       <p>
         IBLens is an AI-powered essay analysis tool designed specifically for IB Diploma Programme students. It reads coursework against the published assessment criteria: criterion by criterion for the Internal Assessment and the Extended Essay, and against the single holistic scale for TOK, which has no sub-criteria. The report comes back in about a minute.
@@ -28,7 +28,7 @@ export default function HowIBLensWorks() {
 
       <ul>
         <li><strong>Criterion-by-criterion scoring:</strong> Your essay is evaluated against the specific IB assessment criteria for your subject and essay type. Each criterion receives an estimated score with an explanation of why that score was assigned. A criterion judged on something you cannot paste, such as a Music recording or Extended Essay reflections you left out, is shown as not marked rather than guessed.</li>
-        <li><strong>Overall estimate:</strong> based on the criterion scores, an estimated mark out of the total for your task, with the band range the draft currently sits in.</li>
+        <li><strong>Overall estimate:</strong> based on the criterion scores, an estimated mark out of the total for your task, with the estimated range the draft currently sits in.</li>
         <li><strong>What is losing marks:</strong> Specific sections or aspects of your essay that are likely to lose marks, with explanations of why and suggestions for improvement.</li>
         <li><strong>Where marks are recoverable:</strong> Areas where small improvements would yield the largest mark gains, helping you prioritise your revision time.</li>
         <li><strong>What to fix first:</strong> concrete suggestions for improving the criteria that are losing marks, in plain language, in order of how many marks they are likely to recover.</li>
@@ -39,7 +39,7 @@ export default function HowIBLensWorks() {
         The analysis is tailored to your specific subject and essay type. A Biology IA is assessed against different criteria from a History IA or an Extended Essay in English Literature. IBLens recognises the subject context and applies the appropriate framework.
       </p>
 
-      <h2>How the Criteria Reach the Model</h2>
+      <h2>How the criteria reach the model</h2>
 
       <p>
         IBLens uses a large language model (Anthropic's Claude), instructed with the assessment criteria for your task before it reads your work. In practice that means:
@@ -58,10 +58,10 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        <strong>No calibration against marked scripts:</strong> IBLens has not been tested against a set of officially marked scripts. An estimated mark is the model's reading of the published criteria, which is why it is shown as an estimate with a band range, and why the criterion it flags matters more than the exact number.
+        <strong>No calibration against marked scripts:</strong> IBLens has not been tested against a set of officially marked scripts. An estimated mark is the model's reading of the published criteria, which is why it is shown as an estimate with an estimated range, and why the criterion it flags matters more than the exact number.
       </p>
 
-      <h2>What Feedback Looks Like</h2>
+      <h2>What feedback looks like</h2>
 
       <p>
         When you receive your IBLens analysis, the output is structured to be immediately actionable. Here is what a typical analysis includes:
@@ -83,7 +83,7 @@ export default function HowIBLensWorks() {
         <strong>Priority order:</strong> risks and next steps are listed with the ones likely to cost or recover the most marks first, so you can spend limited revision time where it counts.
       </p>
 
-      <h2>Limitations and What AI Can and Cannot Do</h2>
+      <h2>Limitations and what AI can and cannot do</h2>
 
       <p>
         We believe in being transparent about what IBLens can and cannot do. No AI tool is a perfect substitute for human judgement, and understanding the limitations helps you use the tool effectively:
@@ -107,7 +107,7 @@ export default function HowIBLensWorks() {
         <li><strong>Detect plagiarism:</strong> IBLens is not a plagiarism detection tool. It assumes the work submitted is your own.</li>
       </ul>
 
-      <h2>Privacy and Data Handling</h2>
+      <h2>Privacy and data handling</h2>
 
       <p>
         We take student privacy seriously. Here is how IBLens handles your data:
@@ -145,7 +145,7 @@ export default function HowIBLensWorks() {
             <td><strong>Free preview</strong></td>
             <td>$0</td>
             <td>n/a</td>
-            <td>The band range, feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks, one per device or account</td>
+            <td>The estimated range, feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks, one per device or account</td>
           </tr>
           <tr>
             <td><strong>Full report</strong></td>
@@ -182,7 +182,7 @@ export default function HowIBLensWorks() {
         How does IBLens compare to other ways of getting feedback on your IB essays?
       </p>
 
-      <h3>Private IB Tutors</h3>
+      <h3>Private IB tutors</h3>
       <p>
         <strong>Pros:</strong> Personalised, can ask follow-up questions, builds a relationship over time, can help with content knowledge.
         </p>
@@ -227,7 +227,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        The most effective approach combines multiple feedback sources: use IBLens for rapid, criterion-based feedback during revision, your teacher for authoritative subject guidance, and peers for a reader's perspective. Each source catches different issues. The Extended Essay is the exception: its guide allows no help with the research, writing or proofreading beyond what your supervisor permits, so ask your supervisor before using IBLens or anyone else on it.
+        The most effective approach combines multiple feedback sources: use IBLens for rapid, criterion-based feedback during revision, and your teacher for authoritative subject guidance. Check with your teacher before you use any outside feedback, peers included, because the IB academic integrity policy asks students not to receive assistance beyond what the subject guide permits. The Extended Essay is the exception: its guide allows no help with the research, writing or proofreading beyond what your supervisor permits, so ask your supervisor before using IBLens or anyone else on it.
       </p>
 
       <p>

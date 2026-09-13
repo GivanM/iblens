@@ -18,7 +18,7 @@ export default function IBExtendedEssayWordCount() {
         and explains how to use the limit well.
       </p>
 
-      <h2>What Counts Towards the 4,000-Word Limit</h2>
+      <h2>What counts towards the 4,000-word limit</h2>
       <p>
         The Extended Essay guide lists what is included in the word count:
       </p>
@@ -51,7 +51,7 @@ export default function IBExtendedEssayWordCount() {
         does not save words, and it makes the argument harder to follow.
       </p>
 
-      <h2>What Happens If You Go Over 4,000 Words</h2>
+      <h2>What happens if you go over 4,000 words</h2>
       <p>
         Examiners are instructed not to read or assess anything beyond the word limit,
         and the electronic upload lets them see exactly where that point falls. If your
@@ -68,7 +68,7 @@ export default function IBExtendedEssayWordCount() {
         count for nothing, and they are usually where the conclusion is.
       </p>
 
-      <h2>How Close to 4,000 Words Should You Aim?</h2>
+      <h2>How close to 4,000 words should you aim?</h2>
       <p>
         The IB sets no minimum word count. The limit is there because 4,000 words is
         enough room to develop a sustained argument, and an essay well below it often
@@ -82,7 +82,7 @@ export default function IBExtendedEssayWordCount() {
         <li><strong>Never go over.</strong> Cut until the essay is within the limit, then read it through once more.</li>
       </ul>
 
-      <h2>Do Not Write an Abstract</h2>
+      <h2>Do not write an abstract</h2>
       <p>
         The abstract was removed from the Extended Essay in the May 2018 session and has
         not been required or assessed since. If a template or an older guide tells you to
@@ -90,7 +90,7 @@ export default function IBExtendedEssayWordCount() {
         introduction and a contents page instead.
       </p>
 
-      <h2>Word Count by Subject</h2>
+      <h2>Word count by subject</h2>
 
       <h3>Sciences (Biology, Chemistry, Physics, Environmental Systems and Societies)</h3>
       <p>
@@ -124,7 +124,7 @@ export default function IBExtendedEssayWordCount() {
         that use up words without adding depth.
       </p>
 
-      <h2>How to Cut Your Extended Essay When Over the Limit</h2>
+      <h2>How to cut your Extended Essay when over the limit</h2>
       <p>
         If your draft is over 4,000 words, do not start cutting from the end. Work
         through the essay systematically:
@@ -137,7 +137,7 @@ export default function IBExtendedEssayWordCount() {
         <li><strong>Remove repeated examples:</strong> one strong example usually does more than three that make the same point.</li>
       </ol>
 
-      <h2>Does Word Count Affect Your Grade?</h2>
+      <h2>Does word count affect your grade?</h2>
       <p>
         The word count is not a criterion in itself. It matters because it decides how
         much of your essay the examiner reads, and every criterion marked on the essay
@@ -150,7 +150,7 @@ export default function IBExtendedEssayWordCount() {
         tend to score lower on critical thinking even when they stay within the limit.
       </p>
 
-      <h2>Get Your Extended Essay Draft Checked Before Submission</h2>
+      <h2>Get your Extended Essay draft checked before submission</h2>
       <p>
         Once your Extended Essay is submitted, the grade is out of your hands. The most
         useful thing you can get is criterion-by-criterion feedback on a draft: is the

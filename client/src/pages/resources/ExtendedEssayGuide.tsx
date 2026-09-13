@@ -10,7 +10,7 @@ export default function ExtendedEssayGuide() {
       datePublished="2026-05-01"
       dateModified="2026-09-13"
     >
-      <h1>The Complete IB Extended Essay Guide</h1>
+      <h1>The complete IB Extended Essay guide</h1>
 
       <p>
         <strong>In short: the Extended Essay is a 4,000-word independent research essay. From the May 2027 session it is marked out of 30 (Framework for the essay 6, Knowledge and understanding 6, Analysis and line of argument 6, Discussion and evaluation 8, Reflection 4); through November 2026 it is marked out of 34 on the older criteria. Together with TOK it contributes up to 3 bonus points to your Diploma.</strong>
@@ -24,7 +24,7 @@ export default function ExtendedEssayGuide() {
         This guide covers everything you need to know about the Extended Essay: from choosing a research question to understanding how examiners apply the assessment criteria. Whether you are just starting your EE journey or revising a final draft, the information below will help you understand what examiners are looking for and how to maximise your score.
       </p>
 
-      <h2>What Is the IB Extended Essay?</h2>
+      <h2>What is the IB Extended Essay?</h2>
 
       <p>
         The Extended Essay is a required component for all IB Diploma candidates. It is an in-depth study of a focused topic, usually in one of the student's DP subjects. Through November 2026 it can also be an interdisciplinary World Studies essay; from May 2027 that option is replaced by the interdisciplinary extended essay. The essay must be the result of the student's own research and must demonstrate the ability to formulate an appropriate research question, engage in personal exploration of the topic, communicate ideas effectively, and develop a reasoned argument.
@@ -34,7 +34,7 @@ export default function ExtendedEssayGuide() {
         The EE is supervised by a teacher at the student's school, but the research and writing must be the student's own work. The IBO allocates approximately 40 hours of work to the Extended Essay, spread across the final two years of the Diploma Programme. Students meet their supervisor, including three formal reflection sessions, and the supervisor gives guidance on method, structure and academic conventions but does not edit or rewrite the essay.
       </p>
 
-      <h2>Word Count and Timeline</h2>
+      <h2>Word count and timeline</h2>
 
       <p>
         The maximum word count for the Extended Essay is <strong>4,000 words</strong>. This limit includes the introduction, body, conclusion, quotations, and any footnotes or endnotes that are not references. It does <em>not</em> include the contents page, headers (listed from May 2027), maps, charts, diagrams, annotated illustrations, tables, equations, formulas and calculations, citations and references, the bibliography, or the reflection form. There is no abstract: it was dropped in 2018.
@@ -59,7 +59,7 @@ export default function ExtendedEssayGuide() {
         Schools set their own internal deadlines, which come well before the IB's final submission deadline. Your school's EE policy says what happens if you miss one, so check it early.
       </p>
 
-      <h2>Choosing a Research Question</h2>
+      <h2>Choosing a research question</h2>
 
       <p>
         The research question (RQ) is arguably the most important element of the Extended Essay. A well-crafted RQ provides focus, determines the scope of research, and guides the entire argument. A poor RQ leads to unfocused essays that struggle to demonstrate analysis.
@@ -101,7 +101,7 @@ export default function ExtendedEssayGuide() {
         For science subjects, the structure typically mirrors a lab report: introduction, methodology, results, analysis, conclusion. For humanities and social sciences, a thematic or chronological structure with argumentative sections works best.
       </p>
 
-      <h2>Assessment Criteria (A-E)</h2>
+      <h2>Assessment criteria (A-E)</h2>
 
       <p>
         From the May 2027 session every Extended Essay is marked out of 30 on these five criteria, the same in every subject:
@@ -199,7 +199,7 @@ export default function ExtendedEssayGuide() {
         <strong>Careful structure and referencing:</strong> clear structure, consistent formatting, accurate referencing and polished academic writing. From May 2027 structure counts under Criterion A, the framework for the essay (through November 2026 it is Presentation, 4 marks), and a clear structure also makes the argument easier to follow.
       </p>
 
-      <h2>Final Checklist Before Submission</h2>
+      <h2>Final checklist before submission</h2>
 
       <p>
         Before submitting your Extended Essay, verify the following:

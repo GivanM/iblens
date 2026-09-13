@@ -8,7 +8,7 @@ import { registerOAuthRoutes } from "./oauth";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
-import { purgeOldAnonymousAnalyses, purgeExpiredRevokedSessions, purgeAbandonedCheckouts } from "../db";
+import { purgeOldAnonymousAnalyses, purgeExpiredRevokedSessions, purgeAbandonedCheckouts, releaseInterruptedFreeRuns } from "../db";
 import { registerLemonsqueezyWebhook } from "../lemonsqueezy/lemonsqueezy";
 import { ENV } from "./env";
 
@@ -116,6 +116,22 @@ async function startServer() {
     console.log(`Server running on http://localhost:${port}/`);
   });
 
+  // A restart used to cut off analyses in flight: the free preview or the credit was taken
+  // before the model was called and never given back. Stop taking requests, let the ones
+  // running finish (an analysis can take four minutes with retries), then exit.
+  let stopping = false;
+  const drain = (signal: string) => {
+    if (stopping) return;
+    stopping = true;
+    console.log(`[Shutdown] ${signal}: finishing requests in flight`);
+    server.close(() => process.exit(0));
+    const idle = setInterval(() => server.closeIdleConnections(), 1000);
+    idle.unref();
+    setTimeout(() => { console.warn("[Shutdown] requests still running after 320s, exiting"); process.exit(0); }, 320_000).unref();
+  };
+  process.on("SIGTERM", () => drain("SIGTERM"));
+  process.on("SIGINT", () => drain("SIGINT"));
+
   // Retention. The privacy page says anonymous reports are not kept indefinitely,
   // so something has to actually delete them. Runs at boot and once a day after.
   const runRetention = () => {
@@ -125,6 +141,10 @@ async function startServer() {
   };
   runRetention();
   setInterval(runRetention, 24 * 60 * 60 * 1000).unref();
+  // Often, because a claim cut off by a restart is only ten minutes from being released.
+  const release = () => releaseInterruptedFreeRuns().catch((err) => console.warn("[Retention] interrupted free runs failed:", err));
+  release();
+  setInterval(release, 15 * 60 * 1000).unref();
 }
 
 startServer().catch(console.error);

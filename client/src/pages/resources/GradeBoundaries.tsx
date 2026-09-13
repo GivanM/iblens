@@ -10,13 +10,13 @@ export default function GradeBoundaries() {
       datePublished="2026-05-01"
       dateModified="2026-09-13"
     >
-      <h1>IB Grade Boundaries Explained</h1>
+      <h1>IB grade boundaries explained</h1>
 
       <p>
         The IB scoring system confuses students and parents alike. Each subject is graded from 1 to 7, the Extended Essay and Theory of Knowledge add up to 3 bonus points, and the raw marks needed for each grade change from one examination session to the next. This guide explains how those pieces fit together, from a single subject grade to the final Diploma score.
       </p>
 
-      <h2>How the 7-Point Scale Works</h2>
+      <h2>How the 7-point scale works</h2>
 
       <p>
         Each IB subject is graded from 1 (lowest) to 7 (highest). The grades are not percentages: a 7 does not mean 70% or any other fixed share of the marks. After each session the IB sets grade boundaries, the minimum total mark needed for each grade, taking into account how demanding that session's papers turned out to be.
@@ -30,7 +30,7 @@ export default function GradeBoundaries() {
         This is why nobody can tell you your exact grade during the course. You can estimate from past boundaries, but the boundaries that count are only fixed once that session's marking is complete.
       </p>
 
-      <h2>How Subject Grades Combine into the Diploma Score</h2>
+      <h2>How subject grades combine into the Diploma score</h2>
 
       <p>
         The Diploma score adds your six subject grades to the bonus points from the Extended Essay and TOK:
@@ -63,7 +63,7 @@ export default function GradeBoundaries() {
         So a student can reach 24 points and still not receive the Diploma, for example with a grade 1 in one subject. Students who are not awarded the Diploma receive DP Course Results for the subjects they completed.
       </p>
 
-      <h2>What Moves a Boundary</h2>
+      <h2>What moves a boundary</h2>
 
       <p>
         A boundary is set for a subject and level as a whole, after all its components are marked. Two things are worth knowing about how that plays out in practice.
@@ -79,7 +79,7 @@ export default function GradeBoundaries() {
         Because boundaries are set below the maximum, a 7 does not require a perfect performance on every paper, in any subject. Where exactly the line falls depends on the session, so the useful question is how close your own marks are to it, which your teacher can help you judge.
       </p>
 
-      <h2>Bonus Points from the EE and TOK Matrix</h2>
+      <h2>Bonus points from the EE and TOK matrix</h2>
 
       <p>
         The Extended Essay and Theory of Knowledge are each graded from A to E. The two grades are combined in a matrix that gives 0 to 3 bonus points:
@@ -155,7 +155,7 @@ export default function GradeBoundaries() {
         That is why your <Link href="/resources/ib-extended-essay-guide" className="text-primary hover:underline">Extended Essay</Link> and <Link href="/resources/tok-essay-guide" className="text-primary hover:underline">TOK essay</Link> deserve real attention: both are submitted work with no exam-day pressure, and they are worth up to 3 points between them.
       </p>
 
-      <h2>Totals and University Offers</h2>
+      <h2>Totals and university offers</h2>
 
       <p>
         Universities set their own requirements for each course, and many care as much about grades in particular HL subjects as about the total. A UK offer, for example, can read "38 points including 766 at HL, with a 7 in Chemistry". A student on 38 points who meets those HL grades can hold an offer that a student on 40 points with the wrong HL grades does not.
@@ -165,7 +165,7 @@ export default function GradeBoundaries() {
         Requirements change, so use the university's own course page, and UCAS for UK courses, as the source for the course you are applying to. If you are writing a UCAS personal statement, our <Link href="/ucas-personal-statement" className="text-primary hover:underline">checker</Link> reviews it against the three-question format used from 2026 entry.
       </p>
 
-      <h2>Where Your Effort Moves the Score</h2>
+      <h2>Where your effort moves the score</h2>
 
       <p>
         <strong>Internal Assessments:</strong> the IA is the part of each grade you work on over weeks rather than in an exam hall. Your teacher can comment on a draft, and you can check it against the criteria yourself or with a tool like <Link href="/essay" className="text-primary hover:underline">IBLens</Link> before you submit.

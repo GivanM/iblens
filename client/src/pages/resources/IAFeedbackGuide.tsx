@@ -10,7 +10,7 @@ export default function IAFeedbackGuide() {
       datePublished="2026-08-11"
       dateModified="2026-09-13"
     >
-      <h1>How to Check Your IB IA Against the Official Criteria (Without a Tutor)</h1>
+      <h1>How to check your IB IA against the official criteria (without a tutor)</h1>
 
       <p>
         Every subject Internal Assessment is marked against published criteria with fixed mark allocations (the TOK exhibition is marked holistically), which means you can check a draft against the same criteria your teacher and the moderator will use. The catch: the criteria differ completely by subject, and the smartest check starts from where the marks actually are. This guide shows what each subject is marked out of, where the heaviest criteria sit, and a self-check sequence that works for any of them.
@@ -57,7 +57,7 @@ export default function IAFeedbackGuide() {
       <h2>Teacher feedback and where AI fits</h2>
 
       <p>
-        Your teacher gives guidance during the IA process and feedback on one draft: use it for what only a subject expert can judge, such as whether your method is sound and your content accurate. What AI adds is a check against the criteria whenever you revise. IBLens marks coursework drafts in 14 subjects against the criteria for your session. The estimated band range and your weakest criterion are free, and the full criterion-by-criterion report is $9.99, with no subscription and two free re-checks.
+        Your teacher gives guidance during the IA process and feedback on one draft: use it for what only a subject expert can judge, such as whether your method is sound and your content accurate. What AI adds is a check against the criteria whenever you revise. IBLens marks coursework drafts in 14 subjects against the criteria for your session. The estimated range and your weakest criterion are free, and the full criterion-by-criterion report is $9.99, with no subscription and two free re-checks.
       </p>
 
       <p>

@@ -54,7 +54,7 @@ export default function LandingPage() {
     <>
       <SEOHead
         title="IB Essay Grader: Free Preview of Your IA, EE or TOK Marks in About a Minute | IBLens"
-        description="Paste your IB essay and get a free preview in about a minute: your band range, weakest criterion and top risks. The full report gives the estimated mark and the reasons for it. Extended Essay, IA or TOK, no account needed."
+        description="Paste your IB essay and get a free preview in about a minute: your estimated range, weakest criterion and top risks. The full report gives the estimated mark and the reasons for it. Extended Essay, IA or TOK, no account needed."
         canonical="/grade"
       />
 
@@ -80,13 +80,13 @@ export default function LandingPage() {
         <section className="bg-gradient-to-b from-primary/5 to-background py-16 md:py-24">
           <div className="container max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold mb-6 uppercase tracking-wide">
-              First preview free · No account · No card
+              {previewUsed ? "Full report $9.99 · No account · Refundable within 7 days" : "First preview free · No account · No card"}
             </div>
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-5 leading-tight">
-              Grade Your IB Essay<br />in About a Minute
+              Grade your IB essay<br />in about a minute
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">
-              Paste your IA or TOK work, or your Extended Essay if your supervisor agrees. The free preview comes back in about a minute with your band range, weakest criterion and top risks; the full report gives the estimated mark, criterion by criterion (the TOK essay and exhibition as a whole), and ranks the fixes.
+              Paste your IA or TOK work, or your Extended Essay if your supervisor agrees. The free preview comes back in about a minute with your estimated range, weakest criterion and top risks; the full report gives the estimated mark, criterion by criterion (the TOK essay and exhibition as a whole), and ranks the fixes.
             </p>
             <Button size="lg" className="text-base px-10 h-14 shadow-lg shadow-primary/25 mb-4" asChild>
               <Link href="/essay">
@@ -209,7 +209,7 @@ export default function LandingPage() {
             <div className="bg-background rounded-xl border p-5">
               <FAQItem
                 question="Is the first preview really free?"
-                answer="Yes. The first preview is free: your band range, feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark, comments criterion by criterion (for the TOK essay and exhibition, the whole explanation) and a ranked list of fixes, unlocks for $9.99."
+                answer="Yes. The first preview is free: your estimated range, feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark, comments criterion by criterion (for the TOK essay and exhibition, the whole explanation) and a ranked list of fixes, unlocks for $9.99."
               />
               <FAQItem
                 question="Which essay types and subjects does IBLens support?"
@@ -235,7 +235,7 @@ export default function LandingPage() {
         <section className="py-20 bg-gradient-to-b from-primary/5 to-background text-center">
           <div className="container max-w-xl mx-auto">
             <h2 className="text-3xl font-bold tracking-tight mb-4">Ready to see where your essay stands?</h2>
-            <p className="text-muted-foreground mb-8">Paste your essay now: a free preview in about a minute, with no account needed.</p>
+            <p className="text-muted-foreground mb-8">{previewUsed ? "Paste your essay now: the full report comes back in about a minute." : "Paste your essay now: a free preview in about a minute, with no account needed."}</p>
             <Button size="lg" className="text-base px-10 shadow-lg shadow-primary/25" asChild>
               <Link href="/essay">
                 {cta} <ArrowRight className="w-4 h-4 ml-2" />

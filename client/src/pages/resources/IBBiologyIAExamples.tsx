@@ -20,7 +20,7 @@ export default function IBBiologyIAExamples() {
         otherwise competent investigations their marks.
       </p>
 
-      <h2>How the IB Biology IA Is Marked</h2>
+      <h2>How the IB Biology IA is marked</h2>
       <p>
         The IA is marked out of 24 across four criteria (2025 syllabus, first assessment May 2025):
       </p>
@@ -36,7 +36,7 @@ export default function IBBiologyIAExamples() {
         affected the result.
       </p>
 
-      <h2>IB Biology IA Examples That Score Well</h2>
+      <h2>IB Biology IA examples that score well</h2>
 
       <h3>1. Effect of substrate concentration on enzyme activity</h3>
       <p>
@@ -99,7 +99,7 @@ export default function IBBiologyIAExamples() {
         whether the damage could be reversed.
       </p>
 
-      <h2>Topics to Avoid (or Handle Carefully)</h2>
+      <h2>Topics to avoid (or handle carefully)</h2>
 
       <h3>Survey-based IAs on human behaviour</h3>
       <p>
@@ -125,7 +125,7 @@ export default function IBBiologyIAExamples() {
         condition within your available lab time.
       </p>
 
-      <h2>The Most Important Thing About IB Biology IA Evaluation</h2>
+      <h2>The most important thing about IB Biology IA evaluation</h2>
       <p>
         Evaluation is where many otherwise good IAs lose marks. The common failure is
         writing: "My experiment had some errors. I could improve it by being more
@@ -161,7 +161,7 @@ export default function IBBiologyIAExamples() {
         ]}
       />
 
-      <h2>Getting Criterion-Level Feedback Before Submission</h2>
+      <h2>Getting criterion-level feedback before submission</h2>
       <p>
         When you read IB Biology IA examples online, it is tempting to compare your
         work broadly: "mine is a similar length and has graphs, so it should be fine."

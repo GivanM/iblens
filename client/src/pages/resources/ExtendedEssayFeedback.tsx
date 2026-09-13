@@ -10,7 +10,7 @@ export default function ExtendedEssayFeedback() {
       datePublished="2026-08-11"
       dateModified="2026-09-13"
     >
-      <h1>How to Get Feedback on Your IB Extended Essay Before You Submit</h1>
+      <h1>How to get feedback on your IB Extended Essay before you submit</h1>
 
       <p>
         The Extended Essay is the one piece of IB work where feedback is both most valuable and most rationed. Your supervisor's written comments are limited to one complete draft, supervisors cannot edit your work, and by the time the deadline is close, most students have exactly one question: <em>is this good enough, and what do I fix first?</em> This guide covers every legitimate feedback channel, what each one can tell you, what it cannot, and when in the process to use it.
@@ -57,7 +57,7 @@ export default function ExtendedEssayFeedback() {
       <h2>Where AI feedback fits</h2>
 
       <p>
-        An AI check is outside help. The EE guide says students must not receive assistance with any aspect of the research, writing or proofreading beyond that which is permitted through their supervisor, so ask your supervisor before you use IBLens or any other tool on your EE, and tell them if you do. If they agree, IBLens marks your EE against the criteria for your session (the 34-mark set or the new 30-mark May 2027 set), criterion by criterion. The estimated band range and your weakest criterion are free, and the full report is $9.99 with no subscription. Using AI for feedback on your own work is a different thing from having AI write it: see our guide to <Link href="/resources/academic-integrity">AI feedback and IB academic integrity</Link> for where the line sits.
+        An AI check is outside help. The EE guide says students must not receive assistance with any aspect of the research, writing or proofreading beyond that which is permitted through their supervisor, so ask your supervisor before you use IBLens or any other tool on your EE, and tell them if you do. If they agree, IBLens marks your EE against the criteria for your session (the 34-mark set or the new 30-mark May 2027 set), criterion by criterion. The estimated range and your weakest criterion are free, and the full report is $9.99 with no subscription. Using AI for feedback on your own work is a different thing from having AI write it: see our guide to <Link href="/resources/academic-integrity">AI feedback and IB academic integrity</Link> for where the line sits.
       </p>
 
       <p>

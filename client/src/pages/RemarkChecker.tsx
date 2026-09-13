@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, TrendingDown, CalendarClock, ArrowRight, CheckCircle2 } from "lucide-react";
 import { REMARK_FAQ } from "@shared/remarkFaq";
 import { EE_SUBJECTS } from "@shared/rubrics";
+import { useMarkingCta } from "@/hooks/useMarkingCta";
 
 const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
@@ -26,7 +27,7 @@ const QUICK_STEPS = [
   "Reading your essay\u2026",
   "Checking it against the published criteria\u2026",
   "Marking each criterion against its descriptors\u2026",
-  "Working out where it sits in its band\u2026",
+  "Working out the estimated range\u2026",
   "Writing up where it stands\u2026",
 ];
 
@@ -37,6 +38,7 @@ const QUICK_STEPS = [
 const LATEST_RESULTS_SESSION: "nov2026" | "may2027" = Date.now() < Date.parse("2027-07-01T00:00:00Z") ? "nov2026" : "may2027";
 
 function RemarkQuickCheck() {
+  const { paidLeft } = useMarkingCta();
   const [essayType, setEssayType] = useState<"EE" | "TOK">("TOK");
   const [sessionSat, setSessionSat] = useState<"nov2026" | "may2027">(LATEST_RESULTS_SESSION);
   const [subject, setSubject] = useState("History");
@@ -66,7 +68,7 @@ function RemarkQuickCheck() {
   return (
     <div className="rounded-xl border-2 border-primary bg-card p-6 mb-12 shadow-sm">
       <h2 style={SERIF} className="text-2xl font-bold mb-1">Check your essay right here, free</h2>
-      <p className="text-sm text-muted-foreground mb-4">Paste the exact EE or TOK essay you submitted. In about a minute you see how it reads against the published criteria and where it sits in its band. That is information for your decision, not a prediction of what a re-mark would do.</p>
+      <p className="text-sm text-muted-foreground mb-4">Paste the exact EE or TOK essay you submitted. In about a minute you see how it reads against the published criteria: an estimated range for the total, your weakest criterion and the top risks. The estimated mark is in the full report. None of this predicts what a re-mark would do.</p>
 
       {!result && (
         <>
@@ -112,7 +114,7 @@ function RemarkQuickCheck() {
             <p className="text-xs text-muted-foreground mt-2">Keep pasting: the check needs the full essay.</p>
           )}
           {alreadyUsed && (
-            <p className="text-sm mt-3">You have already used the free preview on this device. A full report is $9.99 on the <Link href={`/essay?session=${sessionSat}`} className="text-primary font-medium underline">grader page</Link>, with no account needed.</p>
+            <p className="text-sm mt-3">You have already used the free preview on this device. {paidLeft > 0 ? "Mark it with one of your paid reports on the" : "A full report is $9.99 on the"} <Link href={`/essay?session=${sessionSat}`} className="text-primary font-medium underline">grader page</Link>, with no account needed.</p>
           )}
           {errMsg && !alreadyUsed && (
             <p className="text-sm mt-3 text-destructive">{errMsg.replace(/[.\s]*$/, ".")} Please try again.</p>
@@ -123,19 +125,21 @@ function RemarkQuickCheck() {
       {result && (
         <div>
           <div className="flex items-baseline gap-3 mb-2">
-            <span style={SERIF} className="text-3xl font-bold text-primary">Estimated {result.band_range}</span>
+            <span style={SERIF} className="text-3xl font-bold text-primary">{essayType === "TOK" ? "Band" : "Estimated range"} {result.band_range}</span>
             <span className="text-sm text-muted-foreground">out of {result.max_score}</span>
           </div>
           <div className="rounded-lg p-4 mb-4 border border-border bg-muted/40">
-            <p className="text-sm text-muted-foreground">This range is IBLens's estimate of where the total could fall, not an IB band or grade boundary. A re-mark changes your grade only if the new total crosses a grade boundary, which your coordinator can tell you. The estimate comes from a language model and cannot tell you what a second examiner will do.</p>
+            <p className="text-sm text-muted-foreground">{essayType === "TOK"
+              ? "This is the band of the TOK assessment instrument that IBLens places your essay in. It is an estimate from a language model, not the IB's mark. A re-mark changes your grade only if your overall TOK mark crosses a grade boundary, which your coordinator can tell you."
+              : "This range is IBLens's estimate of where the total could fall, not an IB band or grade boundary. A re-mark changes your grade only if the new total crosses a grade boundary, which your coordinator can tell you. The estimate comes from a language model and cannot tell you what a second examiner will do."}</p>
           </div>
           {essayType === "EE" && (
             <p className="text-xs text-muted-foreground mb-3">Criterion E is marked on your reflections form, which this check does not include, so the estimate covers the other criteria only.</p>
           )}
           {result.weakest_criterion && (
             <div className="rounded-lg border border-border bg-muted/40 p-4 mb-4">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{typeof result.weakest_criterion.score === "number" ? "Your weakest criterion, full feedback" : "The start of the explanation"}</p>
-              <div className="flex justify-between text-sm font-semibold mb-1"><span>{result.weakest_criterion.name}</span><span>{typeof result.weakest_criterion.score === "number" ? `${result.weakest_criterion.score}/${result.weakest_criterion.max}` : `Band ${result.band_range}`}</span></div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{typeof result.weakest_criterion.score === "number" || essayType === "EE" ? "Your weakest criterion, full feedback" : "The start of the explanation"}</p>
+              <div className="flex justify-between text-sm font-semibold mb-1"><span>{result.weakest_criterion.name}</span><span>{typeof result.weakest_criterion.score === "number" ? `${result.weakest_criterion.score}/${result.weakest_criterion.max}` : essayType === "TOK" ? `Band ${result.band_range}` : `?/${result.weakest_criterion.max}`}</span></div>
               <p className="text-sm text-muted-foreground leading-relaxed">{result.weakest_criterion.comment}</p>
             </div>
           )}
@@ -146,8 +150,8 @@ function RemarkQuickCheck() {
               ))}
             </ul>
           )}
-          <p className="text-sm text-muted-foreground mb-3">The full report, with the estimated mark, the full comments and a ranked list of fixes, unlocks for $9.99 on the grader page, where this preview is saved. Everything here is an estimate from a language model, not the IB's mark.</p>
-          <Button asChild><Link href={`/essay?session=${sessionSat}`}>Unlock it on the grader page, $9.99</Link></Button>
+          <p className="text-sm text-muted-foreground mb-3">The full report, with the estimated mark, the full comments and a ranked list of fixes, unlocks on the grader page, where this preview is saved, {paidLeft > 0 ? "with one of your paid reports" : "for $9.99"}. Everything here is an estimate from a language model, not the IB's mark.</p>
+          <Button asChild><Link href={`/essay?session=${sessionSat}`}>{paidLeft > 0 ? "Unlock it on the grader page with one of your paid reports" : "Unlock it on the grader page, $9.99"}</Link></Button>
         </div>
       )}
     </div>
@@ -155,6 +159,7 @@ function RemarkQuickCheck() {
 }
 
 export default function RemarkChecker() {
+  const { previewUsed, paidLeft, paidLabel } = useMarkingCta();
   return (
     <>
       <SEOHead
@@ -169,7 +174,7 @@ export default function RemarkChecker() {
             Should you pay for an IB re-mark?
           </h1>
           <p className="text-lg text-muted-foreground leading-relaxed mb-10">
-            A re-mark (enquiry upon results, category 1) costs a fee set by the IB, refunded only if
+            A re-mark (enquiry upon results, category 1) costs a fee set by the IB, which is not charged if
             your grade changes. The grade can go <em>down</em> as well as up. Your school must submit the
             request by 15 September for the May session, or by 15 March for the November session. Most
             students decide without knowing how close they are to a boundary. Here is how to decide with
@@ -182,7 +187,7 @@ export default function RemarkChecker() {
             <Card>
               <CardContent className="pt-6">
                 <AlertTriangle className="w-5 h-5 text-primary mb-2" />
-                <p className="font-semibold text-sm mb-1">Refunded only on a grade change</p>
+                <p className="font-semibold text-sm mb-1">No fee if the grade changes</p>
                 <p className="text-xs text-muted-foreground">The IB publishes the fee to schools, so your coordinator can tell you what it is. There is no charge for a category 1 re-mark that changes your grade.</p>
               </CardContent>
             </Card>
@@ -223,7 +228,7 @@ export default function RemarkChecker() {
               <li>Read the two together. The estimate shows where the essay is strong and weak; it cannot predict what a second examiner will do.</li>
             </ol>
             <p className="text-sm text-muted-foreground mb-5">
-              The first preview is free; the full report is $9.99.
+              {!previewUsed ? "The first preview is free; the full report is $9.99." : paidLeft > 0 ? "Your free preview is used; a full report uses one of your paid reports." : "Your free preview is used; a full report is $9.99."}
             </p>
             <Button size="lg" asChild>
               <Link href={`/essay?session=${LATEST_RESULTS_SESSION}`}>Grade my submitted essay <ArrowRight className="w-4 h-4 ml-2" /></Link>
@@ -269,7 +274,7 @@ export default function RemarkChecker() {
           <div className="text-center border-t border-border pt-10">
             <p style={SERIF} className="text-xl font-bold mb-3">Know before you pay.</p>
             <Button size="lg" asChild>
-              <Link href={`/essay?session=${LATEST_RESULTS_SESSION}`}>Mark my essay: the first preview is free <ArrowRight className="w-4 h-4 ml-2" /></Link>
+              <Link href={`/essay?session=${LATEST_RESULTS_SESSION}`}>{previewUsed ? paidLabel : "Mark my essay: the first preview is free"} <ArrowRight className="w-4 h-4 ml-2" /></Link>
             </Button>
           </div>
         </div>

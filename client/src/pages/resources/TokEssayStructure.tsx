@@ -10,13 +10,13 @@ export default function TokEssayStructure() {
       datePublished="2026-06-27"
       dateModified="2026-09-13"
     >
-      <h1>IB TOK Essay Structure: The Complete 2026 Guide</h1>
+      <h1>IB TOK essay structure: the complete 2026 guide</h1>
 
       <p>
         The IB Theory of Knowledge essay has no prescribed structure, but a clear one makes it much easier for an examiner to see a clear, coherent and critical exploration of the title, which is what the instrument rewards. This guide sets out a structure that works for most titles, paragraph by paragraph, with rough word counts and what each section needs to do.
       </p>
 
-      <h2>Why Structure Matters in TOK</h2>
+      <h2>Why structure matters in TOK</h2>
 
       <p>
         The TOK essay is marked on how well it explores the title through arguments, examples and points of view, and poor structure hides that quality. An essay that jumps between Areas of Knowledge without a clear logical thread, or that buries its thesis in the third paragraph, loses marks against the holistic rubric even if the individual ideas are good.
@@ -26,7 +26,7 @@ export default function TokEssayStructure() {
         The holistic TOK rubric rewards a clear, coherent and critical exploration of the title, and structure is the mechanism that makes that exploration visible.
       </p>
 
-      <h2>The Standard TOK Essay Structure (1,600 words)</h2>
+      <h2>The standard TOK essay structure (1,600 words)</h2>
 
       <h3>Introduction (150-200 words)</h3>
 
@@ -77,7 +77,7 @@ export default function TokEssayStructure() {
         <li><strong>Connect to broader significance:</strong> Optional, but effective. One sentence on why this knowledge question matters beyond the exam.</li>
       </ol>
 
-      <h2>The Claim-Counter-Claim Cycle: Why It Works</h2>
+      <h2>The claim-counter-claim cycle: why it works</h2>
 
       <p>
         The claim and counter-claim structure is not just a formula; it reflects how knowledge claims are actually tested. Knowledge claims are provisional. They gain credibility by surviving challenges, not by being asserted without opposition.
@@ -87,7 +87,7 @@ export default function TokEssayStructure() {
         When you present a counter-claim and then respond to it, you show what the top levels of the instrument describe: "clear awareness and evaluation of different points of view". An essay that only lists claims shows awareness at best, and the instrument places evaluation above awareness.
       </p>
 
-      <h2>Choosing Your Two Areas of Knowledge</h2>
+      <h2>Choosing your two areas of knowledge</h2>
 
       <p>
         Since 2022 there are five areas of knowledge: the natural sciences, the human sciences, history, the arts and mathematics. Indigenous knowledge systems and ethics were areas of knowledge in the old course; in the current one, knowledge and indigenous societies is an optional theme and ethics is part of the knowledge framework. Where your title leaves the choice to you, choose areas that:
@@ -99,7 +99,7 @@ export default function TokEssayStructure() {
         <li><strong>Actually fit the prescribed title:</strong> Some titles work better with certain AOKs. Read the title carefully before choosing</li>
       </ul>
 
-      <h2>Common Structural Mistakes</h2>
+      <h2>Common structural mistakes</h2>
 
       <ul>
         <li><strong>Too many areas:</strong> three or more areas rarely get enough depth in 1,600 words. Unless your title asks otherwise, two is plenty.</li>
@@ -109,7 +109,7 @@ export default function TokEssayStructure() {
         <li><strong>Headings like "Claim 1:":</strong> no rule forbids headings, but labels like these push an essay towards a formula. Most strong essays read as continuous prose.</li>
       </ul>
 
-      <h2>Check Your Structure With IBLens</h2>
+      <h2>Check your structure with IBLens</h2>
 
       <p>
         Once you have drafted your TOK essay, IBLens reads it against the TOK assessment instrument: whether your claims are developed enough, whether counter-claims are genuinely addressed, and whether the essay actually answers the prescribed title.

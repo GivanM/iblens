@@ -119,7 +119,7 @@ export default function Pricing() {
             <div className="flex-1">
               <h3 className="font-semibold">Your first preview is free</h3>
               <p className="text-sm text-muted-foreground mt-0.5">
-                Paste your essay with no sign-in and no credit card. The preview shows your band range, feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks in your draft.
+                Paste your essay with no sign-in and no credit card. The preview shows your estimated range, feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks in your draft.
               </p>
             </div>
             <Button size="sm" asChild className="flex-shrink-0 self-start sm:self-auto">
@@ -200,7 +200,7 @@ export default function Pricing() {
 
         {/* Bottom CTA */}
         <div className="text-center mt-16">
-          <p className="text-muted-foreground mb-4">Not sure yet? Start with the free preview.</p>
+          <p className="text-muted-foreground mb-4">{previewUsed ? "Ready to mark your next piece of work?" : "Not sure yet? Start with the free preview."}</p>
           <Button size="lg" asChild>
             <Link href="/essay">
               {previewUsed ? paidLabel : "Start your free preview"} <ArrowRight className="w-4 h-4 ml-2" />

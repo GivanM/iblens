@@ -10,7 +10,7 @@ export default function EssayCriteriaExplained() {
       datePublished="2026-05-01"
       dateModified="2026-09-13"
     >
-      <h1>IB Essay Criteria Explained</h1>
+      <h1>IB essay criteria explained</h1>
 
       <p>
         <strong>In short: Most IB coursework is marked against published criteria with fixed mark allocations. The TOK essay and exhibition are the exception: they are marked holistically, as a single global impression. The fastest way to raise a grade is to find the heaviest criterion for your component and check your draft against its top markband first.</strong>
@@ -24,7 +24,7 @@ export default function EssayCriteriaExplained() {
         Understanding how criterion-based marking works is one of the most powerful things you can do to improve your IB grades. When you know exactly what examiners are looking for at each level, you can write strategically to demonstrate those qualities. This guide explains the system, shows you what distinguishes different performance levels, and gives you tools for self-assessment.
       </p>
 
-      <h2>Why Criterion-Based Marking Exists</h2>
+      <h2>Why criterion-based marking exists</h2>
 
       <p>
         The IBO uses criterion-based assessment for several reasons:
@@ -46,7 +46,7 @@ export default function EssayCriteriaExplained() {
         <strong>Fairness:</strong> Criterion-based marking reduces (though does not eliminate) the impact of examiner subjectivity. When examiners disagree, they can point to specific descriptors and discuss which level the work best matches.
       </p>
 
-      <h2>Common Criteria Across Subjects</h2>
+      <h2>Common criteria across subjects</h2>
 
       <p>
         While each IB subject has its own specific criteria, certain competencies appear across nearly all subjects. Understanding these common threads helps you develop transferable skills:
@@ -72,7 +72,7 @@ export default function EssayCriteriaExplained() {
         Assessed directly in many components, and indirectly in all of them: can you communicate your ideas clearly, using appropriate structure, conventions and academic language? This includes proper citation, logical organisation, correct use of subject-specific formats (lab reports, essays, commentaries), and writing that is precise rather than vague.
       </p>
 
-      <h2>How Examiners Apply Criteria in Practice</h2>
+      <h2>How examiners apply criteria in practice</h2>
 
       <p>
         Understanding the mechanics of marking helps you write for your audience. Here is how the process typically works:
@@ -94,7 +94,7 @@ export default function EssayCriteriaExplained() {
         <strong>Standardisation:</strong> examiners are trained on work that senior examiners have already marked, and their marking is checked during the session. The aim is that different examiners marking the same work arrive at similar marks.
       </p>
 
-      <h2>The Difference Between Good and Excellent Work</h2>
+      <h2>The difference between good and excellent work</h2>
 
       <p>
         Many students reach solid, good work without much trouble and then struggle to break into the top levels. The exact wording differs from criterion to criterion, but these differences come up again and again:
@@ -146,7 +146,7 @@ export default function EssayCriteriaExplained() {
         The fundamental difference is <strong>depth of thinking</strong>. Good work shows competence: the student understands the material and can apply it. Excellent work shows <strong>intellectual sophistication</strong>: the student can evaluate, synthesise and reach insight of their own.
       </p>
 
-      <h2>Self-Assessment Using Criteria</h2>
+      <h2>Self-assessment using criteria</h2>
 
       <p>
         One of the most effective study strategies is to assess your own work against the published criteria before submitting it. Here is a practical approach:
@@ -172,7 +172,7 @@ export default function EssayCriteriaExplained() {
         <strong>Step 5: Targeted revision.</strong> Focus your revision effort on the criteria where you have the largest gap between current performance and target. There is no point polishing presentation if the criterion carrying the most marks in your own rubric is still at the bottom band.
       </p>
 
-      <h2>How AI Feedback Maps to Criteria</h2>
+      <h2>How AI feedback maps to criteria</h2>
 
       <p>
         Tools like <Link href="/essay" className="text-primary hover:underline">IBLens</Link> follow the same criterion-based approach. When you paste an essay, a language model reads your work against the criteria for your subject, essay type and session, and returns:
@@ -193,7 +193,7 @@ export default function EssayCriteriaExplained() {
         The key advantage of criterion-based AI feedback over general writing feedback is specificity. Generic feedback like "your essay needs more analysis" is unhelpful because it does not tell you <em>which</em> criterion is weak, <em>where</em> in the essay the analysis is lacking, or <em>what</em> analysis at the next band level looks like. Criterion-mapped feedback addresses all three.
       </p>
 
-      <h2>Practical Tips for Criterion-Based Writing</h2>
+      <h2>Practical tips for criterion-based writing</h2>
 
       <p>
         A few habits that help:

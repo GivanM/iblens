@@ -21,7 +21,7 @@ export default function IBHistoryIA() {
         specific, and that is where many investigations lose marks.
       </p>
 
-      <h2>The Three-Section Structure of the IB History IA</h2>
+      <h2>The three-section structure of the IB History IA</h2>
       <p>
         The investigation has three sections, each linked to one criterion. The guide
         suggests a word allocation for each, and knowing what each section is for matters
@@ -107,7 +107,7 @@ export default function IBHistoryIA() {
         specific questions about method that the investigation itself raised.
       </p>
 
-      <h2>How to Choose a Good Research Question</h2>
+      <h2>How to choose a good research question</h2>
       <p>
         The research question determines how achievable a high score is. Good History
         IA research questions have these properties:
@@ -119,7 +119,7 @@ export default function IBHistoryIA() {
         <li><strong>Historical, and not too recent.</strong> The guide rules out events from the last 10 years. The topic does not have to come from the syllabus, and a topic you have not studied in class can show more independent thinking.</li>
       </ul>
 
-      <h2>Source Evaluation: What OPCVL Actually Means</h2>
+      <h2>Source evaluation: what OPCVL actually means</h2>
       <p>
         OPCVL is the way many teachers frame the Section 1 evaluation. Many students
         memorise the acronym without understanding what the evaluation should achieve.
@@ -137,7 +137,7 @@ export default function IBHistoryIA() {
         </tbody>
       </table>
 
-      <h2>Word Count Management</h2>
+      <h2>Word count management</h2>
       <p>
         The limit is 2,200 words, with the bibliography and references not counted. A
         common problem is an Investigation that runs to 1,700 words or more, leaving the
@@ -150,7 +150,7 @@ export default function IBHistoryIA() {
         <li>Section 3: 400 words</li>
       </ul>
 
-      <h2>Getting Feedback That Actually Helps</h2>
+      <h2>Getting feedback that actually helps</h2>
       <p>
         Your teacher reads one draft and gives advice on how to improve it, but does not
         edit it, and the next version is the final one. General feedback

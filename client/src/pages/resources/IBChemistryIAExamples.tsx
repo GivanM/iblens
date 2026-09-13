@@ -22,7 +22,7 @@ export default function IBChemistryIAExamples() {
         where marks are most commonly lost.
       </p>
 
-      <h2>How the IB Chemistry IA Is Marked</h2>
+      <h2>How the IB Chemistry IA is marked</h2>
       <ul>
         <li><strong>Research design (6 marks):</strong> A focused research question in a genuine context, a methodology with identified variables and controls, and consideration of safety, ethical and environmental issues.</li>
         <li><strong>Data analysis (6 marks):</strong> Recording, processing and presenting data in ways relevant to the question, including uncertainties and appropriate graphs.</li>
@@ -30,7 +30,7 @@ export default function IBChemistryIAExamples() {
         <li><strong>Evaluation (6 marks):</strong> Honest assessment of methodological weaknesses and limitations, with realistic improvements.</li>
       </ul>
 
-      <h2>IB Chemistry IA Topics That Score Well</h2>
+      <h2>IB Chemistry IA topics that score well</h2>
 
       <h3>1. Effect of concentration on reaction rate (colorimetry)</h3>
       <p>
@@ -99,7 +99,7 @@ export default function IBChemistryIAExamples() {
         be optimal for a specific application.
       </p>
 
-      <h2>Where Chemistry IAs Lose Marks Most Often</h2>
+      <h2>Where Chemistry IAs lose marks most often</h2>
 
       <h3>Insufficient replicates</h3>
       <p>
@@ -139,7 +139,7 @@ export default function IBChemistryIAExamples() {
         temperature was not perfectly controlled" is not.
       </p>
 
-      <h2>Uncertainty Calculations: What's Actually Required</h2>
+      <h2>Uncertainty calculations: what's actually required</h2>
       <p>
         Uncertainties are part of the Data analysis criterion. The basics:
       </p>
@@ -162,7 +162,7 @@ export default function IBChemistryIAExamples() {
         ]}
       />
 
-      <h2>How to Get Criterion-Level Feedback on Your Chemistry IA</h2>
+      <h2>How to get criterion-level feedback on your Chemistry IA</h2>
       <p>
         The marks between a good Chemistry IA and a top-band one are usually a few
         specific gaps, often in the Evaluation or the handling of uncertainties. A

@@ -77,7 +77,7 @@ export function ResourceArticle({
               Ready to get specific feedback on your essay?
             </h2>
             <p className="text-muted-foreground mb-6 max-w-lg mx-auto text-sm leading-relaxed">
-              Paste your IA or TOK work, or your EE if your supervisor agrees, and see how it reads against the published criteria in about a minute. The first preview is free: your band range, your weakest criterion and the top risks. The full report, with the estimated mark, is $9.99.
+              Paste your IA or TOK work, or your EE if your supervisor agrees, and see how it reads against the published criteria in about a minute. The first preview is free: your estimated range, your weakest criterion and the top risks. The full report, with the estimated mark, is $9.99.
             </p>
             <Link href="/essay">
               <Button size="lg">

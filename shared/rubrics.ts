@@ -203,7 +203,7 @@ const TOK_EXHIBITION: Rubric = {
 };
 
 // ─── English A: Individual Oral (IA, both Language A courses, FA 2021) ───────
-const ORAL_NOTES = "The individual oral is spoken, so the paste is a transcript of a practice run or an outline. If it is a transcript, mark all four criteria on it. If it is an outline or notes, mark A to C on the ideas and structure it shows, and return Criterion D with \"score\": null and a comment saying spoken language cannot be judged from notes; \"max_score\" is then the sum of the criteria you did assess and \"band_range\" is expressed on that total. Do not treat the outline format itself as a weakness.";
+const ORAL_NOTES = "The individual oral is spoken, so the paste is an outline or a transcript of a practice oral. If it is a transcript, mark all four criteria on it. If it is an outline or notes, mark A to C on the ideas and structure it shows, and return Criterion D with \"score\": null and a comment saying spoken language cannot be judged from notes; \"max_score\" is then the sum of the criteria you did assess and \"band_range\" is expressed on that total. Do not treat the outline format itself as a weakness.";
 
 const ENGLISH_LANG_LIT_IA: Rubric = {
   label: "English A: Language and Literature, Individual Oral",
@@ -236,13 +236,13 @@ const VISUAL_ARTS_IA: Rubric = {
   label: "Visual Arts, Comparative Study (externally assessed, SL instrument, through Nov 2026)",
   totalMarks: 30,
   criteria: [
-    { name: "Criterion A: Analysis of formal qualities", max: 6, descriptor: "Analysis of the formal qualities of the selected artworks" },
-    { name: "Criterion B: Interpretation of function and purpose", max: 6, descriptor: "Interpretation of function and purpose within the cultural context" },
-    { name: "Criterion C: Evaluation of cultural significance", max: 6, descriptor: "Evaluation of the cultural significance of the selected pieces" },
+    { name: "Criterion A: Identification and analysis of formal qualities", max: 6, descriptor: "Identification and analysis of the formal qualities of the selected artworks, objects and artifacts" },
+    { name: "Criterion B: Analysis and understanding of function and purpose", max: 6, descriptor: "Informed analysis and understanding of the function and purpose of the selected pieces within the cultural context in which they were created" },
+    { name: "Criterion C: Analysis and evaluation of cultural significance", max: 6, descriptor: "Informed analysis and evaluation of the cultural significance of the selected pieces within the context in which they were created" },
     { name: "Criterion D: Making comparisons and connections", max: 6, descriptor: "Critical comparison and connections between the selected pieces" },
     { name: "Criterion E: Presentation and subject-specific language", max: 6, descriptor: "Structured presentation using appropriate subject-specific language" },
   ],
-  notes: "This is the comparative study, externally assessed coursework, not the Visual Arts internal assessment (the exhibition). This is the SL instrument (30). HL is additionally assessed on Criterion F: Making connections to own art-making practice (12), total 42, state which level the work is for. The comparative study is abolished in the 2027 syllabus.",
+  notes: "This is the comparative study, externally assessed coursework, not the Visual Arts internal assessment (the exhibition). This is the SL instrument (30). HL is additionally assessed on Criterion F: Making connections to own art-making practice (12), total 42, state which level the work is for. The comparative study is abolished in the 2027 syllabus. Criteria B and C cannot exceed 2 marks unless the study examines and compares at least three artworks by at least two different artists from at least two contrasting cultural contexts, and criterion D cannot exceed 3 unless it examines and compares at least three artworks by at least two different artists.",
 };
 
 // ─── Music, Exploring music in context (portfolio, FA 2022) ─────────────────

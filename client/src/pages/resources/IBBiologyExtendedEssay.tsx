@@ -25,7 +25,7 @@ export default function IBBiologyExtendedEssay() {
         A-grade essay does.
       </p>
 
-      <h2>How the Biology EE Differs From the IA</h2>
+      <h2>How the Biology EE differs from the IA</h2>
       <p>
         The Biology IA is a scientific investigation written up in a report of up to
         3,000 words and marked on four science criteria. The Biology EE is a 4,000-word
@@ -35,7 +35,7 @@ export default function IBBiologyExtendedEssay() {
         its way to an answer.
       </p>
 
-      <h2>Choosing a Research Question for Biology EE</h2>
+      <h2>Choosing a research question for Biology EE</h2>
       <p>
         The research question is the most important decision in your Extended Essay.
         A strong Biology EE research question has four characteristics:
@@ -47,7 +47,7 @@ export default function IBBiologyExtendedEssay() {
         <li><strong>Feasible:</strong> You can run the experiment or access the data with available equipment and time.</li>
       </ul>
 
-      <h3>Examples of Strong Biology EE Research Questions</h3>
+      <h3>Examples of strong Biology EE research questions</h3>
       <ul>
         <li>How does soil pH affect the germination rate and root elongation of <em>Phaseolus vulgaris</em> seeds over a 14-day period?</li>
         <li>How does light intensity affect the rate of oxygen production by <em>Elodea canadensis</em>, measured over 20-minute intervals?</li>
@@ -55,7 +55,7 @@ export default function IBBiologyExtendedEssay() {
         <li>What is the relationship between dissolved oxygen levels and macroinvertebrate species diversity in three sections of a local river?</li>
       </ul>
 
-      <h3>Common Research Question Mistakes</h3>
+      <h3>Common research question mistakes</h3>
       <p>
         The most frequent error is a question that is too broad. "How does temperature
         affect enzyme activity?" is not an EE question; it is a review article topic.
@@ -65,7 +65,7 @@ export default function IBBiologyExtendedEssay() {
         and no experiments that give drugs to animals or push them beyond their natural tolerance.
       </p>
 
-      <h2>IB Biology EE Assessment Criteria</h2>
+      <h2>IB Biology EE assessment criteria</h2>
       <p>
         From May 2027, the Biology EE is marked out of 30 on five criteria:
       </p>
@@ -90,7 +90,7 @@ export default function IBBiologyExtendedEssay() {
         analysis, discussion and evaluation together make up Critical thinking.
       </p>
 
-      <h2>How to Structure a Biology EE</h2>
+      <h2>How to structure a Biology EE</h2>
       <p>Within the 4,000-word limit, Biology EEs that score well share this structure:</p>
       <ul>
         <li><strong>Introduction (400-500 words):</strong> State the research question, provide biological context, cite at least two peer-reviewed sources. End with a clear hypothesis if experimental.</li>
@@ -101,7 +101,7 @@ export default function IBBiologyExtendedEssay() {
         <li><strong>Conclusion (200-300 words):</strong> Answer the research question directly. State your confidence in the answer given the limitations identified.</li>
       </ul>
 
-      <h2>Biology EE Topics That Score Well</h2>
+      <h2>Biology EE topics that score well</h2>
       <ul>
         <li><strong>Microbiology and antimicrobial activity:</strong> Testing the effect of plant extracts on bacterial growth using disc diffusion assays, with known non-pathogenic cultures from a supplier, incubation at or below 25°C and no antibiotic-resistance testing, as the IB's experimentation guidelines require. Yields measurable quantitative data.</li>
         <li><strong>Ecology and population studies:</strong> Comparing species richness across disturbed and undisturbed habitats using quadrat sampling. Strong for discussion and evaluation (Criterion D) because you can compare findings to published biodiversity indices.</li>
@@ -109,7 +109,7 @@ export default function IBBiologyExtendedEssay() {
         <li><strong>Biochemistry and enzymes:</strong> The classic choice, but only when you go beyond basic kinetics, for example by estimating the Michaelis constant, investigating inhibitors, or comparing enzyme activity across pH and ionic strength.</li>
       </ul>
 
-      <h2>The Reflection: What Criterion E Rewards</h2>
+      <h2>The reflection: what Criterion E rewards</h2>
       <p>
         From May 2027, Criterion E is marked on a single reflective statement of up to 500 words
         in the RPF, written after your final reflection session; through November 2026 it is
@@ -122,7 +122,7 @@ export default function IBBiologyExtendedEssay() {
         levels of Criterion E describe.
       </p>
 
-      <h2>Analyse Your Biology EE With IBLens</h2>
+      <h2>Analyse your Biology EE with IBLens</h2>
       <p>
         IBLens reads Extended Essays against the assessment criteria for your session.
         Paste a draft of your Biology EE to receive criterion-by-criterion feedback

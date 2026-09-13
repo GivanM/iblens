@@ -48,9 +48,10 @@ export function ScopeSheet() {
             <li>
               <em aria-hidden="true">✗</em>
               <span>
-                Replace your supervisor. The IB permits written supervisor comments on one draft and no more, so that
-                draft is worth arriving at in good shape. You still have to account for every choice in your own words
-                at the viva voce, and your school may require you to declare that you used an AI tool.{" "}
+                Replace your supervisor. The IB permits written supervisor comments on one draft and no more, and the
+                Extended Essay guide allows no other assistance with the research, writing or proofreading beyond what
+                your supervisor permits, so ask your supervisor before you use IBLens on your EE. You still have to
+                account for every choice in your own words at the viva voce.{" "}
                 <Link href="/resources/academic-integrity">What to declare</Link>.
               </span>
             </li>

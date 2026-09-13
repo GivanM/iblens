@@ -33,7 +33,7 @@ export default function IBEnglishExtendedEssay() {
         keep 4,000 words analytical from the first page to the last.
       </p>
 
-      <h2>What an English EE Actually Is</h2>
+      <h2>What an English EE actually is</h2>
       <p>
         Unlike a classroom essay, the English EE is built around a research question
         you design yourself, and it is assessed against the same five generic EE
@@ -47,7 +47,7 @@ export default function IBEnglishExtendedEssay() {
         impression.
       </p>
 
-      <h2>Choosing a Research Question for an English EE</h2>
+      <h2>Choosing a research question for an English EE</h2>
       <p>A strong English EE research question has four characteristics:</p>
       <ul>
         <li><strong>Anchored in technique:</strong> it names a formal feature, such as narration, structure, imagery or stage directions, not just a theme.</li>
@@ -56,7 +56,7 @@ export default function IBEnglishExtendedEssay() {
         <li><strong>Proportionate:</strong> enough text to sustain 4,000 words of close analysis and no more. For novels or plays that usually means one or two; for short stories or poems the guide notes that three or four can be right.</li>
       </ul>
 
-      <h3>Examples of Strong English EE Research Questions</h3>
+      <h3>Examples of strong English EE research questions</h3>
       <ul>
         <li>
           How does Kazuo Ishiguro use unreliable narration in The Remains of the Day
@@ -79,7 +79,7 @@ export default function IBEnglishExtendedEssay() {
         </li>
       </ul>
 
-      <h3>Weak Research Questions, and Why They Fail</h3>
+      <h3>Weak research questions, and why they fail</h3>
       <ul>
         <li>
           What is the theme of love in Romeo and Juliet?
@@ -95,7 +95,7 @@ export default function IBEnglishExtendedEssay() {
         </li>
       </ul>
 
-      <h2>How the Five EE Criteria Play Out in English</h2>
+      <h2>How the five EE criteria play out in English</h2>
       <p>From May 2027, every Extended Essay is marked out of 30 on five criteria. In English they translate like this:</p>
       <ul>
         <li><strong>Criterion A: Framework for the essay (6 marks).</strong> A precise, literary research question, a visible analytical approach (which text or texts, which passages, which critical lens, and why those choices can answer the question) and a structure that keeps the essay on that question. Drifting into general appreciation costs marks here.</li>
@@ -111,7 +111,7 @@ export default function IBEnglishExtendedEssay() {
         analysis, discussion and evaluation together make up Critical thinking.
       </p>
 
-      <h2>Method: Close Reading, Not Plot Summary</h2>
+      <h2>Method: close reading, not plot summary</h2>
       <p>
         The method examiners expect in English is close reading of the primary text.
         In practice that means your paragraphs run on a small loop: a claim about
@@ -134,7 +134,7 @@ export default function IBEnglishExtendedEssay() {
         received wisdom a top-band essay is supposed to move beyond.
       </p>
 
-      <h2>Common Mark-Losing Mistakes in English EEs</h2>
+      <h2>Common mark-losing mistakes in English EEs</h2>
       <ul>
         <li><strong>Plot summary:</strong> retelling the story between quotations, one of the most common reasons English EEs fall out of the top bands.</li>
         <li><strong>Device-spotting:</strong> naming techniques ("Shakespeare uses metaphor") without analysing their effect on meaning. Identification is not analysis.</li>
@@ -144,7 +144,7 @@ export default function IBEnglishExtendedEssay() {
         <li><strong>Ignoring form:</strong> writing only about themes and characters while saying nothing about narration, structure or style, which are what make it a literary essay.</li>
       </ul>
 
-      <h2>Frequently Asked Questions</h2>
+      <h2>Frequently asked questions</h2>
       <h3>How many texts should an English EE analyse?</h3>
       <p>
         The guide sets no precise number. With novels or plays, one or two usually
@@ -166,7 +166,7 @@ export default function IBEnglishExtendedEssay() {
         analysis than classroom essays.
       </p>
 
-      <h2>Grade Your English EE Before You Submit</h2>
+      <h2>Grade your English EE before you submit</h2>
       <p>
         IBLens analyses Extended Essays against the published criteria for your exam session and shows
         you where marks are leaking, including whether your paragraphs are

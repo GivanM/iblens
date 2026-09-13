@@ -110,7 +110,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       // page load would otherwise lose its only key on sign-out.
                       try { await claim.mutateAsync({ fingerprint: getAnonFingerprint() }); } catch { /* nothing to claim */ }
                       rotateAnonFingerprint();
-                      logout();
+                      await logout();
+                      // A full reload, so no page keeps the signed-out person's reports on
+                      // screen or goes on asking for them with the old device id.
+                      window.location.assign("/");
                     }}
                     className="text-destructive"
                   >

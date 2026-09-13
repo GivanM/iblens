@@ -10,7 +10,7 @@ export default function IBUniversityConsultantCost() {
       datePublished="2026-07-16"
       dateModified="2026-07-16"
     >
-      <h1>IB University Guidance: No Longer Offered</h1>
+      <h1>IB university guidance: no longer offered</h1>
       <p>
         This part of IBLens is no longer offered. We withdrew our university guidance and strategy
         tools rather than sell admission estimates or deadlines we cannot keep current and stand behind.

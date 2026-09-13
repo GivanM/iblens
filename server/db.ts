@@ -113,6 +113,33 @@ export async function createAnalysis(data: InsertAnalysis) {
   return result;
 }
 
+/**
+ * The account copy of a device report, opened. A refund locks both the device row and its
+ * copy; paying again opened the device row, then the copy insert hit the one-copy index and
+ * the account kept a locked copy of a report that had just been paid for.
+ */
+export async function upsertAccountCopy(data: InsertAnalysis & { adoptedFromId: number; userId: number }) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  try {
+    const [result] = await db.insert(analyses).values(data).$returningId();
+    return result;
+  } catch (err) {
+    if (!isDuplicateKey(err)) throw err;
+    const [existing] = await db.select({ id: analyses.id }).from(analyses)
+      .where(and(eq(analyses.userId, data.userId), eq(analyses.adoptedFromId, data.adoptedFromId))).limit(1);
+    if (!existing) throw err;
+    await db.update(analyses).set({
+      unlocked: true,
+      unlockedAt: data.unlockedAt ?? new Date(),
+      unlockOrderId: data.unlockOrderId ?? null,
+      resultJson: data.resultJson,
+      predictedGrade: data.predictedGrade ?? null,
+    }).where(eq(analyses.id, existing.id));
+    return { id: existing.id };
+  }
+}
+
 export async function getUserAnalyses(userId: number, limit = 20) {
   const db = await getDb();
   if (!db) return [];
@@ -723,6 +750,24 @@ export async function purgeAbandonedCheckouts(maxAgeDays = 30): Promise<{ orders
   return result;
 }
 
+/**
+ * Free-preview claims that never got a report: the process stopped while the model was
+ * running. The claim row alone told the device its preview was used, with nothing to show.
+ * The longest analysis with retries is well under ten minutes.
+ */
+export async function releaseInterruptedFreeRuns(): Promise<number> {
+  const db = await getDb();
+  if (!db) return 0;
+  const result: any = await db.delete(anonymousAnalyses).where(and(
+    sql`${anonymousAnalyses.resultJson} IS NULL`,
+    eq(anonymousAnalyses.unlocked, false),
+    sql`${anonymousAnalyses.createdAt} < NOW() - INTERVAL 10 MINUTE`,
+  ));
+  const removed = Number(result?.[0]?.affectedRows ?? result?.affectedRows ?? 0);
+  if (removed > 0) console.log(`[Retention] Released ${removed} free preview(s) whose analysis was interrupted`);
+  return removed;
+}
+
 export async function purgeOldAnonymousAnalyses(maxAgeDays = 90): Promise<number> {
   const db = await getDb();
   if (!db) return 0;
@@ -823,7 +868,7 @@ export async function consumeAnonymousRerun(fingerprint: string, kind: "essay" |
   // Counting the browser copy separately gave the buyer two more re-checks. UCAS reviews
   // are re-checked on the browser for everyone, so they stay here.
   if (kind === "essay") {
-    const copy = await db.select({ id: analyses.id }).from(analyses).where(eq(analyses.adoptedFromId, head.id)).limit(1);
+    const copy = await db.select({ id: analyses.id }).from(analyses).where(and(eq(analyses.adoptedFromId, head.id), eq(analyses.unlocked, true))).limit(1);
     if (copy.length > 0) return { ok: false as const, reason: "This report is in your account. Sign in and re-check it from your dashboard." };
   }
   const started = head.unlockedAt ? new Date(head.unlockedAt).getTime() : new Date(head.createdAt).getTime();
@@ -1174,9 +1219,17 @@ export async function adoptDeviceReports(fingerprint: string, userId: number): P
     // By the source row id. Comparing a JSON column to a bound string is always
     // false in MySQL, so this check never matched and every page load copied the
     // same paid reports again, each copy carrying two fresh re-checks with it.
-    const existing = await db.select({ id: analyses.id }).from(analyses)
+    const existing = await db.select({ id: analyses.id, unlocked: analyses.unlocked }).from(analyses)
       .where(and(eq(analyses.userId, userId), eq(analyses.adoptedFromId, rec.id))).limit(1);
-    if (existing.length > 0) { accountIdFor.set(rec.id, existing[0].id); continue; }
+    if (existing.length > 0) {
+      // A copy a refund locked, whose device row a later purchase opened again, opens too.
+      if (!existing[0].unlocked) {
+        await db.update(analyses).set({ unlocked: true, unlockedAt: rec.unlockedAt ?? new Date(), unlockOrderId: rec.unlockOrderId ?? null })
+          .where(eq(analyses.id, existing[0].id));
+      }
+      accountIdFor.set(rec.id, existing[0].id);
+      continue;
+    }
     let inserted: { id: number } | undefined;
     try {
     [inserted] = await db.insert(analyses).values({
@@ -1451,12 +1504,12 @@ export async function claimAnonymousUnlock(id: number, orderId?: string | null):
  * delivery that failed while processing does not count, so a manual resend can
  * still repair it.
  */
-export async function hasEarlierVerifiedWebhookEvent(eventKey: string, thisId?: number): Promise<boolean> {
+export async function hasEarlierVerifiedWebhookEvent(eventKey: string, thisId?: number): Promise<"handled" | "in_flight" | false> {
   const db = await getDb();
   if (!db) return false;
   // Age measured by the database itself: it stamps receivedAt in its own time zone, and
   // reading that back as a JavaScript date put every row hours into the future.
-  const rows = await db.select({ id: webhookEvents.id, status: webhookEvents.paymentStatus, recent: sql<number>`(${webhookEvents.receivedAt} > NOW() - INTERVAL 10 MINUTE)` }).from(webhookEvents)
+  const rows = await db.select({ id: webhookEvents.id, status: webhookEvents.paymentStatus, recent: sql<number>`(${webhookEvents.receivedAt} > NOW() - INTERVAL 2 MINUTE)` }).from(webhookEvents)
     .where(and(
       eq(webhookEvents.provider, "lemonsqueezy"),
       eq(webhookEvents.npPaymentId, eventKey),
@@ -1466,12 +1519,12 @@ export async function hasEarlierVerifiedWebhookEvent(eventKey: string, thisId?: 
   // A delivery still marked "verified" either is being processed right now or was cut off
   // by a restart before it finished. Only a recent one counts, so a retry can repair a
   // payment the restart interrupted.
-  return (rows as any[]).some((r) => {
-    // A partial refund shares its event key with the full refund that may follow it.
-    if (r.id >= thisId || r.status === "processing_error" || r.status === "partial_refund") return false;
-    if (r.status === "verified" || r.status === "received") return Number(r.recent) === 1;
-    return true;
-  });
+  // A partial refund shares its event key with the full refund that may follow it, and a
+  // delivery answered as a duplicate or deferred proves nothing about the event itself.
+  const earlier = (rows as any[]).filter((r) => r.id < thisId && !/^(processing_error|partial_refund|duplicate|deferred)/.test(String(r.status)));
+  if (earlier.some((r) => r.status !== "verified" && r.status !== "received")) return "handled";
+  if (earlier.some((r) => Number(r.recent) === 1)) return "in_flight";
+  return false;
 }
 
 export async function markAnalysisUnlocked(id: number, orderId?: string) {

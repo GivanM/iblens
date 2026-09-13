@@ -23,7 +23,7 @@ export default function IBEEExamplesBySubject() {
         version does that lower-scoring versions don't.
       </p>
 
-      <h2>IB EE Marking Overview</h2>
+      <h2>IB EE marking overview</h2>
       <p>
         From May 2027 the Extended Essay is marked out of 30 on five criteria (A to E); through
         November 2026 it is marked out of 34 on older criteria. Combined with the TOK grade, the EE
@@ -42,7 +42,7 @@ export default function IBEEExamplesBySubject() {
         Through November 2026 the criteria are Focus and method (6), Knowledge and understanding (6), Critical thinking (12), Presentation (4) and Engagement (6, marked on the RPPF).
       </p>
 
-      <h2>IB Extended Essay Examples by Subject</h2>
+      <h2>IB Extended Essay examples by subject</h2>
 
       <h3>Economics Extended Essay</h3>
       <p>
@@ -172,7 +172,7 @@ export default function IBEEExamplesBySubject() {
         theoretical models, but must go beyond simply describing the physics.
       </p>
 
-      <h2>What All High-Scoring Extended Essays Have in Common</h2>
+      <h2>What all high-scoring Extended Essays have in common</h2>
       <p>
         Across every subject, the IB Extended Essays that score grade A share three
         characteristics that lower-scoring essays lack:
@@ -196,7 +196,7 @@ export default function IBEEExamplesBySubject() {
         ]}
       />
 
-      <h2>Getting Your Extended Essay Assessed Before Submission</h2>
+      <h2>Getting your Extended Essay assessed before submission</h2>
       <p>
         Reading strong IB extended essay examples helps calibrate what good looks like.
         But the gap between knowing what good looks like and knowing whether your own

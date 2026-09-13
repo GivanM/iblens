@@ -132,7 +132,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
               </Link>
             </Button>
             <p className="text-xs text-muted-foreground">
-              No account needed · Back in about a minute · Full report $9.99, refundable within 7 days
+              {paidLeft > 0 ? "No account needed · Back in about a minute · Uses 1 of your paid reports" : "No account needed · Back in about a minute · Full report $9.99, refundable within 7 days"}
             </p>
           </div>
         </section>
@@ -301,7 +301,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
                 <li>$9.99 for a full report, which includes two re-checks of the same work within 14 days. No subscription.</li>
                 <li>{holistic
                   ? "The first preview is free and needs no account: the band your work falls in, the start of the explanation, and the top risks in the draft."
-                  : "The first preview is free and needs no account: your band range, your weakest criterion with its full feedback, and the top risks in the draft."}</li>
+                  : "The first preview is free and needs no account: your estimated range, your weakest criterion with its full feedback, and the top risks in the draft."}</li>
                 <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
                 <li>The text you paste passes through our relay server to Anthropic to produce the report. IBLens never stores the text itself; the report is kept as the Privacy Policy describes.</li>
               </ul>

@@ -4,24 +4,24 @@ import { Link } from "wouter";
 export default function IBIAScorePredictor() {
   return (
     <ResourceArticle
-      title="IB IA Score Predictor: Estimate Your Internal Assessment Grade | IBLens"
+      title="IB IA Score Estimator: Estimate Your Internal Assessment Mark | IBLens"
       description="How IB Internal Assessment marks are awarded and moderated, how to self-assess your IA criterion by criterion, and how to estimate your grade before results day."
       canonical="/resources/ib-ia-score-predictor"
       datePublished="2026-06-06"
       dateModified="2026-09-13"
     >
-      <h1>IB IA Score Estimator: How to Estimate Your Internal Assessment Grade</h1>
+      <h1>IB IA Score Estimator: how to estimate your Internal Assessment grade</h1>
       <p>Your teacher has marked your Internal Assessment and you want to know whether that mark will hold. It may not: the mark is checked against a global standard before it counts. Knowing how that check works, and reading your own work criterion by criterion, gets you a realistic range rather than a single hopeful number.</p>
 
       <div className="not-prose my-6 rounded-xl border border-primary/30 bg-primary/5 p-5">
         <p className="text-base font-semibold text-foreground mb-1">The estimate</p>
         <p className="text-sm text-muted-foreground mb-3">
-          Paste your IA into IBLens and get an estimated mark for each criterion your text can show, marked against the published criteria for your subject and session. The first preview is free: your band range, your weakest criterion with its feedback, and the top risks. Every mark is an estimate, not an IB mark.
+          Paste your IA into IBLens and get an estimated mark for each criterion your text can show, marked against the published criteria for your subject and session. The first preview is free: your estimated range, your weakest criterion with its feedback, and the top risks. Every mark is an estimate, not an IB mark.
         </p>
         <Link href="/essay?type=IA" className="inline-flex min-h-11 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90">Estimate my IA mark</Link>
       </div>
 
-      <h2>How IB Internal Assessment Marking Works</h2>
+      <h2>How IB Internal Assessment marking works</h2>
       <h3>Stage 1: your teacher marks the work</h3>
       <p>Your teacher marks the IA against the assessment criteria in the subject guide. Each criterion has a maximum and a set of level descriptors. Totals differ by subject: the sciences are marked out of 24, Mathematics out of 20, History and Business Management out of 25, Psychology out of 22 through November 2026, and the Economics portfolio of three commentaries out of 45.</p>
 
@@ -29,7 +29,7 @@ export default function IBIAScorePredictor() {
       <p>Your school uploads a sample of marked work, with the students chosen by the IB's system to cover the range of marks. An external moderator reviews that sample and decides whether the teacher's marks are right, too harsh or too lenient. Where they are out of line, the IB applies a moderation factor to the marks of every student at the school for that component, not only the students in the sample, and sends the school feedback on the difference.</p>
       <p>So the mark your teacher gave you is a well-informed estimate, not the final number. If the marking at your school was generous, everyone's marks in that subject can come down together.</p>
 
-      <h2>Where Marks Are Lost, Subject by Subject</h2>
+      <h2>Where marks are lost, subject by subject</h2>
 
       <h3>Biology, Chemistry and Physics</h3>
       <p>The scientific investigation is marked on four criteria of 6 marks each: Research design, Data analysis, Conclusion and Evaluation, 24 in total. A vague research question weakens everything after it, because the data, the conclusion and the evaluation all answer to it. Evaluation is another frequent gap: limitations are listed without saying how much they affected the result or what a realistic improvement would be.</p>
@@ -46,7 +46,7 @@ export default function IBIAScorePredictor() {
       <h3>Mathematics</h3>
       <p>The exploration is marked on Presentation, Mathematical communication, Personal engagement, Reflection and Use of mathematics. Use of mathematics carries the most marks, 6 of 20, and its top level differs between SL and HL. At HL it asks for mathematics that is "precise and demonstrates sophistication and rigour". At SL the top level asks for relevant mathematics at the level of the course, used correctly, with thorough knowledge and understanding.</p>
 
-      <h2>How to Self-Assess Your IA</h2>
+      <h2>How to self-assess your IA</h2>
 
       <h3>Step 1: work from the real criteria</h3>
       <p>Ask your teacher for the assessment criteria from the subject guide. Paraphrased rubrics found online often drop the words that decide between two levels.</p>
@@ -63,11 +63,11 @@ export default function IBIAScorePredictor() {
       <h3>Step 5: allow for moderation</h3>
       <p>If your total sits close to a boundary, it is the most exposed to moderation. The IB does not publish how often or how far marks move, so treat your estimate as a range: the grade you calculated, or one either side of it.</p>
 
-      <h2>Get Your IA Read Criterion by Criterion</h2>
+      <h2>Get your IA read criterion by criterion</h2>
       <p>Self-assessment has one limit you cannot get around: you know what you meant, so it is hard to see where the page does not say it.</p>
       <p><Link href="/essay">IBLens reads your Internal Assessment against the assessment criteria for your subject</Link> and returns an estimated mark for each criterion it can judge from the text, with the reasons behind it, so you can see which criterion is costing you the most before you submit. It is an estimate produced by a language model, not a moderated mark.</p>
 
-      <h2>Frequently Asked Questions</h2>
+      <h2>Frequently asked questions</h2>
       <h3>Can I predict my IA mark before my teacher marks it?</h3>
       <p>Roughly, by marking your work against the criteria one at a time. The difficulty is distance: you know the work too well to read it the way a moderator does.</p>
 
