@@ -13,7 +13,7 @@ export default function ExtendedEssayGuide() {
       <h1>The complete IB Extended Essay guide</h1>
 
       <p>
-        <strong>the Extended Essay is a 4,000-word independent research essay. From the May 2027 session it is marked out of 30 (Framework for the essay 6, Knowledge and understanding 6, Analysis and line of argument 6, Discussion and evaluation 8, Reflection 4); through November 2026 it is marked out of 34 on the older criteria. Together with TOK it contributes up to 3 bonus points to your Diploma.</strong>
+        <strong>The Extended Essay is a 4,000-word independent research essay. From the May 2027 session it is marked out of 30 (Framework for the essay 6, Knowledge and understanding 6, Analysis and line of argument 6, Discussion and evaluation 8, Reflection 4); through November 2026 it is marked out of 34 on the older criteria. Together with TOK it contributes up to 3 bonus points to your Diploma.</strong>
       </p>
 
       <p>
@@ -88,7 +88,7 @@ export default function ExtendedEssayGuide() {
       </p>
 
       <ul>
-        <li><strong>Title page:</strong> from May 2027, your student code, your research question, the DP subject the essay relates to (for an interdisciplinary essay, the two DP subjects and the interdisciplinary framework it connects with) and the word count; through November 2026, the title, the research question, the subject the essay is registered in (with the category for a language essay, or the theme and the two subjects for a world studies essay) and the word count. If any footnote does more than give a reference, the word count on the title page must include it and state that "the stated word count includes explanatory footnotes". Leave off your name, your supervisor's name, your candidate session number and your school's name: Extended Essays are marked anonymously.</li>
+        <li><strong>Title page:</strong> from May 2027, your student code, your research question, the DP subject the essay relates to (for an interdisciplinary essay, the two DP subjects and the interdisciplinary framework it connects with) and the word count; through November 2026, the title, the research question, the subject the essay is registered in (with the category for a language essay, or the theme and the two subjects for a world studies essay) and the word count. If any footnote does more than give a reference, include it in the word count on the title page and add the statement "the stated word count includes explanatory footnotes". Leave off your name, your supervisor's name, your candidate session number and your school's name: Extended Essays are marked anonymously.</li>
         <li><strong>Table of contents:</strong> With page numbers</li>
         <li><strong>Introduction (300-400 words):</strong> Context, research question, scope, methodology overview</li>
         <li><strong>Body (3,000-3,200 words):</strong> Organised into logical sections with clear headings, presenting evidence, analysis, and argumentation</li>

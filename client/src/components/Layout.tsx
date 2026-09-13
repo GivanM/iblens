@@ -47,6 +47,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         layoutUtils.dashboard.credits.invalidate();
         layoutUtils.essay.deviceCredits.invalidate();
       }
+      // A preview this account had already paid for was opened: the page shows the report, not a price.
+      if (d.reopened > 0 || d.adopted > 0) {
+        layoutUtils.essay.lockedReport.invalidate();
+        layoutUtils.essay.anonymousReport.invalidate();
+        layoutUtils.essay.deviceReports.invalidate();
+        layoutUtils.dashboard.invalidate();
+      }
       if (d.moved > 0 || d.adopted > 0) {
         const parts = [];
         if (d.moved > 0) parts.push(`${d.moved} unused paid report${d.moved === 1 ? "" : "s"}`);

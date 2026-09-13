@@ -29,14 +29,14 @@ export default function AcademicIntegrity() {
         assessment and the extended essay.
       </p>
       <p>
-        <strong>The Extended Essay is stricter.</strong> The Extended Essay guide says students must not receive assistance with any aspect of the research, writing or proofreading beyond that which is permitted through their supervisor. Ask your supervisor before you use any outside feedback on your EE, IBLens included.
+        <strong>The Extended Essay is stricter.</strong> The Extended Essay guide says students are not allowed to receive assistance with any aspect of the research, writing or proofreading of the essay beyond that which is permitted through their supervisor. Ask your supervisor before you use any outside feedback on your EE, IBLens included.
       </p>
       <p>
         Getting <strong>feedback on work you wrote yourself</strong> is different from having it written or
         edited for you, but it is not automatically allowed. For most IAs and the TOK essay your teacher comments on one draft (for the individual
         oral, on your outline and on practice orals), and your supervisor comments in writing on one full draft of your EE. The IB academic
-        integrity policy asks students to abstain from receiving non-permitted assistance in the completion or editing of their work, such as from friends, relatives, other students, private tutors,
-        essay writing or copy-editing services, and the Extended Essay guide is
+        integrity policy asks students to abstain from receiving non-permitted assistance in the completion or editing of work, such as from friends, relatives, other students, private tutors,
+        essay writing or copy-editing services, pre-written essay banks or file sharing websites, and the Extended Essay guide is
         stricter still, as set out above. Before you use outside feedback on an IA or the TOK essay, AI tools
         included, check that your teacher and your school's policy allow it. The IB has also publicly stated that it will not ban AI tools, and that their use
         must follow its academic integrity policy, which now has an appendix on artificial intelligence

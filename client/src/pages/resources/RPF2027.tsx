@@ -85,7 +85,7 @@ export default function RPF2027() {
       <h2>Related resources</h2>
 
       <ul>
-        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE New Criteria 2027: the full rubric</Link></li>
+        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE new criteria 2027: the full rubric</Link></li>
         <li><Link href="/resources/ib-extended-essay-feedback">How to get EE feedback before you submit</Link></li>
         <li><Link href="/resources/ib-extended-essay-guide">IB Extended Essay guide</Link></li>
       </ul>

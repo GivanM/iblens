@@ -82,9 +82,6 @@ export default function HowIBLensWorks() {
 
       <h2>Limitations and what AI can and cannot do</h2>
 
-      <p> What IBLens cannot do:
-      </p>
-
       <h3>What the report looks for</h3>
       <ul>
         <li><strong>Identifying structural issues:</strong> Missing sections, weak introductions, conclusions that do not answer the research question</li>
@@ -114,7 +111,7 @@ export default function HowIBLensWorks() {
         <li><strong>Processed only to produce your report:</strong> Your essay passes over an encrypted connection through our relay server in Helsinki to our AI provider, Anthropic, solely to generate your analysis. IBLens never stores the text itself. It is not used to train any model, not sold, and not shared with schools, universities or other students.</li>
         <li><strong>Encrypted transmission:</strong> every connection, from your browser to our server, the relay and Anthropic, uses HTTPS.</li>
         <li><strong>No training on your data:</strong> Your essays are not used to train or improve the AI model. Your intellectual property remains yours.</li>
-        <li><strong>What is kept:</strong> the reports themselves (which can quote short passages) and, if you sign in, your email and history. How long each is kept is set out in the <Link href="/privacy">Privacy Policy</Link>, and everything can be deleted on request.</li>
+        <li><strong>What is kept:</strong> the reports themselves (which can quote short passages), the research question or course you enter, a random device identifier, purchase records and, if you sign in or buy without an account, your email and history. How long each is kept is set out in the <Link href="/privacy">Privacy Policy</Link>; everything except the purchase records we must keep for accounting and tax can be deleted on request.</li>
       </ul>
 
       <p>
@@ -223,7 +220,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        The most effective approach combines multiple feedback sources: use IBLens for rapid, criterion-based feedback during revision, and your teacher for authoritative subject guidance. Check with your teacher before you use any outside feedback, peers included, because the IB academic integrity policy asks students to abstain from receiving non-permitted assistance in the completion or editing of their work, such as from friends, relatives, other students, private tutors, essay writing or copy-editing services. The Extended Essay is the exception: its guide says students are not allowed to receive assistance with any aspect of the research, writing or proofreading of the essay beyond that which is permitted through their supervisor, so ask your supervisor before using IBLens or anyone else on it.
+        The most effective approach combines multiple feedback sources: use IBLens for rapid, criterion-based feedback during revision, and your teacher for authoritative subject guidance. Check with your teacher before you use any outside feedback, peers included, because the IB academic integrity policy asks students to abstain from receiving non-permitted assistance in the completion or editing of work, such as from friends, relatives, other students, private tutors, essay writing or copy-editing services, pre-written essay banks or file sharing websites. The Extended Essay is the exception: its guide says students are not allowed to receive assistance with any aspect of the research, writing or proofreading of the essay beyond that which is permitted through their supervisor, so ask your supervisor before using IBLens or anyone else on it.
       </p>
 
       <p>

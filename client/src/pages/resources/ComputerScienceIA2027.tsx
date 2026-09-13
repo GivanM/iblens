@@ -93,9 +93,9 @@ export default function ComputerScienceIA2027() {
       <h2>Related resources</h2>
 
       <ul>
-        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">IB Extended Essay New Criteria 2027</Link></li>
-        <li><Link href="/resources/ib-psychology-ia-2027">IB Psychology IA Changes 2027</Link></li>
-        <li><Link href="/resources/ib-internal-assessment-guide">IB Internal Assessment Guide</Link></li>
+        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">IB Extended Essay new criteria 2027</Link></li>
+        <li><Link href="/resources/ib-psychology-ia-2027">IB Psychology IA changes 2027</Link></li>
+        <li><Link href="/resources/ib-internal-assessment-guide">IB Internal Assessment guide</Link></li>
       </ul>
       <h2>Other 2027 syllabus changes</h2>
 

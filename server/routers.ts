@@ -38,6 +38,7 @@ import {
   findAccountCopyOf,
   reopenAccountChain,
   findUnlockedCopyInChain,
+  openDeviceRowsOfOpenCopies,
   getUserById,
   getLatestAccountVersion,
   getOrderById,
@@ -339,8 +340,7 @@ const essayRouter = router({
           // A double click sends two of these; only the one that opens the report
           // keeps the credit, the other gives it straight back.
           if (!(await claimAnalysisUnlock(rec.id, orderId))) {
-            await refundEssayConsumption(ctx.user.id, false);
-            await returnToLot(orderId);
+            if (await returnToLot(orderId)) await refundEssayConsumption(ctx.user.id, false);
           }
         }
         return { result: normalizeDashes(rec.resultJson) };
@@ -363,8 +363,7 @@ const essayRouter = router({
           // As above: the request that lost the race returns its credit and does
           // not add a second copy to the dashboard.
           if (!(await claimAnonymousUnlock(rec.id, orderId))) {
-            await refundEssayConsumption(ctx.user.id, false);
-            await returnToLot(orderId);
+            if (await returnToLot(orderId)) await refundEssayConsumption(ctx.user.id, false);
             return { result: normalizeDashes(rec.resultJson) };
           }
           // Keep a copy in the user's dashboard history. A re-check version reopened after a
@@ -449,6 +448,9 @@ const essayRouter = router({
         }
         result._wordCheck = storableWordCheck(checkWordLimit(rubric, input.essayText));
         reconcileScores(result, { essayType: rec.essayType, subject: rec.subject, reflectionsPasted: !!input.reflections?.trim(), session });
+        // Kept with the re-check as with any report, so a refund that locks it shows one fixed
+        // preview, never whatever the model wrote under the same key.
+        result._preview = computeTeaser(result);
 
         // Compared with the newest version before this one, as guest re-checks are: a second
         // re-check showed the original as "before" and hid what the first one changed.
@@ -632,14 +634,13 @@ const essayRouter = router({
       } catch (error: any) {
         console.error("[UCAS PS Review] Error:", error);
         if (claim?.id) await deleteAnonymousAnalysis(claim.id).catch(() => {});
-        if (paidByDevice) {
+        // Not a report from a purchase refunded while the review ran: the refund has closed it.
+        if (paidByDevice && await returnToLot(deviceOrderId).catch(() => true)) {
           await addDeviceCredits(fingerprint, 1).catch(() => {});
-          await returnToLot(deviceOrderId).catch(() => {});
         }
         // The account credit comes back too: nothing was produced.
-        if (paidCredit && user) {
+        if (paidCredit && user && await returnToLot(creditOrderId).catch(() => true)) {
           await grantCreditsViaLedger(user.id, 1, 0, "refund:ucas-failed").catch(() => {});
-          await returnToLot(creditOrderId).catch(() => {});
         }
         throw new Error(friendlyRunError(error, "review"));
       }
@@ -722,6 +723,7 @@ const essayRouter = router({
           result._rubricTotalMarks = rubric?.totalMarks ?? null;
           result._wordCheck = storableWordCheck(checkWordLimit(rubric, input.essayText ?? ""));
           reconcileScores(result, { essayType: rec.essayType, subject: rec.subject, reflectionsPasted: !!input.reflections?.trim(), session });
+          result._preview = computeTeaser(result);
         }
 
         const child = await createRerunAnalysis(rec, result, result?.predicted_score != null ? (result?.max_score != null ? `${result.predicted_score}/${result.max_score}` : String(result.predicted_score)) : undefined, headId);
@@ -730,7 +732,9 @@ const essayRouter = router({
           // A re-check of the review that was bought, not a review of its own: counted as
           // one, it made a refund think the purchase had opened more than it had.
           const parentCopy = await findAccountCopyOf(signedIn.id, headId).catch(() => null);
-          await createAnalysis({
+          // Only into an account that holds the review itself. On a shared browser whoever was
+          // signed in got someone else's review in their dashboard.
+          if (parentCopy) await createAnalysis({
             userId: signedIn.id,
             type: "essay",
             essayType: "UCAS",
@@ -742,7 +746,7 @@ const essayRouter = router({
             unlockedAt: new Date(),
             unlockOrderId: rec.unlockOrderId ?? null,
             adoptedFromId: child.id,
-            rerunOf: parentCopy?.id ?? null,
+            rerunOf: parentCopy.id,
           }).catch((copyErr) => console.warn("[Re-check] Account copy failed:", copyErr));
         }
         return {
@@ -774,17 +778,19 @@ const essayRouter = router({
       // Reports first: they are what was actually bought, and they used to stay
       // in one browser for ever.
       const adopted = await adoptDeviceReports(input.fingerprint, ctx.user.id).catch(() => 0);
+      // Previews on this browser whose report this account has already paid for open here too.
+      const reopened = await openDeviceRowsOfOpenCopies(input.fingerprint, ctx.user.id).catch(() => 0);
       // Unused reports go to whoever signs in on this browser, whatever e-mail paid for
       // them: signing out starts a new device id, so credits left behind for another
       // address could never be used again. The checkout says so.
       const credits = await getDeviceCredits(input.fingerprint);
-      if (credits <= 0) return { moved: 0, adopted };
+      if (credits <= 0) return { moved: 0, adopted, reopened };
       const taken = await takeAllDeviceCredits(input.fingerprint, ctx.user.id);
-      if (taken <= 0) return { moved: 0, adopted };
+      if (taken <= 0) return { moved: 0, adopted, reopened };
       // The purchases those reports came from move with them, so a refund still finds them.
       await moveDeviceLotsToAccount(input.fingerprint, ctx.user.id);
       await grantCreditsViaLedger(ctx.user.id, taken, 0, `device-claim:${input.fingerprint.slice(0, 8)}`);
-      return { moved: taken, adopted };
+      return { moved: taken, adopted, reopened };
     }),
 
   /** Reports this device has already paid for and not yet spent. */
@@ -799,20 +805,26 @@ const essayRouter = router({
    */
   unlockPreviewWithDeviceCredit: publicProcedure
     .input(z.object({ fingerprint: z.string().min(1).max(64), kind: z.enum(["essay", "ucas"]).optional() }))
-    .mutation(async ({ input }) => {
+    .mutation(async ({ ctx, input }) => {
       const rec: any = input.kind === "ucas"
         ? await getLatestAnonymousUcas(input.fingerprint)
         : await getLatestAnonymousEssay(input.fingerprint);
       if (!rec || !rec.resultJson) throw new TRPCError({ code: "NOT_FOUND", message: "There is no preview on this device to open." });
       if (rec.unlocked) return { result: normalizeDashes(rec.resultJson) };
+      // Already paid for in the signed-in account: open it without spending another report.
+      const signedIn = (ctx as any).user;
+      const openCopy = signedIn ? await findUnlockedCopyInChain(signedIn.id, rec).catch(() => null) : null;
+      if (openCopy) {
+        await claimAnonymousUnlock(rec.id, openCopy.unlockOrderId ?? null);
+        return { result: normalizeDashes(rec.resultJson) };
+      }
       if (!(await consumeDeviceCredit(input.fingerprint))) {
         throw new TRPCError({ code: "FORBIDDEN", message: "This browser has no paid reports left. A full report is $9.99." });
       }
       const orderId = await takeFromOldestLot({ fingerprint: input.fingerprint });
       // Two taps at once: the second finds the row already open and returns its report.
       if (!(await claimAnonymousUnlock(rec.id, orderId))) {
-        await addDeviceCredits(input.fingerprint, 1).catch(() => {});
-        await returnToLot(orderId).catch(() => {});
+        if (await returnToLot(orderId).catch(() => true)) await addDeviceCredits(input.fingerprint, 1).catch(() => {});
       }
       return { result: normalizeDashes(rec.resultJson) };
     }),
@@ -998,9 +1010,8 @@ const essayRouter = router({
         // A run that produced nothing must not cost the free slot it claimed, nor
         // the credit it spent.
         if (claim?.id) await deleteAnonymousAnalysis(claim.id).catch(() => {});
-        if (paidByDevice) {
+        if (paidByDevice && await returnToLot(deviceOrderId).catch(() => true)) {
           await addDeviceCredits(fingerprint, 1).catch(() => {});
-          await returnToLot(deviceOrderId).catch(() => {});
         }
         throw new Error(friendlyRunError(error, "marking"));
       }
@@ -1109,8 +1120,10 @@ const essayRouter = router({
       } catch (error: any) {
         console.error("[Essay Analysis] Error:", error);
         // Nothing was produced, so the free slot or credit comes back.
-        await refundEssayConsumption(ctx.user.id, consumed === "free").catch(() => {});
-        if (!wasFree) await returnToLot(creditOrderId).catch(() => {});
+        // A credit from a purchase refunded while the model ran stays spent: the refund closed it.
+        if (wasFree || await returnToLot(creditOrderId).catch(() => true)) {
+          await refundEssayConsumption(ctx.user.id, consumed === "free").catch(() => {});
+        }
         throw new Error(friendlyRunError(error, "marking"));
       }
     }),

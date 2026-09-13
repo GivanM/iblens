@@ -822,7 +822,7 @@ export default function EssayAnalyzer() {
             </p>
           ) : (
             <p className="text-xs text-muted-foreground">
-              The IB academic integrity policy asks students to abstain from receiving non-permitted assistance in the completion or editing of their work, such as from friends, relatives, other students, private tutors, essay writing or copy-editing services, so check that your teacher and your school allow outside feedback on this work before you use IBLens.
+              The IB academic integrity policy asks students to abstain from receiving non-permitted assistance in the completion or editing of work, such as from friends, relatives, other students, private tutors, essay writing or copy-editing services, pre-written essay banks or file sharing websites, so check that your teacher and your school allow outside feedback on this work before you use IBLens.
             </p>
           )}
           {essayType === "EE" && (
@@ -1425,14 +1425,15 @@ export default function EssayAnalyzer() {
               // A criterion that was not marked (an EE without its reflection) has no score
               // to improve on, and "null < 4" counted it as four marks on the table.
               .filter((c: any) => typeof c.score === "number" && c.max > 0 && c.score < c.max)
-              .sort((a: any, b: any) => a.score / a.max - b.score / b.max)
+              // By marks still available, not by share: a 3/5 misses more than a 1/2.
+              .sort((a: any, b: any) => (b.max - b.score) - (a.max - a.score) || a.score / a.max - b.score / b.max)
               .slice(0, 2);
             const potential = weakest.reduce((s: number, c: any) => s + (c.max - c.score), 0);
             if (!weakest.length) return null;
             return (
               <Card>
                 <CardContent className="p-6">
-                  <h3 style={SERIF} className="text-xl font-bold mb-2">Where the most marks are missing: {potential} across these criteria</h3>
+                  <h3 style={SERIF} className="text-xl font-bold mb-2">{result.criteria.length === 1 ? `Marks still available: ${potential}` : `Where the most marks are missing: ${potential} ${potential === 1 ? "mark" : "marks"} across ${weakest.length === 1 ? "this criterion" : "these two criteria"}`}</h3>
                   <ul className="space-y-1.5 mb-3">
                     {weakest.map((c: any) => (
                       <li key={c.name} className="text-sm text-muted-foreground"><strong className="text-foreground">{c.name}:</strong> {c.score}/{c.max} now, +{c.max - c.score} available</li>

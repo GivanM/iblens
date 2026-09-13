@@ -105,7 +105,7 @@ export default function UniversityAdmissionsGuide() {
       </p>
 
       <p>
-        Your IA and EE marks feed straight into your subject grades and bonus points, so they matter for offers too. <Link href="/essay" className="text-primary hover:underline">IBLens essay analysis</Link> shows which criterion is costing you the most. For how the scoring system works, see our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">Grade boundaries guide</Link> and the <Link href="/resources/ib-internal-assessment-guide" className="text-primary hover:underline">Internal Assessment guide</Link>.
+        Your IA and EE marks feed straight into your subject grades and bonus points, so they matter for offers too. <Link href="/essay" className="text-primary hover:underline">IBLens essay analysis</Link> shows which criterion is costing you the most. For how the scoring system works, see our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">grade boundaries guide</Link> and the <Link href="/resources/ib-internal-assessment-guide" className="text-primary hover:underline">Internal Assessment guide</Link>.
       </p>
       <h2>Applying through UCAS</h2>
 

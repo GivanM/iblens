@@ -13,7 +13,7 @@ export default function InternalAssessmentGuide() {
       <h1>The complete IB Internal Assessment guide</h1>
 
       <p>
-        <strong>every IB subject includes an internally assessed component marked against published criteria: the sciences out of 24, History and Business Management out of 25, Mathematics out of 20, Economics 14 per commentary. Your teacher marks it and the IB moderates a sample, so the criteria are what count.</strong>
+        <strong>Every IB subject includes an internally assessed component marked against published criteria: the sciences out of 24, History and Business Management out of 25, Mathematics out of 20, Economics 14 per commentary. Your teacher marks it and the IB moderates a sample, so the criteria are what count.</strong>
       </p>
 
       <p>
@@ -213,7 +213,7 @@ export default function InternalAssessmentGuide() {
       </p>
 
       <p>
-        For a deeper understanding of how criterion-based marking works across all IB essay types, see our <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB essay criteria explained</Link> guide. If you are working on your Extended Essay alongside your IA, our <Link href="/resources/ib-extended-essay-guide" className="text-primary hover:underline">Extended Essay Guide</Link> covers the specific requirements for that component. For understanding how your IA mark contributes to your overall IB score, check our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">IB grade boundaries</Link> explainer.
+        For a deeper understanding of how criterion-based marking works across all IB essay types, see our <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB essay criteria explained</Link> guide. If you are working on your Extended Essay alongside your IA, our <Link href="/resources/ib-extended-essay-guide" className="text-primary hover:underline">Extended Essay guide</Link> covers the specific requirements for that component. For understanding how your IA mark contributes to your overall IB score, check our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">IB grade boundaries</Link> explainer.
       </p>
 
       <p>

@@ -27,7 +27,7 @@ const config: SubjectConfig = {
   guide: {
     rubricHeading: "What the Extended Essay criteria reward",
     rubricIntro: [
-      "Before you paste your draft: the Extended Essay guide says students must not receive assistance with any aspect of the research, writing or proofreading beyond that which is permitted through their supervisor. Ask your supervisor before you use any outside feedback on your EE, IBLens included.",
+      "Before you paste your draft, ask your supervisor: the rule above covers any outside feedback on your EE, IBLens included.",
       "The criteria depend on your exam session. From May 2027 the essay is marked out of 30 on new criteria. Through November 2026 it is marked out of 34 on the older ones. Choose your session in the grader and the report uses the matching set.",
       "In both cases the limit is 4,000 words, and examiners do not assess anything beyond it. The EE is marked by IB examiners, not by your supervisor. The criteria below apply from May 2027.",
     ],
@@ -59,7 +59,7 @@ const config: SubjectConfig = {
     ],
   },
   relatedResources: [
-    { label: "IB Extended Essay Guide", href: "/resources/ib-extended-essay-guide" },
+    { label: "IB Extended Essay guide", href: "/resources/ib-extended-essay-guide" },
     { label: "New criteria for May 2027", href: "/resources/ib-extended-essay-new-criteria-2027" },
     { label: "How to get feedback before you submit", href: "/resources/ib-extended-essay-feedback" },
     { label: "The 4,000-word limit", href: "/resources/ib-extended-essay-word-count" },

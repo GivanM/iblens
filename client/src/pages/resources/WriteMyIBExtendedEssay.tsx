@@ -11,7 +11,7 @@ export default function WriteMyIBExtendedEssay() {
       dateModified="2026-09-13"
     >
       <p>
-        If you have typed "write my extended essay" or "help with IB extended essay"
+        Perhaps you have typed "write my extended essay" or "help with IB extended essay"
         into a search bar at 11pm. The Extended Essay is the longest
         piece of academic writing most IB students have ever attempted, and it is easy
         to get stuck, not because you are not capable, but because you are not sure what

@@ -34,6 +34,7 @@ import {
   claimAnalysisUnlock,
   adoptDeviceReports,
   claimAnonymousUnlock,
+  findUnlockedCopyInChain,
   countReportsOpenedByOrder,
   createCreditLot,
   getCreditLot,
@@ -444,6 +445,16 @@ export function registerLemonsqueezyWebhook(app: Express) {
               const rec = !unlockIntent ? null : unlockKind === "ucas"
                 ? await getLatestAnonymousUcas(unlockFp)
                 : await getLatestAnonymousEssay(unlockFp);
+              // Already paid for in the buyer's account: a refund locked both, and a later
+              // purchase there opened only the copy. The device rows open for that purchase and
+              // this one keeps its reports, instead of spending one on a report already bought.
+              const openCopy = rec && rec.resultJson && !(rec as any).unlocked && !buyerIsGuest
+                ? await findUnlockedCopyInChain(order.userId, rec as any).catch(() => null)
+                : null;
+              if (openCopy && rec) {
+                await claimAnonymousUnlock(rec.id, openCopy.unlockOrderId ?? null);
+                console.log(`[LemonSqueezy] Report ${rec.id} was already open in the account; order ${order.id} keeps its reports`);
+              }
               // A pack is several reports. One of them opens what the buyer is
               // looking at; the rest stay with this device so they can be spent
               // without an account, which is what "no account needed" has to mean.
@@ -451,7 +462,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
               // opens now, the rest wait there. The same credits were also granted
               // to the guest account a moment ago, and leaving both in place handed
               // out a pack twice over, so the account side is taken back.
-              const spentNow = rec && rec.resultJson && !(rec as any).unlocked ? 1 : 0;
+              const spentNow = rec && rec.resultJson && !(rec as any).unlocked && !openCopy ? 1 : 0;
               const toDevice = buyerIsGuest ? credits.essay - spentNow : 0;
               if (toDevice > 0) {
                 await addDeviceCredits(unlockFp, toDevice, order.id);
@@ -461,7 +472,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
               // Only the part that moved to the device. The one credit the unlock
               // below consumes stays on the account until it is spent there.
               if (toDevice > 0) await debitAccountCredits(order.userId, toDevice);
-              if (rec && rec.resultJson && !(rec as any).unlocked) {
+              if (rec && rec.resultJson && !(rec as any).unlocked && !openCopy) {
                 // Open the report first. If the charge against the credit then fails,
                 // the buyer still has what they paid for and we are out one credit,
                 // which is the right way round for the person who just paid.

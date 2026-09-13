@@ -44,7 +44,7 @@ export default function IAFeedbackGuide() {
           <strong>Start with the heaviest criterion.</strong> A History IA lives or dies on the Investigation; a CS IA on Development; a Math IA is capped by the mathematics you actually use. Check that criterion first, because it moves the most marks.
         </li>
         <li>
-          <strong>Check the limits.</strong> In several subjects the guide says marking stops at the word limit, and everywhere else the limit is still a rule (the Mathematics exploration has only a suggested length of about 12 to 20 pages). Check yours before polishing prose that may not be read.
+          <strong>Check the limits.</strong> In several subjects the guide says marking stops at the word limit, and everywhere else it is still a rule, except in the Mathematics exploration, which has only a suggested length of about 12 to 20 pages. Check yours before polishing prose that may not be read.
         </li>
         <li>
           <strong>Read one criterion at a time, draft in the other hand.</strong> For each criterion ask: where exactly in my draft is the evidence for the top markband? If you cannot point to a paragraph, a moderator cannot either.
@@ -84,8 +84,8 @@ export default function IAFeedbackGuide() {
       <h2>Related resources</h2>
 
       <ul>
-        <li><Link href="/resources/ib-internal-assessment-guide">IB Internal Assessment Guide</Link></li>
-        <li><Link href="/resources/ib-ia-grader">IB IA Grader: coursework in 14 subjects</Link></li>
+        <li><Link href="/resources/ib-internal-assessment-guide">IB Internal Assessment guide</Link></li>
+        <li><Link href="/resources/ib-ia-grader">IB IA grader: coursework in 14 subjects</Link></li>
         <li><Link href="/resources/ib-ia-score-predictor">IB IA score estimator</Link></li>
       </ul>
       <h2>Subject-specific IA guides</h2>

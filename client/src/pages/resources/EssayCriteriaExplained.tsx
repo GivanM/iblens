@@ -204,7 +204,7 @@ export default function EssayCriteriaExplained() {
         <li><strong>Make the criterion's work visible, not its vocabulary.</strong> Phrases like "a critical examination reveals" earn nothing on their own; the evaluation itself does. Check that each criterion has somewhere in the work where it is clearly being done.</li>
         <li><strong>Make your question and approach clear early.</strong> Best-fit marking reads the whole piece, and a reader who knows from the first page what you are trying to show can see how each section serves it.</li>
         <li><strong>Do not sacrifice one criterion for another.</strong> A beautifully written essay (high communication marks) that lacks analysis will not score well overall. Balance your effort across all criteria.</li>
-        <li><strong>Check word and page limits.</strong> In many components, including the Extended Essay, the TOK essay and exhibition, and the Economics and Business Management IAs, examiners or moderators stop reading at the limit; everywhere else the limit is still a rule (the Mathematics exploration has only a suggested length of about 12 to 20 pages).</li>
+        <li><strong>Check word and page limits.</strong> In many components, including the Extended Essay, the TOK essay and exhibition, and the Economics and Business Management IAs, examiners or moderators stop reading at the limit; everywhere else it is still a rule, except in the Mathematics exploration, which has only a suggested length of about 12 to 20 pages.</li>
       </ul>
 
       <p>

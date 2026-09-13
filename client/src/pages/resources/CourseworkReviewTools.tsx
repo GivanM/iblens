@@ -13,7 +13,7 @@ export default function CourseworkReviewTools() {
       <h1>AI tools IB students use to review coursework before submission (2026)</h1>
 
       <p>
-        Before the coursework deadline, most IB students want the same thing: an honest read on where a draft stands against the actual assessment criteria. For the Extended Essay, check with your supervisor first: its guide allows no help with the research, writing or proofreading beyond what the supervisor permits. A handful of tools now do this with AI. Here is how they compare, including where we fit, stated as plainly as we describe everyone else. Details below were checked in August 2026, and the RevisionDojo row again on 13 September 2026; features and prices change, so verify on each site.
+        Before the coursework deadline, most IB students want the same thing: an honest read on where a draft stands against the actual assessment criteria. For the Extended Essay, check with your supervisor first: its guide says students are not allowed to receive assistance with any aspect of the research, writing or proofreading of the essay beyond that which is permitted through their supervisor. A handful of tools now do this with AI. Here is how they compare, including where we fit, stated as plainly as we describe everyone else. Details below were checked in August 2026, and the RevisionDojo row again on 13 September 2026; features and prices change, so verify on each site.
       </p>
 
       <h2>The comparison</h2>
@@ -68,7 +68,7 @@ export default function CourseworkReviewTools() {
 
       <h3>Are these tools allowed under IB rules?</h3>
       <p>
-        Using AI to get feedback on work you wrote is a different activity from having AI produce the work, but the IB academic integrity policy still asks students to abstain from receiving non-permitted assistance in the completion or editing of their work, such as from friends, relatives, other students, private tutors, essay writing or copy-editing services, so check with your teacher and your school's AI policy before you use one. Submitting AI-written text without crediting it is academic misconduct. Keep drafts and use feedback to revise your own writing. The Extended Essay is stricter: the Extended Essay guide says students must not receive assistance with any aspect of the research, writing or proofreading beyond that which is permitted through their supervisor. Ask your supervisor before you use any outside feedback on your EE, IBLens included.
+        Using AI to get feedback on work you wrote is a different activity from having AI produce the work, but the IB academic integrity policy still asks students to abstain from receiving non-permitted assistance in the completion or editing of work, such as from friends, relatives, other students, private tutors, essay writing or copy-editing services, pre-written essay banks or file sharing websites, so check with your teacher and your school's AI policy before you use one. Submitting AI-written text without crediting it is academic misconduct. Keep drafts and use feedback to revise your own writing. The Extended Essay is stricter: the Extended Essay guide says students are not allowed to receive assistance with any aspect of the research, writing or proofreading of the essay beyond that which is permitted through their supervisor. Ask your supervisor before you use any outside feedback on your EE, IBLens included.
       </p>
 
       <h3>Which tool supports the new May 2027 Extended Essay criteria?</h3>

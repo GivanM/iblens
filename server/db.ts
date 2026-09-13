@@ -110,7 +110,21 @@ export async function createAnalysis(data: InsertAnalysis) {
   if (!db) throw new Error("Database not available");
 
   const [result] = await db.insert(analyses).values(data).$returningId();
+  if (data.unlocked) await relockIfRefunded(data.unlockOrderId);
   return result;
+}
+
+/**
+ * A purchase refunded while a paid run or an unlock was in flight. The refund closed what
+ * the purchase had opened by then; a row written or opened a moment later carried the
+ * refunded order and stayed open. Whatever the order opened closes again, as the refund did.
+ */
+export async function relockIfRefunded(orderId: string | null | undefined) {
+  if (!orderId) return;
+  const order: any = await getOrderById(orderId).catch(() => undefined);
+  if (order?.status !== "refunded") return;
+  await relockAnalysesForOrder(order.userId, orderId);
+  await relockAnonymousForOrder(orderId);
 }
 
 /**
@@ -123,6 +137,7 @@ export async function upsertAccountCopy(data: InsertAnalysis & { adoptedFromId: 
   if (!db) throw new Error("Database not available");
   try {
     const [result] = await db.insert(analyses).values(data).$returningId();
+    await relockIfRefunded(data.unlockOrderId);
     return result;
   } catch (err) {
     if (!isDuplicateKey(err)) throw err;
@@ -137,6 +152,7 @@ export async function upsertAccountCopy(data: InsertAnalysis & { adoptedFromId: 
       resultJson: data.resultJson,
       predictedGrade: data.predictedGrade ?? null,
     }).where(eq(analyses.id, existing.id));
+    await relockIfRefunded(data.unlockOrderId);
     return { id: existing.id };
   }
 }
@@ -433,6 +449,7 @@ export async function createAnonymousAnalysis(data: InsertAnonymousAnalysis) {
   if (!db) throw new Error("Database not available");
 
   const [result] = await db.insert(anonymousAnalyses).values(data).$returningId();
+  if (data.unlocked) await relockIfRefunded(data.unlockOrderId);
   return result;
 }
 
@@ -1077,13 +1094,23 @@ export async function takeFromLot(lotKey: string): Promise<boolean> {
   return Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0) > 0;
 }
 
-/** Give a report back to its purchase when the run that took it produced nothing. */
-export async function returnToLot(lotKey: string | null | undefined) {
+/**
+ * Give a report back to its purchase when the run that took it produced nothing. Says
+ * whether the report may go back to the balance as well: a purchase refunded while the run
+ * was in flight has already been closed, and refilling it handed out a report for nothing.
+ */
+export async function returnToLot(lotKey: string | null | undefined): Promise<boolean> {
   const db = await getDb();
-  if (!db || !lotKey) return;
+  if (!db || !lotKey) return true;
+  const order: any = await getOrderById(lotKey).catch(() => undefined);
+  if (order?.status === "refunded") {
+    console.log(`[Lots] ${lotKey} was refunded during the run; its report is not returned`);
+    return false;
+  }
   await db.update(creditLots)
     .set({ remaining: sql`${creditLots.remaining} + 1` })
     .where(and(eq(creditLots.lotKey, lotKey), sql`${creditLots.remaining} < ${creditLots.granted}`));
+  return true;
 }
 
 /** A browser's unused reports moved onto an account at sign-in: their purchases move with them. */
@@ -1125,6 +1152,26 @@ export async function reopenAccountChain(copyId: number, orderId: string | null)
   const opened = { unlocked: true, unlockedAt: new Date(), rerunsUsed: 0, ...(orderId ? { unlockOrderId: orderId } : {}) };
   await db.update(analyses).set(opened).where(and(eq(analyses.id, copyId), eq(analyses.unlocked, false)));
   await db.update(analyses).set({ unlocked: true, ...(orderId ? { unlockOrderId: orderId } : {}) }).where(and(eq(analyses.rerunOf, copyId), eq(analyses.unlocked, false)));
+  await relockIfRefunded(orderId);
+}
+
+/**
+ * Device rows still locked whose report is open in this account: a refund locked both, and a
+ * later purchase in the account opened only the copy. The device kept offering the report
+ * for sale, and buying it spent a second report on one already paid for.
+ */
+export async function openDeviceRowsOfOpenCopies(fingerprint: string, userId: number): Promise<number> {
+  const db = await getDb();
+  if (!db) return 0;
+  const locked = await db.select({ id: anonymousAnalyses.id, rerunOf: anonymousAnalyses.rerunOf }).from(anonymousAnalyses)
+    .where(and(eq(anonymousAnalyses.fingerprint, fingerprint), eq(anonymousAnalyses.unlocked, false), sql`${anonymousAnalyses.resultJson} IS NOT NULL`))
+    .limit(50);
+  let opened = 0;
+  for (const row of locked as any[]) {
+    const copy = await findUnlockedCopyInChain(userId, row).catch(() => null);
+    if (copy && await claimAnonymousUnlock(row.id, copy.unlockOrderId ?? null)) opened++;
+  }
+  return opened;
 }
 
 export async function findAccountCopyOf(userId: number, deviceRowId: number) {
@@ -1251,6 +1298,11 @@ export async function adoptDeviceReports(fingerprint: string, userId: number): P
       if (!existing[0].unlocked) {
         await db.update(analyses).set({ unlocked: true, unlockedAt: rec.unlockedAt ?? new Date(), rerunsUsed: rec.rerunsUsed ?? 0, unlockOrderId: rec.unlockOrderId ?? null })
           .where(eq(analyses.id, existing[0].id));
+        // Its re-checks made in the account have no device row of their own, so nothing below
+        // opens them: left locked, the dashboard offered them for sale again.
+        await db.update(analyses).set({ unlocked: true, unlockOrderId: rec.unlockOrderId ?? null })
+          .where(and(eq(analyses.rerunOf, existing[0].id), eq(analyses.unlocked, false)));
+        await relockIfRefunded(rec.unlockOrderId);
       }
       accountIdFor.set(rec.id, existing[0].id);
       continue;
@@ -1493,6 +1545,7 @@ export async function createRerunAnalysis(prev: any, resultJson: any, predictedG
     // closes the child as well as the parent.
     unlockOrderId: prev.unlockOrderId ?? null,
   }).$returningId();
+  await relockIfRefunded(prev.unlockOrderId);
   return row;
 }
 
@@ -1524,6 +1577,7 @@ export async function claimAnalysisUnlock(id: number, orderId?: string | null): 
     // they were offered for sale again although this payment covers them.
     await db.update(analyses).set({ unlocked: true, ...(orderId ? { unlockOrderId: orderId } : {}) })
       .where(and(eq(analyses.rerunOf, headId), eq(analyses.unlocked, false)));
+    await relockIfRefunded(orderId);
   }
   return claimed;
 }
@@ -1551,6 +1605,7 @@ export async function claimAnonymousUnlock(id: number, orderId?: string | null):
     // they were offered for sale again although this payment covers them.
     await db.update(anonymousAnalyses).set({ unlocked: true, ...(orderId ? { unlockOrderId: orderId } : {}) })
       .where(and(eq(anonymousAnalyses.rerunOf, headId), eq(anonymousAnalyses.unlocked, false)));
+    await relockIfRefunded(orderId);
   }
   return claimed;
 }
@@ -1592,6 +1647,7 @@ export async function markAnalysisUnlocked(id: number, orderId?: string) {
   await db.update(analyses)
     .set({ unlocked: true, unlockedAt: new Date(), ...(orderId ? { unlockOrderId: orderId } : {}) })
     .where(eq(analyses.id, id));
+  await relockIfRefunded(orderId);
 }
 
 export async function consumeAnalysisRerun(id: number, userId: number) {

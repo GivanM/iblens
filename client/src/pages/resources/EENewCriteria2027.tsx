@@ -118,8 +118,8 @@ export default function EENewCriteria2027() {
       <h2>Related resources</h2>
 
       <ul>
-        <li><Link href="/resources/ib-extended-essay-guide">IB Extended Essay Guide: structure and research question</Link></li>
-        <li><Link href="/resources/ib-extended-essay-examples">IB Extended Essay Examples</Link></li>
+        <li><Link href="/resources/ib-extended-essay-guide">IB Extended Essay guide: structure and research question</Link></li>
+        <li><Link href="/resources/ib-extended-essay-examples">IB Extended Essay examples</Link></li>
         <li><Link href="/resources/ib-extended-essay-word-count">The 4,000-word limit explained</Link></li>
       </ul>
       <h2>Also changing for May 2027</h2>

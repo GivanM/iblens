@@ -56,7 +56,7 @@ const config: SubjectConfig = {
   },
   relatedResources: [
     { label: "Check your IA against the criteria", href: "/resources/ib-ia-feedback" },
-    { label: "IB Internal Assessment Guide", href: "/resources/ib-internal-assessment-guide" },
+    { label: "IB Internal Assessment guide", href: "/resources/ib-internal-assessment-guide" },
   ],
   relatedSubjects: [
     { label: "Economics IA", href: "/essay/economics-ia" },

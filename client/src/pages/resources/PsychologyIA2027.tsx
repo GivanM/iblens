@@ -95,8 +95,8 @@ export default function PsychologyIA2027() {
 
       <ul>
         <li><Link href="/resources/ib-psychology-ia">IB Psychology IA guide (experimental report, through November 2026)</Link></li>
-        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">IB Extended Essay New Criteria 2027</Link></li>
-        <li><Link href="/resources/ib-internal-assessment-guide">IB Internal Assessment Guide</Link></li>
+        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">IB Extended Essay new criteria 2027</Link></li>
+        <li><Link href="/resources/ib-internal-assessment-guide">IB Internal Assessment guide</Link></li>
       </ul>
       <h2>Other 2027 syllabus changes</h2>
 

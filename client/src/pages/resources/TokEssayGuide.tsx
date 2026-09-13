@@ -13,7 +13,7 @@ export default function TokEssayGuide() {
       <h1>The complete IB TOK essay guide</h1>
 
       <p>
-        <strong>the TOK essay is up to 1,600 words on one of six prescribed titles, marked holistically out of 10 on one instrument with five levels and no separate criteria. Your TOK grade, together with your Extended Essay grade, decides up to 3 bonus points on your Diploma.</strong>
+        <strong>The TOK essay is up to 1,600 words on one of six prescribed titles, marked holistically out of 10 on one instrument with five levels and no separate criteria. Your TOK grade, together with your Extended Essay grade, decides up to 3 bonus points on your Diploma.</strong>
       </p>
 
       <p>
