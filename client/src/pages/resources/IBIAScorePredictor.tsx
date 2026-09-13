@@ -8,10 +8,18 @@ export default function IBIAScorePredictor() {
       description="How IB Internal Assessment marks are awarded and moderated, how to self-assess your IA criterion by criterion, and how to estimate your grade before results day."
       canonical="/resources/ib-ia-score-predictor"
       datePublished="2026-06-06"
-      dateModified="2026-06-06"
+      dateModified="2026-09-13"
     >
       <h1>IB IA Score Predictor: How to Estimate Your Internal Assessment Grade</h1>
       <p>Your teacher has marked your Internal Assessment and you want to know whether that mark will hold. It may not: the mark is checked against a global standard before it counts. Knowing how that check works, and reading your own work criterion by criterion, gets you a realistic range rather than a single hopeful number.</p>
+
+      <div className="not-prose my-6 rounded-xl border border-primary/30 bg-primary/5 p-5">
+        <p className="text-base font-semibold text-foreground mb-1">The predictor</p>
+        <p className="text-sm text-muted-foreground mb-3">
+          Paste your IA into IBLens and get a predicted mark for each criterion, marked against the published criteria for your subject and session. The first preview is free: your band range, your weakest criterion with its feedback, and the top risks. Every mark is an estimate, not an IB mark.
+        </p>
+        <Link href="/essay?type=IA" className="inline-flex min-h-11 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90">Predict my IA score</Link>
+      </div>
 
       <h2>How IB Internal Assessment Marking Works</h2>
       <h3>Stage 1: your teacher marks the work</h3>

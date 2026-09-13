@@ -48,8 +48,8 @@ export function RequestSlip() {
         <form onSubmit={submit}>
           <h2>Submit a script</h2>
           <p className="ms-sub">
-            No account needed for the first one. The free preview returns your mark range, the weakest criterion with
-            its full feedback, and the risks costing the most marks.
+            No account needed for the first one. The free preview returns your mark range, feedback on the weakest
+            criterion (for TOK, the start of the explanation) and the risks costing the most marks.
           </p>
           <div className="ms-f2">
             <div>

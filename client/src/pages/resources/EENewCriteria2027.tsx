@@ -86,7 +86,7 @@ export default function EENewCriteria2027() {
       <h2>Check your draft with IBLens</h2>
 
       <p>
-        IBLens grades Extended Essays against <strong>both</strong> rubrics. In the analyser, keep "Exam session" on <em>May 2027, new syllabus</em>, the default, and your draft is scored out of 30 against the new criteria A to E above, criterion by criterion. Switch it to <em>May / Nov 2026, current syllabus</em> for the 34-mark rubric. The first preview is free (the estimated band range, your weakest criterion with its feedback, and the top risks), and a full report costs $9.99, with no subscription. For May 2027, you can also paste your RPF so that Criterion E is marked on it.
+        IBLens grades Extended Essays against <strong>both</strong> rubrics. In the analyser, keep "Exam session" on <em>Exams in May 2027 or later</em>, the default, and your draft is scored out of 30 against the new criteria A to E above, criterion by criterion. Switch it to <em>Exams in May or November 2026</em> for the 34-mark rubric. The first preview is free (the estimated band range, your weakest criterion with its feedback, and the top risks), and a full report costs $9.99, with no subscription. For May 2027, you can also paste your RPF so that Criterion E is marked on it.
       </p>
 
       <p>
@@ -112,7 +112,7 @@ export default function EENewCriteria2027() {
 
       <h3>Does IBLens support the new 2027 criteria?</h3>
       <p>
-        Yes. IBLens is session-aware: choose "May 2027, new syllabus" in the analyser and your EE is graded out of 30 against Framework, Knowledge and understanding, Analysis and line of argument, Discussion and evaluation, and Reflection. The May 2027 rubrics for Psychology and Computer Science Internal Assessments are supported the same way.
+        Yes. IBLens is session-aware: choose "Exams in May 2027 or later" in the analyser and your EE is graded out of 30 against Framework, Knowledge and understanding, Analysis and line of argument, Discussion and evaluation, and Reflection. The May 2027 rubrics for Psychology and Computer Science Internal Assessments are supported the same way.
       </p>
 
       <h2>Related resources</h2>

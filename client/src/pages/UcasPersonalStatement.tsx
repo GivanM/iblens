@@ -14,6 +14,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "sonner";
 import { Loader2, Lock, AlertTriangle, CheckCircle2 } from "lucide-react";
 import { PurchaseModal } from "@/components/PurchaseModal";
+import { UcasReview } from "@/components/UcasReview";
 import {
   UCAS_QUESTIONS,
   UCAS_TOTAL_CHAR_LIMIT,
@@ -36,6 +37,8 @@ export default function UcasPersonalStatement() {
   const [answers, setAnswers] = useState({ q1: "", q2: "", q3: "" });
   const [result, setResult] = useState<any>(null);
   const [purchaseOpen, setPurchaseOpen] = useState(false);
+  // A purchase beside a locked preview opens it; from anywhere else it adds a report.
+  const [buyFor, setBuyFor] = useState<"preview" | "new">("new");
   const [limitReached, setLimitReached] = useState<string | null>(null);
 
   const total = answers.q1.length + answers.q2.length + answers.q3.length;
@@ -47,10 +50,18 @@ export default function UcasPersonalStatement() {
   // Coming back from checkout: the webhook has already unlocked the review.
   const paidReturn = typeof window !== "undefined"
     && new URLSearchParams(window.location.search).get("payment") === "success";
+  const paidOpens = typeof window !== "undefined"
+    && new URLSearchParams(window.location.search).get("opened") !== "0";
   const paidReviewQ = trpc.essay.anonymousReport.useQuery(
     { fingerprint: anonFp, kind: "ucas" },
-    { enabled: paidReturn && !result, refetchInterval: (d: any) => (d?.unlocked ? false : 4000) }
+    { enabled: paidReturn && paidOpens && !result, refetchInterval: (d: any) => (d?.unlocked ? false : 4000) }
   );
+  // The free preview survives a reload. It used to vanish, leaving only a buy button.
+  const lockedUcasQ = trpc.essay.lockedReport.useQuery({ fingerprint: anonFp, kind: "ucas" }, { enabled: !result });
+  useEffect(() => {
+    const d: any = lockedUcasQ.data;
+    if (!result && d?.exists && !d.unlocked && d.preview) setResult(d.preview);
+  }, [lockedUcasQ.data, result]);
   useEffect(() => {
     if (paidReviewQ.data?.unlocked && !result) {
       setResult(paidReviewQ.data.result);
@@ -88,10 +99,34 @@ export default function UcasPersonalStatement() {
   // see them: a guest who had paid was told the review costs $9.99.
   const deviceCreditsQ = trpc.essay.deviceCredits.useQuery(
     { fingerprint: anonFp },
-    { enabled: !isAuthenticated }
+    {
+      enabled: !isAuthenticated,
+      // Back from buying a report for new work: poll until it lands on this browser.
+      refetchInterval: (q: any) => {
+        const d = q?.state?.data ?? q;
+        return paidReturn && !paidOpens && !((d as any)?.credits > 0) ? 4000 : false;
+      },
+    }
   );
   const deviceCredits = isAuthenticated ? 0 : (deviceCreditsQ.data?.credits ?? 0);
   const canPayHere = hasCredit || deviceCredits > 0;
+  const onFullReview = (d: any) => {
+    setResult(d.result);
+    setLimitReached(null);
+    unlockedQ.refetch();
+    lockedUcasQ.refetch();
+    creditsQ.refetch();
+    deviceCreditsQ.refetch();
+    toast.success("Your full review is open below.");
+  };
+  const unlockWithAccount = trpc.essay.unlockAnalysis.useMutation({ onSuccess: onFullReview, onError: (e: any) => toast.error(e.message || "Unlock failed") });
+  const unlockWithDevice = trpc.essay.unlockPreviewWithDeviceCredit.useMutation({ onSuccess: onFullReview, onError: (e: any) => toast.error(e.message || "Unlock failed") });
+  const openFullReview = () => {
+    if (isAuthenticated && hasCredit) { unlockWithAccount.mutate({ fingerprint: anonFp, kind: "ucas" }); return; }
+    if (!isAuthenticated && deviceCredits > 0) { unlockWithDevice.mutate({ fingerprint: anonFp, kind: "ucas" }); return; }
+    setBuyFor("preview");
+    setPurchaseOpen(true);
+  };
 
   const review = trpc.essay.analyzeUcasAnonymous.useMutation({
     onSuccess: (data: any) => setResult(data.result),
@@ -205,6 +240,21 @@ export default function UcasPersonalStatement() {
             {remaining >= 0 ? ` · ${remaining} left` : ` · ${Math.abs(remaining)} over the limit`}
           </div>
 
+          {paidReturn && !paidOpens && !isAuthenticated && (
+            <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 text-sm">
+              {deviceCredits > 0
+                ? `Payment confirmed. This browser has ${deviceCredits} paid ${deviceCredits === 1 ? "report" : "reports"}: paste your answers and press "Review my statement in full".`
+                : "Payment received. Adding your report to this browser, this takes a few seconds. If nothing changes within two minutes, email glushkovim@gmail.com with your order number."}
+            </div>
+          )}
+
+          {!isUnlocked && !canPayHere && !result && (
+            <p className="text-xs text-muted-foreground">
+              Your first review is a free preview: the verdict, the character checks and your weakest answer reviewed in full.
+              One per device or account, separate from the essay preview. The full review of all three answers is $9.99.
+            </p>
+          )}
+
           {limitReached && (
             <div className="rounded-lg border border-primary/30 bg-primary/5 p-4 space-y-3">
               <p className="text-sm"><strong className="text-foreground">{limitReached}</strong></p>
@@ -212,7 +262,7 @@ export default function UcasPersonalStatement() {
                 A full review covers all three answers, the issues across the statement as a whole and a
                 ranked revision list, plus two free re-checks of this statement within 14 days.
               </p>
-              <Button size="sm" onClick={() => setPurchaseOpen(true)}>Unlock a full review, $9.99</Button>
+              <Button size="sm" onClick={() => { setBuyFor("new"); setPurchaseOpen(true); }}>Buy a full review, $9.99</Button>
             </div>
           )}
 
@@ -242,6 +292,13 @@ export default function UcasPersonalStatement() {
                 recheck.mutate({ fingerprint: anonFp, answers });
                 return;
               }
+              // Nothing left to spend here: buying is the next step, not a request
+              // the server is certain to refuse.
+              if (isUnlocked && !canPayHere) {
+                setBuyFor("new");
+                setPurchaseOpen(true);
+                return;
+              }
               if (isUnlocked) {
                 review.mutate({
                   course: course.trim(), universityType,
@@ -269,7 +326,7 @@ export default function UcasPersonalStatement() {
             {review.isPending || recheck.isPending ? (
               <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Reading your statement…</>
             ) : isUnlocked && effectiveRechecks === 0 ? (
-              "Review a new statement (uses 1 paid report)"
+              canPayHere ? "Review a new statement (uses 1 paid report)" : "Review a new statement, $9.99"
             ) : isUnlocked ? (
               `Re-check my statement (free${effectiveRechecks !== null ? `, ${effectiveRechecks} left` : ""})`
             ) : canPayHere ? (
@@ -282,164 +339,22 @@ export default function UcasPersonalStatement() {
       </Card>
 
       {result && (
-        <Card className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <CardContent className="pt-6 space-y-6">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">
-                {isUnlocked || result.answers ? "Full review" : "Free preview"}
-              </p>
-              <h2 style={SERIF} className="text-2xl font-bold mb-2">{result.verdict}</h2>
-              <p className="text-sm text-muted-foreground leading-relaxed">{result.verdict_reason}</p>
-            </div>
-
-            {(result.mechanics || result._mechanics) && (
-              <div className="rounded-lg border p-4 space-y-2">
-                <p className="text-sm font-semibold">Against the UCAS limits</p>
-                {(result.mechanics || result._mechanics).perAnswer.map((a: any) => (
-                  <div key={a.id} className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">{a.id.toUpperCase()}</span>
-                    <span className={a.meetsMinimum ? "" : "text-rose-600 font-medium"}>
-                      {a.chars} characters · {a.shareOfTotal}% of what you have written
-                      {!a.meetsMinimum && ` · below the ${UCAS_MIN_CHARS_PER_ANSWER} minimum`}
-                    </span>
-                  </div>
-                ))}
-                <div className="flex items-center justify-between text-sm border-t pt-2">
-                  <span className="text-muted-foreground">Total</span>
-                  <span>{(result.mechanics || result._mechanics).totalChars} of {UCAS_TOTAL_CHAR_LIMIT}</span>
-                </div>
-                {(result.mechanics || result._mechanics).problems?.map((p: string, i: number) => (
-                  <p key={i} className="text-xs text-amber-700 flex gap-2"><AlertTriangle className="w-3.5 h-3.5 shrink-0 mt-0.5" />{p}</p>
-                ))}
-                {(result.mechanics || result._mechanics).problems?.length === 0 && (
-                  <p className="text-xs text-emerald-700 flex gap-2"><CheckCircle2 className="w-3.5 h-3.5 shrink-0 mt-0.5" />Lengths are within the UCAS rules.</p>
-                )}
-              </div>
-            )}
-
-            {result.sample_answer && (
-              <div className="rounded-lg border p-4 space-y-3">
-                <div className="flex items-center gap-2">
-                  <p className="text-sm font-semibold">
-                    {result.sample_answer.id?.toUpperCase()}, your weakest answer, in full
-                  </p>
-                  <Badge className={STATUS_STYLE[result.sample_answer.status] || ""}>{result.sample_answer.status}</Badge>
-                </div>
-                <div>
-                  <p className="text-xs font-medium text-muted-foreground mb-1">What works</p>
-                  <p className="text-sm leading-relaxed">{result.sample_answer.working}</p>
-                </div>
-                <div>
-                  <p className="text-xs font-medium text-muted-foreground mb-1">What a tutor would miss here</p>
-                  <p className="text-sm leading-relaxed">{result.sample_answer.missing}</p>
-                </div>
-                <div>
-                  <p className="text-xs font-medium text-muted-foreground mb-1">Fix this first</p>
-                  <p className="text-sm leading-relaxed">{result.sample_answer.fix}</p>
-                </div>
-              </div>
-            )}
-
-            {result.answers?.length > 0 && (
-              <div className="space-y-4">
-                {result.answers.map((a: any) => (
-                  <div key={a.id} className="rounded-lg border p-4 space-y-2">
-                    <div className="flex items-center justify-between gap-3">
-                      <p className="text-sm font-semibold">
-                        {a.id?.toUpperCase()}: {UCAS_QUESTIONS.find((q) => q.id === a.id)?.question.slice(0, 70) || "Answer"}
-                      </p>
-                      <Badge className={STATUS_STYLE[a.status] || ""}>{a.status}</Badge>
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">What works</p>
-                      <p className="text-sm leading-relaxed">{a.working}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">What a tutor cannot find</p>
-                      <p className="text-sm leading-relaxed">{a.missing}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Change this first</p>
-                      <p className="text-sm leading-relaxed">{a.fix}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {result.statement_level?.length > 0 && (
-              <div className="rounded-lg border p-4 space-y-3">
-                <p className="text-sm font-semibold">Across the statement as a whole</p>
-                {result.statement_level.map((issue: any, i: number) => (
-                  <div key={i}>
-                    <p className="text-sm font-medium">{issue.title}</p>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{issue.description}</p>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {result.subject_fit && (
-              <div className="rounded-lg border p-4">
-                <p className="text-sm font-semibold mb-1">Does this read as an application for {result._course || course}?</p>
-                <p className="text-sm leading-relaxed">{result.subject_fit}</p>
-              </div>
-            )}
-
-            {result.next_steps?.length > 0 && (
-              <div className="rounded-lg border p-4">
-                <p className="text-sm font-semibold mb-2">Revision list, most valuable first</p>
-                <ol className="space-y-2 list-decimal pl-5">
-                  {result.next_steps.map((step: string, i: number) => (
-                    <li key={i} className="text-sm leading-relaxed">{step}</li>
-                  ))}
-                </ol>
-              </div>
-            )}
-
-            {!result.answers && (
-            <div className="rounded-lg bg-muted/40 p-4 space-y-2">
-              <p className="text-sm font-semibold">In the full review</p>
-              <ul className="space-y-1.5">
-                {result.other_answers?.map((a: any) => (
-                  <li key={a.id} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Lock className="w-3.5 h-3.5 shrink-0" />
-                    {a.id?.toUpperCase()} in full, currently rated <strong className="font-medium">{a.status}</strong>
-                  </li>
-                ))}
-                <li className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Lock className="w-3.5 h-3.5 shrink-0" />
-                  {result.statement_level_count} issue(s) across the statement as a whole
-                </li>
-                <li className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Lock className="w-3.5 h-3.5 shrink-0" />How convincingly this reads as an application for {result.course}
-                </li>
-                <li className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Lock className="w-3.5 h-3.5 shrink-0" />Your ranked revision list
-                </li>
-              </ul>
-              <div className="pt-3 space-y-2">
-                <Button className="w-full sm:w-auto" onClick={() => setPurchaseOpen(true)}>
-                  Unlock the full review, $9.99
-                </Button>
-                <p className="text-xs text-muted-foreground">
-                  Includes two free re-checks of this statement within 14 days, so you can revise and see
-                  whether the changes landed. No subscription. <Link href="/pricing" className="underline">Pricing</Link>
-                </p>
-              </div>
-            </div>
-            )}
-
-            <p className="text-xs text-muted-foreground border-t pt-4">
-              IBLens gives you feedback on writing that is yours. UCAS is explicit that submitting text generated
-              by an AI tool as your own can be treated as cheating, and submitted statements are checked for
-              similarity against previously submitted work. Never paste our wording into your application, and do
-              not post your statement online. See <Link href="/resources/academic-integrity" className="underline">our academic integrity guide</Link>.
-            </p>
-          </CardContent>
-        </Card>
+        <UcasReview
+          result={result}
+          course={course}
+          isUnlocked={isUnlocked}
+          onBuy={openFullReview}
+          buyLabel={canPayHere ? "Open the full review (uses 1 paid report)" : undefined}
+          buyPending={unlockWithAccount.isPending || unlockWithDevice.isPending}
+        />
       )}
-      <PurchaseModal open={purchaseOpen} onOpenChange={setPurchaseOpen} sku="ESSAY_SINGLE" />
+      <PurchaseModal
+        open={purchaseOpen}
+        onOpenChange={setPurchaseOpen}
+        sku="ESSAY_SINGLE"
+        unlocksPreview={buyFor === "preview"}
+        previewLabel={buyFor === "preview" ? "your UCAS statement" : null}
+      />
     </div>
   );
 }

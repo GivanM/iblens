@@ -43,7 +43,7 @@ const config: SubjectConfig = {
       { title: "A question too broad for 4,000 words", text: "A topic such as the impact of social media cannot be argued in depth at this length. A narrow question gives Criterion A something to reward and leaves room for the discussion and evaluation that carry the most marks." },
       { title: "Summary in place of analysis", text: "Paragraphs that report what sources say without using them to build your answer. From May 2027 analysis and a line of argument are a criterion of their own, and before that they sit inside Critical thinking." },
       { title: "An essay that never evaluates itself", text: "Findings reported without discussing their significance, and no account of the strengths and limitations of the essay's own method and sources. From May 2027 those are the two strands of Criterion D, the highest-weighted criterion." },
-      { title: "Words past the limit", text: "Examiners do not read beyond 4,000 words, so an over-length essay loses on every criterion, not just one. Footnotes that are not references count toward the limit. Citations, the bibliography, tables, charts, equations and the contents page do not." },
+      { title: "Words past the limit", text: "Examiners do not read beyond 4,000 words, so an over-length essay loses on every criterion, not just one. Footnotes that are not references count towards the limit. Citations, the bibliography, tables, charts, equations and the contents page do not." },
       { title: "No reflections pasted", text: "Criterion E is marked on the RPF or the RPPF, not on the essay. Paste your reflections into their own box in the analyser. Without them the report leaves that criterion unmarked and totals the others." },
     ],
     faq: [

@@ -54,7 +54,7 @@ export default function RefundPolicy() {
           <section>
             <h2 className="text-xl font-semibold mb-3">Contact Us</h2>
             <p className="text-muted-foreground leading-relaxed">
-              If you have any questions about our refund policy, please reach out to <a href="mailto:glushkovim@gmail.com" className="text-primary hover:underline font-medium">glushkovim@gmail.com</a>. We typically respond within 24 hours.
+              If you have any questions about our refund policy, please reach out to <a href="mailto:glushkovim@gmail.com" className="text-primary hover:underline font-medium">glushkovim@gmail.com</a>. Every refund request gets an answer by email.
             </p>
           </section>
         </div>

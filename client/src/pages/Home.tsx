@@ -20,6 +20,8 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   return (
     <div className="border-b border-border last:border-0">
       <button
+        type="button"
+        aria-expanded={open}
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between py-5 text-left group"
       >
@@ -42,7 +44,7 @@ const SAMPLE_CRITERIA = [
   { name: "A: Integration of a key concept", score: 3, max: 5 },
   { name: "B: Supporting documents", score: 3, max: 4 },
   { name: "C: Tools and theories", score: 3, max: 4 },
-  { name: "D: Analysis and evaluation", score: 4, max: 5 },
+  { name: "D: Analysis and evaluation", score: 2, max: 5 },
   { name: "E: Conclusions", score: 2, max: 3 },
   { name: "F: Structure", score: 2, max: 2 },
   { name: "G: Presentation", score: 1, max: 2 },
@@ -114,7 +116,7 @@ export default function Home() {
                 name: "Is my first essay analysis really free?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes. The first preview is free: your band range, your weakest criterion with its full feedback, and the top risks in your draft. The complete report, with an estimated mark and comments for every criterion and a ranked list of fixes, unlocks for $9.99.",
+                  text: "Yes. The first preview is free: your band range, feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark and comments for every criterion and a ranked list of fixes, unlocks for $9.99.",
                 },
               },
               {
@@ -192,7 +194,7 @@ export default function Home() {
                   <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Business Management IA · Sample</p>
                   <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">Sample</span>
                 </div>
-                <div style={SERIF} className="text-5xl font-bold mb-1">18 <span className="text-muted-foreground text-3xl">/</span> 25</div>
+                <div style={SERIF} className="text-5xl font-bold mb-1">16 <span className="text-muted-foreground text-3xl">/</span> 25</div>
                 <p className="text-sm text-muted-foreground mb-4">Sample report · illustrative</p>
                 <div className="border-t border-border pt-4 space-y-3">
                   {SAMPLE_CRITERIA.map((c) => {
@@ -294,7 +296,7 @@ export default function Home() {
                   ))}
                 </ul>
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">First review free</span>
+                  <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded whitespace-nowrap">Free preview</span>
                   <span className="text-xs text-muted-foreground">No invented score, because UCAS publishes no mark scheme</span>
                 </div>
                 <Button variant="outline" asChild>
@@ -369,7 +371,7 @@ export default function Home() {
                 <p className="text-xs text-muted-foreground">Full criterion breakdown, predicted score and risk areas in about a minute, with two re-checks.</p>
               </div>
             </div>
-            <p className="text-sm text-muted-foreground">Your first preview is free, one per device. No credit card, no account.</p>
+            <p className="text-sm text-muted-foreground">Your first preview is free, one per device or account. No credit card, no account.</p>
           </div>
         </section>
 
@@ -394,7 +396,7 @@ export default function Home() {
                   <div style={SERIF} className="text-3xl font-bold mb-2">$0</div>
                   <p className="text-xs text-muted-foreground mb-4">Band range, weakest criterion and top risks. No credit card required.</p>
                   <Button variant="outline" size="sm" className="w-full" asChild>
-                    <Link href="/essay">Try Free</Link>
+                    <Link href="/essay">Get a free preview</Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -419,7 +421,7 @@ export default function Home() {
                   <div style={SERIF} className="text-3xl font-bold mb-1">{PRICE_LABELS.ESSAY_PACK_5}</div>
                   <p className="text-xs text-muted-foreground mb-4">$5.00 per report</p>
                   <Button variant="outline" size="sm" className="w-full" onClick={() => openPurchase("ESSAY_PACK_5")}>
-                    Buy Pack
+                    Buy 5 reports
                   </Button>
                 </CardContent>
               </Card>
@@ -433,7 +435,7 @@ export default function Home() {
                   <div style={SERIF} className="text-3xl font-bold mb-1">{PRICE_LABELS.ESSAY_PACK_10}</div>
                   <p className="text-xs text-muted-foreground mb-4">$4.50 per report</p>
                   <Button size="sm" className="w-full" onClick={() => openPurchase("ESSAY_PACK_10")}>
-                    Buy Pack
+                    Buy 10 reports
                   </Button>
                 </CardContent>
               </Card>
@@ -468,7 +470,7 @@ export default function Home() {
               />
               <FAQItem
                 question="Is my first essay analysis really free?"
-                answer="Yes. The first preview is free: your band range, your weakest criterion with its full feedback, and the top risks in your draft. The complete report, with an estimated mark and comments for every criterion and a ranked list of fixes, unlocks for $9.99."
+                answer="Yes. The first preview is free: your band range, feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark and comments for every criterion and a ranked list of fixes, unlocks for $9.99."
               />
               <FAQItem
                 question="How accurate is the predicted IB score?"

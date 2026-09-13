@@ -41,7 +41,7 @@ const config: SubjectConfig = {
       { title: "Retelling the article", text: "Describing what happened without theory to explain why. Criterion C asks for theory applied to the article throughout the commentary, not only in the opening paragraph." },
       { title: "A one-sided judgment", text: "Concluding that a policy will work without weighing who gains and who loses, the short run against the long run, or the assumptions behind the prediction. The top Evaluation mark needs balanced reasoning." },
       { title: "The same key concept twice", text: "A key concept already used in another commentary scores 0 on Criterion D, so reusing one can cost 3 marks, and up to 6 if all three commentaries share it." },
-      { title: "Going past 800 words", text: "Anything after the 800th word is not read. Definitions and quotations count toward the limit. Diagrams, short labels, tables of data, calculations, citations and references do not." },
+      { title: "Going past 800 words", text: "Anything after the 800th word is not read. Definitions and quotations count towards the limit. Diagrams, short labels, tables of data, calculations, citations and references do not." },
       { title: "An article more than a year old", text: "Each article must be published no earlier than one year before you write the commentary, or Criterion F loses a mark." },
     ],
     faq: [

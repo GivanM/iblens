@@ -8,7 +8,7 @@ export default function TokEssayGuide() {
       description="A guide to the IB Theory of Knowledge essay: unpacking the prescribed titles, claims and counter-claims, areas of knowledge, the holistic assessment instrument, and common errors."
       canonical="/resources/tok-essay-guide"
       datePublished="2026-05-01"
-      dateModified="2026-05-01"
+      dateModified="2026-09-13"
     >
       <h1>The Complete IB TOK Essay Guide</h1>
 
@@ -117,7 +117,7 @@ export default function TokEssayGuide() {
       <h2>Assessment Criteria</h2>
 
       <p>
-        The TOK essay is assessed against a single holistic instrument with descriptors at five levels. In practice, the descriptors come down to these differences:
+        The TOK essay is assessed against a single holistic instrument with descriptors at five levels. It asks one question, whether the essay provides a clear, coherent and critical exploration of the title, and its level descriptors separate essays on these points:
       </p>
 
       <table>
@@ -130,14 +130,14 @@ export default function TokEssayGuide() {
         </thead>
         <tbody>
           <tr>
-            <td><strong>Understanding of knowledge questions</strong></td>
-            <td>Identify and explore nuanced knowledge questions embedded in the title</td>
-            <td>Treat the title as a factual question rather than a knowledge question</td>
+            <td><strong>Focus on the title</strong></td>
+            <td>Keep a sustained focus on the prescribed title from start to finish</td>
+            <td>Stay only loosely connected to the title, or answer a related question instead</td>
           </tr>
           <tr>
-            <td><strong>Quality of analysis</strong></td>
-            <td>Develop claims and counter-claims with clear reasoning and evaluation</td>
-            <td>Make assertions without supporting reasoning or counter-arguments</td>
+            <td><strong>Arguments</strong></td>
+            <td>Offer clear, coherent arguments, each supported by specific examples</td>
+            <td>Make descriptive points or unsupported assertions</td>
           </tr>
           <tr>
             <td><strong>Examples</strong></td>
@@ -145,9 +145,14 @@ export default function TokEssayGuide() {
             <td>Use vague or generic examples, or examples that don't connect to the argument</td>
           </tr>
           <tr>
-            <td><strong>Connections across AOKs</strong></td>
-            <td>Show how knowledge questions manifest differently across disciplines</td>
-            <td>Treat AOKs in isolation without drawing connections</td>
+            <td><strong>Links to areas of knowledge</strong></td>
+            <td>Link the discussion effectively to the areas of knowledge the title involves</td>
+            <td>Leave the areas of knowledge vague or the links unclear</td>
+          </tr>
+          <tr>
+            <td><strong>Points of view</strong></td>
+            <td>Show clear awareness of different points of view and evaluate them</td>
+            <td>Mention other views, if at all, without weighing them</td>
           </tr>
           <tr>
             <td><strong>Implications of arguments</strong></td>

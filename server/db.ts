@@ -685,6 +685,35 @@ export async function absorbGuestAccount(email: string, targetUserId: number): P
  * question, and the research question alone can identify a student at their school.
  * A purchased report is kept, because it was bought. Essay text is never stored.
  */
+/**
+ * Checkouts that were opened and never paid. Pressing "Continue to checkout" stores
+ * the order and, for a guest, the email typed into the dialog; the privacy page says
+ * those are kept only for 30 days when nothing is bought.
+ */
+export async function purgeAbandonedCheckouts(maxAgeDays = 30): Promise<{ orders: number; guests: number }> {
+  const db = await getDb();
+  if (!db) return { orders: 0, guests: 0 };
+  const cutoff = new Date(Date.now() - maxAgeDays * 86400000);
+  const o: any = await db.delete(orders)
+    .where(and(lt(orders.createdAt, cutoff), sql`${orders.status} IN ('pending', 'expired', 'failed')`));
+  // A guest record goes only when nothing at all refers to it any more.
+  const g: any = await db.delete(users).where(and(
+    lt(users.createdAt, cutoff),
+    sql`(${users.openId} LIKE 'guest:%' OR ${users.openId} LIKE 'guest#%')`,
+    sql`${users.essayCredits} = 0`,
+    sql`NOT EXISTS (SELECT 1 FROM orders o WHERE o.userId = ${users.id})`,
+    sql`NOT EXISTS (SELECT 1 FROM credit_ledger l WHERE l.userId = ${users.id})`,
+    sql`NOT EXISTS (SELECT 1 FROM payments p WHERE p.userId = ${users.id})`,
+    sql`NOT EXISTS (SELECT 1 FROM analyses a WHERE a.userId = ${users.id})`,
+  ));
+  const result = {
+    orders: Number(o?.[0]?.affectedRows ?? o?.affectedRows ?? 0),
+    guests: Number(g?.[0]?.affectedRows ?? g?.affectedRows ?? 0),
+  };
+  if (result.orders || result.guests) console.log(`[Retention] Removed ${result.orders} unpaid checkouts and ${result.guests} unused guest records older than ${maxAgeDays} days`);
+  return result;
+}
+
 export async function purgeOldAnonymousAnalyses(maxAgeDays = 90): Promise<number> {
   const db = await getDb();
   if (!db) return 0;
@@ -769,10 +798,25 @@ export async function consumeAnonymousRerun(fingerprint: string, kind: "essay" |
   if ((rec.rerunsUsed ?? 0) >= 2) {
     return { ok: false as const, reason: "You have used both re-checks for this draft." };
   }
-  await db.update(anonymousAnalyses)
-    .set({ rerunsUsed: (rec.rerunsUsed ?? 0) + 1 })
-    .where(eq(anonymousAnalyses.id, rec.id));
-  return { ok: true as const, record: rec, rerunsLeft: 1 - (rec.rerunsUsed ?? 0) };
+  // Counted in the database, not from the number read above: two re-checks sent
+  // together both read the same count, both wrote count + 1, and a third got in.
+  const taken: any = await db.update(anonymousAnalyses)
+    .set({ rerunsUsed: sql`COALESCE(${anonymousAnalyses.rerunsUsed}, 0) + 1` })
+    .where(and(eq(anonymousAnalyses.id, rec.id), sql`COALESCE(${anonymousAnalyses.rerunsUsed}, 0) < 2`));
+  if (Number(taken?.[0]?.affectedRows ?? taken?.affectedRows ?? 0) === 0) {
+    return { ok: false as const, reason: "You have used both re-checks for this draft." };
+  }
+  const used = await getAnonymousRerunsUsed(rec.id);
+  return { ok: true as const, record: rec, rerunsLeft: Math.max(0, 2 - used) };
+}
+
+/** The re-check count on a device row as it stands now. */
+export async function getAnonymousRerunsUsed(id: number): Promise<number> {
+  const db = await getDb();
+  if (!db) return 0;
+  const rows = await db.select({ used: anonymousAnalyses.rerunsUsed }).from(anonymousAnalyses)
+    .where(eq(anonymousAnalyses.id, id)).limit(1);
+  return Number(rows[0]?.used ?? 0);
 }
 
 /** Give a signed-in re-check back when the model failed. */
@@ -1106,7 +1150,9 @@ export async function createRerunAnalysis(prev: any, resultJson: any, predictedG
     // The allowance belongs to the purchase, not to the row. This carries the
     // count forward including the re-check that just happened; copying the old
     // number made every re-check hand out two more.
-    rerunsUsed: (prev.rerunsUsed ?? 0) + 1,
+    // Read again now: a re-check that ran alongside this one has counted itself on
+    // the parent since prev was read, and the newest row is what the next gate sees.
+    rerunsUsed: Math.max((prev.rerunsUsed ?? 0) + 1, await getAnonymousRerunsUsed(prev.id)),
     examSession: prev.examSession ?? null,
     // The re-check belongs to the purchase that opened the original, so a refund
     // closes the child as well as the parent.
@@ -1116,6 +1162,30 @@ export async function createRerunAnalysis(prev: any, resultJson: any, predictedG
 }
 
 /** Paid unlock starts the free re-run window (14 days, 2 re-runs of the same draft). */
+/**
+ * Open a report only if it is still locked, and say whether this call opened it.
+ * Two unlock clicks that arrive together both see a locked report; only the one
+ * that actually flips it may keep the credit it spent.
+ */
+export async function claimAnalysisUnlock(id: number): Promise<boolean> {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const res: any = await db.update(analyses)
+    .set({ unlocked: true, unlockedAt: new Date() })
+    .where(and(eq(analyses.id, id), eq(analyses.unlocked, false)));
+  return Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0) > 0;
+}
+
+/** The device-row counterpart of claimAnalysisUnlock. */
+export async function claimAnonymousUnlock(id: number, orderId?: string | null): Promise<boolean> {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const res: any = await db.update(anonymousAnalyses)
+    .set({ unlocked: true, unlockedAt: new Date(), ...(orderId ? { unlockOrderId: orderId } : {}) })
+    .where(and(eq(anonymousAnalyses.id, id), eq(anonymousAnalyses.unlocked, false)));
+  return Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0) > 0;
+}
+
 export async function markAnalysisUnlocked(id: number, orderId?: string) {
   const db = await getDb();
   if (!db) return;
@@ -1140,6 +1210,13 @@ export async function consumeAnalysisRerun(id: number, userId: number) {
   const days = (Date.now() - started) / 86400000;
   if (days > 14) return { ok: false as const, reason: "Your 14-day re-check window for this draft has ended." };
   if ((rec.rerunsUsed ?? 0) >= 2) return { ok: false as const, reason: "You have used both re-checks for this draft." };
-  await db.update(analyses).set({ rerunsUsed: (rec.rerunsUsed ?? 0) + 1 }).where(eq(analyses.id, id));
-  return { ok: true as const, record: rec, rerunsLeft: 1 - (rec.rerunsUsed ?? 0) };
+  // One conditional UPDATE, for the same reason as the device re-checks above.
+  const taken: any = await db.update(analyses)
+    .set({ rerunsUsed: sql`COALESCE(${analyses.rerunsUsed}, 0) + 1` })
+    .where(and(eq(analyses.id, id), eq(analyses.userId, userId), sql`COALESCE(${analyses.rerunsUsed}, 0) < 2`));
+  if (Number(taken?.[0]?.affectedRows ?? taken?.affectedRows ?? 0) === 0) {
+    return { ok: false as const, reason: "You have used both re-checks for this draft." };
+  }
+  const fresh = await db.select({ used: analyses.rerunsUsed }).from(analyses).where(eq(analyses.id, id)).limit(1);
+  return { ok: true as const, record: rec, rerunsLeft: Math.max(0, 2 - Number(fresh[0]?.used ?? 2)) };
 }

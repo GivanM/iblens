@@ -23,7 +23,7 @@ export const UCAS_QUESTIONS: UcasQuestion[] = [
     id: "q1",
     question: "Why do you want to study this course or subject?",
     looksFor:
-      "A specific, evidenced motivation for this subject: what drew you in, and what you have followed up on since, and why this course rather than an adjacent one. Generic enthusiasm and childhood anecdotes carry no weight.",
+      "A specific, evidenced motivation for this subject: what drew you in, and what you have followed up on since, and why this course rather than an adjacent one. Enthusiasm needs evidence behind it: an early memory or a role model helps only when it leads to what the applicant went on to do (IBLens advice; UCAS itself invites inspiring moments).",
   },
   {
     id: "q2",
@@ -71,8 +71,10 @@ export interface UcasMechanicalCheck {
   totalChars: number;
   withinTotalLimit: boolean;
   charsRemaining: number;
-  /** Answers under the minimum, or a split so lopsided that one question is effectively unanswered. */
+  /** Breaks of the UCAS rules: an answer under the minimum, or a total over the limit. */
   problems: string[];
+  /** IBLens advice about length that is not a UCAS rule, shown apart from the rules. */
+  advice: string[];
 }
 
 /**
@@ -110,9 +112,12 @@ export function checkUcasMechanics(answers: UcasAnswers): UcasMechanicalCheck {
   }
 
   const unused = UCAS_TOTAL_CHAR_LIMIT - totalChars;
+  const advice: string[] = [];
   if (withinTotalLimit && unused > 600) {
-    problems.push(
-      `You have left ${unused} characters unused out of ${UCAS_TOTAL_CHAR_LIMIT}. That is space competitors are using for evidence.`,
+    // Not a rule: UCAS lets applicants split the 4,000 characters however they like and
+    // sets no total minimum. Listing it with the rules hid "within the UCAS rules".
+    advice.push(
+      `${unused} of the ${UCAS_TOTAL_CHAR_LIMIT} characters are unused. UCAS does not require you to use them, but the space can hold more evidence.`,
     );
   }
 
@@ -122,6 +127,7 @@ export function checkUcasMechanics(answers: UcasAnswers): UcasMechanicalCheck {
     withinTotalLimit,
     charsRemaining: unused,
     problems,
+    advice,
   };
 }
 
@@ -151,7 +157,9 @@ CRITICAL HONESTY RULES:
 IMPORTANT FORMATTING RULES:
 - Respond with a single valid JSON object. No markdown, no text before or after the JSON.
 - Write ALL text in plain text only. NEVER use HTML entities like &amp; &lt; &gt; &quot;. Write the actual characters instead: & < > "
-- Do not use em dashes or en dashes as punctuation anywhere in the text. Use a comma, a colon, brackets or a new sentence instead. Write number ranges with a plain hyphen, for example 13-16.`;
+- Do not use em dashes or en dashes as punctuation anywhere in the text. Use a comma, a colon, brackets or a new sentence instead. Write number ranges with a plain hyphen, for example 13-16.
+- Write to the applicant in the second person ("you", "your answer"), never "the applicant".
+- Use British spelling (analyse, organise, recognise, behaviour).`;
 }
 
 export function buildUcasUserPrompt(

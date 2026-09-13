@@ -8,7 +8,7 @@ import { registerOAuthRoutes } from "./oauth";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
-import { purgeOldAnonymousAnalyses, purgeExpiredRevokedSessions } from "../db";
+import { purgeOldAnonymousAnalyses, purgeExpiredRevokedSessions, purgeAbandonedCheckouts } from "../db";
 import { registerLemonsqueezyWebhook } from "../lemonsqueezy/lemonsqueezy";
 import { ENV } from "./env";
 
@@ -121,6 +121,7 @@ async function startServer() {
   const runRetention = () => {
     purgeOldAnonymousAnalyses().catch((err) => console.warn("[Retention] failed:", err));
     purgeExpiredRevokedSessions().catch((err) => console.warn("[Retention] revoked sessions failed:", err));
+    purgeAbandonedCheckouts().catch((err) => console.warn("[Retention] abandoned checkouts failed:", err));
   };
   runRetention();
   setInterval(runRetention, 24 * 60 * 60 * 1000).unref();

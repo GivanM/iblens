@@ -4,11 +4,13 @@
 
 ## Product
 
-- [Essay Analyzer](https://iblens.com/essay): paste a draft, pick work type, subject and exam session, get criterion-level feedback
+- [Essay Grader](https://iblens.com/essay): paste a draft, pick work type, subject and exam session, get criterion-level feedback
+- [UCAS Personal Statement Checker](https://iblens.com/ucas-personal-statement): the three-question format from 2026 entry, with character checks and feedback on each answer
+- [IB Remark Check](https://iblens.com/remark): whether an enquiry upon results is worth it, with deadlines for both sessions
 - [How IBLens Works](https://iblens.com/resources/how-iblens-works): the grading pipeline explained
 - [Sample Reports](https://iblens.com/resources/sample-reports): real example outputs at three quality levels
 - [Pricing](https://iblens.com/pricing): free preview, $9.99 full report, packs of five and ten, no subscription
-- [About](https://iblens.com/about): who is behind IBLens and what it will not do
+- [About](https://iblens.com/about): where IBLens came from, how the grader works and what it will not do
 
 ## May 2027 syllabus changes
 

@@ -37,6 +37,8 @@ import {
   updateAnonymousResult,
   setAnonymousUnlocked,
   markAnalysisUnlocked,
+  claimAnalysisUnlock,
+  claimAnonymousUnlock,
   consumeAnonymousRerun,
   createRerunAnalysis,
   refundAnonymousRerun,
@@ -70,14 +72,17 @@ function buildEssaySystemPrompt(essayType: string, subject: string, examSession?
   const rubric = getRubric(essayType, subject, examSession);
   const rubricFragment = buildRubricPromptFragment(essayType, subject, examSession);
 
-  let base = `You are an experienced IB examiner with 12 years of grading experience across multiple subjects. Analyze the student's work strictly according to IB assessment criteria. Be specific, constructive, and honest. Reference actual IB criteria names and descriptors.
+  let base = `You are an experienced IB examiner with 12 years of grading experience across multiple subjects. Analyse the work strictly according to IB assessment criteria. Be specific, constructive, and honest. Reference actual IB criteria names and descriptors.
 
 IMPORTANT FORMATTING RULES:
 - Respond with a single valid JSON object. No markdown, no text before or after the JSON.
 - Write ALL text in plain text only. NEVER use HTML entities like &amp; &lt; &gt; &quot;. Write the actual characters instead: & < > "
 - Do not use em dashes or en dashes as punctuation anywhere in the text. Use a comma, a colon, brackets or a new sentence instead. Write number ranges with a plain hyphen, for example 13-16.
 - Do not use any HTML tags or HTML encoding in your response.
-- Never write sentences or paragraphs the student could paste into their work: no rewritten passages, model answers, example paragraphs or suggested wording. Describe what to change and why, and quote the student's own words only to point at a passage.`;
+- Never write sentences or paragraphs the student could paste into their work: no rewritten passages, model answers, example paragraphs or suggested wording. Describe what to change and why, and quote the student's own words only to point at a passage.
+- Write to the student in the second person ("you", "your essay"). Never refer to them as "the student" or "the candidate".
+- In every comment longer than three sentences, put a blank line (two newline characters) between separate points, so it reads as short paragraphs.
+- Use British spelling (analyse, organise, recognise, behaviour).`;
 
   if (rubricFragment) {
     base += "\n" + rubricFragment;
@@ -167,14 +172,28 @@ NO REFLECTIVE STATEMENT WAS SUBMITTED. The reflection criterion is marked on the
   const task = essayType === "TOK"
     ? (subject.trim().toLowerCase() === "exhibition" ? "TOK exhibition" : "TOK essay")
     : `${essayType} for: ${subject}`;
-  return `Analyze this IB ${task}
+  // The TOK essay is placed on one holistic instrument, and the model kept stating band
+  // requirements the instrument does not contain. Ticking the descriptors first, then
+  // taking the highest band whose descriptors all hold, keeps the mark and the
+  // explanation tied to the published wording.
+  const tokBandCheck = task === "TOK essay" ? `
+  "band_check": {
+    "basic": {"connected_to_title": <true|false>},
+    "satisfactory": {"focused_on_title": <true|false>, "some_links_to_areas_of_knowledge": <true|false>, "arguments_offered_with_examples": <true|false>, "some_awareness_of_points_of_view": <true|false>},
+    "good": {"linked_to_areas_of_knowledge": <true|false>, "clear_coherent_arguments_supported_by_examples": <true|false>, "some_evaluation_of_points_of_view": <true|false>},
+    "excellent": {"sustained_focus_on_title": <true|false>, "effectively_linked_to_areas_of_knowledge": <true|false>, "arguments_effectively_supported_by_specific_examples": <true|false>, "implications_considered": <true|false>, "points_of_view_evaluated": <true|false>}
+  },` : "";
+  const tokBandRule = task === "TOK essay" ? `
+
+BAND PLACEMENT (TOK essay): fill "band_check" before anything else, judging each descriptor on its own. "some_awareness_of_points_of_view" is true when the essay recognises that another view exists, even if it dismisses it at once. The band is Excellent (9-10) only if every satisfactory, good and excellent item is true; Good (7-8) if every satisfactory and good item is true; Satisfactory (5-6) if every satisfactory item is true; Basic (3-4) if connected_to_title is true; otherwise Rudimentary (1-2). "band_range" and "predicted_score" must follow from band_check. When a comment says what a band requires, it may name only the items listed for that band, and it must never say an item from a higher band is needed for a lower one.` : "";
+  return `Analyse this IB ${task}
 Research Question: ${researchQuestion || "not provided"}
 
 TEXT:
-${essayText.substring(0, 30000)}${reflectionBlock}${wordBlock}
+${essayText.substring(0, 30000)}${reflectionBlock}${wordBlock}${tokBandRule}
 
 Respond with this exact JSON structure:
-{
+{${tokBandCheck}
   "band_range": "<range on the same total as max_score, e.g. 18-22>",
   "predicted_score": <integer>,
   "max_score": <total marks of the criteria you assessed>,
@@ -220,6 +239,79 @@ function isRiskAboutMissingReflection(r: any): boolean {
 }
 
 /** Cut at a sentence boundary where possible so the teaser reads as deliberate, not broken. */
+/**
+ * What a student sees when a run fails. Messages written for people pass through;
+ * transport and parsing failures ("relay poll timeout after 240s", "Failed to parse
+ * AI response") do not, because they read as a broken site and say nothing useful.
+ */
+function friendlyRunError(error: any, what: string): string {
+  const msg = String(error?.message || "");
+  if (!msg || /relay|timeout|timed out|parse|json|fetch|econn|socket|network|status code|\b5\d\d\b|overloaded|rate.?limit|anthropic|invalid response|unexpected token|undefined|null/i.test(msg)) {
+    return `The ${what} did not finish, and nothing was used up. Please try again in a minute.`;
+  }
+  return msg;
+}
+
+/**
+ * The prompts ask for plain hyphens, and the model still writes "14\u201317" or an
+ * em dash now and then. Reports are published text on this site, where those marks
+ * are not used, so every model answer is cleaned on the way in and on the way out
+ * (older stored reports were saved before this existed).
+ */
+function normalizeDashes<T>(value: T): T {
+  if (typeof value === "string") {
+    return value
+      .replace(/(\d)\s*[\u2013\u2014]\s*(\d)/g, "$1-$2")
+      .replace(/\s*[\u2013\u2014]\s*/g, ", ") as unknown as T;
+  }
+  if (Array.isArray(value)) return value.map((v) => normalizeDashes(v)) as unknown as T;
+  if (value && typeof value === "object") {
+    const out: any = {};
+    for (const [k, v] of Object.entries(value as any)) out[k] = normalizeDashes(v);
+    return out;
+  }
+  return value;
+}
+
+/**
+ * A TOK essay report ticks the instrument's descriptors in band_check and then gives
+ * a mark. When the two disagree (every Satisfactory item ticked, a Basic mark
+ * awarded) the report contradicts itself, so the model is shown the conflict once and
+ * asked for a consistent report. Anything else, including a failed second call,
+ * keeps the first answer.
+ */
+async function reconcileTokBand(result: any, systemPrompt: string, userPrompt: string, firstAnswer: string): Promise<any> {
+  const b = result?.band_check;
+  const score = Number(result?.predicted_score);
+  if (!b || typeof b !== "object" || !Number.isFinite(score) || score <= 0) return result;
+  const all = (o: any) => !!o && typeof o === "object" && Object.values(o).length > 0 && Object.values(o).every((v) => v === true);
+  let name = "Rudimentary", lo = 1, hi = 2;
+  if (b.basic?.connected_to_title === true) { name = "Basic"; lo = 3; hi = 4; }
+  if (all(b.satisfactory)) { name = "Satisfactory"; lo = 5; hi = 6; }
+  if (all(b.satisfactory) && all(b.good)) { name = "Good"; lo = 7; hi = 8; }
+  if (all(b.satisfactory) && all(b.good) && all(b.excellent)) { name = "Excellent"; lo = 9; hi = 10; }
+  if (score >= lo && score <= hi) return result;
+  console.warn(`[TOK band] band_check says ${name} (${lo}-${hi}) but the mark is ${score}; asking for a consistent report`);
+  try {
+    const second = await invokeLLM({
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userPrompt },
+        { role: "assistant", content: firstAnswer },
+        { role: "user", content: `Your band_check places this essay in ${name} (${lo}-${hi}), but predicted_score is ${score}. Re-read the essay against each band_check item, correct whichever judgement is wrong, and return the complete JSON again in the same structure, with band_check, band_range, predicted_score and every comment consistent with one another.` },
+      ],
+    });
+    const raw = second.choices?.[0]?.message?.content;
+    const text = typeof raw === "string" ? raw : "";
+    const m = text.match(/\{[\s\S]*\}/);
+    if (!m) return result;
+    return normalizeDashes(JSON.parse(m[0].replace(/,\s*([\]\}])/g, "$1")));
+  } catch (e) {
+    console.warn("[TOK band] reconciliation failed, keeping the first report:", e);
+    return result;
+  }
+}
+
 function softTruncate(text: string, limit: number): string {
   if (typeof text !== "string" || text.length <= limit) return text;
   const window = text.slice(0, limit);
@@ -323,6 +415,8 @@ const essayRouter = router({
     .input(z.object({
       fingerprint: z.string().optional(),
       analysisId: z.number().optional(),
+      /** Which device preview: an essay report or a UCAS review. */
+      kind: z.enum(["essay", "ucas"]).optional(),
     }))
     .mutation(async ({ ctx, input }) => {
       if (input.analysisId) {
@@ -330,16 +424,27 @@ const essayRouter = router({
         if (!rec || rec.userId !== ctx.user.id || !rec.resultJson) throw new Error("Report not found");
         if (!(rec as any).unlocked) {
           await consumePaidEssayCredit(ctx.user.id);
-          await markAnalysisUnlocked(rec.id);
+          // A double click sends two of these; only the one that opens the report
+          // keeps the credit, the other gives it straight back.
+          if (!(await claimAnalysisUnlock(rec.id))) {
+            await refundEssayConsumption(ctx.user.id, false);
+          }
         }
-        return { result: rec.resultJson };
+        return { result: normalizeDashes(rec.resultJson) };
       }
       if (input.fingerprint) {
-        const rec = await getLatestAnonymousEssay(input.fingerprint);
+        const rec = input.kind === "ucas"
+          ? await getLatestAnonymousUcas(input.fingerprint)
+          : await getLatestAnonymousEssay(input.fingerprint);
         if (!rec || !rec.resultJson) throw new Error("No report found for this device");
         if (!(rec as any).unlocked) {
           await consumePaidEssayCredit(ctx.user.id);
-          await setAnonymousUnlocked(rec.id);
+          // As above: the request that lost the race returns its credit and does
+          // not add a second copy to the dashboard.
+          if (!(await claimAnonymousUnlock(rec.id))) {
+            await refundEssayConsumption(ctx.user.id, false);
+            return { result: normalizeDashes(rec.resultJson) };
+          }
           // Keep a copy in the user's dashboard history
           const copy = await createAnalysis({
             userId: ctx.user.id,
@@ -355,7 +460,7 @@ const essayRouter = router({
           });
           if (copy?.id) await markAnalysisUnlocked(copy.id);
         }
-        return { result: rec.resultJson };
+        return { result: normalizeDashes(rec.resultJson) };
       }
       throw new Error("Nothing to unlock");
     }),
@@ -396,7 +501,7 @@ const essayRouter = router({
         const content = typeof rawContent === "string" ? rawContent : "";
         const jsonMatch = content.match(/\{[\s\S]*\}/);
         if (!jsonMatch) throw new Error("Failed to parse AI response");
-        const result = JSON.parse(jsonMatch[0].replace(/,\s*([\]\}])/g, "$1"));
+        const result = await reconcileTokBand(normalizeDashes(JSON.parse(jsonMatch[0].replace(/,\s*([\]\}])/g, "$1"))), systemPrompt, userPrompt, content);
         const rubric = getRubric(rec.essayType, rec.subject, session);
         if (rubric) {
           result._rubricAvailable = true;
@@ -433,7 +538,7 @@ const essayRouter = router({
       } catch (error: any) {
         // The student got nothing back, so the re-check they spent returns.
         await refundAnalysisRerun(input.analysisId).catch(() => {});
-        throw new Error(error?.message || "Re-check failed. Please try again.");
+        throw new Error(friendlyRunError(error, "re-check"));
       }
     }),
 
@@ -531,7 +636,7 @@ const essayRouter = router({
         const content = typeof rawContent === "string" ? rawContent : "";
         const jsonMatch = content.match(/\{[\s\S]*\}/);
         if (!jsonMatch) throw new Error("Failed to parse AI response");
-        const result = JSON.parse(jsonMatch[0].replace(/,\s*([\]\}])/g, "$1"));
+        const result = normalizeDashes(JSON.parse(jsonMatch[0].replace(/,\s*([\]\}])/g, "$1")));
 
         result._mechanics = mechanics;
         result._course = input.course;
@@ -560,6 +665,22 @@ const essayRouter = router({
           });
         }
 
+        // Paid from the account, so it belongs in the account. The device row alone
+        // disappeared from reach when the buyer signed out and the device id rotated.
+        if (paidCredit && user && saved?.id) {
+          await createAnalysis({
+            userId: user.id,
+            type: "essay",
+            essayType: "UCAS",
+            subject: input.course.slice(0, 100),
+            researchQuestion: null,
+            resultJson: result,
+            predictedGrade: null,
+            unlocked: true,
+            unlockedAt: new Date(),
+            adoptedFromId: saved.id,
+          }).catch((copyErr) => console.warn("[UCAS PS Review] Account copy failed:", copyErr));
+        }
         if (paid) {
           return { result, wasAnonymous: !paidCredit, unlocked: true as const, id: saved?.id };
         }
@@ -570,7 +691,7 @@ const essayRouter = router({
         if (paidByDevice) await addDeviceCredits(fingerprint, 1).catch(() => {});
         // The account credit comes back too: nothing was produced.
         if (paidCredit && user) await grantCreditsViaLedger(user.id, 1, 0, "refund:ucas-failed").catch(() => {});
-        throw new Error(error.message || "Review failed. Please try again.");
+        throw new Error(friendlyRunError(error, "review"));
       }
     }),
 
@@ -589,7 +710,7 @@ const essayRouter = router({
       /** The course as it stands now, in case the applicant changed it. */
       course: z.string().max(120).optional(),
     }))
-    .mutation(async ({ input }) => {
+    .mutation(async ({ ctx, input }) => {
       const gate = await consumeAnonymousRerun(input.fingerprint, input.answers ? "ucas" : "essay");
       if (!gate.ok) throw new TRPCError({ code: "FORBIDDEN", message: gate.reason });
       const rec: any = gate.record;
@@ -626,7 +747,7 @@ const essayRouter = router({
         const content = typeof rawContent === "string" ? rawContent : "";
         const jsonMatch = content.match(/\{[\s\S]*\}/);
         if (!jsonMatch) throw new Error("Failed to parse AI response");
-        const result = JSON.parse(jsonMatch[0].replace(/,\s*([\]\}])/g, "$1"));
+        const result = await reconcileTokBand(normalizeDashes(JSON.parse(jsonMatch[0].replace(/,\s*([\]\}])/g, "$1"))), systemPrompt, userPrompt, content);
         if (mechanics) {
           result._mechanics = mechanics;
           result._course = rec.subject;
@@ -643,7 +764,23 @@ const essayRouter = router({
           result._wordCheck = storableWordCheck(checkWordLimit(rubric, input.essayText ?? ""));
         }
 
-        await createRerunAnalysis(rec, result, result?.predicted_score != null ? String(result.predicted_score) : undefined);
+        const child = await createRerunAnalysis(rec, result, result?.predicted_score != null ? String(result.predicted_score) : undefined);
+        const signedIn = (ctx as any).user;
+        if (signedIn && child?.id && rec.essayType === "UCAS") {
+          await createAnalysis({
+            userId: signedIn.id,
+            type: "essay",
+            essayType: "UCAS",
+            subject: rec.subject,
+            researchQuestion: null,
+            resultJson: result,
+            predictedGrade: null,
+            unlocked: true,
+            unlockedAt: new Date(),
+            unlockOrderId: rec.unlockOrderId ?? null,
+            adoptedFromId: child.id,
+          }).catch((copyErr) => console.warn("[Re-check] Account copy failed:", copyErr));
+        }
         const prev: any = rec.resultJson || {};
         return {
           result,
@@ -658,7 +795,7 @@ const essayRouter = router({
         console.error("[Re-check] Error:", error);
         // The student got nothing, so the re-check they spent comes back.
         await refundAnonymousRerun(rec.id).catch(() => {});
-        throw new Error(error.message || "Re-check failed. Please try again.");
+        throw new Error(friendlyRunError(error, "re-check"));
       }
     }),
 
@@ -691,6 +828,30 @@ const essayRouter = router({
     .input(z.object({ fingerprint: z.string().min(1) }))
     .query(async ({ input }) => ({ credits: await getDeviceCredits(input.fingerprint) })),
 
+  /**
+   * Open the locked preview on this device with a report the device already owns.
+   * A guest who bought a pack for new work had no way to open an earlier preview
+   * short of pasting the work again and paying for a second run.
+   */
+  unlockPreviewWithDeviceCredit: publicProcedure
+    .input(z.object({ fingerprint: z.string().min(1), kind: z.enum(["essay", "ucas"]).optional() }))
+    .mutation(async ({ input }) => {
+      const rec: any = input.kind === "ucas"
+        ? await getLatestAnonymousUcas(input.fingerprint)
+        : await getLatestAnonymousEssay(input.fingerprint);
+      if (!rec || !rec.resultJson) throw new TRPCError({ code: "NOT_FOUND", message: "There is no preview on this device to open." });
+      if (rec.unlocked) return { result: normalizeDashes(rec.resultJson) };
+      const orderId = await getDeviceCreditOrderId(input.fingerprint);
+      if (!(await consumeDeviceCredit(input.fingerprint))) {
+        throw new TRPCError({ code: "FORBIDDEN", message: "This browser has no paid reports left. A full report is $9.99." });
+      }
+      // Two taps at once: the second finds the row already open and returns its report.
+      if (!(await claimAnonymousUnlock(rec.id, orderId))) {
+        await addDeviceCredits(input.fingerprint, 1).catch(() => {});
+      }
+      return { result: normalizeDashes(rec.resultJson) };
+    }),
+
   anonymousReport: publicProcedure
     .input(z.object({ fingerprint: z.string().min(1), kind: z.enum(["essay", "ucas"]).optional() }))
     .query(async ({ input }) => {
@@ -702,28 +863,30 @@ const essayRouter = router({
       const daysLeft = Math.max(0, 14 - (Date.now() - started) / 86400000);
       return {
         unlocked: true as const,
-        result: rec.resultJson,
+        result: normalizeDashes(rec.resultJson),
         rerunsLeft: Math.max(0, 2 - (rec.rerunsUsed ?? 0)),
         daysLeft: Math.floor(daysLeft),
       };
     }),
 
   lockedReport: publicProcedure
-    .input(z.object({ fingerprint: z.string().min(1) }))
+    .input(z.object({ fingerprint: z.string().min(1), kind: z.enum(["essay", "ucas"]).optional() }))
     .query(async ({ input }) => {
-      const rec = await getLatestAnonymousEssay(input.fingerprint);
+      const ucas = input.kind === "ucas";
+      const rec = ucas ? await getLatestAnonymousUcas(input.fingerprint) : await getLatestAnonymousEssay(input.fingerprint);
       if (!rec || !rec.resultJson) return { exists: false as const };
-      const rj: any = rec.resultJson;
+      const rj: any = normalizeDashes(rec.resultJson);
       const unlocked = !!(rec as any).unlocked;
       return {
         exists: true as const,
         unlocked,
         essayType: rec.essayType,
         subject: rec.subject,
-        band: rj?.band_range ?? null,
-        // Whatever was already shown for free stays available — taking back a preview the
-        // student has already read is the fastest way to lose their trust.
-        preview: unlocked ? null : buildTeaser(rj),
+        createdAt: rec.createdAt,
+        band: ucas ? null : rj?.band_range ?? null,
+        // Whatever was already shown for free stays available: taking back a preview the
+        // student has already read, on a reload, is the fastest way to lose their trust.
+        preview: unlocked ? null : ucas ? buildUcasTeaser(rj) : buildTeaser(rj),
       };
     }),
 
@@ -801,7 +964,7 @@ const essayRouter = router({
         if (!jsonMatch) throw new Error("Failed to parse AI response");
 
         const cleaned = jsonMatch[0].replace(/,\s*([\]\}])/g, '$1');
-        const result = JSON.parse(cleaned);
+        const result = await reconcileTokBand(normalizeDashes(JSON.parse(cleaned)), systemPrompt, userPrompt, content);
 
         // Attach rubric metadata so frontend knows whether this was rubric-based
         const rubric = getRubric(input.essayType, input.subject, input.examSession);
@@ -842,7 +1005,7 @@ const essayRouter = router({
         // the credit it spent.
         if (claim?.id) await deleteAnonymousAnalysis(claim.id).catch(() => {});
         if (paidByDevice) await addDeviceCredits(fingerprint, 1).catch(() => {});
-        throw new Error(error.message || "Analysis failed. Please try again.");
+        throw new Error(friendlyRunError(error, "marking"));
       }
     }),
 
@@ -880,6 +1043,9 @@ const essayRouter = router({
       // What was actually taken, not what we predicted would be taken: the free
       // slot can be gone by now, and giving back the wrong one loses a credit.
       const consumed = await consumeEssayCredit(ctx.user.id);
+      // Decided by what was taken. The earlier read can say "free" when a second
+      // tab took the free slot first, and this run then spends a paid credit.
+      const wasFree = consumed === "free";
 
       try {
         const startedAt = Date.now();
@@ -897,7 +1063,7 @@ const essayRouter = router({
         if (!jsonMatch) throw new Error("Failed to parse AI response");
 
         const cleaned = jsonMatch[0].replace(/,\s*([\]\}])/g, '$1');
-        const result = JSON.parse(cleaned);
+        const result = await reconcileTokBand(normalizeDashes(JSON.parse(cleaned)), systemPrompt, userPrompt, content);
 
         // Attach rubric metadata
         const rubric = getRubric(input.essayType, input.subject, input.examSession);
@@ -916,13 +1082,13 @@ const essayRouter = router({
           researchQuestion: input.researchQuestion || null,
           resultJson: result,
           predictedGrade: `${result.predicted_score}/${result.max_score}`,
-          unlocked: !usage.isFree,
+          unlocked: !wasFree,
           // Recorded so a re-check cannot silently move the work to another rubric.
           examSession: input.examSession ?? null,
         });
 
         // Free tier gets a teaser; paid credits get the full report immediately.
-        if (usage.isFree) {
+        if (wasFree) {
           return { id: analysis.id, result: buildTeaser(result), wasFree: true };
         }
         return { id: analysis.id, result, wasFree: false };
@@ -930,7 +1096,7 @@ const essayRouter = router({
         console.error("[Essay Analysis] Error:", error);
         // Nothing was produced, so the free slot or credit comes back.
         await refundEssayConsumption(ctx.user.id, consumed === "free").catch(() => {});
-        throw new Error(error.message || "Analysis failed. Please try again.");
+        throw new Error(friendlyRunError(error, "marking"));
       }
     }),
 });
@@ -964,9 +1130,11 @@ const dashboardRouter = router({
       // A locked report is locked on the wire too. Hiding it in the component
       // left the full text one devtools tab away from anyone who looked.
       if (!analysis.unlocked) {
-        return { ...analysis, resultJson: null, predictedGrade: null, locked: true as const };
+        // What the free preview showed stays readable here; only the paid part is withheld.
+        const preview = analysis.resultJson && analysis.essayType !== "UCAS" ? buildTeaser(normalizeDashes(analysis.resultJson)) : null;
+        return { ...analysis, resultJson: null, predictedGrade: null, preview, locked: true as const };
       }
-      return { ...analysis, locked: false as const };
+      return { ...analysis, resultJson: normalizeDashes(analysis.resultJson), locked: false as const };
     }),
 
   credits: protectedProcedure.query(async ({ ctx }) => {
@@ -1019,6 +1187,8 @@ const paymentRouter = router({
       fingerprint: z.string().min(1).optional(),
       /** Page to return to after paying. */
       returnTo: z.enum(["essay", "ucas-personal-statement"]).optional(),
+      /** Bought beside a locked preview, which the payment should open. */
+      unlockPreview: z.boolean().optional(),
     }))
     .mutation(async ({ input }) => {
       if (input.productKey === "UNIVERSITY_SINGLE") {
@@ -1061,10 +1231,13 @@ const paymentRouter = router({
         input.email,
         sku,
         product.priceAmount,
-        // Every essay purchase carries the device, packs included: the buyer is
-        // looking at a locked report right now and that is what they think they bought.
+        // Every purchase carries the device, because a guest's reports live on it.
+        // Whether it also opens a preview is the buyer's context, not a guess.
         input.fingerprint,
         input.returnTo,
+        undefined,
+        input.unlockPreview === true,
+        true,
       );
 
       return { checkoutUrl, orderId };
@@ -1079,6 +1252,8 @@ const paymentRouter = router({
       returnTo: z.enum(["essay", "ucas-personal-statement"]).optional(),
       /** The locked account report the buyer is looking at, opened when the payment lands. */
       analysisId: z.number().int().positive().optional(),
+      /** Bought beside a locked device preview, which the payment should open. */
+      unlockPreview: z.boolean().optional(),
     }))
     .mutation(async ({ ctx, input }) => {
       if (input.productKey === "UNIVERSITY_SINGLE") {
@@ -1131,6 +1306,8 @@ const paymentRouter = router({
         input.fingerprint,
         input.returnTo,
         unlockAnalysisId,
+        input.unlockPreview === true,
+        false,
       );
 
       return { checkoutUrl, orderId };

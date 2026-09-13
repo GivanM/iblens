@@ -40,7 +40,7 @@ const config: SubjectConfig = {
     ],
     faq: [
       { q: "Can I paste just one section?", a: "Yes, but each criterion is marked on what it can see, so the criteria for the sections you leave out will score low. Paste all three sections for a total you can use." },
-      { q: "What counts toward the 2,200 words?", a: "The bibliography and references are not counted. IBLens counts everything you paste, so leave the bibliography out of the paste, or allow for it when you read the word count." },
+      { q: "What counts towards the 2,200 words?", a: "The bibliography and references are not counted. IBLens counts everything you paste, so leave the bibliography out of the paste, or allow for it when you read the word count." },
       { q: "Can I use it for a History Extended Essay?", a: "Choose Extended Essay in the analyser and pick History as the subject. The EE is marked on its own criteria, so the IA criteria would put it on the wrong scale." },
       { q: "How accurate is the predicted mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. Your teacher marks the work and the IB moderates that marking, so their mark is the one that counts. Use the report to find what to fix before you submit." },
       { q: "Is it free?", a: "The first preview is free and needs no account: your band range, your weakest criterion with its full feedback, and the top risks in the draft. The full report, with every criterion marked and a ranked list of fixes, is $9.99, or $24.99 for a pack of five." },

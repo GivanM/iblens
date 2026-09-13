@@ -19,14 +19,14 @@ export default function Privacy() {
           <ul>
             <li><strong>Text you submit</strong> for analysis: IB coursework (IA, EE or TOK) or UCAS personal statement answers, plus the subject, essay type, research question or course you enter.</li>
             <li><strong>The reports we generate</strong> from that text. A report can quote short passages from what you submitted.</li>
-            <li><strong>Account details</strong> if you sign in (name and email address via Google sign-in), and the email address you give at checkout if you buy without an account.</li>
+            <li><strong>Account details</strong> if you sign in (name and email address via Google sign-in), and the email address you type into the checkout dialog if you buy without an account. It is stored when you continue to checkout, even if you then do not pay.</li>
             <li><strong>Purchase records</strong>: the order, the product, the amount and the name and email address our payment provider sends us when you pay.</li>
-            <li><strong>Usage and device data</strong> through cookies and analytics (Google Tag Manager, Google Analytics, Google Ads), such as pages viewed and approximate location for consent handling.</li>
+            <li><strong>Usage and device data</strong> through cookies and analytics (Google Tag Manager, Google Analytics, Google Ads), such as pages viewed, and a random device identifier stored in your browser that ties a free preview, a purchase made without an account and its re-checks to this browser.</li>
           </ul>
 
           <h2>How your essay is processed (AI disclosure)</h2>
           <p>To produce your analysis, the text you submit is transmitted over an encrypted connection to our AI provider, <strong>Anthropic PBC</strong>, which processes it on our behalf solely to generate the feedback you receive. We do not use your essay to train any AI model, and we do not sell it. Anthropic's own policy for this kind of use is to delete inputs and outputs within 30 days, and to keep them longer only where content is flagged under its usage policy or the law requires it.</p>
-          <p>One detail most services leave out, and we would rather state it: the request does not travel to Anthropic directly. It passes through <strong>a relay server we operate in Helsinki, Finland</strong> (Hetzner Online GmbH), which exists because the connection to the model is not reliable from where this service is run. The relay holds the request and the answer only for as long as the analysis takes, and nobody else has access to it. The full text you submit, an essay or a personal statement, is never written to our database, at any stage; the stored report can quote short passages from it.</p>
+          <p>One detail most services leave out, and we would rather state it: the request does not travel to Anthropic directly. It passes through <strong>a relay server we operate in Helsinki, Finland</strong> (Hetzner Online GmbH), which exists because our main server cannot reach the AI provider reliably on its own. The relay holds the request and the answer only for as long as the analysis takes, and nobody else has access to it. The full text you submit, an essay or a personal statement, is never written to our database, at any stage; the stored report can quote short passages from it.</p>
 
           <h2>Who we share data with</h2>
           <p>We do not sell your personal data. We share it only with the service providers needed to run IBLens, each acting under their own terms:</p>
@@ -40,7 +40,8 @@ export default function Privacy() {
 
           <h2>How long we keep it</h2>
           <ul>
-            <li>Reports made without an account (essays and UCAS statements): the report and the research question or course are deleted 90 days after the analysis, unless the report was purchased. The full text you submitted is never stored.</li>
+            <li>Reports made without an account (essays and UCAS statements): the report and the research question or course are deleted 90 days after the analysis, unless the report was purchased. Purchased reports are kept so you can reopen them and use your re-checks; ask us and we delete them. The full text you submitted is never stored.</li>
+            <li>Checkouts that are started but never paid: the order and the email typed into the checkout dialog are deleted after 30 days.</li>
             <li>Signed-in analysis history: kept until you delete it. Every report in your dashboard has a Delete button, which also removes the copy kept on the device the report was bought on, and you can ask us to remove everything.</li>
             <li>Purchase records: kept for as long as we need them for accounting, tax and refunds.</li>
             <li>Account email: kept while your account is active, then on request.</li>
@@ -56,7 +57,7 @@ export default function Privacy() {
           <p>Our providers may process data in countries outside your own, including the United States. Where required, transfers rely on the safeguards those providers put in place.</p>
 
           <h2>Cookies and consent</h2>
-          <p>We use essential cookies to run the site and, subject to your consent where required, analytics and advertising cookies. In regions that require it, a consent banner controls non-essential cookies.</p>
+          <p>We use essential browser storage to run the site and, only with your consent, analytics and advertising cookies. A consent banner is shown to every visitor, and non-essential cookies stay off until you accept them.</p>
 
           <h2>Changes</h2>
           <p>We may update this policy; material changes will be reflected by the date above. Questions: <a href="mailto:glushkovim@gmail.com" className="text-primary hover:underline">glushkovim@gmail.com</a>. See also our <Link href="/terms" className="text-primary hover:underline">Terms of Use</Link>.</p>

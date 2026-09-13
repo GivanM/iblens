@@ -9,7 +9,7 @@ export default function IBMathIAExamples() {
       description="IB Math IA topic ideas for Analysis and Approaches and for Applications and Interpretation, what each of the five criteria rewards, and the mistakes that cost marks."
       canonical="/resources/ib-math-ia-examples"
       datePublished="2026-06-09"
-      dateModified="2026-06-09"
+      dateModified="2026-09-13"
     >
       <p>
         The IB Mathematics Internal Assessment is worth 20% of your final grade, and
@@ -27,16 +27,16 @@ export default function IBMathIAExamples() {
         each, C and D 3 marks each, and E 6 marks:
       </p>
       <ul>
-        <li><strong>Criterion A: Presentation (4 marks).</strong> Is the work well-organised, clearly written, and appropriately concise? Is there a table of contents and a bibliography?</li>
+        <li><strong>Criterion A: Presentation (4 marks).</strong> Is the exploration coherent, well organised and concise, with an introduction, a stated aim, a conclusion, and graphs and tables placed where they are discussed?</li>
         <li><strong>Criterion B: Mathematical communication (4 marks).</strong> Are mathematical symbols, notation, and diagrams used correctly and consistently?</li>
-        <li><strong>Criterion C: Personal engagement (3 marks).</strong> Does the exploration reflect your genuine curiosity? Is the approach original rather than a textbook rehash?</li>
+        <li><strong>Criterion C: Personal engagement (3 marks).</strong> Does the work show you thinking independently or creatively, presenting ideas in your own way or testing your own predictions, rather than reproducing a textbook treatment?</li>
         <li><strong>Criterion D: Reflection (3 marks).</strong> Do you discuss limitations, surprises, and what you would do differently? Is your thinking visible throughout?</li>
         <li><strong>Criterion E: Use of mathematics (6 marks).</strong> Is the mathematics relevant to the aim? Is it commensurate with the level of the course? Is it applied correctly?</li>
       </ul>
       <p>
         Marks of 4, 4, 3, 3 and 5 make 19 out of 20. Correct but routine mathematics
         (3 on Criterion E) together with almost no reflection (1 on Criterion D) brings
-        the same exploration down to around 14, and those are the marks this guide is
+        the same exploration down to 15, and those are the marks this guide is
         about.
       </p>
 
@@ -53,13 +53,13 @@ export default function IBMathIAExamples() {
         their own. The mathematics involves solving the logistic equation,
         fitting parameters to data, and comparing the model against observed values.
         At HL, this can be extended to include a delayed-response model (a delay
-        differential equation), pushing Criterion E toward 5 or 6.
+        differential equation), pushing Criterion E towards 5 or 6.
       </p>
       <p>
-        <em>Common mistake:</em> writing out the logistic model without any data of your
-        own tends to score low on Criterion C. The personal engagement
-        comes from the student's specific choice of context and data, not from the
-        mathematics alone.
+        <em>Common mistake:</em> reproducing the textbook logistic model step by step
+        tends to score low on Criterion C. Engagement shows in what you do with the
+        model: testing a prediction against real figures, questioning an assumption,
+        or trying a second approach and comparing them.
       </p>
 
       <h4>2. Investigating the golden ratio in architecture or music</h4>
@@ -157,8 +157,9 @@ export default function IBMathIAExamples() {
       <p>
         The "SIR model for disease spread" and the "mathematics of music and Fourier
         series" are familiar to anyone who marks IAs, and teachers and moderators
-        recognise them quickly. If you choose a familiar topic, you need an original data source,
-        an unusual angle, or a self-collected dataset to score well on Criterion C.
+        recognise them quickly. If you choose a familiar topic, Criterion C depends on showing
+        your own thinking: an unusual angle, predictions you test yourself, or a question the
+        standard treatment does not ask.
       </p>
 
       <h3>Weak or absent reflection</h3>

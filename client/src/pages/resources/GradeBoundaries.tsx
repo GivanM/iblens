@@ -68,7 +68,7 @@ export default function GradeBoundaries() {
         A boundary is set for a subject and level as a whole, after all its components are marked. Two things are worth knowing about how that plays out in practice.
       </p>
 
-      <h3>Coursework counts toward the same total</h3>
+      <h3>Coursework counts towards the same total</h3>
       <p>
         The internally assessed component is part of the total that the boundary is applied to. In the sciences and mathematics it is worth 20% of the grade, and more in some subjects, such as 30% of Economics at SL. Marks secured on the IA before the exams are marks you do not have to find on the papers.
       </p>

@@ -4,66 +4,35 @@ import { CONSENT_STORAGE_KEY } from "@/lib/analytics/config";
 
 /**
  * Cookie consent banner implementing Google Consent Mode v2.
- * 
- * Region handling:
- * - The inline script in index.html used to detect the country through Cloudflare's
- *   /cdn-cgi/trace. The site is no longer behind Cloudflare, so the region is unknown
- *   and the banner is shown to every visitor, with consent denied until they choose.
- * - Visitors whose country was cached while detection still worked keep that result:
- *   no banner outside the EU/EEA/UK/CH, the Accept/Reject banner inside it.
- * 
- * The inline script in index.html sets:
- *   window.__iblens_show_banner = true  (EU)
- *   window.__iblens_show_banner = false (non-EU)
- *   window.__iblens_consent_granted = true (non-EU)
- * 
- * This component checks __iblens_show_banner and returns null for non-EU.
+ *
+ * Every visitor sees it until they make a choice, and consent stays denied until
+ * they accept. The site once granted consent without asking wherever a cached
+ * country was outside the EU; that path is gone, and choices recorded under the old
+ * storage key are asked again, because some of them were never made by a person.
  */
 
 export function CookieConsent() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    // Non-EU: never show banner. The inline script already granted consent.
-    if ((window as any).__iblens_consent_granted === true) {
-      localStorage.setItem(CONSENT_STORAGE_KEY, "granted");
-      return;
-    }
-
-    // If geo script explicitly says don't show banner, bail out
-    if ((window as any).__iblens_show_banner === false) {
-      localStorage.setItem(CONSENT_STORAGE_KEY, "granted");
-      return;
-    }
-
-    // Check localStorage, user already made a choice previously
-    const stored = localStorage.getItem(CONSENT_STORAGE_KEY);
-    if (stored) {
+    let stored: string | null = null;
+    try { stored = localStorage.getItem(CONSENT_STORAGE_KEY); } catch { /* storage blocked: ask */ }
+    if (stored === "granted" || stored === "denied") {
       pushConsentUpdate(stored === "granted");
       return;
     }
-
-    // EU or geo not yet resolved: show banner after short delay
-    // (wait for geo script to finish, it has 700ms timeout + 800ms wait_for_update)
-    const timer = setTimeout(() => {
-      // Re-check after delay in case geo resolved during the wait
-      if ((window as any).__iblens_show_banner === false || (window as any).__iblens_consent_granted === true) {
-        localStorage.setItem(CONSENT_STORAGE_KEY, "granted");
-        return;
-      }
-      setVisible(true);
-    }, 1000);
+    const timer = setTimeout(() => setVisible(true), 800);
     return () => clearTimeout(timer);
   }, []);
 
   function handleAccept() {
-    localStorage.setItem(CONSENT_STORAGE_KEY, "granted");
+    try { localStorage.setItem(CONSENT_STORAGE_KEY, "granted"); } catch { /* choice holds for this page */ }
     pushConsentUpdate(true);
     setVisible(false);
   }
 
   function handleReject() {
-    localStorage.setItem(CONSENT_STORAGE_KEY, "denied");
+    try { localStorage.setItem(CONSENT_STORAGE_KEY, "denied"); } catch { /* choice holds for this page */ }
     pushConsentUpdate(false);
     setVisible(false);
   }

@@ -54,7 +54,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        <strong>Contextual understanding:</strong> The AI understands subject-specific conventions. It knows that a science IA should have controlled variables and statistical analysis, that a History IA should evaluate sources using OPCVL or similar frameworks, and that a TOK essay should develop knowledge claims with examples from multiple areas of knowledge.
+        <strong>Contextual understanding:</strong> The AI understands subject-specific conventions. It knows, for example, that a science IA is marked on research design, data analysis, conclusion and evaluation, that a History IA opens with an evaluation of the sources it relies on, and that a TOK essay is marked on its focus on the title, its links to areas of knowledge and how well its arguments and examples hold up.
       </p>
 
       <p>
@@ -115,10 +115,10 @@ export default function HowIBLensWorks() {
 
       <ul>
         <li><strong>Storage:</strong> The essay text is never written to our database. An anonymous report you did not buy is deleted after 90 days. A purchased report is kept. If you sign in, your history stays in your account until you delete it, and every report there has a delete button. Essay content is never shared and never used to train AI models.</li>
-        <li><strong>Processed by our AI provider only:</strong> Your essay is sent to our AI provider (Anthropic) over an encrypted connection solely to generate your analysis. It is not used to train any model, not sold, and not shared with schools, universities, or other students.</li>
+        <li><strong>Processed only to produce your report:</strong> Your essay passes over an encrypted connection through our relay server in Helsinki to our AI provider, Anthropic, solely to generate your analysis. IBLens never stores the text itself. It is not used to train any model, not sold, and not shared with schools, universities or other students.</li>
         <li><strong>Encrypted transmission:</strong> All data is transmitted over HTTPS with industry-standard encryption.</li>
         <li><strong>No training on your data:</strong> Your essays are not used to train or improve the AI model. Your intellectual property remains yours.</li>
-        <li><strong>Account data:</strong> We store minimal account information (email, usage history) needed to provide the service. This can be deleted on request.</li>
+        <li><strong>What is kept:</strong> the reports themselves (which can quote short passages) and, if you sign in, your email and history. How long each is kept is set out in the <Link href="/privacy">Privacy Policy</Link>, and everything can be deleted on request.</li>
       </ul>
 
       <p>
@@ -145,25 +145,25 @@ export default function HowIBLensWorks() {
             <td><strong>Free preview</strong></td>
             <td>$0</td>
             <td>n/a</td>
-            <td>The band range, your weakest criterion with its full feedback, and the top risks, on one essay per device</td>
+            <td>The band range, feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks, one per device or account</td>
           </tr>
           <tr>
             <td><strong>Full report</strong></td>
             <td>$9.99</td>
             <td>$9.99</td>
-            <td>One essay, with two free re-checks of the same draft within 14 days</td>
+            <td>One piece of work, with two free re-checks of revised versions within 14 days of the report opening</td>
           </tr>
           <tr>
-            <td><strong>Essay Pack (5)</strong></td>
+            <td><strong>5 reports</strong></td>
             <td>$24.99</td>
             <td>$5.00</td>
             <td>Several different pieces of work (drafts of the same work use the free re-checks)</td>
           </tr>
           <tr>
-            <td><strong>Essay Pack (10)</strong></td>
+            <td><strong>10 reports</strong></td>
             <td>$44.99</td>
             <td>$4.50</td>
-            <td>Full IB preparation, analyse all your IAs, EE drafts, and TOK essay</td>
+            <td>Different pieces of work across subjects, such as your IAs, the EE and both TOK tasks (revisions of the same work use the free re-checks)</td>
           </tr>
         </tbody>
       </table>

@@ -103,7 +103,7 @@ export default function TokEssayChecklist() {
 
       <h3>How many points is the TOK essay worth for my Diploma?</h3>
       <p>
-        The essay is marked out of 10 and determines most of your TOK grade (A-E). Your TOK grade then combines with your Extended Essay grade to award up to 3 bonus points toward the Diploma. An E in either component is a failing condition.
+        The essay is marked out of 10 and determines most of your TOK grade (A-E). Your TOK grade then combines with your Extended Essay grade to award up to 3 bonus points towards the Diploma. An E in either component is a failing condition.
       </p>
 
       <h3>Can I just ask ChatGPT to check my TOK essay?</h3>

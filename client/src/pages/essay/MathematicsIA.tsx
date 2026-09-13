@@ -52,8 +52,8 @@ const config: SubjectConfig = {
   },
   relatedResources: [
     { label: "Math IA examples", href: "/resources/ib-math-ia-examples" },
-    { label: "Maths AA IA grader", href: "/essay/maths-aa-ia" },
-    { label: "Maths AI IA grader", href: "/essay/maths-ai-ia" },
+    { label: "Math AA IA grader", href: "/essay/maths-aa-ia" },
+    { label: "Math AI IA grader", href: "/essay/maths-ai-ia" },
   ],
   relatedSubjects: [
     { label: "Physics IA", href: "/essay/physics-ia" },

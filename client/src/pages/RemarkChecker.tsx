@@ -15,7 +15,7 @@ const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 const TIMELINE = [
   { date: "Early July", event: "May session results released on candidates.ibo.org" },
   { date: "15 September", event: "Last day for enquiry upon results requests for the May session, made through your school" },
-  { date: "Early January", event: "November session results released" },
+  { date: "Mid-December", event: "November session results released (17 December for students in 2025)" },
   { date: "15 March", event: "Last day for enquiry upon results requests for the November session, made through your school" },
 ];
 
@@ -90,7 +90,7 @@ function RemarkQuickCheck() {
             <p className="text-xs text-muted-foreground mt-2">Keep pasting: the check needs the full essay.</p>
           )}
           {alreadyUsed && (
-            <p className="text-sm mt-3">You have already used your free check on this device. A full report is $9.99 on the <Link href="/essay" className="text-primary font-medium underline">analyser page</Link>, with no account needed.</p>
+            <p className="text-sm mt-3">You have already used your free check on this device. A full report is $9.99 on the <Link href="/essay?session=nov2026" className="text-primary font-medium underline">grader page</Link>, with no account needed.</p>
           )}
           {errMsg && !alreadyUsed && (
             <p className="text-sm mt-3 text-destructive">{errMsg.replace(/[.\s]*$/, ".")} Please try again.</p>
@@ -134,7 +134,7 @@ function RemarkQuickCheck() {
               ))}
             </ul>
           )}
-          <p className="text-sm text-muted-foreground mb-3">The full report, with the exact mark, the full comments and a ranked list of fixes, unlocks for $9.99 on the analyser page. Everything here is an estimate from a language model, not the IB's mark.</p>
+          <p className="text-sm text-muted-foreground mb-3">The full report, with the predicted mark, the full comments and a ranked list of fixes, unlocks for $9.99 on the grader page, where this preview is saved. Everything here is an estimate from a language model, not the IB's mark.</p>
           <Button asChild><Link href="/essay">Unlock the full report, $9.99</Link></Button>
         </div>
       )}
@@ -214,7 +214,7 @@ export default function RemarkChecker() {
               The first preview is free; the full report is $9.99.
             </p>
             <Button size="lg" asChild>
-              <Link href="/essay">Grade my submitted essay <ArrowRight className="w-4 h-4 ml-2" /></Link>
+              <Link href="/essay?session=nov2026">Grade my submitted essay <ArrowRight className="w-4 h-4 ml-2" /></Link>
             </Button>
           </div>
 
@@ -267,7 +267,7 @@ export default function RemarkChecker() {
           <div className="text-center border-t border-border pt-10">
             <p style={SERIF} className="text-xl font-bold mb-3">Know before you pay.</p>
             <Button size="lg" asChild>
-              <Link href="/essay">Mark my essay: the first preview is free <ArrowRight className="w-4 h-4 ml-2" /></Link>
+              <Link href="/essay?session=nov2026">Mark my essay: the first preview is free <ArrowRight className="w-4 h-4 ml-2" /></Link>
             </Button>
           </div>
         </div>

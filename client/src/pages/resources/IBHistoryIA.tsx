@@ -8,7 +8,7 @@ export default function IBHistoryIA() {
       description="A guide to the IB History Internal Assessment: choosing a research question, the three sections, evaluating sources, and what each criterion rewards."
       canonical="/resources/ib-history-ia"
       datePublished="2026-06-09"
-      dateModified="2026-06-09"
+      dateModified="2026-09-13"
     >
       <p>
         The IB History Internal Assessment is a historical investigation of up to 2,200
@@ -92,14 +92,14 @@ export default function IBHistoryIA() {
       </p>
       <p>
         <strong>What it is:</strong> A genuine methodological reflection on what
-        you learned about historical investigation by doing this project. The guide
-        suggests questions such as:
+        you learned about historical investigation by doing this project. The guide's
+        example questions ask, among other things:
       </p>
       <ul>
-        <li>What kinds of sources were available to you, and what kinds were not? How did this shape what you could know?</li>
-        <li>How did the perspective of your sources affect the conclusions you could draw?</li>
-        <li>What does the existence of contradictory historical interpretations tell you about the nature of historical knowledge?</li>
-        <li>How would a historian with access to different archives or sources approach this question differently?</li>
+        <li>Which methods used by historians you used, and what the investigation showed you about their limits</li>
+        <li>What challenges historians face, and how they differ from those of a scientist or a mathematician</li>
+        <li>How the reliability of sources can be evaluated, and the difference between bias and selection</li>
+        <li>Whether historical events can be described without bias, and who decides which events are significant</li>
       </ul>
       <p>
         A weak Reflection is a paragraph about personal experience ("I found it

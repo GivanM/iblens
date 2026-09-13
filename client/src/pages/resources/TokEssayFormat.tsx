@@ -8,12 +8,12 @@ export default function TokEssayFormat() {
       description="Official IB TOK essay format: 1,600-word limit, introduction and body structure, citation requirements, what counts towards the word count, and examiner formatting expectations."
       canonical="/resources/tok-essay-format"
       datePublished="2026-06-17"
-      dateModified="2026-06-17"
+      dateModified="2026-09-13"
     >
       <h1>IB TOK Essay Format: Everything You Need to Know</h1>
 
       <p>
-        The IB Theory of Knowledge essay has a few firm rules and many conventions. Formatting itself earns no marks, but breaking a rule, such as the word limit, can cost you. This guide separates the two: what the TOK guide requires, what schools usually expect, what does and does not count toward the limit, and how to present citations.
+        The IB Theory of Knowledge essay has a few firm rules and many conventions. Formatting itself earns no marks, but breaking a rule, such as the word limit, can cost you. This guide separates the two: what the TOK guide requires, what schools usually expect, what does and does not count towards the limit, and how to present citations.
       </p>
 
       <h2>Word Count: The 1,600-Word Rule</h2>
@@ -42,8 +42,8 @@ export default function TokEssayFormat() {
         <li><strong>The prescribed title, exactly as published:</strong> the essay must respond to one of the six titles for your session, and the title should be written out in full, word for word. An essay that bears no resemblance to a title for the current session is awarded zero.</li>
         <li><strong>The word count:</strong> you indicate the number of words when the essay is uploaded during the submission process.</li>
         <li><strong>Anonymity:</strong> coursework is marked anonymously, so leave your name, your candidate session number and your school's name off every page, including any title page. Your coordinator will tell you what the upload itself needs.</li>
-        <li><strong>A readable document:</strong> the IB does not prescribe a font. A 12-point standard font with 1.5 or double line spacing is what most schools ask for.</li>
-        <li><strong>Page numbers:</strong> not required, but they help anyone reading or commenting on a draft.</li>
+        <li><strong>Type size and spacing:</strong> the TOK guide requires standard 12-point type and double line spacing. Use a plain, readable font.</li>
+        <li><strong>Page numbers:</strong> required. The IB's formatting rules for written coursework ask for numbered pages.</li>
       </ul>
 
       <h2>Essay Structure: The Expected Format</h2>
@@ -113,7 +113,7 @@ export default function TokEssayFormat() {
       <p>Avoid these common formatting mistakes:</p>
 
       <ul>
-        <li><strong>Headings such as "Claim 1":</strong> no rule forbids headings, but labels like these tend to push an essay toward a formula instead of an argument. Most strong essays read as continuous prose.</li>
+        <li><strong>Headings such as "Claim 1":</strong> no rule forbids headings, but labels like these tend to push an essay towards a formula instead of an argument. Most strong essays read as continuous prose.</li>
         <li><strong>Bullet points in the body:</strong> an essay is an argument in paragraphs. Keep bullet points for planning.</li>
         <li><strong>Images and graphs:</strong> These are not required and generally not appropriate unless directly relevant to your argument (very rare).</li>
         <li><strong>Appendices and extended footnotes:</strong> the TOK guide says they are not appropriate for the TOK essay.</li>
@@ -146,7 +146,7 @@ export default function TokEssayFormat() {
         <li>Your name, candidate session number and school name appear nowhere in the file</li>
         <li>Bibliography is present and consistently formatted</li>
         <li>Essay is written in paragraphs, without bullet points</li>
-        <li>Font is readable and spacing is at least 1.5</li>
+        <li>Standard 12-point type, double spaced</li>
         <li>Pages are numbered</li>
       </ul>
 

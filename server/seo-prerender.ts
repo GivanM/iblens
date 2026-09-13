@@ -101,7 +101,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/sample-reports": {
     title: "Sample IBLens Reports: Three Essays, Three Honest Grades | IBLens",
-    description: "Real, unedited IBLens output: three demonstration TOK essays on one title, written at three levels of quality and marked 2/10, 5/10 and 9/10 on the holistic instrument, each with its full report.",
+    description: "Real, unedited IBLens output: three demonstration TOK essays on one title, written at three levels of quality and marked 4/10, 5/10 and 9/10 on the holistic instrument, each with its full report.",
     ogType: "article",
     canonical: "/resources/sample-reports",
     schemaType: "Article",
@@ -145,7 +145,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/pricing": {
     title: "IB Essay Feedback from $9.99: No Subscription, No Account Needed | IBLens",
-    description: "A free preview on your first IB essay, then a full report for $9.99, five for $24.99 or ten for $44.99. No subscription, credits do not expire, two re-checks per report, and a 7-day money-back guarantee.",
+    description: "A free preview on your first IB essay, then a full report for $9.99, five for $24.99 or ten for $44.99. No subscription, paid reports do not expire, two re-checks per report, and a 7-day money-back guarantee.",
     ogType: "website",
     canonical: "/pricing",
     schemaType: "WebPage",
@@ -264,7 +264,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/ib-extended-essay-word-count": {
     title: "IB Extended Essay Word Count: The 4,000-Word Limit Explained | IBLens",
-    description: "What counts toward the 4,000-word limit of the IB Extended Essay, what does not, how close to the limit to aim, and what happens if you go over.",
+    description: "What counts towards the 4,000-word limit of the IB Extended Essay, what does not, how close to the limit to aim, and what happens if you go over.",
     ogType: "article",
     canonical: "/resources/ib-extended-essay-word-count",
     schemaType: "Article",
@@ -313,7 +313,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/ib-ia-grader": {
     title: "IB IA Grader: AI Feedback on Your Coursework in 14 Subjects | IBLens",
-    description: "An IB IA grader with a free preview: AI feedback on your Internal Assessment against the published criteria for Biology, Chemistry, Physics, Maths, History, Economics, Psychology and more.",
+    description: "An IB IA grader with a free preview: AI feedback on your Internal Assessment against the published criteria for Biology, Chemistry, Physics, Math, History, Economics, Psychology and more.",
     ogType: "article",
     canonical: "/resources/ib-ia-grader",
     schemaType: "Article",
@@ -375,7 +375,7 @@ const routeMeta: Record<string, PageMeta> = {
     schemaType: "Article",
   },
   "/about": {
-    title: "About IBLens: Who We Are and How the Grader Works | IBLens",
+    title: "About IBLens: Where It Came From and How the Grader Works | IBLens",
     description: "IBLens is an independent AI feedback tool for IB coursework. How the grader works, which official criteria it applies, what it will not do, and how to reach us.",
     ogType: "article",
     canonical: "/about",

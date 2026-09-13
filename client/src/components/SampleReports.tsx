@@ -8,9 +8,9 @@ function EssayReportPreview() {
   // the analyzer. Showing the retired 34-mark rubric here advertised a report nobody gets.
   const criteria = [
     { name: "A: Framework for the essay", score: 4, max: 6, color: "text-amber-600", bg: "bg-amber-50", bar: "bg-amber-500", pct: 67 },
-    { name: "B: Knowledge & Understanding", score: 5, max: 6, color: "text-emerald-600", bg: "bg-emerald-50", bar: "bg-emerald-500", pct: 83 },
-    { name: "C: Analysis & Line of Argument", score: 4, max: 6, color: "text-amber-600", bg: "bg-amber-50", bar: "bg-amber-500", pct: 67 },
-    { name: "D: Discussion & Evaluation", score: 4, max: 8, color: "text-orange-600", bg: "bg-orange-50", bar: "bg-orange-500", pct: 50, note: "main weakness" },
+    { name: "B: Knowledge and understanding", score: 5, max: 6, color: "text-emerald-600", bg: "bg-emerald-50", bar: "bg-emerald-500", pct: 83 },
+    { name: "C: Analysis and line of argument", score: 4, max: 6, color: "text-amber-600", bg: "bg-amber-50", bar: "bg-amber-500", pct: 67 },
+    { name: "D: Discussion and evaluation", score: 4, max: 8, color: "text-orange-600", bg: "bg-orange-50", bar: "bg-orange-500", pct: 50, note: "main weakness" },
     { name: "E: Reflection", score: 3, max: 4, color: "text-emerald-600", bg: "bg-emerald-50", bar: "bg-emerald-500", pct: 75 },
   ];
 

@@ -43,7 +43,7 @@ const plans: Array<{
     name: "5 reports",
     price: PRICE_LABELS.ESSAY_PACK_5,
     description: "Five reports on any mix of work",
-    popular: true,
+    popular: false,
     features: [
       "Everything in the full report",
       "$5.00 per report, 50% less than buying singly",
@@ -60,14 +60,14 @@ const plans: Array<{
     name: "10 reports",
     price: PRICE_LABELS.ESSAY_PACK_10,
     description: "Ten reports on any mix of work",
-    popular: false,
+    popular: true,
     features: [
       "Everything in the full report",
       "$4.50 per report, 55% less than buying singly",
       "Two free re-checks for each report, within 14 days of it opening",
       "Use across any subjects",
       "No expiry. Without an account, unused reports wait in the browser you bought them in until you sign in",
-      "The lowest price per report",
+      "Enough for the IAs in six subjects, the Extended Essay and both TOK tasks",
     ],
     cta: "Get Started",
     href: "/dashboard",
@@ -88,7 +88,7 @@ export default function Pricing() {
     <div className="py-16 md:py-24">
       <SEOHead
         title="IB Essay Feedback from $9.99: No Subscription, No Account Needed | IBLens"
-        description="A free preview on your first IB essay, then a full report for $9.99, five for $24.99 or ten for $44.99. No subscription, credits do not expire, two re-checks per report, and a 7-day money-back guarantee."
+        description="A free preview on your first IB essay, then a full report for $9.99, five for $24.99 or ten for $44.99. No subscription, paid reports do not expire, two re-checks per report, and a 7-day money-back guarantee."
         canonical="/pricing"
       />
       <div className="container">
@@ -106,7 +106,7 @@ export default function Pricing() {
             Simple, transparent pricing.
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            No subscription and no expiry. Your first preview is free, one per device or account.
+            No subscription and no expiry. Your first preview is free, one per device or account. Prices in US dollars.
           </p>
         </div>
 
@@ -119,7 +119,7 @@ export default function Pricing() {
             <div className="flex-1">
               <h3 className="font-semibold">Your first preview is free</h3>
               <p className="text-sm text-muted-foreground mt-0.5">
-                Paste your essay with no sign-in and no credit card. The preview shows your band range, your weakest criterion with its full feedback, and the top risks in your draft.
+                Paste your essay with no sign-in and no credit card. The preview shows your band range, feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks in your draft.
               </p>
             </div>
             <Button size="sm" asChild className="flex-shrink-0 self-start sm:self-auto">
@@ -140,7 +140,7 @@ export default function Pricing() {
               {plan.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                   <Badge className="bg-primary text-primary-foreground px-3 py-1 text-xs font-semibold shadow-sm">
-                    Save 50%
+                    Lowest price per report
                   </Badge>
                 </div>
               )}
@@ -179,7 +179,7 @@ export default function Pricing() {
           <Link href="/refund-policy" className="underline">Refund policy</Link>
         </p>
         <p className="max-w-3xl mx-auto mt-3 text-sm text-muted-foreground text-center">
-          Without an account, this browser keeps your newest report open, with its re-checks, and holds any unused credits. To keep every report you buy and re-check each one, sign in with Google on this device, using the email you pay with.
+          Without an account, this browser keeps your newest report open, with its re-checks, and holds any unused paid reports. To keep every report you buy and re-check each one, sign in with Google on this device, using the email you pay with.
         </p>
 
         {/* Payment methods */}

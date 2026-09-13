@@ -183,7 +183,7 @@ const TOK_ESSAY: Rubric = {
   criteria: [
     { name: "Holistic assessment, global impression", max: 10, descriptor: "Does the student provide a clear, coherent and critical exploration of the essay title?" },
   ],
-  notes: "Marked holistically against ONE instrument (no sub-criteria), guided by: \"Does the student provide a clear, coherent and critical exploration of the essay title?\" Bands: Excellent 9-10 (sustained focus on the title, effectively linked to areas of knowledge; clear, coherent arguments effectively supported by specific examples; implications considered; different points of view evaluated). Good 7-8 (focused on the title, linked to AOKs; clear coherent arguments supported by examples; awareness and some evaluation of points of view). Satisfactory 5-6 (focused with some AOK links; arguments offered with examples; some awareness of points of view). Basic 3-4 (connected to the title but largely descriptive; limited or unclear arguments without effective examples). Rudimentary 1-2 (weakly connected; descriptive or unsupported assertions). 0 = below standard or not a response to a prescribed title. Word limit 1,600. Rules for justifying the mark: evaluation of points of view is described from the Good band upward (Satisfactory needs only some awareness of them); the 2022 course has no ways of knowing, so never refer to them; do not require a personal perspective or any other feature the band descriptors do not name.",
+  notes: "Marked holistically against ONE instrument (no sub-criteria), guided by: \"Does the student provide a clear, coherent and critical exploration of the essay title?\" Bands: Excellent 9-10 (sustained focus on the title, effectively linked to areas of knowledge; clear, coherent arguments effectively supported by specific examples; implications considered; different points of view evaluated). Good 7-8 (focused on the title, linked to AOKs; clear coherent arguments supported by examples; awareness and some evaluation of points of view). Satisfactory 5-6 (focused with some AOK links; arguments offered with examples; some awareness of points of view). Basic 3-4 (connected to the title but largely descriptive; limited or unclear arguments without effective examples). Rudimentary 1-2 (weakly connected; descriptive or unsupported assertions). 0 = below standard or not a response to a prescribed title. Word limit 1,600. Rules for justifying the mark: evaluation of points of view is described from the Good band upward (Satisfactory needs only some awareness of them); the 2022 course has no ways of knowing, so never refer to them; do not require a personal perspective or any other feature the band descriptors do not name. In particular, never lower the band, or give as a reason the essay did not reach a band, for: no named thinker, philosopher, scholar or theory; no separately formulated knowledge question; no 'critical reflection' as a feature of its own; or links to more areas of knowledge than the title asks for. None of these appears in the descriptors. You may suggest them as ways to strengthen the argument, but say that they are suggestions, not requirements. Nor lower the band because the essay leaves out a particular concept, theory or example you would have used. Place the essay from the bottom up: award the highest band whose descriptors it meets in full. Satisfactory needs only focus on the title, some links to areas of knowledge, arguments offered with examples, and some awareness of points of view; evaluation, critical exploration and developed implications belong to Good and Excellent and must not be required for Satisfactory. 'Largely descriptive' (Basic) means the essay describes instead of arguing: an essay with a clear line of argument supported by examples is not largely descriptive, however underdeveloped the arguments are. 'Some awareness of points of view' means the essay recognises that another view exists, even if it dismisses it quickly; weighing or engaging with that view is evaluation, which begins at Good. A concept, theory, thinker or example the essay does not use may appear only as an optional suggestion ('you could'), never as a reason for the mark and never as the title of a risk: risks name problems of focus, links to areas of knowledge, arguments, examples, points of view or implications.",
   wordLimit: { max: 1600, excludes: "acknowledgments, references (in footnotes, endnotes or in the text), the bibliography, and maps, charts, diagrams, illustrations or tables", stopsAt: true },
 };
 
@@ -200,6 +200,8 @@ const TOK_EXHIBITION: Rubric = {
 };
 
 // ─── English A: Individual Oral (IA, both Language A courses, FA 2021) ───────
+const ORAL_NOTES = "The individual oral is spoken, so the paste is a transcript of a practice run or an outline. If it is a transcript, mark all four criteria on it. If it is an outline or notes, mark A to C on the ideas and structure it shows; for Criterion D, say in the comment that spoken language and delivery cannot be judged from notes, base the mark only on the wording present, and keep it cautious. Do not treat the outline format itself as a weakness.";
+
 const ENGLISH_LANG_LIT_IA: Rubric = {
   label: "English A: Language and Literature, Individual Oral",
   totalMarks: 40,
@@ -209,6 +211,7 @@ const ENGLISH_LANG_LIT_IA: Rubric = {
     { name: "Criterion C: Focus and organization", max: 10, descriptor: "Structured, balanced and focused delivery with connected ideas" },
     { name: "Criterion D: Language", max: 10, descriptor: "Clear, accurate and effective language appropriate to the task" },
   ],
+  notes: ORAL_NOTES,
 };
 
 const ENGLISH_LIT_IA: Rubric = {
@@ -220,6 +223,7 @@ const ENGLISH_LIT_IA: Rubric = {
     { name: "Criterion C: Focus and organization", max: 10, descriptor: "Structured, balanced and focused delivery with connected ideas" },
     { name: "Criterion D: Language", max: 10, descriptor: "Clear, accurate and effective language appropriate to the task" },
   ],
+  notes: ORAL_NOTES,
 };
 
 // ─── Visual Arts, Comparative Study (external; LAST assessment Nov 2026) ────
@@ -249,7 +253,7 @@ const MUSIC_IA: Rubric = {
     { name: "Criterion C1: Understanding creating conventions", max: 3, descriptor: "Understanding of creating conventions demonstrated in the practical exercises" },
     { name: "Criterion C2: Understanding performing practices", max: 3, descriptor: "Understanding of performing practices demonstrated in the practical exercises" },
   ],
-  notes: "This is Exploring music in context, externally assessed coursework, not the Music internal assessment (Experimenting with music). Portfolio maximum 2,400 words.",
+  notes: "This is Exploring music in context, externally assessed coursework, not the Music internal assessment (Experimenting with music). Portfolio maximum 2,400 words. The creating exercise (score or audio) and the performed adaptation (audio) are separate files and are not in the pasted text: mark C1 and C2 only on what the written portfolio shows about those exercises, say in both comments that the exercises themselves were not seen or heard, and do not treat their absence from the paste as a weakness.",
   wordLimit: { max: 2400, excludes: "track lists in an appendix, citations and the bibliography" },
 };
 
@@ -400,7 +404,7 @@ export function getRubric(essayType: string, subject: string, examSession?: stri
  */
 export function unmarkableReason(essayType: string, subject: string, examSession?: string): string | null {
   if (examSession === "may2027" && essayType === "IA" && subject.trim().toLowerCase() === "visual arts") {
-    return "From May 2027 the Visual Arts comparative study is replaced by the connections study (SL) and the artist project (HL). IBLens does not have criteria for those yet, so it cannot mark Visual Arts work for the May 2027 session. If you sit your exams in 2026, choose the current syllabus.";
+    return "From May 2027 the Visual Arts comparative study is replaced by the connections study (SL) and the artist project (HL). IBLens does not have criteria for those yet, so it cannot mark Visual Arts work for the May 2027 session. If you sit your exams in 2026, choose the session \"Exams in May or November 2026\".";
   }
   return null;
 }

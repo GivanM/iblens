@@ -43,7 +43,7 @@ const config: SubjectConfig = {
       { title: "A plan with no link to the success criteria", text: "A timeline written after the product was built. From May 2027, Planning rewards decomposing the problem and planning a solution that addresses the success criteria." },
       { title: "Choices shown but never evaluated", text: "Screenshots of code with no discussion of why the algorithms were implemented that way or what the alternatives were. The top band of Development asks you to evaluate your implementation choices, and the documentation is where that shows." },
       { title: "Testing that only tries normal inputs", text: "A testing strategy that never tries invalid or boundary inputs. The system overview has to include a testing strategy aligned with the success criteria, and Development asks you to justify how effective it was." },
-      { title: "Long code listings", text: "Pasting whole files into the documentation. Code excerpts do not count toward the 2,000 words from May 2027, but they do not explain your decisions either." },
+      { title: "Long code listings", text: "Pasting whole files into the documentation. Code excerpts do not count towards the 2,000 words from May 2027, but they do not explain your decisions either." },
     ],
     faq: [
       { q: "Can it see my product or my video?", a: "No. It reads the documentation you paste. Criteria that rest on the working product and the video, Development in particular, are marked on what the documentation shows, and the report says so." },

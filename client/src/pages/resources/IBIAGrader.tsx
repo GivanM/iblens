@@ -5,7 +5,7 @@ export default function IBIAGrader() {
   return (
     <ResourceArticle
       title="IB IA Grader: AI Feedback on Your Coursework in 14 Subjects | IBLens"
-      description="An IB IA grader with a free preview: AI feedback on your Internal Assessment against the published criteria for Biology, Chemistry, Physics, Maths, History, Economics, Psychology and more."
+      description="An IB IA grader with a free preview: AI feedback on your Internal Assessment against the published criteria for Biology, Chemistry, Physics, Math, History, Economics, Psychology and more."
       canonical="/resources/ib-ia-grader"
       datePublished="2026-06-17"
       dateModified="2026-09-13"
@@ -13,7 +13,7 @@ export default function IBIAGrader() {
       <h1>IB IA Grader: AI Feedback on Your Internal Assessment</h1>
 
       <p>
-        An IB Internal Assessment is worth between 20% and 30% of the final subject grade. Many students submit without a clear idea of which criterion is costing them marks, because detailed feedback before submission is hard to get. Your teacher can comment on a draft, but not on every revision. Tutors charge by the hour. Classmates rarely know the criteria well enough to mark against them.
+        An IB Internal Assessment is usually worth 20% to 30% of the final subject grade, and more in some arts subjects. Many students submit without a clear idea of which criterion is costing them marks, because detailed feedback before submission is hard to get. Your teacher can comment on a draft, but not on every revision. Tutors charge by the hour. Classmates rarely know the criteria well enough to mark against them.
       </p>
 
       <p>
@@ -39,7 +39,7 @@ export default function IBIAGrader() {
         <li><strong><Link href="/essay/psychology-ia">IB Psychology IA</Link>:</strong> Introduction, Exploration, Analysis, Evaluation (22 marks) through November 2026; the research proposal marked out of 24 from May 2027</li>
         <li><strong><Link href="/essay/computer-science-ia">IB Computer Science IA</Link>:</strong> Planning, Solution overview, Development, Functionality and extensibility, Evaluation (34 marks) through November 2026; the new 30-mark criteria from May 2027</li>
         <li><strong>IB English A (Literature, or Language and Literature):</strong> the individual oral, marked on four criteria of 10 marks each; paste your outline or a transcript</li>
-        <li><strong>IB Visual Arts, Music and Film coursework (externally assessed):</strong> each against its own criteria. Visual Arts is marked for sessions through November 2026 only, because the comparative study is replaced from May 2027</li>
+        <li><strong>IB Visual Arts, Music and Film coursework (externally assessed):</strong> each against its own criteria. Visual Arts is marked for sessions through November 2026 only, because the comparative study is replaced from May 2027, and on the SL criteria out of 30: the extra HL criterion (connections to your own art-making, 12 marks) is not marked</li>
       </ul>
 
       <p>
@@ -74,7 +74,7 @@ export default function IBIAGrader() {
       <ul>
         <li><strong>vs. RevisionDojo:</strong> RevisionDojo includes AI coursework feedback in a wider revision platform sold by subscription; check its pricing page for current prices. IBLens charges per report: $9.99 for one, $24.99 for five, with no subscription. Which costs less depends on how many reports you need, so compare current prices on both sites.</li>
         <li><strong>vs. a general chatbot:</strong> a general AI model marks against whatever it remembers of the criteria, which may be an older version, such as the science criteria retired in 2025. IBLens gives the model the current criteria for your subject and session, and counts the words for you.</li>
-        <li><strong>vs. a tutor:</strong> a good tutor brings subject judgement no tool has, at an hourly rate. IBLens gives you an estimate against the criteria in about a minute, for a fixed price, as often as you revise.</li>
+        <li><strong>vs. a tutor:</strong> a good tutor brings subject judgement no tool has, at an hourly rate. IBLens gives you an estimate against the criteria in about a minute, for a fixed price, with two re-checks of each revised draft within 14 days.</li>
       </ul>
 
       <h2>Is the First IB IA Preview Really Free?</h2>

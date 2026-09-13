@@ -5,7 +5,7 @@ export default function IBExtendedEssayWordCount() {
   return (
     <ResourceArticle
       title="IB Extended Essay Word Count: The 4,000-Word Limit Explained | IBLens"
-      description="What counts toward the 4,000-word limit of the IB Extended Essay, what does not, how close to the limit to aim, and what happens if you go over."
+      description="What counts towards the 4,000-word limit of the IB Extended Essay, what does not, how close to the limit to aim, and what happens if you go over."
       canonical="/resources/ib-extended-essay-word-count"
       datePublished="2026-06-09"
       dateModified="2026-06-09"
@@ -101,7 +101,7 @@ export default function IBExtendedEssayWordCount() {
       <h3>Mathematics</h3>
       <p>
         Mathematics EEs are dense in notation, and equations, formulas and calculations
-        do not count toward the limit. The prose that explains and connects the
+        do not count towards the limit. The prose that explains and connects the
         mathematics does count. The depth and correctness of the mathematics matter far
         more than the number of words.
       </p>
@@ -116,7 +116,7 @@ export default function IBExtendedEssayWordCount() {
 
       <h3>Language and literature</h3>
       <p>
-        Quotations from the texts count toward the limit, so choose them carefully. Short,
+        Quotations from the texts count towards the limit, so choose them carefully. Short,
         precise quotations followed by close analysis do more than long block quotations
         that use up words without adding depth.
       </p>

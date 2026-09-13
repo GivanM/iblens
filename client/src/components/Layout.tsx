@@ -43,9 +43,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     onSuccess: (d: any) => {
       if (d.moved > 0 || d.adopted > 0) {
         const parts = [];
-        if (d.moved > 0) parts.push(`${d.moved} credit${d.moved === 1 ? "" : "s"}`);
-        if (d.adopted > 0) parts.push(`${d.adopted} report${d.adopted === 1 ? "" : "s"}`);
-        toast.success(`${parts.join(" and ")} you bought on this device are now on your account.`);
+        if (d.moved > 0) parts.push(`${d.moved} unused paid report${d.moved === 1 ? "" : "s"}`);
+        if (d.adopted > 0) parts.push(`${d.adopted} opened report${d.adopted === 1 ? "" : "s"}`);
+        toast.success(`${parts.join(" and ")} bought on this device ${d.moved + d.adopted === 1 ? "is" : "are"} now in your account.`);
       }
     },
   });
@@ -69,7 +69,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </Link>
 
             <nav className="hidden md:flex items-center gap-1">
-              <NavLink href="/essay" active={location === "/essay"}>Essay Analyser</NavLink>
+              <NavLink href="/essay" active={location === "/essay"}>Essay Grader</NavLink>
               <NavLink href="/ucas-personal-statement" active={location === "/ucas-personal-statement"}>UCAS Statement</NavLink>
               <NavLink href="/resources" active={location.startsWith("/resources")}>Resources</NavLink>
               <NavLink href="/pricing" active={location === "/pricing"}>Pricing</NavLink>
@@ -116,7 +116,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             ) : (
               <>
                 <Button size="sm" variant="default" className="hidden sm:flex" asChild>
-                  <Link href="/essay">Grade Free</Link>
+                  <Link href="/essay">Grade my essay</Link>
                 </Button>
                 <Button size="sm" variant="ghost" asChild>
                   <a href={getLoginUrl()}>Sign in</a>
@@ -127,7 +127,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden"
+              className="md:hidden size-11"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -145,7 +147,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               }`}
             >
               <FileText className="w-4 h-4" />
-              Essay Analyser
+              Essay Grader
             </Link>
             <Link
               href="/ucas-personal-statement"
@@ -207,7 +209,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </p>
             </div>
             <nav className="flex flex-wrap gap-x-6 gap-y-2 md:justify-end">
-              <Link href="/essay" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Essay Analyser</Link>
+              <Link href="/essay" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Essay Grader</Link>
               <Link href="/resources" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Resources</Link>
               <Link href="/pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Pricing</Link>
               <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">About</Link>

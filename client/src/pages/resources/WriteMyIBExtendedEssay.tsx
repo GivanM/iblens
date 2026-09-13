@@ -46,7 +46,7 @@ export default function WriteMyIBExtendedEssay() {
       </p>
       <ol>
         <li><strong>Introduction:</strong> State your research question, define key terms, outline the scope of your investigation and how you will answer it. (~300-400 words)</li>
-        <li><strong>Background / context:</strong> Give the reader the minimum context they need to understand your argument. This is not a literature review; it is setup. (~400-600 words)</li>
+        <li><strong>Background and existing research:</strong> Give the reader the context they need and show what published research or criticism already says about your topic. A review of the literature is required in every EE, and it can sit here or run through the body. (~400-600 words)</li>
         <li><strong>Body:</strong> 2-4 focused sections, each making one clear point that advances your answer. Each section presents evidence, analyses it, and connects it back to your research question. (~2000-2500 words)</li>
         <li><strong>Conclusion:</strong> Answer your research question directly. State what your investigation showed, acknowledge its limitations, and note what further research would be needed. (~300-400 words)</li>
       </ol>

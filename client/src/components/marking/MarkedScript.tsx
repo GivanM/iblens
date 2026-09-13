@@ -30,7 +30,7 @@ export function MarkedScript() {
           <h2 className="ms-penline">Here is where your marks are going.</h2>
           <p className="ms-subline">
             Paste a draft and the report comes back in about a minute. The first one is a free preview: your mark
-            range, your weakest criterion with its full feedback, and the risks costing the most marks. Nothing is
+            range, feedback on your weakest criterion (for TOK, the start of the explanation) and the risks costing the most marks. Nothing is
             charged to see it.
           </p>
           <p className="ms-qn">

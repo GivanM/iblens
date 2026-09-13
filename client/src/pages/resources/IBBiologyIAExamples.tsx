@@ -9,7 +9,7 @@ export default function IBBiologyIAExamples() {
       description="IB Biology IA investigation ideas and what separates top-band work on each of the four criteria, with the mistakes that cost marks most often."
       canonical="/resources/ib-biology-ia-examples"
       datePublished="2026-06-09"
-      dateModified="2026-06-09"
+      dateModified="2026-09-13"
     >
       <p>
         The IB Biology Internal Assessment is a scientific investigation worth 20% of
@@ -152,7 +152,7 @@ export default function IBBiologyIAExamples() {
           { criterion: "Research design", typical: "The method is lifted from a standard class practical and the variables are simply listed.", top: "The method is justified for this specific question: why this range, this many trials, these controls." },
           { criterion: "Data analysis", typical: "Raw data is tabulated and a mean is plotted; uncertainties appear once and are then forgotten.", top: "Uncertainties are propagated through the processing, and the processing chosen is the one that actually tests the hypothesis." },
           { criterion: "Conclusion", typical: "\u201cThe hypothesis was supported\u201d, with no reference to how strongly.", top: "The conclusion is stated with its uncertainty and compared against accepted values or published work." },
-          { criterion: "Evaluation", typical: "Generic weaknesses: human error, not enough time, more trials next time.", top: "Specific weaknesses, each with its direction of effect on the result, and improvements that would actually be workable." },
+          { criterion: "Evaluation", typical: "Generic weaknesses: human error, not enough time, more trials next time.", top: "The relative impact of specific methodological weaknesses explained, with realistic improvements that address them explained." },
         ]}
       />
 

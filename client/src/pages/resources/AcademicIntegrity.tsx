@@ -101,9 +101,10 @@ export default function AcademicIntegrity() {
 
       <p>
         What IBLens does with a statement you paste into the{" "}
-        <Link href="/ucas-personal-statement">UCAS personal statement checker</Link>: we analyse it, show
-        you the feedback, and that is all. We do not publish it, do not train models on it, and do not
-        submit it to Turnitin or any similarity database.
+        <Link href="/ucas-personal-statement">UCAS personal statement checker</Link>: we analyse it and show
+        you the feedback. The statement itself is never stored; the review, which can quote short passages,
+        is kept for the periods set out in our <Link href="/privacy">Privacy Policy</Link>. We do not publish it,
+        do not train models on it, and do not submit it to Turnitin or any similarity database.
       </p>
 
       <h2>Why we built it this way</h2>
@@ -115,7 +116,7 @@ export default function AcademicIntegrity() {
       </p>
 
       <p>
-        Questions about your data? Email us and we will delete your records, with no forms to fill in.
+        Questions about your data? Email <a href="mailto:glushkovim@gmail.com">glushkovim@gmail.com</a> and we will delete your records, with no forms to fill in.
         Ready to see where your essay stands? <Link href="/essay">The first preview is free</Link>.
       </p>
     </ResourceArticle>

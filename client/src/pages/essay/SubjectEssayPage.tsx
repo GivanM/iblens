@@ -293,7 +293,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
                   ? "The first preview is free and needs no account: the band your work falls in, the start of the explanation, and the top risks in the draft."
                   : "The first preview is free and needs no account: your band range, your weakest criterion with its full feedback, and the top risks in the draft."}</li>
                 <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
-                <li>The text you paste is sent to Anthropic to produce the report and is not stored by IBLens.</li>
+                <li>The text you paste passes through our relay server to Anthropic to produce the report. IBLens never stores the text itself; the report is kept as the Privacy Policy describes.</li>
               </ul>
             </div>
           </div>

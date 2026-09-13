@@ -3,6 +3,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
@@ -23,12 +24,26 @@ const SKU_LABELS: Record<ProductKey, string> = {
   UNIVERSITY_SINGLE: "University Strategy Report",
 };
 
+const SKU_COUNT: Record<ProductKey, number> = {
+  ESSAY_SINGLE: 1,
+  ESSAY_PACK_5: 5,
+  ESSAY_PACK_10: 10,
+  UNIVERSITY_SINGLE: 1,
+};
+
 interface PurchaseModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   sku: ProductKey;
-  /** A signed-in buyer's locked report, opened by this payment. */
+  /** A signed-in buyer's locked account report, opened by this payment. */
   analysisId?: number | null;
+  /**
+   * The buyer is looking at a locked preview and this payment opens it. Anywhere
+   * else a purchase only adds reports for new work.
+   */
+  unlocksPreview?: boolean;
+  /** What that preview is, in a few words, so the dialog can name it. */
+  previewLabel?: string | null;
 }
 
 // Map ProductKey to analytics ProductSlug
@@ -39,10 +54,11 @@ const SKU_TO_SLUG: Record<ProductKey, ProductSlug> = {
   UNIVERSITY_SINGLE: "university_strategy",
 };
 
-export function PurchaseModal({ open, onOpenChange, sku, analysisId }: PurchaseModalProps) {
+export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPreview, previewLabel }: PurchaseModalProps) {
   const { isAuthenticated } = useAuth();
   const [loading, setLoading] = useState(false);
   const [guestEmail, setGuestEmail] = useState("");
+  const [emailError, setEmailError] = useState<string | null>(null);
 
   // Fire view_item when modal opens
   useEffect(() => {
@@ -51,154 +67,160 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId }: PurchaseM
     }
   }, [open, sku]);
 
+  const onCheckoutReady = (data: { checkoutUrl: string }) => {
+    toast.success("Opening secure checkout…");
+    window.location.href = data.checkoutUrl;
+  };
+  const onCheckoutError = (error: any) => {
+    toast.error("Checkout could not start", { description: error?.message || "Please try again in a moment." });
+    setLoading(false);
+  };
+
   // Authenticated: card checkout via LemonSqueezy
   const createCardCheckout = trpc.payment.createLemonsqueezyCheckout.useMutation({
-    onSuccess: (data) => {
-      toast.success("Redirecting to checkout...");
-      window.location.href = data.checkoutUrl;
-      setLoading(false);
-    },
-    onError: (error) => {
-      toast.error("Payment error", { description: error.message || "Failed to create checkout." });
-      setLoading(false);
-    },
+    onSuccess: onCheckoutReady,
+    onError: onCheckoutError,
   });
 
-  // Guest (unauthenticated): card checkout with email
+  // Guest (unauthenticated): checkout with email
   const createGuestCheckout = trpc.payment.createGuestCheckout.useMutation({
-    onSuccess: (data) => {
-      toast.success("Redirecting to checkout...");
-      window.location.href = data.checkoutUrl;
-      setLoading(false);
-    },
-    onError: (error) => {
-      toast.error("Payment error", { description: error.message || "Failed to create checkout." });
-      setLoading(false);
-    },
+    onSuccess: onCheckoutReady,
+    onError: onCheckoutError,
   });
+
+  const opensPreview = !!analysisId || unlocksPreview === true;
+  const returnTo = typeof window !== "undefined" && window.location.pathname.startsWith("/ucas")
+    ? ("ucas-personal-statement" as const)
+    : ("essay" as const);
 
   const handlePay = () => {
     if (!isAuthenticated) {
-      // Guest flow: require email, card only
       const trimmedEmail = guestEmail.trim();
-      if (!trimmedEmail || !trimmedEmail.includes("@") || !trimmedEmail.includes(".")) {
-        toast.error("Please enter a valid email address");
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+        setEmailError("Enter the email address the receipt should go to.");
+        document.getElementById("guest-email")?.focus();
         return;
       }
+      setEmailError(null);
       setLoading(true);
       trackBeginCheckout(SKU_TO_SLUG[sku], PRICES[sku] / 100, "lemonsqueezy");
-      // The device id travels with the payment so the webhook can open the report
-      // this guest just ran. Without it they would pay and stay locked out.
-      const fingerprint = getAnonFingerprint();
-      const returnTo = typeof window !== "undefined" && window.location.pathname.startsWith("/ucas")
-        ? ("ucas-personal-statement" as const)
-        : ("essay" as const);
-      createGuestCheckout.mutate({ productKey: sku, email: trimmedEmail, fingerprint, returnTo });
+      // The device id always travels: a guest's reports live on this browser.
+      createGuestCheckout.mutate({
+        productKey: sku,
+        email: trimmedEmail,
+        fingerprint: getAnonFingerprint(),
+        returnTo,
+        unlockPreview: opensPreview,
+      });
       return;
     }
 
-    // Authenticated flow. The device goes with it: the report being bought is an
-    // anonymous row, and the webhook needs to know which one and on which page.
     setLoading(true);
     trackBeginCheckout(SKU_TO_SLUG[sku], PRICES[sku] / 100, "lemonsqueezy");
     createCardCheckout.mutate({
       productKey: sku,
       fingerprint: getAnonFingerprint(),
-      returnTo: typeof window !== "undefined" && window.location.pathname.startsWith("/ucas")
-        ? ("ucas-personal-statement" as const)
-        : ("essay" as const),
-      ...(analysisId ? { analysisId } : {}),
+      returnTo,
+      unlockPreview: opensPreview && !analysisId,
+      ...(analysisId && opensPreview ? { analysisId } : {}),
     });
   };
 
   const price = PRICE_LABELS[sku];
   const label = SKU_LABELS[sku];
-  // Opened next to a locked report, the purchase opens that report. Opened from the
-  // pricing page or the home page there is no report yet, so it buys a credit.
-  const beside = !!analysisId || (typeof window !== "undefined" && /^\/(essay|ucas-personal-statement|remark|dashboard\/analysis)/.test(window.location.pathname));
+  const count = SKU_COUNT[sku];
+  const named = previewLabel ? ` (${previewLabel})` : "";
+
+  const firstLine = opensPreview
+    ? count > 1
+      ? `The locked preview on this page${named} opens in full, and ${count - 1} more reports wait for your other work`
+      : `The locked preview on this page${named}, opened in full: every criterion with its comments, your predicted mark and the ranked fix list`
+    : count > 1
+      ? `${count} full reports for different pieces of work, each with every criterion, your predicted mark and the ranked fix list`
+      : "One full report for your next piece of work: every criterion with its comments, your predicted mark and the ranked fix list";
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent
+        className="sm:max-w-md max-h-[92dvh] overflow-y-auto"
+        // On a phone, focusing the email field opens the keyboard over the price.
+        onOpenAutoFocus={(e) => e.preventDefault()}
+      >
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold">Complete Your Purchase</DialogTitle>
+          <DialogTitle className="text-xl font-bold">Complete your purchase</DialogTitle>
+          <DialogDescription className="sr-only">
+            {label}, {price}, one-time payment through LemonSqueezy.
+          </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-6 pt-2">
-          {/* Product info */}
+        <div className="space-y-5 pt-1">
           <div className="text-center">
             <p className="text-sm text-muted-foreground mb-1">{label}</p>
-            <p className="text-4xl font-bold tracking-tight">{price}</p>
-            <p className="text-xs text-muted-foreground mt-1">One-time payment</p>
-            {sku === "ESSAY_SINGLE" && (
-              <div className="mt-3 rounded-lg bg-muted/50 p-3 text-left">
-                <p className="text-xs font-medium mb-1">What you get</p>
-                <ul className="text-xs text-muted-foreground space-y-1 list-disc pl-4">
-                  <li>{beside
-                    ? "The report you are looking at, unlocked in full: every criterion with its comments and the ranked fix list"
-                    : "One full report, used on your next piece of work: every criterion with its comments and the ranked fix list"}</li>
-                  <li>Two free re-checks of a revised version of the same work, within 14 days of the report opening</li>
-                  {isAuthenticated
-                    ? <li>The report opens in your account as soon as the payment clears</li>
-                    : <li>The report opens in this browser as soon as the payment clears. Without an account it stays in this browser; sign in with Google on this device to keep it in an account</li>}
-                </ul>
-              </div>
-            )}
+            <p className="text-4xl font-bold tracking-tight">{price} <span className="text-base font-medium text-muted-foreground">USD</span></p>
+            <p className="text-xs text-muted-foreground mt-1">One-time payment. No subscription.</p>
+            <div className="mt-3 rounded-lg bg-muted/50 p-3 text-left">
+              <p className="text-xs font-medium mb-1">What you get</p>
+              <ul className="text-xs text-muted-foreground space-y-1 list-disc pl-4">
+                <li>{firstLine}</li>
+                <li>{count > 1
+                  ? "Two free re-checks of revised versions of the same work with each report, within 14 days of that report opening"
+                  : "Two free re-checks of revised versions of the same work, within 14 days of the report opening"}</li>
+                {isAuthenticated
+                  ? <li>{opensPreview ? "The report opens in your account" : "The reports are added to your account"} as soon as the payment clears</li>
+                  : <li>No account needed. {count > 1 || !opensPreview
+                      ? `The ${count > 1 ? "reports are" : "report is"} added to this browser as soon as the payment clears and ${count > 1 ? "stay" : "stays"} in it.`
+                      : "The report opens in this browser as soon as the payment clears and stays in it."} To keep {count > 1 ? "them" : "it"} in an account, or to use {count > 1 ? "them" : "it"} on another device, sign in with Google on this device with the email you enter below.</li>}
+              </ul>
+            </div>
           </div>
 
-          {/* Guest: email input */}
           {!isAuthenticated && (
             <div className="space-y-1.5">
               <Label htmlFor="guest-email" className="text-sm font-medium flex items-center gap-1.5">
                 <Mail className="w-3.5 h-3.5" />
-                Your email
+                Your email, for the receipt
               </Label>
               <input
                 id="guest-email"
                 type="email"
+                inputMode="email"
+                autoComplete="email"
                 placeholder="you@example.com"
                 value={guestEmail}
-                onChange={(e) => setGuestEmail(e.target.value)}
-                className="w-full px-3 py-2 text-sm border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
-                autoFocus
+                aria-invalid={emailError ? true : undefined}
+                aria-describedby={emailError ? "guest-email-error" : undefined}
+                onChange={(e) => { setGuestEmail(e.target.value); if (emailError) setEmailError(null); }}
+                className={`w-full px-3 py-2.5 text-base sm:text-sm border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary ${emailError ? "border-rose-500" : ""}`}
               />
-              <p className="text-xs text-muted-foreground">
-                For your receipt. Without an account, what you buy stays in this browser: the report opens here, and unused credits wait here until you sign in with Google on this device.
-              </p>
+              {emailError && <p id="guest-email-error" className="text-xs text-rose-600">{emailError}</p>}
             </div>
           )}
 
-          {/* Card-only indicator */}
           <div className="flex items-center gap-3 p-3.5 border rounded-lg border-primary bg-primary/5 ring-1 ring-primary/20">
             <CreditCard className="w-5 h-5 text-primary flex-shrink-0" />
-            <div className="flex-1">
-              <p className="font-medium text-sm">Pay with card</p>
-              <p className="text-xs text-muted-foreground">
-                Visa, Mastercard, Amex, credits activate as soon as the payment clears
-              </p>
-            </div>
+            <p className="text-xs text-muted-foreground">
+              Pay by card (Visa, Mastercard, Amex) or another method shown at checkout.
+            </p>
           </div>
 
-          {/* Pay button */}
           <Button
-            className="w-full h-11 text-base font-semibold"
+            className="w-full min-h-11 h-auto py-2.5 text-base font-semibold whitespace-normal"
             onClick={handlePay}
             disabled={loading}
           >
             {loading ? (
               <>
                 <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                Processing...
+                Opening checkout…
               </>
             ) : (
-              `Pay ${price}`
+              `Continue to checkout, ${price}`
             )}
           </Button>
 
-          {/* Small print */}
           <p className="text-xs text-center text-muted-foreground flex items-center justify-center gap-1.5">
-            <Shield className="w-3 h-3" />
-            Secure checkout by LemonSqueezy. Credits activate automatically after payment.
+            <Shield className="w-3 h-3 flex-shrink-0" />
+            Secure checkout by LemonSqueezy. Prices are in US dollars.
           </p>
           <p className="text-xs text-center text-muted-foreground">
             <a href="/refund-policy" target="_blank" rel="noopener" className="underline hover:text-foreground">7-day money-back guarantee</a> · <a href="/resources/sample-reports" target="_blank" rel="noopener" className="underline hover:text-foreground">see sample reports</a>

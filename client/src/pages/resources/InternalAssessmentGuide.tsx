@@ -8,7 +8,7 @@ export default function InternalAssessmentGuide() {
       description="How IB Internal Assessments are marked: criteria by subject group, what examiners look for, the moderation process, and strategies for top marks across sciences, humanities and languages."
       canonical="/resources/ib-internal-assessment-guide"
       datePublished="2026-05-01"
-      dateModified="2026-05-01"
+      dateModified="2026-09-13"
     >
       <h1>The Complete IB Internal Assessment Guide</h1>
 
@@ -17,7 +17,7 @@ export default function InternalAssessmentGuide() {
       </p>
 
       <p>
-        Internal Assessments (IAs) are a core component of every IB Diploma Programme subject. Unlike externally examined papers, IAs are completed during the course, supervised by your teacher, and then externally moderated by the IB. They account for between 20% and 30% of the final subject grade, which makes them one of the most controllable parts of your IB score: you have weeks or months to refine them, not a timed exam.
+        Internal Assessments (IAs) are a core component of every IB Diploma Programme subject. Unlike externally examined papers, IAs are completed during the course, supervised by your teacher, and then externally moderated by the IB. They usually account for 20% to 30% of the final subject grade, and more in some arts subjects (the Film portfolio is 40% at SL), which makes them one of the most controllable parts of your IB score: you have weeks or months to refine them, not a timed exam.
       </p>
 
       <p>
@@ -58,7 +58,7 @@ export default function InternalAssessmentGuide() {
       <h3>History (Group 3)</h3>
 
       <p>
-        The History IA is a 2,200-word investigation into a historical question. It asks you to identify and evaluate sources (Section 1), investigate the question using evidence (Section 2), and reflect on the methods used by historians (Section 3). The Investigation carries 15 of the 25 marks, and what lifts it is <strong>awareness of different perspectives</strong>: showing how historians have interpreted the same events differently, and weighing those interpretations to reach your own conclusion.
+        The History IA is a 2,200-word investigation into a historical question. It asks you to identify and evaluate sources (Section 1), investigate the question using evidence (Section 2), and reflect on the methods used by historians (Section 3). The Investigation carries 15 of the 25 marks, and what lifts it is <strong>evaluation of different perspectives</strong>: not only noting that historians interpret the same events differently, but weighing those interpretations to reach a reasoned conclusion.
       </p>
 
       <h3>Mathematics (Group 5)</h3>

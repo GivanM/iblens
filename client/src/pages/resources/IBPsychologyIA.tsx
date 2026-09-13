@@ -8,7 +8,7 @@ export default function IBPsychologyIA() {
       description="A guide to the IB Psychology Internal Assessment through November 2026: choosing a study to replicate, designing an ethical experiment, analysing the results, and what each criterion rewards."
       canonical="/resources/ib-psychology-ia"
       datePublished="2026-06-09"
-      dateModified="2026-06-09"
+      dateModified="2026-09-13"
     >
       <p>
         <strong>Sitting your exams in May 2027 or later?</strong> Your IA is a research
@@ -95,8 +95,8 @@ export default function IBPsychologyIA() {
       <h2>Choosing the Inferential Test</h2>
       <p>
         The guide asks for descriptive and inferential statistics suited to your design
-        but does not name a test, and justifying your choice is part of the Analysis
-        criterion. With two conditions, two common choices are:
+        but does not name a test. Choosing one that suits your design is part of
+        applying the statistics appropriately under Analysis. With two conditions, two common choices are:
       </p>
       <ul>
         <li><strong>Mann-Whitney U test:</strong> two separate groups of participants (independent measures). No one takes part in both conditions.</li>

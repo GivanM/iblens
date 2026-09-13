@@ -28,6 +28,7 @@ import {
   consumePaidEssayCredit,
   getAnalysisById,
   markAnalysisUnlocked,
+  createAnalysis,
 } from "../db";
 import { sendPaymentConfirmationEmail, getSkuHumanName } from "../email";
 import { sendGA4PurchaseEvent } from "../ga4mp";
@@ -211,7 +212,11 @@ export function registerLemonsqueezyWebhook(app: Express) {
         const orderId = customData.order_id || "";
 
         if (eventName === "order_created") {
-          if (!orderId) {
+          // An order id we no longer hold (a checkout left open past the 30 days unpaid
+          // checkouts are kept) is paid for all the same, so it is credited like a
+          // storefront purchase instead of being dropped.
+          const knownOrder = orderId ? await getOrderById(orderId) : undefined;
+          if (!orderId || !knownOrder) {
             // A purchase made straight from the LemonSqueezy storefront carries no
             // order of ours. It used to be logged and dropped, so the money was
             // taken and nothing was given. Credit it to the buyer's e-mail so it
@@ -271,15 +276,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
             return res.status(200).json({ ok: true, message: "No order_id in custom_data" });
           }
 
-          const order = await getOrderById(orderId);
-          if (!order) {
-            const errMsg = `Order not found: ${orderId}`;
-            console.warn(`[LemonSqueezy Webhook] ${errMsg}`);
-            if (webhookEventId) {
-              await updateWebhookEvent(webhookEventId, { paymentStatus: "order_not_found", errorMessage: errMsg }).catch(() => {});
-            }
-            return res.status(200).json({ ok: true, message: "Order not found" });
-          }
+          const order = knownOrder;
 
           // LemonSqueezy retries deliveries, and the dedup key used to include the
           // processing status, so a retry looked new and granted the credits again.
@@ -320,6 +317,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
           const unlockFp = String(customData.unlock_fp || "");
           const buyerIsGuest = await isGuestAccount(order.userId).catch(() => false);
           const unlockKindRaw = String(customData.unlock_kind || "essay");
+          const unlockIntent = String(customData.unlock_preview || "") === "1";
           // A signed-in buyer's essay report is an account row. Reaching for the newest
           // device row instead spent their credit on an old guest preview. UCAS reviews
           // are device rows for everyone, so those still go through the device.
@@ -338,10 +336,12 @@ export function registerLemonsqueezyWebhook(app: Express) {
               console.warn("[LemonSqueezy] Account unlock failed (non-fatal):", accountUnlockErr);
             }
           }
-          if (unlockFp && credits.essay > 0 && (buyerIsGuest || unlockKindRaw === "ucas")) {
+          if (unlockFp && credits.essay > 0 && (buyerIsGuest || (unlockIntent && !(unlockAnalysisId > 0)))) {
             try {
               const unlockKind = unlockKindRaw;
-              const rec = unlockKind === "ucas"
+              // Only a purchase made beside a locked preview opens one. Anything else
+              // is reports for new work, and they all go where the buyer can spend them.
+              const rec = !unlockIntent ? null : unlockKind === "ucas"
                 ? await getLatestAnonymousUcas(unlockFp)
                 : await getLatestAnonymousEssay(unlockFp);
               // A pack is several reports. One of them opens what the buyer is
@@ -368,8 +368,26 @@ export function registerLemonsqueezyWebhook(app: Express) {
                 await consumePaidEssayCredit(order.userId).catch((creditErr) => {
                   console.warn(`[LemonSqueezy] Report ${rec.id} opened but credit not consumed:`, creditErr);
                 });
+                // A signed-in buyer keeps what they paid for in the account. The device
+                // row alone was lost the moment they signed out, which rotates the device id.
+                if (!buyerIsGuest) {
+                  await createAnalysis({
+                    userId: order.userId,
+                    type: "essay",
+                    essayType: rec.essayType,
+                    subject: rec.subject,
+                    researchQuestion: rec.researchQuestion,
+                    resultJson: rec.resultJson,
+                    predictedGrade: rec.predictedGrade,
+                    unlocked: true,
+                    unlockedAt: new Date(),
+                    unlockOrderId: order.id,
+                    examSession: (rec as any).examSession ?? null,
+                    adoptedFromId: rec.id,
+                  }).catch((copyErr) => console.warn(`[LemonSqueezy] Account copy of ${rec.id} failed:`, copyErr));
+                }
                 console.log(`[LemonSqueezy] Anonymous report ${rec.id} unlocked for order ${order.id}`);
-              } else if (!rec) {
+              } else if (!rec && unlockIntent) {
                 console.warn(`[LemonSqueezy] No anonymous report for fingerprint on order ${order.id}; credits left on the account`);
               }
             } catch (unlockErr) {
@@ -547,6 +565,14 @@ export async function createLemonsqueezyCheckout(
   returnTo?: string,
   /** A signed-in buyer's locked account report, opened when the payment lands. */
   unlockAnalysisId?: number,
+  /**
+   * The buyer is paying for the locked preview on the page in front of them. Without
+   * this a purchase only adds reports: a pack bought from the pricing page used to
+   * open whatever old preview happened to sit on the device.
+   */
+  unlockPreview?: boolean,
+  /** No account: the reports wait on the device, so the buyer goes back to the page. */
+  isGuest?: boolean,
 ): Promise<{ checkoutUrl: string }> {
   const slug = productSlug || "essay_single";
   const baseUrl = LEMONSQUEEZY_BUY_URLS[slug];
@@ -559,6 +585,7 @@ export async function createLemonsqueezyCheckout(
   url.searchParams.set("checkout[custom][order_id]", orderId);
   if (unlockFingerprint) {
     url.searchParams.set("checkout[custom][unlock_fp]", unlockFingerprint);
+    if (unlockPreview) url.searchParams.set("checkout[custom][unlock_preview]", "1");
     // Essay reports and UCAS reviews live in the same table. Without this the
     // webhook opens whichever row is newer, which is not what was bought.
     url.searchParams.set("checkout[custom][unlock_kind]", returnTo === "ucas-personal-statement" ? "ucas" : "essay");
@@ -571,12 +598,14 @@ export async function createLemonsqueezyCheckout(
   }
   // A guest has no dashboard to come back to. Send them to the report they paid for.
   // A signed-in buyer of a named report goes to that report.
+  const page = returnTo === "ucas-personal-statement" ? "ucas-personal-statement" : "essay";
+  const opensReport = !!unlockAnalysisId || (!!unlockFingerprint && !!unlockPreview);
   const landing = unlockAnalysisId
     ? `dashboard/analysis/${unlockAnalysisId}`
-    : unlockFingerprint ? (returnTo === "ucas-personal-statement" ? "ucas-personal-statement" : "essay") : "dashboard";
+    : unlockFingerprint && (unlockPreview || isGuest) ? page : "dashboard";
   url.searchParams.set(
     "checkout[redirect_url]",
-    `https://iblens.com/${landing}?payment=success&order=${orderId}&product=${slug}&value=${((valueUsd ?? 0) / 100).toFixed(2)}&method=lemonsqueezy`,
+    `https://iblens.com/${landing}?payment=success&opened=${opensReport ? "1" : "0"}&order=${orderId}&product=${slug}&value=${((valueUsd ?? 0) / 100).toFixed(2)}&method=lemonsqueezy`,
   );
 
   console.log(`[LemonSqueezy] Direct checkout URL built for order ${orderId}, product ${slug}`);

@@ -189,7 +189,7 @@ export default function Dashboard() {
         <CardContent>
           <div className="grid sm:grid-cols-3 gap-4">
             <div className="border border-border rounded-lg p-4 text-center">
-              <h4 className="font-semibold text-sm mb-1">1 Full Report</h4>
+              <h4 className="font-semibold text-sm mb-1">Full report</h4>
               <div style={SERIF} className="text-xl font-bold my-2">{PRICE_LABELS.ESSAY_SINGLE}</div>
               <Button
                 size="sm"
@@ -198,12 +198,12 @@ export default function Dashboard() {
                 onClick={() => handleBuy("ESSAY_SINGLE")}
               >
                 <CreditCard className="w-3 h-3 mr-1.5" />
-                Buy Now
+                Buy
               </Button>
             </div>
 
             <div className="border border-border rounded-lg p-4 text-center">
-              <h4 className="font-semibold text-sm mb-1">5 Full Reports</h4>
+              <h4 className="font-semibold text-sm mb-1">5 reports</h4>
               <div style={SERIF} className="text-xl font-bold my-1">{PRICE_LABELS.ESSAY_PACK_5}</div>
               <p className="text-xs text-muted-foreground mb-2">$5.00 each</p>
               <Button
@@ -213,15 +213,15 @@ export default function Dashboard() {
                 onClick={() => handleBuy("ESSAY_PACK_5")}
               >
                 <CreditCard className="w-3 h-3 mr-1.5" />
-                Buy Now
+                Buy
               </Button>
             </div>
 
             <div className="border-2 border-primary rounded-lg p-4 text-center relative">
               <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-primary text-primary-foreground text-[10px] font-semibold rounded-full">
-                Best Value
+                Lowest price per report
               </div>
-              <h4 className="font-semibold text-sm mb-1">10 Full Reports</h4>
+              <h4 className="font-semibold text-sm mb-1">10 reports</h4>
               <div style={SERIF} className="text-xl font-bold my-1">{PRICE_LABELS.ESSAY_PACK_10}</div>
               <p className="text-xs text-muted-foreground mb-2">$4.50 each</p>
               <Button
@@ -230,7 +230,7 @@ export default function Dashboard() {
                 onClick={() => handleBuy("ESSAY_PACK_10")}
               >
                 <CreditCard className="w-3 h-3 mr-1.5" />
-                Buy Now
+                Buy
               </Button>
             </div>
 
@@ -279,11 +279,7 @@ export default function Dashboard() {
               {history.map((item) => (
                 <div key={item.id} className="flex items-center gap-3 border-b border-border last:border-0">
                 <Link
-                  href={
-                    item.essayType === "UCAS"
-                      ? "/ucas-personal-statement"
-                      : `/dashboard/analysis/${item.id}`
-                  }
+                  href={`/dashboard/analysis/${item.id}`}
                   className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors flex-1 min-w-0 cursor-pointer"
                 >
                   <div className="flex-1 min-w-0">
@@ -295,7 +291,7 @@ export default function Dashboard() {
                           : `University Strategy, ${item.fieldOfStudy || "Unknown"}`}
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      {new Date(item.createdAt).toLocaleDateString()}
+                      {new Date(item.createdAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
                       {item.unlocked ? " · Open report" : " · Preview only"}
                     </p>
                   </div>
@@ -340,7 +336,7 @@ export default function Dashboard() {
               <Loader2 className="w-6 h-6 animate-spin text-muted-foreground" />
             </div>
           ) : orders.length === 0 ? (
-            <p className="text-muted-foreground text-sm text-center py-6">No purchases yet, your order history will appear here after your first purchase.</p>
+            <p className="text-muted-foreground text-sm text-center py-6">No purchases yet. Your orders will appear here after your first purchase.</p>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -356,11 +352,11 @@ export default function Dashboard() {
                 <tbody>
                   {orders.map((o) => (
                     <tr key={o.id} className="border-b last:border-0 hover:bg-muted/50">
-                      <td className="py-3 pr-3">{new Date(o.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</td>
+                      <td className="py-3 pr-3">{new Date(o.createdAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</td>
                       <td className="py-3 pr-3 font-medium">
-                        {o.sku === "essay_single" ? "Single Essay Analysis"
-                          : o.sku === "essay_pack_5" ? "5-Pack Essays"
-                          : o.sku === "essay_pack_10" ? "10-Pack Essays"
+                        {o.sku === "essay_single" ? "Full report"
+                          : o.sku === "essay_pack_5" ? "5 reports"
+                          : o.sku === "essay_pack_10" ? "10 reports"
                           : "University Strategy Report"}
                       </td>
                       <td className="py-3 pr-3">${(o.amountUsd / 100).toFixed(2)}</td>

@@ -130,7 +130,7 @@ export default function IBPsychologyExtendedEssay() {
         result has been reproduced, at what scale, and in which populations, rather
         than treating one dated experiment as settled fact. Balance older
         foundational work with more recent research where you can. And keep pop
-        psychology out entirely: recycled myths such as "we only use ten percent of
+        psychology out entirely: recycled myths such as "we only use ten per cent of
         our brains", or personality claims from online quizzes, tell an examiner that
         the essay cannot separate evidence from folklore.
       </p>
@@ -148,8 +148,8 @@ export default function IBPsychologyExtendedEssay() {
       <h2>Frequently Asked Questions</h2>
       <h3>Can I run my own experiment for a Psychology EE?</h3>
       <p>
-        The Psychology EE is expected to be based on published research rather than
-        your own data collection. Your originality comes from the argument you build:
+        No. A Psychology EE must be based on secondary sources only, and collecting
+        primary data is not permitted. Your originality comes from the argument you build:
         how you select, compare and evaluate existing studies to answer a focused
         question.
       </p>

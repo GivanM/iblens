@@ -120,7 +120,8 @@ export default function IBEnglishExtendedEssay() {
         summary, and it should be cut or converted into analysis.
       </p>
       <p>
-        Secondary criticism is welcome but optional, and it must sharpen your
+        Secondary criticism is required: the guide asks you to integrate a review of
+        existing criticism on your topic into the essay. It must sharpen your
         argument rather than replace it. Use critics to position your reading, to
         show what you are agreeing with, refining or pushing against, and then
         return to the primary text for the evidence. An essay stitched together
@@ -135,7 +136,7 @@ export default function IBEnglishExtendedEssay() {
         <li><strong>Plot summary:</strong> retelling the story between quotations, one of the most common reasons English EEs fall out of the top bands.</li>
         <li><strong>Device-spotting:</strong> naming techniques ("Shakespeare uses metaphor") without analysing their effect on meaning. Identification is not analysis.</li>
         <li><strong>The biography detour:</strong> explaining the text through the author's life and times instead of through the text itself. Context should serve the reading, not substitute for it.</li>
-        <li><strong>Too many texts:</strong> three or four works surveyed thinly, when the criteria reward sustained depth on one or two.</li>
+        <li><strong>Too many long works:</strong> three or four novels or plays surveyed thinly in 4,000 words, when depth on one or two would carry the argument. Short stories and poems are different: the guide notes that three or four can be the right body of work.</li>
         <li><strong>Study-guide voice:</strong> reproducing standard readings from revision sites rather than building an interpretation from your own close reading.</li>
         <li><strong>Ignoring form:</strong> writing only about themes and characters while saying nothing about narration, structure or style, which are what make it a literary essay.</li>
       </ul>

@@ -9,7 +9,7 @@ export default function IBChemistryIAExamples() {
       description="IB Chemistry IA investigation types that work, how to handle uncertainties and data processing, and what the Evaluation criterion actually asks for."
       canonical="/resources/ib-chemistry-ia-examples"
       datePublished="2026-06-09"
-      dateModified="2026-06-09"
+      dateModified="2026-09-13"
     >
       <p>
         The IB Chemistry Internal Assessment is a 10-hour scientific investigation
@@ -155,7 +155,7 @@ export default function IBChemistryIAExamples() {
           { criterion: "Research design", typical: "The method is lifted from a standard class practical and the variables are simply listed.", top: "The method is justified for this specific question: why this range, this many trials, these controls." },
           { criterion: "Data analysis", typical: "Raw data is tabulated and a mean is plotted; uncertainties appear once and are then forgotten.", top: "Uncertainties are propagated through the processing, and the processing chosen is the one that actually tests the hypothesis." },
           { criterion: "Conclusion", typical: "\u201cThe hypothesis was supported\u201d, with no reference to how strongly.", top: "The conclusion is stated with its uncertainty and compared against accepted values or published work." },
-          { criterion: "Evaluation", typical: "Generic weaknesses: human error, not enough time, more trials next time.", top: "Specific weaknesses, each with its direction of effect on the result, and improvements that would actually be workable." },
+          { criterion: "Evaluation", typical: "Generic weaknesses: human error, not enough time, more trials next time.", top: "The relative impact of specific methodological weaknesses explained, with realistic improvements that address them explained." },
         ]}
       />
 

@@ -135,13 +135,13 @@ export default function IBEEExamplesBySubject() {
         under what conditions does the model break down?"
       </p>
       <p>
-        Maths EEs succeed when the mathematics is used with real understanding rather
+        Math EEs succeed when the mathematics is used with real understanding rather
         than reproduced, when the investigation is genuine (the student tests the model
         rather than only deriving it), and when the limitations of the model are analysed
         mathematically rather than vaguely noted.
       </p>
       <p>
-        Common failure: a Maths EE that merely solves textbook problems and presents
+        Common failure: a Math EE that merely solves textbook problems and presents
         correct answers without any analysis or exploration of where the mathematics
         comes from or where it breaks down. The exploration must feel like investigation,
         not a worked-solutions exercise.

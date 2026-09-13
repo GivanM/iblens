@@ -17,7 +17,7 @@ export default function ExtendedEssayGuide() {
       </p>
 
       <p>
-        The Extended Essay (EE) is one of the three core requirements of the IB Diploma Programme, alongside Theory of Knowledge and CAS. It is a 4,000-word independent research paper that asks students to investigate a topic of personal interest within one of the IB subject areas. For many students, the EE represents their first experience with sustained academic research, and it contributes up to 3 bonus points toward the IB Diploma when combined with the TOK grade.
+        The Extended Essay (EE) is one of the three core requirements of the IB Diploma Programme, alongside Theory of Knowledge and CAS. It is a 4,000-word independent research paper that asks students to investigate a topic of personal interest within one of the IB subject areas. For many students, the EE represents their first experience with sustained academic research, and it contributes up to 3 bonus points towards the IB Diploma when combined with the TOK grade.
       </p>
 
       <p>
@@ -74,7 +74,7 @@ export default function ExtendedEssayGuide() {
         <li><strong>Answerable within 4,000 words:</strong> If the question requires a book-length answer, it is too broad</li>
         <li><strong>Researchable:</strong> Sufficient primary and secondary sources must be available</li>
         <li><strong>Analytical, not descriptive:</strong> Questions beginning with "To what extent," "How far," or "Evaluate" tend to produce better arguments than "What" or "Describe" questions</li>
-        <li><strong>Connected to a subject area:</strong> The RQ must clearly fit within one IB subject's methodology and assessment criteria</li>
+        <li><strong>Connected to a subject area:</strong> The RQ must fit the methodology of your chosen subject, or of both subjects in an interdisciplinary essay</li>
       </ul>
 
       <p>

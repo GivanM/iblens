@@ -27,5 +27,6 @@ export type PaymentMethod = "lemonsqueezy" | "nowpayments" | "tribute";
 export type AuthMethod = "email" | "google" | "manus_oauth";
 
 // ─── Consent state keys ─────────────────────────────────────────────────────
-export const CONSENT_STORAGE_KEY = "iblens_consent";
+// v2: choices under the old key include consent the site granted without asking.
+export const CONSENT_STORAGE_KEY = "iblens_consent_v2";
 export type ConsentState = "granted" | "denied" | "pending";

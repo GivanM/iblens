@@ -1,5 +1,6 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
 import { Link } from "wouter";
+import { DiplomaCalculator } from "@/components/DiplomaCalculator";
 
 export default function IBScoreCalculator() {
   return (
@@ -8,12 +9,14 @@ export default function IBScoreCalculator() {
       description="How the 45-point IB Diploma score is calculated: subject grades, the EE and TOK bonus matrix, grade boundaries, and the totals universities ask for."
       canonical="/resources/ib-score-calculator"
       datePublished="2026-06-06"
-      dateModified="2026-06-06"
+      dateModified="2026-09-13"
     >
       <h1>IB Score Calculator & Grade Boundaries: The Complete Guide</h1>
       <h2>How IB Scoring Works: The 45-Point System Explained</h2>
       <p>Every IB diploma candidate takes six subjects, three or four at Higher Level and the rest at Standard Level. Each subject is graded on a scale of 1 to 7, giving a raw maximum of 42 subject points. The remaining 3 points come from the core: Theory of Knowledge (TOK) and the Extended Essay (EE) together award between 0 and 3 bonus points.</p>
       <p><strong>Maximum total: 6 subjects × 7 points = 42 + 3 bonus points = 45 points.</strong></p>
+
+      <DiplomaCalculator />
 
       <h2>How to Calculate Your Predicted IB Score Step by Step</h2>
       <ol>
@@ -89,7 +92,7 @@ export default function IBScoreCalculator() {
       <p>A finding of academic misconduct leads to no grade being awarded for the subject or requirement concerned.</p>
 
       <h2>Improve Your Essay Scores, Improve Your Diploma Total</h2>
-      <p>The Extended Essay and the TOK essay decide your bonus points between them, and a weak draft usually also shapes the grade your supervisor predicts. Both are still in your hands while you are drafting.</p>
+      <p>Your Extended Essay grade and your TOK grade decide your bonus points between them (the TOK grade combines the essay, two-thirds, and the exhibition, one-third), and a weak draft usually also shapes the grade your teachers predict. Both are still in your hands while you are drafting.</p>
       <p><Link href="/essay">IBLens reads your essay against the assessment criteria and shows which criterion is losing you the most marks →</Link></p>
       <h2>Related tools</h2>
 

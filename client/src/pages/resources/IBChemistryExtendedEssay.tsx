@@ -18,7 +18,8 @@ export default function IBChemistryExtendedEssay() {
       </p>
       <p>
         The IB Chemistry Extended Essay (EE) is a 4,000-word independent research
-        paper that requires original investigation of a chemistry topic. Its grade,
+        paper built on a focused investigation of a chemistry topic, using primary data
+        from your own experiments or secondary data from databases and the literature. Its grade,
         combined with your TOK grade, decides up to three bonus points on your Diploma
         score, and it shows the kind of analytical thinking university chemistry
         courses value.
@@ -32,11 +33,12 @@ export default function IBChemistryExtendedEssay() {
         Chemistry lends itself naturally to the EE because it produces measurable,
         quantitative data and connects directly to existing peer-reviewed literature.
         Unlike subjects where the research question is more open-ended (such as
-        history or literature), a Chemistry EE research question has a clear
-        experimental design and a specific dependent variable to measure. This
+        history or literature), a Chemistry EE research question has a clear method:
+        an experimental design with a specific dependent variable, or a well-defined
+        set of published data to analyse. This
         makes the framework (Criterion A) and the analysis and discussion (Criteria C and D)
-        more straightforward to address, provided you design your experiment
-        rigorously and compare your results with published values.
+        more straightforward to address, provided the method is rigorous and you
+        compare your results with published values.
       </p>
 
       <h2>Choosing a Research Question for Chemistry EE</h2>

@@ -132,12 +132,12 @@ export default function EssayCriteriaExplained() {
           <tr>
             <td><strong>Structure</strong></td>
             <td>Logical organisation with clear paragraphs</td>
-            <td>Sophisticated structure where each section builds on the previous one toward a compelling conclusion</td>
+            <td>Sophisticated structure where each section builds on the previous one towards a compelling conclusion</td>
           </tr>
           <tr>
             <td><strong>Conclusion</strong></td>
             <td>Summarises main points</td>
-            <td>Synthesizes findings into new insight, acknowledges limitations, suggests implications</td>
+            <td>Synthesises findings into new insight, acknowledges limitations, suggests implications</td>
           </tr>
         </tbody>
       </table>

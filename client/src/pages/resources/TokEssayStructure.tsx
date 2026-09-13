@@ -106,7 +106,7 @@ export default function TokEssayStructure() {
         <li><strong>Claims without examples:</strong> abstract claims with no concrete illustration keep an essay out of the upper levels, which describe arguments supported by specific examples.</li>
         <li><strong>No counter-claims:</strong> A claim without a counter-claim keeps the essay in the lower bands of the holistic rubric.</li>
         <li><strong>Restating the title as the conclusion:</strong> your conclusion must go beyond the introduction; it should be the outcome of your analysis, not a rephrasing of your starting position.</li>
-        <li><strong>Headings like "Claim 1:":</strong> no rule forbids headings, but labels like these push an essay toward a formula. Most strong essays read as continuous prose.</li>
+        <li><strong>Headings like "Claim 1:":</strong> no rule forbids headings, but labels like these push an essay towards a formula. Most strong essays read as continuous prose.</li>
       </ul>
 
       <h2>Check Your Structure With IBLens</h2>
