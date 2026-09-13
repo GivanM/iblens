@@ -76,7 +76,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        <strong>Specific feedback:</strong> rather than generic advice like "improve your analysis", the feedback refers to what is actually in your essay. For example: "In paragraph 3, you describe the results of the experiment but do not explain why the trend occurs. Adding a theoretical explanation connecting your results to [relevant theory] would strengthen Criterion C."
+        <strong>Specific feedback:</strong> rather than generic advice like "improve your analysis", the feedback refers to what is actually in your essay. For example: "In paragraph 3, you describe the results of the experiment but do not explain why the trend occurs. Explaining the trend with the enzyme kinetics you cite in your background section would strengthen your conclusion."
       </p>
 
       <p>
@@ -86,7 +86,7 @@ export default function HowIBLensWorks() {
       <h2>Limitations and What AI Can and Cannot Do</h2>
 
       <p>
-        We believe in being transparent about what IBLens can and cannot do. No AI tool is a perfect substitute for human judgment, and understanding the limitations helps you use the tool effectively:
+        We believe in being transparent about what IBLens can and cannot do. No AI tool is a perfect substitute for human judgement, and understanding the limitations helps you use the tool effectively:
       </p>
 
       <h3>What the report looks for</h3>
@@ -136,7 +136,7 @@ export default function HowIBLensWorks() {
           <tr>
             <th>Plan</th>
             <th>Price</th>
-            <th>Per Analysis</th>
+            <th>Per report</th>
             <th>Best For</th>
           </tr>
         </thead>
@@ -169,7 +169,7 @@ export default function HowIBLensWorks() {
       </table>
 
       <p>
-        All purchases include a <Link href="/refund-policy" className="text-primary hover:underline">7-day money-back guarantee</Link>. If you are not satisfied with the analysis quality, email glushkovim@gmail.com within 7 days for a full refund.
+        All purchases include a <Link href="/refund-policy" className="text-primary hover:underline">7-day money-back guarantee</Link>. For any reason, within 7 days of purchase, email glushkovim@gmail.com within 7 days for a full refund.
       </p>
 
       <p>
@@ -217,7 +217,7 @@ export default function HowIBLensWorks() {
 
       <h3>IBLens</h3>
       <p>
-        <strong>Pros:</strong> fast (about a minute), criterion by criterion, affordable, two free re-checks with each report, available at any hour.
+        <strong>Pros:</strong> fast (about a minute), against the published criteria, affordable, two free re-checks with each report, available at any hour.
         </p>
         <p>
           <strong>Cons:</strong> an estimate from a language model, not a moderated mark; cannot verify factual accuracy, replace subject expertise or assess practical work.

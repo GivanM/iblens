@@ -92,7 +92,7 @@ type EssayResult = {
 };
 
 
-function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, analysisId, onUnlocked, onBuy, essayText }: any) {
+function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, analysisId, onUnlocked, onBuy, essayText, deviceCredits = 0, onDeviceUnlock, deviceUnlocking }: any) {
   const unlock = trpc.essay.unlockAnalysis.useMutation({
     onSuccess: (d: any) => onUnlocked(d.result),
     onError: (e: any) => toast.error(e.message || "Unlock failed"),
@@ -154,11 +154,16 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
           </p>
         </div>
         <div className="rounded-lg bg-primary/5 border border-primary/30 p-4">
-          {!isAuthenticated ? (
+          {!isAuthenticated && deviceCredits > 0 && !analysisId ? (
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              <p className="text-sm flex-1"><strong className="text-foreground">This browser has {deviceCredits} paid {deviceCredits === 1 ? "report" : "reports"}.</strong> Open this one in full with one of them.</p>
+              <Button disabled={deviceUnlocking} onClick={onDeviceUnlock}>{deviceUnlocking ? "Unlocking…" : "Unlock the full report (uses 1 paid report)"}</Button>
+            </div>
+          ) : !isAuthenticated ? (
             <div className="space-y-2">
               <div className="flex flex-col sm:flex-row items-center gap-3">
                 <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report, $9.99.</strong> No account needed: pay with your email and it opens straight away, with two free re-checks of revised versions of this work within 14 days of it opening.</p>
-                <Button onClick={onBuy}>Buy &amp; unlock, $9.99</Button>
+                <Button className="min-h-11" onClick={onBuy}>Buy &amp; unlock, $9.99</Button>
               </div>
               <p className="text-xs text-muted-foreground">
                 Prefer to keep everything in one place? <a href={getLoginUrl()} className="underline">Sign in first</a> and the report is saved to your account.
@@ -172,7 +177,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
           ) : (
             <div className="flex flex-col sm:flex-row items-center gap-3">
               <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report, $9.99.</strong> Your predicted mark, comments on every criterion, your ranked fix list, and two free re-checks of revised versions of this work within 14 days, so you can see whether your edits landed.</p>
-              <Button onClick={onBuy}>Buy &amp; unlock, $9.99</Button>
+              <Button className="min-h-11" onClick={onBuy}>Buy &amp; unlock, $9.99</Button>
             </div>
           )}
         </div>
@@ -226,9 +231,18 @@ export default function EssayAnalyzer() {
   // The difference decides what the payment opens, so every button says which it is.
   const [buyFor, setBuyFor] = useState<"preview" | "new">("new");
   const [buyLabel, setBuyLabel] = useState<string | null>(null);
-  const openBuy = (kind: "preview" | "new", label: string | null = null) => {
+  const [buyKind, setBuyKind] = useState<"essay" | "tok">("essay");
+  // The work the report on screen belongs to, fixed when it was produced or reopened.
+  // Reading the form instead named the wrong work after the task was switched.
+  const [resultWork, setResultWork] = useState<{ label: string; kind: "essay" | "tok" } | null>(null);
+  const formWork = () => ({
+    label: [essayType === "EE" ? "Extended Essay" : essayType === "TOK" ? "TOK essay" : essayType === "TOK Exhibition" ? "TOK exhibition" : "IA", essayType === "TOK" || essayType === "TOK Exhibition" ? null : subject].filter(Boolean).join(", "),
+    kind: (essayType === "TOK" || essayType === "TOK Exhibition" ? "tok" : "essay") as "essay" | "tok",
+  });
+  const openBuy = (kind: "preview" | "new", label: string | null = null, work: "essay" | "tok" = "essay") => {
     setBuyFor(kind);
     setBuyLabel(label);
+    setBuyKind(work);
     setEssayPurchaseOpen(true);
   };
   const resultRef = useRef<HTMLDivElement | null>(null);
@@ -325,7 +339,8 @@ export default function EssayAnalyzer() {
   const paidReportQ = trpc.essay.anonymousReport.useQuery(
     { fingerprint: anonFp },
     {
-      enabled: paidReturn && paidOpens && !isAuthenticated && !result,
+      // Signed-in buyers of a preview saved on this device come back here too.
+      enabled: paidReturn && paidOpens && !result,
       // Stop after two minutes rather than spinning for ever: if the payment has
       // not arrived by then, something is wrong and the reader needs to be told.
       refetchInterval: (d: any) => (d?.unlocked || waitedFor > 120000 ? false : 4000),
@@ -456,6 +471,8 @@ export default function EssayAnalyzer() {
 
     const wordCount = essayText.split(/\s+/).filter(Boolean).length;
     const isFreeFirst = !isAuthenticated ? canAnonAnalyze : (credits?.freeEssayAvailable === true);
+    // The report that comes back belongs to what was submitted, whatever the form shows later.
+    setResultWork(formWork());
     trackEssayUploadStarted(subject, essayType);
     trackEssaySubmitted(subject, essayType, wordCount, !!isFreeFirst);
     analytics.startEssayAnalysis(subject);
@@ -532,14 +549,14 @@ export default function EssayAnalyzer() {
     <div className="container py-12 max-w-4xl mx-auto">
       <SEOHead
         title="IB Essay Grader: AI Feedback on IA, Extended Essay and TOK | IBLens"
-        description="AI feedback on your IB Internal Assessment, Extended Essay or TOK work in 14 subjects: a free preview with your band range and weakest criterion, then a full criterion-by-criterion report."
+        description="AI feedback on your IB Internal Assessment, Extended Essay or TOK work in 14 subjects: a free preview with your band range and weakest criterion, then a full report against the published criteria."
         canonical="/essay"
       />
       <div className="mb-10">
         <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3">Essay Grader</p>
         <h1 style={SERIF} className="text-4xl font-bold mb-3">IB Essay Grader</h1>
         <p className="text-muted-foreground text-lg max-w-2xl">
-          AI feedback on your Extended Essay, IA or TOK work in about a minute, criterion by criterion, with a predicted score.
+          AI feedback on your Extended Essay, IA or TOK work in about a minute, against the published criteria, with an estimated mark.
         </p>
       </div>
 
@@ -555,7 +572,7 @@ export default function EssayAnalyzer() {
             </div>
             <div className="flex flex-col sm:flex-row gap-2">
               {lockedPreview.preview && (
-                <Button variant="outline" className="min-h-11 h-auto whitespace-normal" onClick={() => setResult(lockedPreview.preview as EssayResult)}>
+                <Button variant="outline" className="min-h-11 h-auto whitespace-normal" onClick={() => { setResultWork({ label: lockedLabel || "", kind: lockedPreview.essayType === "TOK" || lockedPreview.essayType === "TOK Exhibition" ? "tok" : "essay" }); setResult(lockedPreview.preview as EssayResult); }}>
                   Reopen my free preview
                 </Button>
               )}
@@ -568,8 +585,8 @@ export default function EssayAnalyzer() {
                   {deviceUnlock.isPending ? "Unlocking…" : "Unlock the full report (uses 1 paid report)"}
                 </Button>
               ) : (
-                <Button className="min-h-11 h-auto whitespace-normal" onClick={() => openBuy("preview", lockedLabel)}>
-                  Unlock the full report, {PRICE_LABELS.ESSAY_SINGLE}
+                <Button className="min-h-11 h-auto whitespace-normal" onClick={() => openBuy("preview", lockedLabel, lockedPreview.essayType === "TOK" || lockedPreview.essayType === "TOK Exhibition" ? "tok" : "essay")}>
+                  Unlock this {lockedLabel || "preview"} in full, {PRICE_LABELS.ESSAY_SINGLE}
                 </Button>
               )}
             </div>
@@ -635,9 +652,10 @@ export default function EssayAnalyzer() {
           </div>
 
           <div className="space-y-2">
-            <Label>{essayType === "TOK Exhibition" ? "Your exhibition prompt (one of the 35 prompts in the TOK guide)" : essayType === "TOK" ? "Prescribed title" : "Research question or title"}</Label>
+            <Label htmlFor="rq-input">{essayType === "TOK Exhibition" ? "Your exhibition prompt (one of the 35 prompts in the TOK guide)" : essayType === "TOK" ? "Prescribed title" : "Research question or title (optional)"}</Label>
             <Input
-              placeholder={essayType === "TOK Exhibition" ? "e.g. What counts as knowledge?" : essayType === "TOK" ? "The prescribed title, copied exactly" : "Your research question, as it appears on your title page"}
+              id="rq-input"
+              placeholder={essayType === "TOK Exhibition" ? "e.g. What counts as knowledge?" : essayType === "TOK" ? "The prescribed title, copied exactly" : "Your research question or title"}
               value={researchQuestion}
               onChange={(e) => setResearchQuestion(e.target.value)}
             />
@@ -678,8 +696,9 @@ export default function EssayAnalyzer() {
                 <strong>Re-checking a report you bought.</strong> Paste the revised version of the same work below. This re-check is free and does not use a paid report.
               </div>
             )}
-            <Label>{essayType === "TOK Exhibition" ? "Paste your commentary on all three objects" : essayType === "TOK" ? "Paste your TOK essay" : essayType === "EE" ? "Paste your Extended Essay" : "Paste your work"}</Label>
+            <Label htmlFor="essay-text">{essayType === "TOK Exhibition" ? "Paste your commentary on all three objects" : essayType === "TOK" ? "Paste your TOK essay" : essayType === "EE" ? "Paste your Extended Essay" : "Paste your work"}</Label>
             <Textarea
+              id="essay-text"
               placeholder={essayType === "TOK Exhibition" ? "Paste your commentary for all three objects, including how each links to the prompt." : "Paste the full text of your work here. A short extract can be marked, but the report is only as good as what it sees. Anything past 30,000 characters, about 5,000 words, is not passed to the AI or marked."}
               rows={10}
               value={essayText}
@@ -695,8 +714,14 @@ export default function EssayAnalyzer() {
             {essayType === "TOK Exhibition" && (
               <p className="text-xs text-muted-foreground">Up to 950 words across the three commentaries. Images are not read, so say in each commentary what the object is.</p>
             )}
+            {essayType === "TOK" && (
+              <p className="text-xs text-muted-foreground">Up to 1,600 words. Examiners stop reading at the limit.</p>
+            )}
+            {essayType === "IA" && subject === "Economics" && (
+              <p className="text-xs text-muted-foreground">Paste one commentary at a time, up to 800 words each. Each commentary is its own report.</p>
+            )}
             <p className="text-xs text-muted-foreground">
-              Your text passes through our relay server to Anthropic, which marks it. IBLens never saves the text itself, and Anthropic deletes it within 30 days. The report is saved and can quote short passages: without an account it is deleted after 90 days unless you buy it, and in an account it stays until you delete it. <Link href="/privacy" className="underline">Privacy</Link>
+              Your text passes through our relay server to Anthropic, which marks it. IBLens never saves the text itself, and Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. The report is saved and can quote short passages: without an account it is deleted after 90 days unless you buy it, and in an account it stays until you delete it. <Link href="/privacy" className="underline">Privacy</Link>
             </p>
           </div>
 
@@ -738,8 +763,8 @@ export default function EssayAnalyzer() {
             </div>
           )}
 
-          {/* Paid guest, waiting for the webhook */}
-          {paidReturn && paidOpens && !isAuthenticated && !result && (
+          {/* Paid, waiting for the webhook */}
+          {paidReturn && paidOpens && !result && (
             <div className="text-sm p-3 rounded-lg bg-primary/5 border border-primary/30 flex items-center gap-2">
               <Loader2 className="w-4 h-4 flex-shrink-0 animate-spin" />
               <span>
@@ -834,7 +859,9 @@ export default function EssayAnalyzer() {
               <CreditCard className="w-4 h-4 mr-2" />
               {anonUnlocked
                 ? `Mark a different piece of work (${PRICE_LABELS.ESSAY_SINGLE})`
-                : `Buy a report to mark this work (${PRICE_LABELS.ESSAY_SINGLE})`}
+                : essayText.trim()
+                  ? `Buy a report to mark this work (${PRICE_LABELS.ESSAY_SINGLE})`
+                  : `Buy a report (${PRICE_LABELS.ESSAY_SINGLE})`}
             </Button>
           )}
 
@@ -850,6 +877,11 @@ export default function EssayAnalyzer() {
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                     {analyzingLabel}
+                  </>
+                ) : rerunId ? (
+                  <>
+                    <FileText className="w-4 h-4 mr-2" />
+                    Re-check the revised version (free)
                   </>
                 ) : !credits?.canAnalyzeEssay ? (
                   <>
@@ -878,6 +910,7 @@ export default function EssayAnalyzer() {
             analysisId={isAuthenticated && buyFor === "preview" ? lastAnalysisId : null}
             unlocksPreview={buyFor === "preview"}
             previewLabel={buyFor === "preview" ? buyLabel : null}
+            kind={buyFor === "preview" ? buyKind : undefined}
           />
           <p className="text-xs text-muted-foreground text-center">
             IBLens is independent of the International Baccalaureate and not endorsed by it. Every mark is an AI estimate, not an IB mark.{" "}
@@ -927,7 +960,7 @@ export default function EssayAnalyzer() {
             {[
               { name: "Criterion A: Integration of a key concept", score: 3, max: 5, color: "bg-amber-500" },
               { name: "Criterion B: Supporting documents", score: 3, max: 4, color: "bg-emerald-500" },
-              { name: "Criterion C: Tools and theories", score: 3, max: 4, color: "bg-amber-500" },
+              { name: "Criterion C: Selection and application of tools and theories", score: 3, max: 4, color: "bg-amber-500" },
               { name: "Criterion D: Analysis and evaluation", score: 2, max: 5, color: "bg-red-500" },
               { name: "Criterion E: Conclusions", score: 2, max: 3, color: "bg-emerald-500" },
               { name: "Criterion F: Structure", score: 2, max: 2, color: "bg-emerald-500" },
@@ -951,7 +984,7 @@ export default function EssayAnalyzer() {
               <p className="text-xs font-semibold uppercase tracking-wider text-red-600 mb-2">Losing Marks</p>
               <div className="space-y-2">
                 <div className="p-3 bg-red-50 border-l-2 border-red-400 rounded-r text-sm">
-                  <strong>Weak analysis depth:</strong> Criterion D needs the business tools applied to the evidence in your supporting documents.
+                  <strong>Thin use of the documents:</strong> Criterion D needs the data in your supporting documents used to analyse and evaluate the research question.
                 </div>
                 <div className="p-3 bg-red-50 border-l-2 border-red-400 rounded-r text-sm">
                   <strong>Conclusion gap:</strong> your conclusions don't fully answer the research question.
@@ -962,7 +995,7 @@ export default function EssayAnalyzer() {
               <p className="text-xs font-semibold uppercase tracking-wider text-emerald-600 mb-2">Quick Wins</p>
               <div className="space-y-2">
                 <div className="p-3 bg-emerald-50 border-l-2 border-emerald-400 rounded-r text-sm">
-                  <strong>+2 marks possible:</strong> weigh the options with one more business tool, applied to your documents.
+                  <strong>+2 marks possible:</strong> bring figures from your supporting documents into the evaluation of each option.
                 </div>
                 <div className="p-3 bg-emerald-50 border-l-2 border-emerald-400 rounded-r text-sm">
                   <strong>Easy fix:</strong> answer your research question explicitly in the conclusion.
@@ -986,7 +1019,7 @@ export default function EssayAnalyzer() {
       {result && (
         <div ref={resultRef} className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 scroll-mt-20">
           {(result as any).locked ? (
-            <LockedTeaser essayText={essayText} result={result} isAuthenticated={isAuthenticated} hasPaidCredit={(credits?.essayCredits ?? 0) > 0} fingerprint={anonFp} analysisId={lastAnalysisId} onUnlocked={(full: any) => setResult(full as EssayResult)} onBuy={() => openBuy("preview", [typeLabel(essayType), essayType === "TOK" || essayType === "TOK Exhibition" ? null : subject].filter(Boolean).join(", "))} />
+            <LockedTeaser essayText={essayText} result={result} isAuthenticated={isAuthenticated} hasPaidCredit={(credits?.essayCredits ?? 0) > 0} fingerprint={anonFp} analysisId={lastAnalysisId} onUnlocked={(full: any) => setResult(full as EssayResult)} deviceCredits={deviceCredits} deviceUnlocking={deviceUnlock.isPending} onDeviceUnlock={() => deviceUnlock.mutate({ fingerprint: anonFp })} onBuy={() => openBuy("preview", resultWork?.label ?? lockedLabel, resultWork?.kind ?? "essay")} />
           ) : (<>
           {/* Overall Score */}
           <Card>

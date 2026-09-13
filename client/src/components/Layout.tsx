@@ -205,7 +205,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 IB<span className="text-primary">Lens</span>
               </span>
               <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
-                AI-powered IB essay grader for IA, EE and TOK. Criterion-by-criterion feedback in about a minute.
+                AI-powered IB essay grader for IA, EE and TOK. Feedback against the published criteria in about a minute.
               </p>
             </div>
             <nav className="flex flex-wrap gap-x-6 gap-y-2 md:justify-end">
@@ -217,6 +217,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Terms</Link>
               <Link href="/refund-policy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Refund Policy</Link>
               <Link href="/resources/academic-integrity" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Academic Integrity</Link>
+              <button type="button" onClick={() => window.dispatchEvent(new Event("iblens:cookie-settings"))} className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Cookie settings</button>
             </nav>
           </div>
           <div className="mt-8 pt-6 border-t border-border text-xs text-muted-foreground">

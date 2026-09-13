@@ -2,7 +2,7 @@ import type { Express, Request, Response } from "express";
 import express from "express";
 import crypto from "crypto";
 import { ENV } from "../_core/env";
-import { LEMONSQUEEZY_BUY_URLS } from "../../shared/pricing";
+import { LEMONSQUEEZY_BUY_URLS, LEMONSQUEEZY_VARIANTS } from "../../shared/pricing";
 import {
   getOrderById,
   updateOrderStatus,
@@ -29,6 +29,7 @@ import {
   getAnalysisById,
   markAnalysisUnlocked,
   createAnalysis,
+  claimAnonymousUnlock,
 } from "../db";
 import { sendPaymentConfirmationEmail, getSkuHumanName } from "../email";
 import { sendGA4PurchaseEvent } from "../ga4mp";
@@ -70,6 +71,13 @@ function computeHmac(rawBody: string | Buffer, secret: string): string {
 /**
  * Map LemonSqueezy SKU (from variant) to credit amounts.
  */
+/** Our sku for a LemonSqueezy variant id, or null when the variant is not ours. */
+export function skuForVariantId(variantId: number): string | null {
+  if (!variantId) return null;
+  const hit = Object.entries(LEMONSQUEEZY_VARIANTS).find(([, v]) => v === variantId);
+  return hit ? hit[0] : null;
+}
+
 export function lsSkuToCredits(sku: string): { essay: number; university: number } {
   switch (sku) {
     case "essay_single":
@@ -242,7 +250,10 @@ export function registerLemonsqueezyWebhook(app: Express) {
             // Our products are named "Essay Analysis, 10 Pack" and "10 Essay
             // Analyses". LemonSqueezy sends "Default" as the variant name for a
             // product without variants, so fall back to the product name.
-            const guessed = /\b10\b[\s-]*(pack|essay|analys)|pack of 10/.test(variantName) ? 10
+            // The variant id is exact; the name is only a fallback for payloads without it.
+            const paidVariantSku = skuForVariantId(Number(attrs.first_order_item?.variant_id || 0));
+            const guessed = paidVariantSku ? lsSkuToCredits(paidVariantSku).essay
+              : /\b10\b[\s-]*(pack|essay|analys)|pack of 10/.test(variantName) ? 10
               : /\b(5|five)\b[\s-]*(pack|essay|analys)|pack of (5|five)/.test(variantName) ? 5
               : 1;
             if (buyerEmail) {
@@ -289,10 +300,25 @@ export function registerLemonsqueezyWebhook(app: Express) {
             return res.status(200).json({ ok: true, message: "Already processed" });
           }
 
+          // Credit what was paid for. The order id travels in an editable checkout URL,
+          // so an order opened for the 10-pack could be paid on the single-report link;
+          // the variant in the signed payload is the truth.
+          const paidAttrs: any = (body as any)?.data?.attributes || {};
+          const paidVariantId = Number(paidAttrs.first_order_item?.variant_id || 0);
+          const expectedVariantId = LEMONSQUEEZY_VARIANTS[order.sku === "university_single" ? "university_strategy" : order.sku] ?? 0;
+          let creditSku: string = order.sku;
+          if (paidVariantId && expectedVariantId && paidVariantId !== expectedVariantId) {
+            creditSku = skuForVariantId(paidVariantId) ?? "unknown";
+            console.error(`[LemonSqueezy] Order ${order.id} was opened for ${order.sku} but variant ${paidVariantId} (${creditSku}) was paid; crediting what was paid`);
+            if (webhookEventId) {
+              await updateWebhookEvent(webhookEventId, { errorMessage: `variant mismatch: order ${order.sku}, paid variant ${paidVariantId}` }).catch(() => {});
+            }
+          }
+
           // Grant first, mark paid second. The other way round, a failure between
           // them left the order looking settled with nothing handed over, and the
           // duplicate guard then refused every retry.
-          const credits = lsSkuToCredits(order.sku);
+          const credits = lsSkuToCredits(creditSku);
           if (credits.essay > 0 || credits.university > 0) {
             await grantCreditsViaLedger(
               order.userId,
@@ -364,13 +390,22 @@ export function registerLemonsqueezyWebhook(app: Express) {
                 // Open the report first. If the charge against the credit then fails,
                 // the buyer still has what they paid for and we are out one credit,
                 // which is the right way round for the person who just paid.
-                await setAnonymousUnlocked(rec.id, order.id);
-                await consumePaidEssayCredit(order.userId).catch((creditErr) => {
-                  console.warn(`[LemonSqueezy] Report ${rec.id} opened but credit not consumed:`, creditErr);
-                });
+                // Only the call that actually opens the row spends the report. If a
+                // report the device already owned opened it a moment earlier, this
+                // purchase's report goes where the buyer can still use it.
+                const opened = await claimAnonymousUnlock(rec.id, order.id);
+                if (opened) {
+                  await consumePaidEssayCredit(order.userId).catch((creditErr) => {
+                    console.warn(`[LemonSqueezy] Report ${rec.id} opened but credit not consumed:`, creditErr);
+                  });
+                } else if (buyerIsGuest) {
+                  await addDeviceCredits(unlockFp, 1, order.id);
+                  await setOrderDeviceCredits(order.id, toDevice + 1);
+                  await debitAccountCredits(order.userId, 1);
+                }
                 // A signed-in buyer keeps what they paid for in the account. The device
                 // row alone was lost the moment they signed out, which rotates the device id.
-                if (!buyerIsGuest) {
+                if (opened && !buyerIsGuest) {
                   await createAnalysis({
                     userId: order.userId,
                     type: "essay",
@@ -432,7 +467,10 @@ export function registerLemonsqueezyWebhook(app: Express) {
             console.warn("[LemonSqueezy] Email notification failed (non-fatal):", emailErr);
           }
         } else if (eventName === "order_refunded") {
-          if (!orderId) {
+          // An order id we do not hold was credited like a storefront purchase, so its
+          // refund has to be taken back the same way.
+          const refundOrder = orderId ? await getOrderById(orderId) : undefined;
+          if (!orderId || !refundOrder) {
             // A storefront purchase has no order of ours, but it was credited by
             // e-mail, so the refund has to take that back the same way.
             const attrs: any = (body as any)?.data?.attributes || {};
@@ -470,14 +508,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
             return res.status(200).json({ ok: true, message: "No order_id in custom_data" });
           }
 
-          const order = await getOrderById(orderId);
-          if (!order) {
-            console.warn(`[LemonSqueezy Webhook] Order not found for refund: ${orderId}`);
-            if (webhookEventId) {
-              await updateWebhookEvent(webhookEventId, { paymentStatus: "order_not_found", errorMessage: `Refund order not found: ${orderId}` }).catch(() => {});
-            }
-            return res.status(200).json({ ok: true, message: "Order not found" });
-          }
+          const order = refundOrder;
 
           // Deliveries repeat. Without this, a second copy of the same refund
           // clawed back another credit and closed a report belonging to a
@@ -508,8 +539,11 @@ export function registerLemonsqueezyWebhook(app: Express) {
           await relockAnonymousForOrder(order.id).catch((e) =>
             console.warn("[LemonSqueezy] Anonymous re-lock failed:", e));
 
-          // Deduct credits
-          const credits = lsSkuToCredits(order.sku);
+          // Deduct what this order actually granted, as the ledger recorded it: the
+          // paid variant can differ from the order's sku.
+          const priceListCredits = lsSkuToCredits(order.sku);
+          const grantedEssay = await ledgerAmountForOrder(order.id).catch(() => 0);
+          const credits = { essay: grantedEssay > 0 ? grantedEssay : priceListCredits.essay, university: priceListCredits.university };
           if (credits.essay > 0 || credits.university > 0) {
             await grantCreditsViaLedger(
               order.userId,

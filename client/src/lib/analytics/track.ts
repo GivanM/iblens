@@ -150,11 +150,7 @@ export function trackPurchase(
         },
       ],
     },
-    // Enhanced Conversions user data (hashed)
-    user_data: {
-      sha256_email_address: emailHashed,
-      user_id: userIdHashed,
-    },
+    // No user data: the privacy policy promises the order without the buyer's identity.
   });
 
   // Direct Google Ads conversion, fires in parallel with GTM dataLayer push.

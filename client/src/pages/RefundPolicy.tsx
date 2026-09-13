@@ -33,14 +33,14 @@ export default function RefundPolicy() {
           <section>
             <h2 className="text-xl font-semibold mb-3">Refund Methods</h2>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-              <li><strong className="text-foreground">Card payments (via LemonSqueezy):</strong> Refunded to the original card. Please allow 5-10 business days for the refund to appear on your statement.</li>
+              <li><strong className="text-foreground">All payments (via LemonSqueezy):</strong> Refunded to the original payment method, whichever you used at checkout. Please allow 5-10 business days for the refund to appear on your statement.</li>
             </ul>
           </section>
 
           <section>
             <h2 className="text-xl font-semibold mb-3">Eligibility</h2>
             <p className="text-muted-foreground leading-relaxed">
-              All paid products are eligible for a refund within the 7-day window, including single essay analyses, essay packs and UCAS personal statement reviews. The free preview is not refundable, as no payment was made.
+              All paid products are eligible for a refund within the 7-day window, including full reports, packs of 5 or 10 reports and UCAS personal statement reviews. The free preview is not refundable, as no payment was made.
             </p>
           </section>
 

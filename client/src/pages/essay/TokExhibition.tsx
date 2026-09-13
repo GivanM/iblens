@@ -40,11 +40,11 @@ const config: SubjectConfig = {
     ],
     faq: [
       { q: "Should I paste all three commentaries at once?", a: "Yes. The exhibition is marked as a whole, so paste the prompt and the commentary on each object together, with each object labelled." },
-      { q: "Can it see my images?", a: "No. The analyser takes text, so the feedback is based on how each commentary identifies the object and its context, which the commentary has to do anyway." },
+      { q: "Can it see my images?", a: "No. The grader takes text, so the feedback is based on how each commentary identifies the object and its context, which the commentary has to do anyway." },
       { q: "How is this different from the TOK essay?", a: "The essay responds to a prescribed title in up to 1,600 words and is marked by IB examiners. The exhibition links three objects to one IA prompt in up to 950 words and is marked by your teacher." },
       { q: "How accurate is the predicted mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. Your teacher marks the work and the IB moderates that marking, so their mark is the one that counts. Use the report to find what to fix before you submit." },
       { q: "Is it free?", a: "The first preview is free and needs no account: the band your work falls in, the opening of the explanation for it, and the top risks in the draft. The full report, with the complete explanation and a ranked list of fixes, is $9.99, or $24.99 for a pack of five." },
-      { q: "Is my work stored?", a: "The text you paste is never stored. It is sent to Anthropic, the AI provider, to produce the report. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },
+      { q: "Is my work stored?", a: "IBLens never saves the text you paste. It passes through our relay server to Anthropic, the AI provider, to produce the report, and Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },
     ],
   },
   relatedResources: [

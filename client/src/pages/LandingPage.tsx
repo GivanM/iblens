@@ -36,7 +36,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 const SAMPLE_CRITERIA = [
   { label: "A: Integration of a key concept", score: 3, max: 5, color: "bg-amber-400" },
   { label: "B: Supporting documents", score: 3, max: 4, color: "bg-emerald-500" },
-  { label: "C: Tools and theories", score: 2, max: 4, color: "bg-orange-400" },
+  { label: "C: Selection and application of tools and theories", score: 2, max: 4, color: "bg-orange-400" },
   { label: "D: Analysis and evaluation", score: 2, max: 5, color: "bg-orange-400" },
   { label: "E: Conclusions", score: 2, max: 3, color: "bg-emerald-500" },
   { label: "F: Structure", score: 1, max: 2, color: "bg-amber-400" },
@@ -47,7 +47,7 @@ export default function LandingPage() {
   return (
     <>
       <SEOHead
-        title="Free IB Essay Grader: Mark My IB Essay in About a Minute | IBLens"
+        title="IB Essay Grader: Free Preview of Your IA, EE or TOK Marks in About a Minute | IBLens"
         description="Paste your IB essay and get a free preview in about a minute: your band range, weakest criterion and top risks. The full report marks every criterion. Extended Essay, IA or TOK, no account needed."
         canonical="/grade"
       />
@@ -100,7 +100,7 @@ export default function LandingPage() {
               {[
                 { step: "1", Icon: FileText, title: "Paste your essay", desc: "Copy and paste your IA, EE or TOK text and choose the task and subject." },
                 { step: "2", Icon: Clock, title: "AI marks it in about a minute", desc: "Marked against the published criteria for your subject, task and exam session." },
-                { step: "3", Icon: ListOrdered, title: "See what to fix", desc: "The marks you are losing, criterion by criterion, and the fixes ranked by what they recover." },
+                { step: "3", Icon: ListOrdered, title: "See what to fix", desc: "The marks you are losing against the criteria, and the fixes ranked by what they recover." },
               ].map(({ step, Icon, title, desc }) => (
                 <div key={step} className="flex flex-col items-center text-center gap-3">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center"><Icon className="w-5 h-5 text-primary" aria-hidden="true" /></div>
@@ -190,7 +190,7 @@ export default function LandingPage() {
             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 text-sm text-muted-foreground">
               <div className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-emerald-500" /><span>Published IB criteria</span></div>
               <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-amber-500" /><span>Results in about a minute</span></div>
-              <div className="flex items-center gap-2"><Shield className="w-4 h-4 text-blue-500" /><span>Your full text is never stored</span></div>
+              <div className="flex items-center gap-2"><Shield className="w-4 h-4 text-blue-500" /><span>IBLens never saves your text</span></div>
               <div className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /><span>Coursework in 14 IB subjects</span></div>
             </div>
           </div>
@@ -219,7 +219,7 @@ export default function LandingPage() {
               />
               <FAQItem
                 question="Is my essay private?"
-                answer="Your essay is sent to our AI provider over an encrypted connection to generate your analysis. We do not use it to train any model or sell it. The essay text is never stored, and an anonymous report you did not buy is deleted after 90 days."
+                answer="Your essay is sent to our AI provider over an encrypted connection to generate your analysis. We do not use it to train any model or sell it. IBLens never saves the essay text; Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. An anonymous report you did not buy is deleted after 90 days."
               />
             </div>
           </div>

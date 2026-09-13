@@ -18,14 +18,17 @@ export default function IBEnglishExtendedEssay() {
       </p>
       <p>
         An IB English Extended Essay is an extended piece of literary criticism: a
-        4,000-word argument about how one or two texts work. That framing matters,
+        4,000-word argument about how a clearly defined text, or a small group of texts, works. That framing matters,
         because the most common way to lose marks in this subject is to write
         something else instead: a plot summary with quotations, a biography of the
-        author, or a general essay about a theme. Language A essays fall into set
-        categories: analysis of literature originally written in English, comparison
-        involving works in translation, or a language-focused study of how English is
-        used, for example in the media. Most students choose literary analysis of
-        works written in English, and that is the focus of this guide: how the five
+        author, or a general essay about a theme. The guide allows a study of a single
+        literary or language text originally written in English, a comparative study of
+        more than one text, or a comparison of a literary and a language text; in a
+        comparison at least one primary text must be originally in English, and the
+        others may be in translation. The text cannot be one you studied in your
+        Language A course, though another work by an author you studied is allowed.
+        Most students choose literary analysis of works written in English, and that is
+        the focus of this guide: how the five
         EE criteria play out in English, which research questions work, and how to
         keep 4,000 words analytical from the first page to the last.
       </p>
@@ -50,7 +53,7 @@ export default function IBEnglishExtendedEssay() {
         <li><strong>Anchored in technique:</strong> it names a formal feature, such as narration, structure, imagery or stage directions, not just a theme.</li>
         <li><strong>Arguable:</strong> A thoughtful reader could plausibly answer it differently, so your essay has to persuade, not describe.</li>
         <li><strong>Answerable from the text:</strong> The evidence is on the page, in passages you can quote and analyse closely.</li>
-        <li><strong>Proportionate:</strong> One text, or two in genuine dialogue. Depth on a single work beats a survey of four every time.</li>
+        <li><strong>Proportionate:</strong> enough text to sustain 4,000 words of close analysis and no more. For novels or plays that usually means one or two; for short stories or poems the guide notes that three or four can be right.</li>
       </ul>
 
       <h3>Examples of Strong English EE Research Questions</h3>
@@ -144,14 +147,15 @@ export default function IBEnglishExtendedEssay() {
       <h2>Frequently Asked Questions</h2>
       <h3>How many texts should an English EE analyse?</h3>
       <p>
-        Most successful essays focus on one or two literary works. A single novel
-        analysed deeply almost always beats four texts surveyed superficially,
-        because the criteria reward sustained analysis rather than coverage.
+        The guide sets no precise number. With novels or plays, one or two usually
+        leave room for close analysis in 4,000 words; with short stories or poems, it
+        suggests three or four can give enough material. Choose the body of work that
+        lets you analyse in depth rather than survey.
       </p>
       <h3>Can I use secondary criticism in an English EE?</h3>
       <p>
-        Yes, and strong essays usually do, but critics should support or sharpen
-        your own argument, not replace it. Quote critics to position your reading,
+        Yes, and you must: the guide requires a review of existing criticism on your
+        topic. Critics should support or sharpen your own argument, not replace it. Quote critics to position your reading,
         then return to the primary text for evidence.
       </p>
       <h3>How is the English EE different from a class literature essay?</h3>

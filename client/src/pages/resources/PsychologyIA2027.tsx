@@ -62,7 +62,7 @@ export default function PsychologyIA2027() {
       <h2>Check your draft with IBLens</h2>
 
       <p>
-        IBLens is session-aware for Psychology: choose <em>Internal Assessment (IA) or coursework</em> and then <em>Psychology</em> in the analyser, and keep "Exam session" on <em>Exams in May 2027 or later</em>, the default. Your proposal is graded out of 24 against the four criteria above, criterion by criterion, with a free preview before any payment. Switch the session to <em>Exams in May or November 2026</em> for the experimental report out of 22.
+        IBLens is session-aware for Psychology: choose <em>Internal Assessment (IA) or coursework</em> and then <em>Psychology</em> in the grader, and keep "Exam session" on <em>Exams in May 2027 or later</em>, the default. Your proposal is graded out of 24 against the four criteria above, criterion by criterion, with a free preview before any payment. Switch the session to <em>Exams in May or November 2026</em> for the experimental report out of 22.
       </p>
 
       <p>

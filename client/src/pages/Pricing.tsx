@@ -28,12 +28,10 @@ const plans: Array<{
     description: "One report on IB coursework or a UCAS statement",
     popular: false,
     features: [
-      "An estimated mark and band",
-      "Every criterion marked, with comments",
-      "The risks, and where marks are recoverable",
-      "Next steps ranked by the marks they recover",
+      "IB coursework: an estimated mark and band, every criterion marked with comments (TOK: the whole explanation for the band), the risks and ranked next steps",
+      "UCAS statement: all three answers reviewed, issues across the statement and a ranked revision list, with no score, because UCAS publishes no mark scheme",
       "Two free re-checks of a revised version of the same work, within 14 days of the report opening",
-      "IA, EE, TOK and UCAS personal statements",
+      "No account needed to buy",
     ],
     cta: "Get Started",
     href: "/essay",
@@ -49,7 +47,7 @@ const plans: Array<{
       "$5.00 per report, 50% less than buying singly",
       "Two free re-checks for each report, within 14 days of it opening",
       "Use across any subjects",
-      "No expiry. Without an account, unused reports wait in the browser you bought them in until you sign in",
+      "No expiry. Without an account, unused reports wait in the browser you bought them in, for as long as its site data is kept; sign in with Google to keep them in an account",
       "For several pieces of work; drafts of the same work use the free re-checks",
     ],
     cta: "Get Started",
@@ -66,8 +64,8 @@ const plans: Array<{
       "$4.50 per report, 55% less than buying singly",
       "Two free re-checks for each report, within 14 days of it opening",
       "Use across any subjects",
-      "No expiry. Without an account, unused reports wait in the browser you bought them in until you sign in",
-      "Enough for the IAs in six subjects, the Extended Essay and both TOK tasks",
+      "No expiry. Without an account, unused reports wait in the browser you bought them in, for as long as its site data is kept; sign in with Google to keep them in an account",
+      "For example the Extended Essay, both TOK tasks and several IAs (an Economics portfolio takes three, one per commentary)",
     ],
     cta: "Get Started",
     href: "/dashboard",
@@ -167,7 +165,7 @@ export default function Pricing() {
                 onClick={() => handleBuyNow(plan.productKey)}
               >
                 <CreditCard className="w-3.5 h-3.5 mr-1.5" />
-                Buy Now
+                Buy
               </Button>
 
             </div>
@@ -179,7 +177,7 @@ export default function Pricing() {
           <Link href="/refund-policy" className="underline">Refund policy</Link>
         </p>
         <p className="max-w-3xl mx-auto mt-3 text-sm text-muted-foreground text-center">
-          Without an account, this browser keeps your newest report open, with its re-checks, and holds any unused paid reports. To keep every report you buy and re-check each one, sign in with Google on this device, using the email you pay with.
+          Without an account, this browser keeps your newest report open, with its re-checks, and holds any unused paid reports, for as long as its site data is kept. To keep every report you buy in an account, with the re-checks of IB work, sign in with Google on this device, using the email you pay with (UCAS re-checks stay with the browser the review was made in). Buying for your child? Pay on their device, or have them sign in with their own Google account first: reports then follow that account to any device.
         </p>
 
         {/* Payment methods */}

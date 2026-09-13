@@ -54,7 +54,9 @@ export default function UcasPersonalStatement() {
     && new URLSearchParams(window.location.search).get("opened") !== "0";
   const paidReviewQ = trpc.essay.anonymousReport.useQuery(
     { fingerprint: anonFp, kind: "ucas" },
-    { enabled: paidReturn && paidOpens && !result, refetchInterval: (d: any) => (d?.unlocked ? false : 4000) }
+    // Keep asking until the full review is on the page. Stopping as soon as any result was
+    // shown froze the page on the saved preview when the webhook landed a second later.
+    { enabled: paidReturn && paidOpens && !(result && result.answers), refetchInterval: (d: any) => (d?.unlocked ? false : 4000) }
   );
   // The free preview survives a reload. It used to vanish, leaving only a buy button.
   const lockedUcasQ = trpc.essay.lockedReport.useQuery({ fingerprint: anonFp, kind: "ucas" }, { enabled: !result });
@@ -63,7 +65,7 @@ export default function UcasPersonalStatement() {
     if (!result && d?.exists && !d.unlocked && d.preview) setResult(d.preview);
   }, [lockedUcasQ.data, result]);
   useEffect(() => {
-    if (paidReviewQ.data?.unlocked && !result) {
+    if (paidReviewQ.data?.unlocked && !(result && result.answers)) {
       setResult(paidReviewQ.data.result);
       setLimitReached(null);
       toast.success("Payment confirmed. Your full review is open below.");
@@ -110,6 +112,8 @@ export default function UcasPersonalStatement() {
   );
   const deviceCredits = isAuthenticated ? 0 : (deviceCreditsQ.data?.credits ?? 0);
   const canPayHere = hasCredit || deviceCredits > 0;
+  // A saved preview on this device means its free review has been used.
+  const previewUsed = (lockedUcasQ.data as any)?.exists === true;
   const onFullReview = (d: any) => {
     setResult(d.result);
     setLimitReached(null);
@@ -182,7 +186,10 @@ export default function UcasPersonalStatement() {
         statements are checked for similarity against previously submitted work. This tool gives you
         feedback on your own writing and deliberately never hands you sentences to copy. We do not
         publish your statement, do not train models on it, and do not feed it to any similarity
-        database. Do not post your statement anywhere public either: that is what puts it into
+        database. IBLens never saves the answers you paste: they pass through our relay server to
+        Anthropic, which reviews them and deletes them within 30 days unless flagged under its usage
+        policy or required by law. The review itself is saved and can quote short passages, as the{" "}
+        <Link href="/privacy" className="underline">Privacy Policy</Link> sets out. Do not post your statement anywhere public either: that is what puts it into
         similarity checks. <Link href="/resources/academic-integrity" className="underline">How to use AI feedback safely</Link>
       </div>
 
@@ -236,8 +243,8 @@ export default function UcasPersonalStatement() {
           })}
 
           <div className={`text-sm rounded-lg p-3 ${remaining < 0 ? "bg-rose-50 text-rose-800" : "bg-muted/50"}`}>
-            <strong>{total}</strong> of {UCAS_TOTAL_CHAR_LIMIT} characters used
-            {remaining >= 0 ? ` · ${remaining} left` : ` · ${Math.abs(remaining)} over the limit`}
+            <strong>{total.toLocaleString("en-GB")}</strong> of {UCAS_TOTAL_CHAR_LIMIT.toLocaleString("en-GB")} characters used
+            {remaining >= 0 ? ` · ${remaining.toLocaleString("en-GB")} left` : ` · ${Math.abs(remaining).toLocaleString("en-GB")} over the limit`}
           </div>
 
           {paidReturn && !paidOpens && !isAuthenticated && (
@@ -299,6 +306,13 @@ export default function UcasPersonalStatement() {
                 setPurchaseOpen(true);
                 return;
               }
+              // The free review on this device is used and nothing is paid for: buying
+              // is the next step, not a request the server will refuse.
+              if (!isUnlocked && !canPayHere && previewUsed) {
+                setBuyFor("new");
+                setPurchaseOpen(true);
+                return;
+              }
               if (isUnlocked) {
                 review.mutate({
                   course: course.trim(), universityType,
@@ -331,10 +345,28 @@ export default function UcasPersonalStatement() {
               `Re-check my statement (free${effectiveRechecks !== null ? `, ${effectiveRechecks} left` : ""})`
             ) : canPayHere ? (
               "Review my statement in full (uses 1 paid report)"
+            ) : previewUsed ? (
+              "Buy a full review of these answers, $9.99"
             ) : (
               "Review my statement, free"
             )}
           </Button>
+          {isUnlocked && canPayHere && (effectiveRechecks ?? 0) > 0 && (
+            <Button
+              variant="outline"
+              className="w-full min-h-11 h-auto whitespace-normal"
+              disabled={blockers.length > 0 || review.isPending || recheck.isPending}
+              onClick={() => review.mutate({
+                course: course.trim(), universityType,
+                q1: answers.q1, q2: answers.q2, q3: answers.q3,
+                clientFingerprint: anonFp,
+                spendCredit: hasCredit,
+                spendDeviceCredit: !hasCredit && deviceCredits > 0,
+              })}
+            >
+              Review a different statement instead (uses 1 paid report)
+            </Button>
+          )}
         </CardContent>
       </Card>
 
@@ -354,6 +386,7 @@ export default function UcasPersonalStatement() {
         sku="ESSAY_SINGLE"
         unlocksPreview={buyFor === "preview"}
         previewLabel={buyFor === "preview" ? "your UCAS statement" : null}
+        kind="ucas"
       />
     </div>
   );

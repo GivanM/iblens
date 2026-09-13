@@ -172,28 +172,14 @@ NO REFLECTIVE STATEMENT WAS SUBMITTED. The reflection criterion is marked on the
   const task = essayType === "TOK"
     ? (subject.trim().toLowerCase() === "exhibition" ? "TOK exhibition" : "TOK essay")
     : `${essayType} for: ${subject}`;
-  // The TOK essay is placed on one holistic instrument, and the model kept stating band
-  // requirements the instrument does not contain. Ticking the descriptors first, then
-  // taking the highest band whose descriptors all hold, keeps the mark and the
-  // explanation tied to the published wording.
-  const tokBandCheck = task === "TOK essay" ? `
-  "band_check": {
-    "basic": {"connected_to_title": <true|false>},
-    "satisfactory": {"focused_on_title": <true|false>, "some_links_to_areas_of_knowledge": <true|false>, "arguments_offered_with_examples": <true|false>, "some_awareness_of_points_of_view": <true|false>},
-    "good": {"linked_to_areas_of_knowledge": <true|false>, "clear_coherent_arguments_supported_by_examples": <true|false>, "some_evaluation_of_points_of_view": <true|false>},
-    "excellent": {"sustained_focus_on_title": <true|false>, "effectively_linked_to_areas_of_knowledge": <true|false>, "arguments_effectively_supported_by_specific_examples": <true|false>, "implications_considered": <true|false>, "points_of_view_evaluated": <true|false>}
-  },` : "";
-  const tokBandRule = task === "TOK essay" ? `
-
-BAND PLACEMENT (TOK essay): fill "band_check" before anything else, judging each descriptor on its own. "some_awareness_of_points_of_view" is true when the essay recognises that another view exists, even if it dismisses it at once. The band is Excellent (9-10) only if every satisfactory, good and excellent item is true; Good (7-8) if every satisfactory and good item is true; Satisfactory (5-6) if every satisfactory item is true; Basic (3-4) if connected_to_title is true; otherwise Rudimentary (1-2). "band_range" and "predicted_score" must follow from band_check. When a comment says what a band requires, it may name only the items listed for that band, and it must never say an item from a higher band is needed for a lower one.` : "";
   return `Analyse this IB ${task}
 Research Question: ${researchQuestion || "not provided"}
 
 TEXT:
-${essayText.substring(0, 30000)}${reflectionBlock}${wordBlock}${tokBandRule}
+${essayText.substring(0, 30000)}${reflectionBlock}${wordBlock}
 
 Respond with this exact JSON structure:
-{${tokBandCheck}
+{
   "band_range": "<range on the same total as max_score, e.g. 18-22>",
   "predicted_score": <integer>,
   "max_score": <total marks of the criteria you assessed>,
@@ -262,6 +248,7 @@ function normalizeDashes<T>(value: T): T {
   if (typeof value === "string") {
     return value
       .replace(/(\d)\s*[\u2013\u2014]\s*(\d)/g, "$1-$2")
+      .replace(/\b([A-G])\s*[\u2013\u2014]\s*([A-G])\b/g, "$1-$2")
       .replace(/\s*[\u2013\u2014]\s*/g, ", ") as unknown as T;
   }
   if (Array.isArray(value)) return value.map((v) => normalizeDashes(v)) as unknown as T;
@@ -271,45 +258,6 @@ function normalizeDashes<T>(value: T): T {
     return out;
   }
   return value;
-}
-
-/**
- * A TOK essay report ticks the instrument's descriptors in band_check and then gives
- * a mark. When the two disagree (every Satisfactory item ticked, a Basic mark
- * awarded) the report contradicts itself, so the model is shown the conflict once and
- * asked for a consistent report. Anything else, including a failed second call,
- * keeps the first answer.
- */
-async function reconcileTokBand(result: any, systemPrompt: string, userPrompt: string, firstAnswer: string): Promise<any> {
-  const b = result?.band_check;
-  const score = Number(result?.predicted_score);
-  if (!b || typeof b !== "object" || !Number.isFinite(score) || score <= 0) return result;
-  const all = (o: any) => !!o && typeof o === "object" && Object.values(o).length > 0 && Object.values(o).every((v) => v === true);
-  let name = "Rudimentary", lo = 1, hi = 2;
-  if (b.basic?.connected_to_title === true) { name = "Basic"; lo = 3; hi = 4; }
-  if (all(b.satisfactory)) { name = "Satisfactory"; lo = 5; hi = 6; }
-  if (all(b.satisfactory) && all(b.good)) { name = "Good"; lo = 7; hi = 8; }
-  if (all(b.satisfactory) && all(b.good) && all(b.excellent)) { name = "Excellent"; lo = 9; hi = 10; }
-  if (score >= lo && score <= hi) return result;
-  console.warn(`[TOK band] band_check says ${name} (${lo}-${hi}) but the mark is ${score}; asking for a consistent report`);
-  try {
-    const second = await invokeLLM({
-      messages: [
-        { role: "system", content: systemPrompt },
-        { role: "user", content: userPrompt },
-        { role: "assistant", content: firstAnswer },
-        { role: "user", content: `Your band_check places this essay in ${name} (${lo}-${hi}), but predicted_score is ${score}. Re-read the essay against each band_check item, correct whichever judgement is wrong, and return the complete JSON again in the same structure, with band_check, band_range, predicted_score and every comment consistent with one another.` },
-      ],
-    });
-    const raw = second.choices?.[0]?.message?.content;
-    const text = typeof raw === "string" ? raw : "";
-    const m = text.match(/\{[\s\S]*\}/);
-    if (!m) return result;
-    return normalizeDashes(JSON.parse(m[0].replace(/,\s*([\]\}])/g, "$1")));
-  } catch (e) {
-    console.warn("[TOK band] reconciliation failed, keeping the first report:", e);
-    return result;
-  }
 }
 
 function softTruncate(text: string, limit: number): string {
@@ -455,6 +403,8 @@ const essayRouter = router({
             resultJson: rec.resultJson,
             predictedGrade: rec.predictedGrade,
             unlocked: true,
+            // The session the report was marked on, so a re-check uses the same rubric.
+            examSession: (rec as any).examSession ?? null,
             // The device row stays unlocked; linking it lets Delete remove both.
             adoptedFromId: rec.id,
           });
@@ -501,7 +451,7 @@ const essayRouter = router({
         const content = typeof rawContent === "string" ? rawContent : "";
         const jsonMatch = content.match(/\{[\s\S]*\}/);
         if (!jsonMatch) throw new Error("Failed to parse AI response");
-        const result = await reconcileTokBand(normalizeDashes(JSON.parse(jsonMatch[0].replace(/,\s*([\]\}])/g, "$1"))), systemPrompt, userPrompt, content);
+        const result = normalizeDashes(JSON.parse(jsonMatch[0].replace(/,\s*([\]\}])/g, "$1")));
         const rubric = getRubric(rec.essayType, rec.subject, session);
         if (rubric) {
           result._rubricAvailable = true;
@@ -747,7 +697,7 @@ const essayRouter = router({
         const content = typeof rawContent === "string" ? rawContent : "";
         const jsonMatch = content.match(/\{[\s\S]*\}/);
         if (!jsonMatch) throw new Error("Failed to parse AI response");
-        const result = await reconcileTokBand(normalizeDashes(JSON.parse(jsonMatch[0].replace(/,\s*([\]\}])/g, "$1"))), systemPrompt, userPrompt, content);
+        const result = normalizeDashes(JSON.parse(jsonMatch[0].replace(/,\s*([\]\}])/g, "$1")));
         if (mechanics) {
           result._mechanics = mechanics;
           result._course = rec.subject;
@@ -864,7 +814,9 @@ const essayRouter = router({
       return {
         unlocked: true as const,
         result: normalizeDashes(rec.resultJson),
-        rerunsLeft: Math.max(0, 2 - (rec.rerunsUsed ?? 0)),
+        // Past the 14 days there are none, whatever the counter says: the page offered
+        // "2 left" and the server then refused every one.
+        rerunsLeft: daysLeft > 0 ? Math.max(0, 2 - (rec.rerunsUsed ?? 0)) : 0,
         daysLeft: Math.floor(daysLeft),
       };
     }),
@@ -964,7 +916,7 @@ const essayRouter = router({
         if (!jsonMatch) throw new Error("Failed to parse AI response");
 
         const cleaned = jsonMatch[0].replace(/,\s*([\]\}])/g, '$1');
-        const result = await reconcileTokBand(normalizeDashes(JSON.parse(cleaned)), systemPrompt, userPrompt, content);
+        const result = normalizeDashes(JSON.parse(cleaned));
 
         // Attach rubric metadata so frontend knows whether this was rubric-based
         const rubric = getRubric(input.essayType, input.subject, input.examSession);
@@ -1063,7 +1015,7 @@ const essayRouter = router({
         if (!jsonMatch) throw new Error("Failed to parse AI response");
 
         const cleaned = jsonMatch[0].replace(/,\s*([\]\}])/g, '$1');
-        const result = await reconcileTokBand(normalizeDashes(JSON.parse(cleaned)), systemPrompt, userPrompt, content);
+        const result = normalizeDashes(JSON.parse(cleaned));
 
         // Attach rubric metadata
         const rubric = getRubric(input.essayType, input.subject, input.examSession);
@@ -1105,7 +1057,9 @@ const essayRouter = router({
 // ---- Dashboard Router ----
 const dashboardRouter = router({
   history: protectedProcedure
-    .input(z.object({ limit: z.number().min(1).max(50).optional() }).optional())
+    // The dashboard lists every report: a pack with its re-checks is dozens of rows,
+    // and a cap of 20 hid older reports along with their Delete buttons.
+    .input(z.object({ limit: z.number().min(1).max(500).optional() }).optional())
     .query(async ({ ctx, input }) => {
       const rows = await getUserAnalyses(ctx.user.id, input?.limit || 20);
       // A locked analysis must not expose the exact predicted score anywhere — that score is

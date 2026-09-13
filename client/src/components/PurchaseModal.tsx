@@ -44,6 +44,11 @@ interface PurchaseModalProps {
   unlocksPreview?: boolean;
   /** What that preview is, in a few words, so the dialog can name it. */
   previewLabel?: string | null;
+  /**
+   * What the report is. A UCAS review has no mark and no criteria, and a TOK task is
+   * marked as a whole, so "every criterion" and "your predicted mark" are wrong there.
+   */
+  kind?: "essay" | "tok" | "ucas";
 }
 
 // Map ProductKey to analytics ProductSlug
@@ -54,7 +59,7 @@ const SKU_TO_SLUG: Record<ProductKey, ProductSlug> = {
   UNIVERSITY_SINGLE: "university_strategy",
 };
 
-export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPreview, previewLabel }: PurchaseModalProps) {
+export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPreview, previewLabel, kind }: PurchaseModalProps) {
   const { isAuthenticated } = useAuth();
   const [loading, setLoading] = useState(false);
   const [guestEmail, setGuestEmail] = useState("");
@@ -72,8 +77,13 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPrev
     window.location.href = data.checkoutUrl;
   };
   const onCheckoutError = (error: any) => {
-    toast.error("Checkout could not start", { description: error?.message || "Please try again in a moment." });
     setLoading(false);
+    // The server validates the address again; its message is a JSON blob, not a sentence.
+    if (/email/i.test(String(error?.message || ""))) {
+      setEmailError("That email address does not look right. Check it and try again.");
+      return;
+    }
+    toast.error("Checkout could not start", { description: "Please try again in a moment." });
   };
 
   // Authenticated: card checkout via LemonSqueezy
@@ -96,7 +106,7 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPrev
   const handlePay = () => {
     if (!isAuthenticated) {
       const trimmedEmail = guestEmail.trim();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+      if (!/^(?!.*\.\.)[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/.test(trimmedEmail)) {
         setEmailError("Enter the email address the receipt should go to.");
         document.getElementById("guest-email")?.focus();
         return;
@@ -131,13 +141,20 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPrev
   const count = SKU_COUNT[sku];
   const named = previewLabel ? ` (${previewLabel})` : "";
 
+  const contents = kind === "ucas"
+    ? "all three answers reviewed, the issues across the statement and a ranked revision list (no score: UCAS publishes no mark scheme)"
+    : kind === "tok"
+      ? "your estimated mark within the band, the whole explanation and the ranked fix list"
+      : "every criterion with its comments, your estimated mark and the ranked fix list";
   const firstLine = opensPreview
     ? count > 1
       ? `The locked preview on this page${named} opens in full, and ${count - 1} more reports wait for your other work`
-      : `The locked preview on this page${named}, opened in full: every criterion with its comments, your predicted mark and the ranked fix list`
+      : `The locked preview on this page${named}, opened in full: ${contents}`
     : count > 1
-      ? `${count} full reports for different pieces of work, each with every criterion, your predicted mark and the ranked fix list`
-      : "One full report for your next piece of work: every criterion with its comments, your predicted mark and the ranked fix list";
+      ? `${count} full reports for different pieces of work: IB coursework (every criterion with comments, or for TOK the whole explanation, with an estimated mark and ranked fixes) or UCAS statements (all three answers, no score)`
+      : kind === "ucas"
+        ? `One full review for your next UCAS statement: ${contents}`
+        : `One full report for your next piece of work: ${contents}`;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -167,9 +184,10 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPrev
                   : "Two free re-checks of revised versions of the same work, within 14 days of the report opening"}</li>
                 {isAuthenticated
                   ? <li>{opensPreview ? "The report opens in your account" : "The reports are added to your account"} as soon as the payment clears</li>
-                  : <li>No account needed. {count > 1 || !opensPreview
-                      ? `The ${count > 1 ? "reports are" : "report is"} added to this browser as soon as the payment clears and ${count > 1 ? "stay" : "stays"} in it.`
-                      : "The report opens in this browser as soon as the payment clears and stays in it."} To keep {count > 1 ? "them" : "it"} in an account, or to use {count > 1 ? "them" : "it"} on another device, sign in with Google on this device with the email you enter below.</li>}
+                  : <>
+                      <li>No account needed. {opensPreview && count === 1 ? "The report opens in this browser" : `The ${count > 1 ? "reports go" : "report goes"} to this browser`} as soon as the payment clears. Without an account, this browser keeps unused reports and your newest opened report with its re-checks, for as long as its site data is kept; clearing it loses them.</li>
+                      <li>To keep every report in an account and use them on another device, sign in with Google on this device with the email you enter below. Buying for someone else? Pay on their phone or computer, or have them sign in here with their own Google account first.</li>
+                    </>}
               </ul>
             </div>
           </div>

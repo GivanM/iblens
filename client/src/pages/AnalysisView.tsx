@@ -72,6 +72,11 @@ export default function AnalysisView() {
       ? TYPE_LABEL[a.essayType]
       : `${TYPE_LABEL[a.essayType] || a.essayType}, ${a.subject}`;
 
+  // Re-checks run for 14 days from the report opening; after that the server refuses
+  // them, so the page must not keep offering them.
+  const opened = a.unlockedAt ? new Date(a.unlockedAt).getTime() : new Date(a.createdAt).getTime();
+  const windowOpen = (Date.now() - opened) / 86400000 <= 14;
+  const rechecksLeft = windowOpen ? Math.max(0, 2 - (a.rerunsUsed ?? 0)) : 0;
   const header = (
     <div className="flex flex-wrap items-center justify-between gap-3 print:hidden">
       <Button asChild variant="ghost" size="sm">
@@ -79,9 +84,9 @@ export default function AnalysisView() {
       </Button>
       {a.unlocked && (
         <div className="flex flex-wrap items-center gap-2">
-          {a.essayType !== "UCAS" && !a.rerunOf && Math.max(0, 2 - (a.rerunsUsed ?? 0)) > 0 && (
+          {a.essayType !== "UCAS" && !a.rerunOf && rechecksLeft > 0 && (
             <Button asChild variant="outline" size="sm">
-              <a href={`/essay?rerun=${id}&session=${a.examSession || ""}&type=${encodeURIComponent(a.essayType || "")}${a.subject ? `&subject=${encodeURIComponent(a.subject)}` : ""}`}>Re-check a revised version</a>
+              <a href={`/essay?rerun=${id}${a.examSession ? `&session=${a.examSession}` : ""}&type=${encodeURIComponent(a.essayType || "")}${a.subject ? `&subject=${encodeURIComponent(a.subject)}` : ""}`}>Re-check a revised version</a>
             </Button>
           )}
           <Button variant="outline" size="sm" onClick={() => window.print()}>
@@ -93,6 +98,16 @@ export default function AnalysisView() {
   );
 
   // A UCAS review keeps its own shape; the shared component renders it in full.
+  if (a.essayType === "UCAS" && !a.unlocked) {
+    return (
+      <div className="container max-w-3xl mx-auto py-20 text-center space-y-4">
+        <SEOHead title="Your IBLens Report" description="Your saved IBLens report." canonical="/dashboard" />
+        <h1 style={SERIF} className="text-2xl font-bold">{title}</h1>
+        <p className="text-muted-foreground">This review was refunded, so it is no longer available.</p>
+        <Button asChild variant="outline"><Link href="/dashboard">Back to dashboard</Link></Button>
+      </div>
+    );
+  }
   if (a.essayType === "UCAS") {
     return (
       <div className="container max-w-3xl mx-auto py-10 px-4 space-y-6">
@@ -104,7 +119,7 @@ export default function AnalysisView() {
         </div>
         <UcasReview result={r} course={a.subject || undefined} isUnlocked={true} />
         <p className="text-xs text-muted-foreground">
-          To re-check a revised statement, open the <Link href="/ucas-personal-statement" className="underline">UCAS checker</Link> on the device where you made the review.
+          Re-checks of a UCAS review run in the <Link href="/ucas-personal-statement" className="underline">UCAS checker</Link> on the device where you made the review, within 14 days of it opening, and only while that browser still holds it: signing out there ends them. This saved copy stays in your account either way.
         </p>
       </div>
     );
@@ -174,7 +189,6 @@ export default function AnalysisView() {
     );
   }
 
-  const rechecksLeft = Math.max(0, 2 - (a.rerunsUsed ?? 0));
   return (
     <div className="container max-w-3xl mx-auto py-10 px-4 space-y-6">
       <SEOHead title="Your IBLens Report" description="Your saved IBLens report." canonical="/dashboard" />
@@ -192,7 +206,9 @@ export default function AnalysisView() {
               ? "This is a re-check of a report you bought. Its re-checks belong to that original report."
               : rechecksLeft > 0
                 ? `${rechecksLeft} free re-check${rechecksLeft === 1 ? "" : "s"} of a revised version left, within 14 days of this report opening.`
-                : "Both free re-checks for this report have been used."}
+                : windowOpen
+                  ? "Both free re-checks for this report have been used."
+                  : "The 14 days for re-checks of this report have ended."}
           </p>
         </CardHeader>
         <CardContent className="space-y-6">

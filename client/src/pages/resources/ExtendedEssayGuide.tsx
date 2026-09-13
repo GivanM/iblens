@@ -37,7 +37,7 @@ export default function ExtendedEssayGuide() {
       <h2>Word Count and Timeline</h2>
 
       <p>
-        The maximum word count for the Extended Essay is <strong>4,000 words</strong>. This limit includes the introduction, body, conclusion, quotations, and any footnotes or endnotes that are not references. It does <em>not</em> include the contents page, maps, charts, diagrams, annotated illustrations, tables, equations, formulas and calculations, citations and references, the bibliography, or the reflection form. There is no abstract: it was dropped in 2018.
+        The maximum word count for the Extended Essay is <strong>4,000 words</strong>. This limit includes the introduction, body, conclusion, quotations, and any footnotes or endnotes that are not references. It does <em>not</em> include the contents page, headers (listed from May 2027), maps, charts, diagrams, annotated illustrations, tables, equations, formulas and calculations, citations and references, the bibliography, or the reflection form. There is no abstract: it was dropped in 2018.
       </p>
 
       <p>
@@ -78,7 +78,7 @@ export default function ExtendedEssayGuide() {
       </ul>
 
       <p>
-        Common mistakes in research question formulation include choosing a topic that is too broad (resulting in superficial treatment), too narrow (running out of material before 4,000 words), too personal (lacking academic rigor), or too reliant on a single source.
+        Common mistakes in research question formulation include choosing a topic that is too broad (resulting in superficial treatment), too narrow (running out of material before 4,000 words), too personal (lacking academic rigour), or too reliant on a single source.
       </p>
 
       <h2>Structure and Formatting</h2>
@@ -92,7 +92,7 @@ export default function ExtendedEssayGuide() {
         <li><strong>Table of contents:</strong> With page numbers</li>
         <li><strong>Introduction (300-400 words):</strong> Context, research question, scope, methodology overview</li>
         <li><strong>Body (3,000-3,200 words):</strong> Organised into logical sections with clear headings, presenting evidence, analysis, and argumentation</li>
-        <li><strong>Conclusion (200-300 words):</strong> Direct answer to the RQ, summary of findings, acknowledgment of limitations, suggestions for further research</li>
+        <li><strong>Conclusion (200-300 words):</strong> Direct answer to the RQ, summary of findings, acknowledgement of limitations, suggestions for further research</li>
         <li><strong>Bibliography:</strong> one consistent citation style, such as MLA, APA, Chicago or Harvard, used throughout</li>
         <li><strong>Appendices (if needed):</strong> Raw data, interview transcripts, supplementary materials</li>
       </ul>
@@ -184,7 +184,7 @@ export default function ExtendedEssayGuide() {
       </p>
 
       <p>
-        <strong>Analysis, discussion and evaluation</strong> demonstrated through evaluation of evidence, consideration of counter-arguments, acknowledgment of limitations, and nuanced conclusions. A-grade essays rarely present black-and-white answers; they acknowledge complexity.
+        <strong>Analysis, discussion and evaluation</strong> demonstrated through evaluation of evidence, consideration of counter-arguments, acknowledgement of limitations, and nuanced conclusions. A-grade essays rarely present black-and-white answers; they acknowledge complexity.
       </p>
 
       <p>

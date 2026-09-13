@@ -21,7 +21,7 @@ export default function Privacy() {
             <li><strong>The reports we generate</strong> from that text. A report can quote short passages from what you submitted.</li>
             <li><strong>Account details</strong> if you sign in (name and email address via Google sign-in), and the email address you type into the checkout dialog if you buy without an account. It is stored when you continue to checkout, even if you then do not pay.</li>
             <li><strong>Purchase records</strong>: the order, the product, the amount and the name and email address our payment provider sends us when you pay.</li>
-            <li><strong>Usage and device data</strong> through cookies and analytics (Google Tag Manager, Google Analytics, Google Ads), such as pages viewed, and a random device identifier stored in your browser that ties a free preview, a purchase made without an account and its re-checks to this browser.</li>
+            <li><strong>Usage and device data</strong> through Google Tag Manager, Google Analytics and Google Ads, such as pages viewed. Their scripts load on every page. Until you accept analytics and advertising cookies they run in Google's consent mode, which sets no such cookies but can still send Google basic signals without cookies, such as that a page was loaded. We also keep a random device identifier in your browser that ties a free preview, a purchase made without an account and its re-checks to this browser.</li>
           </ul>
 
           <h2>How your essay is processed (AI disclosure)</h2>
@@ -34,7 +34,7 @@ export default function Privacy() {
             <li><strong>Anthropic PBC:</strong> AI processing of your essay to generate the analysis.</li>
             <li><strong>Hetzner Online GmbH</strong> (Helsinki, Finland): the server we operate to reach the AI provider; your text passes through it in transit.</li>
             <li><strong>LemonSqueezy:</strong> payment processing and receipts (they handle your card data; we never see full card numbers).</li>
-            <li><strong>Google:</strong> analytics, advertising measurement, and sign-in. When a purchase completes, our server also sends Google Analytics the order number, the product and the amount, without your name or email address.</li>
+            <li><strong>Google:</strong> analytics, advertising measurement, sign-in, and web fonts (Google Fonts receives your IP address when a page loads). When a purchase completes, the page and our server send Google the order number, the product and the amount, without your name, email address or account.</li>
           </ul>
           <p>We do not share your essay content with your school, universities, examiners, or other students.</p>
 
@@ -57,7 +57,7 @@ export default function Privacy() {
           <p>Our providers may process data in countries outside your own, including the United States. Where required, transfers rely on the safeguards those providers put in place.</p>
 
           <h2>Cookies and consent</h2>
-          <p>We use essential browser storage to run the site and, only with your consent, analytics and advertising cookies. A consent banner is shown to every visitor, and non-essential cookies stay off until you accept them.</p>
+          <p>We use essential browser storage to run the site and, only with your consent, analytics and advertising cookies. A consent banner is shown to every visitor, non-essential cookies stay off until you accept them, and you can change your choice at any time under "Cookie settings" at the bottom of every page.</p>
 
           <h2>Changes</h2>
           <p>We may update this policy; material changes will be reflected by the date above. Questions: <a href="mailto:glushkovim@gmail.com" className="text-primary hover:underline">glushkovim@gmail.com</a>. See also our <Link href="/terms" className="text-primary hover:underline">Terms of Use</Link>.</p>

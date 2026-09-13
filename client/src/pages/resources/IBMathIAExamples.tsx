@@ -34,10 +34,10 @@ export default function IBMathIAExamples() {
         <li><strong>Criterion E: Use of mathematics (6 marks).</strong> Is the mathematics relevant to the aim? Is it commensurate with the level of the course? Is it applied correctly?</li>
       </ul>
       <p>
-        Marks of 4, 4, 3, 3 and 5 make 19 out of 20. Correct but routine mathematics
-        (3 on Criterion E) together with almost no reflection (1 on Criterion D) brings
-        the same exploration down to 15, and those are the marks this guide is
-        about.
+        Marks of 4, 4, 3, 3 and 5 make 19 out of 20. Mathematics at the level of the
+        course with only limited understanding shown (3 on Criterion E at SL) together
+        with almost no reflection (1 on Criterion D) brings the same exploration down to
+        15, and those are the marks this guide is about.
       </p>
 
       <h2>IB Math IA Examples by Topic Area</h2>
@@ -52,8 +52,11 @@ export default function IBMathIAExamples() {
         engagement something to reward: the context is self-chosen and the data is
         their own. The mathematics involves solving the logistic equation,
         fitting parameters to data, and comparing the model against observed values.
-        At HL, this can be extended to include a delayed-response model (a delay
-        differential equation), pushing Criterion E towards 5 or 6.
+        At HL, the top levels of Criterion E reward mathematics that is precise and
+        shows sophistication and rigour, with thorough understanding throughout. A
+        delayed-response model helps only if it serves the aim and is fully
+        understood: the guide says mathematics beyond the syllabus is not required for
+        the highest levels.
       </p>
       <p>
         <em>Common mistake:</em> reproducing the textbook logistic model step by step

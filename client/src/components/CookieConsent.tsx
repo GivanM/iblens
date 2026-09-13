@@ -25,6 +25,13 @@ export function CookieConsent() {
     return () => clearTimeout(timer);
   }, []);
 
+  // "Cookie settings" in the footer reopens the choice at any time.
+  useEffect(() => {
+    const open = () => setVisible(true);
+    window.addEventListener("iblens:cookie-settings", open);
+    return () => window.removeEventListener("iblens:cookie-settings", open);
+  }, []);
+
   function handleAccept() {
     try { localStorage.setItem(CONSENT_STORAGE_KEY, "granted"); } catch { /* choice holds for this page */ }
     pushConsentUpdate(true);
@@ -40,27 +47,18 @@ export function CookieConsent() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[9999] p-4 md:p-6 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-t border-gray-200 dark:border-gray-700 shadow-lg">
+    <div className="fixed bottom-0 left-0 right-0 z-40 p-4 md:p-6 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-t border-gray-200 dark:border-gray-700 shadow-lg">
       <div className="container max-w-4xl flex flex-col sm:flex-row items-start sm:items-center gap-4">
         <p className="text-sm text-gray-700 dark:text-gray-300 flex-1">
-          We use cookies to measure site performance and improve your experience.
-          By clicking "Accept", you consent to analytics and advertising cookies. What we collect and who
+          We would like to use analytics and advertising cookies to measure how the site is used.
+          They stay off unless you click "Accept", and you can change this later under "Cookie settings" in the footer. What we collect and who
           receives it is set out in our <a href="/privacy" className="underline">privacy notice</a>.
         </p>
         <div className="flex gap-2 shrink-0">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleReject}
-            className="text-xs"
-          >
+          <Button variant="outline" onClick={handleReject} className="min-h-11 min-w-24">
             Reject
           </Button>
-          <Button
-            size="sm"
-            onClick={handleAccept}
-            className="text-xs bg-blue-600 hover:bg-blue-700 text-white"
-          >
+          <Button variant="outline" onClick={handleAccept} className="min-h-11 min-w-24">
             Accept
           </Button>
         </div>
@@ -71,9 +69,10 @@ export function CookieConsent() {
 
 function pushConsentUpdate(granted: boolean) {
   window.dataLayer = window.dataLayer || [];
-  function gtag(...args: unknown[]) {
-    window.dataLayer!.push(args as unknown as Record<string, unknown>);
-  }
+  // gtag.js only acts on a real Arguments object. Pushing a plain array, as this did,
+  // is read as a data-layer command and the consent update is silently dropped.
+  // eslint-disable-next-line prefer-rest-params
+  const gtag: (...args: unknown[]) => void = (window as any).gtag || function () { (window as any).dataLayer.push(arguments); };
   gtag("consent", "update", {
     analytics_storage: granted ? "granted" : "denied",
     ad_storage: granted ? "granted" : "denied",

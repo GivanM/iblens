@@ -64,7 +64,7 @@ export default function EssayCriteriaExplained() {
 
       <h3>Synthesis and Evaluation</h3>
       <p>
-        The highest-order thinking skill assessed in the IB. Synthesis means combining ideas from different sources or perspectives to create new understanding. Evaluation means making reasoned judgments about the value, reliability, or significance of evidence, arguments, or methods. In many criteria, evaluation is what separates the upper levels from the middle ones.
+        The highest-order thinking skill assessed in the IB. Synthesis means combining ideas from different sources or perspectives to create new understanding. Evaluation means making reasoned judgements about the value, reliability, or significance of evidence, arguments, or methods. In many criteria, evaluation is what separates the upper levels from the middle ones.
       </p>
 
       <h3>Communication and Presentation</h3>

@@ -75,7 +75,7 @@ export function ResourceArticle({
               Ready to get specific feedback on your essay?
             </h2>
             <p className="text-muted-foreground mb-6 max-w-lg mx-auto text-sm leading-relaxed">
-              Paste your IA, EE or TOK essay and get criterion-by-criterion feedback with an estimated mark in about a minute. The first preview is free.
+              Paste your IA, EE or TOK essay and get feedback against the published criteria, with an estimated mark, in about a minute. The first preview is free.
             </p>
             <Link href="/essay">
               <Button size="lg">

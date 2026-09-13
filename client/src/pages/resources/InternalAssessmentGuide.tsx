@@ -31,12 +31,12 @@ export default function InternalAssessmentGuide() {
       </p>
 
       <ul>
-        <li><strong>Group 1 (Studies in Language and Literature):</strong> the individual oral, a recorded oral on a global issue explored through extracts from two works</li>
+        <li><strong>Group 1 (Studies in Language and Literature):</strong> the individual oral, a recorded oral on a global issue explored through an extract from each of two works (in Language and Literature, one literary work and one non-literary body of work)</li>
         <li><strong>Group 2 (Language Acquisition):</strong> an individual oral, based on a visual stimulus at SL and an extract from a literary work at HL in Language B</li>
         <li><strong>Group 3 (Individuals and Societies):</strong> a written investigation (History: 2,200 words; Business Management: 1,800 words; Economics: three commentaries of up to 800 words each; Psychology: an experimental report through November 2026, and from May 2027 a research proposal marked out of 24)</li>
         <li><strong>Group 4 (Sciences):</strong> Scientific investigation (Biology, Chemistry, Physics: up to 3,000 words, marked out of 24)</li>
         <li><strong>Group 5 (Mathematics):</strong> the mathematical exploration (approximately 12 to 20 pages)</li>
-        <li><strong>Group 6 (The Arts):</strong> varies by subject (Visual Arts: the exhibition; Music: experimenting with music; Film: the film portfolio). The Visual Arts comparative study and the Music and Film coursework IBLens marks are externally assessed components.</li>
+        <li><strong>Group 6 (The Arts):</strong> varies by subject (Visual Arts: the exhibition, replaced from May 2027 by the new internally assessed component; Music: experimenting with music; Film: the film portfolio). The Visual Arts comparative study and the Music and Film coursework IBLens marks are externally assessed components.</li>
       </ul>
 
       <p>
@@ -105,7 +105,7 @@ export default function InternalAssessmentGuide() {
           </tr>
           <tr>
             <td><strong>Analysis & Evaluation</strong></td>
-            <td>Critical thinking, interpretation of results, acknowledgment of limitations</td>
+            <td>Critical thinking, interpretation of results, acknowledgement of limitations</td>
             <td>Descriptive rather than analytical, ignoring anomalies</td>
           </tr>
           <tr>

@@ -66,7 +66,7 @@ export default function Dashboard() {
   }, []);
 
   const creditsQuery = trpc.dashboard.credits.useQuery(undefined, { enabled: isAuthenticated });
-  const historyQuery = trpc.dashboard.history.useQuery(undefined, { enabled: isAuthenticated });
+  const historyQuery = trpc.dashboard.history.useQuery({ limit: 500 }, { enabled: isAuthenticated });
   const paymentsQuery = trpc.dashboard.payments.useQuery(undefined, { enabled: isAuthenticated });
   const ordersQuery = trpc.dashboard.orders.useQuery(undefined, { enabled: isAuthenticated });
 
@@ -94,12 +94,9 @@ export default function Dashboard() {
       localStorage.setItem(key, "1");
     } catch { /* no storage, report once per page load */ }
     const value = (known.amountUsd ?? 0) / 100;
-    if (user?.email) {
-      sha256(user.email).then((emailHashed) =>
-        trackPurchase(pendingPurchase.orderId, pendingPurchase.product, value, pendingPurchase.method, user.openId || "", emailHashed));
-    } else {
-      trackPurchase(pendingPurchase.orderId, pendingPurchase.product, value, pendingPurchase.method, "", "");
-    }
+    // The privacy policy says Google receives the order without the buyer's identity,
+    // so neither an email hash nor the account id goes with the purchase event.
+    trackPurchase(pendingPurchase.orderId, pendingPurchase.product, value, pendingPurchase.method, "", "");
     setPendingPurchase(null);
   }, [pendingPurchase, ordersQuery.data, user]);
 
@@ -309,7 +306,7 @@ export default function Dashboard() {
                   className="flex-shrink-0 text-muted-foreground hover:text-destructive"
                   disabled={deleteAnalysis.isPending}
                   onClick={() => {
-                    if (!window.confirm("Delete this report? The text of your essay was never stored, but the report and its research question go for good.")) return;
+                    if (!window.confirm("Delete this report? IBLens never saved the text of your essay, but the report and its research question go for good.")) return;
                     deleteAnalysis.mutate({ id: item.id });
                   }}
                 >

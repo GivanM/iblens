@@ -101,7 +101,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/sample-reports": {
     title: "Sample IBLens Reports: Three Essays, Three Honest Grades | IBLens",
-    description: "Real, unedited IBLens output: three demonstration TOK essays on one title, written at three levels of quality and marked 4/10, 5/10 and 9/10 on the holistic instrument, each with its full report.",
+    description: "Real, unedited IBLens output: three demonstration TOK essays on one title, written at three levels of quality and marked 2/10, 4/10 and 9/10 on the holistic instrument, each with its full report.",
     ogType: "article",
     canonical: "/resources/sample-reports",
     schemaType: "Article",
@@ -115,21 +115,21 @@ const routeMeta: Record<string, PageMeta> = {
   },
 
   "/": {
-    title: "Free IB Essay Grader 2026: AI Feedback on IA, EE & TOK | IBLens",
-    description: "AI feedback on your IB essay in about a minute: criterion-by-criterion marks, a predicted band, the risks costing you marks, and what to fix first. Free preview, no account needed.",
+    title: "IB Essay Grader 2026: Free Preview, AI Feedback on IA, EE & TOK | IBLens",
+    description: "AI feedback on your IB essay in about a minute: marks against the published criteria, an estimated band, the risks costing you marks, and what to fix first. Free preview, no account needed.",
     ogType: "website",
     canonical: "/",
     schemaType: "WebSite",
   },
   "/essay": {
     title: "IB Essay Grader: AI Feedback on IA, Extended Essay and TOK | IBLens",
-    description: "AI feedback on your IB Internal Assessment, Extended Essay or TOK work in 14 subjects: a free preview with your band range and weakest criterion, then a full criterion-by-criterion report.",
+    description: "AI feedback on your IB Internal Assessment, Extended Essay or TOK work in 14 subjects: a free preview with your band range and weakest criterion, then a full report against the published criteria.",
     ogType: "website",
     canonical: "/essay",
     schemaType: "WebPage",
   },
   "/grade": {
-    title: "Free IB Essay Grader: Mark My IB Essay in About a Minute | IBLens",
+    title: "IB Essay Grader: Free Preview of Your IA, EE or TOK Marks in About a Minute | IBLens",
     description: "Paste your IB essay and get a free preview in about a minute: your band range, weakest criterion and top risks. The full report marks every criterion. Extended Essay, IA or TOK, no account needed.",
     ogType: "website",
     canonical: "/grade",
@@ -411,14 +411,14 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/ib-university-consultant-cost": {
     title: "IB University Guidance: No Longer Offered | IBLens",
-    description: "This part of IBLens is no longer offered. We withdrew it rather than sell university guidance we cannot keep current. In the meantime, grade your IB essays free with IBLens.",
+    description: "This part of IBLens is no longer offered. We withdrew it rather than sell university guidance we cannot keep current. IBLens still marks IB coursework, with a free preview first.",
     ogType: "website",
     canonical: "/resources/ib-university-consultant-cost",
     schemaType: "WebPage",
   },
   "/resources/ib-university-chances": {
     title: "IB University Chances: No Longer Offered | IBLens",
-    description: "This part of IBLens is no longer offered. We withdrew it rather than sell university guidance we cannot keep current. In the meantime, grade your IB essays free with IBLens.",
+    description: "This part of IBLens is no longer offered. We withdrew it rather than sell university guidance we cannot keep current. IBLens still marks IB coursework, with a free preview first.",
     ogType: "website",
     canonical: "/resources/ib-university-chances",
     schemaType: "WebPage",

@@ -151,7 +151,7 @@ export default function WriteMyIBExtendedEssay() {
         <li><strong>Write a terrible first draft on purpose.</strong> Set a timer for 90 minutes and write from memory, without checking sources. You cannot edit a blank page. Get something on paper and then improve it.</li>
         <li><strong>Reverse-outline your current draft.</strong> Write one sentence summarising each paragraph as it currently exists. If any paragraph does not connect back to your research question, it is probably padding and can be cut or redirected.</li>
         <li><strong>Read the introduction and conclusion back-to-back.</strong> They should feel like they belong to the same essay. If the conclusion does not directly answer the question asked in the introduction, something in the middle went wrong.</li>
-        <li><strong>Check your word count at the section level.</strong> If your background section is 1200 words and your analysis is 800, you have the proportions wrong. The analysis should be the longest section of the essay.</li>
+        <li><strong>Check your word count at the section level.</strong> If your background section is 1,200 words and your analysis is 800, you have the proportions wrong. The analysis should be the longest section of the essay.</li>
         <li><strong>Ask your supervisor one specific question.</strong> Not "can you read my draft" but "is the methodology in Section 2 appropriate to answer my research question, and why or why not?" Specific questions get specific answers.</li>
       </ul>
     </ResourceArticle>

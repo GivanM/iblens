@@ -16,11 +16,11 @@ const config: SubjectConfig = {
   criteria: [
     { name: "Criterion A: Integration of a key concept", max: 5, sampleScore: 3 },
     { name: "Criterion B: Supporting documents", max: 4, sampleScore: 3 },
-    { name: "Criterion C: Selection and application of tools and theories", max: 4, sampleScore: 2 },
-    { name: "Criterion D: Analysis and evaluation", max: 5, sampleScore: 3 },
+    { name: "Criterion C: Selection and application of tools and theories", max: 4, sampleScore: 3 },
+    { name: "Criterion D: Analysis and evaluation", max: 5, sampleScore: 2 },
     { name: "Criterion E: Conclusions", max: 3, sampleScore: 2 },
-    { name: "Criterion F: Structure", max: 2, sampleScore: 1 },
-    { name: "Criterion G: Presentation", max: 2, sampleScore: 2 },
+    { name: "Criterion F: Structure", max: 2, sampleScore: 2 },
+    { name: "Criterion G: Presentation", max: 2, sampleScore: 1 },
   ],
   guide: {
     rubricHeading: "What the Business Management IA criteria reward (25 marks)",
@@ -51,7 +51,7 @@ const config: SubjectConfig = {
       { q: "Can the project be about any business?", a: "It has to refer directly to one real organisation, though it can consider industry-wide issues that affect that organisation." },
       { q: "How accurate is the predicted mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. Your teacher marks the work and the IB moderates that marking, so their mark is the one that counts. Use the report to find what to fix before you submit." },
       { q: "Is it free?", a: "The first preview is free and needs no account: your band range, your weakest criterion with its full feedback, and the top risks in the draft. The full report, with every criterion marked and a ranked list of fixes, is $9.99, or $24.99 for a pack of five." },
-      { q: "Is my work stored?", a: "The text you paste is never stored. It is sent to Anthropic, the AI provider, to produce the report. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },
+      { q: "Is my work stored?", a: "IBLens never saves the text you paste. It passes through our relay server to Anthropic, the AI provider, to produce the report, and Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },
     ],
   },
   relatedResources: [

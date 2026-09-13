@@ -24,7 +24,7 @@ const config: SubjectConfig = {
   guide: {
     rubricHeading: "What the Computer Science IA criteria reward",
     rubricIntro: [
-      "The criteria depend on your exam session. From May 2027 the IA is a computational solution marked out of 30, documented in up to 2,000 words, with code excerpts, comments and diagrams not counted, plus a video of up to 5 minutes. There is no longer a client requirement. Through November 2026 it is the 34-mark solution, which involves a client or an adviser. Choose your session in the analyser and the report uses the matching criteria.",
+      "The criteria depend on your exam session. From May 2027 the IA is a computational solution marked out of 30, documented in up to 2,000 words, with code excerpts, comments and diagrams not counted, plus a video of up to 5 minutes. There is no longer a client requirement. Through November 2026 it is the 34-mark solution, which involves a client or an adviser. Choose your session in the grader and the report uses the matching criteria.",
       "The criteria below apply from May 2027.",
     ],
     rubricItems: [
@@ -51,7 +51,7 @@ const config: SubjectConfig = {
       { q: "Which session am I in?", a: "It depends on when you sit your exams, not on when you started the course. May 2027 or later means the 30-mark computational solution. November 2026 means the 34-mark solution. Your IB coordinator can confirm." },
       { q: "How accurate is the predicted mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. Your teacher marks the work and the IB moderates that marking, so their mark is the one that counts. Use the report to find what to fix before you submit." },
       { q: "Is it free?", a: "The first preview is free and needs no account: your band range, your weakest criterion with its full feedback, and the top risks in the draft. The full report, with every criterion marked and a ranked list of fixes, is $9.99, or $24.99 for a pack of five." },
-      { q: "Is my work stored?", a: "The text you paste is never stored. It is sent to Anthropic, the AI provider, to produce the report. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },
+      { q: "Is my work stored?", a: "IBLens never saves the text you paste. It passes through our relay server to Anthropic, the AI provider, to produce the report, and Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },
     ],
   },
   relatedResources: [

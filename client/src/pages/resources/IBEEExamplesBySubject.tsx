@@ -76,7 +76,7 @@ export default function IBEEExamplesBySubject() {
       </p>
       <p>
         What makes this work: it asks a causal question with a debatable answer
-        (historians disagree), it is narrow enough to answer in 4000 words (one
+        (historians disagree), it is narrow enough to answer in 4,000 words (one
         policy, one famine, one country, one time period), and it requires evaluating
         multiple sources including Soviet archives, demographic data, and historiographical
         debate.

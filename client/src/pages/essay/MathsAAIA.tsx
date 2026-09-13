@@ -45,11 +45,11 @@ const config: SubjectConfig = {
     ],
     faq: [
       { q: "What is the difference between the AA and AI IA?", a: "The criteria and the 20-mark total are the same. The syllabus differs, and Use of mathematics is judged against the course you take and your level." },
-      { q: "How does it know whether I take SL or HL?", a: "Write your course and level, for example Math AA HL, at the top of the text you paste. The analyser asks for the subject only, and Use of mathematics has separate SL and HL descriptors." },
+      { q: "How does it know whether I take SL or HL?", a: "Write your course and level, for example Math AA HL, at the top of the text you paste. The grader asks for the subject only, and Use of mathematics has separate SL and HL descriptors." },
       { q: "Can it read my proofs and graphs?", a: "Proofs and equations come through when they paste as text. Graphs and images do not, so the report reads the working and the explanation around them." },
       { q: "How accurate is the predicted mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. Your teacher marks the work and the IB moderates that marking, so their mark is the one that counts. Use the report to find what to fix before you submit." },
       { q: "Is it free?", a: "The first preview is free and needs no account: your band range, your weakest criterion with its full feedback, and the top risks in the draft. The full report, with every criterion marked and a ranked list of fixes, is $9.99, or $24.99 for a pack of five." },
-      { q: "Is my work stored?", a: "The text you paste is never stored. It is sent to Anthropic, the AI provider, to produce the report. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },
+      { q: "Is my work stored?", a: "IBLens never saves the text you paste. It passes through our relay server to Anthropic, the AI provider, to produce the report, and Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },
     ],
   },
   relatedResources: [

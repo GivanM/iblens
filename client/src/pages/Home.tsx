@@ -43,7 +43,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 const SAMPLE_CRITERIA = [
   { name: "A: Integration of a key concept", score: 3, max: 5 },
   { name: "B: Supporting documents", score: 3, max: 4 },
-  { name: "C: Tools and theories", score: 3, max: 4 },
+  { name: "C: Selection and application of tools and theories", score: 3, max: 4 },
   { name: "D: Analysis and evaluation", score: 2, max: 5 },
   { name: "E: Conclusions", score: 2, max: 3 },
   { name: "F: Structure", score: 2, max: 2 },
@@ -64,8 +64,8 @@ export default function Home() {
     <>
       <PurchaseModal open={purchaseModalOpen} onOpenChange={setPurchaseModalOpen} sku={purchaseSku} />
       <SEOHead
-        title="Free IB Essay Grader 2026: AI Feedback on IA, EE & TOK | IBLens"
-        description="AI feedback on your IB essay in about a minute: criterion-by-criterion marks, a predicted band, the risks costing you marks, and what to fix first. Free preview, no account needed."
+        title="IB Essay Grader 2026: Free Preview, AI Feedback on IA, EE & TOK | IBLens"
+        description="AI feedback on your IB essay in about a minute: marks against the published criteria, an estimated band, the risks costing you marks, and what to fix first. Free preview, no account needed."
         canonical="/"
         jsonLd={[
           {
@@ -89,7 +89,7 @@ export default function Home() {
               highPrice: "44.99",
               priceCurrency: "USD",
             },
-            description: "AI-powered IB essay grader providing criterion-by-criterion feedback and predicted grades.",
+            description: "AI-powered IB essay grader giving feedback against the published criteria with estimated marks.",
           },
           {
             "@context": "https://schema.org",
@@ -121,7 +121,7 @@ export default function Home() {
               },
               {
                 "@type": "Question",
-                name: "How accurate is the predicted IB score?",
+                name: "How accurate is the estimated mark?",
                 acceptedAnswer: {
                   "@type": "Answer",
                   text: "It is an estimate, not a mark. No tool can guarantee an exact score. The model is instructed with the published criteria for your subject and session, and its estimate has not been measured against examiner marks, so the value of the report is in which criterion it flags and why.",
@@ -132,7 +132,7 @@ export default function Home() {
                 name: "Is my essay data kept private and secure?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Your essay is sent to our AI provider (Anthropic PBC) over an encrypted connection solely to generate your analysis. We do not use it to train any AI model, we do not sell it, and we do not share it with your school, universities, or other students. The essay text is never stored, and an anonymous report you did not buy is deleted after 90 days.",
+                  text: "Your essay is sent to our AI provider (Anthropic PBC) over an encrypted connection solely to generate your analysis. We do not use it to train any AI model, we do not sell it, and we do not share it with your school, universities, or other students. IBLens never saves the essay text; Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. An anonymous report you did not buy is deleted after 90 days.",
                 },
               },
               {
@@ -148,7 +148,7 @@ export default function Home() {
                 name: "Can I use IBLens for multiple subjects?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "IBLens marks coursework in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Each analysis uses that subject's own criteria. Subjects outside this list are not offered, because we would have no published criteria to mark them against. Visual Arts can be marked only for sessions through November 2026: from May 2027 the comparative study is no longer set.",
+                  text: "IBLens marks coursework in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Each analysis uses that subject's own criteria. Subjects outside this list are not offered, because the grader carries only the criteria for the subjects listed here. Visual Arts can be marked only for sessions through November 2026: from May 2027 the comparative study is no longer set.",
                 },
               },
               {
@@ -175,7 +175,7 @@ export default function Home() {
                   Know where<br />your marks go<br /><em className="text-primary">before you submit.</em>
                 </h1>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-md">
-                  Paste your essay. AI marks it against the published IB criteria, criterion by criterion, in about a minute.
+                  Paste your essay. AI marks it against the published IB criteria in about a minute.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 mb-4">
                   <Button size="lg" className="text-base px-8 shadow-lg shadow-primary/25" asChild>
@@ -185,7 +185,7 @@ export default function Home() {
                     <Link href="/resources/sample-reports">See sample TOK reports</Link>
                   </Button>
                 </div>
-                <p className="text-sm text-muted-foreground">No subscription. No account for your first essay. Instructed to apply the criteria as written and to be <strong>honest</strong> about weaknesses.</p>
+                <p className="text-sm text-muted-foreground">No subscription. No account needed. Instructed to apply the criteria as written and to be <strong>honest</strong> about weaknesses.</p>
               </div>
 
               {/* Right column, score card */}
@@ -261,9 +261,9 @@ export default function Home() {
 
             <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               <div className="rounded-xl border border-border bg-card p-8">
-                <h3 style={SERIF} className="text-xl font-bold mb-3">Essay Analyser</h3>
+                <h3 style={SERIF} className="text-xl font-bold mb-3">Essay Grader</h3>
                 <p className="text-muted-foreground mb-5 leading-relaxed">
-                  Get detailed feedback on your IA, Extended Essay, or TOK essay. Predicted scores, criterion-by-criterion breakdown, and specific steps to improve.
+                  Get detailed feedback on your IA, Extended Essay, or TOK essay. Estimated marks against the published criteria, and specific steps to improve.
                 </p>
                 <ul className="space-y-2.5 text-sm mb-6">
                   {["Predicted score & IB band", "Criteria breakdown with progress bars", "Risk areas that lose marks", "Leverage zones to gain marks", "Actionable next steps"].map((item) => (
@@ -275,7 +275,7 @@ export default function Home() {
                 </ul>
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">Free preview</span>
-                  <span className="text-xs text-muted-foreground">then $9.99 per essay, two re-checks included</span>
+                  <span className="text-xs text-muted-foreground">then $9.99 per report, two re-checks included</span>
                 </div>
                 <Button variant="outline" asChild>
                   <Link href="/essay">Try it now <ArrowRight className="w-4 h-4 ml-1" /></Link>
@@ -365,7 +365,7 @@ export default function Home() {
                 <p className="text-xs text-muted-foreground">Knows you and your school, and marks your IA against the criteria, but comments on coursework drafts are limited, usually to one.</p>
               </div>
               <div className="bg-primary/5 border-2 border-primary rounded-xl p-5 text-center relative">
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">Recommended</div>
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full whitespace-nowrap">Recommended</div>
                 <p className="font-semibold mb-1">IBLens</p>
                 <div style={SERIF} className="text-2xl font-bold text-primary mb-1">$9.99</div>
                 <p className="text-xs text-muted-foreground">Full criterion breakdown, predicted score and risk areas in about a minute, with two re-checks.</p>
@@ -395,7 +395,7 @@ export default function Home() {
                   <h3 style={SERIF} className="text-xl font-bold mb-1">First Essay Preview</h3>
                   <div style={SERIF} className="text-3xl font-bold mb-2">$0</div>
                   <p className="text-xs text-muted-foreground mb-4">Band range, weakest criterion and top risks. No credit card required.</p>
-                  <Button variant="outline" size="sm" className="w-full" asChild>
+                  <Button variant="outline" className="w-full min-h-11" asChild>
                     <Link href="/essay">Get a free preview</Link>
                   </Button>
                 </CardContent>
@@ -409,7 +409,7 @@ export default function Home() {
                   <h3 className="font-semibold mb-1">Full report</h3>
                   <div style={SERIF} className="text-3xl font-bold mb-2">{PRICE_LABELS.ESSAY_SINGLE}</div>
                   <p className="text-xs text-muted-foreground mb-4">One report, with two re-checks</p>
-                  <Button variant="outline" size="sm" className="w-full" asChild>
+                  <Button variant="outline" className="w-full min-h-11" asChild>
                     <Link href="/essay">Mark my work</Link>
                   </Button>
                 </CardContent>
@@ -420,21 +420,21 @@ export default function Home() {
                   <h3 className="font-semibold mb-1">5 reports</h3>
                   <div style={SERIF} className="text-3xl font-bold mb-1">{PRICE_LABELS.ESSAY_PACK_5}</div>
                   <p className="text-xs text-muted-foreground mb-4">$5.00 per report</p>
-                  <Button variant="outline" size="sm" className="w-full" onClick={() => openPurchase("ESSAY_PACK_5")}>
+                  <Button variant="outline" className="w-full min-h-11" onClick={() => openPurchase("ESSAY_PACK_5")}>
                     Buy 5 reports
                   </Button>
                 </CardContent>
               </Card>
 
               <Card className="border-2 border-primary relative">
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full whitespace-nowrap">
                   Lowest price per report
                 </div>
                 <CardContent className="p-6 text-center">
                   <h3 className="font-semibold mb-1">10 reports</h3>
                   <div style={SERIF} className="text-3xl font-bold mb-1">{PRICE_LABELS.ESSAY_PACK_10}</div>
                   <p className="text-xs text-muted-foreground mb-4">$4.50 per report</p>
-                  <Button size="sm" className="w-full" onClick={() => openPurchase("ESSAY_PACK_10")}>
+                  <Button className="w-full min-h-11" onClick={() => openPurchase("ESSAY_PACK_10")}>
                     Buy 10 reports
                   </Button>
                 </CardContent>
@@ -473,12 +473,12 @@ export default function Home() {
                 answer="Yes. The first preview is free: your band range, feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark and comments for every criterion and a ranked list of fixes, unlocks for $9.99."
               />
               <FAQItem
-                question="How accurate is the predicted IB score?"
+                question="How accurate is the estimated mark?"
                 answer="It is an estimate, not a mark. No tool can guarantee an exact score. The model is instructed with the published criteria for your subject and session, and its estimate has not been measured against examiner marks, so the value of the report is in which criterion it flags and why."
               />
               <FAQItem
                 question="Is my essay data kept private and secure?"
-                answer="Your essay is sent to our AI provider (Anthropic PBC) over an encrypted connection solely to generate your analysis. We do not use it to train any AI model, we do not sell it, and we do not share it with your school, universities, or other students. The essay text is never stored, and an anonymous report you did not buy is deleted after 90 days."
+                answer="Your essay is sent to our AI provider (Anthropic PBC) over an encrypted connection solely to generate your analysis. We do not use it to train any AI model, we do not sell it, and we do not share it with your school, universities, or other students. IBLens never saves the essay text; Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. An anonymous report you did not buy is deleted after 90 days."
               />
               <FAQItem
                 question="What payment methods do you accept?"
@@ -486,7 +486,7 @@ export default function Home() {
               />
               <FAQItem
                 question="Can I use IBLens for multiple subjects?"
-                answer="IBLens marks coursework in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Each analysis uses that subject's own criteria. Subjects outside this list are not offered, because we would have no published criteria to mark them against. Visual Arts can be marked only for sessions through November 2026: from May 2027 the comparative study is no longer set."
+                answer="IBLens marks coursework in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Each analysis uses that subject's own criteria. Subjects outside this list are not offered, because the grader carries only the criteria for the subjects listed here. Visual Arts can be marked only for sessions through November 2026: from May 2027 the comparative study is no longer set."
               />
               <FAQItem
                 question="What if I'm not satisfied with my analysis?"

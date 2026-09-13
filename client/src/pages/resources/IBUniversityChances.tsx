@@ -5,7 +5,7 @@ export default function IBUniversityChances() {
   return (
     <ResourceArticle
       title="IB University Chances: No Longer Offered | IBLens"
-      description="This part of IBLens is no longer offered. We withdrew it rather than sell university guidance we cannot keep current. In the meantime, grade your IB essays free with IBLens."
+      description="This part of IBLens is no longer offered. We withdrew it rather than sell university guidance we cannot keep current. IBLens still marks IB coursework, with a free preview first."
       canonical="/resources/ib-university-chances"
       datePublished="2026-07-16"
       dateModified="2026-07-16"

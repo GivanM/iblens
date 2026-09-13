@@ -50,7 +50,7 @@ export default function IBBiologyExtendedEssay() {
       <h3>Examples of Strong Biology EE Research Questions</h3>
       <ul>
         <li>How does soil pH affect the germination rate and root elongation of <em>Phaseolus vulgaris</em> seeds over a 14-day period?</li>
-        <li>To what extent does caffeine concentration affect the heart rate of <em>Daphnia magna</em>?</li>
+        <li>How does light intensity affect the rate of oxygen production by <em>Elodea canadensis</em>, measured over 20-minute intervals?</li>
         <li>How does wavelength of light during the vegetative phase affect anthocyanin concentration in <em>Ocimum basilicum</em> leaves?</li>
         <li>What is the relationship between dissolved oxygen levels and macroinvertebrate species diversity in three sections of a local river?</li>
       </ul>
@@ -60,8 +60,9 @@ export default function IBBiologyExtendedEssay() {
         The most frequent error is a question that is too broad. "How does temperature
         affect enzyme activity?" is not an EE question; it is a review article topic.
         "How does temperature (10-50 degrees C, in 10 degree increments) affect the rate of
-        starch hydrolysis by salivary amylase, measured by iodine absorbance at 580 nm?"
-        is an EE question.
+        starch hydrolysis by a purchased fungal amylase, measured by iodine absorbance at 580 nm?"
+        is an EE question. The IB's experimentation guidelines also set limits: no body fluids such as saliva,
+        and no experiments that give drugs to animals or push them beyond their natural tolerance.
       </p>
 
       <h2>IB Biology EE Assessment Criteria</h2>
@@ -96,13 +97,13 @@ export default function IBBiologyExtendedEssay() {
         <li><strong>Background Theory (500-700 words):</strong> Explain the biology your investigation depends on, going beyond the syllabus where the question needs it. This is where Criterion B marks are won.</li>
         <li><strong>Methodology (400-600 words):</strong> Write a complete, reproducible method. State variables explicitly: independent, dependent, controlled, and uncontrolled. Justify sample size and replication numbers.</li>
         <li><strong>Results and Analysis (700-900 words):</strong> Present data in labelled tables and graphs. Apply appropriate statistical tests with error bars. Identify trends and anomalies.</li>
-        <li><strong>Discussion and Evaluation (800-1000 words):</strong> Compare your findings to published literature explicitly. Discuss methodological limitations systematically. Suggest specific improvements.</li>
+        <li><strong>Discussion and Evaluation (800-1,000 words):</strong> Compare your findings to published literature explicitly. Discuss methodological limitations systematically. Suggest specific improvements.</li>
         <li><strong>Conclusion (200-300 words):</strong> Answer the research question directly. State your confidence in the answer given the limitations identified.</li>
       </ul>
 
       <h2>Biology EE Topics That Score Well</h2>
       <ul>
-        <li><strong>Microbiology and antimicrobial activity:</strong> Testing the effect of plant extracts on bacterial growth using disk diffusion assays. Yields measurable quantitative data and connects to antibiotic resistance literature.</li>
+        <li><strong>Microbiology and antimicrobial activity:</strong> Testing the effect of plant extracts on bacterial growth using disc diffusion assays, with known non-pathogenic cultures from a supplier, incubation at or below 25°C and no antibiotic-resistance testing, as the IB's experimentation guidelines require. Yields measurable quantitative data.</li>
         <li><strong>Ecology and population studies:</strong> Comparing species richness across disturbed and undisturbed habitats using quadrat sampling. Strong for discussion and evaluation (Criterion D) because you can compare findings to published biodiversity indices.</li>
         <li><strong>Plant physiology:</strong> Effect of different light spectra on chlorophyll production, stomatal density, or growth rate. Feasible with school equipment and produces clear quantitative results.</li>
         <li><strong>Biochemistry and enzymes:</strong> The classic choice, but only when you go beyond basic kinetics, for example by estimating the Michaelis constant, investigating inhibitors, or comparing enzyme activity across pH and ionic strength.</li>

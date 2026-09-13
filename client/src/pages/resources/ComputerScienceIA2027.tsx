@@ -66,7 +66,7 @@ export default function ComputerScienceIA2027() {
       <h2>Check your draft with IBLens</h2>
 
       <p>
-        IBLens supports both Computer Science rubrics: choose <em>Internal Assessment (IA) or coursework</em> and then <em>Computer Science</em> in the analyser, and keep "Exam session" on <em>Exams in May 2027 or later</em>, the default, for the 30-mark criteria above, or switch it to <em>Exams in May or November 2026</em> for the 34-mark rubric. Free preview on your first submission from a device; a full report is $9.99 with no subscription and includes two free re-checks of the same draft within 14 days, so you can revise and check whether the fix landed.
+        IBLens supports both Computer Science rubrics: choose <em>Internal Assessment (IA) or coursework</em> and then <em>Computer Science</em> in the grader, and keep "Exam session" on <em>Exams in May 2027 or later</em>, the default, for the 30-mark criteria above, or switch it to <em>Exams in May or November 2026</em> for the 34-mark rubric. Free preview on your first submission from a device; a full report is $9.99 with no subscription and includes two free re-checks of revised versions of the same work within 14 days of the report opening, so you can revise and check whether the fix landed.
       </p>
 
       <p>

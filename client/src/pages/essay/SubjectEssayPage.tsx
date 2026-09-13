@@ -107,7 +107,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
         <section className="bg-gradient-to-b from-primary/5 to-background py-14 md:py-20">
           <div className="container max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold mb-6 uppercase tracking-wide">
-              One free preview per device · No account · No card
+              One free preview per device or account · No account needed · No card
             </div>
             <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
               {config.heroHeadline}

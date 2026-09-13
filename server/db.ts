@@ -1200,6 +1200,9 @@ export async function consumeAnalysisRerun(id: number, userId: number) {
   const rows = await db.select().from(analyses).where(and(eq(analyses.id, id), eq(analyses.userId, userId))).limit(1);
   const rec: any = rows[0];
   if (!rec || !rec.unlocked) return { ok: false as const, reason: "This report is not unlocked." };
+  // A UCAS review is re-checked on the UCAS page against the device row; the account
+  // copy is a record, and re-running it here handed out two more free reviews.
+  if (rec.essayType === "UCAS") return { ok: false as const, reason: "UCAS reviews are re-checked on the UCAS page." };
   // A re-check is part of the purchase that opened the original, so its own
   // re-checks come from that same allowance. Without this, every re-check was a
   // fresh report with two more free runs attached to it, for ever.

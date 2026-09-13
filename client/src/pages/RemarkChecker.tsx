@@ -62,7 +62,7 @@ function RemarkQuickCheck() {
 
       {!result && (
         <>
-          <div className="flex gap-2 mb-3 items-center">
+          <div className="flex flex-wrap gap-2 mb-3 items-center">
             {(["TOK", "EE"] as const).map((t) => (
               <button key={t} type="button" onClick={() => setEssayType(t)}
                 className={"px-4 py-1.5 rounded-full text-sm font-medium border transition-colors cursor-pointer " + (essayType === t ? "bg-primary text-primary-foreground border-primary" : "border-border text-muted-foreground hover:border-primary")}>
@@ -70,22 +70,26 @@ function RemarkQuickCheck() {
               </button>
             ))}
             {essayType === "EE" && (
-              <select value={subject} onChange={(e) => setSubject(e.target.value)} className="ml-auto text-sm border border-border rounded-md px-2 py-1.5 bg-background cursor-pointer">
-                {["History","English","Economics","Biology","Chemistry","Physics","Psychology","Business Management","Mathematics","Other"].map((s) => <option key={s}>{s}</option>)}
-              </select>
+              <label className="w-full sm:w-auto sm:ml-auto flex items-center gap-2 text-sm text-muted-foreground">
+                EE subject
+                <select value={subject} onChange={(e) => setSubject(e.target.value)} className="flex-1 sm:flex-none min-h-11 text-sm border border-border rounded-md px-2 bg-background text-foreground cursor-pointer">
+                  {["History","English","Economics","Biology","Chemistry","Physics","Psychology","Business Management","Mathematics","Other"].map((s) => <option key={s}>{s}</option>)}
+                </select>
+              </label>
             )}
           </div>
           <Textarea value={essayText} onChange={(e) => setEssayText(e.target.value)} rows={7}
             placeholder={essayType === "TOK" ? "Paste your full TOK essay (the version you submitted to IB)\u2026" : "Paste your full Extended Essay (the version you submitted to IB)\u2026"}
             className="mb-2 bg-background field-sizing-fixed resize-y" />
           <div className="flex items-center justify-between gap-3 flex-wrap">
-            <span className="text-xs text-muted-foreground">{essayText.trim() ? essayText.trim().split(/\s+/).length + " words" : "No account needed. Never used to train AI. Free preview, full report $9.99."}</span>
+            <span className="text-xs text-muted-foreground">{essayText.trim() ? essayText.trim().split(/\s+/).length.toLocaleString("en-GB") + " words" : "Uses this device's free essay preview, one per device or account. No account needed. Full report $9.99."}</span>
             <Button disabled={essayText.trim().length < 300 || analyze.isPending}
               onClick={() => analyze.mutate({
       spendDeviceCredit: false, essayType, subject: essayType === "TOK" ? "Theory of Knowledge" : subject, essayText, clientFingerprint: fp })}>
               {analyze.isPending ? QUICK_STEPS[Math.min(step, QUICK_STEPS.length - 1)] : "See where my essay stands"}
             </Button>
           </div>
+          <p className="text-xs text-muted-foreground mt-2">IBLens never saves the essay text. It passes through our relay server to Anthropic, which marks it and deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. <Link href="/privacy" className="underline">Privacy</Link></p>
           {essayText.trim().length > 0 && essayText.trim().length < 300 && (
             <p className="text-xs text-muted-foreground mt-2">Keep pasting: the check needs the full essay.</p>
           )}

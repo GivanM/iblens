@@ -25,7 +25,7 @@ const config: SubjectConfig = {
   guide: {
     rubricHeading: "What the Extended Essay criteria reward",
     rubricIntro: [
-      "The criteria depend on your exam session. From May 2027 the essay is marked out of 30 on new criteria. Through November 2026 it is marked out of 34 on the older ones. Choose your session in the analyser and the report uses the matching set.",
+      "The criteria depend on your exam session. From May 2027 the essay is marked out of 30 on new criteria. Through November 2026 it is marked out of 34 on the older ones. Choose your session in the grader and the report uses the matching set.",
       "In both cases the limit is 4,000 words, and examiners do not assess anything beyond it. The EE is marked by IB examiners, not by your supervisor. The criteria below apply from May 2027.",
     ],
     rubricItems: [
@@ -44,15 +44,15 @@ const config: SubjectConfig = {
       { title: "Summary in place of analysis", text: "Paragraphs that report what sources say without using them to build your answer. From May 2027 analysis and a line of argument are a criterion of their own, and before that they sit inside Critical thinking." },
       { title: "An essay that never evaluates itself", text: "Findings reported without discussing their significance, and no account of the strengths and limitations of the essay's own method and sources. From May 2027 those are the two strands of Criterion D, the highest-weighted criterion." },
       { title: "Words past the limit", text: "Examiners do not read beyond 4,000 words, so an over-length essay loses on every criterion, not just one. Footnotes that are not references count towards the limit. Citations, the bibliography, tables, charts, equations and the contents page do not." },
-      { title: "No reflections pasted", text: "Criterion E is marked on the RPF or the RPPF, not on the essay. Paste your reflections into their own box in the analyser. Without them the report leaves that criterion unmarked and totals the others." },
+      { title: "No reflections pasted", text: "Criterion E is marked on the RPF or the RPPF, not on the essay. Paste your reflections into their own box in the grader. Without them the report leaves that criterion unmarked and totals the others." },
     ],
     faq: [
-      { q: "Which subjects does it cover?", a: "The criteria are the same in every subject. Pick your EE subject from the 14 in the analyser, so the feedback on knowledge and terminology is read in that subject." },
+      { q: "Which subjects does it cover?", a: "The criteria are the same in every subject. Pick your EE subject from the 14 in the grader, so the feedback on knowledge and terminology is read in that subject." },
       { q: "Can I paste my whole essay?", a: "Yes. Up to 30,000 characters, about 5,000 words, are marked, which is enough for a 4,000-word essay. Leave the bibliography out if space is tight." },
       { q: "Which session am I in?", a: "It depends on when you sit your exams, not on when you started the course. May 2027 or later means the 30-mark criteria and the RPF. November 2026 means the 34-mark criteria and the RPPF. Your IB coordinator can confirm." },
       { q: "How accurate is the predicted mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. IB examiners mark this component, so their mark is the one that counts. Use the report to find what to fix before you submit." },
       { q: "Is it free?", a: "The first preview is free and needs no account: your band range, your weakest criterion with its full feedback, and the top risks in the draft. The full report, with every criterion marked and a ranked list of fixes, is $9.99, or $24.99 for a pack of five." },
-      { q: "Is my work stored?", a: "The text you paste is never stored. It is sent to Anthropic, the AI provider, to produce the report. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },
+      { q: "Is my work stored?", a: "IBLens never saves the text you paste. It passes through our relay server to Anthropic, the AI provider, to produce the report, and Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },
     ],
   },
   relatedResources: [

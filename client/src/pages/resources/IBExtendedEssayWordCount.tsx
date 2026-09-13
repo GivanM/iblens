@@ -18,7 +18,7 @@ export default function IBExtendedEssayWordCount() {
         and explains how to use the limit well.
       </p>
 
-      <h2>What Counts Toward the 4,000-Word Limit</h2>
+      <h2>What Counts Towards the 4,000-Word Limit</h2>
       <p>
         The Extended Essay guide lists what is included in the word count:
       </p>
@@ -36,6 +36,7 @@ export default function IBExtendedEssayWordCount() {
       </p>
       <ul>
         <li><strong>The contents page</strong></li>
+        <li><strong>Headers</strong> (listed in the guide for May 2027 onwards)</li>
         <li><strong>Maps, charts, diagrams and annotated illustrations</strong></li>
         <li><strong>Tables</strong></li>
         <li><strong>Equations, formulas and calculations</strong></li>

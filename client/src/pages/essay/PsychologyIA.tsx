@@ -24,7 +24,7 @@ const config: SubjectConfig = {
   guide: {
     rubricHeading: "What the Psychology IA criteria reward",
     rubricIntro: [
-      "The task depends on your exam session. From May 2027 the IA is a research proposal marked out of 24: you design a study but do not carry it out. Through November 2026 it is an experimental report marked out of 22. Choose your session in the analyser and the report uses the matching criteria.",
+      "The task depends on your exam session. From May 2027 the IA is a research proposal marked out of 24: you design a study but do not carry it out. Through November 2026 it is an experimental report marked out of 22. Choose your session in the grader and the report uses the matching criteria.",
       "The research proposal is limited to 2,200 words, and examiners stop reading at the limit. It is worth 30% of the final grade at SL and 20% at HL, and it uses one of four methods: an experiment, interviews, observations or a survey. Your teacher marks it and the IB moderates the marking.",
     ],
     rubricItems: [
@@ -49,10 +49,10 @@ const config: SubjectConfig = {
     faq: [
       { q: "Which session am I in?", a: "It depends on when you sit your exams, not on when you started the course. May 2027 or later means the research proposal. November 2026 means the experimental report. Your IB coordinator can confirm." },
       { q: "Do I need results for the research proposal?", a: "No. From May 2027 you design the study without carrying it out, so there is no data to analyse. Criterion D discusses the potential findings instead." },
-      { q: "Can I use it for a Psychology Extended Essay?", a: "Choose Extended Essay in the analyser and pick Psychology as the subject. The EE is marked on its own criteria." },
+      { q: "Can I use it for a Psychology Extended Essay?", a: "Choose Extended Essay in the grader and pick Psychology as the subject. The EE is marked on its own criteria." },
       { q: "How accurate is the predicted mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. Your teacher marks the work and the IB moderates that marking, so their mark is the one that counts. Use the report to find what to fix before you submit." },
       { q: "Is it free?", a: "The first preview is free and needs no account: your band range, your weakest criterion with its full feedback, and the top risks in the draft. The full report, with every criterion marked and a ranked list of fixes, is $9.99, or $24.99 for a pack of five." },
-      { q: "Is my work stored?", a: "The text you paste is never stored. It is sent to Anthropic, the AI provider, to produce the report. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },
+      { q: "Is my work stored?", a: "IBLens never saves the text you paste. It passes through our relay server to Anthropic, the AI provider, to produce the report, and Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },
     ],
   },
   relatedResources: [

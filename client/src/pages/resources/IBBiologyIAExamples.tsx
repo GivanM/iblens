@@ -71,14 +71,16 @@ export default function IBBiologyIAExamples() {
         <li>Choosing a less obvious variable: the wavelength of light, using coloured filters, instead of the light intensity almost everyone tests.</li>
       </ul>
 
-      <h3>4. Microbial growth and antibiotic inhibition zones</h3>
+      <h3>4. Microbial growth and inhibition zones of natural extracts</h3>
       <p>
-        Disc diffusion assays (Kirby-Bauer method) are appropriate for IA when the
-        school has a suitable microbiology facility. A student who investigates
-        whether natural antimicrobial compounds (garlic extract, tea tree oil,
-        honey) produce inhibition zones comparable to a standard antibiotic has a
-        question with a real context. Culturing microorganisms carries safety
-        requirements, and Research design expects them to be addressed. The Data analysis requires measuring
+        Disc diffusion assays can suit an IA when the school has a suitable
+        microbiology facility and follows the IB's experimentation guidelines:
+        non-pathogenic cultures from a recognised supplier, incubation at or below
+        25°C, and no testing of antibiotic resistance, which the guidelines do not
+        allow even with non-pathogenic strains. A student who compares the inhibition
+        zones of natural extracts (garlic, tea tree oil, honey) at different
+        concentrations has a question with a real context. Research design expects
+        the safety measures to be addressed. The Data analysis requires measuring
         inhibition zone diameters accurately, calculating means and standard
         deviations, and using a statistical test. The Evaluation should discuss
         why disc diffusion cannot give a minimum inhibitory concentration and what
@@ -108,7 +110,9 @@ export default function IBBiologyIAExamples() {
         design, and again in an Evaluation that fails to name the confounding variables. If you want
         to study human biology, choose a variable you can measure physiologically
         (heart rate, reaction time with a standard protocol) rather than survey-based
-        self-reporting.
+        self-reporting, and follow the IB's rules for human subjects: teacher approval,
+        written informed consent, parental consent under 16, and no substances given to
+        participants, caffeine included.
       </p>
 
       <h3>Germination rate experiments</h3>
