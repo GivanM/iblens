@@ -247,7 +247,7 @@ export default function SampleReports() {
         A grader is only useful if the mark moves when the quality of the work moves. To show how IBLens behaves, we wrote three
         demonstration essays on one TOK-style title, <em>To what extent is certainty attainable in the natural sciences and
         mathematics?</em>, at deliberately different levels of quality, and ran each one through the grader the way a student
-        would: pasted into the analyzer, with no account.
+        would: pasted into the analyser, with no account.
       </p>
       <p>
         A TOK essay has no separate criteria. It is marked out of 10 against one holistic instrument, so each report places the

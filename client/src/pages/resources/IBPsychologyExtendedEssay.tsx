@@ -11,10 +11,10 @@ export default function IBPsychologyExtendedEssay() {
       dateModified="2026-09-13"
     >
       <p>
-        <strong>Sitting your exams in May 2027 or later?</strong> Your Extended Essay is
-        marked out of 30 on rewritten criteria, not out of 34.{" "}
-        <Link href="/resources/ib-extended-essay-new-criteria-2027">See what changed</Link>.
-        The criteria described below apply through November 2026.
+        <strong>The criteria on this page are the ones for exams from May 2027,</strong> when the
+        Extended Essay is marked out of 30.{" "}
+        <Link href="/resources/ib-extended-essay-new-criteria-2027">See what changed</Link>. If you
+        sit your exams in November 2026, the older 34-mark criteria are summarised after them.
       </p>
       <p>
         The IB Psychology Extended Essay is a 4,000-word argument built on published
@@ -95,14 +95,20 @@ export default function IBPsychologyExtendedEssay() {
       </ul>
 
       <h2>How the Five EE Criteria Play Out in Psychology</h2>
-      <p>Through November 2026, every Extended Essay is marked out of 34 on five criteria. In Psychology they reward the following:</p>
+      <p>From May 2027, every Extended Essay is marked out of 30 on five criteria. In Psychology they reward the following:</p>
       <ul>
-        <li><strong>Criterion A: Focus and method (6 marks).</strong> A precise psychological question and a visible method for a literature-based essay: how you found and selected studies, why these studies and not others, and how the essay is organised to answer the question rather than to tour the topic.</li>
+        <li><strong>Criterion A: Framework for the essay (6 marks).</strong> A precise psychological question, a visible method for a literature-based essay (how you found and selected studies, and why these studies and not others) and a structure organised to answer the question rather than to tour the topic.</li>
         <li><strong>Criterion B: Knowledge and understanding (6 marks).</strong> Accurate reporting of theories and studies (their aims, methods and findings), using psychological terminology correctly.</li>
-        <li><strong>Criterion C: Critical thinking (12 marks).</strong> The highest-weighted criterion and the real test. It rewards evaluation of the studies you cite (their samples, designs, measures, generalisability and cultural bias) and an argument that weighs conflicting results instead of listing supportive ones. Describing ten studies scores worse than critically comparing five.</li>
-        <li><strong>Criterion D: Presentation (4 marks).</strong> Structure, consistent citation of every study referenced, correctly presented figures if you use them, and a complete bibliography.</li>
-        <li><strong>Criterion E: Engagement (6 marks).</strong> The RPPF reflections. Strong entries show your thinking changing as you read, such as a study that undermined your assumed answer or a decision to narrow the question, not a diary of the workload.</li>
+        <li><strong>Criterion C: Analysis and line of argument (6 marks).</strong> Analysis that connects the studies into a coherent argument about the question, with findings that stay relevant to it.</li>
+        <li><strong>Criterion D: Discussion and evaluation (8 marks).</strong> The highest-weighted criterion and the real test. It rewards evaluation of the studies you cite (their samples, designs, measures, generalisability and cultural bias), a balanced discussion that weighs conflicting results instead of listing supportive ones, and an evaluation of the essay's own limits. Describing ten studies scores worse than critically comparing five.</li>
+        <li><strong>Criterion E: Reflection (4 marks).</strong> Marked on the reflective statement in your RPF. Strong reflection evaluates, with specific examples, how your thinking changed as you read, such as a study that undermined your assumed answer, rather than keeping a diary of the workload.</li>
       </ul>
+      <p>
+        If you sit your exams in November 2026, the essay is marked out of 34 instead: Focus and
+        method (6), Knowledge and understanding (6), Critical thinking (12), Presentation (4) and
+        Engagement (6, marked on the three RPPF reflections). The advice above carries over, because
+        analysis, discussion and evaluation together make up Critical thinking.
+      </p>
 
       <h2>Working With Real Studies, Critically</h2>
       <p>
@@ -131,7 +137,7 @@ export default function IBPsychologyExtendedEssay() {
 
       <h2>Common Mark-Losing Mistakes in Psychology EEs</h2>
       <ul>
-        <li><strong>The annotated list:</strong> a parade of study summaries with no argument connecting them. Coverage without evaluation caps Criterion C.</li>
+        <li><strong>The annotated list:</strong> a parade of study summaries with no argument connecting them. Coverage without evaluation caps Criteria C and D.</li>
         <li><strong>Describing instead of evaluating:</strong> reporting what each study found but never assessing its sample, method or measures.</li>
         <li><strong>Pop-psych sourcing:</strong> building claims on blogs, talks or self-help books instead of peer-reviewed research.</li>
         <li><strong>Correlation treated as causation:</strong> a common logical error, and one examiners are quick to spot.</li>
@@ -151,7 +157,7 @@ export default function IBPsychologyExtendedEssay() {
       <p>
         Enough to sustain an argument, each evaluated properly: often a core of several
         studies examined in depth. Listing many studies descriptively scores worse
-        than critically comparing a smaller set, because Criterion C rewards
+        than critically comparing a smaller set, because the criteria reward
         evaluation, not coverage.
       </p>
       <h3>How is the Psychology EE different from the Psychology IA?</h3>
@@ -164,7 +170,7 @@ export default function IBPsychologyExtendedEssay() {
 
       <h2>Grade Your Psychology EE Before You Submit</h2>
       <p>
-        IBLens analyses Extended Essays against the five official criteria and shows
+        IBLens analyses Extended Essays against the published criteria for your exam session and shows
         you, criterion by criterion, where marks are being lost, including the
         Psychology classics: description without evaluation, and causal claims the
         evidence cannot support. Paste a draft into the <Link href="/essay/extended-essay">Extended Essay grader</Link>, where the first preview is free, to

@@ -95,7 +95,7 @@ export default function Home() {
             mainEntity: [
               {
                 "@type": "Question",
-                name: "How does IBLens analyze my IB essay?",
+                name: "How does IBLens analyse my IB essay?",
                 acceptedAnswer: {
                   "@type": "Answer",
                   text: "IBLens uses a large language model instructed with the published IB assessment criteria for your subject and session. It marks each criterion (the set depends on your subject), gives a predicted score, identifies the risks that could lose marks, and suggests specific improvements.",
@@ -106,7 +106,7 @@ export default function Home() {
                 name: "Which IB essay types does IBLens support?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "IBLens supports coursework in 14 subjects (the IA in eleven, plus the externally assessed coursework in Visual Arts, Music and Film), Extended Essays (EE), TOK essays and the TOK exhibition. Each type is analyzed against its own published criteria.",
+                  text: "IBLens supports coursework in 14 subjects (the IA in eleven, plus the externally assessed coursework in Visual Arts, Music and Film), Extended Essays (EE), TOK essays and the TOK exhibition. Each type is analysed against its own published criteria.",
                 },
               },
               {
@@ -114,7 +114,7 @@ export default function Home() {
                 name: "Is my first essay analysis really free?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes. The first preview is free: your band range, your weakest criterion with its full feedback, and the top risks in your draft. The complete report, with the exact mark, comments on every criterion and a ranked list of fixes, unlocks for $9.99.",
+                  text: "Yes. The first preview is free: your band range, your weakest criterion with its full feedback, and the top risks in your draft. The complete report, with an estimated mark and comments for every criterion and a ranked list of fixes, unlocks for $9.99.",
                 },
               },
               {
@@ -138,7 +138,7 @@ export default function Home() {
                 name: "What payment methods do you accept?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Payments are handled by LemonSqueezy, which accepts major cards and the other methods shown at checkout. Credits are added automatically once the payment is confirmed.",
+                  text: "Payments are handled by LemonSqueezy, which accepts major cards and the other methods shown at checkout. Your reports are added automatically once the payment is confirmed.",
                 },
               },
               {
@@ -177,10 +177,10 @@ export default function Home() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 mb-4">
                   <Button size="lg" className="text-base px-8 shadow-lg shadow-primary/25" asChild>
-                    <Link href="/essay">Grade my essay, free</Link>
+                    <Link href="/essay">Get my free preview</Link>
                   </Button>
                   <Button size="lg" variant="ghost" asChild>
-                    <Link href="/resources/sample-reports">See real sample reports</Link>
+                    <Link href="/resources/sample-reports">See sample TOK reports</Link>
                   </Button>
                 </div>
                 <p className="text-sm text-muted-foreground">No subscription. No account for your first essay. Instructed to apply the criteria as written and to be <strong>honest</strong> about weaknesses.</p>
@@ -239,7 +239,7 @@ export default function Home() {
               {[
                 { n: "01", title: "The published criteria", desc: "The criteria for your subject and exam session, with their real mark allocations, including the May 2027 changes." },
                 { n: "02", title: "Criterion feedback", desc: "Specific written feedback on every criterion in the full report, not just a total. See where the marks are lost." },
-                { n: "03", title: "About a minute", desc: "Paste, click, read. No account needed for your first preview, and the words are counted against your limit." },
+                { n: "03", title: "About a minute", desc: "Paste, click, read. No account needed for your first preview, and IBLens counts your words against the official limit." },
               ].map(f => (
                 <div key={f.n} className="border-t-2 border-primary pt-6">
                   <p style={SERIF} className="text-4xl font-bold text-primary mb-4">{f.n}</p>
@@ -259,7 +259,7 @@ export default function Home() {
 
             <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               <div className="rounded-xl border border-border bg-card p-8">
-                <h3 style={SERIF} className="text-xl font-bold mb-3">Essay Analyzer</h3>
+                <h3 style={SERIF} className="text-xl font-bold mb-3">Essay Analyser</h3>
                 <p className="text-muted-foreground mb-5 leading-relaxed">
                   Get detailed feedback on your IA, Extended Essay, or TOK essay. Predicted scores, criterion-by-criterion breakdown, and specific steps to improve.
                 </p>
@@ -401,23 +401,23 @@ export default function Home() {
             </div>
 
             {/* Paid plans grid */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
+            <div className="grid sm:grid-cols-3 gap-5 max-w-4xl mx-auto">
               <Card className="border border-border">
                 <CardContent className="p-6 text-center">
-                  <h3 className="font-semibold mb-1">Full Report</h3>
+                  <h3 className="font-semibold mb-1">Full report</h3>
                   <div style={SERIF} className="text-3xl font-bold mb-2">{PRICE_LABELS.ESSAY_SINGLE}</div>
-                  <p className="text-xs text-muted-foreground mb-4">Per essay, with two re-checks</p>
+                  <p className="text-xs text-muted-foreground mb-4">One report, with two re-checks</p>
                   <Button variant="outline" size="sm" className="w-full" asChild>
-                    <Link href="/essay">Analyze Essay</Link>
+                    <Link href="/essay">Mark my work</Link>
                   </Button>
                 </CardContent>
               </Card>
 
               <Card className="border border-border">
                 <CardContent className="p-6 text-center">
-                  <h3 className="font-semibold mb-1">Essay Pack (5)</h3>
+                  <h3 className="font-semibold mb-1">5 reports</h3>
                   <div style={SERIF} className="text-3xl font-bold mb-1">{PRICE_LABELS.ESSAY_PACK_5}</div>
-                  <p className="text-xs text-muted-foreground mb-4">$5.00 per analysis</p>
+                  <p className="text-xs text-muted-foreground mb-4">$5.00 per report</p>
                   <Button variant="outline" size="sm" className="w-full" onClick={() => openPurchase("ESSAY_PACK_5")}>
                     Buy Pack
                   </Button>
@@ -426,12 +426,12 @@ export default function Home() {
 
               <Card className="border-2 border-primary relative">
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">
-                  Best Value
+                  Lowest price per report
                 </div>
                 <CardContent className="p-6 text-center">
-                  <h3 className="font-semibold mb-1">Essay Pack (10)</h3>
+                  <h3 className="font-semibold mb-1">10 reports</h3>
                   <div style={SERIF} className="text-3xl font-bold mb-1">{PRICE_LABELS.ESSAY_PACK_10}</div>
-                  <p className="text-xs text-muted-foreground mb-4">$4.50 per analysis</p>
+                  <p className="text-xs text-muted-foreground mb-4">$4.50 per report</p>
                   <Button size="sm" className="w-full" onClick={() => openPurchase("ESSAY_PACK_10")}>
                     Buy Pack
                   </Button>
@@ -459,16 +459,16 @@ export default function Home() {
 
             <div className="max-w-2xl mx-auto bg-background rounded-xl border p-6 md:p-8">
               <FAQItem
-                question="How does IBLens analyze my IB essay?"
+                question="How does IBLens analyse my IB essay?"
                 answer="IBLens uses a large language model instructed with the published IB assessment criteria for your subject and session. It marks each criterion (the set depends on your subject), gives a predicted score, identifies the risks that could lose marks, and suggests specific improvements."
               />
               <FAQItem
                 question="Which IB essay types does IBLens support?"
-                answer="IBLens supports coursework in 14 subjects (the IA in eleven, plus the externally assessed coursework in Visual Arts, Music and Film), Extended Essays (EE), TOK essays and the TOK exhibition. Each type is analyzed against its own published criteria."
+                answer="IBLens supports coursework in 14 subjects (the IA in eleven, plus the externally assessed coursework in Visual Arts, Music and Film), Extended Essays (EE), TOK essays and the TOK exhibition. Each type is analysed against its own published criteria."
               />
               <FAQItem
                 question="Is my first essay analysis really free?"
-                answer="Yes. The first preview is free: your band range, your weakest criterion with its full feedback, and the top risks in your draft. The complete report, with the exact mark, comments on every criterion and a ranked list of fixes, unlocks for $9.99."
+                answer="Yes. The first preview is free: your band range, your weakest criterion with its full feedback, and the top risks in your draft. The complete report, with an estimated mark and comments for every criterion and a ranked list of fixes, unlocks for $9.99."
               />
               <FAQItem
                 question="How accurate is the predicted IB score?"
@@ -480,7 +480,7 @@ export default function Home() {
               />
               <FAQItem
                 question="What payment methods do you accept?"
-                answer="Payments are handled by LemonSqueezy, which accepts major cards and the other methods shown at checkout. Credits are added automatically once the payment is confirmed."
+                answer="Payments are handled by LemonSqueezy, which accepts major cards and the other methods shown at checkout. Your reports are added automatically once the payment is confirmed."
               />
               <FAQItem
                 question="Can I use IBLens for multiple subjects?"

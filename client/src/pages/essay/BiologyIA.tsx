@@ -30,7 +30,7 @@ const config: SubjectConfig = {
       { title: "Conclusion, 6 marks", text: "A conclusion that answers the research question, is consistent with the processed data and its uncertainties, and is justified by comparison with the accepted scientific context, such as published research or values." },
       { title: "Evaluation, 6 marks", text: "The relative impact of specific weaknesses or limitations in your method, with realistic improvements that address them. Weaknesses that would apply to almost any investigation are what the lowest band describes." },
     ],
-    mistakesHeading: "Mistakes the Biology IA criteria penalize",
+    mistakesHeading: "Mistakes the Biology IA criteria penalise",
     mistakes: [
       { title: "Uncertainties left out", text: "Raw data with no uncertainties, or processed values with no sense of how precise they are. Data analysis asks for an appropriate consideration of uncertainties, and a fully consistent conclusion interprets the data with them." },
       { title: "A question with no context", text: "A research question that names two variables but not the biological system they belong to or the theory behind the prediction. The top Research design band describes a question set in a specific context." },
@@ -41,7 +41,7 @@ const config: SubjectConfig = {
     faq: [
       { q: "Can it read my graphs and tables?", a: "Tables pasted as text come through. Graphs and images do not, so the feedback on how you present data is based on the tables and text you paste. Describe any graph your conclusion depends on." },
       { q: "Does the word count include my data tables?", a: "No. The official 3,000-word count leaves out charts, diagrams, data tables, equations and calculations, citations, the bibliography and headers. IBLens counts every word you paste, so when you are close to the limit or over it, the report reminds you what the official count leaves out." },
-      { q: "Can I use it for a Biology Extended Essay?", a: "Choose Extended Essay in the analyzer and pick Biology as the subject. The EE is marked on its own criteria, so the IA criteria would put it on the wrong scale." },
+      { q: "Can I use it for a Biology Extended Essay?", a: "Choose Extended Essay in the analyser and pick Biology as the subject. The EE is marked on its own criteria, so the IA criteria would put it on the wrong scale." },
       { q: "How accurate is the predicted mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. Your teacher marks the work and the IB moderates that marking, so their mark is the one that counts. Use the report to find what to fix before you submit." },
       { q: "Is it free?", a: "The first preview is free and needs no account: your band range, your weakest criterion with its full feedback, and the top risks in the draft. The full report, with every criterion marked and a ranked list of fixes, is $9.99, or $24.99 for a pack of five." },
       { q: "Is my work stored?", a: "The text you paste is never stored. It is sent to Anthropic, the AI provider, to produce the report. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },

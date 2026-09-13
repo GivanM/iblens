@@ -11,10 +11,10 @@ export default function IBEnglishExtendedEssay() {
       dateModified="2026-09-13"
     >
       <p>
-        <strong>Sitting your exams in May 2027 or later?</strong> Your Extended Essay is
-        marked out of 30 on rewritten criteria, not out of 34.{" "}
-        <Link href="/resources/ib-extended-essay-new-criteria-2027">See what changed</Link>.
-        The criteria described below apply through November 2026.
+        <strong>The criteria on this page are the ones for exams from May 2027,</strong> when the
+        Extended Essay is marked out of 30.{" "}
+        <Link href="/resources/ib-extended-essay-new-criteria-2027">See what changed</Link>. If you
+        sit your exams in November 2026, the older 34-mark criteria are summarised after them.
       </p>
       <p>
         An IB English Extended Essay is an extended piece of literary criticism: a
@@ -35,8 +35,8 @@ export default function IBEnglishExtendedEssay() {
         Unlike a classroom essay, the English EE is built around a research question
         you design yourself, and it is assessed against the same five generic EE
         criteria as every other subject, not against the Language A paper
-        markbands you are used to. It also carries a reflection component, the RPPF,
-        which is marked under Criterion E. The practical consequence: a
+        markbands you are used to. It also carries a reflection component, the RPF from
+        May 2027 (the RPPF before that), which is marked under Criterion E. The practical consequence: a
         reading that would earn praise in class as "sensitive" is not enough here.
         The essay must pose a genuine question about the text, sustain an answer to
         it for 4,000 words, and show the analytical method (which passages you
@@ -93,14 +93,20 @@ export default function IBEnglishExtendedEssay() {
       </ul>
 
       <h2>How the Five EE Criteria Play Out in English</h2>
-      <p>Through November 2026, every Extended Essay is marked out of 34 on five criteria. In English they translate like this:</p>
+      <p>From May 2027, every Extended Essay is marked out of 30 on five criteria. In English they translate like this:</p>
       <ul>
-        <li><strong>Criterion A: Focus and method (6 marks).</strong> A precise, literary research question, plus a visible analytical approach: which text or texts, which passages, which critical lens, and why those choices can answer the question. The essay must stay on that question; drifting into general appreciation costs marks here.</li>
+        <li><strong>Criterion A: Framework for the essay (6 marks).</strong> A precise, literary research question, a visible analytical approach (which text or texts, which passages, which critical lens, and why those choices can answer the question) and a structure that keeps the essay on that question. Drifting into general appreciation costs marks here.</li>
         <li><strong>Criterion B: Knowledge and understanding (6 marks).</strong> Understanding of the work and, where relevant, its context, shown through accurate and purposeful use of literary terminology. Terms must do analytical work; decorating a paragraph with "juxtaposition" earns nothing by itself.</li>
-        <li><strong>Criterion C: Critical thinking (12 marks).</strong> The heart of the essay and the highest-weighted criterion. It rewards sustained interpretation built from close reading: quotations analysed for their effect, alternative readings considered, an argument that develops rather than repeats. This is the criterion plot summary destroys.</li>
-        <li><strong>Criterion D: Presentation (4 marks).</strong> Clean structure, correctly formatted quotations, consistent referencing of the edition you used, and a complete bibliography.</li>
-        <li><strong>Criterion E: Engagement (6 marks).</strong> Assessed through the RPPF. Strong reflections trace how your reading changed, such as an interpretation you abandoned or a passage that complicated your thesis, rather than how the workload felt.</li>
+        <li><strong>Criterion C: Analysis and line of argument (6 marks).</strong> Sustained interpretation built from close reading: quotations analysed for their effect, in an argument that develops rather than repeats. This is the criterion plot summary destroys.</li>
+        <li><strong>Criterion D: Discussion and evaluation (8 marks).</strong> The highest-weighted criterion. It rewards a balanced discussion of what your reading shows, with alternative readings weighed and supported by the text, and an evaluation of the essay itself: what your chosen passages and lens can and cannot support.</li>
+        <li><strong>Criterion E: Reflection (4 marks).</strong> Marked on the reflective statement in your RPF. Strong reflection evaluates, with specific examples, how the research changed you as a reader, such as an interpretation you abandoned and what that taught you about using evidence.</li>
       </ul>
+      <p>
+        If you sit your exams in November 2026, the essay is marked out of 34 instead: Focus and
+        method (6), Knowledge and understanding (6), Critical thinking (12), Presentation (4) and
+        Engagement (6, marked on the three RPPF reflections). The advice above carries over, because
+        analysis, discussion and evaluation together make up Critical thinking.
+      </p>
 
       <h2>Method: Close Reading, Not Plot Summary</h2>
       <p>
@@ -118,7 +124,7 @@ export default function IBEnglishExtendedEssay() {
         argument rather than replace it. Use critics to position your reading, to
         show what you are agreeing with, refining or pushing against, and then
         return to the primary text for the evidence. An essay stitched together
-        from critics' opinions fails Criterion C for the same reason plot summary
+        from critics' opinions fails Criteria C and D for the same reason plot summary
         does: the analytical work is not yours. Be especially wary of revision
         websites and study guides; their generalised readings are exactly the
         received wisdom a top-band essay is supposed to move beyond.
@@ -139,7 +145,7 @@ export default function IBEnglishExtendedEssay() {
       <p>
         Most successful essays focus on one or two literary works. A single novel
         analysed deeply almost always beats four texts surveyed superficially,
-        because Criterion C rewards sustained analysis rather than coverage.
+        because the criteria reward sustained analysis rather than coverage.
       </p>
       <h3>Can I use secondary criticism in an English EE?</h3>
       <p>
@@ -151,14 +157,14 @@ export default function IBEnglishExtendedEssay() {
       <p>
         Scale and independence. The EE is a 4,000-word argument built around your
         own research question, assessed against five criteria, with a reflection
-        component (the RPPF, which becomes the RPF from May 2027). It demands a sharper question and more sustained
+        component (the RPF from May 2027, the RPPF before that). It demands a sharper question and more sustained
         analysis than classroom essays.
       </p>
 
       <h2>Grade Your English EE Before You Submit</h2>
       <p>
-        IBLens analyses Extended Essays against the five official criteria and shows
-        you exactly where marks are leaking, including whether your paragraphs are
+        IBLens analyses Extended Essays against the published criteria for your exam session and shows
+        you where marks are leaking, including whether your paragraphs are
         analysing or quietly summarising. Paste a draft into the <Link href="/essay/extended-essay">Extended Essay grader</Link>, where the first preview is free, to
         see where your English EE stands, and read the <Link href="/resources/ib-extended-essay-guide">complete IB Extended Essay guide</Link> for
         the full process from choosing a text to the final reflection.

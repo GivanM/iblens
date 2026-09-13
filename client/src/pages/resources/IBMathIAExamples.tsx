@@ -27,7 +27,7 @@ export default function IBMathIAExamples() {
         each, C and D 3 marks each, and E 6 marks:
       </p>
       <ul>
-        <li><strong>Criterion A: Presentation (4 marks).</strong> Is the work well-organized, clearly written, and appropriately concise? Is there a table of contents and a bibliography?</li>
+        <li><strong>Criterion A: Presentation (4 marks).</strong> Is the work well-organised, clearly written, and appropriately concise? Is there a table of contents and a bibliography?</li>
         <li><strong>Criterion B: Mathematical communication (4 marks).</strong> Are mathematical symbols, notation, and diagrams used correctly and consistently?</li>
         <li><strong>Criterion C: Personal engagement (3 marks).</strong> Does the exploration reflect your genuine curiosity? Is the approach original rather than a textbook rehash?</li>
         <li><strong>Criterion D: Reflection (3 marks).</strong> Do you discuss limitations, surprises, and what you would do differently? Is your thinking visible throughout?</li>

@@ -59,7 +59,7 @@ export default function EssayCriteriaExplained() {
 
       <h3>Application and Analysis</h3>
       <p>
-        This criterion assesses whether you can apply your knowledge to specific situations and break down complex problems into components. In sciences, this might mean applying a theory to explain experimental results. In humanities, it might mean analyzing a primary source by considering its context, purpose, and limitations. The key distinction: <strong>description tells what; analysis tells why and how</strong>.
+        This criterion assesses whether you can apply your knowledge to specific situations and break down complex problems into components. In sciences, this might mean applying a theory to explain experimental results. In humanities, it might mean analysing a primary source by considering its context, purpose, and limitations. The key distinction: <strong>description tells what; analysis tells why and how</strong>.
       </p>
 
       <h3>Synthesis and Evaluation</h3>
@@ -69,7 +69,7 @@ export default function EssayCriteriaExplained() {
 
       <h3>Communication and Presentation</h3>
       <p>
-        Assessed directly in many components, and indirectly in all of them: can you communicate your ideas clearly, using appropriate structure, conventions and academic language? This includes proper citation, logical organization, correct use of subject-specific formats (lab reports, essays, commentaries), and writing that is precise rather than vague.
+        Assessed directly in many components, and indirectly in all of them: can you communicate your ideas clearly, using appropriate structure, conventions and academic language? This includes proper citation, logical organisation, correct use of subject-specific formats (lab reports, essays, commentaries), and writing that is precise rather than vague.
       </p>
 
       <h2>How Examiners Apply Criteria in Practice</h2>
@@ -91,7 +91,7 @@ export default function EssayCriteriaExplained() {
       </p>
 
       <p>
-        <strong>Standardization:</strong> examiners are trained on work that senior examiners have already marked, and their marking is checked during the session. The aim is that different examiners marking the same work arrive at similar marks.
+        <strong>Standardisation:</strong> examiners are trained on work that senior examiners have already marked, and their marking is checked during the session. The aim is that different examiners marking the same work arrive at similar marks.
       </p>
 
       <h2>The Difference Between Good and Excellent Work</h2>
@@ -131,12 +131,12 @@ export default function EssayCriteriaExplained() {
           </tr>
           <tr>
             <td><strong>Structure</strong></td>
-            <td>Logical organization with clear paragraphs</td>
+            <td>Logical organisation with clear paragraphs</td>
             <td>Sophisticated structure where each section builds on the previous one toward a compelling conclusion</td>
           </tr>
           <tr>
             <td><strong>Conclusion</strong></td>
-            <td>Summarizes main points</td>
+            <td>Summarises main points</td>
             <td>Synthesizes findings into new insight, acknowledges limitations, suggests implications</td>
           </tr>
         </tbody>

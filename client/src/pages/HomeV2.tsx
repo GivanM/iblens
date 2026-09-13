@@ -18,7 +18,7 @@ import { usePaperTexture, useMarkingInk } from "@/components/marking/useMarkingS
 
 const FAQ = [
   {
-    q: "How does IBLens analyze my IB essay?",
+    q: "How does IBLens analyse my IB essay?",
     a: "A large language model is given the official assessment criteria for your task and session, and marks your draft criterion by criterion. The report gives a mark range, the criterion losing the most marks, the risks in the text, and what to change.",
   },
   {

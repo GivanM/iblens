@@ -65,7 +65,7 @@ export default function IBScoreCalculator() {
       <p>The IB publishes each session's boundaries to schools after marking, so no fixed percentage can be quoted for any subject. Your teacher or DP coordinator can tell you where the boundaries fell for your subject and level in recent sessions.</p>
 
       <h2>What Some Universities Publish</h2>
-      <p>Requirements are set per course and change from year to year, so the university's own course page is the only reliable source. Three well-known examples, as those universities state them:</p>
+      <p>Requirements are set per course and change from year to year, so the university's own course page is the only reliable source. Three well-known examples, as those universities stated them when we checked in September 2026:</p>
       <ul>
         <li><strong>Oxford:</strong> 38, 39 or 40 points including core points, depending on the course, with 6s and 7s in Higher Level subjects. Course pages range from 666 to 776 at HL, and 666 or 766 are the most common.</li>
         <li><strong>Cambridge:</strong> minimum offers of 41 to 42 points out of 45, with 776 at Higher Level. Some colleges ask for 777 or a higher total.</li>

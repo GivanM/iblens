@@ -17,9 +17,9 @@ import { trackBeginCheckout, trackViewItem } from "@/lib/analytics/track";
 import type { ProductSlug } from "@/lib/analytics/config";
 
 const SKU_LABELS: Record<ProductKey, string> = {
-  ESSAY_SINGLE: "1 Essay Analysis",
-  ESSAY_PACK_5: "5 Essay Analyses",
-  ESSAY_PACK_10: "10 Essay Analyses",
+  ESSAY_SINGLE: "Full report",
+  ESSAY_PACK_5: "5 reports",
+  ESSAY_PACK_10: "10 reports",
   UNIVERSITY_SINGLE: "University Strategy Report",
 };
 
@@ -113,6 +113,9 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId }: PurchaseM
 
   const price = PRICE_LABELS[sku];
   const label = SKU_LABELS[sku];
+  // Opened next to a locked report, the purchase opens that report. Opened from the
+  // pricing page or the home page there is no report yet, so it buys a credit.
+  const beside = !!analysisId || (typeof window !== "undefined" && /^\/(essay|ucas-personal-statement|remark|dashboard\/analysis)/.test(window.location.pathname));
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -131,8 +134,10 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId }: PurchaseM
               <div className="mt-3 rounded-lg bg-muted/50 p-3 text-left">
                 <p className="text-xs font-medium mb-1">What you get</p>
                 <ul className="text-xs text-muted-foreground space-y-1 list-disc pl-4">
-                  <li>The report you are looking at, unlocked in full: every criterion with its comments and the ranked fix list</li>
-                  <li>Two free re-checks of the same draft within 14 days of the report opening</li>
+                  <li>{beside
+                    ? "The report you are looking at, unlocked in full: every criterion with its comments and the ranked fix list"
+                    : "One full report, used on your next piece of work: every criterion with its comments and the ranked fix list"}</li>
+                  <li>Two free re-checks of a revised version of the same work, within 14 days of the report opening</li>
                   {isAuthenticated
                     ? <li>The report opens in your account as soon as the payment clears</li>
                     : <li>The report opens in this browser as soon as the payment clears. Without an account it stays in this browser; sign in with Google on this device to keep it in an account</li>}
@@ -193,10 +198,10 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId }: PurchaseM
           {/* Small print */}
           <p className="text-xs text-center text-muted-foreground flex items-center justify-center gap-1.5">
             <Shield className="w-3 h-3" />
-            Secure checkout. Credits activate automatically after payment.
+            Secure checkout by LemonSqueezy. Credits activate automatically after payment.
           </p>
           <p className="text-xs text-center text-muted-foreground">
-            7-day money-back guarantee · <a href="/resources/sample-reports" target="_blank" rel="noopener" className="underline hover:text-foreground">see a real sample report</a>
+            <a href="/refund-policy" target="_blank" rel="noopener" className="underline hover:text-foreground">7-day money-back guarantee</a> · <a href="/resources/sample-reports" target="_blank" rel="noopener" className="underline hover:text-foreground">see sample reports</a>
           </p>
         </div>
       </DialogContent>

@@ -8,13 +8,13 @@ export default function IBBiologyExtendedEssay() {
       description="A guide to the IB Biology Extended Essay: choosing a research question, how the EE differs from the IA, the assessment criteria, structure, and the reflection."
       canonical="/resources/ib-biology-extended-essay"
       datePublished="2026-06-17"
-      dateModified="2026-06-17"
+      dateModified="2026-09-13"
     >
       <p>
-        <strong>Sitting your exams in May 2027 or later?</strong> Your Extended Essay is
-        marked out of 30 on rewritten criteria, not out of 34.{" "}
-        <Link href="/resources/ib-extended-essay-new-criteria-2027">See what changed</Link>.
-        The criteria described below apply through November 2026.
+        <strong>The criteria on this page are the ones for exams from May 2027,</strong> when the
+        Extended Essay is marked out of 30.{" "}
+        <Link href="/resources/ib-extended-essay-new-criteria-2027">See what changed</Link>. If you
+        sit your exams in November 2026, the older 34-mark criteria are summarised after them.
       </p>
       <p>
         The IB Biology Extended Essay (EE) is a 4,000-word independent research
@@ -66,20 +66,27 @@ export default function IBBiologyExtendedEssay() {
 
       <h2>IB Biology EE Assessment Criteria</h2>
       <p>
-        Through November 2026, the Biology EE is marked out of 34 on five criteria:
+        From May 2027, the Biology EE is marked out of 30 on five criteria:
       </p>
       <ul>
-        <li><strong>Criterion A: Focus and method (6 marks).</strong> Is the research question clearly stated? Is the methodology appropriate, detailed, and reproducible?</li>
+        <li><strong>Criterion A: Framework for the essay (6 marks).</strong> Is the research question clearly stated and focused? Is the method appropriate, detailed and reproducible, and does the structure of the essay serve the question?</li>
         <li><strong>Criterion B: Knowledge and understanding (6 marks).</strong> Does the essay show knowledge and understanding of the biology behind the question, with correct terminology and relevant, reliable sources?</li>
-        <li><strong>Criterion C: Critical thinking (12 marks).</strong> The highest-weighted criterion. Does your analysis go beyond describing data? Do you evaluate sources, discuss anomalies, and compare findings to published literature?</li>
-        <li><strong>Criterion D: Presentation (4 marks).</strong> Structure, layout, citations, correctly labelled figures and tables.</li>
-        <li><strong>Criterion E: Engagement (6 marks).</strong> Assessed through the RPPF (three written reflections). Rewards intellectual engagement with the research process, including honesty about challenges.</li>
+        <li><strong>Criterion C: Analysis and line of argument (6 marks).</strong> Does your analysis go beyond describing data, with findings that stay relevant to the question and build a coherent argument?</li>
+        <li><strong>Criterion D: Discussion and evaluation (8 marks).</strong> The highest-weighted criterion. Do you discuss what your findings mean against published research, with evidence, and evaluate the investigation itself: its anomalies, its limitations and what they do to your conclusion?</li>
+        <li><strong>Criterion E: Reflection (4 marks).</strong> Marked on the reflective statement in your RPF. It rewards evaluative reflection, with specific examples, on how the investigation changed you as a learner.</li>
       </ul>
       <p>
-        In recent sessions, 27 or more out of 34 has been a grade A. Criterion C is
-        where an essay most often misses that line: results are summarised without being
-        connected to published research, or without evaluating why they differ from what
-        the literature predicts.
+        Grade boundaries for the new 30-mark scale are set only after the May 2027 session is
+        marked; on the older scale, 27 or more out of 34 has been a grade A in recent sessions.
+        Either way, essays most often fall short in discussion and evaluation: results are
+        summarised without being connected to published research, or without evaluating why
+        they differ from what the literature predicts.
+      </p>
+      <p>
+        If you sit your exams in November 2026, the essay is marked out of 34 instead: Focus and
+        method (6), Knowledge and understanding (6), Critical thinking (12), Presentation (4) and
+        Engagement (6, marked on the three RPPF reflections). The advice above carries over, because
+        analysis, discussion and evaluation together make up Critical thinking.
       </p>
 
       <h2>How to Structure a Biology EE</h2>
@@ -96,29 +103,30 @@ export default function IBBiologyExtendedEssay() {
       <h2>Biology EE Topics That Score Well</h2>
       <ul>
         <li><strong>Microbiology and antimicrobial activity:</strong> Testing the effect of plant extracts on bacterial growth using disk diffusion assays. Yields measurable quantitative data and connects to antibiotic resistance literature.</li>
-        <li><strong>Ecology and population studies:</strong> Comparing species richness across disturbed and undisturbed habitats using quadrat sampling. Strong for Criterion C because you can compare findings to published biodiversity indices.</li>
+        <li><strong>Ecology and population studies:</strong> Comparing species richness across disturbed and undisturbed habitats using quadrat sampling. Strong for discussion and evaluation (Criterion D) because you can compare findings to published biodiversity indices.</li>
         <li><strong>Plant physiology:</strong> Effect of different light spectra on chlorophyll production, stomatal density, or growth rate. Feasible with school equipment and produces clear quantitative results.</li>
         <li><strong>Biochemistry and enzymes:</strong> The classic choice, but only when you go beyond basic kinetics, for example by estimating the Michaelis constant, investigating inhibitors, or comparing enzyme activity across pH and ionic strength.</li>
       </ul>
 
-      <h2>The RPPF: What Examiners Look For</h2>
+      <h2>The Reflection: What Criterion E Rewards</h2>
       <p>
-        Criterion E is marked on the three RPPF reflections, with the essay read only as
-        context. From May 2027 the RPPF is replaced by the RPF, a single reflective
-        statement of up to 500 words. Weak entries describe what happened: "I collected my data
-        this week and it went well." Strong entries demonstrate intellectual engagement:
-        "My initial results showed a negative correlation opposite to what the literature
-        predicts. I investigated whether instrument calibration was the cause, found
-        a zero-point error of approximately 12%, recalibrated, and re-ran trials 3-5."
-        Honest, specific reflection on obstacles is what the upper levels of Criterion E describe.
+        From May 2027, Criterion E is marked on a single reflective statement of up to 500 words
+        in the RPF, written after your final reflection session; through November 2026 it is
+        marked on the three RPPF reflections. Weak reflection describes what happened: "I
+        collected my data this week and it went well." Strong reflection evaluates what the
+        experience taught you, with specific examples: "My first results contradicted the
+        literature. Checking the calibration showed a zero-point error of about 12%, and since
+        then I test an instrument before I trust a surprising result, in every practical, not
+        just this one." Specific, evaluative reflection that shows growth is what the upper
+        levels of Criterion E describe.
       </p>
 
       <h2>Analyse Your Biology EE With IBLens</h2>
       <p>
         IBLens reads Extended Essays against the assessment criteria for your session.
         Paste a draft of your Biology EE to receive criterion-by-criterion feedback
-        identifying where you are losing marks, especially on Criterion C and the
-        focus of your research question in Criterion A.
+        identifying where you are losing marks, especially on analysis and discussion
+        (Criteria C and D) and the focus of your research question in Criterion A.
       </p>
       <p>
         <Link href="/essay/extended-essay">Analyse your Biology EE with IBLens</Link>

@@ -19,7 +19,7 @@ export default function About() {
       <h2>Where IBLens came from</h2>
 
       <p>
-        IBLens started as a tool built inside one IB family, for checking our own student's drafts against the actual assessment criteria instead of guessing, and grew into a public product. It is an independent project, not affiliated with, endorsed by, or connected to the International Baccalaureate Organization in any way.
+        IBLens started as a tool built inside one IB family, to check a student's drafts against the actual assessment criteria instead of guessing, and grew into a public product. It is an independent project, not affiliated with, endorsed by, or connected to the International Baccalaureate Organization in any way.
       </p>
 
       <h2>How the grader works</h2>
@@ -51,7 +51,7 @@ export default function About() {
       <h2>Pricing, briefly</h2>
 
       <p>
-        The first preview is free, with no account needed: the predicted band range, your weakest criterion with its feedback, and the top risks. A full report costs $9.99 per essay and includes two free re-checks within 14 days. There is no subscription, and a <Link href="/refund-policy">7-day money-back guarantee</Link> applies.
+        The first preview is free, with no account needed: the predicted band range, your weakest criterion with its feedback, and the top risks. A full report costs $9.99 and includes two free re-checks of a revised version of the same work, within 14 days of the report opening. There is no subscription, and a <Link href="/refund-policy">7-day money-back guarantee</Link> applies.
       </p>
 
       <h2>Contact</h2>

@@ -11,10 +11,10 @@ export default function IBEconomicsExtendedEssay() {
       dateModified="2026-09-13"
     >
       <p>
-        <strong>Sitting your exams in May 2027 or later?</strong> Your Extended Essay is
-        marked out of 30 on rewritten criteria, not out of 34.{" "}
-        <Link href="/resources/ib-extended-essay-new-criteria-2027">See what changed</Link>.
-        The criteria described below apply through November 2026.
+        <strong>The criteria on this page are the ones for exams from May 2027,</strong> when the
+        Extended Essay is marked out of 30.{" "}
+        <Link href="/resources/ib-extended-essay-new-criteria-2027">See what changed</Link>. If you
+        sit your exams in November 2026, the older 34-mark criteria are summarised after them.
       </p>
       <p>
         The IB Economics Extended Essay is a 4,000-word investigation that applies
@@ -38,8 +38,8 @@ export default function IBEconomicsExtendedEssay() {
         evaluate how well the theory actually explains what you found. If you have
         worked through our <Link href="/resources/ib-economics-ia">IB Economics IA guide</Link>,
         the step up is this: the IA rewards clean application, while the EE rewards
-        investigation, and Criterion C pays you for analysing the gap between what the
-        model predicts and what your data shows.
+        investigation, and the analysis and discussion criteria pay you for examining the gap
+        between what the model predicts and what your data shows.
       </p>
 
       <h2>Choosing a Research Question for an Economics EE</h2>
@@ -65,7 +65,7 @@ export default function IBEconomicsExtendedEssay() {
           oligopoly model predicts?
           <em> Why it works:</em> the market is narrow enough to research directly,
           fare data can be collected, and the question is explicitly about how well
-          a model fits reality, which is Criterion C in question form.
+          a model fits reality, which is discussion and evaluation in question form.
         </li>
         <li>
           To what extent has competition from low-cost airlines reduced fares on a
@@ -93,14 +93,20 @@ export default function IBEconomicsExtendedEssay() {
       </ul>
 
       <h2>How the Five EE Criteria Play Out in Economics</h2>
-      <p>Through November 2026, every Extended Essay is marked out of 34 on five criteria. In Economics they look like this:</p>
+      <p>From May 2027, every Extended Essay is marked out of 30 on five criteria. In Economics they look like this:</p>
       <ul>
-        <li><strong>Criterion A: Focus and method (6 marks).</strong> A sharply bounded question plus a credible research design: what data you gathered, from where, over what period, and which models you applied to it. Examiners check that the method can actually answer the question as worded.</li>
+        <li><strong>Criterion A: Framework for the essay (6 marks).</strong> A sharply bounded question, a credible research design (what data you gathered, from where, over what period, and which models you applied to it) and a structure that follows the investigation. Examiners check that the method can actually answer the question as worded.</li>
         <li><strong>Criterion B: Knowledge and understanding (6 marks).</strong> Correct terminology and models chosen because they fit the case, not because they are familiar. Understanding shows in the selection: the essay uses the theory the situation demands.</li>
-        <li><strong>Criterion C: Critical thinking (12 marks).</strong> The highest-weighted criterion. It rewards analysis of your evidence through theory, evaluation of the theory's assumptions, alternative explanations considered, and honest treatment of the data's limitations. Where your findings and the model disagree, do not hide it: analysing that gap is exactly what scores.</li>
-        <li><strong>Criterion D: Presentation (4 marks).</strong> Structure, labelled tables and figures, referenced data sources, and diagrams that are numbered, titled and referred to in the text.</li>
-        <li><strong>Criterion E: Engagement (6 marks).</strong> The RPPF reflections. Strong entries record research decisions: a data source that fell through and what you did about it, a model you swapped mid-project and why.</li>
+        <li><strong>Criterion C: Analysis and line of argument (6 marks).</strong> Analysis of your evidence through theory, with findings that stay relevant to the question and add up to a coherent argument. Labelled tables, figures and diagrams that are used in the text are part of that analysis.</li>
+        <li><strong>Criterion D: Discussion and evaluation (8 marks).</strong> The highest-weighted criterion. It rewards a balanced discussion of what your findings mean, including where your data and the model disagree, and an evaluation of the essay itself: the model's assumptions, the limits of your data and what they do to your conclusion.</li>
+        <li><strong>Criterion E: Reflection (4 marks).</strong> Marked on the reflective statement in your RPF. Strong reflection evaluates, with specific examples, how the investigation changed you as a researcher, such as what a data source that fell through taught you about planning.</li>
       </ul>
+      <p>
+        If you sit your exams in November 2026, the essay is marked out of 34 instead: Focus and
+        method (6), Knowledge and understanding (6), Critical thinking (12), Presentation (4) and
+        Engagement (6, marked on the three RPPF reflections). The advice above carries over, because
+        analysis, discussion and evaluation together make up Critical thinking.
+      </p>
 
       <h2>Theory, Data and Diagrams: What Examiners Expect</h2>
       <p>
@@ -126,7 +132,7 @@ export default function IBEconomicsExtendedEssay() {
 
       <h2>Common Mark-Losing Mistakes in Economics EEs</h2>
       <ul>
-        <li><strong>No data:</strong> 4,000 words of pure theory. Without evidence there is nothing to analyse, and Criterion C collapses.</li>
+        <li><strong>No data:</strong> 4,000 words of pure theory. Without evidence there is nothing to analyse, and Criteria C and D collapse.</li>
         <li><strong>Generic diagrams:</strong> unlabelled textbook figures that are never connected to the market being studied.</li>
         <li><strong>Descriptive journalism:</strong> reporting what happened in a market without ever running it through an economic model.</li>
         <li><strong>Macro-scale scope:</strong> whole-economy questions, such as national inflation or total unemployment, that cannot be investigated convincingly in 4,000 words.</li>
@@ -158,7 +164,7 @@ export default function IBEconomicsExtendedEssay() {
 
       <h2>Grade Your Economics EE Before You Submit</h2>
       <p>
-        IBLens analyses Extended Essays against the five official criteria and shows
+        IBLens analyses Extended Essays against the published criteria for your exam session and shows
         you, criterion by criterion, where marks are being lost, including the
         classic Economics failure modes: theory without data, and diagrams that
         decorate instead of analyse. Paste a draft into the <Link href="/essay/extended-essay">Extended Essay grader</Link>, where the first preview is free, to

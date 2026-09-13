@@ -28,7 +28,7 @@ const resources = [
   {
     slug: "/resources/ib-rpf-extended-essay-2027",
     title: "EE RPF 2027: Reflective Statement",
-    description: "The reflective statement of up to 500 words that replaces the RPPF from May 2027: how Criterion E marks it, and how to write one with real decisions rather than a timeline.",
+    description: "The reflective statement of up to 500 words that replaces the RPPF from May 2027: how Criterion E marks it, and how to write one that evaluates what the EE taught you rather than describing a timeline.",
     icon: FileText,
     readTime: "5 min read",
   },

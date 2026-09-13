@@ -73,7 +73,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
       : []),
     config.sessionAware
       ? "The criteria for your exam session: the current set through November 2026, the new set from May 2027"
-      : "Two re-checks of the same work within 14 days of the full report opening",
+      : "Two free re-checks of a revised version of the same work, within 14 days of the full report opening",
   ];
 
   return (
@@ -107,7 +107,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
         <section className="bg-gradient-to-b from-primary/5 to-background py-14 md:py-20">
           <div className="container max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold mb-6 uppercase tracking-wide">
-              First preview free · No account · No card
+              One free preview per device · No account · No card
             </div>
             <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
               {config.heroHeadline}
@@ -115,7 +115,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
             <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">
               {config.heroSubline}
             </p>
-            <Button size="lg" className="text-base px-10 shadow-lg shadow-primary/25 mb-4" asChild>
+            <Button size="lg" className="text-base px-10 shadow-lg shadow-primary/25 mb-4 h-auto min-h-11 py-3 whitespace-normal" asChild>
               <Link href={config.analyzerHref}>
                 <FileText className="w-4 h-4 mr-2" />
                 Get a free preview
@@ -308,7 +308,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
             <p className="text-muted-foreground mb-8 max-w-md mx-auto">
               Paste your {config.subject} and get a free preview in about a minute. The full report is $9.99.
             </p>
-            <Button size="lg" className="text-base px-10 shadow-lg shadow-primary/25" asChild>
+            <Button size="lg" className="text-base px-6 sm:px-10 shadow-lg shadow-primary/25 h-auto min-h-11 py-3 whitespace-normal" asChild>
               <Link href={config.analyzerHref}>
                 Check my {config.subject} <ArrowRight className="w-4 h-4 ml-2" />
               </Link>

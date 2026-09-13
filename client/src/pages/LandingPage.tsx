@@ -61,7 +61,7 @@ export default function LandingPage() {
           </Link>
           <Button size="sm" asChild>
             <Link href="/essay">
-              Grade My Essay Free <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+              Get My Free Preview <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
             </Link>
           </Button>
         </div>
@@ -83,7 +83,7 @@ export default function LandingPage() {
             <Button size="lg" className="text-base px-10 h-14 shadow-lg shadow-primary/25 mb-4" asChild>
               <Link href="/essay">
                 <FileText className="w-4 h-4 mr-2" />
-                Grade My Essay Free
+                Get My Free Preview
               </Link>
             </Button>
             <p className="text-xs text-muted-foreground">No account needed · Results in about a minute · Coursework in 14 IB subjects · 7-day money-back guarantee</p>
@@ -201,7 +201,7 @@ export default function LandingPage() {
             <div className="bg-background rounded-xl border p-5">
               <FAQItem
                 question="Is the first preview really free?"
-                answer="Yes. The first preview is free: your band range, your weakest criterion with its full feedback, and the top risks in your draft. The complete report, with the exact mark, comments on every criterion and a ranked list of fixes, unlocks for $9.99."
+                answer="Yes. The first preview is free: your band range, your weakest criterion with its full feedback, and the top risks in your draft. The complete report, with an estimated mark and comments for every criterion and a ranked list of fixes, unlocks for $9.99."
               />
               <FAQItem
                 question="Which essay types and subjects does IBLens support?"
@@ -213,7 +213,7 @@ export default function LandingPage() {
               />
               <FAQItem
                 question="What payment methods do you accept?"
-                answer="Payments are handled by LemonSqueezy, which accepts major cards and the other methods shown at checkout. Credits are added automatically once the payment is confirmed, and you don't need an account to pay."
+                answer="Payments are handled by LemonSqueezy, which accepts major cards and the other methods shown at checkout. Your reports are added automatically once the payment is confirmed, and you do not need an account to pay."
               />
               <FAQItem
                 question="Is my essay private?"
@@ -230,7 +230,7 @@ export default function LandingPage() {
             <p className="text-muted-foreground mb-8">Paste your essay now: a free preview in about a minute, with no account needed.</p>
             <Button size="lg" className="text-base px-10 shadow-lg shadow-primary/25" asChild>
               <Link href="/essay">
-                Grade My Essay Free <ArrowRight className="w-4 h-4 ml-2" />
+                Get My Free Preview <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
             <p className="text-xs text-muted-foreground mt-4">No account needed · 7-day money-back guarantee on paid reports</p>

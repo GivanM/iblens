@@ -35,7 +35,7 @@ const config: SubjectConfig = {
       { title: "Criterion E: Evaluation, 3 marks", text: "Judgments supported by effective and balanced reasoning." },
       { title: "Criterion F: Rubric requirements, 3 marks", text: "One mark for each rule the portfolio meets: articles on three different units, taken from three different and appropriate sources, and each published no earlier than one year before you wrote the commentary." },
     ],
-    mistakesHeading: "Mistakes the Economics IA criteria penalize",
+    mistakesHeading: "Mistakes the Economics IA criteria penalise",
     mistakes: [
       { title: "A diagram the commentary never explains", text: "A relevant diagram with no explanation, or with an incorrect one, is the 1-mark level of Criterion A. Explain the shift and what it means for the situation in the article." },
       { title: "Retelling the article", text: "Describing what happened without theory to explain why. Criterion C asks for theory applied to the article throughout the commentary, not only in the opening paragraph." },

@@ -35,7 +35,7 @@ export default function UniversityAdmissionsGuide() {
       </p>
 
       <p>
-        <strong>The most selective universities publish their ranges.</strong> Cambridge publishes minimum offers of 41 to 42 points with 776 at HL, and Oxford 38 to 40 points depending on the course, with 6s and 7s at HL. The <Link href="/resources/ib-score-calculator" className="text-primary hover:underline">IB score calculator</Link> page gives the details as those universities state them.
+        <strong>The most selective universities publish their ranges.</strong> When we checked in September 2026, Cambridge published minimum offers of 41 to 42 points with 776 at HL, and Oxford 38 to 40 points depending on the course, with 6s and 7s at HL. The <Link href="/resources/ib-score-calculator" className="text-primary hover:underline">IB score calculator</Link> page gives the details as those universities state them.
       </p>
 
       <p>

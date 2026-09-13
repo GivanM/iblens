@@ -30,7 +30,7 @@ const config: SubjectConfig = {
     rubricNote: [
       "These are the qualities the top band, Excellent (9-10), describes. Below it come Good (7-8), Satisfactory (5-6), Basic (3-4) and Rudimentary (1-2). An exhibition that does not use one of the IA prompts scores 0.",
     ],
-    mistakesHeading: "Mistakes the TOK exhibition bands penalize",
+    mistakesHeading: "Mistakes the TOK exhibition bands penalise",
     mistakes: [
       { title: "Objects that stand for an idea", text: "A book standing for knowledge in general. The object should be a particular thing with its own real-world context." },
       { title: "Links asserted, not explained", text: "Saying an object relates to the prompt without explaining how. Links that are unconvincing or unfocused are what the Basic band describes." },
@@ -40,7 +40,7 @@ const config: SubjectConfig = {
     ],
     faq: [
       { q: "Should I paste all three commentaries at once?", a: "Yes. The exhibition is marked as a whole, so paste the prompt and the commentary on each object together, with each object labelled." },
-      { q: "Can it see my images?", a: "No. The analyzer takes text, so the feedback is based on how each commentary identifies the object and its context, which the commentary has to do anyway." },
+      { q: "Can it see my images?", a: "No. The analyser takes text, so the feedback is based on how each commentary identifies the object and its context, which the commentary has to do anyway." },
       { q: "How is this different from the TOK essay?", a: "The essay responds to a prescribed title in up to 1,600 words and is marked by IB examiners. The exhibition links three objects to one IA prompt in up to 950 words and is marked by your teacher." },
       { q: "How accurate is the predicted mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. Your teacher marks the work and the IB moderates that marking, so their mark is the one that counts. Use the report to find what to fix before you submit." },
       { q: "Is it free?", a: "The first preview is free and needs no account: the band your work falls in, the opening of the explanation for it, and the top risks in the draft. The full report, with the complete explanation and a ranked list of fixes, is $9.99, or $24.99 for a pack of five." },

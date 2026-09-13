@@ -166,8 +166,8 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
             </div>
           ) : hasPaidCredit ? (
             <div className="flex flex-col sm:flex-row items-center gap-3">
-              <p className="text-sm flex-1"><strong className="text-foreground">You have a credit.</strong> Open the full report now.</p>
-              <Button disabled={unlock.isPending} onClick={doUnlock}>{unlock.isPending ? "Unlocking…" : "Unlock full report (1 credit)"}</Button>
+              <p className="text-sm flex-1"><strong className="text-foreground">You have a paid report to use.</strong> Open the full report now.</p>
+              <Button disabled={unlock.isPending} onClick={doUnlock}>{unlock.isPending ? "Unlocking…" : "Unlock the full report (uses 1 paid report)"}</Button>
             </div>
           ) : (
             <div className="flex flex-col sm:flex-row items-center gap-3">
@@ -207,7 +207,9 @@ export default function EssayAnalyzer() {
     };
   })();
   const [essayType, setEssayType] = useState(handoff.type ?? "IA");
-  const [subject, setSubject] = useState(handoff.subject ?? "Business Management");
+  // No default subject: a preset one (Business Management) marked other subjects' work on
+  // the wrong criteria whenever the dropdown was left alone, and it cost the free preview.
+  const [subject, setSubject] = useState(handoff.subject ?? "");
   const [researchQuestion, setResearchQuestion] = useState("");
   const [reflections, setReflections] = useState("");
   const [examSession, setExamSession] = useState<"nov2026" | "may2027">(handoff.session ?? "may2027");
@@ -397,6 +399,10 @@ export default function EssayAnalyzer() {
 
   type RunMode = "free" | "paid" | "recheck";
   const handleAnalyze = (mode: RunMode = "free") => {
+    if ((essayType === "IA" || essayType === "EE") && !subject) {
+      toast.error("Choose your subject first, so the work is marked on the right criteria.");
+      return;
+    }
     const unmarkable = unmarkableReason(essayType, subject, examSession);
     if (unmarkable) {
       toast.error(unmarkable);
@@ -489,19 +495,299 @@ export default function EssayAnalyzer() {
         canonical="/essay"
       />
       <div className="mb-10">
-        <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3">Essay Analyzer</p>
-        <h1 style={SERIF} className="text-4xl font-bold mb-3">IB Essay Analyzer</h1>
+        <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3">Essay Analyser</p>
+        <h1 style={SERIF} className="text-4xl font-bold mb-3">IB Essay Analyser</h1>
         <p className="text-muted-foreground text-lg max-w-2xl">
           AI feedback on your Extended Essay, IA or TOK work in about a minute, criterion by criterion, with a predicted score.
         </p>
       </div>
 
+      <Card className="mb-8">
+        <CardContent className="p-6 space-y-5">
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label>Type of work</Label>
+              <Select value={essayType} onValueChange={setEssayType}>
+                <SelectTrigger className="w-full data-[size=default]:h-auto min-h-9 py-1.5 whitespace-normal text-left *:data-[slot=select-value]:line-clamp-2">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {ESSAY_TYPES.map((t) => (
+                    <SelectItem key={t.value} value={t.value}>{t.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            {essayType !== "TOK Exhibition" && essayType !== "TOK" && (
+              <div className="space-y-2">
+                <Label>Subject</Label>
+                <Select value={subject} onValueChange={setSubject}>
+                  <SelectTrigger className="w-full data-[size=default]:h-auto min-h-9 py-1.5 whitespace-normal text-left *:data-[slot=select-value]:line-clamp-2">
+                    <SelectValue placeholder="Choose your subject" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {IB_SUBJECTS.map((s) => (
+                      <SelectItem key={s} value={s}>{essayType === "IA" ? (EXTERNAL_COURSEWORK_LABELS[s] ?? s) : s}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+
+            {(essayType === "EE" || (essayType === "IA" && (subject === "Psychology" || subject === "Computer Science" || subject === "Visual Arts"))) && (
+              <div className="space-y-2">
+                <Label>Exam session</Label>
+                <Select value={examSession} onValueChange={(v) => setExamSession(v as "nov2026" | "may2027")}>
+                  <SelectTrigger className="w-full data-[size=default]:h-auto min-h-9 py-1.5 whitespace-normal text-left *:data-[slot=select-value]:line-clamp-2">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="nov2026">Exams in May or November 2026</SelectItem>
+                    <SelectItem value="may2027">Exams in May 2027 or later</SelectItem>
+                  </SelectContent>
+                </Select>
+                {essayType === "EE" && examSession === "may2027" && (
+                  <p className="text-xs text-muted-foreground">Sitting your exams in November 2026? Choose that session for the 34-mark criteria.</p>
+                )}
+                {unmarkableReason(essayType, subject, examSession) && (
+                  <p className="text-xs rounded-md border border-amber-300 bg-amber-50 text-amber-900 px-2.5 py-2">{unmarkableReason(essayType, subject, examSession)}</p>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <Label>{essayType === "TOK Exhibition" ? "Your IA prompt (the one all three objects respond to)" : essayType === "TOK" ? "Prescribed title" : "Research question or title"}</Label>
+            <Input
+              placeholder={essayType === "TOK Exhibition" ? "e.g. What counts as knowledge?" : essayType === "TOK" ? "The prescribed title, copied exactly" : "Your research question, as it appears on your title page"}
+              value={researchQuestion}
+              onChange={(e) => setResearchQuestion(e.target.value)}
+            />
+          </div>
+
+          {essayType === "EE" && (
+            <div className="space-y-2">
+              <Label>
+                {examSession === "may2027" ? "Reflective statement (RPF)" : "Reflections (RPPF)"}<span className="text-muted-foreground font-normal">&nbsp;(optional)</span>
+              </Label>
+              <Textarea
+                placeholder={examSession === "may2027"
+                  ? "Paste your reflective statement, up to 500 words. Criterion E is marked on this and not on the essay, so without it the report covers the other four criteria only."
+                  : "Paste your three RPPF reflections, 500 words in total. Criterion E is marked on these and not on the essay, so without them the report covers the other four criteria only."}
+                rows={4}
+                maxLength={8000}
+                className="field-sizing-fixed resize-y"
+                value={reflections}
+                onChange={(e) => setReflections(e.target.value)}
+              />
+            </div>
+          )}
+
+          <div className="space-y-2">
+            {anonUnlocked && (
+              <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 text-sm">
+                <strong>Your report is unlocked on this device.</strong> Paste your revised draft below and re-check it.
+                Two re-checks are included for 14 days, and they do not cost a credit.
+              </div>
+            )}
+            {rerunId && (
+              <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 text-sm">
+                <strong>Re-checking your paid draft.</strong> Paste the revised version below, this re-check is free and does not use a credit.
+              </div>
+            )}
+            <Label>{essayType === "TOK Exhibition" ? "Paste your commentary on all three objects" : essayType === "TOK" ? "Paste your TOK essay" : essayType === "EE" ? "Paste your Extended Essay" : "Paste your work"}</Label>
+            <Textarea
+              placeholder={essayType === "TOK Exhibition" ? "Paste your commentary for all three objects, including how each links to the prompt." : "Paste the full text of your work here. A short extract can be marked, but the report is only as good as what it sees. Anything past 30,000 characters, about 5,000 words, is not passed to the AI or marked."}
+              rows={10}
+              value={essayText}
+              onChange={(e) => setEssayText(e.target.value)}
+              className="field-sizing-fixed resize-y"
+            />
+            <p className={`text-xs ${essayText.length > 30000 ? "text-amber-600 font-medium" : "text-muted-foreground"}`}>
+              {essayText.split(/\s+/).filter(Boolean).length} words
+              {essayText.length > 0 && ` · ${essayText.length} characters`}
+              {essayText.length > 30000 &&
+                ` · only the first 30,000 characters are marked, so the last ${essayText.length - 30000} will not be read`}
+            </p>
+          </div>
+
+          {/* Credit status banner */}
+          {isAuthenticated && credits && (
+            <div className={`text-sm p-3 rounded-lg ${
+              credits.canAnalyzeEssay
+                ? credits.freeEssayAvailable
+                  ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                  : "bg-blue-50 text-blue-700 border border-blue-200"
+                : "bg-amber-50 text-amber-700 border border-amber-200"
+            }`}>
+              {credits.freeEssayAvailable
+                ? "Your first preview is free."
+                : credits.essayCredits > 0
+                  ? `You have ${credits.essayCredits} paid report${credits.essayCredits > 1 ? "s" : ""} left.`
+                  : <span>You have used your free preview. <button onClick={() => setEssayPurchaseOpen(true)} className="underline font-medium cursor-pointer">Buy a report</button> to mark new work.</span>
+              }
+            </div>
+          )}
+
+          {rerunDelta && (
+            <div className="text-sm p-3 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200">
+              <strong>Re-check done.</strong> {rerunDelta}
+            </div>
+          )}
+
+          {/* Paid guest, waiting for the webhook */}
+          {paidReturn && !isAuthenticated && !result && (
+            <div className="text-sm p-3 rounded-lg bg-primary/5 border border-primary/30 flex items-center gap-2">
+              <Loader2 className="w-4 h-4 flex-shrink-0 animate-spin" />
+              <span>
+                {waitedFor > 120000
+                  ? "Your payment went through but the report has not opened. This is on us: "
+                  : "Payment received. Opening your full report, this takes a few seconds. If it does not open, "}
+                email glushkovim@gmail.com with order{" "}
+                <code className="text-xs">{new URLSearchParams(window.location.search).get("order") || ""}</code> and
+                we will open it or refund you.
+              </span>
+            </div>
+          )}
+
+          {/* Anonymous: first-time free analysis banner */}
+          {!isAuthenticated && canAnonAnalyze && !anonUnlocked && (
+            <div className="text-sm p-3 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
+              <span>Your first preview on this device is <strong>free</strong>, and there is one per device, so check the task and subject above. The full report unlocks for {PRICE_LABELS.ESSAY_SINGLE}.</span>
+            </div>
+          )}
+
+          {/* Anonymous: already used free analysis, and has not bought anything */}
+          {!isAuthenticated && !canAnonAnalyze && !anonUnlocked && !paidReturn && (
+            <div className="text-sm p-3 rounded-lg bg-amber-50 text-amber-700 border border-amber-200">
+              You have used the free preview on this device. A full report is {PRICE_LABELS.ESSAY_SINGLE},
+              with no account needed.
+            </div>
+          )}
+
+          {/* Anonymous: analyze button (first-time) */}
+          {!isAuthenticated && canAnonAnalyze && !anonUnlocked && (
+            <Button
+              className="w-full min-h-11 h-auto py-2.5 whitespace-normal"
+              onClick={() => handleAnalyze("free")}
+              disabled={isAnalyzing}
+            >
+              {isAnalyzing ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  {analyzingLabel}
+                </>
+              ) : (
+                <>
+                  <FileText className="w-4 h-4 mr-2 shrink-0" />
+                  Get my free preview
+                </>
+              )}
+            </Button>
+          )}
+
+          {/* Guest holding credits bought without an account */}
+          {!isAuthenticated && deviceCredits > 0 && (
+            <Button className="w-full min-h-11 h-auto py-2.5 whitespace-normal" onClick={() => handleAnalyze("paid")} disabled={isAnalyzing}>
+              {isAnalyzing ? (
+                <><Loader2 className="w-4 h-4 mr-2 animate-spin" />{analyzingLabel}</>
+              ) : (
+                <><FileText className="w-4 h-4 mr-2" />Mark a new piece of work ({deviceCredits} paid {deviceCredits === 1 ? "report" : "reports"} left)</>
+              )}
+            </Button>
+          )}
+
+          {/* Paid guest: the two re-checks they were promised */}
+          {anonUnlocked && (anonRerunsLeft ?? anonReportQ.data?.rerunsLeft ?? 2) > 0 && (
+            <Button
+              className="w-full min-h-11 h-auto py-2.5 whitespace-normal"
+              onClick={() => handleAnalyze("recheck")}
+              disabled={rerunAnonMutation.isPending}
+            >
+              {rerunAnonMutation.isPending ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Re-checking your revision…
+                </>
+              ) : (
+                <>
+                  <FileText className="w-4 h-4 mr-2" />
+                  Re-check this draft (free, {anonRerunsLeft ?? anonReportQ.data?.rerunsLeft ?? 2} left)
+                </>
+              )}
+            </Button>
+          )}
+
+          {/* Anonymous: buy a report. Also for someone who already bought one:
+              their re-checks are for the same draft, a new draft is a new report. */}
+          {!isAuthenticated && !canAnonAnalyze && deviceCredits === 0 && (
+            <Button
+              className="w-full min-h-11 h-auto py-2.5 whitespace-normal"
+              variant={anonUnlocked ? "outline" : "default"}
+              onClick={() => setEssayPurchaseOpen(true)}
+            >
+              <CreditCard className="w-4 h-4 mr-2" />
+              {anonUnlocked
+                ? `Mark a different piece of work (${PRICE_LABELS.ESSAY_SINGLE})`
+                : `Unlock the full report (${PRICE_LABELS.ESSAY_SINGLE})`}
+            </Button>
+          )}
+
+          {/* Authenticated: run analysis or buy credits */}
+          {isAuthenticated && (
+            <>
+              <Button
+                className="w-full min-h-11 h-auto py-2.5 whitespace-normal"
+                onClick={() => handleAnalyze("free")}
+                disabled={isAnalyzing}
+              >
+                {isAnalyzing ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    {analyzingLabel}
+                  </>
+                ) : !credits?.canAnalyzeEssay ? (
+                  <>
+                    <CreditCard className="w-4 h-4 mr-2" />
+                    Buy a report to mark this work ({PRICE_LABELS.ESSAY_SINGLE})
+                  </>
+                ) : credits?.freeEssayAvailable ? (
+                  <>
+                    <FileText className="w-4 h-4 mr-2" />
+                    Get my free preview
+                  </>
+                ) : (
+                  <>
+                    <FileText className="w-4 h-4 mr-2" />
+                    Mark this work ({credits.essayCredits} paid {credits.essayCredits === 1 ? "report" : "reports"} left)
+                  </>
+                )}
+              </Button>
+            </>
+          )}
+
+          <PurchaseModal
+            open={essayPurchaseOpen}
+            onOpenChange={setEssayPurchaseOpen}
+            sku="ESSAY_SINGLE"
+            analysisId={isAuthenticated ? lastAnalysisId : null}
+          />
+          <p className="text-xs text-muted-foreground text-center">
+            IBLens is independent of the International Baccalaureate and not endorsed by it. Every mark is an AI estimate, not an IB mark.{" "}
+            <Link href="/resources/academic-integrity" className="underline">Using AI feedback within IB rules</Link>
+          </p>
+        </CardContent>
+      </Card>
+
+      {!result && (
+        <>
       {/* ── Sample Report Preview ─────────────────────────────────── */}
       <div className="mb-10 rounded-xl border border-border bg-card overflow-hidden">
         <div className="px-6 py-4 border-b border-border flex flex-wrap items-center justify-between gap-2">
           <div>
             <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-0.5">Sample Report</p>
-            <h2 style={SERIF} className="text-lg font-bold">This is what you'll get for your essay</h2>
+            <h2 style={SERIF} className="text-lg font-bold">What a full report looks like</h2>
           </div>
           <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-full border">
             Example · Business Management IA
@@ -513,11 +799,11 @@ export default function EssayAnalyzer() {
           <div className="grid grid-cols-3 gap-3">
             {[
               { label: "Predicted Score", value: "16/25", color: "text-amber-600" },
-              { label: "Weakest criterion", value: "D: Analysis", color: "text-foreground" },
+              { label: "Weakest criterion", value: "Criterion D", color: "text-foreground" },
               { label: "Criteria Total", value: "64%", color: "text-foreground" },
             ].map((s) => (
-              <div key={s.label} className="text-center p-4 bg-muted/50 rounded-lg border border-border">
-                <div style={SERIF} className={`text-2xl font-bold ${s.color}`}>{s.value}</div>
+              <div key={s.label} className="text-center p-2 sm:p-4 bg-muted/50 rounded-lg border border-border min-w-0">
+                <div style={SERIF} className={`text-lg sm:text-2xl font-bold break-words leading-tight ${s.color}`}>{s.value}</div>
                 <div className="text-xs text-muted-foreground mt-1">{s.label}</div>
               </div>
             ))}
@@ -581,297 +867,14 @@ export default function EssayAnalyzer() {
 
           <div className="pt-3 border-t text-center">
             <p className="text-sm font-medium mb-1">↑ This is what a full report looks like, unlocked for $9.99. Your free preview shows the band range, your weakest criterion in full, and the top risks.</p>
-            <p className="text-xs text-muted-foreground">Paste your essay below → <strong>the first preview is free</strong>, then $9.99 per essay, two re-checks included</p>
+            <p className="text-xs text-muted-foreground">Paste your work in the form above: <strong>the first preview is free</strong>, then $9.99 per report, with two re-checks included</p>
           </div>
         </div>
       </div>
       {/* ────────────────────────────────────────────────────────────── */}
 
-      <Card className="mb-8">
-        <CardContent className="p-6 space-y-5">
-          <div className="grid sm:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label>Type of work</Label>
-              <Select value={essayType} onValueChange={setEssayType}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {ESSAY_TYPES.map((t) => (
-                    <SelectItem key={t.value} value={t.value}>{t.label}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            {essayType !== "TOK Exhibition" && essayType !== "TOK" && (
-              <div className="space-y-2">
-                <Label>Subject</Label>
-                <Select value={subject} onValueChange={setSubject}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {IB_SUBJECTS.map((s) => (
-                      <SelectItem key={s} value={s}>{essayType === "IA" ? (EXTERNAL_COURSEWORK_LABELS[s] ?? s) : s}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            )}
-
-            {(essayType === "EE" || (essayType === "IA" && (subject === "Psychology" || subject === "Computer Science" || subject === "Visual Arts"))) && (
-              <div className="space-y-2">
-                <Label>Exam session</Label>
-                <Select value={examSession} onValueChange={(v) => setExamSession(v as "nov2026" | "may2027")}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="nov2026">May / Nov 2026, current syllabus</SelectItem>
-                    <SelectItem value="may2027">May 2027, new syllabus</SelectItem>
-                  </SelectContent>
-                </Select>
-                {essayType === "EE" && examSession === "may2027" && (
-                  <p className="text-xs text-muted-foreground">Sitting your exams in November 2026 or earlier? Switch to the current 34-mark criteria.</p>
-                )}
-                {unmarkableReason(essayType, subject, examSession) && (
-                  <p className="text-xs rounded-md border border-amber-300 bg-amber-50 text-amber-900 px-2.5 py-2">{unmarkableReason(essayType, subject, examSession)}</p>
-                )}
-              </div>
-            )}
-          </div>
-
-          <div className="space-y-2">
-            <Label>{essayType === "TOK Exhibition" ? "Your IA prompt (the one all three objects respond to)" : "Research question / title"}</Label>
-            <Input
-              placeholder={essayType === "TOK Exhibition" ? "e.g. What counts as knowledge?" : "e.g. To what extent did the UK sugar levy change soft drink prices in supermarkets?"}
-              value={researchQuestion}
-              onChange={(e) => setResearchQuestion(e.target.value)}
-            />
-          </div>
-
-          {essayType === "EE" && (
-            <div className="space-y-2">
-              <Label>
-                {examSession === "may2027" ? "Reflective statement (RPF)" : "Reflections (RPPF)"}
-                <span className="text-muted-foreground font-normal">, optional</span>
-              </Label>
-              <Textarea
-                placeholder={examSession === "may2027"
-                  ? "Paste your reflective statement, up to 500 words. Criterion E is marked on this and not on the essay, so without it the report covers the other four criteria only."
-                  : "Paste your three RPPF reflections, 500 words in total. Criterion E is marked on these and not on the essay, so without them the report covers the other four criteria only."}
-                rows={4}
-                maxLength={8000}
-                value={reflections}
-                onChange={(e) => setReflections(e.target.value)}
-              />
-            </div>
-          )}
-
-          <div className="space-y-2">
-            {anonUnlocked && (
-              <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 text-sm">
-                <strong>Your report is unlocked on this device.</strong> Paste your revised draft below and re-check it.
-                Two re-checks are included for 14 days, and they do not cost a credit.
-              </div>
-            )}
-            {rerunId && (
-              <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 text-sm">
-                <strong>Re-checking your paid draft.</strong> Paste the revised version below, this re-check is free and does not use a credit.
-              </div>
-            )}
-            <Label>{essayType === "TOK Exhibition" ? "Paste your commentary on all three objects" : "Paste your essay or IA text"}</Label>
-            <Textarea
-              placeholder={essayType === "TOK Exhibition" ? "Paste your commentary for all three objects, including how each links to the prompt." : "Paste the full text of your work here. A short extract can be marked, but the report is only as good as what it sees. Anything past 30,000 characters, about 5,000 words, is not passed to the AI or marked."}
-              rows={10}
-              value={essayText}
-              onChange={(e) => setEssayText(e.target.value)}
-              className="resize-y"
-            />
-            <p className={`text-xs ${essayText.length > 30000 ? "text-amber-600 font-medium" : "text-muted-foreground"}`}>
-              {essayText.split(/\s+/).filter(Boolean).length} words
-              {essayText.length > 0 && ` · ${essayText.length} characters`}
-              {essayText.length > 30000 &&
-                ` · only the first 30,000 characters are marked, so the last ${essayText.length - 30000} will not be read`}
-            </p>
-          </div>
-
-          {/* Credit status banner */}
-          {isAuthenticated && credits && (
-            <div className={`text-sm p-3 rounded-lg ${
-              credits.canAnalyzeEssay
-                ? credits.freeEssayAvailable
-                  ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
-                  : "bg-blue-50 text-blue-700 border border-blue-200"
-                : "bg-amber-50 text-amber-700 border border-amber-200"
-            }`}>
-              {credits.freeEssayAvailable
-                ? "Your first preview is free."
-                : credits.essayCredits > 0
-                  ? `You have ${credits.essayCredits} essay credit${credits.essayCredits > 1 ? "s" : ""} remaining.`
-                  : <span>No credits remaining. <button onClick={() => setEssayPurchaseOpen(true)} className="underline font-medium cursor-pointer">Purchase credits</button> to continue.</span>
-              }
-            </div>
-          )}
-
-          {rerunDelta && (
-            <div className="text-sm p-3 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200">
-              <strong>Re-check done.</strong> {rerunDelta}
-            </div>
-          )}
-
-          {/* Paid guest, waiting for the webhook */}
-          {paidReturn && !isAuthenticated && !result && (
-            <div className="text-sm p-3 rounded-lg bg-primary/5 border border-primary/30 flex items-center gap-2">
-              <Loader2 className="w-4 h-4 flex-shrink-0 animate-spin" />
-              <span>
-                {waitedFor > 120000
-                  ? "Your payment went through but the report has not opened. This is on us: "
-                  : "Payment received. Opening your full report, this takes a few seconds. If it does not open, "}
-                email glushkovim@gmail.com with order{" "}
-                <code className="text-xs">{new URLSearchParams(window.location.search).get("order") || ""}</code> and
-                we will open it or refund you.
-              </span>
-            </div>
-          )}
-
-          {/* Anonymous: first-time free analysis banner */}
-          {!isAuthenticated && canAnonAnalyze && !anonUnlocked && (
-            <div className="text-sm p-3 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
-              <span>Your first analysis on this device is a <strong>free preview</strong>. The full report unlocks for {PRICE_LABELS.ESSAY_SINGLE}.</span>
-            </div>
-          )}
-
-          {/* Anonymous: already used free analysis, and has not bought anything */}
-          {!isAuthenticated && !canAnonAnalyze && !anonUnlocked && !paidReturn && (
-            <div className="text-sm p-3 rounded-lg bg-amber-50 text-amber-700 border border-amber-200">
-              You have used your free analysis on this device. A full report is {PRICE_LABELS.ESSAY_SINGLE},
-              with no account needed.
-            </div>
-          )}
-
-          {/* Anonymous: analyze button (first-time) */}
-          {!isAuthenticated && canAnonAnalyze && !anonUnlocked && (
-            <Button
-              className="w-full h-11"
-              onClick={() => handleAnalyze("free")}
-              disabled={isAnalyzing}
-            >
-              {isAnalyzing ? (
-                <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  {analyzingLabel}
-                </>
-              ) : (
-                <>
-                  <FileText className="w-4 h-4 mr-2" />
-                  Get my free preview, no account needed
-                </>
-              )}
-            </Button>
-          )}
-
-          {/* Guest holding credits bought without an account */}
-          {!isAuthenticated && deviceCredits > 0 && (
-            <Button className="w-full h-11" onClick={() => handleAnalyze("paid")} disabled={isAnalyzing}>
-              {isAnalyzing ? (
-                <><Loader2 className="w-4 h-4 mr-2 animate-spin" />{analyzingLabel}</>
-              ) : (
-                <><FileText className="w-4 h-4 mr-2" />Mark a new piece of work ({deviceCredits} paid {deviceCredits === 1 ? "report" : "reports"} left)</>
-              )}
-            </Button>
-          )}
-
-          {/* Paid guest: the two re-checks they were promised */}
-          {anonUnlocked && (anonRerunsLeft ?? anonReportQ.data?.rerunsLeft ?? 2) > 0 && (
-            <Button
-              className="w-full h-11"
-              onClick={() => handleAnalyze("recheck")}
-              disabled={rerunAnonMutation.isPending}
-            >
-              {rerunAnonMutation.isPending ? (
-                <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Re-checking your revision…
-                </>
-              ) : (
-                <>
-                  <FileText className="w-4 h-4 mr-2" />
-                  Re-check this draft (free, {anonRerunsLeft ?? anonReportQ.data?.rerunsLeft ?? 2} left)
-                </>
-              )}
-            </Button>
-          )}
-
-          {/* Anonymous: buy a report. Also for someone who already bought one:
-              their re-checks are for the same draft, a new draft is a new report. */}
-          {!isAuthenticated && !canAnonAnalyze && deviceCredits === 0 && (
-            <Button
-              className="w-full h-11"
-              variant={anonUnlocked ? "outline" : "default"}
-              onClick={() => setEssayPurchaseOpen(true)}
-            >
-              <CreditCard className="w-4 h-4 mr-2" />
-              {anonUnlocked
-                ? `Mark a different piece of work (${PRICE_LABELS.ESSAY_SINGLE})`
-                : `Unlock the full report (${PRICE_LABELS.ESSAY_SINGLE})`}
-            </Button>
-          )}
-
-          {/* Authenticated: run analysis or buy credits */}
-          {isAuthenticated && (
-            <>
-              <Button
-                className="w-full h-11"
-                onClick={() => handleAnalyze("free")}
-                disabled={isAnalyzing}
-              >
-                {isAnalyzing ? (
-                  <>
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    {analyzingLabel}
-                  </>
-                ) : !credits?.canAnalyzeEssay ? (
-                  <>
-                    <Lock className="w-4 h-4 mr-2" />
-                    Purchase Credits to Analyze
-                  </>
-                ) : credits?.freeEssayAvailable ? (
-                  <>
-                    <FileText className="w-4 h-4 mr-2" />
-                    Analyze Free (First Essay)
-                  </>
-                ) : (
-                  <>
-                    <FileText className="w-4 h-4 mr-2" />
-                    Analyze ({PRICE_LABELS.ESSAY_SINGLE})
-                  </>
-                )}
-              </Button>
-
-              {!credits?.canAnalyzeEssay && (
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  className="w-full mt-3 text-xs"
-                  onClick={() => setEssayPurchaseOpen(true)}
-                >
-                  <CreditCard className="w-3 h-3 mr-1.5" />
-                  Buy Essay Credits
-                </Button>
-              )}
-            </>
-          )}
-
-          <PurchaseModal
-            open={essayPurchaseOpen}
-            onOpenChange={setEssayPurchaseOpen}
-            sku="ESSAY_SINGLE"
-            analysisId={isAuthenticated ? lastAnalysisId : null}
-          />
-        </CardContent>
-      </Card>
+        </>
+      )}
 
       {/* Results */}
       {!result && lockedQ.data?.exists && !lockedQ.data.unlocked && (
@@ -889,7 +892,7 @@ export default function EssayAnalyzer() {
               )}
               {(credits?.essayCredits ?? 0) > 0 ? (
                 <Button size="sm" disabled={pageUnlock.isPending} onClick={() => pageUnlock.mutate({ fingerprint: anonFp })}>
-                  {pageUnlock.isPending ? "Unlocking…" : "Unlock full report (1 credit)"}
+                  {pageUnlock.isPending ? "Unlocking…" : "Unlock the full report (uses 1 paid report)"}
                 </Button>
               ) : (
                 <Button size="sm" onClick={() => setEssayPurchaseOpen(true)}>Buy &amp; unlock, $9.99</Button>
@@ -1027,7 +1030,7 @@ export default function EssayAnalyzer() {
                 <CardHeader className="pb-3">
                   <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
                     <Lock className="w-4 h-4 text-primary" />
-                    Next Steps ({result.next_steps.length} personalized actions)
+                    Next Steps ({result.next_steps.length} personalised actions)
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
@@ -1165,7 +1168,7 @@ export default function EssayAnalyzer() {
                   </Button>
                   <Button variant="outline" size="lg" className="h-12" onClick={() => { (window as any).dataLayer?.push({ event: "recheck_cta_click", auth: "anon" }); setEssayPurchaseOpen(true); }}>
                     <CreditCard className="w-4 h-4 mr-2" />
-                    Buy Credits ($9.99)
+                    Buy another report ({PRICE_LABELS.ESSAY_SINGLE})
                   </Button>
                 </div>
                 <p className="text-xs text-center text-muted-foreground">7-day money-back guarantee · Secure checkout</p>
@@ -1174,18 +1177,18 @@ export default function EssayAnalyzer() {
           ) : (
             <Card className="border-primary/30 bg-primary/5">
               <CardContent className="p-6 text-center space-y-4">
-                <h3 style={SERIF} className="text-xl font-bold">Analyze Another Essay</h3>
+                <h3 style={SERIF} className="text-xl font-bold">Mark another piece of work</h3>
                 <p className="text-sm text-muted-foreground">
-                  {credits?.essayCredits ? `You have ${credits.essayCredits} credit${credits.essayCredits > 1 ? 's' : ''} remaining.` : 'Purchase more credits to continue analyzing.'}
+                  {credits?.essayCredits ? `You have ${credits.essayCredits} paid report${credits.essayCredits > 1 ? 's' : ''} left.` : 'A different piece of work needs a new report. Revisions of this one use your free re-checks.'}
                 </p>
                 <div className="flex gap-3 justify-center">
                   <Button onClick={() => { setResult(null); window.scrollTo(0, 0); }}>
                     <FileText className="w-4 h-4 mr-2" />
-                    Analyze Another Essay
+                    Mark another piece of work
                   </Button>
                   {!credits?.essayCredits && (
                     <Button variant="outline" onClick={() => setEssayPurchaseOpen(true)}>
-                      Buy Credits
+                      Buy a report
                     </Button>
                   )}
                 </div>

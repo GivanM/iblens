@@ -96,7 +96,7 @@ export default function IBUniversityStrategy() {
         IBLens no longer offers university recommendations. What it does is help with the writing:
         the <Link href="/ucas-personal-statement">UCAS personal statement checker</Link> reviews your
         three answers against what UCAS says admissions tutors look for, and the{" "}
-        <Link href="/essay">essay analyzer</Link> reads your IA, EE or TOK essay against the
+        <Link href="/essay">essay analyser</Link> reads your IA, EE or TOK essay against the
         assessment criteria, which feed into the grades and bonus points your offers depend on.
       </p>
 

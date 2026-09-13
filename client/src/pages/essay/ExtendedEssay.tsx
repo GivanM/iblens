@@ -25,7 +25,7 @@ const config: SubjectConfig = {
   guide: {
     rubricHeading: "What the Extended Essay criteria reward",
     rubricIntro: [
-      "The criteria depend on your exam session. From May 2027 the essay is marked out of 30 on new criteria. Through November 2026 it is marked out of 34 on the older ones. Choose your session in the analyzer and the report uses the matching set.",
+      "The criteria depend on your exam session. From May 2027 the essay is marked out of 30 on new criteria. Through November 2026 it is marked out of 34 on the older ones. Choose your session in the analyser and the report uses the matching set.",
       "In both cases the limit is 4,000 words, and examiners do not assess anything beyond it. The EE is marked by IB examiners, not by your supervisor. The criteria below apply from May 2027.",
     ],
     rubricItems: [
@@ -38,16 +38,16 @@ const config: SubjectConfig = {
     rubricNote: [
       "Through November 2026 the criteria are Focus and method (6 marks), Knowledge and understanding (6), Critical thinking (12), Presentation (4) and Engagement (6). Engagement is marked on the three reflections in the Reflections on planning and progress form (RPPF), 500 words in total.",
     ],
-    mistakesHeading: "Mistakes the Extended Essay criteria penalize",
+    mistakesHeading: "Mistakes the Extended Essay criteria penalise",
     mistakes: [
       { title: "A question too broad for 4,000 words", text: "A topic such as the impact of social media cannot be argued in depth at this length. A narrow question gives Criterion A something to reward and leaves room for the discussion and evaluation that carry the most marks." },
       { title: "Summary in place of analysis", text: "Paragraphs that report what sources say without using them to build your answer. From May 2027 analysis and a line of argument are a criterion of their own, and before that they sit inside Critical thinking." },
       { title: "An essay that never evaluates itself", text: "Findings reported without discussing their significance, and no account of the strengths and limitations of the essay's own method and sources. From May 2027 those are the two strands of Criterion D, the highest-weighted criterion." },
       { title: "Words past the limit", text: "Examiners do not read beyond 4,000 words, so an over-length essay loses on every criterion, not just one. Footnotes that are not references count toward the limit. Citations, the bibliography, tables, charts, equations and the contents page do not." },
-      { title: "No reflections pasted", text: "Criterion E is marked on the RPF or the RPPF, not on the essay. Paste your reflections into their own box in the analyzer. Without them the report leaves that criterion unmarked and totals the others." },
+      { title: "No reflections pasted", text: "Criterion E is marked on the RPF or the RPPF, not on the essay. Paste your reflections into their own box in the analyser. Without them the report leaves that criterion unmarked and totals the others." },
     ],
     faq: [
-      { q: "Which subjects does it cover?", a: "The criteria are the same in every subject. Pick your EE subject from the 14 in the analyzer, so the feedback on knowledge and terminology is read in that subject." },
+      { q: "Which subjects does it cover?", a: "The criteria are the same in every subject. Pick your EE subject from the 14 in the analyser, so the feedback on knowledge and terminology is read in that subject." },
       { q: "Can I paste my whole essay?", a: "Yes. Up to 30,000 characters, about 5,000 words, are marked, which is enough for a 4,000-word essay. Leave the bibliography out if space is tight." },
       { q: "Which session am I in?", a: "It depends on when you sit your exams, not on when you started the course. May 2027 or later means the 30-mark criteria and the RPF. November 2026 means the 34-mark criteria and the RPPF. Your IB coordinator can confirm." },
       { q: "How accurate is the predicted mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. IB examiners mark this component, so their mark is the one that counts. Use the report to find what to fix before you submit." },

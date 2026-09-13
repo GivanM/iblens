@@ -147,7 +147,7 @@ export default function UcasPersonalStatement() {
         statements are checked for similarity against previously submitted work. This tool gives you
         feedback on your own writing and deliberately never hands you sentences to copy. We do not
         publish your statement, do not train models on it, and do not feed it to any similarity
-        database. Do not post your statement anywhere public either, that is what puts it into
+        database. Do not post your statement anywhere public either: that is what puts it into
         similarity checks. <Link href="/resources/academic-integrity" className="underline">How to use AI feedback safely</Link>
       </div>
 
@@ -166,7 +166,7 @@ export default function UcasPersonalStatement() {
             <div className="space-y-2">
               <Label>Where you are applying</Label>
               <Select value={universityType} onValueChange={(v) => setUniversityType(v as any)}>
-                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectTrigger className="w-full data-[size=default]:h-auto min-h-9 py-1.5 whitespace-normal text-left *:data-[slot=select-value]:line-clamp-2"><SelectValue /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="typical">A typical applicant pool</SelectItem>
                   <SelectItem value="competitive">Highly competitive (Oxbridge, Medicine, LSE…)</SelectItem>
@@ -187,6 +187,7 @@ export default function UcasPersonalStatement() {
                 <Textarea
                   id={q.id}
                   rows={6}
+                  className="field-sizing-fixed resize-y"
                   placeholder="Paste your answer…"
                   value={val}
                   onChange={(e) => setAnswers({ ...answers, [q.id]: e.target.value })}
@@ -268,11 +269,11 @@ export default function UcasPersonalStatement() {
             {review.isPending || recheck.isPending ? (
               <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Reading your statement…</>
             ) : isUnlocked && effectiveRechecks === 0 ? (
-              "Review a new statement (1 credit)"
+              "Review a new statement (uses 1 paid report)"
             ) : isUnlocked ? (
               `Re-check my statement (free${effectiveRechecks !== null ? `, ${effectiveRechecks} left` : ""})`
             ) : canPayHere ? (
-              `Review my statement in full (1 ${hasCredit ? "credit" : "paid report"})`
+              "Review my statement in full (uses 1 paid report)"
             ) : (
               "Review my statement, free"
             )}

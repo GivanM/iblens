@@ -31,7 +31,7 @@ const config: SubjectConfig = {
       { title: "Conclusion, 6 marks", text: "A conclusion consistent with the processed data and its uncertainties, justified by comparison with accepted chemistry such as literature values or theory." },
       { title: "Evaluation, 6 marks", text: "The relative impact of specific weaknesses or limitations explained, with realistic improvements that address them." },
     ],
-    mistakesHeading: "Mistakes the Chemistry IA criteria penalize",
+    mistakesHeading: "Mistakes the Chemistry IA criteria penalise",
     mistakes: [
       { title: "Uncertainties that stop at the raw data", text: "Readings recorded with uncertainties that then disappear from the calculated result. When values are added or subtracted, their absolute uncertainties add. When they are multiplied or divided, their fractional or percentage uncertainties add." },
       { title: "Precision that changes from table to table", text: "Results quoted to more significant figures than the measurements support, or with a different number of decimal places in each table. Precise communication in Data analysis means following these conventions." },
@@ -43,7 +43,7 @@ const config: SubjectConfig = {
       { q: "Can I submit a database or model investigation?", a: "Yes. The criteria cover investigations that select data from a database or a model, and Research design then looks at how the data were selected and sampled." },
       { q: "Can it read my graphs and tables?", a: "Tables pasted as text come through. Graphs and images do not, so the feedback on how you present data is based on the tables and text you paste. Describe any graph your conclusion depends on." },
       { q: "Does the word count include my data tables?", a: "No. The official 3,000-word count leaves out charts, diagrams, data tables, equations and calculations, citations, the bibliography and headers. IBLens counts every word you paste, so when you are close to the limit or over it, the report reminds you what the official count leaves out." },
-      { q: "Can I use it for a Chemistry Extended Essay?", a: "Choose Extended Essay in the analyzer and pick Chemistry as the subject. The EE is marked on its own criteria, so the IA criteria would put it on the wrong scale." },
+      { q: "Can I use it for a Chemistry Extended Essay?", a: "Choose Extended Essay in the analyser and pick Chemistry as the subject. The EE is marked on its own criteria, so the IA criteria would put it on the wrong scale." },
       { q: "How accurate is the predicted mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. Your teacher marks the work and the IB moderates that marking, so their mark is the one that counts. Use the report to find what to fix before you submit." },
       { q: "Is it free?", a: "The first preview is free and needs no account: your band range, your weakest criterion with its full feedback, and the top risks in the draft. The full report, with every criterion marked and a ranked list of fixes, is $9.99, or $24.99 for a pack of five." },
       { q: "Is my work stored?", a: "The text you paste is never stored. It is sent to Anthropic, the AI provider, to produce the report. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },

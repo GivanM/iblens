@@ -63,7 +63,7 @@ Your payment of ${amount} for ${skuHumanName} has been confirmed.
 
 Your credit balance is now ${balanceStr}.
 
-Start analyzing: https://iblens.com/essay
+Start analysing: https://iblens.com/essay
 View your purchase history: https://iblens.com/dashboard
 
 If you have questions, reply to this email.

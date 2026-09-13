@@ -23,50 +23,50 @@ const plans: Array<{
   productKey: ProductKey;
 }> = [
   {
-    name: "Full Report",
+    name: "Full report",
     price: PRICE_LABELS.ESSAY_SINGLE,
-    description: "1 essay or personal statement",
+    description: "One report on IB coursework or a UCAS statement",
     popular: false,
     features: [
-      "Predicted score & IB band",
-      "Criterion-by-criterion breakdown",
-      "Risk areas & leverage zones",
-      "Actionable improvement steps",
-      "Two free re-checks of the same draft within 14 days",
-      "Supports IA, EE, TOK and UCAS personal statements",
+      "An estimated mark and band",
+      "Every criterion marked, with comments",
+      "The risks, and where marks are recoverable",
+      "Next steps ranked by the marks they recover",
+      "Two free re-checks of a revised version of the same work, within 14 days of the report opening",
+      "IA, EE, TOK and UCAS personal statements",
     ],
     cta: "Get Started",
     href: "/essay",
     productKey: "ESSAY_SINGLE",
   },
   {
-    name: "5 Reports",
+    name: "5 reports",
     price: PRICE_LABELS.ESSAY_PACK_5,
-    description: "5 essays or statements",
+    description: "Five reports on any mix of work",
     popular: true,
     features: [
       "Everything in the full report",
       "$5.00 per report, 50% less than buying singly",
-      "Two free re-checks of each report within 14 days of it opening",
+      "Two free re-checks for each report, within 14 days of it opening",
       "Use across any subjects",
-      "No expiry date. Without an account they live on this device until you sign in",
-      "For several drafts or several subjects",
+      "No expiry. Without an account, unused reports wait in the browser you bought them in until you sign in",
+      "For several pieces of work; drafts of the same work use the free re-checks",
     ],
     cta: "Get Started",
     href: "/dashboard",
     productKey: "ESSAY_PACK_5",
   },
   {
-    name: "10 Reports",
+    name: "10 reports",
     price: PRICE_LABELS.ESSAY_PACK_10,
-    description: "10 essays or statements",
+    description: "Ten reports on any mix of work",
     popular: false,
     features: [
       "Everything in the full report",
       "$4.50 per report, 55% less than buying singly",
-      "Two free re-checks of each report within 14 days of it opening",
+      "Two free re-checks for each report, within 14 days of it opening",
       "Use across any subjects",
-      "No expiry date. Without an account they live on this device until you sign in",
+      "No expiry. Without an account, unused reports wait in the browser you bought them in until you sign in",
       "The lowest price per report",
     ],
     cta: "Get Started",
@@ -105,16 +105,14 @@ export default function Pricing() {
           <h1 style={SERIF} className="text-4xl md:text-5xl font-bold mb-4">
             Simple, transparent pricing.
           </h1>
-          <p className="text-sm text-muted-foreground mt-2">No subscription. Credits do not expire. Bought without an account they stay on the device that bought them, and move to your account the moment you sign in. No ads.</p>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            No subscriptions. No hidden fees. Pay only for what you use.
-            Your first preview is free, one per device or account.
+            No subscription and no expiry. Your first preview is free, one per device or account.
           </p>
         </div>
 
         {/* Free tier highlight */}
         <div className="max-w-2xl mx-auto mb-12">
-          <div className="rounded-xl border border-border bg-card p-6 flex items-center gap-4">
+          <div className="rounded-xl border border-border bg-card p-6 flex flex-col sm:flex-row sm:items-center gap-4">
             <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
               <Gift className="w-6 h-6 text-primary" />
             </div>
@@ -124,8 +122,8 @@ export default function Pricing() {
                 Paste your essay with no sign-in and no credit card. The preview shows your band range, your weakest criterion with its full feedback, and the top risks in your draft.
               </p>
             </div>
-            <Button size="sm" asChild className="flex-shrink-0">
-              <Link href="/essay">Try Free</Link>
+            <Button size="sm" asChild className="flex-shrink-0 self-start sm:self-auto">
+              <Link href="/essay">Get a free preview</Link>
             </Button>
           </div>
         </div>
@@ -172,21 +170,15 @@ export default function Pricing() {
                 Buy Now
               </Button>
 
-              <Button
-                size="sm"
-                variant="ghost"
-                className="w-full text-xs text-muted-foreground"
-                asChild
-              >
-                <Link href={plan.href}>
-                  {plan.cta} <ArrowRight className="w-3 h-3 ml-1" />
-                </Link>
-              </Button>
             </div>
           ))}
         </div>
 
         <p className="max-w-3xl mx-auto mt-8 text-sm text-muted-foreground text-center">
+          <strong className="text-foreground">7-day money-back guarantee.</strong> Email us within 7 days of your purchase for a full refund, no questions asked.{" "}
+          <Link href="/refund-policy" className="underline">Refund policy</Link>
+        </p>
+        <p className="max-w-3xl mx-auto mt-3 text-sm text-muted-foreground text-center">
           Without an account, this browser keeps your newest report open, with its re-checks, and holds any unused credits. To keep every report you buy and re-check each one, sign in with Google on this device, using the email you pay with.
         </p>
 
@@ -202,7 +194,7 @@ export default function Pricing() {
           </div>
           <div className="flex items-center gap-1.5">
             <CreditCard className="w-4 h-4" />
-            <span>Credits activate as soon as the payment clears</span>
+            <span>Reports are added as soon as the payment clears</span>
           </div>
         </div>
 

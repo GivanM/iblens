@@ -30,13 +30,13 @@ export default function HowIBLensWorks() {
         <li><strong>Criterion-by-criterion scoring:</strong> Your essay is evaluated against the specific IB assessment criteria for your subject and essay type. Each criterion receives a predicted score with an explanation of why that score was assigned.</li>
         <li><strong>Overall estimate:</strong> based on the criterion scores, an estimated mark out of the total for your task, with the band range the draft currently sits in.</li>
         <li><strong>Risk areas:</strong> Specific sections or aspects of your essay that are likely to lose marks, with explanations of why and suggestions for improvement.</li>
-        <li><strong>Leverage zones:</strong> Areas where small improvements would yield the largest mark gains, helping you prioritize your revision time.</li>
+        <li><strong>Leverage zones:</strong> Areas where small improvements would yield the largest mark gains, helping you prioritise your revision time.</li>
         <li><strong>Next steps:</strong> concrete suggestions for improving the criteria that are losing marks, in plain language, in order of how many marks they are likely to recover.</li>
         <li><strong>Word count:</strong> the words you pasted, counted against the limit for your task where the guide sets one, with what the official count leaves out.</li>
       </ul>
 
       <p>
-        The analysis is tailored to your specific subject and essay type. A Biology IA is assessed against different criteria than a History IA or an Extended Essay in English Literature. IBLens recognizes the subject context and applies the appropriate framework.
+        The analysis is tailored to your specific subject and essay type. A Biology IA is assessed against different criteria than a History IA or an Extended Essay in English Literature. IBLens recognises the subject context and applies the appropriate framework.
       </p>
 
       <h2>How the Criteria Reach the Model</h2>
@@ -92,7 +92,7 @@ export default function HowIBLensWorks() {
       <h3>What the report looks for</h3>
       <ul>
         <li><strong>Identifying structural issues:</strong> Missing sections, weak introductions, conclusions that do not answer the research question</li>
-        <li><strong>Detecting description vs. analysis:</strong> Recognizing when you are telling rather than evaluating</li>
+        <li><strong>Detecting description vs. analysis:</strong> Recognising when you are telling rather than evaluating</li>
         <li><strong>Criterion alignment:</strong> Checking whether your essay addresses all required criteria</li>
         <li><strong>Consistency checking:</strong> Identifying where your argument contradicts itself or where evidence does not support your claims</li>
         <li><strong>Word count:</strong> counted by IBLens against the official limit for the task, with what the official count leaves out</li>
@@ -157,13 +157,13 @@ export default function HowIBLensWorks() {
             <td><strong>Essay Pack (5)</strong></td>
             <td>$24.99</td>
             <td>$5.00</td>
-            <td>Multiple drafts of the same essay or several different IAs</td>
+            <td>Several different pieces of work (drafts of the same work use the free re-checks)</td>
           </tr>
           <tr>
             <td><strong>Essay Pack (10)</strong></td>
             <td>$44.99</td>
             <td>$4.50</td>
-            <td>Full IB preparation, analyze all your IAs, EE drafts, and TOK essay</td>
+            <td>Full IB preparation, analyse all your IAs, EE drafts, and TOK essay</td>
           </tr>
         </tbody>
       </table>
@@ -184,30 +184,46 @@ export default function HowIBLensWorks() {
 
       <h3>Private IB Tutors</h3>
       <p>
-        <strong>Pros:</strong> Personalized, can ask follow-up questions, builds a relationship over time, can help with content knowledge.
-        <strong>Cons:</strong> paid by the hour, scheduling constraints, quality varies a great deal, and fewer tutors for less common subjects.
-        <strong>When to use:</strong> If you need ongoing subject support beyond essay feedback, or if you learn best through conversation.
+        <strong>Pros:</strong> Personalised, can ask follow-up questions, builds a relationship over time, can help with content knowledge.
+        </p>
+        <p>
+          <strong>Cons:</strong> paid by the hour, scheduling constraints, quality varies a great deal, and fewer tutors for less common subjects.
+        </p>
+        <p>
+          <strong>When to use:</strong> If you need ongoing subject support beyond essay feedback, or if you learn best through conversation.
       </p>
 
       <h3>Peer Review</h3>
       <p>
         <strong>Pros:</strong> Free, builds collaborative skills, can catch obvious errors.
-        <strong>Cons:</strong> peers are not trained examiners, may give inaccurate feedback, may hold back honest criticism, and rarely know the criteria well.
-        <strong>When to use:</strong> For catching basic errors and getting a reader's perspective, but not for criterion-level assessment.
+        </p>
+        <p>
+          <strong>Cons:</strong> peers are not trained examiners, may give inaccurate feedback, may hold back honest criticism, and rarely know the criteria well.
+        </p>
+        <p>
+          <strong>When to use:</strong> For catching basic errors and getting a reader's perspective, but not for criterion-level assessment.
       </p>
 
       <h3>Teacher Feedback</h3>
       <p>
         <strong>Pros:</strong> Authoritative, knows the subject deeply, understands your development, free.
-        <strong>Cons:</strong> limited time per student, and for coursework the IB expects teachers to comment on one draft and not to edit it.
-        <strong>When to use:</strong> always. Teacher feedback cannot be replaced, but there is usually only one round of it on coursework.
+        </p>
+        <p>
+          <strong>Cons:</strong> limited time per student, and for coursework the IB expects teachers to comment on one draft and not to edit it.
+        </p>
+        <p>
+          <strong>When to use:</strong> always. Teacher feedback cannot be replaced, but there is usually only one round of it on coursework.
       </p>
 
       <h3>IBLens</h3>
       <p>
         <strong>Pros:</strong> fast (about a minute), criterion by criterion, affordable, two free re-checks with each report, available at any hour.
-        <strong>Cons:</strong> an estimate from a language model, not a moderated mark; cannot verify factual accuracy, replace subject expertise or assess practical work.
-        <strong>When to use:</strong> Between teacher feedback rounds, for iterative revision, for a second opinion before submission, for identifying which criteria need the most work.
+        </p>
+        <p>
+          <strong>Cons:</strong> an estimate from a language model, not a moderated mark; cannot verify factual accuracy, replace subject expertise or assess practical work.
+        </p>
+        <p>
+          <strong>When to use:</strong> Between teacher feedback rounds, for iterative revision, for a second opinion before submission, for identifying which criteria need the most work.
       </p>
 
       <p>

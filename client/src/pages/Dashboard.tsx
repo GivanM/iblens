@@ -16,6 +16,7 @@ import { useState, useEffect, useRef } from "react";
 import confetti from "canvas-confetti";
 import { trackPurchase, sha256 } from "@/lib/analytics/track";
 import type { ProductSlug, PaymentMethod as AnalyticsPaymentMethod } from "@/lib/analytics/config";
+import { SEOHead } from "@/components/SEOHead";
 
 const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
@@ -40,7 +41,7 @@ export default function Dashboard() {
         origin: { y: 0.6 },
       });
 
-      const message = "Payment confirmed. Your credits are ready to use.";
+      const message = "Payment confirmed. Your reports are ready to use.";
 
       toast.success(message, { duration: 6000 });
 
@@ -116,7 +117,7 @@ export default function Dashboard() {
         <Card className="max-w-md w-full">
           <CardContent className="p-8 text-center">
             <h2 style={SERIF} className="text-xl font-bold mb-3">Sign in to access your dashboard</h2>
-            <p className="text-muted-foreground mb-6 text-sm">View your credits, analysis history, and purchase more analyses.</p>
+            <p className="text-muted-foreground mb-6 text-sm">See your reports, how many paid reports you have left, and your purchases.</p>
             <Button asChild><a href={getLoginUrl()}>Sign In</a></Button>
           </CardContent>
         </Card>
@@ -130,6 +131,7 @@ export default function Dashboard() {
 
   return (
     <div className="container py-10 max-w-5xl">
+      <SEOHead title="Your dashboard | IBLens" description="Your IBLens reports, paid reports left and purchases." canonical="/dashboard" />
       {/* Purchase Modal */}
       <PurchaseModal
         open={modalOpen}
@@ -146,7 +148,7 @@ export default function Dashboard() {
       <div className="grid sm:grid-cols-3 gap-4 mb-8">
         <Card>
           <CardContent className="p-5">
-            <p className="text-xs text-muted-foreground font-medium mb-1">Free Essay</p>
+            <p className="text-xs text-muted-foreground font-medium mb-1">Free preview</p>
             <div className="text-2xl font-bold">
               {creditsQuery.isError ? (
                 <span className="text-muted-foreground text-base">not loaded</span>
@@ -161,7 +163,7 @@ export default function Dashboard() {
 
         <Card>
           <CardContent className="p-5">
-            <p className="text-xs text-muted-foreground font-medium mb-1">Essay Credits</p>
+            <p className="text-xs text-muted-foreground font-medium mb-1">Paid reports left</p>
             <div style={SERIF} className="text-2xl font-bold">
               {creditsQuery.isError ? <span className="text-base text-muted-foreground">not loaded</span> : (credits?.essayCredits ?? 0)}
             </div>
@@ -180,12 +182,12 @@ export default function Dashboard() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-base">
             <ShoppingCart className="w-4 h-4" />
-            Purchase Credits
+            Buy reports
           </CardTitle>
-          <p className="text-xs text-muted-foreground">Pay with card. Credits activate automatically.</p>
+          <p className="text-xs text-muted-foreground">Reports are added as soon as the payment clears.</p>
         </CardHeader>
         <CardContent>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid sm:grid-cols-3 gap-4">
             <div className="border border-border rounded-lg p-4 text-center">
               <h4 className="font-semibold text-sm mb-1">1 Full Report</h4>
               <div style={SERIF} className="text-xl font-bold my-2">{PRICE_LABELS.ESSAY_SINGLE}</div>
@@ -242,13 +244,13 @@ export default function Dashboard() {
           <CardContent className="p-5">
             <Link href="/essay" className="flex items-center gap-3">
               <div className="flex-1">
-                <h3 className="font-semibold text-sm">Analyze Essay</h3>
+                <h3 className="font-semibold text-sm">Mark a piece of work</h3>
                 <p className="text-xs text-muted-foreground mt-0.5">
                   {credits?.canAnalyzeEssay
                     ? credits?.freeEssayAvailable
                       ? "Your free preview is waiting."
-                      : `${credits.essayCredits} credits available`
-                    : "Purchase credits to analyze"}
+                      : `${credits.essayCredits} paid ${credits.essayCredits === 1 ? "report" : "reports"} left`
+                    : "Buy a report to mark new work"}
                 </p>
               </div>
               <ArrowRight className="w-4 h-4 text-muted-foreground" />
@@ -262,7 +264,7 @@ export default function Dashboard() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-base">
             <Clock className="w-4 h-4" />
-            Analysis History
+            Your reports
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -271,7 +273,7 @@ export default function Dashboard() {
               <Loader2 className="w-6 h-6 animate-spin text-muted-foreground" />
             </div>
           ) : history.length === 0 ? (
-            <p className="text-muted-foreground text-sm text-center py-6">No reports yet. Start with a free preview.</p>
+            <p className="text-muted-foreground text-sm text-center py-6">{credits?.freeEssayAvailable ? "No reports yet. Start with a free preview." : "No reports saved to this account yet."}</p>
           ) : (
             <div className="space-y-2">
               {history.map((item) => (

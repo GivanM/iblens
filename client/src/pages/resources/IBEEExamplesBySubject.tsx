@@ -25,19 +25,22 @@ export default function IBEEExamplesBySubject() {
 
       <h2>IB EE Marking Overview</h2>
       <p>
-        Through November 2026 the Extended Essay is marked on five criteria (A to E),
-        totalling 34 marks; from May 2027 it is marked out of 30 on rewritten criteria.
-        Combined with the TOK grade, the EE grade decides up to 3 bonus points on your
-        Diploma total. In recent sessions on the 34-mark scale, an A has been 27 to 34, a B
-        21 to 26, a C 14 to 20, a D 7 to 13 and an E 0 to 6.
+        From May 2027 the Extended Essay is marked out of 30 on five criteria (A to E); through
+        November 2026 it is marked out of 34 on older criteria. Combined with the TOK grade, the EE
+        grade decides up to 3 bonus points on your Diploma total. In recent sessions on the 34-mark
+        scale, an A has been 27 to 34, a B 21 to 26, a C 14 to 20, a D 7 to 13 and an E 0 to 6;
+        boundaries for the 30-mark scale are set only after the May 2027 session is marked.
       </p>
       <ul>
-        <li><strong>Criterion A: Focus and method (6 marks).</strong> Is the research question clear, focused, and appropriate for the subject? Is the methodology explicit and justified?</li>
-        <li><strong>Criterion B: Knowledge and understanding (6 marks).</strong> Does the student demonstrate subject-specific knowledge and understanding, including appropriate use of subject terminology?</li>
-        <li><strong>Criterion C: Critical thinking (12 marks).</strong> Is the analysis original, developed, and consistently connected to the research question? Are conclusions justified by the evidence?</li>
-        <li><strong>Criterion D: Presentation (4 marks).</strong> Is the essay well structured and consistently laid out, with the conventions of the subject followed?</li>
-        <li><strong>Criterion E: Engagement (6 marks).</strong> Assessed through the RPPF: do the reflections show genuine intellectual engagement and reflection throughout the process?</li>
+        <li><strong>Criterion A: Framework for the essay (6 marks).</strong> Is the research question clear, focused and appropriate for the subject? Do the method and the structure serve it?</li>
+        <li><strong>Criterion B: Knowledge and understanding (6 marks).</strong> Does the student demonstrate subject-specific knowledge and understanding, including appropriate use of subject terminology and concepts?</li>
+        <li><strong>Criterion C: Analysis and line of argument (6 marks).</strong> Is the research analysed, with findings relevant to the question and a coherent argument throughout?</li>
+        <li><strong>Criterion D: Discussion and evaluation (8 marks).</strong> Is the significance of the findings discussed in a balanced way, with evidence, and does the essay evaluate its own strengths and limitations?</li>
+        <li><strong>Criterion E: Reflection (4 marks).</strong> Marked on the reflective statement in the RPF: does it evaluate, with specific examples, how the EE changed the student as a learner?</li>
       </ul>
+      <p>
+        Through November 2026 the criteria are Focus and method (6), Knowledge and understanding (6), Critical thinking (12), Presentation (4) and Engagement (6, marked on the RPPF).
+      </p>
 
       <h2>IB Extended Essay Examples by Subject</h2>
 
@@ -165,7 +168,7 @@ export default function IBEEExamplesBySubject() {
         optimal aerodynamic position in time trials?"
       </p>
       <p>
-        A Physics EE with original experimental data gives Criterion C (Critical thinking)
+        A Physics EE with original experimental data gives the analysis and discussion criteria
         plenty to work with, because the analysis can compare experimental results with
         theoretical predictions. If original experiments are not feasible,
         a strong Physics EE analyses published datasets critically and applies
@@ -186,13 +189,13 @@ export default function IBEEExamplesBySubject() {
             <ExamplesBridge
         workLabel="Extended Essay"
         ctaHref="/essay/extended-essay"
-        note={"One caution: if you sit exams in May 2027 or later, your EE is marked out of 30 under new criteria, and Discussion and evaluation alone is worth 8 of them. Older example essays and mark schemes describe the 34-mark rubric."}
+        note={"If you sit your exams in November 2026, your EE is marked out of 34 on the older criteria (Focus and method, Knowledge and understanding, Critical thinking, Presentation, Engagement), and many older example essays and mark schemes describe that rubric. The rows below use the criteria for May 2027 onward."}
         rows={[
-          { criterion: "A: Focus and method", typical: "The research question restates the topic and could fill a book; scope is never stated.", top: "The question is narrow enough to answer in 4,000 words, and the essay says why that scope was chosen." },
+          { criterion: "A: Framework for the essay", typical: "The research question restates the topic and could fill a book; scope and method are never stated.", top: "The question is narrow enough to answer in 4,000 words, the method fits it, and every section visibly serves it." },
           { criterion: "B: Knowledge and understanding", typical: "Sources are summarised one after another in the order they were read.", top: "Subject terminology is used precisely, and sources are positioned against each other rather than listed." },
-          { criterion: "C: Critical thinking", typical: "Evidence is described, then a claim follows, the reader has to assume the link.", top: "Each piece of evidence is weighed (strength, limitation, competing reading) before the claim is made." },
-          { criterion: "D: Presentation", typical: "Headings and citations exist but the reader cannot see why sections come in this order.", top: "Structure is navigable: each section visibly serves the research question." },
-          { criterion: "E: Engagement", typical: "Reflections describe the timeline, chose a topic, found sources, wrote up.", top: "Reflections name real decisions and turning points in the research, in the student\u2019s own voice." },
+          { criterion: "C: Analysis and line of argument", typical: "Evidence is described and a claim follows, leaving the reader to assume the link.", top: "Each finding is analysed and tied to the question, building one coherent argument." },
+          { criterion: "D: Discussion and evaluation", typical: "Findings are restated in the conclusion, and the essay never says where its own sources or method fall short.", top: "The significance of the findings is discussed with evidence and competing readings, and the essay evaluates its own strengths and limitations." },
+          { criterion: "E: Reflection", typical: "The reflective statement describes the timeline: chose a topic, found sources, wrote it up.", top: "The statement evaluates, with specific examples, what the research changed in the student as a learner." },
         ]}
       />
 

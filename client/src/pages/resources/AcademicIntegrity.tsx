@@ -8,7 +8,7 @@ export default function AcademicIntegrity() {
       description="What the IB academic integrity policy means for AI feedback on your EE, TOK essay or IA, and how IBLens handles your data: no training on your essays, no sharing, deletion on request."
       canonical="/resources/academic-integrity"
       datePublished="2026-07-03"
-      dateModified="2026-07-03"
+      dateModified="2026-09-13"
     >
       <h1>AI Feedback and IB Academic Integrity</h1>
 
@@ -29,8 +29,10 @@ export default function AcademicIntegrity() {
         Getting <strong>feedback on work you wrote yourself</strong> is a different category. Teachers do it,
         supervisors do it on your EE draft, tutors charge for it. Feedback that helps you understand
         where your own writing loses marks, which you then revise yourself, is study support, not
-        misconduct. The IB has also publicly stated it will not ban AI tools, treating them like any
-        other source: the integrity question is how you use them.
+        misconduct. The IB has also publicly stated that it will not ban AI tools, and that their use
+        must follow its academic integrity policy, which now has an appendix on artificial intelligence
+        (see the <a href="https://ibo.org/news/news-about-the-ib/statement-from-the-ib-about-chatgpt-and-artificial-intelligence-in-assessment-and-education/" target="_blank" rel="noopener">IB statement on ChatGPT and AI</a> and the IB page on{" "}
+        <a href="https://ibo.org/programmes/artificial-intelligence-ai-in-learning-teaching-and-assessment/" target="_blank" rel="noopener">AI in learning, teaching and assessment</a>).
       </p>
       <p>
         Two important caveats. First, <strong>your school may have its own stricter rules</strong>: some schools
@@ -45,6 +47,13 @@ export default function AcademicIntegrity() {
         <li><strong>Keep your drafts.</strong> A visible draft history is your best evidence that the work is yours.</li>
         <li><strong>Follow your school policy.</strong> If your school requires you to disclose AI-assisted feedback, disclose it, the same way you would mention that a tutor reviewed your draft.</li>
         <li><strong>Never submit AI-written text.</strong> Not sentences, not paragraphs. Feedback in, your own writing out.</li>
+      </ul>
+
+      <h2>How to acknowledge AI feedback</h2>
+      <ul>
+        <li><strong>AI text in your work must be credited.</strong> The IB statement says any AI-generated text, image or graph included in your work must be credited in the body of the text and referenced in the bibliography. IBLens describes what to change and does not write it for you, so there should be none to credit.</li>
+        <li><strong>Tell your teacher or supervisor you used it,</strong> in the way your school's policy asks. For the Extended Essay, a supervision session is the natural place to mention it.</li>
+        <li><strong>Keep the reports with your drafts.</strong> Together they show that the revisions came from you.</li>
       </ul>
 
       <h2>What IBLens does with your essay</h2>

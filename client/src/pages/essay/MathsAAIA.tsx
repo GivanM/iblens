@@ -26,7 +26,7 @@ const config: SubjectConfig = {
       "There is no word limit. The guide suggests about 12 to 20 pages with double line spacing.",
     ],
     rubricItems: [
-      { title: "Criterion A: Presentation, 4 marks", text: "A coherent, well-organized and concise exploration with an introduction, a stated aim and a conclusion." },
+      { title: "Criterion A: Presentation, 4 marks", text: "A coherent, well-organised and concise exploration with an introduction, a stated aim and a conclusion." },
       { title: "Criterion B: Mathematical communication, 4 marks", text: "Appropriate notation, symbols and terminology used consistently, key terms and variables defined, and a deductive method with proofs set out logically where the exploration uses them." },
       { title: "Criterion C: Personal engagement, 3 marks", text: "Evidence that you made the mathematics your own, for example by thinking independently or creatively, looking at the topic from different perspectives, or making and testing predictions." },
       { title: "Criterion D: Reflection, 3 marks", text: "Critical review of the exploration: the implications of your results, the strengths and weaknesses of your approach, and what could come next." },
@@ -35,7 +35,7 @@ const config: SubjectConfig = {
     rubricNote: [
       "Sophistication means mathematics from the HL syllabus, or SL mathematics used in a way beyond what could reasonably be expected of an SL student. Rigour means clear logic and language, with the mathematical claims your exploration relies on justified or proven.",
     ],
-    mistakesHeading: "Mistakes the Math AA IA criteria penalize",
+    mistakesHeading: "Mistakes the Math AA IA criteria penalise",
     mistakes: [
       { title: "Claims assumed, not justified", text: "Using a result the exploration depends on without justifying or proving it. At HL, rigour requires those claims to be justified or proven." },
       { title: "Beyond the syllabus for its own sake", text: "Mathematics slightly beyond the syllabus is allowed at HL but is not needed for the highest levels, and overly complicated mathematics where simpler methods would do is not relevant." },
@@ -45,7 +45,7 @@ const config: SubjectConfig = {
     ],
     faq: [
       { q: "What is the difference between the AA and AI IA?", a: "The criteria and the 20-mark total are the same. The syllabus differs, and Use of mathematics is judged against the course you take and your level." },
-      { q: "How does it know whether I take SL or HL?", a: "Write your course and level, for example Math AA HL, at the top of the text you paste. The analyzer asks for the subject only, and Use of mathematics has separate SL and HL descriptors." },
+      { q: "How does it know whether I take SL or HL?", a: "Write your course and level, for example Math AA HL, at the top of the text you paste. The analyser asks for the subject only, and Use of mathematics has separate SL and HL descriptors." },
       { q: "Can it read my proofs and graphs?", a: "Proofs and equations come through when they paste as text. Graphs and images do not, so the report reads the working and the explanation around them." },
       { q: "How accurate is the predicted mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. Your teacher marks the work and the IB moderates that marking, so their mark is the one that counts. Use the report to find what to fix before you submit." },
       { q: "Is it free?", a: "The first preview is free and needs no account: your band range, your weakest criterion with its full feedback, and the top risks in the draft. The full report, with every criterion marked and a ranked list of fixes, is $9.99, or $24.99 for a pack of five." },

@@ -8,13 +8,13 @@ export default function IBChemistryExtendedEssay() {
       description="A guide to the IB Chemistry Extended Essay: research question examples, the assessment criteria, structure, workable topics such as kinetics, electrochemistry and colorimetry, and common pitfalls."
       canonical="/resources/ib-chemistry-extended-essay"
       datePublished="2026-06-17"
-      dateModified="2026-06-17"
+      dateModified="2026-09-13"
     >
       <p>
-        <strong>Sitting your exams in May 2027 or later?</strong> Your Extended Essay is
-        marked out of 30 on rewritten criteria, not out of 34.{" "}
-        <Link href="/resources/ib-extended-essay-new-criteria-2027">See what changed</Link>.
-        The criteria described below apply through November 2026.
+        <strong>The criteria on this page are the ones for exams from May 2027,</strong> when the
+        Extended Essay is marked out of 30.{" "}
+        <Link href="/resources/ib-extended-essay-new-criteria-2027">See what changed</Link>. If you
+        sit your exams in November 2026, the older 34-mark criteria are summarised after them.
       </p>
       <p>
         The IB Chemistry Extended Essay (EE) is a 4,000-word independent research
@@ -34,7 +34,7 @@ export default function IBChemistryExtendedEssay() {
         Unlike subjects where the research question is more open-ended (such as
         history or literature), a Chemistry EE research question has a clear
         experimental design and a specific dependent variable to measure. This
-        makes Criterion A (Focus and method) and Criterion C (Critical thinking)
+        makes the framework (Criterion A) and the analysis and discussion (Criteria C and D)
         more straightforward to address, provided you design your experiment
         rigorously and compare your results with published values.
       </p>
@@ -68,17 +68,24 @@ export default function IBChemistryExtendedEssay() {
       </p>
 
       <h2>IB Chemistry EE Assessment Criteria</h2>
-      <p>Through November 2026, the Chemistry EE is marked out of 34 on five criteria:</p>
+      <p>From May 2027, the Chemistry EE is marked out of 30 on five criteria:</p>
       <ul>
-        <li><strong>Criterion A: Focus and method (6 marks).</strong> Clear research question, detailed and reproducible methodology, justified choice of variables and equipment.</li>
+        <li><strong>Criterion A: Framework for the essay (6 marks).</strong> A clear, focused research question, a detailed and reproducible method with a justified choice of variables and equipment, and a structure that serves the question.</li>
         <li><strong>Criterion B: Knowledge and understanding (6 marks).</strong> Accurate chemistry, going beyond the syllabus where the question needs it. Correct use of IUPAC nomenclature, mechanisms and theory, with relevant, reliable sources.</li>
-        <li><strong>Criterion C: Critical thinking (12 marks).</strong> The highest-weighted criterion. Does your analysis go beyond describing data? Do you compare experimental results to literature values, discuss sources of systematic error, and evaluate alternative explanations?</li>
-        <li><strong>Criterion D: Presentation (4 marks).</strong> Clear structure, correct labelling of graphs and tables, consistent citation style.</li>
-        <li><strong>Criterion E: Engagement (6 marks).</strong> Assessed through the RPPF (three reflections). Rewards genuine intellectual engagement with the research process, including honest discussion of challenges and how you responded to them.</li>
+        <li><strong>Criterion C: Analysis and line of argument (6 marks).</strong> Analysis that goes beyond describing data: processed results, uncertainties and trends tied to the question in a coherent argument.</li>
+        <li><strong>Criterion D: Discussion and evaluation (8 marks).</strong> The highest-weighted criterion. Do you compare experimental results with literature values, discuss systematic error and alternative explanations, and evaluate what your method could and could not establish?</li>
+        <li><strong>Criterion E: Reflection (4 marks).</strong> Marked on the reflective statement in your RPF. It rewards evaluative reflection, with specific examples, on how the investigation changed you as a learner.</li>
       </ul>
       <p>
-        In recent sessions, 27 or more out of 34 has been a grade A. Chemistry essays
-        often lose Criterion C marks by presenting data without context: they
+        If you sit your exams in November 2026, the essay is marked out of 34 instead: Focus and
+        method (6), Knowledge and understanding (6), Critical thinking (12), Presentation (4) and
+        Engagement (6, marked on the three RPPF reflections). The advice above carries over, because
+        analysis, discussion and evaluation together make up Critical thinking.
+      </p>
+      <p>
+        Grade boundaries for the new scale are set only after the May 2027 session is marked; on
+        the older scale, 27 or more out of 34 has been a grade A in recent sessions. Chemistry essays
+        often lose discussion and evaluation marks by presenting data without context: they
         calculate a rate constant but do not compare it to a published value, or
         they note an anomaly but do not investigate whether it reflects a systematic
         error or a genuine chemical phenomenon.
@@ -99,7 +106,7 @@ export default function IBChemistryExtendedEssay() {
         <li><strong>Kinetics and reaction rates:</strong> Iodine clock reactions, enzyme-catalysed reactions, or acid-catalysed hydrolysis. These produce clean quantitative data and connect to the Arrhenius equation and activation energy theory.</li>
         <li><strong>Electrochemistry:</strong> Investigating how concentration, temperature, or electrode material affects cell potential or electrolysis efficiency. Strong connection to the Nernst equation (Criterion B).</li>
         <li><strong>Colorimetry and spectrophotometry:</strong> Measuring concentration of coloured species (permanganate, iron complexes, anthocyanins) as a function of an experimental variable. Produces reliable Beer-Lambert data with statistical analysis potential.</li>
-        <li><strong>Analytical chemistry:</strong> Determining the concentration of a substance in a real-world sample (vitamin C in juice, iron in water) using titration or spectrophotometry. Strong for Criterion C because you can compare your results to certified reference values.</li>
+        <li><strong>Analytical chemistry:</strong> Determining the concentration of a substance in a real-world sample (vitamin C in juice, iron in water) using titration or spectrophotometry. Strong for Criterion D because you can compare your results to certified reference values.</li>
         <li><strong>Thermochemistry:</strong> Measuring enthalpy changes for related reactions (homologous series, isomers, reaction conditions) and comparing to theoretical values from Hess's law or bond enthalpies.</li>
       </ul>
 
@@ -107,8 +114,8 @@ export default function IBChemistryExtendedEssay() {
       <p>
         IBLens reads Extended Essays against the assessment criteria for your session.
         Paste a draft of your Chemistry EE to receive criterion-by-criterion feedback
-        that shows where you are losing marks, including Criterion C and the precision
-        of your research question under Criterion A.
+        that shows where you are losing marks, including discussion and evaluation
+        (Criterion D) and the precision of your research question under Criterion A.
       </p>
       <p>
         <Link href="/essay/extended-essay">Analyse your Chemistry EE with IBLens</Link>

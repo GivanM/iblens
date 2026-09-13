@@ -11,10 +11,10 @@ export default function IBHistoryExtendedEssay() {
       dateModified="2026-09-13"
     >
       <p>
-        <strong>Sitting your exams in May 2027 or later?</strong> Your Extended Essay is
-        marked out of 30 on rewritten criteria, not out of 34.{" "}
-        <Link href="/resources/ib-extended-essay-new-criteria-2027">See what changed</Link>.
-        The criteria described below apply through November 2026.
+        <strong>The criteria on this page are the ones for exams from May 2027,</strong> when the
+        Extended Essay is marked out of 30.{" "}
+        <Link href="/resources/ib-extended-essay-new-criteria-2027">See what changed</Link>. If you
+        sit your exams in November 2026, the older 34-mark criteria are summarised after them.
       </p>
       <p>
         The IB History Extended Essay is a 4,000-word investigation of a historical
@@ -104,14 +104,20 @@ export default function IBHistoryExtendedEssay() {
       </ul>
 
       <h2>How the Five EE Criteria Play Out in History</h2>
-      <p>Through November 2026, every Extended Essay is marked out of 34 on the same five criteria. Here is what each one rewards in a History essay:</p>
+      <p>From May 2027, every Extended Essay is marked out of 30 on the same five criteria. Here is what each one rewards in a History essay:</p>
       <ul>
-        <li><strong>Criterion A: Focus and method (6 marks).</strong> A sharply stated research question that the essay actually answers, plus a sensible research method. In History, "method" means your source strategy: which primary material you examined, which historians you read, and why that selection can support an answer.</li>
+        <li><strong>Criterion A: Framework for the essay (6 marks).</strong> A sharply stated research question that the essay actually answers, a method that can answer it, and a structure that serves the argument. In History, method means your source strategy: which primary material you examined, which historians you read, and why that selection can support an answer.</li>
         <li><strong>Criterion B: Knowledge and understanding (6 marks).</strong> Accurate contextual knowledge and correct use of historical concepts such as causation, continuity and change, and significance. The examiner should see that you understand the period well enough to locate your question inside it.</li>
-        <li><strong>Criterion C: Critical thinking (12 marks).</strong> The highest-weighted criterion and the one that separates bands. It rewards a sustained argument, evidence weighed rather than stacked, counter-arguments addressed, and interpretations evaluated rather than reported. Narrative essays lose most of their marks here.</li>
-        <li><strong>Criterion D: Presentation (4 marks).</strong> Clear structure, consistent referencing, and a bibliography that lets every claim be traced. History EEs lean heavily on citations because the argument rests on sources.</li>
-        <li><strong>Criterion E: Engagement (6 marks).</strong> Assessed through the three RPPF reflections. Strong reflections show decisions: a source that forced you to adjust your argument, a dead end in the archive, a change of scope and the reasoning behind it.</li>
+        <li><strong>Criterion C: Analysis and line of argument (6 marks).</strong> Evidence analysed rather than stacked, with findings that stay relevant to the question and one coherent argument running through the essay. Narrative essays lose marks here first.</li>
+        <li><strong>Criterion D: Discussion and evaluation (8 marks).</strong> The highest-weighted criterion. It rewards a balanced discussion of what your findings mean, with rival interpretations weighed and supported by evidence, and an evaluation of the essay itself: what your sources and method could and could not establish.</li>
+        <li><strong>Criterion E: Reflection (4 marks).</strong> Marked on the reflective statement in your RPF, not on the essay. It rewards evaluative reflection, with specific examples, on how the research changed you as a learner, such as how a source that overturned your first answer changed the way you read evidence.</li>
       </ul>
+      <p>
+        If you sit your exams in November 2026, the essay is marked out of 34 instead: Focus and
+        method (6), Knowledge and understanding (6), Critical thinking (12), Presentation (4) and
+        Engagement (6, marked on the three RPPF reflections). The advice above carries over, because
+        analysis, discussion and evaluation together make up Critical thinking.
+      </p>
 
       <h2>Sources, Method and Historiography</h2>
       <p>
@@ -121,7 +127,7 @@ export default function IBHistoryExtendedEssay() {
         what that origin and purpose do to its value and limitations for your
         specific question. A propaganda poster is not a weak source; it is a strong
         source about intentions and a weak source about outcomes. Showing that you
-        know the difference is exactly what Criterion C rewards.
+        know the difference is the kind of analysis Criterion C rewards.
       </p>
       <p>
         Secondary sources need the same discipline. Historians are interpreters,
@@ -138,12 +144,12 @@ export default function IBHistoryExtendedEssay() {
 
       <h2>Common Mark-Losing Mistakes in History EEs</h2>
       <ul>
-        <li><strong>Narrative instead of argument:</strong> retelling events in chronological order and attaching a judgement only in the conclusion. This caps Criterion C.</li>
+        <li><strong>Narrative instead of argument:</strong> retelling events in chronological order and attaching a judgement only in the conclusion. This caps Criterion C and leaves Criterion D nothing to discuss.</li>
         <li><strong>No historiography:</strong> an essay that never engages with what historians have argued reads as a school report, however accurate it is.</li>
         <li><strong>Sources treated as neutral:</strong> quoting documents and historians without ever evaluating origin, purpose, value or limitation.</li>
         <li><strong>A question without edges:</strong> whole wars, whole revolutions, whole centuries. Broad questions force shallow coverage.</li>
         <li><strong>A one-sided case:</strong> ignoring the strongest evidence against your thesis. Examiners reward essays that weigh counter-evidence and still land on a judgement.</li>
-        <li><strong>Untraceable claims:</strong> vague or missing citations. This costs marks under Criterion D and quietly undermines Criterion C, because unverifiable evidence carries no weight.</li>
+        <li><strong>Untraceable claims:</strong> vague or missing citations. Evidence nobody can trace carries no weight in the analysis and discussion the highest criteria reward.</li>
       </ul>
 
       <h2>Frequently Asked Questions</h2>
@@ -164,14 +170,14 @@ export default function IBHistoryExtendedEssay() {
       <h3>Is History a hard subject for the Extended Essay?</h3>
       <p>
         History EEs are marked against the same five criteria as every other
-        subject, but Criterion C rewards argument and evaluation of interpretations
+        subject, but Criteria C and D reward argument and the evaluation of interpretations
         rather than narrative. Students who retell events tend to score in the
         middle bands; students who argue a focused case can score highly.
       </p>
 
       <h2>Grade Your History EE Before You Submit</h2>
       <p>
-        IBLens analyses Extended Essays against the five official criteria and shows
+        IBLens analyses Extended Essays against the published criteria for your exam session and shows
         you, criterion by criterion, where marks are being lost, including the most
         common History problem: an essay that narrates where it should argue. Paste
         a draft into the <Link href="/essay/extended-essay">Extended Essay grader</Link>, where the first preview is free, to

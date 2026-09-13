@@ -83,7 +83,7 @@ export default function InternalAssessmentGuide() {
         <thead>
           <tr>
             <th>Competency</th>
-            <th>What Examiners Look For</th>
+            <th>What the Criteria Reward</th>
             <th>Common Weakness</th>
           </tr>
         </thead>
@@ -111,7 +111,7 @@ export default function InternalAssessmentGuide() {
           <tr>
             <td><strong>Communication</strong></td>
             <td>Clear structure, appropriate format, academic conventions</td>
-            <td>Poor organization, missing citations, exceeding word/page limits</td>
+            <td>Poor organisation, missing citations, exceeding word/page limits</td>
           </tr>
         </tbody>
       </table>
@@ -135,7 +135,7 @@ export default function InternalAssessmentGuide() {
       </p>
 
       <p>
-        <strong>Analysis:</strong> The single biggest pitfall is <strong>describing rather than analyzing</strong>. Stating "the graph shows an upward trend" is description. Explaining why the trend occurs, whether it matches theoretical predictions, what anomalies suggest and what the limitations of the data are: that is analysis.
+        <strong>Analysis:</strong> The single biggest pitfall is <strong>describing rather than analysing</strong>. Stating "the graph shows an upward trend" is description. Explaining why the trend occurs, whether it matches theoretical predictions, what anomalies suggest and what the limitations of the data are: that is analysis.
       </p>
 
       <p>

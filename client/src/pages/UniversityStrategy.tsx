@@ -18,7 +18,7 @@ export default function UniversityStrategy() {
     <div className="container max-w-2xl mx-auto py-16 px-4">
       <SEOHead
         title="IB University Strategy: No Longer Offered | IBLens"
-        description="This part of IBLens is no longer offered. We withdrew it rather than sell university guidance we cannot keep current. In the meantime, grade your IB essays free with IBLens."
+        description="This part of IBLens is no longer offered. We withdrew it rather than sell university guidance we cannot keep current. IBLens still marks IB coursework, with a free preview first."
         canonical="/university"
       />
 
@@ -36,7 +36,9 @@ export default function UniversityStrategy() {
         <p>
           Keeping it accurate would mean re-verifying requirements for every course at every
           university, every cycle. We are not able to promise that, so we would rather not take money
-          for it than publish advice we cannot stand behind.
+          for it than publish advice we cannot stand behind. Our free admissions guides stay online
+          because they explain how IB points and offers work in general, and they send you to each
+          university's own pages for the requirements that change.
         </p>
         <p className="text-foreground font-medium">
           What we do instead is the part that does not go stale: reading your own writing against
@@ -66,7 +68,7 @@ export default function UniversityStrategy() {
               your session, including the May 2027 rubrics.
             </p>
             <Button variant="outline" size="sm" asChild>
-              <Link href="/essay">Grade my essay <ArrowRight className="w-4 h-4 ml-1" /></Link>
+              <Link href="/essay">Check my coursework <ArrowRight className="w-4 h-4 ml-1" /></Link>
             </Button>
           </CardContent>
         </Card>

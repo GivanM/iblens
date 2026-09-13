@@ -25,7 +25,7 @@ export default function RefundPolicy() {
             <h2 className="text-xl font-semibold mb-3">How to Request a Refund</h2>
             <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
               <li>Email us at <a href="mailto:glushkovim@gmail.com" className="text-primary hover:underline font-medium">glushkovim@gmail.com</a> within 7 days of your purchase.</li>
-              <li>Include your account email address and the product you purchased.</li>
+              <li>Include the email address you used at checkout and the product you purchased.</li>
               <li>We will process your refund within 3-5 business days via the original payment method.</li>
             </ol>
           </section>
@@ -45,9 +45,9 @@ export default function RefundPolicy() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold mb-3">Unused Credits</h2>
+            <h2 className="text-xl font-semibold mb-3">Partly used packs</h2>
             <p className="text-muted-foreground leading-relaxed">
-              If you purchased an essay pack (5 or 10 analyses) and have used some credits, we will still issue a full refund within the 7-day window. We believe in making this process simple and fair.
+              If you bought a pack of 5 or 10 reports and have used some of them, we will still issue a full refund within the 7-day window. We believe in making this process simple and fair.
             </p>
           </section>
 

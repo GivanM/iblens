@@ -57,7 +57,7 @@ export default function RPF2027() {
       <h2>Check the whole essay, not just the RPF</h2>
 
       <p>
-        Reflection is 4 of 30 marks. The other 26 sit in the essay itself, and the heaviest single criterion in the 2027 rubric is Discussion and evaluation, at 8. IBLens marks EE drafts against the full May 2027 criteria (keep "Exam session" on May 2027 in the analyzer, which is the default, and paste your reflective statement to have Criterion E marked on it), with a free preview showing your weakest criterion first.
+        Reflection is 4 of 30 marks. The other 26 sit in the essay itself, and the heaviest single criterion in the 2027 rubric is Discussion and evaluation, at 8. IBLens marks EE drafts against the full May 2027 criteria (keep "Exam session" on May 2027 in the analyser, which is the default, and paste your reflective statement to have Criterion E marked on it), with a free preview showing your weakest criterion first.
       </p>
 
       <p>

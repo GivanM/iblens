@@ -13,7 +13,7 @@ export default function ExtendedEssayGuide() {
       <h1>The Complete IB Extended Essay Guide</h1>
 
       <p>
-        <strong>In short: the Extended Essay is a 4,000-word independent research essay. Through November 2026 it is marked out of 34 (Focus and method 6, Knowledge and understanding 6, Critical thinking 12, Presentation 4, Engagement 6); from the May 2027 session it is marked out of 30 under new criteria. Together with TOK it contributes up to 3 bonus points to your Diploma.</strong>
+        <strong>In short: the Extended Essay is a 4,000-word independent research essay. From the May 2027 session it is marked out of 30 (Framework for the essay 6, Knowledge and understanding 6, Analysis and line of argument 6, Discussion and evaluation 8, Reflection 4); through November 2026 it is marked out of 34 on the older criteria. Together with TOK it contributes up to 3 bonus points to your Diploma.</strong>
       </p>
 
       <p>
@@ -21,7 +21,7 @@ export default function ExtendedEssayGuide() {
       </p>
 
       <p>
-        This guide covers everything you need to know about the Extended Essay: from choosing a research question to understanding how examiners apply the assessment criteria. Whether you are just starting your EE journey or revising a final draft, the information below will help you understand what examiners are looking for and how to maximize your score.
+        This guide covers everything you need to know about the Extended Essay: from choosing a research question to understanding how examiners apply the assessment criteria. Whether you are just starting your EE journey or revising a final draft, the information below will help you understand what examiners are looking for and how to maximise your score.
       </p>
 
       <h2>What Is the IB Extended Essay?</h2>
@@ -91,7 +91,7 @@ export default function ExtendedEssayGuide() {
         <li><strong>Title page:</strong> the title, the research question, the subject the essay is registered in, and the word count. Leave off your name, candidate number and school name: Extended Essays are marked anonymously.</li>
         <li><strong>Table of contents:</strong> With page numbers</li>
         <li><strong>Introduction (300-400 words):</strong> Context, research question, scope, methodology overview</li>
-        <li><strong>Body (3,000-3,200 words):</strong> Organized into logical sections with clear headings, presenting evidence, analysis, and argumentation</li>
+        <li><strong>Body (3,000-3,200 words):</strong> Organised into logical sections with clear headings, presenting evidence, analysis, and argumentation</li>
         <li><strong>Conclusion (200-300 words):</strong> Direct answer to the RQ, summary of findings, acknowledgment of limitations, suggestions for further research</li>
         <li><strong>Bibliography:</strong> one consistent citation style, such as MLA, APA, Chicago or Harvard, used throughout</li>
         <li><strong>Appendices (if needed):</strong> Raw data, interview transcripts, supplementary materials</li>
@@ -104,7 +104,7 @@ export default function ExtendedEssayGuide() {
       <h2>Assessment Criteria (A-E)</h2>
 
       <p>
-        The criteria below are the <strong>current 34-mark criteria, used for sessions through November 2026</strong>. If you sit your exams in May 2027 or later, your essay is marked out of 30 under a different set: see <Link href="/resources/ib-extended-essay-new-criteria-2027">what changed in 2027</Link>. The current criteria apply uniformly across all subjects:
+        From the May 2027 session every Extended Essay is marked out of 30 on these five criteria, the same in every subject:
       </p>
 
       <table>
@@ -117,39 +117,43 @@ export default function ExtendedEssayGuide() {
         </thead>
         <tbody>
           <tr>
-            <td><strong>A: Focus and Method</strong></td>
-            <td>Topic, research question, methodology</td>
+            <td><strong>A: Framework for the essay</strong></td>
+            <td>Research question, research methods, structure</td>
             <td>6</td>
           </tr>
           <tr>
-            <td><strong>B: Knowledge and Understanding</strong></td>
-            <td>Context, subject-specific terminology, source use</td>
+            <td><strong>B: Knowledge and understanding</strong></td>
+            <td>Knowledge of the topic, subject terminology and concepts</td>
             <td>6</td>
           </tr>
           <tr>
-            <td><strong>C: Critical Thinking</strong></td>
-            <td>Research, analysis, discussion, evaluation</td>
-            <td>12</td>
+            <td><strong>C: Analysis and line of argument</strong></td>
+            <td>Analysis of the research, a coherent argument</td>
+            <td>6</td>
           </tr>
           <tr>
-            <td><strong>D: Presentation</strong></td>
-            <td>Structure, layout, formatting</td>
+            <td><strong>D: Discussion and evaluation</strong></td>
+            <td>Significance of the findings, evaluation of the essay</td>
+            <td>8</td>
+          </tr>
+          <tr>
+            <td><strong>E: Reflection</strong></td>
+            <td>Reflective statement in the RPF, up to 500 words</td>
             <td>4</td>
-          </tr>
-          <tr>
-            <td><strong>E: Engagement</strong></td>
-            <td>Reflections on planning and progress (RPPF)</td>
-            <td>6</td>
           </tr>
         </tbody>
       </table>
 
       <p>
-        <strong>Criterion C (Critical Thinking)</strong> carries the most weight at 12 marks. This is where examiners assess whether you have genuinely analyzed your evidence, considered alternative perspectives, evaluated the reliability of sources, and developed a reasoned argument. Descriptive essays that merely report information without analysis will score poorly here.
+        Through November 2026 the essay is marked out of 34 on the older criteria instead: Focus and method (6), Knowledge and understanding (6), Critical thinking (12), Presentation (4) and Engagement (6, marked on the three RPPF reflections). See <Link href="/resources/ib-extended-essay-new-criteria-2027">what changed in 2027</Link>.
       </p>
 
       <p>
-        <strong>Criterion E (Engagement)</strong> is assessed through the Reflections on Planning and Progress Form (RPPF). It holds three reflections written at different stages of the research, the third of them after the viva voce, and is limited to 500 words in total. The examiner marks Criterion E on these reflections, reading the essay only as context. From the May 2027 session the RPPF is replaced by the <Link href="/resources/ib-rpf-extended-essay-2027">RPF</Link>, a single reflective statement of up to 500 words assessed under Criterion E: Reflection (4 of 30 marks). This criterion evaluates intellectual engagement, decision-making, and the student's ability to reflect on their learning process.
+        <strong>Criterion D (Discussion and evaluation)</strong> carries the most weight at 8 marks. It rewards a balanced discussion of what your findings mean, supported by evidence, and an evaluation of the essay itself, with its strengths and limitations. Criterion C, analysis and line of argument, is where descriptive essays that report information without analysing it lose marks first.
+      </p>
+
+      <p>
+        <strong>Criterion E (Reflection)</strong> is marked on the reflective statement in the <Link href="/resources/ib-rpf-extended-essay-2027">RPF</Link>, up to 500 words, written after the final reflection session, the viva voce. It rewards evaluative reflection, with specific examples, on how the EE affected you as a learner, showing growth and transfer of learning; a description of the process is the lowest level. Through November 2026 the equivalent criterion is Engagement, marked on the three RPPF reflections, 500 words in total.
       </p>
 
       <h2>Common Mistakes</h2>
@@ -165,7 +169,7 @@ export default function ExtendedEssayGuide() {
         <li><strong>Poor source evaluation:</strong> Citing sources without assessing their reliability, bias, or limitations</li>
         <li><strong>Weak conclusion:</strong> Failing to directly answer the research question or introducing new material in the conclusion</li>
         <li><strong>Inconsistent referencing:</strong> Mixing citation styles or failing to cite all borrowed ideas</li>
-        <li><strong>Ignoring the RPPF:</strong> Treating the reflections as an afterthought rather than a genuine record of intellectual engagement</li>
+        <li><strong>A reflection that only describes:</strong> treating the RPF (or, through November 2026, the RPPF) as a diary of the process instead of evaluating what the research taught you</li>
         <li><strong>Exceeding word count:</strong> Including material that will not be read or assessed</li>
       </ul>
 
@@ -180,7 +184,7 @@ export default function ExtendedEssayGuide() {
       </p>
 
       <p>
-        <strong>Sophisticated critical thinking</strong> demonstrated through evaluation of evidence, consideration of counter-arguments, acknowledgment of limitations, and nuanced conclusions. A-grade essays rarely present black-and-white answers; they acknowledge complexity.
+        <strong>Analysis, discussion and evaluation</strong> demonstrated through evaluation of evidence, consideration of counter-arguments, acknowledgment of limitations, and nuanced conclusions. A-grade essays rarely present black-and-white answers; they acknowledge complexity.
       </p>
 
       <p>
@@ -188,11 +192,11 @@ export default function ExtendedEssayGuide() {
       </p>
 
       <p>
-        <strong>Genuine engagement</strong> shown in the reflections: real decisions, turning points and what the student learned from them. Criterion E is marked on the reflection form, so that is where the engagement has to be visible.
+        <strong>Evaluative reflection</strong> in the reflection form: what the research changed in the student as a learner, with specific examples. Criterion E is marked on that form, so that is where it has to be visible.
       </p>
 
       <p>
-        <strong>Careful presentation:</strong> clear structure, consistent formatting, accurate referencing and polished academic writing. Presentation is worth 4 marks, and a clear structure also makes the argument easier to follow.
+        <strong>Careful structure and referencing:</strong> clear structure, consistent formatting, accurate referencing and polished academic writing. From May 2027 structure counts under Criterion A, the framework for the essay (through November 2026 it is Presentation, 4 marks), and a clear structure also makes the argument easier to follow.
       </p>
 
       <h2>Final Checklist Before Submission</h2>

@@ -9,14 +9,14 @@ export default function IBExtendedEssayExamples() {
       description="Why full marked Extended Essays are hard to find, and what top-band essays do on each criterion across Economics, History, Biology, English and more."
       canonical="/resources/ib-extended-essay-examples"
       datePublished="2026-06-06"
-      dateModified="2026-06-06"
+      dateModified="2026-09-13"
     >
       <h1>IB Extended Essay Examples: What High-Scoring EEs Do Differently</h1>
       <p>The Extended Essay is one of the most intimidating pieces of work in the IB Diploma Programme. At 4,000 words, it is longer than anything most 16 and 17-year-olds have written, and the open format (choose your own topic, design your own research question, argue your own thesis) leaves many students stuck. The best way to break through that paralysis is to study strong IB extended essay examples and understand <em>why</em> they worked, not just what they said.</p>
       <p>This guide walks through what examiners actually reward, gives you concrete example research questions by subject, shows the most common mistakes that drag scores down, and explains the mindset shift that separates a C-grade EE from one that earns a coveted A.</p>
 
       <h2>What Makes a High-Scoring IB Extended Essay?</h2>
-      <p>Through November 2026 the IB marks Extended Essays against five criteria: Focus and method (Criterion A), Knowledge and understanding (B), Critical thinking (C), Presentation (D) and Engagement (E), 34 marks in total. In recent sessions an A has been 27 or more out of 34, and most of the gap between grades usually sits in the criterion with the most marks: critical thinking. From May 2027 the essay is marked out of 30 on rewritten criteria.</p>
+      <p>From May 2027 the IB marks Extended Essays out of 30 on five criteria: Framework for the essay (Criterion A), Knowledge and understanding (B), Analysis and line of argument (C), Discussion and evaluation (D) and Reflection (E). Discussion and evaluation carries the most marks, 8 of 30. Through November 2026 the essay is marked out of 34 on the older criteria, where an A has been 27 or more in recent sessions and Critical thinking carries 12 marks.</p>
       <p>Examiners are not looking for a Wikipedia-style overview of a topic. They want to see a student take a narrow, specific question and subject it to sustained, disciplined analysis. The difference between a mediocre essay and an excellent one almost always comes down to three things:</p>
       <ul>
         <li><strong>Specificity of the research question.</strong> Vague questions produce vague answers. A question like "How does social media affect mental health?" cannot be answered in 4,000 words. A question like "To what extent did Instagram's algorithmic feed, introduced in 2016, correlate with self-reported anxiety scores among UK adolescent girls aged 14-17?" is narrow enough to actually investigate.</li>
@@ -76,7 +76,7 @@ export default function IBExtendedEssayExamples() {
       <p>One of the most common reasons for a low score is a research question that is too broad. "What caused World War One?" is a subject for a book, not a 4,000-word essay. The problem shows from the first page, and a question that cannot be answered in the space holds down Criterion A and everything that depends on it.</p>
 
       <h3>Description Masquerading as Analysis</h3>
-      <p>Many students describe what sources say without evaluating why it matters. Criterion C (critical thinking) accounts for 12 of the 34 available marks. In History, engage with historiography. In Biology, discuss limitations of your method. In Economics, apply theory to real data.</p>
+      <p>Many students describe what sources say without evaluating why it matters. Discussion and evaluation accounts for 8 of the 30 marks from May 2027, as critical thinking did for 12 of 34 before it. In History, engage with historiography. In Biology, discuss limitations of your method. In Economics, apply theory to real data.</p>
 
       <h3>A Weak Conclusion</h3>
       <p>The conclusion must directly and explicitly answer the research question. It should not introduce new evidence or vaguely state "the issue is complex." A strong conclusion names the answer, acknowledges the strongest counter-argument, and identifies what further research would be needed.</p>
@@ -87,13 +87,13 @@ export default function IBExtendedEssayExamples() {
             <ExamplesBridge
         workLabel="Extended Essay"
         ctaHref="/essay/extended-essay"
-        note={"One caution: if you sit exams in May 2027 or later, your EE is marked out of 30 under new criteria, and Discussion and evaluation alone is worth 8 of them. Older example essays and mark schemes describe the 34-mark rubric."}
+        note={"If you sit your exams in November 2026, your EE is marked out of 34 on the older criteria (Focus and method, Knowledge and understanding, Critical thinking, Presentation, Engagement), and many older example essays and mark schemes describe that rubric. The rows below use the criteria for May 2027 onward."}
         rows={[
-          { criterion: "A: Focus and method", typical: "The research question restates the topic and could fill a book; scope is never stated.", top: "The question is narrow enough to answer in 4,000 words, and the essay says why that scope was chosen." },
+          { criterion: "A: Framework for the essay", typical: "The research question restates the topic and could fill a book; scope and method are never stated.", top: "The question is narrow enough to answer in 4,000 words, the method fits it, and every section visibly serves it." },
           { criterion: "B: Knowledge and understanding", typical: "Sources are summarised one after another in the order they were read.", top: "Subject terminology is used precisely, and sources are positioned against each other rather than listed." },
-          { criterion: "C: Critical thinking", typical: "Evidence is described and a claim follows, leaving the reader to assume the link.", top: "Each piece of evidence is weighed (strength, limitation, competing reading) before the claim is made." },
-          { criterion: "D: Presentation", typical: "Headings and citations exist but the reader cannot see why sections come in this order.", top: "Structure is navigable: each section visibly serves the research question." },
-          { criterion: "E: Engagement", typical: "Reflections describe the timeline: chose a topic, found sources, wrote it up.", top: "Reflections name real decisions and turning points in the research, in the student\u2019s own voice." },
+          { criterion: "C: Analysis and line of argument", typical: "Evidence is described and a claim follows, leaving the reader to assume the link.", top: "Each finding is analysed and tied to the question, building one coherent argument." },
+          { criterion: "D: Discussion and evaluation", typical: "Findings are restated in the conclusion, and the essay never says where its own sources or method fall short.", top: "The significance of the findings is discussed with evidence and competing readings, and the essay evaluates its own strengths and limitations." },
+          { criterion: "E: Reflection", typical: "The reflective statement describes the timeline: chose a topic, found sources, wrote it up.", top: "The statement evaluates, with specific examples, what the research changed in the student as a learner." },
         ]}
       />
 
@@ -109,7 +109,7 @@ export default function IBExtendedEssayExamples() {
         <li>Are all sources academic-quality and correctly cited?</li>
         <li>Is your word count no more than 4,000, counted the way the guide counts it?</li>
         <li>Does your conclusion explicitly answer the research question?</li>
-        <li>Have you completed your RPPF (or, from May 2027, your RPF) with genuine reflection?</li>
+        <li>Have you written your RPF (or, for November 2026, your RPPF) as reflection that evaluates what you learned rather than describing the process?</li>
       </ul>
       <p>The Extended Essay rewards students who treat it as an intellectual exercise. Choose a question you are genuinely curious about, narrow it until it feels almost too specific, and build an argument you are willing to defend.</p>
       <h2>Extended Essay by subject</h2>

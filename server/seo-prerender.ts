@@ -57,6 +57,8 @@ interface FaqItem {
 interface PageMeta {
   title: string;
   description: string;
+  /** Kept reachable for old links, but not for search results. */
+  noindex?: boolean;
   ogType?: string;
   canonical: string;
   schemaType: string;
@@ -135,7 +137,8 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/university": {
     title: "IB University Strategy: No Longer Offered | IBLens",
-    description: "This part of IBLens is no longer offered. We withdrew it rather than sell university guidance we cannot keep current. In the meantime, grade your IB essays free with IBLens.",
+    description: "This part of IBLens is no longer offered. We withdrew it rather than sell university guidance we cannot keep current. IBLens still marks IB coursework, with a free preview first.",
+    noindex: true,
     ogType: "website",
     canonical: "/university",
     schemaType: "WebPage",
@@ -686,6 +689,8 @@ export function injectSeoMeta(html: string, url: string, _userAgent: string): st
   html = html.replace(/<link\s+rel="canonical"[^>]*\/>/gi, '');
   html = html.replace(/<meta\s+property="og:[^"]*"[^>]*\/>/gi, '');
   html = html.replace(/<meta\s+name="twitter:[^"]*"[^>]*\/>/gi, '');
+  // index.html ships "index, follow"; one robots tag per page, set from routeMeta.
+  html = html.replace(/\s*<meta\s+name="robots"[^>]*\/>/gi, '');
   // The pre-rendered file carries its own JSON-LD; the blocks below replace it.
   html = html.replace(/\s*<script\s+type="application\/ld\+json">[\s\S]*?<\/script>/gi, '');
 
@@ -693,6 +698,7 @@ export function injectSeoMeta(html: string, url: string, _userAgent: string): st
   const canonicalUrl = `${SITE_URL}${meta.canonical}`;
   const metaTags = `
     <meta name="description" content="${escapeAttr(meta.description)}" />
+    <meta name="robots" content="${meta.noindex ? "noindex" : "index, follow"}" />
     <link rel="canonical" href="${canonicalUrl}" />
     <meta property="og:type" content="${meta.ogType || "website"}" />
     <meta property="og:site_name" content="IBLens" />

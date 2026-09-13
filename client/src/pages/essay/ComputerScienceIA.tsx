@@ -24,7 +24,7 @@ const config: SubjectConfig = {
   guide: {
     rubricHeading: "What the Computer Science IA criteria reward",
     rubricIntro: [
-      "The criteria depend on your exam session. From May 2027 the IA is a computational solution marked out of 30, documented in up to 2,000 words, with code excerpts, comments and diagrams not counted, plus a video of up to 5 minutes. There is no longer a client requirement. Through November 2026 it is the 34-mark solution, which involves a client or an adviser. Choose your session in the analyzer and the report uses the matching criteria.",
+      "The criteria depend on your exam session. From May 2027 the IA is a computational solution marked out of 30, documented in up to 2,000 words, with code excerpts, comments and diagrams not counted, plus a video of up to 5 minutes. There is no longer a client requirement. Through November 2026 it is the 34-mark solution, which involves a client or an adviser. Choose your session in the analyser and the report uses the matching criteria.",
       "The criteria below apply from May 2027.",
     ],
     rubricItems: [
@@ -37,7 +37,7 @@ const config: SubjectConfig = {
     rubricNote: [
       "Through November 2026 the criteria are Planning (6 marks), Solution overview (6), Development (12), Functionality and extensibility of product (4) and Evaluation (6), with feedback from your client or adviser part of the evaluation.",
     ],
-    mistakesHeading: "Mistakes the Computer Science IA criteria penalize",
+    mistakesHeading: "Mistakes the Computer Science IA criteria penalise",
     mistakes: [
       { title: "Success criteria nobody can test", text: "'The app should be easy to use' gives the evaluation nothing to measure. Write criteria that a test can show are met or not met." },
       { title: "A plan with no link to the success criteria", text: "A timeline written after the product was built. From May 2027, Planning rewards decomposing the problem and planning a solution that addresses the success criteria." },

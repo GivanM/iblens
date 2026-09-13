@@ -26,10 +26,10 @@ const config: SubjectConfig = {
     ],
     rubricItems: [
       { title: "Section 1: Identification and evaluation of sources (Criterion A, 6 marks)", text: "Your question, stated as a question, a brief explanation of the two sources you chose and their relevance to the investigation, and a detailed analysis of their value and limitations for your investigation, with reference to their origins, purpose and content. The two sources can be primary or secondary." },
-      { title: "Section 2: Investigation (Criterion B, 15 marks)", text: "A clear, coherent and well-organized investigation with well-developed critical analysis focused on your question, evidence from a range of sources used effectively, evaluation of different perspectives, and a reasoned conclusion consistent with the evidence and arguments. Primary sources, secondary sources or a mix of both are acceptable." },
+      { title: "Section 2: Investigation (Criterion B, 15 marks)", text: "A clear, coherent and well-organised investigation with well-developed critical analysis focused on your question, evidence from a range of sources used effectively, evaluation of different perspectives, and a reasoned conclusion consistent with the evidence and arguments. Primary sources, secondary sources or a mix of both are acceptable." },
       { title: "Section 3: Reflection (Criterion C, 4 marks)", text: "What the investigation showed you about the methods historians use and the challenges they face, with a clear and explicit connection to the rest of your investigation." },
     ],
-    mistakesHeading: "Mistakes the History IA criteria penalize",
+    mistakesHeading: "Mistakes the History IA criteria penalise",
     mistakes: [
       { title: "Narrative in place of analysis", text: "A Section 2 that tells the story of the events. Mainly narrative or descriptive work is the 4-6 band of Criterion B, and the top band needs well-developed critical analysis focused on the question." },
       { title: "Perspectives named but not weighed", text: "Mentioning that historians disagree without evaluating their views. Awareness of perspectives without evaluation stops at the 7-9 band." },
@@ -41,7 +41,7 @@ const config: SubjectConfig = {
     faq: [
       { q: "Can I paste just one section?", a: "Yes, but each criterion is marked on what it can see, so the criteria for the sections you leave out will score low. Paste all three sections for a total you can use." },
       { q: "What counts toward the 2,200 words?", a: "The bibliography and references are not counted. IBLens counts everything you paste, so leave the bibliography out of the paste, or allow for it when you read the word count." },
-      { q: "Can I use it for a History Extended Essay?", a: "Choose Extended Essay in the analyzer and pick History as the subject. The EE is marked on its own criteria, so the IA criteria would put it on the wrong scale." },
+      { q: "Can I use it for a History Extended Essay?", a: "Choose Extended Essay in the analyser and pick History as the subject. The EE is marked on its own criteria, so the IA criteria would put it on the wrong scale." },
       { q: "How accurate is the predicted mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. Your teacher marks the work and the IB moderates that marking, so their mark is the one that counts. Use the report to find what to fix before you submit." },
       { q: "Is it free?", a: "The first preview is free and needs no account: your band range, your weakest criterion with its full feedback, and the top risks in the draft. The full report, with every criterion marked and a ranked list of fixes, is $9.99, or $24.99 for a pack of five." },
       { q: "Is my work stored?", a: "The text you paste is never stored. It is sent to Anthropic, the AI provider, to produce the report. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },

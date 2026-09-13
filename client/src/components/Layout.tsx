@@ -69,7 +69,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </Link>
 
             <nav className="hidden md:flex items-center gap-1">
-              <NavLink href="/essay" active={location === "/essay"}>Essay Analyzer</NavLink>
+              <NavLink href="/essay" active={location === "/essay"}>Essay Analyser</NavLink>
               <NavLink href="/ucas-personal-statement" active={location === "/ucas-personal-statement"}>UCAS Statement</NavLink>
               <NavLink href="/resources" active={location.startsWith("/resources")}>Resources</NavLink>
               <NavLink href="/pricing" active={location === "/pricing"}>Pricing</NavLink>
@@ -145,7 +145,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               }`}
             >
               <FileText className="w-4 h-4" />
-              Essay Analyzer
+              Essay Analyser
             </Link>
             <Link
               href="/ucas-personal-statement"
@@ -207,7 +207,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </p>
             </div>
             <nav className="flex flex-wrap gap-x-6 gap-y-2 md:justify-end">
-              <Link href="/essay" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Essay Analyzer</Link>
+              <Link href="/essay" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Essay Analyser</Link>
               <Link href="/resources" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Resources</Link>
               <Link href="/pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Pricing</Link>
               <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">About</Link>
@@ -218,7 +218,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </nav>
           </div>
           <div className="mt-8 pt-6 border-t border-border text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} IBLens. All rights reserved.
+            &copy; {new Date().getFullYear()} IBLens. Independent of the International Baccalaureate Organization, which does not endorse it. Every mark is an AI estimate, not an IB mark.
           </div>
         </div>
       </footer>

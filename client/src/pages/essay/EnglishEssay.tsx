@@ -30,7 +30,7 @@ const config: SubjectConfig = {
       { title: "Criterion C: Focus and organization, 10 marks", text: "A structured, balanced and focused oral in which the ideas are connected." },
       { title: "Criterion D: Language, 10 marks", text: "Clear, accurate and effective language that suits the task." },
     ],
-    mistakesHeading: "Mistakes the Individual Oral criteria penalize",
+    mistakesHeading: "Mistakes the Individual Oral criteria penalise",
     mistakes: [
       { title: "Naming devices without analysing them", text: "Pointing out a metaphor without explaining how it presents the global issue. Criterion B is about how choices in the text shape that presentation." },
       { title: "A global issue that drops out", text: "Introducing the issue at the start and returning to it only at the end. Criterion A measures your interpretation in relation to the global issue, so each part of the oral should come back to it." },
@@ -38,9 +38,9 @@ const config: SubjectConfig = {
       { title: "One work doing all the work", text: "Spending most of the oral on one work and little on the other. Criterion C rewards a balanced oral." },
     ],
     faq: [
-      { q: "Can I paste a transcript of my oral?", a: "Yes. Record a practice run, transcribe it and paste the transcript. It gives the fullest picture of your analysis, your organization and your language." },
+      { q: "Can I paste a transcript of my oral?", a: "Yes. Record a practice run, transcribe it and paste the transcript. It gives the fullest picture of your analysis, your organisation and your language." },
       { q: "Does it cover the HL essay or Paper 1?", a: "No. It covers the Individual Oral only. The HL essay and the exam papers are marked on different criteria." },
-      { q: "Literature or Language and Literature?", a: "Choose your course in the analyzer. The four criteria and their marks are the same, and the wording differs slightly: Language and Literature refers to works and texts, Literature to works." },
+      { q: "Literature or Language and Literature?", a: "Choose your course in the analyser. The four criteria and their marks are the same, and the wording differs slightly: Language and Literature refers to works and texts, Literature to works." },
       { q: "How accurate is the predicted mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. Your teacher marks the work and the IB moderates that marking, so their mark is the one that counts. Use the report to find what to fix before you submit." },
       { q: "Is it free?", a: "The first preview is free and needs no account: your band range, your weakest criterion with its full feedback, and the top risks in the draft. The full report, with every criterion marked and a ranked list of fixes, is $9.99, or $24.99 for a pack of five." },
       { q: "Is my work stored?", a: "The text you paste is never stored. It is sent to Anthropic, the AI provider, to produce the report. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },

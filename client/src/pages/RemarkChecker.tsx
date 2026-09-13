@@ -77,7 +77,7 @@ function RemarkQuickCheck() {
           </div>
           <Textarea value={essayText} onChange={(e) => setEssayText(e.target.value)} rows={7}
             placeholder={essayType === "TOK" ? "Paste your full TOK essay (the version you submitted to IB)\u2026" : "Paste your full Extended Essay (the version you submitted to IB)\u2026"}
-            className="mb-2 bg-background" />
+            className="mb-2 bg-background field-sizing-fixed resize-y" />
           <div className="flex items-center justify-between gap-3 flex-wrap">
             <span className="text-xs text-muted-foreground">{essayText.trim() ? essayText.trim().split(/\s+/).length + " words" : "No account needed. Never used to train AI. Free preview, full report $9.99."}</span>
             <Button disabled={essayText.trim().length < 300 || analyze.isPending}
@@ -90,7 +90,7 @@ function RemarkQuickCheck() {
             <p className="text-xs text-muted-foreground mt-2">Keep pasting: the check needs the full essay.</p>
           )}
           {alreadyUsed && (
-            <p className="text-sm mt-3">You have already used your free check on this device. A full report is $9.99 on the <Link href="/essay" className="text-primary font-medium underline">analyzer page</Link>, with no account needed.</p>
+            <p className="text-sm mt-3">You have already used your free check on this device. A full report is $9.99 on the <Link href="/essay" className="text-primary font-medium underline">analyser page</Link>, with no account needed.</p>
           )}
           {errMsg && !alreadyUsed && (
             <p className="text-sm mt-3 text-destructive">{errMsg.replace(/[.\s]*$/, ".")} Please try again.</p>
@@ -134,7 +134,7 @@ function RemarkQuickCheck() {
               ))}
             </ul>
           )}
-          <p className="text-sm text-muted-foreground mb-3">The full report, with the exact mark, the full comments and a ranked list of fixes, unlocks for $9.99 on the analyzer page. Everything here is an estimate from a language model, not the IB's mark.</p>
+          <p className="text-sm text-muted-foreground mb-3">The full report, with the exact mark, the full comments and a ranked list of fixes, unlocks for $9.99 on the analyser page. Everything here is an estimate from a language model, not the IB's mark.</p>
           <Button asChild><Link href="/essay">Unlock the full report, $9.99</Link></Button>
         </div>
       )}

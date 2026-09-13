@@ -31,7 +31,7 @@ export default function TokEssayGuide() {
       </p>
 
       <ul>
-        <li><strong>Identify and analyze knowledge questions:</strong> Questions about the nature, scope, and limitations of knowledge (e.g., "How do we distinguish between correlation and causation?")</li>
+        <li><strong>Identify and analyse knowledge questions:</strong> Questions about the nature, scope, and limitations of knowledge (e.g., "How do we distinguish between correlation and causation?")</li>
         <li><strong>Develop knowledge claims and counter-claims:</strong> Make assertions about knowledge and then challenge them with alternative perspectives</li>
         <li><strong>Use specific, concrete examples:</strong> Illustrate abstract arguments with real-world cases from different areas of knowledge</li>
         <li><strong>Evaluate perspectives:</strong> Assess the strengths and limitations of different approaches to knowledge without simply declaring one "right"</li>

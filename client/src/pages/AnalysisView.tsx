@@ -32,8 +32,10 @@ export default function AnalysisView() {
   // A locked report had no way to be opened from here: the dashboard sent people
   // to the analyzer, where the unlock button only ever existed for the anonymous
   // report of the current session.
+  const creditsQ = trpc.dashboard.credits.useQuery(undefined, { enabled: Number.isFinite(id) });
+  const paidLeft = creditsQ.data?.essayCredits ?? 0;
   const unlockHere = trpc.essay.unlockAnalysis.useMutation({
-    onSuccess: () => { toast.success("Report unlocked."); utils.dashboard.analysis.invalidate(); },
+    onSuccess: () => { toast.success("Report unlocked."); utils.dashboard.analysis.invalidate(); utils.dashboard.credits.invalidate(); },
     onError: (e: any) => toast.error(e.message || "Could not unlock this report"),
   });
 
@@ -75,12 +77,15 @@ export default function AnalysisView() {
         <h1 style={SERIF} className="text-2xl font-bold">This report is still locked</h1>
         <p className="text-muted-foreground">You saw the free preview for this draft. The full report unlocks the exact mark, comments on every criterion, and your ranked fix list.</p>
         <div className="flex flex-col sm:flex-row gap-2 justify-center">
-          <Button disabled={unlockHere.isPending} onClick={() => unlockHere.mutate({ analysisId: id })}>
-            {unlockHere.isPending ? "Unlocking…" : "Unlock this report (1 credit)"}
-          </Button>
-          <Button variant="outline" onClick={() => setBuyOpen(true)}>
-            Buy a credit, {PRICE_LABELS.ESSAY_SINGLE}
-          </Button>
+          {paidLeft > 0 ? (
+            <Button disabled={unlockHere.isPending} onClick={() => unlockHere.mutate({ analysisId: id })}>
+              {unlockHere.isPending ? "Unlocking…" : `Unlock with 1 of your ${paidLeft} paid ${paidLeft === 1 ? "report" : "reports"}`}
+            </Button>
+          ) : (
+            <Button onClick={() => setBuyOpen(true)}>
+              Unlock the full report, {PRICE_LABELS.ESSAY_SINGLE}
+            </Button>
+          )}
         </div>
         {paidReturn && <p className="text-sm text-muted-foreground">Payment received. The report opens here as soon as the payment clears, usually within a minute.</p>}
         <PurchaseModal open={buyOpen} onOpenChange={setBuyOpen} sku="ESSAY_SINGLE" analysisId={id} />

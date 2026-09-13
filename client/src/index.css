@@ -4,6 +4,17 @@
    which compile to nothing unless the typography plugin is loaded. */
 @plugin "@tailwindcss/typography";
 
+/* Wide tables in articles scroll inside themselves instead of widening the page on a phone. */
+.prose table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.prose td,
+.prose th {
+  overflow-wrap: anywhere;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

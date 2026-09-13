@@ -128,7 +128,7 @@ export function RequestSlip() {
           </div>
           <p className="ms-hand">No subscription. Nothing renews.</p>
           <p className="ms-slipnote">
-            <Link href="/resources/sample-reports">Read a full report before you buy one</Link>
+            <Link href="/resources/sample-reports">Read three full sample reports (TOK essays) before you buy one</Link>
           </p>
         </aside>
       </div>

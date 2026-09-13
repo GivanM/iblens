@@ -15,7 +15,7 @@ function EssayReportPreview() {
   ];
 
   return (
-    <div className="relative bg-white rounded-xl shadow-[0_4px_32px_rgba(0,0,0,0.10)] overflow-hidden border border-gray-200/60 w-full max-w-[420px] mx-auto" style={{ aspectRatio: "1/1.35" }}>
+    <div className="relative bg-white rounded-xl shadow-[0_4px_32px_rgba(0,0,0,0.10)] overflow-hidden border border-gray-200/60 w-full max-w-[460px] mx-auto">
       {/* SAMPLE watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
         <span className="text-[80px] font-black text-gray-400/[0.06] -rotate-45 select-none tracking-widest">SAMPLE</span>
@@ -29,13 +29,13 @@ function EssayReportPreview() {
           </div>
           <span className="text-white font-semibold text-xs tracking-wide">IBLens</span>
         </div>
-        <span className="text-gray-400 text-[10px] font-medium">Extended Essay · May 2027 criteria</span>
+        <span className="text-gray-300 text-xs font-medium">Extended Essay · May 2027 criteria</span>
       </div>
 
       {/* Body */}
       <div className="px-5 py-4 relative z-[1]">
         {/* Essay title */}
-        <p className="text-[11px] leading-snug text-gray-700 font-medium mb-4 line-clamp-2">
+        <p className="text-sm leading-snug text-gray-700 font-medium mb-4">
           "To what extent did economic sanctions contribute to the end of apartheid in South Africa, 1985 to 1994?"
         </p>
 
@@ -44,19 +44,19 @@ function EssayReportPreview() {
           <div className="bg-[#6c63ff] text-white text-lg font-bold px-3 py-1 rounded-lg">
             20/30
           </div>
-          <span className="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Estimate</span>
+          <span className="bg-blue-100 text-blue-700 text-xs font-bold px-2 py-0.5 rounded-full">Estimate</span>
         </div>
 
         {/* Criteria table */}
         <div className="space-y-2 mb-4">
           {criteria.map((c) => (
             <div key={c.name} className="flex items-center gap-2">
-              <span className="text-[10px] text-gray-600 w-[140px] truncate flex-shrink-0">{c.name}</span>
+              <span className="text-xs text-gray-600 w-[45%] leading-tight flex-shrink-0">{c.name}</span>
               <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                 <div className={`h-full ${c.bar} rounded-full`} style={{ width: `${c.pct}%` }} />
               </div>
-              <span className={`text-[10px] font-semibold ${c.color} w-8 text-right flex-shrink-0`}>{c.score}/{c.max}</span>
-              {c.note && <span className="text-[8px] text-amber-600 bg-amber-50 px-1 rounded flex-shrink-0">{c.note}</span>}
+              <span className={`text-xs font-semibold ${c.color} w-9 text-right flex-shrink-0`}>{c.score}/{c.max}</span>
+              {c.note && <span className="text-[10px] text-amber-700 bg-amber-50 px-1 rounded flex-shrink-0">{c.note}</span>}
             </div>
           ))}
         </div>
@@ -64,28 +64,28 @@ function EssayReportPreview() {
         {/* Strengths & Weaknesses */}
         <div className="grid grid-cols-2 gap-3 mb-3">
           <div>
-            <p className="text-[9px] font-bold text-emerald-700 uppercase tracking-wider mb-1.5">Strengths</p>
+            <p className="text-[11px] font-bold text-emerald-700 uppercase tracking-wider mb-1.5">Strengths</p>
             <div className="space-y-1">
               <div className="flex items-start gap-1">
-                <span className="text-emerald-500 text-[10px] mt-0.5">●</span>
-                <span className="text-[9px] text-gray-600 leading-tight">Strong historical evidence with primary sources</span>
+                <span className="text-emerald-500 text-xs mt-0.5">●</span>
+                <span className="text-xs text-gray-600 leading-snug">Strong historical evidence with primary sources</span>
               </div>
               <div className="flex items-start gap-1">
-                <span className="text-emerald-500 text-[10px] mt-0.5">●</span>
-                <span className="text-[9px] text-gray-600 leading-tight">Clear thesis and focused research question</span>
+                <span className="text-emerald-500 text-xs mt-0.5">●</span>
+                <span className="text-xs text-gray-600 leading-snug">Clear thesis and focused research question</span>
               </div>
             </div>
           </div>
           <div>
-            <p className="text-[9px] font-bold text-red-600 uppercase tracking-wider mb-1.5">Weaknesses</p>
+            <p className="text-[11px] font-bold text-red-600 uppercase tracking-wider mb-1.5">Weaknesses</p>
             <div className="space-y-1">
               <div className="flex items-start gap-1">
-                <span className="text-red-400 text-[10px] mt-0.5">●</span>
-                <span className="text-[9px] text-gray-600 leading-tight">Findings reported, their significance not discussed</span>
+                <span className="text-red-400 text-xs mt-0.5">●</span>
+                <span className="text-xs text-gray-600 leading-snug">Findings reported, their significance not discussed</span>
               </div>
               <div className="flex items-start gap-1">
-                <span className="text-red-400 text-[10px] mt-0.5">●</span>
-                <span className="text-[9px] text-gray-600 leading-tight">No evaluation of the essay's own limitations</span>
+                <span className="text-red-400 text-xs mt-0.5">●</span>
+                <span className="text-xs text-gray-600 leading-snug">No evaluation of the essay's own limitations</span>
               </div>
             </div>
           </div>
@@ -93,9 +93,9 @@ function EssayReportPreview() {
       </div>
 
       {/* Footer */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gray-50 border-t border-gray-100 px-5 py-2 flex justify-between items-center">
-        <span className="text-[9px] text-gray-400">iblens.com</span>
-        <span className="text-[9px] text-gray-400">Sample Report</span>
+      <div className="bg-gray-50 border-t border-gray-100 px-5 py-2 flex justify-between items-center">
+        <span className="text-xs text-gray-500">iblens.com</span>
+        <span className="text-xs text-gray-500">Illustration</span>
       </div>
     </div>
   );
@@ -188,7 +188,7 @@ export function SampleReports() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight mb-3">What a full report looks like</h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            An illustration on the May 2027 Extended Essay criteria, with made-up scores
+            An illustration on the May 2027 Extended Essay criteria, with invented scores
           </p>
         </div>
 
