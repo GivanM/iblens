@@ -80,7 +80,7 @@ export default function IBIAGrader() {
       <h2>Is the first IB IA preview really free?</h2>
 
       <p>
-        Yes, your first preview is free: a range of totals, usually your weakest criterion with its feedback, and the top risks. The complete report unlocks for $9.99 and includes two free re-checks of revised versions of the same work within 14 days of the report opening. In packs it works out at $5.00 per report (5 for $24.99) or $4.50 (10 for $44.99).
+        Yes, your first preview is free: a range of totals and, for most drafts, your weakest criterion with its feedback and the top risks. The complete report unlocks for $9.99 and includes two free re-checks of revised versions of the same work within 14 days of the report opening. In packs it works out at $5.00 per report (5 for $24.99) or $4.50 (10 for $44.99).
       </p>
 
       <h2>How accurate is the AI grade?</h2>

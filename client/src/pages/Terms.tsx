@@ -35,7 +35,7 @@ export default function Terms() {
           <p>Full reports are paid for one at a time or in packs of 5 or 10. Prices are shown in US dollars at checkout, payment is handled by Lemon Squeezy, and refunds are covered by our <Link href="/refund-policy" className="text-primary hover:underline">Refund Policy</Link>. A paid report includes two free re-checks: a revised version of the same piece of work, for the same task and subject, submitted within 14 days of the report opening. A different piece of work needs its own report. You are responsible for keeping your account secure.</p>
 
           <h2>No warranty and limitation of liability</h2>
-          <p>IBLens is provided "as is", without warranty that its feedback is accurate, complete, or suitable for a particular purpose. To the extent permitted by law, we are not liable for any loss arising from reliance on the tool's output, including grades, admissions outcomes, or re-mark decisions.</p>
+          <p>IBLens is provided "as is", without warranty that its feedback is accurate, complete, or suitable for a particular purpose. To the extent permitted by law, we are not liable for any loss arising from reliance on the tool's output, including grades, admissions outcomes, or re-mark decisions. Nothing in these terms limits any right you have by law, including under the consumer protection law where you live.</p>
 
           <h2>Age and parental consent</h2>
 

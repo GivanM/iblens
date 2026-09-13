@@ -111,7 +111,7 @@ export default function IBUniversityStrategy() {
       <h2>Applying through UCAS</h2>
 
       <ul>
-        <li><Link href="/ucas-personal-statement">UCAS Personal Statement Checker</Link></li>
+        <li><Link href="/ucas-personal-statement">UCAS personal statement checker</Link></li>
       </ul>
 
     </ResourceArticle>

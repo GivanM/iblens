@@ -163,7 +163,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               }`}
             >
               <FileText className="w-4 h-4" />
-              Essay Grader
+              Essay grader
             </Link>
             <Link
               href="/ucas-personal-statement"

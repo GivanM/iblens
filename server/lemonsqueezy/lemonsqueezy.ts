@@ -526,8 +526,10 @@ export function registerLemonsqueezyWebhook(app: Express) {
             await updateWebhookEvent(webhookEventId, { paymentStatus: "processed" }).catch(() => {});
           }
 
-          // Best-effort GA4 Measurement Protocol purchase event
-          try {
+          // Best-effort GA4 Measurement Protocol purchase event. Test-mode and QA purchases are
+          // left out: sent, they counted as revenue in analytics and ad conversions.
+          const testPurchase = (body as any)?.meta?.test_mode === true || /@example\.(com|org|net)$/i.test(String((order as any).email || (body as any)?.data?.attributes?.user_email || ""));
+          if (!testPurchase) try {
             await sendGA4PurchaseEvent({
               orderId: order.id,
               productSlug: order.sku,

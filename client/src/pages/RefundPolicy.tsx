@@ -17,7 +17,7 @@ export default function RefundPolicy() {
           <section>
             <h2 className="text-xl font-semibold mb-3">7-day money-back guarantee</h2>
             <p className="text-muted-foreground leading-relaxed">
-              We want you to be completely satisfied with your IBLens purchase. If for any reason you are not happy with your essay or personal statement report, you may request a full refund within <strong className="text-foreground">7 days</strong> of your purchase date, no questions asked.
+              We want you to be completely satisfied with your IBLens purchase. If for any reason you are not happy with your essay or personal statement report, you may request a full refund within <strong className="text-foreground">7 days</strong> of your purchase date, no questions asked. This guarantee is in addition to your legal rights as a consumer and does not replace them.
             </p>
           </section>
 

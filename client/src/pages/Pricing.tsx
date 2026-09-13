@@ -45,7 +45,7 @@ const plans: Array<{
     popular: false,
     features: [
       "Everything in the full report",
-      "$5.00 per report, 50% less than buying singly",
+      "$5.00 per report, almost 50% less than buying singly",
       "Two free re-checks for each report, within 14 days of it opening",
       "Use across the 14 coursework subjects, the Extended Essay, TOK and UCAS statements",
       "No expiry. Without an account, unused reports wait in the browser you bought them in, for as long as its site data is kept; sign in with Google to keep them in an account",
@@ -62,12 +62,11 @@ const plans: Array<{
     popular: true,
     features: [
       "Everything in the full report",
-      "$4.50 per report, 55% less than buying singly",
+      "$4.50 per report, almost 55% less than buying singly",
       "Two free re-checks for each report, within 14 days of it opening",
       "Use across the 14 coursework subjects, the Extended Essay, TOK and UCAS statements",
       "No expiry. Without an account, unused reports wait in the browser you bought them in, for as long as its site data is kept; sign in with Google to keep them in an account",
       "For example the Extended Essay, both TOK tasks and several IAs (an Economics portfolio takes three, one per commentary)",
-      "Use each report only once your teacher, or for the Extended Essay your supervisor, has agreed to outside feedback",
     ],
     cta: "Get Started",
     href: "/dashboard",
@@ -180,6 +179,9 @@ export default function Pricing() {
         <p className="max-w-3xl mx-auto mt-8 text-sm text-muted-foreground text-center">
           <strong className="text-foreground">7-day money-back guarantee.</strong> Email us within 7 days of your purchase for a full refund, no questions asked.{" "}
           <Link href="/refund-policy" className="underline">Refund policy</Link>
+        </p>
+        <p className="max-w-3xl mx-auto mt-3 text-sm text-muted-foreground text-center">
+          Use a report on coursework only once your teacher, or for the Extended Essay your supervisor, has agreed to outside feedback.
         </p>
         <p className="max-w-3xl mx-auto mt-3 text-sm text-muted-foreground text-center">
           Without an account, this browser keeps every report you buy, with its re-checks, and any unused paid reports, for as long as its site data is kept. To keep every report you buy in an account, with the re-checks of IB work, sign in with Google on this device, using the email you pay with: reports you have opened move to an account with that email, and unused reports move to whichever Google account signs in here first (UCAS re-checks run only in the browser the review was made in, and signing out there ends them). Buying for your child or someone else? Pay on their device, or have them sign in with their own Google account first: reports then follow that account to any device. Paid on the wrong device? Email glushkovim@gmail.com with your order number and we will move the reports.

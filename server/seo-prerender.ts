@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { REMARK_FAQ } from "../shared/remarkFaq";
+import { shortTitle, sentenceCase, ESSAY_PAGE_NAMES } from "../shared/pageNames";
 /**
  * Crawler bodies are rendered from the React pages at build time
  * (scripts/render-crawler-bodies.mjs), so a crawler reads the same text as a
@@ -126,7 +127,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/grade": {
     title: "IB Essay Grader: Free Preview of Your IA, EE or TOK Draft in About a Minute | IBLens",
-    description: "Paste your IB essay and get a free preview in about a minute: a range of totals, usually your weakest criterion, and the top risks. The full report gives the estimated mark and the reasons for it. Extended Essay, IA or TOK, no account needed.",
+    description: "Paste your IB essay and get a free preview in about a minute: a range of totals and, for most drafts, your weakest criterion and the top risks. The full report gives the estimated mark and the reasons for it. Extended Essay, IA or TOK, no account needed.",
     ogType: "website",
     canonical: "/grade",
     schemaType: "WebPage",
@@ -662,7 +663,7 @@ function generateJsonLd(meta: PageMeta): string {
         position: items.length + 1,
         name:
           index === segments.length - 1
-            ? meta.title.split(" | ")[0].split(": ")[0]
+            ? ESSAY_PAGE_NAMES[meta.canonical] ?? sentenceCase(shortTitle(meta.title))
             : sections[segment],
         item: `${SITE_URL}${currentPath}`,
       });

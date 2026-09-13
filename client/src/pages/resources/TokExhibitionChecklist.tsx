@@ -83,17 +83,17 @@ export default function TokExhibitionChecklist() {
       <h2>Related resources</h2>
 
       <ul>
-        <li><Link href="/resources/tok-essay-checklist">TOK Essay Checklist</Link></li>
-        <li><Link href="/resources/tok-essay-guide">TOK Essay Guide</Link></li>
-        <li><Link href="/essay/tok-exhibition">TOK Exhibition Grader</Link></li>
+        <li><Link href="/resources/tok-essay-checklist">TOK essay checklist</Link></li>
+        <li><Link href="/resources/tok-essay-guide">TOK essay guide</Link></li>
+        <li><Link href="/essay/tok-exhibition">TOK exhibition grader</Link></li>
       </ul>
       <h2>More on TOK</h2>
 
       <ul>
-        <li><Link href="/resources/tok-essay-guide">TOK Essay Guide</Link></li>
-        <li><Link href="/resources/tok-essay-structure">TOK Essay Structure</Link></li>
-        <li><Link href="/resources/tok-essay-format">TOK Essay Format</Link></li>
-        <li><Link href="/resources/tok-essay-checklist">TOK Essay Checklist</Link></li>
+        <li><Link href="/resources/tok-essay-guide">TOK essay guide</Link></li>
+        <li><Link href="/resources/tok-essay-structure">TOK essay structure</Link></li>
+        <li><Link href="/resources/tok-essay-format">TOK essay format</Link></li>
+        <li><Link href="/resources/tok-essay-checklist">TOK essay checklist</Link></li>
       </ul>
 
     </ResourceArticle>

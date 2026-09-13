@@ -110,7 +110,7 @@ export default function UniversityAdmissionsGuide() {
       <h2>Applying through UCAS</h2>
 
       <ul>
-        <li><Link href="/ucas-personal-statement">UCAS Personal Statement Checker</Link></li>
+        <li><Link href="/ucas-personal-statement">UCAS personal statement checker</Link></li>
         <li><Link href="/resources/academic-integrity">AI feedback and academic integrity</Link></li>
       </ul>
 

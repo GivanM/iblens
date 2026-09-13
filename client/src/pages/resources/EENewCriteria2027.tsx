@@ -86,7 +86,7 @@ export default function EENewCriteria2027() {
       <h2>Check your draft with IBLens</h2>
 
       <p>
-        An AI check is outside help on your EE, so ask your supervisor before you use IBLens, and tell them if you do. If they agree, IBLens grades Extended Essays against <strong>both</strong> rubrics. In the grader, keep "Exam session" on <em>Exams in May 2027 or later</em>, the default, and your draft is scored out of 30 against the new criteria A to E above, criterion by criterion. Switch it to <em>Exams in November 2026, or work submitted in May 2026</em> for the 34-mark rubric. The first preview is free (a range of totals, usually your weakest criterion with its feedback, and the top risks), and a full report costs $9.99, with no subscription. For May 2027, you can also paste your RPF so that Criterion E is marked on it.
+        An AI check is outside help on your EE, so ask your supervisor before you use IBLens, and tell them if you do. If they agree, IBLens grades Extended Essays against <strong>both</strong> rubrics. In the grader, keep "Exam session" on <em>Exams in May 2027 or later</em>, the default, and your draft is scored out of 30 against the new criteria A to E above, criterion by criterion. Switch it to <em>Exams in November 2026, or work submitted in May 2026</em> for the 34-mark rubric. The first preview is free (a range of totals and, for most drafts, your weakest criterion with its feedback and the top risks), and a full report costs $9.99, with no subscription. For May 2027, you can also paste your RPF so that Criterion E is marked on it.
       </p>
 
       <p>

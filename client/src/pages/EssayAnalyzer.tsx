@@ -49,8 +49,8 @@ const EXTERNAL_COURSEWORK_LABELS = COURSEWORK_LABELS;
 const ESSAY_TYPES = [
   { value: "IA", label: "Internal Assessment (IA) or coursework" },
   { value: "EE", label: "Extended Essay (EE)" },
-  { value: "TOK", label: "TOK Essay" },
-  { value: "TOK Exhibition", label: "TOK Exhibition" },
+  { value: "TOK", label: "TOK essay" },
+  { value: "TOK Exhibition", label: "TOK exhibition" },
 ];
 
 function getApiEssayParams(essayType: string, subject: string) {
@@ -1120,7 +1120,7 @@ export default function EssayAnalyzer() {
           <div className="grid grid-cols-3 gap-3">
             {[
               { label: "Estimated mark", value: "16/25", color: "text-amber-600" },
-              { label: "Range in the free preview", value: "13-18", color: "text-foreground" },
+              { label: "Range a free preview shows", value: "13-18", color: "text-foreground" },
               { label: "Share of marks", value: "64%", color: "text-foreground" },
             ].map((s) => (
               <div key={s.label} className="text-center p-2 sm:p-4 bg-muted/50 rounded-lg border border-border min-w-0">
@@ -1199,7 +1199,7 @@ export default function EssayAnalyzer() {
           <div className="pt-3 border-t text-center">
             {(isAuthenticated ? !!credits?.freeEssayAvailable : canAnonAnalyze) ? (
               <>
-                <p className="text-sm font-medium mb-1">↑ This is what a full report looks like, unlocked for $9.99. Your free preview shows a range of totals, usually your weakest criterion, and the top risks.</p>
+                <p className="text-sm font-medium mb-1">↑ This is what a full report looks like, unlocked for $9.99. Your free preview shows a range of totals and, for most drafts, your weakest criterion and the top risks.</p>
                 <p className="text-xs text-muted-foreground">Paste your work in the form above: <strong>the first preview is free</strong>, then $9.99 per report, with two re-checks included</p>
               </>
             ) : (
@@ -1263,7 +1263,7 @@ export default function EssayAnalyzer() {
                 </div>
                 <div className="text-center p-4 bg-muted/50 rounded-lg">
                   <div style={SERIF} className="text-3xl font-bold">{result.band_range}</div>
-                  <div className="text-xs text-muted-foreground mt-1">{(result.criteria?.length ?? 0) > 1 ? "Range shown in the free preview" : "Band"}</div>
+                  <div className="text-xs text-muted-foreground mt-1">{(result.criteria?.length ?? 0) > 1 ? "The range a free preview shows" : "Band"}</div>
                 </div>
                 <div className="text-center p-4 bg-muted/50 rounded-lg">
                   <div style={SERIF} className="text-3xl font-bold">

@@ -16,7 +16,7 @@ export default function IBIAScorePredictor() {
       <div className="not-prose my-6 rounded-xl border border-primary/30 bg-primary/5 p-5">
         <p className="text-base font-semibold text-foreground mb-1">The estimate</p>
         <p className="text-sm text-muted-foreground mb-3">
-          Paste your IA into IBLens and get an estimated mark for each criterion your text can show, marked against the published criteria for your subject and session. The first preview is free: a range of totals, usually your weakest criterion with its feedback, and the top risks. Every mark is an estimate, not an IB mark.
+          Paste your IA into IBLens and get an estimated mark for each criterion your text can show, marked against the published criteria for your subject and session. The first preview is free: a range of totals and, for most drafts, your weakest criterion with its feedback and the top risks. Every mark is an estimate, not an IB mark.
         </p>
         <Link href="/essay?type=IA" className="inline-flex min-h-11 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90">Estimate my IA mark</Link>
       </div>

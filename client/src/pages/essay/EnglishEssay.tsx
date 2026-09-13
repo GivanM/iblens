@@ -1,7 +1,7 @@
 import SubjectEssayPage, { SubjectConfig } from "./SubjectEssayPage";
 
 const config: SubjectConfig = {
-  subject: "English Individual Oral",
+  subject: "English A individual oral",
   slug: "english-essay",
   keyword: "IB English Individual Oral",
   metaTitle: "IB English Individual Oral Grader: AI Feedback on Your IO | IBLens",
@@ -20,9 +20,9 @@ const config: SubjectConfig = {
     { name: "Criterion D: Language", max: 10, sampleScore: 7 },
   ],
   guide: {
-    rubricHeading: "What the Individual Oral criteria reward (40 marks)",
+    rubricHeading: "What the individual oral criteria reward (40 marks)",
     rubricIntro: [
-      "The Individual Oral is spoken, not written: you explore how a global issue is presented in an extract from each of two texts. In Literature they are two works, one of them studied in translation. In Language and Literature they are one literary work and one non-literary body of work. Both courses mark the oral on the same four criteria of 10 marks each, and your teacher marks it before the IB moderates the marking.",
+      "The individual oral is spoken, not written: you explore how a global issue is presented in an extract from each of two texts. In Literature they are two works, one of them studied in translation. In Language and Literature they are one literary work and one non-literary body of work. Both courses mark the oral on the same four criteria of 10 marks each, and your teacher marks it before the IB moderates the marking.",
       "Because the oral is spoken, IBLens reads your outline or a transcript of a practice oral that uses works and a global issue different from those of your assessed oral. A transcript gives the fullest report. An outline gives much less to go on, especially for Language.",
     ],
     rubricItems: [
@@ -31,7 +31,7 @@ const config: SubjectConfig = {
       { title: "Criterion C: Focus and organization, 10 marks", text: "A structured, balanced and focused oral in which the ideas are connected." },
       { title: "Criterion D: Language, 10 marks", text: "Clear, accurate and effective language that suits the task." },
     ],
-    mistakesHeading: "Mistakes the Individual Oral criteria penalise",
+    mistakesHeading: "Mistakes the individual oral criteria penalise",
     mistakes: [
       { title: "Naming devices without analysing them", text: "Pointing out a metaphor without explaining how it presents the global issue. Criterion B is about how choices in the text shape that presentation." },
       { title: "A global issue that drops out", text: "Introducing the issue at the start and returning to it only at the end. Criterion A measures your interpretation in relation to the global issue, so each part of the oral should come back to it." },
@@ -40,10 +40,10 @@ const config: SubjectConfig = {
     ],
     faq: [
       { q: "Can I paste a transcript of my oral?", a: "Only of a practice oral that uses works and a global issue different from those of your assessed oral: the Language A guides let your teacher give feedback on practice orals like that and on your outline, but not rehearse the actual oral with you. Check that your teacher and your school allow feedback from anyone else. A transcript is marked on all four criteria." },
-      { q: "Does it cover the HL essay or Paper 1?", a: "No. It covers the Individual Oral only. The HL essay and the exam papers are marked on different criteria." },
+      { q: "Does it cover the HL essay or Paper 1?", a: "No. It covers the individual oral only. The HL essay and the exam papers are marked on different criteria." },
       { q: "Literature or Language and Literature?", a: "Choose your course in the grader. The four criteria and their marks are the same, and the wording differs slightly: Language and Literature refers to works and texts, Literature to works." },
       { q: "How accurate is the estimated mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. Your teacher marks the work and the IB moderates that marking, so their mark is the one that counts. Use the report to find what to fix before you submit." },
-      { q: "Is it free?", a: "The first preview is free and needs no account: a range of totals that contains the estimate, usually your weakest criterion with its feedback, and the top risks in the draft. The full report, with a mark for every criterion from a transcript (from an outline, Criterion D is not marked) and a ranked list of fixes, is $9.99, or $24.99 for five and $44.99 for ten." },
+      { q: "Is it free?", a: "The first preview is free and needs no account: a range of totals that contains the estimate and, for most drafts, your weakest criterion with its feedback and the top risks in the draft. The full report, with a mark for every criterion from a transcript (from an outline, Criterion D is not marked) and a ranked list of fixes, is $9.99, or $24.99 for five and $44.99 for ten." },
       { q: "Is my work stored?", a: "IBLens never saves the text you paste. It passes through our relay server to Anthropic, the AI provider, to produce the report, and Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },
     ],
   },

@@ -54,7 +54,7 @@ const config: SubjectConfig = {
       { q: "Can I paste my whole essay?", a: "Yes. Up to 30,000 characters, about 5,000 words, are marked, which is enough for a 4,000-word essay. Leave the bibliography out if space is tight." },
       { q: "Which session am I in?", a: "It depends on when you sit your exams, not on when you started the course. May 2027 or later means the 30-mark criteria and the RPF. November 2026 means the 34-mark criteria and the RPPF. Your IB coordinator can confirm." },
       { q: "How accurate is the estimated mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. IB examiners mark this component, so their mark is the one that counts. Use the report to find what to fix before you submit." },
-      { q: "Is it free?", a: "The first preview is free and needs no account: a range of totals that contains the estimate, usually your weakest criterion with its feedback, and the top risks in the draft. The full report, with a mark for every criterion (Criterion E only when you paste your reflections) and a ranked list of fixes, is $9.99, or $24.99 for five and $44.99 for ten." },
+      { q: "Is it free?", a: "The first preview is free and needs no account: a range of totals that contains the estimate and, for most drafts, your weakest criterion with its feedback and the top risks in the draft. The full report, with a mark for every criterion (Criterion E only when you paste your reflections) and a ranked list of fixes, is $9.99, or $24.99 for five and $44.99 for ten." },
       { q: "Is my work stored?", a: "IBLens never saves the text you paste. It passes through our relay server to Anthropic, the AI provider, to produce the report, and Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },
     ],
   },
@@ -69,7 +69,7 @@ const config: SubjectConfig = {
     { label: "Business Management IA", href: "/essay/business-management-ia" },
     { label: "Economics IA", href: "/essay/economics-ia" },
     { label: "History IA", href: "/essay/history-ia" },
-    { label: "English Individual Oral", href: "/essay/english-essay" },
+    { label: "English A individual oral", href: "/essay/english-essay" },
   ],
 };
 

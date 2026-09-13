@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 const resources = [
   {
     slug: "/ucas-personal-statement",
-    title: "UCAS Personal Statement Checker",
+    title: "UCAS personal statement checker",
     description: "The three-question format from 2026 entry explained, plus a checker for your own answers with a free preview: character checks, what a tutor would credit, what is missing.",
     icon: FileText,
     readTime: "Tool",
@@ -301,7 +301,7 @@ export default function ResourcesIndex() {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-foreground mb-4">
-              IB Resources
+              IB resources
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Free, in-depth guides for IB Diploma students: how the assessment criteria work, where marks are lost, and how to plan university applications.

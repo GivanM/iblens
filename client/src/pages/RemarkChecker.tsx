@@ -81,7 +81,10 @@ function RemarkQuickCheck() {
       <div className="rounded-xl border-2 border-primary bg-card p-6 mb-12 shadow-sm">
         <h2 style={SERIF} className="text-2xl font-bold mb-1">Check your essay on the grader page</h2>
         <p className="text-sm text-muted-foreground mb-4">You are signed in, so the check runs on the grader page, where it uses your account's free preview or paid reports and is saved to your dashboard. None of this predicts what a re-mark would do, so do not decide on it alone (see our <Link href="/terms" className="underline">Terms</Link>).</p>
-        <Button asChild><Link href={`/essay?type=TOK&session=${LATEST_RESULTS_SESSION}`}>Open the grader page</Link></Button>
+        <div className="flex flex-col sm:flex-row gap-2">
+          <Button asChild><Link href={`/essay?type=TOK&session=${LATEST_RESULTS_SESSION}`}>Check a TOK essay</Link></Button>
+          <Button variant="outline" asChild><Link href="/essay?type=EE&session=nov2026">Check an Extended Essay</Link></Button>
+        </div>
       </div>
     );
   }
@@ -136,7 +139,7 @@ function RemarkQuickCheck() {
             <p className="text-xs text-muted-foreground mt-2">Keep pasting: the check needs the full essay.</p>
           )}
           {alreadyUsed && (
-            <p className="text-sm mt-3">You have already used the free preview on this device. {paidLeft > 0 ? "Mark it with one of your paid reports on the" : "A full report is $9.99 on the"} <Link href={`/essay?session=${sessionSat}`} className="text-primary font-medium underline">grader page</Link>, with no account needed.</p>
+            <p className="text-sm mt-3">You have already used the free preview on this device. {paidLeft > 0 ? "Mark it with one of your paid reports on the" : "A full report is $9.99 on the"} <Link href={`/essay?type=${essayType}&session=${essayType === "EE" ? sessionSat : LATEST_RESULTS_SESSION}`} className="text-primary font-medium underline">grader page</Link>, with no account needed.</p>
           )}
           {errMsg && !alreadyUsed && (
             <p className="text-sm mt-3 text-destructive">{errMsg.replace(/[.\s]*$/, ".")} Please try again.</p>
@@ -286,7 +289,7 @@ export default function RemarkChecker() {
               {!previewUsed ? "The first preview is free; the full report is $9.99." : paidLeft > 0 ? "Your free preview is used; a full report uses one of your paid reports." : "Your free preview is used; a full report is $9.99."}
             </p>
             <Button size="lg" asChild>
-              <Link href={`/essay?session=${LATEST_RESULTS_SESSION}`}>Grade my submitted essay <ArrowRight className="w-4 h-4 ml-2" /></Link>
+              <Link href={`/essay?type=TOK&session=${LATEST_RESULTS_SESSION}`}>Grade my submitted essay <ArrowRight className="w-4 h-4 ml-2" /></Link>
             </Button>
           </div>
 
@@ -329,7 +332,7 @@ export default function RemarkChecker() {
           <div className="text-center border-t border-border pt-10">
             <p style={SERIF} className="text-xl font-bold mb-3">More to go on before you decide.</p>
             <Button size="lg" asChild>
-              <Link href={`/essay?session=${LATEST_RESULTS_SESSION}`}>{previewUsed ? paidLabel : "Mark my essay: the first preview is free"} <ArrowRight className="w-4 h-4 ml-2" /></Link>
+              <Link href={`/essay?type=TOK&session=${LATEST_RESULTS_SESSION}`}>{previewUsed ? paidLabel : "Mark my essay: the first preview is free"} <ArrowRight className="w-4 h-4 ml-2" /></Link>
             </Button>
           </div>
         </div>

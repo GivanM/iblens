@@ -1,7 +1,7 @@
 import SubjectEssayPage, { SubjectConfig } from "./SubjectEssayPage";
 
 const config: SubjectConfig = {
-  subject: "TOK Exhibition",
+  subject: "TOK exhibition",
   slug: "tok-exhibition",
   keyword: "IB TOK Exhibition",
   metaTitle: "IB TOK Exhibition Grader: AI Feedback on Your Three Objects | IBLens",
@@ -48,11 +48,11 @@ const config: SubjectConfig = {
     ],
   },
   relatedResources: [
-    { label: "TOK Exhibition Checklist", href: "/resources/tok-exhibition-checklist" },
-    { label: "TOK Essay Guide", href: "/resources/tok-essay-guide" },
+    { label: "TOK exhibition checklist", href: "/resources/tok-exhibition-checklist" },
+    { label: "TOK essay guide", href: "/resources/tok-essay-guide" },
   ],
   relatedSubjects: [
-    { label: "TOK Essay", href: "/essay/tok-essay" },
+    { label: "TOK essay", href: "/essay/tok-essay" },
     { label: "Extended Essay", href: "/essay/extended-essay" },
     { label: "History IA", href: "/essay/history-ia" },
     { label: "Psychology IA", href: "/essay/psychology-ia" },

@@ -24,9 +24,9 @@ interface PaymentConfirmationParams {
 }
 
 const SKU_HUMAN_NAMES: Record<string, string> = {
-  essay_single: "Single Essay Analysis",
-  essay_pack_5: "5-Pack Essay Analyses",
-  essay_pack_10: "10-Pack Essay Analyses",
+  essay_single: "Full report",
+  essay_pack_5: "5 reports",
+  essay_pack_10: "10 reports",
   university_single: "University Strategy Report",
   university_strategy: "University Strategy Report",
 };
@@ -63,10 +63,10 @@ Your payment of ${amount} for ${skuHumanName} has been confirmed.
 
 Your credit balance is now ${balanceStr}.
 
-Start analysing: https://iblens.com/essay
+Mark your work: https://iblens.com/essay
 View your purchase history: https://iblens.com/dashboard
 
-If you have questions, reply to this email.
+Questions or a refund: email glushkovim@gmail.com.
 
 IBLens`;
 

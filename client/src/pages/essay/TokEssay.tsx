@@ -1,7 +1,7 @@
 import SubjectEssayPage, { SubjectConfig } from "./SubjectEssayPage";
 
 const config: SubjectConfig = {
-  subject: "TOK Essay",
+  subject: "TOK essay",
   slug: "tok-essay",
   keyword: "IB TOK Essay",
   metaTitle: "IB TOK Essay Grader: AI Feedback on Your Theory of Knowledge Essay | IBLens",
@@ -49,13 +49,13 @@ const config: SubjectConfig = {
     ],
   },
   relatedResources: [
-    { label: "TOK Essay Guide", href: "/resources/tok-essay-guide" },
-    { label: "TOK Essay Checklist", href: "/resources/tok-essay-checklist" },
-    { label: "TOK Essay Structure", href: "/resources/tok-essay-structure" },
+    { label: "TOK essay guide", href: "/resources/tok-essay-guide" },
+    { label: "TOK essay checklist", href: "/resources/tok-essay-checklist" },
+    { label: "TOK essay structure", href: "/resources/tok-essay-structure" },
   ],
   relatedSubjects: [
     { label: "Extended Essay", href: "/essay/extended-essay" },
-    { label: "English Individual Oral", href: "/essay/english-essay" },
+    { label: "English A individual oral", href: "/essay/english-essay" },
     { label: "History IA", href: "/essay/history-ia" },
     { label: "Psychology IA", href: "/essay/psychology-ia" },
   ],

@@ -54,7 +54,7 @@ export default function LandingPage() {
     <>
       <SEOHead
         title="IB Essay Grader: Free Preview of Your IA, EE or TOK Draft in About a Minute | IBLens"
-        description="Paste your IB essay and get a free preview in about a minute: a range of totals, usually your weakest criterion, and the top risks. The full report gives the estimated mark and the reasons for it. Extended Essay, IA or TOK, no account needed."
+        description="Paste your IB essay and get a free preview in about a minute: a range of totals and, for most drafts, your weakest criterion and the top risks. The full report gives the estimated mark and the reasons for it. Extended Essay, IA or TOK, no account needed."
         canonical="/grade"
       />
 
@@ -88,7 +88,7 @@ export default function LandingPage() {
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">
               {previewUsed
                 ? "Paste your IA, TOK work or Extended Essay once your teacher or supervisor has agreed to outside feedback. The full report comes back in about a minute with the estimated mark, criterion by criterion (the TOK essay and exhibition as a whole), and ranks the fixes."
-                : "Paste your IA, TOK work or Extended Essay once your teacher or supervisor has agreed to outside feedback. The free preview comes back in about a minute with a range of totals, usually your weakest criterion, and top risks; the full report gives the estimated mark, criterion by criterion (the TOK essay and exhibition as a whole), and ranks the fixes."}
+                : "Paste your IA, TOK work or Extended Essay once your teacher or supervisor has agreed to outside feedback. The free preview comes back in about a minute with a range of totals and, for most drafts, your weakest criterion and the top risks; the full report gives the estimated mark, criterion by criterion (the TOK essay and exhibition as a whole), and ranks the fixes."}
             </p>
             <Button size="lg" className="text-base px-10 h-14 shadow-lg shadow-primary/25 mb-4" asChild>
               <Link href="/essay">
@@ -127,7 +127,7 @@ export default function LandingPage() {
           <div className="container max-w-2xl mx-auto">
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold tracking-tight mb-2">What a full report looks like ($9.99)</h2>
-              <p className="text-muted-foreground text-sm">A mark for each criterion your text lets us judge, with the risks and the fixes.{previewUsed ? "" : " The free preview shows a range of totals, usually your weakest criterion, and the top risks."}</p>
+              <p className="text-muted-foreground text-sm">A mark for each criterion your text lets us judge, with the risks and the fixes.{previewUsed ? "" : " The free preview shows a range of totals and, for most drafts, your weakest criterion and the top risks."}</p>
             </div>
 
             <Card className="border-2 shadow-lg">
@@ -254,7 +254,7 @@ export default function LandingPage() {
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           <Link href="/" className="font-semibold text-foreground">IBLens</Link>
           <Link href="/pricing" className="hover:text-foreground transition-colors">Pricing</Link>
-          <Link href="/refund-policy" className="hover:text-foreground transition-colors">Refund Policy</Link>
+          <Link href="/refund-policy" className="hover:text-foreground transition-colors">Refund policy</Link>
           <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
           <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
           <button type="button" onClick={() => window.dispatchEvent(new Event("iblens:cookie-settings"))} className="hover:text-foreground transition-colors cursor-pointer min-h-11">Cookie settings</button>

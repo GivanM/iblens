@@ -206,10 +206,10 @@ export default function TokEssayGuide() {
       <h2>More on TOK</h2>
 
       <ul>
-        <li><Link href="/resources/tok-essay-structure">TOK Essay Structure</Link></li>
-        <li><Link href="/resources/tok-essay-format">TOK Essay Format</Link></li>
-        <li><Link href="/resources/tok-essay-checklist">TOK Essay Checklist</Link></li>
-        <li><Link href="/resources/tok-exhibition-checklist">TOK Exhibition Checklist</Link></li>
+        <li><Link href="/resources/tok-essay-structure">TOK essay structure</Link></li>
+        <li><Link href="/resources/tok-essay-format">TOK essay format</Link></li>
+        <li><Link href="/resources/tok-essay-checklist">TOK essay checklist</Link></li>
+        <li><Link href="/resources/tok-exhibition-checklist">TOK exhibition checklist</Link></li>
       </ul>
 
     </ResourceArticle>

@@ -158,6 +158,7 @@ export default function AnalysisView() {
                 {p.max_score ? <span className="text-sm text-muted-foreground">out of {p.max_score}</span> : null}
               </div>
             )}
+            {p?.band_range && !holistic && <p className="text-xs text-muted-foreground -mt-3">IBLens's estimated total is somewhere in this range. It is not a margin of error; the full report gives the estimate.</p>}
             {!weakest && !holistic && p?.band_range && (
               <p className="text-sm rounded-lg border border-border bg-muted/40 p-4 text-muted-foreground">This preview names no criterion and lists no risks: for this draft, either would give the estimated mark away. The full report scores every criterion that can be marked from what you pasted.</p>
             )}
@@ -242,7 +243,7 @@ export default function AnalysisView() {
             {r.band_range && (
               <div>
                 <div style={SERIF} className="text-3xl font-bold">{r.band_range}</div>
-                <p className="text-xs text-muted-foreground">{(r.criteria?.length ?? 0) > 1 ? "Range shown in the free preview" : "Band"}</p>
+                <p className="text-xs text-muted-foreground">{(r.criteria?.length ?? 0) > 1 ? "The range a free preview shows" : "Band"}</p>
               </div>
             )}
           </div>

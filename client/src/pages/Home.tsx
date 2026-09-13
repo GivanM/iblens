@@ -7,6 +7,8 @@ import { PRICE_LABELS, type ProductKey } from "@shared/pricing";
 import { SEOHead } from "@/components/SEOHead";
 import { PurchaseModal } from "@/components/PurchaseModal";
 import { useState } from "react";
+import { getAnonFingerprint } from "@/lib/fingerprint";
+import { trpc } from "@/lib/trpc";
 import {
   CheckCircle2, ArrowRight, Gift,
   ChevronDown, ChevronUp, ShieldCheck
@@ -53,6 +55,10 @@ const SAMPLE_CRITERIA = [
 
 export default function Home() {
   const { previewUsed, paidLabel, paidLeft } = useMarkingCta();
+  // The UCAS preview is separate from the essay one and always belongs to the device.
+  const [homeFp] = useState(() => { try { return getAnonFingerprint(); } catch { return ""; } });
+  const ucasCheck = trpc.essay.canAnalyzeAnonymous.useQuery({ clientFingerprint: homeFp, kind: "ucas" }, { enabled: !!homeFp, staleTime: 60_000 });
+  const ucasPreviewUsed = ucasCheck.data ? ucasCheck.data.canAnalyze === false : false;
   const { isAuthenticated } = useAuth();
   const [purchaseModalOpen, setPurchaseModalOpen] = useState(false);
   const [purchaseSku, setPurchaseSku] = useState<ProductKey>("ESSAY_PACK_5");
@@ -263,7 +269,7 @@ export default function Home() {
 
             <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               <div className="rounded-xl border border-border bg-card p-8">
-                <h3 style={SERIF} className="text-xl font-bold mb-3">Essay Grader</h3>
+                <h3 style={SERIF} className="text-xl font-bold mb-3">Essay grader</h3>
                 <p className="text-muted-foreground mb-5 leading-relaxed">
                   Get detailed feedback on your IA, TOK essay or exhibition, English A oral outline or practice oral, or Extended Essay, once your teacher or supervisor has agreed to outside feedback. Estimated marks against the published criteria, and specific steps to improve.
                 </p>
@@ -298,8 +304,8 @@ export default function Home() {
                   ))}
                 </ul>
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded whitespace-nowrap">Free preview</span>
-                  <span className="text-xs text-muted-foreground">No invented score, because UCAS publishes no mark scheme</span>
+                  <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded whitespace-nowrap">{ucasPreviewUsed ? "Full review" : "Free preview"}</span>
+                  <span className="text-xs text-muted-foreground">{ucasPreviewUsed ? "$9.99, with no invented score, because UCAS publishes no mark scheme" : "No invented score, because UCAS publishes no mark scheme"}</span>
                 </div>
                 <Button variant="outline" asChild>
                   <Link href="/ucas-personal-statement">Check my statement <ArrowRight className="w-4 h-4 ml-1" /></Link>
@@ -397,7 +403,7 @@ export default function Home() {
                   <Gift className="w-8 h-8 text-primary mx-auto mb-3" />
                   <h3 style={SERIF} className="text-xl font-bold mb-1">First preview</h3>
                   <div style={SERIF} className="text-3xl font-bold mb-2">$0</div>
-                  <p className="text-xs text-muted-foreground mb-4">A range of totals, usually your weakest criterion, and top risks. No credit card required.</p>
+                  <p className="text-xs text-muted-foreground mb-4">A range of totals and, for most drafts, your weakest criterion and the top risks. No credit card required.</p>
                   <Button variant="outline" className="w-full min-h-11" asChild>
                     <Link href="/essay">Get a free preview</Link>
                   </Button>
@@ -524,9 +530,9 @@ export default function Home() {
               <div>
                 <h4 className="font-semibold mb-3">Tools</h4>
                 <ul className="space-y-2 text-muted-foreground">
-                  <li><Link href="/essay" className="hover:text-foreground transition-colors">IB Essay Grader</Link></li>
-                  <li><Link href="/essay/extended-essay" className="hover:text-foreground transition-colors">Extended Essay Grader</Link></li>
-                  <li><Link href="/essay/tok-essay" className="hover:text-foreground transition-colors">TOK Essay Grader</Link></li>
+                  <li><Link href="/essay" className="hover:text-foreground transition-colors">IB essay grader</Link></li>
+                  <li><Link href="/essay/extended-essay" className="hover:text-foreground transition-colors">Extended Essay grader</Link></li>
+                  <li><Link href="/essay/tok-essay" className="hover:text-foreground transition-colors">TOK essay grader</Link></li>
                 </ul>
               </div>
               <div>
@@ -543,23 +549,23 @@ export default function Home() {
                   <li><Link href="/essay/maths-ai-ia" className="hover:text-foreground transition-colors">Maths AI IA</Link></li>
                   <li><Link href="/essay/computer-science-ia" className="hover:text-foreground transition-colors">Computer Science IA</Link></li>
                   <li><Link href="/essay/psychology-ia" className="hover:text-foreground transition-colors">Psychology IA</Link></li>
-                  <li><Link href="/essay/english-essay" className="hover:text-foreground transition-colors">English Individual Oral</Link></li>
-                  <li><Link href="/essay/tok-essay" className="hover:text-foreground transition-colors">TOK Essay</Link></li>
-                  <li><Link href="/essay/tok-exhibition" className="hover:text-foreground transition-colors">TOK Exhibition</Link></li>
+                  <li><Link href="/essay/english-essay" className="hover:text-foreground transition-colors">English A individual oral</Link></li>
+                  <li><Link href="/essay/tok-essay" className="hover:text-foreground transition-colors">TOK essay</Link></li>
+                  <li><Link href="/essay/tok-exhibition" className="hover:text-foreground transition-colors">TOK exhibition</Link></li>
                   <li><Link href="/essay/extended-essay" className="hover:text-foreground transition-colors">Extended Essay (EE)</Link></li>
                 </ul>
               </div>
               <div>
                 <h4 className="font-semibold mb-3">Resources</h4>
                 <ul className="space-y-2 text-muted-foreground">
-                  <li><Link href="/resources" className="hover:text-foreground transition-colors">All Guides</Link></li>
-                  <li><Link href="/resources/ib-extended-essay-guide" className="hover:text-foreground transition-colors">Extended Essay Guide</Link></li>
-                  <li><Link href="/resources/ib-internal-assessment-guide" className="hover:text-foreground transition-colors">IA Guide</Link></li>
-                  <li><Link href="/resources/tok-essay-guide" className="hover:text-foreground transition-colors">TOK Essay Guide</Link></li>
-                  <li><Link href="/resources/ib-grade-boundaries" className="hover:text-foreground transition-colors">Grade Boundaries</Link></li>
-                  <li><Link href="/resources/ib-university-admissions" className="hover:text-foreground transition-colors">University Admissions</Link></li>
+                  <li><Link href="/resources" className="hover:text-foreground transition-colors">All guides</Link></li>
+                  <li><Link href="/resources/ib-extended-essay-guide" className="hover:text-foreground transition-colors">Extended Essay guide</Link></li>
+                  <li><Link href="/resources/ib-internal-assessment-guide" className="hover:text-foreground transition-colors">IA guide</Link></li>
+                  <li><Link href="/resources/tok-essay-guide" className="hover:text-foreground transition-colors">TOK essay guide</Link></li>
+                  <li><Link href="/resources/ib-grade-boundaries" className="hover:text-foreground transition-colors">Grade boundaries</Link></li>
+                  <li><Link href="/resources/ib-university-admissions" className="hover:text-foreground transition-colors">University admissions</Link></li>
                   <li><Link href="/pricing" className="hover:text-foreground transition-colors">Pricing</Link></li>
-                  <li><Link href="/refund-policy" className="hover:text-foreground transition-colors">Refund Policy</Link></li>
+                  <li><Link href="/refund-policy" className="hover:text-foreground transition-colors">Refund policy</Link></li>
                 </ul>
               </div>
             </div>

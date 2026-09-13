@@ -64,18 +64,18 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
   const reportsLeft = `${paidLeft} paid report${paidLeft === 1 ? "" : "s"} left`;
   // The rule to read before pasting: the EE page sets its own; every other task needs the teacher's agreement.
   const heroNote = config.heroNote
-    ?? `Ask your teacher first: the IB asks students not to receive assistance beyond what the subject or TOK guide permits, so check that your teacher and your school allow outside feedback on this work.${/Individual Oral$/.test(config.subject) ? " Never use it on a rehearsal of the oral you will deliver." : ""}`;
+    ?? `Ask your teacher first: the IB asks students not to receive assistance beyond what the subject or TOK guide permits, so check that your teacher and your school allow outside feedback on this work.${/individual oral$/i.test(config.subject) ? " Never use it on a rehearsal of the oral you will deliver." : ""}`;
   // The task name inside a sentence: "your TOK essay", not "your TOK Essay".
-  const taskName = config.subject === "Extended Essay" ? config.subject : config.subject.replace(/ (Essay|Exhibition|Individual Oral)$/, (m) => m.toLowerCase());
+  const taskName = config.subject === "Extended Essay" ? config.subject : config.subject.replace(/ (Essay|Exhibition|Individual Oral)$/i, (m) => m.toLowerCase());
   // What goes into the grader: for the oral, never a rehearsal of the actual oral.
-  const pasteName = /Individual Oral$/.test(config.subject) ? "individual oral outline or practice transcript" : taskName;
+  const pasteName = /individual oral$/i.test(config.subject) ? "individual oral outline or practice transcript" : taskName;
   const totalMax = config.criteria.reduce((s, c) => s + c.max, 0);
   const totalSample = config.criteria.reduce((s, c) => s + c.sampleScore, 0);
   const holistic = config.criteria.length === 1;
 
   const breadcrumbs = [
     { name: "Home", url: "/" },
-    { name: "Essay Grader", url: "/essay" },
+    { name: "Essay grader", url: "/essay" },
     { name: config.subject, url: config.canonicalPath },
   ];
 
@@ -112,7 +112,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
               </li>
               <li className="select-none">/</li>
               <li>
-                <Link href="/essay" className="hover:text-foreground transition-colors">Essay Grader</Link>
+                <Link href="/essay" className="hover:text-foreground transition-colors">Essay grader</Link>
               </li>
               <li className="select-none">/</li>
               <li className="text-foreground font-medium">{config.subject}</li>
@@ -311,7 +311,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
                   ? `The free preview on this ${isAuthenticated ? "account" : "device"} has been used; a full report is $9.99, or one of your paid reports.`
                   : holistic
                     ? "The first preview is free and needs no account: the band your work falls in, the start of the explanation, and the top risks in the draft."
-                    : "The first preview is free and needs no account: a range of totals that contains the estimate, usually your weakest criterion with its feedback, and the top risks in the draft."}</li>
+                    : "The first preview is free and needs no account: a range of totals that contains the estimate and, for most drafts, your weakest criterion with its feedback and the top risks in the draft."}</li>
                 <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
                 <li>The text you paste passes through our relay server to Anthropic to produce the report. IBLens never stores the text itself; the report is kept as the Privacy Policy describes.</li>
               </ul>
