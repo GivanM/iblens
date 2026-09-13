@@ -217,16 +217,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 AI-powered IB essay grader for IA, EE and TOK. Feedback against the published criteria in about a minute.
               </p>
             </div>
-            <nav className="flex flex-wrap gap-x-6 gap-y-2 md:justify-end">
-              <Link href="/essay" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Essay Grader</Link>
-              <Link href="/resources" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Resources</Link>
-              <Link href="/pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Pricing</Link>
-              <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">About</Link>
-              <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Privacy</Link>
-              <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Terms</Link>
-              <Link href="/refund-policy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Refund Policy</Link>
-              <Link href="/resources/academic-integrity" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Academic Integrity</Link>
-              <button type="button" onClick={() => window.dispatchEvent(new Event("iblens:cookie-settings"))} className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Cookie settings</button>
+            <nav className="flex flex-wrap gap-x-6 gap-y-0 md:gap-y-2 md:justify-end">
+              <Link href="/essay" className="inline-flex items-center min-h-11 md:min-h-0 text-sm text-muted-foreground hover:text-foreground transition-colors">Essay grader</Link>
+              <Link href="/resources" className="inline-flex items-center min-h-11 md:min-h-0 text-sm text-muted-foreground hover:text-foreground transition-colors">Resources</Link>
+              <Link href="/remark" className="inline-flex items-center min-h-11 md:min-h-0 text-sm text-muted-foreground hover:text-foreground transition-colors">Re-mark checker</Link>
+              <Link href="/pricing" className="inline-flex items-center min-h-11 md:min-h-0 text-sm text-muted-foreground hover:text-foreground transition-colors">Pricing</Link>
+              <Link href="/about" className="inline-flex items-center min-h-11 md:min-h-0 text-sm text-muted-foreground hover:text-foreground transition-colors">About</Link>
+              <Link href="/privacy" className="inline-flex items-center min-h-11 md:min-h-0 text-sm text-muted-foreground hover:text-foreground transition-colors">Privacy</Link>
+              <Link href="/terms" className="inline-flex items-center min-h-11 md:min-h-0 text-sm text-muted-foreground hover:text-foreground transition-colors">Terms</Link>
+              <Link href="/refund-policy" className="inline-flex items-center min-h-11 md:min-h-0 text-sm text-muted-foreground hover:text-foreground transition-colors">Refund policy</Link>
+              <Link href="/resources/academic-integrity" className="inline-flex items-center min-h-11 md:min-h-0 text-sm text-muted-foreground hover:text-foreground transition-colors">Academic integrity</Link>
+              <button type="button" onClick={() => window.dispatchEvent(new Event("iblens:cookie-settings"))} className="inline-flex items-center min-h-11 md:min-h-0 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Cookie settings</button>
             </nav>
           </div>
           <div className="mt-8 pt-6 border-t border-border text-xs text-muted-foreground">

@@ -236,6 +236,13 @@ const resources = [
     readTime: "6 min read",
   },
   {
+    slug: "/remark",
+    title: "Should you pay for an IB re-mark?",
+    description: "How an enquiry upon results works, when requests close, why a grade can go down, and a check of the EE or TOK essay you submitted before you decide.",
+    icon: BarChart3,
+    readTime: "4 min read",
+  },
+  {
     slug: "/resources/ib-ia-score-predictor",
     title: "IB IA Score Estimator",
     description: "How IA marks are awarded and moderated, where marks are lost subject by subject, and how to estimate your mark before results day.",

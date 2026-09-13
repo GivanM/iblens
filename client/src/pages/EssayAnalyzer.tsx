@@ -538,9 +538,21 @@ export default function EssayAnalyzer() {
     onError: (e: any) => toast.error(e.message || "Unlock failed"),
   });
   useEffect(() => {
-    if (result && resultRef.current) resultRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (!result) return;
+    // After the form above it has settled (the button under it changes once the preview is
+    // used), or a phone was left looking at a buy button instead of the result.
+    const t = setTimeout(() => resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 350);
+    return () => clearTimeout(t);
   }, [result]);
   const lockedPreview: any = lockedQ.data?.exists && !lockedQ.data.unlocked ? lockedQ.data : null;
+  // Arriving from "Unlock it on the grader page" on /remark: show the saved preview and its
+  // unlock button, not the top of the form.
+  const savedPreviewShown = useRef(false);
+  useEffect(() => {
+    if (!lockedPreview || savedPreviewShown.current || typeof window === "undefined" || window.location.hash !== "#saved-preview") return;
+    savedPreviewShown.current = true;
+    setTimeout(() => document.getElementById("saved-preview")?.scrollIntoView({ behavior: "smooth", block: "start" }), 200);
+  }, [lockedPreview]);
   const typeLabel = (t?: string | null) => t === "EE" ? "Extended Essay" : t === "TOK" ? "TOK essay" : t === "TOK Exhibition" ? "TOK exhibition" : t === "IA" ? "IA" : (t || "");
   // Exhibitions are stored as task "TOK" with subject "Exhibition".
   const lockedLabel = lockedPreview ? deviceReportLabel({ essayType: lockedPreview.essayType, subject: lockedPreview.subject }) : null;
@@ -703,13 +715,13 @@ export default function EssayAnalyzer() {
       )}
 
       {!result && lockedPreview && !otherWorkRequested && (
-        <Card className="mb-6 border-primary/40 bg-primary/5">
+        <Card id="saved-preview" className="mb-6 border-primary/40 bg-primary/5 scroll-mt-24">
           <CardContent className="pt-6 space-y-3">
             <div>
               <p className="text-sm font-semibold">Your free preview is saved on this device</p>
-              <p className="text-xs text-muted-foreground">This device's one free preview has been used on it.</p>
+              <p className="text-xs text-muted-foreground">It used this device's free preview.</p>
               <p className="text-xs text-muted-foreground">
-                {lockedLabel}{lockedPreview.band ? ` · Estimated range ${lockedPreview.band}` : ""}
+                {lockedLabel}{lockedPreview.band ? ` · ${lockedPreview.essayType === "TOK" || lockedPreview.essayType === "TOK Exhibition" ? "Band" : "Estimated range"} ${lockedPreview.band}` : ""}
                 {lockedPreview.createdAt ? ` · ${new Date(lockedPreview.createdAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}` : ""}
               </p>
             </div>
@@ -1009,7 +1021,9 @@ export default function EssayAnalyzer() {
 
           {/* Anonymous: buy a report. Also for someone who already bought one:
               their re-checks are for the same draft, a new draft is a new report. */}
-          {!authLoading && !isAuthenticated && !canAnonAnalyze && deviceCredits === 0 && (
+          {/* Hidden while a locked preview is on screen: its own "Buy & unlock" is the button
+              that opens it, and this one buys a report for different work. */}
+          {!authLoading && !isAuthenticated && !canAnonAnalyze && deviceCredits === 0 && !(result as any)?.locked && (
             <Button
               className="w-full min-h-11 h-auto py-2.5 whitespace-normal"
               variant={anonUnlocked || lockedPreview ? "outline" : "default"}
@@ -1022,7 +1036,7 @@ export default function EssayAnalyzer() {
                 : `Buy a report (${PRICE_LABELS.ESSAY_SINGLE})`}
             </Button>
           )}
-          {!authLoading && !isAuthenticated && !canAnonAnalyze && deviceCredits === 0 && essayText.trim() && (
+          {!authLoading && !isAuthenticated && !canAnonAnalyze && deviceCredits === 0 && essayText.trim() && !(result as any)?.locked && (
             <p className="text-xs text-muted-foreground text-center">Your text is not kept through checkout: after paying, paste it here again and press "Mark a new piece of work".</p>
           )}
 
@@ -1117,7 +1131,7 @@ export default function EssayAnalyzer() {
             ))}
           </div>
 
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground -mb-3">Overall comment</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Overall comment</p>
           <p className="text-sm text-muted-foreground leading-relaxed">
             Your IA demonstrates solid understanding of business concepts, and the supporting documents are well chosen, but their data is used only superficially.
             The main areas for improvement are the depth of analysis in Criterion D and the connection

@@ -26,7 +26,7 @@ export default function RefundPolicy() {
             <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
               <li>Email us at <a href="mailto:glushkovim@gmail.com" className="text-primary hover:underline font-medium">glushkovim@gmail.com</a> within 7 days of your purchase.</li>
               <li>Include the email address you used at checkout and the product you purchased.</li>
-              <li>We will process your refund within 3-5 business days via the original payment method.</li>
+              <li>We will send your refund within 3-5 business days of approving it, to the original payment method. Your bank may then take a further 5-10 business days to show it on your statement.</li>
             </ol>
           </section>
 

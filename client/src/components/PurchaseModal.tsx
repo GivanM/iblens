@@ -229,7 +229,7 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPrev
             </p>
           </div>
 
-          <div className="sticky bottom-0 -mx-6 px-6 pb-1 pt-2 bg-background">
+          <div className="sticky bottom-0 -mx-6 -mb-6 px-6 pb-6 pt-2 bg-background border-t border-border">
           <Button
             className="w-full min-h-11 h-auto py-2.5 text-base font-semibold whitespace-normal"
             onClick={handlePay}

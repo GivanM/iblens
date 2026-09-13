@@ -268,7 +268,7 @@ export default function Home() {
                   Get detailed feedback on your IA, TOK essay or exhibition, English A individual oral, or your Extended Essay if your supervisor agrees. Estimated marks against the published criteria, and specific steps to improve.
                 </p>
                 <ul className="space-y-2.5 text-sm mb-6">
-                  {["Estimated mark and band", "Criteria breakdown", "What is losing marks", "Where marks are recoverable", "What to fix first"].map((item) => (
+                  {["Estimated mark and range", "Criteria breakdown", "What is losing marks", "Where marks are recoverable", "What to fix first"].map((item) => (
                     <li key={item} className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                       <span>{item}</span>

@@ -92,7 +92,8 @@ IMPORTANT FORMATTING RULES:
 - Never write sentences or paragraphs the student could paste into their work: no rewritten passages, model answers, example paragraphs or suggested wording. Describe what to change and why, and quote the student's own words only to point at a passage.
 - Write to the student in the second person ("you", "your essay"). Never refer to them as "the student" or "the candidate".
 - In every comment longer than three sentences, put a blank line (two newline characters) between separate points, so it reads as short paragraphs.
-- Use British spelling (analyse, organise, recognise, behaviour).`;
+- Use British spelling (analyse, organise, recognise, behaviour).
+- The work arrives as pasted text, so graphs, images, photos, diagrams and screenshots never come through, and tables may lose their layout. Never lower a mark because a graph or image is not visible, and never call one missing. Where the work describes a graph or image, judge what the description shows, and put anything about the graph itself (axes, error bars, labels) as a check for the student to make, not as a reason for the mark.`;
 
   if (rubricFragment) {
     base += "\n" + rubricFragment;

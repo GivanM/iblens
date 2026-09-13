@@ -88,7 +88,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
 
   "/remark": {
-    title: "IB Remark: Is an Enquiry Upon Results Worth It? Check Before You Pay | IBLens",
+    title: "IB Remark: Is an Enquiry Upon Results Worth It? Check Before You Decide | IBLens",
     description: "An IB re-mark can lower your grade as well as raise it. Requests close on 15 September for the May session and 15 March for November. See how the EE or TOK essay you submitted reads against the criteria before you decide.",
     ogType: "website",
     canonical: "/remark",

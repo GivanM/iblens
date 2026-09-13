@@ -106,7 +106,7 @@ export default function Pricing() {
             Simple, transparent pricing.
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            No subscription and no expiry. Your first preview is free, one per device or account. Prices in US dollars.
+            No subscription and no expiry. {previewUsed ? "Your free preview is used; every report after it is paid." : "Your first preview is free, one per device or account."} Prices in US dollars.
           </p>
         </div>
 
@@ -117,7 +117,7 @@ export default function Pricing() {
               <Gift className="w-6 h-6 text-primary" />
             </div>
             <div className="flex-1">
-              <h3 className="font-semibold">Your first preview is free</h3>
+              <h3 className="font-semibold">{previewUsed ? "Your free preview is used" : "Your first preview is free"}</h3>
               <p className="text-sm text-muted-foreground mt-0.5">
                 Paste your essay with no sign-in and no credit card. The preview shows your estimated range, feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks in your draft.
               </p>

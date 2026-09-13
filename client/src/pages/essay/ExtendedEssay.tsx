@@ -9,6 +9,7 @@ const config: SubjectConfig = {
     "AI feedback on your IB Extended Essay against either rubric: the 34-mark criteria through November 2026 or the new 30-mark criteria from May 2027. Criterion-by-criterion report, free preview first.",
   canonicalPath: "/essay/extended-essay",
   heroHeadline: "See where your Extended Essay stands before you submit",
+  heroNote: "Ask your supervisor first: the Extended Essay guide allows no assistance with the research, writing or proofreading beyond what your supervisor permits.",
   heroSubline:
     "Paste your Extended Essay and choose your exam session: you get a criterion-level report against the criteria you will be marked on. Free preview first, full report $9.99.",
   analyzerHref: "/essay?type=EE",

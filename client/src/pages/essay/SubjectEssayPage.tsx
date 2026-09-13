@@ -14,6 +14,8 @@ export interface SubjectConfig {
   canonicalPath: string;
   heroHeadline: string;
   heroSubline: string;
+  /** A rule to read before pasting, shown above the hero button. */
+  heroNote?: string;
   /**
    * Where the page's buttons send the student. It preselects the task and subject in the
    * analyzer: a plain /essay link opened the form on Business Management, so a Biology IA
@@ -62,6 +64,8 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
   const reportsLeft = `${paidLeft} paid report${paidLeft === 1 ? "" : "s"} left`;
   // The task name inside a sentence: "your TOK essay", not "your TOK Essay".
   const taskName = config.subject.replace(/ (Essay|Exhibition|Individual Oral)$/, (m) => m.toLowerCase());
+  // What goes into the grader: for the oral, never a rehearsal of the actual oral.
+  const pasteName = /Individual Oral$/.test(config.subject) ? "individual oral outline or practice transcript" : taskName;
   const totalMax = config.criteria.reduce((s, c) => s + c.max, 0);
   const totalSample = config.criteria.reduce((s, c) => s + c.sampleScore, 0);
   const holistic = config.criteria.length === 1;
@@ -123,8 +127,11 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
               {config.heroHeadline}
             </h1>
             <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">
-              {config.heroSubline}
+              {previewUsed ? config.heroSubline.split(/(?<=\.)\s+/).filter((s) => !/\bfree\b/i.test(s)).join(" ") : config.heroSubline}
             </p>
+            {config.heroNote && (
+              <p className="text-sm rounded-md border border-amber-300 bg-amber-50 text-amber-900 px-3 py-2 mb-6 max-w-xl mx-auto">{config.heroNote}</p>
+            )}
             <Button size="lg" className="text-base px-10 shadow-lg shadow-primary/25 mb-4 h-auto min-h-11 py-3 whitespace-normal" asChild>
               <Link href={config.analyzerHref}>
                 <FileText className="w-4 h-4 mr-2" />
@@ -318,9 +325,9 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
             <p className="text-muted-foreground mb-8 max-w-md mx-auto">
               {previewUsed
                 ? paidLeft > 0
-                  ? `Paste your ${taskName} and mark it with one of your paid reports (${reportsLeft}). Each includes two re-checks.`
-                  : `Paste your ${taskName}. The free preview ${isAuthenticated ? "on your account" : "on this device"} has been used, and a full report is $9.99 with two re-checks included.`
-                : `Paste your ${taskName} and get a free preview in about a minute. The full report is $9.99.`}
+                  ? `Paste your ${pasteName} and mark it with one of your paid reports (${reportsLeft}). Each includes two re-checks.`
+                  : `Paste your ${pasteName}. The free preview ${isAuthenticated ? "on your account" : "on this device"} has been used, and a full report is $9.99 with two re-checks included.`
+                : `Paste your ${pasteName} and get a free preview in about a minute. The full report is $9.99.`}
             </p>
             <Button size="lg" className="text-base px-6 sm:px-10 shadow-lg shadow-primary/25 h-auto min-h-11 py-3 whitespace-normal" asChild>
               <Link href={config.analyzerHref}>

@@ -38,7 +38,8 @@ const QUICK_STEPS = [
 const LATEST_RESULTS_SESSION: "nov2026" | "may2027" = Date.now() < Date.parse("2027-07-01T00:00:00Z") ? "nov2026" : "may2027";
 
 function RemarkQuickCheck() {
-  const { paidLeft } = useMarkingCta();
+  const { paidLeft, previewUsed } = useMarkingCta();
+  const utils = trpc.useUtils();
   const [essayType, setEssayType] = useState<"EE" | "TOK">("TOK");
   const [sessionSat, setSessionSat] = useState<"nov2026" | "may2027">(LATEST_RESULTS_SESSION);
   const [subject, setSubject] = useState("History");
@@ -49,7 +50,10 @@ function RemarkQuickCheck() {
   const analyze = trpc.essay.analyzeAnonymous.useMutation({
     onSuccess: (data: any) => {
       setResult(data.result);
-      localStorage.setItem("iblens_anon_used", "true");
+      try { localStorage.setItem("iblens_anon_used", "true"); } catch { /* storage blocked */ }
+      // Everything else on the page that offers the free preview reads these.
+      utils.essay.canAnalyzeAnonymous.invalidate();
+      utils.essay.deviceCredits.invalidate();
       (window as any).dataLayer = (window as any).dataLayer || [];
       (window as any).dataLayer.push({ event: "essay_submit", essay_type: essayType, subject: essayType === "TOK" ? "Theory of Knowledge" : subject, source: "remark_page" });
     },
@@ -67,8 +71,8 @@ function RemarkQuickCheck() {
 
   return (
     <div className="rounded-xl border-2 border-primary bg-card p-6 mb-12 shadow-sm">
-      <h2 style={SERIF} className="text-2xl font-bold mb-1">Check your essay right here, free</h2>
-      <p className="text-sm text-muted-foreground mb-4">Paste the exact EE or TOK essay you submitted. In about a minute you see how it reads against the published criteria: an estimated range for the total, your weakest criterion and the top risks. The estimated mark is in the full report. None of this predicts what a re-mark would do.</p>
+      <h2 style={SERIF} className="text-2xl font-bold mb-1">{previewUsed && !result ? "Check your essay on the grader page" : "Check your essay right here, free"}</h2>
+      <p className="text-sm text-muted-foreground mb-4">Paste the exact EE or TOK essay you submitted. In about a minute you see how it reads against the published criteria: an estimated range for the total (for the TOK essay, its band), your weakest criterion (for TOK, the start of the explanation) and the top risks. The estimated mark is in the full report. None of this predicts what a re-mark would do, so do not decide on it alone (see our <Link href="/terms" className="underline">Terms</Link>). For the Extended Essay, Criterion E is marked on your reflections, which this check does not include, so the range covers the other criteria.</p>
 
       {!result && (
         <>
@@ -101,8 +105,10 @@ function RemarkQuickCheck() {
             placeholder={essayType === "TOK" ? "Paste your full TOK essay (the version you submitted to IB)\u2026" : "Paste your full Extended Essay (the version you submitted to IB)\u2026"}
             className="mb-2 bg-background field-sizing-fixed resize-y" />
           <div className="flex items-center justify-between gap-3 flex-wrap">
-            <span className="text-xs text-muted-foreground">{essayText.trim() ? essayText.trim().split(/\s+/).length.toLocaleString("en-GB") + " words" : "Uses this device's free essay preview, one per device or account. No account needed. Full report $9.99."}</span>
-            <Button disabled={essayText.trim().length < 300 || analyze.isPending}
+            <span className="text-xs text-muted-foreground">{previewUsed
+              ? <>The free preview on this device is used. Mark your essay on the <Link href={`/essay?type=${essayType}&session=${essayType === "EE" ? sessionSat : LATEST_RESULTS_SESSION}`} className="underline">grader page</Link> {paidLeft > 0 ? "with one of your paid reports" : "for $9.99"}.</>
+              : essayText.trim() ? essayText.trim().split(/\s+/).length.toLocaleString("en-GB") + " words" : "Uses this device's free essay preview, one per device or account. No account needed. Full report $9.99."}</span>
+            <Button disabled={essayText.trim().length < 300 || analyze.isPending || previewUsed}
               onClick={() => analyze.mutate({
       // Marked on the criteria of the session the essay was submitted in, which the student chooses.
       spendDeviceCredit: false, essayType, subject: essayType === "TOK" ? "Theory of Knowledge" : subject, essayText, clientFingerprint: fp, examSession: essayType === "EE" ? sessionSat : LATEST_RESULTS_SESSION })}>
@@ -151,19 +157,37 @@ function RemarkQuickCheck() {
             </ul>
           )}
           <p className="text-sm text-muted-foreground mb-3">The full report, with the estimated mark, the full comments and a ranked list of fixes, unlocks on the grader page, where this preview is saved, {paidLeft > 0 ? "with one of your paid reports" : "for $9.99"}. Everything here is an estimate from a language model, not the IB's mark.</p>
-          <Button asChild><Link href={`/essay?session=${sessionSat}`}>{paidLeft > 0 ? "Unlock it on the grader page with one of your paid reports" : "Unlock it on the grader page, $9.99"}</Link></Button>
+          <Button asChild><Link href={`/essay?type=${essayType}&session=${essayType === "EE" ? sessionSat : LATEST_RESULTS_SESSION}${essayType === "EE" ? `&subject=${encodeURIComponent(subject)}` : ""}#saved-preview`}>{paidLeft > 0 ? "Unlock it on the grader page with one of your paid reports" : "Unlock it on the grader page, $9.99"}</Link></Button>
         </div>
       )}
     </div>
   );
 }
 
+/** The next enquiry upon results deadline and how many days are left, worked out in the browser. */
+function useNextRemarkDeadline() {
+  const [next, setNext] = useState<{ label: string; days: number } | null>(null);
+  useEffect(() => {
+    const now = new Date();
+    const y = now.getUTCFullYear();
+    const candidates = [
+      { at: Date.UTC(y, 2, 15, 23, 59), label: "15 March, for the November session" },
+      { at: Date.UTC(y, 8, 15, 23, 59), label: "15 September, for the May session" },
+      { at: Date.UTC(y + 1, 2, 15, 23, 59), label: "15 March, for the November session" },
+    ];
+    const c = candidates.find((d) => d.at >= now.getTime());
+    if (c) setNext({ label: c.label, days: Math.floor((c.at - now.getTime()) / 86400000) });
+  }, []);
+  return next;
+}
+
 export default function RemarkChecker() {
   const { previewUsed, paidLeft, paidLabel } = useMarkingCta();
+  const deadline = useNextRemarkDeadline();
   return (
     <>
       <SEOHead
-        title="IB Remark: Is an Enquiry Upon Results Worth It? Check Before You Pay | IBLens"
+        title="IB Remark: Is an Enquiry Upon Results Worth It? Check Before You Decide | IBLens"
         description="An IB re-mark can lower your grade as well as raise it. Requests close on 15 September for the May session and 15 March for November. See how the EE or TOK essay you submitted reads against the criteria before you decide."
         canonical="/remark"
       />
@@ -180,6 +204,12 @@ export default function RemarkChecker() {
             students decide without knowing how close they are to a boundary. Here is how to decide with
             more to go on.
           </p>
+
+          {deadline && deadline.days <= 30 && (
+            <p className="rounded-lg border border-amber-300 bg-amber-50 text-amber-900 text-sm px-4 py-3 mb-6">
+              Requests close on {deadline.label}: {deadline.days < 1 ? "that is today" : deadline.days === 1 ? "that is tomorrow" : `${deadline.days} days from now`}. Your school submits the request, so ask your coordinator now if you are considering one.
+            </p>
+          )}
 
           <RemarkQuickCheck />
 
@@ -272,7 +302,7 @@ export default function RemarkChecker() {
           </div>
 
           <div className="text-center border-t border-border pt-10">
-            <p style={SERIF} className="text-xl font-bold mb-3">Know before you pay.</p>
+            <p style={SERIF} className="text-xl font-bold mb-3">More to go on before you decide.</p>
             <Button size="lg" asChild>
               <Link href={`/essay?session=${LATEST_RESULTS_SESSION}`}>{previewUsed ? paidLabel : "Mark my essay: the first preview is free"} <ArrowRight className="w-4 h-4 ml-2" /></Link>
             </Button>
