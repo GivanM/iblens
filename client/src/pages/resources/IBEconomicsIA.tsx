@@ -187,7 +187,7 @@ export default function IBEconomicsIA() {
         criterion is losing you the most marks, while you can still revise it. It also
         counts the words against the 800-word limit. Diagrams do not come through pasted text,
         so check each diagram's labels yourself: the report judges how your commentary explains
-        them. Ask your teacher first: outside feedback on an IA needs their agreement.
+        them. Ask your teacher first: check that your teacher and your school allow outside feedback on your IA.
       </p>
       <p>
         <Link href="/essay/economics-ia">Paste your Economics IA commentary into IBLens for criterion-by-criterion feedback →</Link>

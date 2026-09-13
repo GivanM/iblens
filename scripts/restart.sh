@@ -11,7 +11,11 @@ wait_up() {
   echo "port $1 did not come up" >&2
   return 1
 }
-if systemctl is-active --quiet iblens-b; then wait_up 3001; fi
+# Never restart 3000 without the standby up: Caddy would have nothing to fall back to.
+if systemctl list-unit-files iblens-b.service >/dev/null 2>&1; then
+  systemctl is-active --quiet iblens-b || sudo systemctl start iblens-b
+  wait_up 3001
+fi
 sudo systemctl restart iblens
 wait_up 3000
 if systemctl list-unit-files iblens-b.service >/dev/null 2>&1; then

@@ -16,7 +16,11 @@ export function isNotAssessableFromText(c: any): boolean {
   // Only a comment saying the reflections were absent. Naming the RPF or RPPF is not enough:
   // a comment on reflections that were pasted names them too, and the criterion that really
   // lost the most was then passed over for the preview.
-  return /not (been )?(submitted|provided|included|attached|pasted)|no reflection|absence of (a )?reflect|not assessed|without (the |a |your )?(reflect|rpf|rppf)/.test(comment);
+  // The Maths "Reflection" and History "Reflection" criteria are marked on the text, so the
+  // comment must be about the separate reflection form, and say it was absent.
+  const aboutForm = /\brpf\b|\brppf\b|reflective statement|reflection (and|&) progress form|reflections on planning|reflections? (was|were) not (pasted|submitted|provided|included)/.test(comment);
+  const absent = /not (been )?(submitted|provided|included|attached|pasted)|not assessed|absence of|was not part of|were not part of/.test(comment);
+  return aboutForm && absent;
 }
 
 /**
@@ -139,6 +143,14 @@ const RANGE = /\b\d[\d,]*\s*[-\u2013\u2014]\s*\d[\d,]*\b/g;
 const FRACTION = /\d+(?:\.\d+)?\s*(?:\/|out of)\s*\d+/i;
 const COUNTED = /\b\d+(?:\.\d+)?\s*(?:marks?|points?)\b/i;
 const GIVEN = /\b(?:award(?:s|ed)?|scor(?:e|es|ed|ing)|mark(?:s|ed)?|receiv(?:e|es|ed|ing)|earn(?:s|ed|ing)?|gain(?:s|ed|ing)?|lean(?:s|ing)?\s+towards?|sits?\s+at|placed\s+at|level)\s+(?:of\s+|at\s+|a\s+|an\s+|around\s+|about\s+|roughly\s+)?\d+(?:\.\d+)?\b/i;
+const RANGE_MARK = /\d+\s*[-\u2013\u2014]\s*\d+\s*(?:\/|out of|of)\s*\d+/i;
+const N_OF_N = /\b\d+(?:\.\d+)?\s+of\s+\d+\b/i;
+const TOTAL_IS = /\b(?:total|overall)\s+(?:mark\s+|score\s+)?(?:is\s+|of\s+|would be\s+|at\s+|comes to\s+)?(?:about\s+|around\s+|roughly\s+)?\d+(?![\d,]*\s*(?:words?|characters?|%|pages?))/i;
+const CRITERION_COLON = /\bcriterion\s+[a-g][12]?\s*[:=]\s*\d+\b/i;
+const GOT = /\b(?:got|gets|get|getting|achiev(?:e|es|ed|ing)|reach(?:es|ed)?)\s+(?:a\s+|an\s+)?\d+\b(?!\s*(?:words?|%|sources?|pages?))/i;
+const WORD_MARK = /\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\s+(?:out of|of)\s+(?:\d+|four|five|six|eight|ten|twelve)\b|\bout of (?:four|five|six|eight|ten|twelve)\b/i;
+const AT_TOP = /\b(?:full marks|top band|top of the (?:band|scale|range)|highest band|maximum mark|the maximum|top mark|bottom of the (?:band|scale|range)|lowest band)\b/i;
+const SMALL_WORD = /\b(?:a|an)\s+(?:one|two|three|four|five|six|seven|eight|nine|ten)\b(?!-)/i;
 const SMALL_NUMBER = /\b(?:10|[0-9])\b(?!\s*(?:,\d{3}|words?|%|per ?cent|pages?|sources?|objects?|prompts?|titles?|areas?|examples?|claims?|paragraphs?|sections?|minutes?|hours?|years?|knowers?|perspectives?))/i;
 
 /**
@@ -156,10 +168,15 @@ export function stripMarks(text: string, opts: { allow?: string; holistic?: bool
 
 export function statesMark(s: string, opts: { allow?: string; holistic?: boolean } = {}): boolean {
   let t = String(s || "");
-  if (opts.allow) t = t.split(opts.allow).join(" ");
+  if (opts.allow) {
+    // The whole token only: removing "1/2" as a substring cut "21/25" down to "2 5".
+    const [sc, mx] = opts.allow.split("/").map((x) => x.trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+    t = t.replace(new RegExp(`(?<![\\d.])${sc}\\s*\\/\\s*${mx}(?![\\d.])`, "g"), " ");
+  }
+  if (RANGE_MARK.test(t) || AT_TOP.test(t) || WORD_MARK.test(t) || CRITERION_COLON.test(t) || TOTAL_IS.test(t) || GOT.test(t)) return true;
   t = t.replace(RANGE, " ");
-  if (FRACTION.test(t) || COUNTED.test(t) || GIVEN.test(t)) return true;
-  return !!opts.holistic && SMALL_NUMBER.test(t);
+  if (FRACTION.test(t) || COUNTED.test(t) || GIVEN.test(t) || N_OF_N.test(t)) return true;
+  return !!opts.holistic && (SMALL_NUMBER.test(t) || SMALL_WORD.test(t));
 }
 
 export type ReconcileOptions = {

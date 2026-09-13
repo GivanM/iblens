@@ -23,7 +23,7 @@ export default function GradeBoundaries() {
       </p>
 
       <p>
-        Boundaries differ between subjects, between SL and HL, and between sessions, so no single percentage table applies to every subject. The boundaries for each session are published to schools after marking, and your teacher can tell you where they fell for your subject in recent sessions. Treat an older session's boundaries as a guide, not a promise.
+        Boundaries differ between subjects, between SL and HL, between sessions and between time zones, so no single percentage table applies to every subject. The boundaries for each session are published to schools after marking, and your teacher can tell you where they fell for your subject in recent sessions. Treat an older session's boundaries as a guide, not a promise.
       </p>
 
       <p>
@@ -66,7 +66,7 @@ export default function GradeBoundaries() {
       <h2>What moves a boundary</h2>
 
       <p>
-        A boundary is set for a subject and level as a whole, after all its components are marked. Two things are worth knowing about how that plays out in practice.
+        The IB sets boundaries for each component of a subject and level, and for the subject overall, once marking is complete. Two things are worth knowing about how that plays out in practice.
       </p>
 
       <h3>Coursework counts towards the same total</h3>

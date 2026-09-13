@@ -20,7 +20,9 @@ export default defineConfig(({ command }) => ({
   publicDir: path.resolve(import.meta.dirname, "client", "public"),
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
-    emptyOutDir: true,
+    // Emptying the folder deleted index.html under the running servers for the two seconds a
+    // build takes, so every page returned 500. Old hashed assets stay valid for old pages.
+    emptyOutDir: false,
   },
   server: {
     host: true,

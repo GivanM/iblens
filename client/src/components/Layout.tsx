@@ -76,7 +76,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
             <nav className="hidden md:flex items-center gap-1">
               <NavLink href="/essay" active={location === "/essay"}>Essay grader</NavLink>
-              <NavLink href="/ucas-personal-statement" active={location === "/ucas-personal-statement"}>UCAS Statement</NavLink>
+              <NavLink href="/ucas-personal-statement" active={location === "/ucas-personal-statement"}>UCAS statement</NavLink>
               <NavLink href="/resources" active={location.startsWith("/resources")}>Resources</NavLink>
               <NavLink href="/pricing" active={location === "/pricing"}>Pricing</NavLink>
               {isAuthenticated && (
@@ -173,7 +173,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               }`}
             >
               <FileText className="w-4 h-4" />
-              UCAS Statement
+              UCAS statement
             </Link>
             <Link
               href="/resources"

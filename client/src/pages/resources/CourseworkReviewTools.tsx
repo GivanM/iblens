@@ -57,7 +57,7 @@ export default function CourseworkReviewTools() {
       <h2>How IBLens works</h2>
 
       <p>
-        Paste your draft, pick the work type, subject and exam session, and IBLens marks it against the criteria for that combination, including both Extended Essay rubrics and the 2027 formats for Psychology and Computer Science. It also counts the words against the limit for the task. The preview (estimated range, weakest criterion and top risks) is free with no account; the full report (criterion by criterion, or for the TOK essay and exhibition one holistic mark, explained) is $9.99 per piece of work, with no subscription to cancel.
+        Paste your draft, pick the work type, subject and exam session, and IBLens marks it against the criteria for that combination, including both Extended Essay rubrics and the 2027 formats for Psychology and Computer Science. It also counts the words against the limit for the task. The preview (a range of totals, usually the weakest criterion, and top risks) is free with no account; the full report (criterion by criterion, or for the TOK essay and exhibition one holistic mark, explained) is $9.99 per piece of work, with no subscription to cancel.
       </p>
 
       <p>
@@ -78,7 +78,7 @@ export default function CourseworkReviewTools() {
 
       <h3>Can an AI tool predict my exact mark?</h3>
       <p>
-        No tool can promise your exact final mark: moderation and examiner judgement are real. What a tool built on the criteria can do is place a draft in an estimated range and show which criterion is costing you most, early enough to act on it.
+        No tool can promise your exact final mark: moderation and examiner judgement are real. What a tool built on the criteria can do is place a draft in a range of marks and show which criterion is costing you most, early enough to act on it.
       </p>
 
       <h2>Related resources</h2>

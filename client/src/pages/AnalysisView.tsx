@@ -154,15 +154,19 @@ export default function AnalysisView() {
           <CardContent className="space-y-5">
             {p?.band_range && (
               <div className="flex items-baseline gap-3">
-                <span style={SERIF} className="text-4xl font-bold">{holistic ? "Band" : "Estimated range"} {p.band_range}</span>
+                <span style={SERIF} className="text-4xl font-bold">{holistic ? "Band" : "Range"} {p.band_range}</span>
                 {p.max_score ? <span className="text-sm text-muted-foreground">out of {p.max_score}</span> : null}
               </div>
             )}
+            {!weakest && !holistic && p?.band_range && (
+              <p className="text-sm rounded-lg border border-border bg-muted/40 p-4 text-muted-foreground">This preview names no criterion and lists no risks: for this draft, either would give the estimated mark away. The full report scores every criterion that can be marked from what you pasted.</p>
+            )}
             {weakest && (
               <div className="rounded-lg border border-amber-300 bg-amber-50 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-1.5">{holistic ? "The start of the explanation" : "Your weakest criterion, full feedback"}</p>
+                <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-1.5">{holistic ? "The start of the explanation" : "Your weakest criterion"}</p>
                 <div className="flex justify-between gap-3 text-sm font-semibold mb-1 text-foreground"><span>{weakest.name}</span><span className="flex-shrink-0">{typeof weakest.score === "number" ? `${weakest.score}/${weakest.max}` : holistic ? `Band ${p.band_range}` : `?/${weakest.max}`}</span></div>
                 <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{weakest.comment}</p>
+                {p?.weakest_comment_trimmed && <p className="text-xs text-amber-800 mt-2">Sentences that state a mark are left out of the preview; the full report has the whole comment.</p>}
               </div>
             )}
             {(p?.risks || []).length > 0 && (

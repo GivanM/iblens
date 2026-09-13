@@ -67,6 +67,7 @@ const plans: Array<{
       "Use across the 14 coursework subjects, the Extended Essay, TOK and UCAS statements",
       "No expiry. Without an account, unused reports wait in the browser you bought them in, for as long as its site data is kept; sign in with Google to keep them in an account",
       "For example the Extended Essay, both TOK tasks and several IAs (an Economics portfolio takes three, one per commentary)",
+      "Use each report only once your teacher, or for the Extended Essay your supervisor, has agreed to outside feedback",
     ],
     cta: "Get Started",
     href: "/dashboard",
@@ -106,7 +107,7 @@ export default function Pricing() {
             Simple, transparent pricing.
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            No subscription and no expiry. {previewUsed ? "Your free preview is used; every report after it is paid." : "Your first preview is free, one per device or account."} Prices in US dollars.
+            No subscription and no expiry. {previewUsed ? "Your free essay preview is used; the UCAS preview is separate, one per device." : "Your first preview is free, one per device or account."} Prices in US dollars.
           </p>
         </div>
 
@@ -121,7 +122,7 @@ export default function Pricing() {
               <p className="text-sm text-muted-foreground mt-0.5">
                 {previewUsed
                   ? "A full report adds the estimated mark, every comment and the ranked fixes to what the preview showed."
-                  : "Paste your essay with no sign-in and no credit card. The preview shows a range of totals, feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks in your draft."}
+                  : "Paste your essay with no sign-in and no credit card. The preview shows a range of totals, usually feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks in your draft."}
               </p>
             </div>
             <Button size="sm" asChild className="flex-shrink-0 self-start sm:self-auto">

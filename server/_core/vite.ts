@@ -114,6 +114,9 @@ export function serveStatic(app: Express) {
       html = html
         .replace(/<meta\s+name="robots"[^>]*>/gi, "")
         .replace(/<link\s+rel="canonical"[^>]*>/gi, "")
+        .replace(/<meta\s+name="description"[^>]*>/gi, "")
+        .replace(/<meta\s+(?:property|name)="(?:og|twitter):[^"]*"[^>]*>/gi, "")
+        .replace(/<script\s+type="application\/ld\+json">[\s\S]*?<\/script>/gi, "")
         .replace(/<title>[^<]*<\/title>/i, "<title>Page not found | IBLens</title>")
         .replace("</head>", '<meta name="robots" content="noindex" /></head>');
     }

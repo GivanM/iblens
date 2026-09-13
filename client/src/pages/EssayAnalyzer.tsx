@@ -119,15 +119,20 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
       </CardHeader>
       <CardContent className="space-y-5">
         <div className="flex items-baseline gap-3">
-          <span style={SERIF} className="text-4xl font-bold">{holistic ? "Band" : "Estimated range"} {result.band_range}</span>
+          <span style={SERIF} className="text-4xl font-bold">{holistic ? "Band" : "Range"} {result.band_range}</span>
           <span className="text-sm text-muted-foreground">out of {result.max_score}</span>
         </div>
+        {!holistic && <p className="text-xs text-muted-foreground -mt-3">IBLens's estimated total is somewhere in this range. It is not a margin of error; the full report gives the estimate.</p>}
         <WordCheckNote check={result._wordCheck} text={essayText} />
+        {!weakest && !holistic && (
+          <p className="text-sm rounded-lg border border-border bg-muted/40 p-4 text-muted-foreground">This preview names no criterion and lists no risks: for this draft, either would give the estimated mark away. The full report scores every criterion that can be marked from what you pasted.</p>
+        )}
         {weakest && (
           <div className="rounded-lg border border-amber-300 bg-amber-50 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-1.5">{holistic ? "The start of the explanation" : "Your weakest criterion, full feedback"}</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-1.5">{holistic ? "The start of the explanation" : "Your weakest criterion"}</p>
             <div className="flex justify-between text-sm font-semibold mb-1 text-foreground"><span>{weakest.name}</span><span>{typeof weakest.score === "number" ? `${weakest.score}/${weakest.max}` : holistic ? `Band ${result.band_range}` : `?/${weakest.max}`}</span></div>
             <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{weakest.comment}</p>
+            {result.weakest_comment_trimmed && <p className="text-xs text-amber-800 mt-2">Sentences that state a mark are left out of the preview; the full report has the whole comment.</p>}
           </div>
         )}
         {(result.risks || []).length > 0 && (
@@ -158,7 +163,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
           <p className="text-xs text-muted-foreground mt-3">
             {holistic
               ? "This task is marked as a whole, against one instrument. The preview shows the band and the start of the explanation; the full report gives the estimated mark and the whole explanation."
-              : `The criterion shown above in full is the one where this draft loses the largest share of its available marks. The others are scored in the full report.${unassessed.length ? ` Not assessed from the pasted text: ${unassessed.map((c: any) => c.name).join(", ")}.` : ""}`}
+              : `${weakest ? "The criterion shown above is the one where this draft loses the largest share of its available marks. The others are scored in the full report." : "No criterion is named in this preview, because naming one would give the estimated mark away. Every criterion that can be marked from your text is scored in the full report."}${unassessed.length ? ` Not assessed from the pasted text: ${unassessed.map((c: any) => c.name).join(", ")}.` : ""}`}
           </p>
         </div>
         <div className="rounded-lg bg-primary/5 border border-primary/30 p-4">
@@ -348,7 +353,7 @@ export default function EssayAnalyzer() {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'essay_submit', essay_type: essayType, subject, word_count: wordCount });
       if (data.wasFree) {
-        toast.success(`Free preview ready. The full report unlocks for ${PRICE_LABELS.ESSAY_SINGLE}.`);
+        toast.success((credits?.essayCredits ?? 0) > 0 ? "Free preview ready. Unlock the full report with one of your paid reports." : `Free preview ready. The full report unlocks for ${PRICE_LABELS.ESSAY_SINGLE}.`);
       } else {
         toast.success("Your full report is ready below.");
       }
@@ -382,7 +387,7 @@ export default function EssayAnalyzer() {
       const wordCount = essayText.split(/\s+/).filter(Boolean).length;
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'essay_submit', essay_type: essayType, subject, word_count: wordCount });
-      toast.success(data.unlocked ? "Your paid report is open below." : `Free preview ready. The full report unlocks for ${PRICE_LABELS.ESSAY_SINGLE}.`);
+      toast.success(data.unlocked ? "Your paid report is open below." : (deviceCreditsQ.data?.credits ?? 0) > 0 ? "Free preview ready. Unlock the full report with one of your paid reports." : `Free preview ready. The full report unlocks for ${PRICE_LABELS.ESSAY_SINGLE}.`);
     },
     onError: (error: { message: string }) => {
       toast.error(error.message);
@@ -677,7 +682,7 @@ export default function EssayAnalyzer() {
     <div className="container py-12 max-w-4xl mx-auto">
       <SEOHead
         title="IB Essay Grader: AI Feedback on IA, Extended Essay and TOK | IBLens"
-        description="AI feedback on your IB Internal Assessment, Extended Essay or TOK work in 14 subjects: a free preview with your estimated range and weakest criterion, then a full report against the published criteria."
+        description="AI feedback on your IB Internal Assessment, Extended Essay or TOK work in 14 subjects: a free preview with a range of totals and, usually, your weakest criterion, then a full report against the published criteria."
         canonical="/essay"
       />
       <div className="mb-10">
@@ -705,7 +710,7 @@ export default function EssayAnalyzer() {
 
       {!result && lockedPreview && otherWorkRequested && (
         <div className="mb-6 rounded-lg border border-border bg-muted/40 p-3 text-sm flex flex-col sm:flex-row sm:items-center gap-2">
-          <span className="flex-1 text-muted-foreground">The free preview on this device was used on {lockedLabel || "another piece of work"}. A full report for the work below is {PRICE_LABELS.ESSAY_SINGLE}.</span>
+          <span className="flex-1 text-muted-foreground">The free preview on this device was used on {lockedLabel || "another piece of work"}. {deviceCredits > 0 || (credits?.essayCredits ?? 0) > 0 ? "The work below can be marked with one of your paid reports." : `A full report for the work below is ${PRICE_LABELS.ESSAY_SINGLE}.`}</span>
           {lockedPreview.preview && (
             <Button variant="ghost" className="min-h-11 h-auto whitespace-normal" onClick={() => { setResultWork({ label: lockedLabel || "", kind: lockedPreview.essayType === "TOK" || lockedPreview.essayType === "TOK Exhibition" ? "tok" : "essay" }); setResult(lockedPreview.preview as EssayResult); setResultAnalysisId(null); }}>
               Reopen that preview
@@ -721,7 +726,7 @@ export default function EssayAnalyzer() {
               <p className="text-sm font-semibold">Your free preview is saved on this device</p>
               <p className="text-xs text-muted-foreground">It used this device's free preview.</p>
               <p className="text-xs text-muted-foreground">
-                {lockedLabel}{lockedPreview.band ? ` · ${lockedPreview.essayType === "TOK" || lockedPreview.essayType === "TOK Exhibition" ? "Band" : "Estimated range"} ${lockedPreview.band}` : ""}
+                {lockedLabel}{lockedPreview.band ? ` · ${lockedPreview.essayType === "TOK" || lockedPreview.essayType === "TOK Exhibition" ? "Band" : "Range"} ${lockedPreview.band}` : ""}
                 {lockedPreview.createdAt ? ` · ${new Date(lockedPreview.createdAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}` : ""}
               </p>
             </div>
@@ -823,7 +828,7 @@ export default function EssayAnalyzer() {
             </p>
           ) : (
             <p className="text-xs text-muted-foreground">
-              The IB asks students not to receive assistance beyond what the subject guide permits, so check that your teacher and your school allow outside feedback on this work before you use IBLens.
+              The IB asks students not to receive assistance beyond what the subject or TOK guide permits, so check that your teacher and your school allow outside feedback on this work before you use IBLens.
             </p>
           )}
           {essayType === "EE" && (
@@ -887,7 +892,7 @@ export default function EssayAnalyzer() {
               <p className="text-xs text-muted-foreground">Up to 1,600 words. Examiners stop reading at the limit.</p>
             )}
             {isOral && (
-              <p className="text-xs text-muted-foreground">A transcript of a practice oral on different works or a different global issue is marked on all four criteria: the Language A guides do not allow a rehearsal of the actual oral. From an outline, criteria A to C are marked and Criterion D (language) is not, because spoken language cannot be judged from notes.</p>
+              <p className="text-xs text-muted-foreground">A transcript of a practice oral that uses works and a global issue different from those of your assessed oral is marked on all four criteria: the Language A guides do not let your teacher rehearse the actual oral with you. From an outline, criteria A to C are marked and Criterion D (language) is not, because spoken language cannot be judged from notes.</p>
             )}
             {essayType === "IA" && subject === "Music" && (
               <p className="text-xs text-muted-foreground">Paste the written portfolio. Criteria A, B1 and B2 are marked on it. C1 and C2 judge the creating exercise and the performed adaptation themselves, which text cannot carry, so the report leaves them unmarked and gives the estimated mark out of the 18 marks it assessed.</p>
@@ -952,7 +957,7 @@ export default function EssayAnalyzer() {
           {!authLoading && !isAuthenticated && canAnonAnalyze && (
             <div className="text-sm p-3 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
-              <span>Your first preview is <strong>free</strong>, one per device or account, so check the task and subject above. The full report unlocks for {PRICE_LABELS.ESSAY_SINGLE}.</span>
+              <span>Your first preview is <strong>free</strong>, one per device or account, so check the task and subject above. {deviceCredits > 0 ? "The full report then uses one of your paid reports." : `The full report unlocks for ${PRICE_LABELS.ESSAY_SINGLE}.`}</span>
             </div>
           )}
 
@@ -1200,7 +1205,7 @@ export default function EssayAnalyzer() {
           <div className="pt-3 border-t text-center">
             {(isAuthenticated ? !!credits?.freeEssayAvailable : canAnonAnalyze) ? (
               <>
-                <p className="text-sm font-medium mb-1">↑ This is what a full report looks like, unlocked for $9.99. Your free preview shows a range of totals, your weakest criterion in full, and the top risks.</p>
+                <p className="text-sm font-medium mb-1">↑ This is what a full report looks like, unlocked for $9.99. Your free preview shows a range of totals, usually your weakest criterion, and the top risks.</p>
                 <p className="text-xs text-muted-foreground">Paste your work in the form above: <strong>the first preview is free</strong>, then $9.99 per report, with two re-checks included</p>
               </>
             ) : (

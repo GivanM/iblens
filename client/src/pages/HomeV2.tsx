@@ -27,7 +27,7 @@ const FAQ = [
   },
   {
     q: "Is my first essay analysis really free?",
-    a: "The first one returns a free preview: your mark range, feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks in the draft. That is one free preview per device or account, not one per essay. The complete report, with every criterion scored and a ranked fix list, unlocks for $9.99.",
+    a: "The first one returns a free preview: a range of totals, usually feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks in the draft. That is one free preview per device or account, not one per essay. The complete report, with every criterion scored and a ranked fix list, unlocks for $9.99.",
   },
   {
     q: "How accurate is the estimated IB score?",

@@ -33,8 +33,8 @@ export default function AcademicIntegrity() {
       </p>
       <p>
         Getting <strong>feedback on work you wrote yourself</strong> is different from having it written or
-        edited for you, but it is not automatically allowed. Your teacher comments on one draft of an IA or
-        the TOK essay, and your supervisor comments in writing on one full draft of your EE. The IB academic
+        edited for you, but it is not automatically allowed. For most IAs and the TOK essay your teacher comments on one draft (for the individual
+        oral, on your outline and on practice orals), and your supervisor comments in writing on one full draft of your EE. The IB academic
         integrity policy asks students not to receive assistance beyond what the subject guide permits,
         whether from friends, relatives, other students or private tutors, and the Extended Essay guide is
         stricter still, as set out above. Before you use outside feedback on an IA or the TOK essay, AI tools
@@ -60,7 +60,7 @@ export default function AcademicIntegrity() {
 
       <h2>How to acknowledge AI feedback</h2>
       <ul>
-        <li><strong>AI material in your work must be credited.</strong> The IB academic integrity policy says that if you copy or paraphrase text produced by an AI tool, or use an image, graph or other material from one, you must credit the tool in the body of the work, in quotation marks using your school's referencing style, with the prompt you gave and the date it was generated, and list it in the bibliography. IBLens describes what to change rather than writing text for you, but if any wording from a report goes into your work, even paraphrased, credit it in the same way.</li>
+        <li><strong>AI material in your work must be credited.</strong> The IB academic integrity policy says that if you copy or paraphrase text produced by an AI tool, or use an image, graph or other material from one, you must reference the tool in the body of the work and add it to the bibliography, and the in-text citation should use quotation marks in your school's referencing style and give the prompt you used and the date the text was generated. IBLens describes what to change rather than writing text for you, but if any wording from a report goes into your work, even paraphrased, credit it in the same way.</li>
         <li><strong>Mention it to your teacher or supervisor,</strong> as the rule above says. For the Extended Essay, a supervision session is the natural place.</li>
         <li><strong>Keep the reports with your drafts.</strong> Together they show that the revisions came from you. Save each report with your browser's print to PDF (saved reports in an account also have a Save as PDF button).</li>
         <li><strong>Orals and the TOK exhibition work the same way.</strong> The ideas and words in your individual oral or exhibition commentary must be yours. The Language A guides let teachers give feedback on your outline, and on practice orals that use different works and global issues, but not rehearse the actual oral with you, so do not get feedback from anyone, a tool included, on a rehearsal of the oral you will deliver. A script written by a tool is never allowed.</li>
@@ -103,7 +103,7 @@ export default function AcademicIntegrity() {
 
       <p>
         UCAS also runs every submitted statement through similarity detection, comparing it against
-        previously submitted statements, published sample statements and material available online. This is
+        statements previously submitted to UCAS and sample statements collected from websites and other sources. This is
         a similarity check rather than an AI detector, but the practical consequence is the same: anything
         that resembles text someone else has submitted, or text published on a website, can be flagged to
         the universities you applied to. Individual universities also run their own checks and can ask you
@@ -130,7 +130,7 @@ export default function AcademicIntegrity() {
       <p>
         IBLens exists to answer one question, "where does my essay lose marks against the published
         criteria?", which is the same question a good supervisor answers on a draft. That is why the product
-        returns criterion-level feedback and an estimated range rather than rewritten text: it is
+        returns criterion-level feedback and an estimated mark rather than rewritten text: it is
         designed so that the version you submit is always yours.
       </p>
 

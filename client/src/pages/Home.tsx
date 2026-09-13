@@ -67,7 +67,7 @@ export default function Home() {
       <PurchaseModal open={purchaseModalOpen} onOpenChange={setPurchaseModalOpen} sku={purchaseSku} />
       <SEOHead
         title="IB Essay Grader 2026: Free Preview, AI Feedback on IA, EE & TOK | IBLens"
-        description="AI feedback on your IB essay in about a minute: marks against the published criteria, an estimated range, the risks costing you marks, and what to fix first. Free preview, no account needed."
+        description="AI feedback on your IB essay in about a minute: marks against the published criteria, a range of totals, the risks costing you marks, and what to fix first. Free preview, no account needed."
         canonical="/"
         jsonLd={[
           {
@@ -118,7 +118,7 @@ export default function Home() {
                 name: "Is the first preview really free?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes. The first preview is free: your estimated range, feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark, a mark and comment for each criterion that can be judged from your text (for the TOK essay and exhibition, the whole explanation) and a ranked list of fixes, unlocks for $9.99.",
+                  text: "Yes. The first preview is free: a range of totals, usually feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark, a mark and comment for each criterion that can be judged from your text (for the TOK essay and exhibition, the whole explanation) and a ranked list of fixes, unlocks for $9.99.",
                 },
               },
               {
@@ -229,7 +229,7 @@ export default function Home() {
               <span className="hidden sm:block text-border">|</span>
               <span><strong className="text-foreground">IA · EE · TOK</strong></span>
               <span className="hidden sm:block text-border">|</span>
-              <span><strong className="text-foreground">Free</strong> first preview</span>
+              {previewUsed ? <span><strong className="text-foreground">Two re-checks</strong> with every report</span> : <span><strong className="text-foreground">Free</strong> first preview</span>}
             </div>
           </div>
         </div>
@@ -276,8 +276,8 @@ export default function Home() {
                   ))}
                 </ul>
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">Free preview</span>
-                  <span className="text-xs text-muted-foreground">then $9.99 per report, two re-checks included</span>
+                  <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">{previewUsed ? "Full report" : "Free preview"}</span>
+                  <span className="text-xs text-muted-foreground">{previewUsed ? (paidLeft > 0 ? "uses one of your paid reports, two re-checks included" : "$9.99 per report, two re-checks included") : "then $9.99 per report, two re-checks included"}</span>
                 </div>
                 <Button variant="outline" asChild>
                   <Link href="/essay">Try it now <ArrowRight className="w-4 h-4 ml-1" /></Link>
@@ -332,7 +332,7 @@ export default function Home() {
                   The IB's assessment criteria are written down in its subject guides, and a trained examiner knows them by heart. So I asked: why can't an AI read a draft against those same criteria, in about a minute, for any student?
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  IBLens is the result. It doesn't replace your teacher. It shows you, criterion by criterion, where a draft stands against the criteria, before you've run out of time to act on it. The first preview is free, with no account needed.
+                  IBLens is the result. It doesn't replace your teacher. It shows you, criterion by criterion, where a draft stands against the criteria, before you've run out of time to act on it.{previewUsed ? "" : " The first preview is free, with no account needed."}
                 </p>
                 <div className="mt-5 flex items-center gap-3">
                   <img
@@ -397,7 +397,7 @@ export default function Home() {
                   <Gift className="w-8 h-8 text-primary mx-auto mb-3" />
                   <h3 style={SERIF} className="text-xl font-bold mb-1">First preview</h3>
                   <div style={SERIF} className="text-3xl font-bold mb-2">$0</div>
-                  <p className="text-xs text-muted-foreground mb-4">Estimated range, weakest criterion and top risks. No credit card required.</p>
+                  <p className="text-xs text-muted-foreground mb-4">A range of totals, usually your weakest criterion, and top risks. No credit card required.</p>
                   <Button variant="outline" className="w-full min-h-11" asChild>
                     <Link href="/essay">Get a free preview</Link>
                   </Button>
@@ -474,7 +474,7 @@ export default function Home() {
               />
               <FAQItem
                 question="Is the first preview really free?"
-                answer="Yes. The first preview is free: your estimated range, feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark, a mark and comment for each criterion that can be judged from your text (for the TOK essay and exhibition, the whole explanation) and a ranked list of fixes, unlocks for $9.99."
+                answer="Yes. The first preview is free: a range of totals, usually feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark, a mark and comment for each criterion that can be judged from your text (for the TOK essay and exhibition, the whole explanation) and a ranked list of fixes, unlocks for $9.99."
               />
               <FAQItem
                 question="How accurate is the estimated mark?"

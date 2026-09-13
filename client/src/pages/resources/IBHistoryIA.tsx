@@ -159,9 +159,10 @@ export default function IBHistoryIA() {
         Reflection is missing methodological depth.
       </p>
       <p>
-        IBLens reads your History IA against the three criteria and gives feedback on each,
-        so you know what to change before the final version. It also counts the words
-        against the 2,200-word limit.
+        If your teacher and your school allow outside feedback, IBLens reads your History IA
+        against the three criteria and gives feedback on each. Use it before your teacher reads
+        your draft, not after: the guide expects the version you hand in after their comments to
+        be the final one. It also counts the words against the 2,200-word limit.
       </p>
       <p>
         <Link href="/essay/history-ia">Paste your History IA draft into IBLens for criterion-by-criterion feedback →</Link>

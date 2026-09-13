@@ -11,6 +11,7 @@ import { AlertTriangle, TrendingDown, CalendarClock, ArrowRight, CheckCircle2 } 
 import { REMARK_FAQ } from "@shared/remarkFaq";
 import { EE_SUBJECTS } from "@shared/rubrics";
 import { useMarkingCta } from "@/hooks/useMarkingCta";
+import { useAuth } from "@/_core/hooks/useAuth";
 
 const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
@@ -27,7 +28,7 @@ const QUICK_STEPS = [
   "Reading your essay\u2026",
   "Checking it against the published criteria\u2026",
   "Marking each criterion against its descriptors\u2026",
-  "Working out the estimated range\u2026",
+  "Working out the range\u2026",
   "Writing up where it stands\u2026",
 ];
 
@@ -72,11 +73,22 @@ function RemarkQuickCheck() {
 
   const errMsg = analyze.error ? String(analyze.error.message || "") : "";
   const alreadyUsed = /already used|used (your|the) free|sign in/i.test(errMsg);
-
+  const { isAuthenticated } = useAuth();
+  // Signed in, the free preview and paid reports belong to the account, and this quick check
+  // spends the device's. The grader page uses the account's and saves the report there.
+  if (isAuthenticated) {
+    return (
+      <div className="rounded-xl border-2 border-primary bg-card p-6 mb-12 shadow-sm">
+        <h2 style={SERIF} className="text-2xl font-bold mb-1">Check your essay on the grader page</h2>
+        <p className="text-sm text-muted-foreground mb-4">You are signed in, so the check runs on the grader page, where it uses your account's free preview or paid reports and is saved to your dashboard. None of this predicts what a re-mark would do, so do not decide on it alone (see our <Link href="/terms" className="underline">Terms</Link>).</p>
+        <Button asChild><Link href={`/essay?type=TOK&session=${LATEST_RESULTS_SESSION}`}>Open the grader page</Link></Button>
+      </div>
+    );
+  }
   return (
     <div className="rounded-xl border-2 border-primary bg-card p-6 mb-12 shadow-sm">
       <h2 style={SERIF} className="text-2xl font-bold mb-1">{previewUsed && !result ? "Check your essay on the grader page" : "Check your essay right here, free"}</h2>
-      <p className="text-sm text-muted-foreground mb-4">{previewUsed ? <>On the grader page, a full report gives the estimated mark for the EE or TOK essay you submitted, criterion by criterion where the instrument has criteria, with the reasons and the ranked fixes. None of this predicts what a re-mark would do, so do not decide on it alone (see our <Link href="/terms" className="underline">Terms</Link>).</> : <>Paste the exact EE or TOK essay you submitted. In about a minute you see how it reads against the published criteria: a range of totals that contains the estimate (for the TOK essay, its band), your weakest criterion (for TOK, the start of the explanation) and the top risks. The estimated mark is in the full report. None of this predicts what a re-mark would do, so do not decide on it alone (see our <Link href="/terms" className="underline">Terms</Link>). For the Extended Essay, Criterion E is marked on your reflections, which this check does not include, so the range covers the other criteria.</>}</p>
+      <p className="text-sm text-muted-foreground mb-4">{previewUsed ? <>On the grader page, a full report gives the estimated mark for the EE or TOK essay you submitted, criterion by criterion where the instrument has criteria, with the reasons and the ranked fixes. None of this predicts what a re-mark would do, so do not decide on it alone (see our <Link href="/terms" className="underline">Terms</Link>).</> : <>Paste the exact EE or TOK essay you submitted. In about a minute you see how it reads against the published criteria: a range of totals that contains the estimate (for the TOK essay, its band), usually your weakest criterion (for TOK, the start of the explanation) and the top risks. The estimated mark is in the full report. None of this predicts what a re-mark would do, so do not decide on it alone (see our <Link href="/terms" className="underline">Terms</Link>). For the Extended Essay, Criterion E is marked on your reflections, which this check does not include, so the range covers the other criteria.</>}</p>
 
       {!result && (
         <>
@@ -135,7 +147,7 @@ function RemarkQuickCheck() {
       {result && (
         <div>
           <div className="flex items-baseline gap-3 mb-2">
-            <span style={SERIF} className="text-3xl font-bold text-primary">{essayType === "TOK" ? "Band" : "Estimated range"} {result.band_range}</span>
+            <span style={SERIF} className="text-3xl font-bold text-primary">{essayType === "TOK" ? "Band" : "Range"} {result.band_range}</span>
             <span className="text-sm text-muted-foreground">out of {result.max_score}</span>
           </div>
           <div className="rounded-lg p-4 mb-4 border border-border bg-muted/40">
@@ -146,11 +158,15 @@ function RemarkQuickCheck() {
           {essayType === "EE" && (
             <p className="text-xs text-muted-foreground mb-3">Criterion E is marked on your reflections form, which this check does not include, so the estimate covers the other criteria only.</p>
           )}
+          {!result.weakest_criterion && essayType === "EE" && (
+            <p className="text-sm rounded-lg border border-border bg-muted/40 p-4 mb-4 text-muted-foreground">This preview names no criterion and lists no risks: for this draft, either would give the estimated mark away. The full report scores every criterion that can be marked from what you pasted.</p>
+          )}
           {result.weakest_criterion && (
             <div className="rounded-lg border border-border bg-muted/40 p-4 mb-4">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{typeof result.weakest_criterion.score === "number" || essayType === "EE" ? "Your weakest criterion, full feedback" : "The start of the explanation"}</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{typeof result.weakest_criterion.score === "number" || essayType === "EE" ? "Your weakest criterion" : "The start of the explanation"}</p>
               <div className="flex justify-between text-sm font-semibold mb-1"><span>{result.weakest_criterion.name}</span><span>{typeof result.weakest_criterion.score === "number" ? `${result.weakest_criterion.score}/${result.weakest_criterion.max}` : essayType === "TOK" ? `Band ${result.band_range}` : `?/${result.weakest_criterion.max}`}</span></div>
               <p className="text-sm text-muted-foreground leading-relaxed">{result.weakest_criterion.comment}</p>
+              {result.weakest_comment_trimmed && <p className="text-xs text-muted-foreground mt-2">Sentences that state a mark are left out of the preview; the full report has the whole comment.</p>}
             </div>
           )}
           {(result.risks || []).length > 0 && (
@@ -186,7 +202,12 @@ function useNextRemarkDeadline() {
 }
 
 export default function RemarkChecker() {
-  const { previewUsed, paidLeft, paidLabel } = useMarkingCta();
+  const { paidLeft, paidLabel, previewUsed: accountPreviewUsed, isAuthenticated } = useMarkingCta();
+  // Guests: the check on this page spends the device's free preview. Signed in, the page
+  // sends them to the grader, which uses the account's.
+  const [pageFp] = useState(() => { try { return getAnonFingerprint(); } catch { return ""; } });
+  const devicePreview = trpc.essay.canAnalyzeAnonymous.useQuery({ clientFingerprint: pageFp }, { enabled: !!pageFp, staleTime: 60_000 });
+  const previewUsed = isAuthenticated ? accountPreviewUsed : devicePreview.data ? devicePreview.data.canAnalyze === false : false;
   const deadline = useNextRemarkDeadline();
   return (
     <>

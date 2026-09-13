@@ -93,8 +93,8 @@ IMPORTANT FORMATTING RULES:
 - Write to the student in the second person ("you", "your essay"). Never refer to them as "the student" or "the candidate".
 - In every comment longer than three sentences, put a blank line (two newline characters) between separate points, so it reads as short paragraphs.
 - Use British spelling (analyse, organise, recognise, behaviour).
-- Never write a criterion's mark or the total inside a comment, risk, leverage zone, next step or the overall comment: the report shows the marks separately. Describe the level in words (for example "the Good band descriptor"), never as a number.
-- The work arrives as pasted text, so graphs, images, photos, diagrams and screenshots never come through, and tables may lose their layout. Never lower a mark because a graph or image is not visible, and never call one missing. Where the work describes a graph or image, judge what the description shows, and put anything about the graph itself (axes, error bars, labels) as a check for the student to make, not as a reason for the mark.`;
+- Never write a criterion's mark or the total inside a comment, risk, leverage zone, next step or the overall comment: the report shows the marks separately. Describe the level in words (for example "the Good band descriptor"), never as a number. Rules the notes ask you to explain, such as a cap or no marks for an essay not on a prescribed title, must still be stated, in words.
+- The work arrives as pasted text, so graphs, images, photos, diagrams and screenshots never come through, and tables may lose their layout. Never lower a mark because a graph or image is not visible, and never call one missing. Where the work describes a graph or image, judge what the description shows, and put anything about the graph itself (axes, error bars, labels) as a check for the student to make, not as a reason for the mark. If the criteria require a diagram or graph and the text refers to none, say that none was referred to and ask the student to check.`;
 
   if (rubricFragment) {
     base += "\n" + rubricFragment;
@@ -332,11 +332,13 @@ function buildTeaser(result: any) {
   let weakest: any = pickWeakest(criteria).weakest;
   const cell = previewBand(result);
   const holistic = criteria.length === 1;
+  let commentTrimmed = false;
   // Nothing in the preview's text may state a mark: only the weakest criterion's own mark,
   // when it is shown, stays.
   if (weakest && typeof weakest.comment === "string") {
     const allow = !holistic && typeof weakest.score === "number" ? `${weakest.score}/${weakest.max}` : undefined;
     const clean = stripMarks(weakest.comment, { allow, holistic });
+    commentTrimmed = clean.length < weakest.comment.trim().length;
     weakest = { ...weakest, comment: clean || "The full explanation is in the report." };
   }
   // Holistic instruments have a single criterion whose comment IS the whole verdict:
@@ -362,6 +364,9 @@ function buildTeaser(result: any) {
   const risks = (Array.isArray(result?.risks) ? result.risks : [])
     .filter((r: any) => !isRiskAboutMissingReflection(r))
     .filter((r: any) => !statesMark(typeof r === "string" ? r : String(r?.title || ""), { holistic }))
+    // A preview that names no criterion lists no risks either: with so few totals possible,
+    // naming the weak parts of the draft would narrow it to the mark.
+    .filter(() => !cell?.hideWeakest)
     .slice(0, 3)
     .map((r: any) => ({
     title: typeof r === "string" ? r : r?.title || "",
@@ -372,6 +377,7 @@ function buildTeaser(result: any) {
     band_range: bandRange,
     max_score: result?.max_score ?? null,
     weakest_criterion: weakest,
+    weakest_comment_trimmed: !!weakest && commentTrimmed,
     risks,
     // Unassessed criteria (null score) are not sold as locked marks in the full report.
     criteria_names: criteria.map((c) => ({ name: c?.name, max: c?.max, assessed: typeof c?.score === "number" })),
@@ -426,7 +432,12 @@ const essayRouter = router({
             await returnToLot(orderId);
             return { result: normalizeDashes(rec.resultJson) };
           }
-          // Keep a copy in the user's dashboard history
+          // Keep a copy in the user's dashboard history. A re-check version reopened after a
+          // refund is copied with its report and linked, not as a report with re-checks of its own.
+          if ((rec as any).rerunOf) {
+            await adoptDeviceReports(input.fingerprint, ctx.user.id).catch(() => 0);
+            return { result: normalizeDashes(rec.resultJson) };
+          }
           const copy = await upsertAccountCopy({
             userId: ctx.user.id,
             type: "essay",

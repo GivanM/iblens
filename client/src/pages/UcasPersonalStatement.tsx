@@ -257,6 +257,8 @@ export default function UcasPersonalStatement() {
         }}
         onRecheck={(r) => {
           setUcasTargetId(r.id);
+          // A locked preview of another statement on screen blocked the re-check this chose.
+          if ((result as any)?.locked) setResult(null);
           document.getElementById("q1")?.scrollIntoView({ behavior: "smooth", block: "center" });
         }}
       />
@@ -336,8 +338,9 @@ export default function UcasPersonalStatement() {
 
           {!isUnlocked && !canPayHere && !result && (
             <p className="text-xs text-muted-foreground">
-              Your first review is a free preview: the verdict, the character checks and your weakest answer reviewed in full.
-              One per device, separate from the essay preview. The full review of all three answers is $9.99.
+              {previewUsed
+                ? "The free UCAS preview on this device is used. The full review of all three answers is $9.99."
+                : "Your first review is a free preview: the verdict, the character checks and your weakest answer reviewed in full. One per device, separate from the essay preview. The full review of all three answers is $9.99."}
             </p>
           )}
 

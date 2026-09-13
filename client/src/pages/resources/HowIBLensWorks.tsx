@@ -145,7 +145,7 @@ export default function HowIBLensWorks() {
             <td><strong>Free preview</strong></td>
             <td>$0</td>
             <td>n/a</td>
-            <td>The estimated range, feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks, one per device or account</td>
+            <td>A range of totals, usually feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks, one per device or account</td>
           </tr>
           <tr>
             <td><strong>Full report</strong></td>

@@ -152,8 +152,9 @@ export default function IBMathIAExamples() {
       <h3>Listing results without explaining them</h3>
       <p>
         A student who writes "the derivative is 2x, therefore the minimum is at x=0"
-        without explaining why this matters for the aim is scoring low on Criterion B
-        and D. Every result should be connected back to the research question.
+        without explaining why this matters for the aim is losing marks on Criteria E and D:
+        Use of mathematics asks for understanding to be demonstrated, and Reflection for results
+        linked to the aim. Every result should be connected back to the research question.
       </p>
 
       <h3>Copying a well-known example</h3>

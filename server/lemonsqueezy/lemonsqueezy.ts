@@ -31,6 +31,8 @@ import {
   markAnalysisUnlocked,
   createAnalysis,
   upsertAccountCopy,
+  claimAnalysisUnlock,
+  adoptDeviceReports,
   claimAnonymousUnlock,
   countReportsOpenedByOrder,
   createCreditLot,
@@ -421,8 +423,9 @@ export function registerLemonsqueezyWebhook(app: Express) {
           if (unlockAnalysisId > 0 && !buyerIsGuest && credits.essay > 0) {
             try {
               const target: any = await getAnalysisById(unlockAnalysisId, order.userId);
-              if (target && target.userId === order.userId && target.resultJson && !target.unlocked) {
-                await markAnalysisUnlocked(target.id, order.id);
+              // The same claim as a credit unlock: fresh re-checks, the original reopened with a
+              // re-check version, and a report opened only once if two unlocks race.
+              if (target && target.userId === order.userId && target.resultJson && !target.unlocked && await claimAnalysisUnlock(target.id, order.id)) {
                 openedAtPurchase += 1;
                 await consumePaidEssayCredit(order.userId).catch((creditErr) => {
                   console.warn(`[LemonSqueezy] Report ${target.id} opened but credit not consumed:`, creditErr);
@@ -479,7 +482,11 @@ export function registerLemonsqueezyWebhook(app: Express) {
                 }
                 // A signed-in buyer keeps what they paid for in the account. The device
                 // row alone was lost the moment they signed out, which rotates the device id.
-                if (opened && !buyerIsGuest) {
+                if (opened && !buyerIsGuest && (rec as any).rerunOf) {
+                  // A re-check version reopened after a refund: copy the report with its
+                  // re-checks linked, not the version as a report of its own.
+                  await adoptDeviceReports(unlockFp, order.userId).catch((copyErr) => console.warn(`[LemonSqueezy] Account copy of chain ${rec.id} failed:`, copyErr));
+                } else if (opened && !buyerIsGuest) {
                   await upsertAccountCopy({
                     userId: order.userId,
                     type: "essay",

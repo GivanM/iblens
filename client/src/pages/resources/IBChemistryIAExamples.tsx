@@ -34,10 +34,10 @@ export default function IBChemistryIAExamples() {
 
       <h3>1. Effect of concentration on reaction rate (colorimetry)</h3>
       <p>
-        Rate kinetics is a core HL and SL topic. A well-executed version uses a
-        colorimeter to measure absorbance at regular intervals, processes the data
-        to determine rate constants, and, at HL, determines the order of reaction
-        with respect to the varying reactant. A real-world system gives the research
+        Rates of reaction are part of the SL and HL course; rate equations, orders and rate
+        constants are additional HL content. A well-executed version uses a colorimeter to
+        measure absorbance at regular intervals, processes the data to find the rate, and can
+        go on to deduce the order and the rate constant. A real-world system gives the research
         question the context that Research design asks for: the bleaching of food dyes,
         the oxidation of ascorbic acid, or an iodine clock using household starch.
       </p>

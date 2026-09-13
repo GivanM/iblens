@@ -17,7 +17,7 @@ export default function IBIAGrader() {
       </p>
 
       <p>
-        IBLens is an AI grader that reads your Internal Assessment against the assessment criteria for your subject and gives you an estimated mark for each criterion it can judge from the text, the marks you are losing, and what to change. It takes about a minute, and the first preview is free. Ask your teacher first: outside feedback on an IA needs their agreement.
+        IBLens is an AI grader that reads your Internal Assessment against the assessment criteria for your subject and gives you an estimated mark for each criterion it can judge from the text, the marks you are losing, and what to change. It takes about a minute, and the first preview is free. Ask your teacher first: check that your teacher and your school allow outside feedback on your IA.
       </p>
 
       <p>
@@ -38,7 +38,7 @@ export default function IBIAGrader() {
         <li><strong><Link href="/essay/history-ia">IB History IA</Link>:</strong> the historical investigation, marked on Identification and evaluation of sources (6), Investigation (15) and Reflection (4), 25 marks</li>
         <li><strong><Link href="/essay/psychology-ia">IB Psychology IA</Link>:</strong> Introduction, Exploration, Analysis, Evaluation (22 marks) through November 2026; the research proposal marked out of 24 from May 2027</li>
         <li><strong><Link href="/essay/computer-science-ia">IB Computer Science IA</Link>:</strong> Planning, Solution overview, Development, Functionality and extensibility, Evaluation (34 marks) through November 2026; the new 30-mark criteria from May 2027</li>
-        <li><strong>IB English A (Literature, or Language and Literature):</strong> the individual oral, marked on four criteria of 10 marks each; paste your outline, or a transcript of a practice oral on different works or a different global issue (the Language A guides do not allow a rehearsal of the actual oral)</li>
+        <li><strong>IB English A (Literature, or Language and Literature):</strong> the individual oral, marked on four criteria of 10 marks each; paste your outline, or a transcript of a practice oral that uses works and a global issue different from those of your assessed oral (the Language A guides do not let your teacher rehearse the actual oral with you)</li>
         <li><strong>IB Visual Arts, Music and Film coursework (externally assessed):</strong> each against its own criteria. Visual Arts is marked for sessions through November 2026 only, because the comparative study is replaced from May 2027, and on the SL criteria out of 30: the extra HL criterion (connections to your own art-making, 12 marks) is not marked</li>
       </ul>
 
@@ -80,7 +80,7 @@ export default function IBIAGrader() {
       <h2>Is the first IB IA preview really free?</h2>
 
       <p>
-        Yes, your first preview is free: estimated range, your weakest criterion with its full feedback, and the top risks. The complete report unlocks for $9.99 and includes two free re-checks of revised versions of the same work within 14 days of the report opening. In packs it works out at $5.00 per report (5 for $24.99) or $4.50 (10 for $44.99).
+        Yes, your first preview is free: a range of totals, usually your weakest criterion with its feedback, and the top risks. The complete report unlocks for $9.99 and includes two free re-checks of revised versions of the same work within 14 days of the report opening. In packs it works out at $5.00 per report (5 for $24.99) or $4.50 (10 for $44.99).
       </p>
 
       <h2>How accurate is the AI grade?</h2>

@@ -228,6 +228,9 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPrev
               Pay by card (Visa, Mastercard, Amex) or another method shown at checkout.
             </p>
           </div>
+          <p className="text-xs text-muted-foreground px-1">
+            Use a report on coursework only once your teacher, or for the Extended Essay your supervisor, has agreed to outside feedback.
+          </p>
 
           <div className="sticky bottom-0 -mx-6 -mb-6 px-6 pb-6 pt-2 bg-background border-t border-border">
           <Button

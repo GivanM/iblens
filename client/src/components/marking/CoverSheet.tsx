@@ -38,7 +38,7 @@ export function CoverSheet() {
           <i>to be awarded</i>
         </div>
         <p className="ms-coverfree">
-          The first script is marked free: mark range, weakest criterion in full, and the risks costing the most.
+          The first script is marked free: a range of totals, usually the weakest criterion, and the risks costing the most.
           The complete report is $9.99, no account and no subscription.
         </p>
         <p className="ms-cue">
