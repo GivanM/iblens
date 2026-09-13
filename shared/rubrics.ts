@@ -210,7 +210,7 @@ const ENGLISH_LANG_LIT_IA: Rubric = {
   totalMarks: 40,
   criteria: [
     { name: "Criterion A: Knowledge, understanding and interpretation", max: 10, descriptor: "Knowledge and understanding of the extracts and works/texts, and interpretation of their implications in relation to the global issue" },
-    { name: "Criterion B: Analysis and evaluation", max: 10, descriptor: "Analysis and evaluation of how authorial/textual choices present the global issue" },
+    { name: "Criterion B: Analysis and evaluation", max: 10, descriptor: "Analysis and evaluation of the ways in which authorial choices present the global issue" },
     { name: "Criterion C: Focus and organization", max: 10, descriptor: "Structured, balanced and focused delivery with connected ideas" },
     { name: "Criterion D: Language", max: 10, descriptor: "Clear, accurate and effective language appropriate to the task" },
   ],
@@ -222,7 +222,7 @@ const ENGLISH_LIT_IA: Rubric = {
   totalMarks: 40,
   criteria: [
     { name: "Criterion A: Knowledge, understanding and interpretation", max: 10, descriptor: "Knowledge and understanding of the extracts and works, and interpretation of their implications in relation to the global issue" },
-    { name: "Criterion B: Analysis and evaluation", max: 10, descriptor: "Analysis and evaluation of how authorial choices present the global issue" },
+    { name: "Criterion B: Analysis and evaluation", max: 10, descriptor: "Analysis and evaluation of the ways in which authorial choices present the global issue" },
     { name: "Criterion C: Focus and organization", max: 10, descriptor: "Structured, balanced and focused delivery with connected ideas" },
     { name: "Criterion D: Language", max: 10, descriptor: "Clear, accurate and effective language appropriate to the task" },
   ],

@@ -189,6 +189,8 @@ export const creditLots = mysqlTable("credit_lots", {
   fingerprint: varchar("fingerprint", { length: 64 }),
   granted: int("granted").notNull(),
   remaining: int("remaining").notNull(),
+  /** Set when the purchase is refunded: a storefront purchase has no order row to say so. */
+  refundedAt: timestamp("refundedAt"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 }, (table) => [

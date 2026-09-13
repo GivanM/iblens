@@ -27,7 +27,7 @@ export default function Terms() {
           <h2>Acceptable use and academic integrity</h2>
           <ul>
             <li>Use IBLens only for feedback on work you wrote yourself.</li>
-            <li>Do not paste AI-generated text into work you submit for assessment.</li>
+            <li>Do not submit AI-generated text as your own: if any wording from an AI tool, IBLens included, goes into work you submit, credit it as the IB academic integrity policy requires.</li>
             <li>Follow your school's own policy on the use of AI tools; when in doubt, disclose. See our <Link href="/resources/academic-integrity" className="text-primary hover:underline">academic integrity guide</Link>.</li>
           </ul>
 

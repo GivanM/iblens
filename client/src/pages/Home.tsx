@@ -295,7 +295,7 @@ export default function Home() {
                   Applying to UK universities? From 2026 entry the personal statement is three separate questions, not one essay. Get a read on each answer from an admissions-tutor perspective.
                 </p>
                 <ul className="space-y-2.5 text-sm mb-6">
-                  {["All three answers reviewed separately", "Exact character checks against the 4,000 limit", "What a tutor would credit, and what they would miss", "Whether it reads as your subject specifically", "Ranked revision list"].map((item) => (
+                  {["All three answers reviewed separately", "Exact character checks against the 4,000 limit", "What a tutor would credit, and what they would look for and not find", "Whether it reads as your subject specifically", "Ranked revision list"].map((item) => (
                     <li key={item} className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                       <span>{item}</span>

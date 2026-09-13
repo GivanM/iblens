@@ -36,6 +36,7 @@ import {
   returnToLot,
   moveDeviceLotsToAccount,
   findAccountCopyOf,
+  isPurchaseRefunded,
   reopenAccountChain,
   findUnlockedCopyInChain,
   openDeviceRowsOfOpenCopies,
@@ -82,6 +83,9 @@ const productKeySchema = z.enum(["ESSAY_SINGLE", "ESSAY_PACK_5", "ESSAY_PACK_10"
  * Build the system prompt for essay analysis.
  * Includes rubric-specific instructions when a rubric is available.
  */
+// Tasks marked on one holistic instrument: the band is free, so the paid report must say why the mark is the higher or lower one in it.
+const HOLISTIC_TYPES = new Set(["TOK", "TOK Exhibition"]);
+
 function buildEssaySystemPrompt(essayType: string, subject: string, examSession?: string): string {
   const rubric = getRubric(essayType, subject, examSession);
   const rubricFragment = buildRubricPromptFragment(essayType, subject, examSession);
@@ -97,7 +101,7 @@ IMPORTANT FORMATTING RULES:
 - Write to the student in the second person ("you", "your essay"). Never refer to them as "the student" or "the candidate".
 - In every comment longer than three sentences, put a blank line (two newline characters) between separate points, so it reads as short paragraphs.
 - Use British spelling (analyse, organise, recognise, behaviour).
-- Never write a criterion's mark or the total inside a comment, risk, leverage zone, next step or the overall comment: the report shows the marks separately. Describe the level in words (for example "the Good band descriptor"), never as a number, and never say where in a level the mark sits (top, bottom, upper or lower end); a cap may name, in words, the highest mark it allows. Rules the notes ask you to explain, such as a cap or no marks for an essay not on a prescribed title, must still be stated, in words.
+- Never write a criterion's mark or the total inside a comment, risk, leverage zone, next step or the overall comment: the report shows the marks separately. Describe the level in words (for example "the Good band descriptor"), never as a number, and ${HOLISTIC_TYPES.has(essayType) ? "for this task, marked as a whole, explain in words in the criterion comment why the mark is the higher or the lower mark of its band (for example \"the higher mark of the band, because...\"), without writing the mark itself" : "never say where in a level the mark sits (top, bottom, upper or lower end)"}; a cap may name, in words, the highest mark it allows. Rules the notes ask you to explain, such as a cap or no marks for an essay not on a prescribed title, must still be stated, in words.
 - The work arrives as pasted text, so graphs, images, photos, diagrams and screenshots never come through, and tables may lose their layout. Never lower a mark because a graph or image is not visible, and never call one missing. Where the work describes a graph or image, judge what the description shows, and put anything about the graph itself (axes, error bars, labels) as a check for the student to make, not as a reason for the mark. If the criteria require a diagram or graph and the text refers to none, say that none was referred to and ask the student to check.`;
 
   if (rubricFragment) {
@@ -732,9 +736,9 @@ const essayRouter = router({
           // A re-check of the review that was bought, not a review of its own: counted as
           // one, it made a refund think the purchase had opened more than it had.
           const parentCopy = await findAccountCopyOf(signedIn.id, headId).catch(() => null);
-          // Only into an account that holds the review itself. On a shared browser whoever was
+          // Only into an account that holds the review itself, open. On a shared browser whoever was
           // signed in got someone else's review in their dashboard.
-          if (parentCopy) await createAnalysis({
+          if (parentCopy?.unlocked) await createAnalysis({
             userId: signedIn.id,
             type: "essay",
             essayType: "UCAS",
@@ -880,6 +884,8 @@ const essayRouter = router({
       return {
         exists: true as const,
         unlocked,
+        // A locked row that was paid for once (a refund closed it) did not use the free preview.
+        wasFreeRun: !(rec as any).unlockOrderId && !(rec as any).rerunOf,
         essayType: rec.essayType,
         subject: rec.subject,
         createdAt: rec.createdAt,
@@ -1002,7 +1008,9 @@ const essayRouter = router({
           });
         }
 
-        return paidByDevice
+        // Refunded while the model ran: the row was closed again, so only its preview goes back.
+        const refundedMeanwhile = paidByDevice && await isPurchaseRefunded(deviceOrderId).catch(() => false);
+        return paidByDevice && !refundedMeanwhile
           ? { result, wasAnonymous: true, unlocked: true as const }
           : { result: buildTeaser(result), wasAnonymous: true };
       } catch (error: any) {
@@ -1113,7 +1121,8 @@ const essayRouter = router({
         });
 
         // Free tier gets a teaser; paid credits get the full report immediately.
-        if (wasFree) {
+        // Refunded while the model ran: the row was closed again, so only its preview goes back.
+        if (wasFree || await isPurchaseRefunded(creditOrderId).catch(() => false)) {
           return { id: analysis.id, result: buildTeaser(result), wasFree: true };
         }
         return { id: analysis.id, result, wasFree: false };

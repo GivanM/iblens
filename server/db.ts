@@ -120,11 +120,18 @@ export async function createAnalysis(data: InsertAnalysis) {
  * refunded order and stayed open. Whatever the order opened closes again, as the refund did.
  */
 export async function relockIfRefunded(orderId: string | null | undefined) {
-  if (!orderId) return;
-  const order: any = await getOrderById(orderId).catch(() => undefined);
-  if (order?.status !== "refunded") return;
-  await relockAnalysesForOrder(order.userId, orderId);
+  if (!orderId || !(await isPurchaseRefunded(orderId))) return;
+  await relockAnalysesForOrder(0, orderId);
   await relockAnonymousForOrder(orderId);
+}
+
+/** A refunded purchase, whether our order ("paid" then "refunded") or a storefront lot ("ls:<id>"), which has no order row. */
+export async function isPurchaseRefunded(key: string | null | undefined): Promise<boolean> {
+  if (!key) return false;
+  const lot: any = await getCreditLot(key).catch(() => null);
+  if (lot?.refundedAt) return true;
+  const order: any = key.startsWith("ls:") ? undefined : await getOrderById(key).catch(() => undefined);
+  return order?.status === "refunded";
 }
 
 /**
@@ -152,6 +159,9 @@ export async function upsertAccountCopy(data: InsertAnalysis & { adoptedFromId: 
       resultJson: data.resultJson,
       predictedGrade: data.predictedGrade ?? null,
     }).where(eq(analyses.id, existing.id));
+    // Its re-checks made in the account were locked by the same refund and are covered by this payment.
+    await db.update(analyses).set({ unlocked: true, unlockOrderId: data.unlockOrderId ?? null })
+      .where(and(eq(analyses.rerunOf, existing.id), eq(analyses.unlocked, false)));
     await relockIfRefunded(data.unlockOrderId);
     return { id: existing.id };
   }
@@ -1102,14 +1112,15 @@ export async function takeFromLot(lotKey: string): Promise<boolean> {
 export async function returnToLot(lotKey: string | null | undefined): Promise<boolean> {
   const db = await getDb();
   if (!db || !lotKey) return true;
-  const order: any = await getOrderById(lotKey).catch(() => undefined);
-  if (order?.status === "refunded") {
+  if (await isPurchaseRefunded(lotKey)) {
     console.log(`[Lots] ${lotKey} was refunded during the run; its report is not returned`);
     return false;
   }
-  await db.update(creditLots)
+  const res: any = await db.update(creditLots)
     .set({ remaining: sql`${creditLots.remaining} + 1` })
-    .where(and(eq(creditLots.lotKey, lotKey), sql`${creditLots.remaining} < ${creditLots.granted}`));
+    .where(and(eq(creditLots.lotKey, lotKey), sql`${creditLots.remaining} < ${creditLots.granted}`, sql`${creditLots.refundedAt} IS NULL`));
+  // A refund that closed the lot between the check and the refill: nothing goes back.
+  if (Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0) === 0 && await isPurchaseRefunded(lotKey)) return false;
   return true;
 }
 
@@ -1149,9 +1160,10 @@ export async function findUnlockedCopyInChain(userId: number, deviceRow: { id: n
 export async function reopenAccountChain(copyId: number, orderId: string | null) {
   const db = await getDb();
   if (!db) return;
-  const opened = { unlocked: true, unlockedAt: new Date(), rerunsUsed: 0, ...(orderId ? { unlockOrderId: orderId } : {}) };
+  // The purchase that opened it, or none: keeping a refunded order's id let a later refund check close a report paid for again.
+  const opened = { unlocked: true, unlockedAt: new Date(), rerunsUsed: 0, unlockOrderId: orderId ?? null };
   await db.update(analyses).set(opened).where(and(eq(analyses.id, copyId), eq(analyses.unlocked, false)));
-  await db.update(analyses).set({ unlocked: true, ...(orderId ? { unlockOrderId: orderId } : {}) }).where(and(eq(analyses.rerunOf, copyId), eq(analyses.unlocked, false)));
+  await db.update(analyses).set({ unlocked: true, unlockOrderId: orderId ?? null }).where(and(eq(analyses.rerunOf, copyId), eq(analyses.unlocked, false)));
   await relockIfRefunded(orderId);
 }
 
@@ -1177,7 +1189,7 @@ export async function openDeviceRowsOfOpenCopies(fingerprint: string, userId: nu
 export async function findAccountCopyOf(userId: number, deviceRowId: number) {
   const db = await getDb();
   if (!db) return null;
-  const rows = await db.select({ id: analyses.id }).from(analyses)
+  const rows = await db.select({ id: analyses.id, unlocked: analyses.unlocked }).from(analyses)
     .where(and(eq(analyses.userId, userId), eq(analyses.adoptedFromId, deviceRowId))).limit(1);
   return (rows[0] as any) ?? null;
 }
@@ -1202,7 +1214,7 @@ export async function closeCreditLot(lotKey: string): Promise<{ remaining: numbe
     const lot: any = await getCreditLot(lotKey);
     if (!lot) return null;
     const res: any = await db.update(creditLots)
-      .set({ remaining: 0 })
+      .set({ remaining: 0, refundedAt: lot.refundedAt ?? new Date() })
       .where(and(eq(creditLots.id, lot.id), eq(creditLots.remaining, lot.remaining)));
     if (Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0) > 0) {
       return { remaining: lot.remaining, place: lot.place, userId: lot.userId ?? null, fingerprint: lot.fingerprint ?? null };
@@ -1334,6 +1346,7 @@ export async function adoptDeviceReports(fingerprint: string, userId: number): P
       continue;
     }
     if (inserted?.id) accountIdFor.set(rec.id, inserted.id);
+    await relockIfRefunded(rec.unlockOrderId);
     copied++;
   }
   if (copied > 0) console.log(`[Adopt] ${copied} paid report(s) moved to account ${userId}`);
@@ -1560,7 +1573,7 @@ export async function claimAnalysisUnlock(id: number, orderId?: string | null): 
   if (!db) throw new Error("Database not available");
   // A row opened by a new payment starts with its own re-checks, including one a refund had
   // locked after both were used.
-  const opened = { unlocked: true, unlockedAt: new Date(), rerunsUsed: 0, ...(orderId ? { unlockOrderId: orderId } : {}) };
+  const opened = { unlocked: true, unlockedAt: new Date(), rerunsUsed: 0, unlockOrderId: orderId ?? null };
   const res: any = await db.update(analyses)
     .set(opened)
     .where(and(eq(analyses.id, id), eq(analyses.unlocked, false)));
@@ -1575,7 +1588,7 @@ export async function claimAnalysisUnlock(id: number, orderId?: string | null): 
     }
     // The report's other re-check versions, locked by the same refund, open with it: left locked,
     // they were offered for sale again although this payment covers them.
-    await db.update(analyses).set({ unlocked: true, ...(orderId ? { unlockOrderId: orderId } : {}) })
+    await db.update(analyses).set({ unlocked: true, unlockOrderId: orderId ?? null })
       .where(and(eq(analyses.rerunOf, headId), eq(analyses.unlocked, false)));
     await relockIfRefunded(orderId);
   }
@@ -1588,7 +1601,7 @@ export async function claimAnonymousUnlock(id: number, orderId?: string | null):
   if (!db) throw new Error("Database not available");
   // A row opened by a new payment starts with its own re-checks, including one a refund had
   // locked after both were used.
-  const opened = { unlocked: true, unlockedAt: new Date(), rerunsUsed: 0, ...(orderId ? { unlockOrderId: orderId } : {}) };
+  const opened = { unlocked: true, unlockedAt: new Date(), rerunsUsed: 0, unlockOrderId: orderId ?? null };
   const res: any = await db.update(anonymousAnalyses)
     .set(opened)
     .where(and(eq(anonymousAnalyses.id, id), eq(anonymousAnalyses.unlocked, false)));
@@ -1603,7 +1616,7 @@ export async function claimAnonymousUnlock(id: number, orderId?: string | null):
     }
     // The report's other re-check versions, locked by the same refund, open with it: left locked,
     // they were offered for sale again although this payment covers them.
-    await db.update(anonymousAnalyses).set({ unlocked: true, ...(orderId ? { unlockOrderId: orderId } : {}) })
+    await db.update(anonymousAnalyses).set({ unlocked: true, unlockOrderId: orderId ?? null })
       .where(and(eq(anonymousAnalyses.rerunOf, headId), eq(anonymousAnalyses.unlocked, false)));
     await relockIfRefunded(orderId);
   }
@@ -1641,11 +1654,11 @@ export async function hasEarlierVerifiedWebhookEvent(eventKey: string, thisId?: 
   return false;
 }
 
-export async function markAnalysisUnlocked(id: number, orderId?: string) {
+export async function markAnalysisUnlocked(id: number, orderId?: string | null) {
   const db = await getDb();
   if (!db) return;
   await db.update(analyses)
-    .set({ unlocked: true, unlockedAt: new Date(), ...(orderId ? { unlockOrderId: orderId } : {}) })
+    .set({ unlocked: true, unlockedAt: new Date(), unlockOrderId: orderId ?? null })
     .where(eq(analyses.id, id));
   await relockIfRefunded(orderId);
 }

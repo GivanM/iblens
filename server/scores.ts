@@ -153,7 +153,7 @@ const CRITERION_COLON = /\bcriterion\s+[a-g][12]?\s*[:=]\s*\d+\b/i;
 const CAPPED = /\b(?:scor(?:e|es|ing)|mark(?:s|ed)?)\s+(?:above|below|at|of|higher than|more than|lower than)\s+\d+\b|\bcapped at\s+\d+\b|\bcannot (?:score|get|go|be awarded) (?:above|higher than|more than|beyond)\s+\d+\b|\b(?:puts?|places?)\s+criterion\s+[a-g][12]?\s+at\s+\d+\b|\bis an?\s+\d+\b(?![\d,.]*\s*(?:-|words?|%|pages?|minutes?|°|degrees?))/i;
 const GOT = /\b(?:got|gets|get|getting|achiev(?:e|es|ed|ing)|reach(?:es|ed)?)\s+(?:a\s+|an\s+)?\d+\b(?!\s*(?:words?|%|sources?|pages?))/i;
 const WORD_MARK = new RegExp(String.raw`\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\s+(?:out of|of)\s+(?:\d+|four|five|six|eight|ten|twelve)\b` + COUNTED_NOUN + String.raw`|\bout of (?:four|five|six|eight|ten|twelve)\b` + COUNTED_NOUN, "i");
-const AT_TOP = /\b(?:full marks|top band|top of the (?:band|scale|range)|highest band|maximum mark|the maximum (?:mark|marks|score|band|level)|at the maximum(?!\s+(?:of|point|value|height|speed))|top mark|bottom of the (?:band|scale|range)|lowest band|maxed(?:\s+out)?|maxxed|at (?:the )?ceiling|perfect score|(?:near|almost|nearly|essentially|virtually)[- ](?:perfect|flawless|full marks))\b/i;
+const AT_TOP = /\b(?:full marks|top band|top of the (?:band|scale|range)|highest band|maximum mark|the maximum (?:mark|marks|score|band|level)|at the maximum(?!\s+(?:of|point|value|height|speed))|top mark|bottom of the (?:band|scale|range)|lowest band|maxed(?:\s+out)?|maxxed|(?:marks?|scores?|criteri(?:on|a))\s+(?:\w+\s+){0,3}at (?:the )?ceiling|perfect score|(?:near|almost|nearly|essentially|virtually)[- ](?:perfect|flawless|full marks))\b/i;
 // Where in a level a mark sits: "at the top of the Satisfactory band", "the upper end of that level".
 const POSITION = /\b(?:top|bottom|upper|lower|higher|highest|lowest|high|low)\s+(?:end|mark|boundary|edge|half|part|limit|reaches)\b|\b(?:top|bottom|upper|lower)\s+of\s+(?:the\s+|this\s+|that\s+|its\s+)?(?:[a-z]+\s+)?(?:band|level|range|scale)\b/i;
 // A level named next to a nearness word says which half of the band the mark is in:
@@ -182,7 +182,8 @@ export function stripMarksDetailed(text: string, opts: MarkTextOptions = {}): { 
   if (typeof text !== "string" || !text) return { text, dropped: 0 };
   // Sentences end at a full stop or a line break: a list with no full stops was one "sentence"
   // and went whole when a single line stated a mark.
-  const parts = text.split(/((?<=[.!?])\s+|\n+)/);
+  // Not after "e.g.", "i.e.", "approx.", "vs.": a mark after one of those stayed in a sentence of its own.
+  const parts = text.split(/((?<!\b(?:e\.g|i\.e|approx|cf|vs|incl|fig|figs|no|nos|p|pp|ca|c|al|eq|ref|sect?|ch|vol))(?<=[.!?])\s+|\n+)/i);
   let out = "";
   let pendingBreak = "";
   let dropped = 0;
@@ -212,16 +213,16 @@ const RULE = /\b(?:no marks|receives? zero|awarded zero|marking stops|stops? rea
 // Numbers that measure the work rather than mark it: "4,000 words", "20%", "25 °C", "3 sources".
 const COUNTED_NOUNS = String.raw`(?:words?|characters?|pages?|sources?|documents?|articles?|objects?|prompts?|titles?|areas?|examples?|quotations?|participants?|samples?|trials?|repeats?|measurements?|readings?|data points?|variables?|questions?|paragraphs?|sections?|commentaries|units?|concepts?|poems?|texts?|works?|studies|references?|footnotes?|figures?|tables?|graphs?|charts?|diagrams?|interviews?|responses?|people|students?|knowers?|perspectives?|ways?|parts?|objects?|criteria|sentences?|weaknesses|strengths|factors?|tools?|claims?|counter-?claims?|arguments?|counter-?arguments?|methods?|approaches|reasons?|citations?|quotes?|hypothes[ie]s|experiments?|groups?|conditions?|categories|themes?|issues?|errors?|mistakes?|problems?|limitations?|improvements?|extensions?|stages?|steps?|lines?|images?|photos?|photographs?|maps?|equations?|models?|events?|periods?|countries|languages?|chapters?|scenes?|stanzas?|novels?|films?|artists?|artworks?|items?|options?|alternatives?|solutions?|features?|functions?|tests?|replicates?|concentrations?|temperatures?|values?|indicators?|firms?|markets?|stakeholders?|products?|days?|weeks?|months?|years?)`;
 // "two areas of knowledge", "one of four key concepts", "one of the prescribed titles", "3 of 5 sources".
-const COUNTED_WORDS = new RegExp(String.raw`(?<!\b(?:bands?|levels?|markbands?|grades?|scores?|marks?|criteri(?:on|a)\s+[a-g][12]?)\s+)\b(?:\d[\d,.]*|one|two|three|four|five|six|seven|eight|nine|ten)\s+(?:of\s+(?:the\s+|your\s+|its\s+)?(?:\d+\s+|one\s+|two\s+|three\s+|four\s+|five\s+|six\s+|seven\s+|eight\s+|nine\s+|ten\s+)?)?(?:(?!(?:because|and|but|or|so|as|since|while|for|to|the|a|an|is|are|was|were|be|been|marks?|points?|out|band|level|score[ds]?|awarded|on|in|at|across|under|with|within|from|into|than|above|below|over|per|each|every|all|both|other|remaining|overall|total|altogether)\b)[a-z-]+\s+)?${COUNTED_NOUNS}\b`, "gi");
+const COUNTED_WORDS = new RegExp(String.raw`(?<!\b(?:bands?|levels?|markbands?|grades?|scores?|marks?|criteri(?:on|a)\s{1,3}[a-g][12]?)\s{1,3})\b(?:\d[\d,.]*|one|two|three|four|five|six|seven|eight|nine|ten)\s+(?:of\s+(?:the\s+|your\s+|its\s+)?(?:\d+\s+|one\s+|two\s+|three\s+|four\s+|five\s+|six\s+|seven\s+|eight\s+|nine\s+|ten\s+)?)?(?:(?!(?:because|and|but|or|so|as|since|while|for|to|the|a|an|is|are|was|were|be|been|marks?|points?|out|band|level|score[ds]?|awarded|on|in|at|across|under|with|within|from|into|than|above|below|over|per|each|every|all|both|other|remaining|overall|total|altogether)\b)[a-z-]+\s+)?${COUNTED_NOUNS}\b`, "gi");
 // Mathematics in a comment: "x = 1.2", "2x", "3^2".
 const MATHS = /\b[a-z]\s*[=<>≤≥]\s*[-−]?\d[\d.,]*[a-z]?(?:\s*[+\-−×*^]\s*\d[\d.,]*[a-z]?)*|\b[a-z]\s*[+\-−×*^]\s*\d[\d.,]*|\b\d[\d.,]*[a-z]\b|\d\s*[\^×*+]\s*\d|\^\d/gi;
-const SAFE_NUMBER = /(?<!\b(?:bands?|levels?|markbands?|grades?|scores?|marks?)\s+)\b\d[\d,.]*\s*(?:words?|characters?|%|per ?cent|pages?|minutes?|mins?|hours?|seconds?|days?|weeks?|months?|years?|°\s*[CF]?|degrees?|cm|mm|km|kg|mg|ml|mol|hz|kpa|sources?|documents?|articles?|objects?|prompts?|titles?|areas?|examples?|quotations?|participants?|samples?|trials?|repeats?|measurements?|readings?|data points?|variables?|questions?|paragraphs?|sections?|commentaries|units?|concepts?|poems?|texts?|works?|studies|references?|footnotes?|figures?|tables?|graphs?|charts?|diagrams?|interviews?|responses?|people|students?|decimal places?|significant figures?|s\.f\.|d\.p\.)(?![A-Za-z])/gi;
+const SAFE_NUMBER = /(?<!\b(?:bands?|levels?|markbands?|grades?|scores?|marks?)\s{1,3})\b\d[\d,.]*\s*(?:words?|characters?|%|per ?cent|pages?|minutes?|mins?|hours?|seconds?|days?|weeks?|months?|years?|°\s*[CF]?|degrees?|cm|mm|km|kg|mg|ml|mol|hz|kpa|sources?|documents?|articles?|objects?|prompts?|titles?|areas?|examples?|quotations?|participants?|samples?|trials?|repeats?|measurements?|readings?|data points?|variables?|questions?|paragraphs?|sections?|commentaries|units?|concepts?|poems?|texts?|works?|studies|references?|footnotes?|figures?|tables?|graphs?|charts?|diagrams?|interviews?|responses?|people|students?|decimal places?|significant figures?|s\.f\.|d\.p\.)(?![A-Za-z])/gi;
 // Number words, including compounds up to forty-five, turned into numbers so they are judged like digits.
 const UNITS: Record<string, number> = { zero: 0, nil: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19 };
 const TENS: Record<string, number> = { twenty: 20, thirty: 30, forty: 40 };
 const NUMBER_WORDS_ANY = /\b(?:(twenty|thirty|forty)(?:[-\s](one|two|three|four|five|six|seven|eight|nine))?|(zero|nil|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen))\b/gi;
 // "One" that is not a number: "no one", "one of the", "one another", "this one".
-const NOT_A_NUMBER = /\b(?:no|each|this|that|the|any|every|which|someone|anyone)\s+one\b|\bone\s+(?:another|of\b)|\bone-(?=[a-z])|\b(?:zero|nil)(?=\s+(?!(?:marks?|points?|out|of|on|in|for|across|at|and|to|or|overall|total|band|level|score|grade|awarded|because|since|given|as|while|with|when|if|so|but|here|there|now|then|this|that|these|those|the|and|is|are|was|were|be|been|overall|again|too|also|which|who|from|by|after|before|under|over|until|unless|though|although|whereas|every|each|all|both|either|neither|your|its|their|his|her|our|my)\b)[a-z]{3,})/gi;
+const NOT_A_NUMBER = /\b(?:no|each|this|that|the|any|every|which|someone|anyone)\s+one\b|\bone\s+(?:another|of\b)|\bone-(?=[a-z])|\b(?:zero|nil)(?=\s+(?!(?:marks?|points?|credit|out|of|on|in|for|across|at|and|to|or|overall|total|band|level|score|grade|awarded|because|since|given|as|while|with|when|if|so|but|here|there|now|then|this|that|these|those|the|and|is|are|was|were|be|been|overall|again|too|also|which|who|from|by|after|before|under|over|until|unless|though|although|whereas|every|each|all|both|either|neither|your|its|their|his|her|our|my)\b)[a-z]{3,})/gi;
 function numberWordsToDigits(text: string): string {
   return text.replace(NOT_A_NUMBER, " ").replace(NUMBER_WORDS_ANY, (_m, tens, unit, single) => {
     if (tens) return String(TENS[tens.toLowerCase()] + (unit ? UNITS[unit.toLowerCase()] : 0));
@@ -231,10 +232,10 @@ function numberWordsToDigits(text: string): string {
 // Symbols with numbers in them, prices and rates are not marks: "AD1 to AD2", "BC547", "€90,000", "15 per group", "173 lux".
 const ALNUM = /\b[A-Za-zκαβγδλμ]+[-+]?\d+[A-Za-z0-9]*\b/g;
 const CURRENCY = /[€$£¥₹]\s?\d[\d,.]*\s*(?:[kKmMbB]n?|million|billion)?/g;
-const PER_UNIT = /(?<!\b(?:bands?|levels?|markbands?|grades?|scores?|marks?)\s+)\b\d[\d,.]*\s*(?:per\s+\w+|lux|lm|nm|µm|rpm|ppm|ppb|mA|mV|kV|kW|kJ|MJ|Pa|kPa|atm|bar|mmHg|dB|Hz|K|V|A|W|J|N|g|s|ms|min|h|L|mL|dm3|cm3|M|mM|customers?|respondents?|pupils?|children|adults?|subjects?|patients?|plants?|seeds?|pots?|leaves|households?|firms?|countries|cases?)\b/g;
+const PER_UNIT = /(?<!\b(?:bands?|levels?|markbands?|grades?|scores?|marks?)\s{1,3})\b\d[\d,.]*\s*(?:per\s+\w+|lux|lm|nm|µm|rpm|ppm|ppb|mA|mV|kV|kW|kJ|MJ|Pa|kPa|atm|bar|mmHg|dB|Hz|K|V|A|W|J|N|g|s|ms|min|h|L|mL|dm3|cm3|M|mM|customers?|respondents?|pupils?|children|adults?|subjects?|patients?|plants?|seeds?|pots?|leaves|households?|firms?|countries|cases?)\b/g;
 // List numbering, labels and measured values are not marks: "(2)", "Figure 1", "Section 5", "1.18".
-const ENUMERATION = /(?<!criteri(?:on|a)\s+[a-g][12]?\s*)(?:(?:^|\s)\(?\d{1,2}[.)](?=\s)|\(\d{1,2}\))/gi;
-const LABEL_NUMBER = /\b(?:(?:figure|fig\.|table|section|appendix|source|document|step|stage|part|question|paragraph|page|line|equation|chapter|graph|diagram|object|trial|sample|group|experiment|version|model|method|image|photo|interview|participant|site|round|week|day|year|test|run|condition|hypothesis|stanza|scene|act)s?|figs\.|level\s+of\s+significance)\s*\d+(?:\.\d+)*[a-z]?(?:\s*(?:,|and|&|or|to|-|–)\s*\d+(?:\.\d+)*[a-z]?\b)*|\bpH\s*\d+(?:\.\d+)?/gi;
+const ENUMERATION = /(?<!criteri(?:on|a)\s{1,3}[a-g][12]?\s{0,3})(?:(?:^|\s)\(?\d{1,2}[.)](?=\s)|\(\d{1,2}\))/gi;
+const LABEL_NUMBER = /\b(?:(?:figure|fig\.|table|section|appendix|source|document|step|stage|part|question|paragraph|page|line|equation|chapter|graph|diagram|object|trial|sample|group|experiment|version|model|method|image|photo|interview|participant|site|round|week|day|year|test|run|condition|hypothesis|stanza|scene|act)s?|figs\.|level\s+of\s+significance)\s*\d+(?:\.\d+)*[a-z]?(?:\s*(?:,|and|&|or|to|-|–)\s*\d+(?:\.\d+)*[a-z]?\b(?!\s*(?:marks?|points?|out of|\/)))*|\bpH\s*\d+(?:\.\d+)?/gi;
 const DECIMAL = /[-−~≈]?\b\d+\.\d+\b/g;
 // A number word as a mark: "one mark", "two marks", "a score of two", "full marks".
 const NUMBER_WORD_MARK = /\b(?:zero|nil|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|full|maximum|minimum)\s+(?:\w+\s+)?(?:marks?|points?|out of|band|level)\b|\b(?:score|mark|awarded|band|level)\s+(?:of\s+)?(?:a\s+|an\s+)?(?:zero|nil|one|two|three|four|five|six|seven|eight|nine|ten)\b|\bfull marks\b|\b(?:high|low|mid)\s+(?:teens|twenties|thirties)\b/i;
@@ -244,7 +245,7 @@ const NUMBER_WORD = /\b(?:zero|nil|one|two|three|four|five|six|seven|eight|nine|
 const WHOLE_WORK = /\b(?:total|overall|altogether|combined|in all|put together|added up|as a whole|whole (?:essay|work|report|investigation|ia|exploration|project)|other criteri(?:on|a)|remaining criteri(?:on|a)|every (?:other )?criterion|each criterion|all (?:the |five |four |six |seven )?criteria|elsewhere|across the (?:board|criteria)|the others|the other ones|the rest|everything else|every other|only criterion|no other criterion)\b/i;
 // Nouns for the whole piece of work: a number tied to one of them is not a criterion's own.
 export const WHOLE_WORK_NOUNS = ["essay", "ia", "ee", "report", "exploration", "investigation", "project", "commentary", "submission", "piece", "work", "draft"];
-const NO_MARKS = /\b(?:no|zero|unearned|full|all)\s+(?:\w+\s+)?marks?\b|\b(?:half|a third|a quarter|most|the majority)\s+(?:of\s+)?the\s+(?:total\s+|available\s+)?marks\b|\bmarks?\s+(?:on|in|for)\s+any\b/i;
+const NO_MARKS = /\b(?:no|zero|nil)\s+(?:\w+\s+)?credit\b|\b(?:cannot|can ?not|can't|will not|won't|would not|does not|do not)\s+(?:be\s+)?(?:award|give|credit|earn|gain|receive)\w*\s+(?:any|full|top|the top)\s+(?:marks?|credit)\b|\b(?:costs?|costing|los(?:e|es|t|ing)|drops?|dropping|deduct\w*)\s+(?:you\s+|it\s+|the essay\s+)?(?:a|one|the|its|another)\s+mark\b|\b(?:second|final|last|only|remaining)\s+mark\b|\b(?:no|zero|unearned|full|all)\s+(?:\w+\s+)?marks?\b|\b(?:half|a third|a quarter|most|the majority)\s+(?:of\s+)?the\s+(?:total\s+|available\s+)?marks\b|\bmarks?\s+(?:on|in|for)\s+any\b/i;
 // Where in the scale a criterion or the essay sits, without a number: "mid-band", "the lower
 // bands", "the middle band", "the second-highest band". "A high level of detail" is not one.
 const BAND_POSITION = /\b(?:mid|middle|upper|lower|top|bottom|highest|lowest|high|low|second|third)(?:[- ](?:mid(?:dle)?|highest|lowest|top|bottom))?[- ](?:band|bands|markbands?|mark bands?)\b|\b(?:mid|middle|upper|lower|top|bottom|highest|lowest|second|third)(?:[- ](?:highest|lowest))?[- ](?:levels?|descriptors?)\b(?!\s+of\b)|\bmid-?band\b|\bmid-?range\b/i;
@@ -259,12 +260,12 @@ const BAND_MOVE = /\b(?:drops?|dropping|lowers?|costs?|loses?|raises?|lifts?|mov
 // How near a named level a task marked as a whole is, in words the level itself does not say:
 // "a weak Good", "close to Excellent", "Excellent in places, Good overall". Capitalised level
 // names only: "a clear, good example" is prose, not a level.
-const NEAR_NAMED_LEVEL = /\b(?:[Ww]eak|[Cc]lear|[Bb]arely(?: makes)?|[Jj]ust inside|[Cc]lose to|[Oo]ne step (?:from|below|under)|[Nn]otch (?:below|under)|[Ss]hade (?:below|under)|[Rr]ight (?:below|under)|[Mm]ore|[Ll]ess|[Mm]ostly|[Aa]t most|[Aa]t least|[Nn]o better than|[Nn]o worse than|[Ss]olidly|[Cc]eiling of|[Ff]loor of|[Hh]igh-end|[Ll]ow-end|[Uu]pper-end|[Ll]ower-end|[Ww]ithin reach of|[Ii]nside|[Uu]nder)\s+(?:a\s+|an\s+|the\s+)?(?:Excellent|Very good|Good|Satisfactory|Adequate|Basic|Limited|Rudimentary)\b|\b(?:Excellent|Good|Satisfactory|Adequate|Basic|Limited|Rudimentary)\b[^.;:]{0,25}\b(?:in places|at times|overall|occasionally|moments|could become|within reach|than (?:Excellent|Good|Satisfactory|Basic|Rudimentary)|descriptors?)\b|\b[Bb]orderline\s+(?:between\s+)?(?:Excellent|Very good|Good|Satisfactory|Adequate|Basic|Limited|Rudimentary)\b|^\s*[Bb]orderline\s*[.!]?\s*$|\bcould go either way\b/;
-const CRITERION_EQUALS = /\bcriteri(?:on|a)\s+([a-g])[12]?\s*(?:[:=]|\(|\[|,)\s*\d/i;
+const NEAR_NAMED_LEVEL = /\b(?:[Ww]eak|[Cc]lear|[Bb]arely(?: makes)?|[Jj]ust inside|[Cc]lose to|[Oo]ne step (?:from|below|under)|[Nn]otch (?:below|under)|[Ss]hade (?:below|under)|[Rr]ight (?:below|under)|[Mm]ore|[Ll]ess|[Mm]ostly|[Aa]t most|[Aa]t least|[Nn]o better than|[Nn]o worse than|[Ss]olidly|[Cc]eiling of|[Ff]loor of|[Hh]igh-end|[Ll]ow-end|[Uu]pper-end|[Ll]ower-end|[Ww]ithin reach of|[Ii]nside|[Uu]nder)\s+(?:a\s+|an\s+|the\s+)?(?:Excellent|Very good|Good|Satisfactory|Adequate|Basic|Limited|Rudimentary)\b|\b(?:Excellent|Good|Satisfactory|Adequate|Basic|Limited|Rudimentary)\b[^.;:]{0,25}\b(?:in places|at times|overall|occasionally|moments|could become|within reach|than (?:Excellent|Good|Satisfactory|Basic|Rudimentary)|descriptors?|only just|just about|barely)\b|\b[Bb]orderline\s+(?:between\s+)?(?:Excellent|Very good|Good|Satisfactory|Adequate|Basic|Limited|Rudimentary)\b|^\s*[Bb]orderline\s*[.!]?\s*$|\bcould go either way\b/;
+const CRITERION_EQUALS = /\bcriteri(?:on|a)\s+([a-g])([12])?\s*(?:[:=]|\(|\[|,)\s*\d/i;
 const PLURAL_MARKS = /(?<![\d.,\/+-])\b\ds\s+(?:and|or|to)\s+\ds\b|(?<![\d.,\/+-])\b\ds\s+(?:across|elsewhere|everywhere|on every|on all|in every|in all|on the other|for the other)\b|\b(?:mostly|all|straight|scor\w*|gets?|earns?)\s+\ds\b/i;
 const AVERAGE = /\b(?:average|mean)\s+(?:mark\s+|score\s+)?(?:of\s+)?(?:about\s+|around\s+|roughly\s+)?\d{1,2}(?:\.\d)?\b/i;
 const MARK_TALK = /\b(?:marks?|scor\w*|criteri\w*|bands?|levels?|grades?)\b/i;
-const LETTER_GRADE = /\b(?:[Ee]arn|[Gg]et|[Aa]chiev|[Rr]eceiv|[Aa]ward|[Ss]cor|[Rr]each|[Ss]ecur|[Ll]and|[Mm]erit|[Ww]orth|[Cc]ap)\w*\s+(?:(?:a|an|the|essay|work|it|at|to|of|grade|likely|probably|only|most|best|solid|strong|low|high|around|about)\s+){0,4}["'‘“]?[A-E][+-]?["'’”]?(?![\w’'/-])|\b(?:[Aa]n?|[Gg]rade)\s+[A-E][+-]?\s+(?:grade|essay|EE|TOK|piece|level)\b|\b(?:[Aa]|[Tt]he|[Yy]our|predicted|final|overall|likely|expected|[Ee]xpect)\s+grade\s+(?:of\s+|is\s+|would be\s+)?["'\u2018\u201c]?[A-E][+-]?["'\u2019\u201d]?(?![\w\u2019'/-])|\b[Gg]rade\s+of\s+[A-E]\b|\bshort of (?:an?\s+|the\s+)?[A-E][+-]?(?![\w’'/-])|\b(?:is|be|likely|probably|[Ee]xpect|becomes?|makes?|as)\s+(?:a|an)\s+[A-E][+-]?(?=[\s.,;!?)]|$)|(?:^|[.!?]\s+)An?\s+[A-E][+-]?\s+(?:is|would|could|will|grade)\b|\b[A-E][+-]?-grade\s+(?:work|essay|piece|EE|TOK|standard|level)\b|\bthe\s+[A-E][+-]?\s+(?:boundary|grade|band)\b|\b[A-G][12]?\s*[=:]\s*\d+\s*[,;]\s*[A-G][12]?\s*[=:]\s*\d/;
+const LETTER_GRADE = /\b(?:[Ee]arn|[Gg]et|[Aa]chiev|[Rr]eceiv|[Aa]ward|[Ss]cor|[Rr]each|[Ss]ecur|[Ll]and|[Mm]erit|[Ww]orth|[Cc]ap)\w*\s+(?:(?:a|an|the|essay|work|it|at|to|of|grade|likely|probably|only|most|best|solid|strong|low|high|around|about)\s+){0,4}["'‘“]?[A-E][+-]?["'’”]?(?![\w’'/-])|\b(?:[Aa]n?|[Gg]rade)\s+[A-E][+-]?\s+(?:grade|essay|EE|TOK|piece|level)\b|\b(?:[Aa]|[Tt]he|[Yy]our|predicted|final|overall|likely|expected|[Ee]xpect)\s+grade\s+(?:of\s+|is\s+|would be\s+)?["'\u2018\u201c]?[A-E][+-]?["'\u2019\u201d]?(?![\w\u2019'/-])|\b[Gg]rade\s+of\s+[A-E]\b|\bbetween (?:an?\s+)?[A-E][+-]? and (?:an?\s+)?[A-E][+-]?(?![\w’'/-])|\b[A-E][+-]?\/[A-E][+-]?\s+(?:borderline|boundary|grade|essay|range|border)\b|\bshort of (?:an?\s+|the\s+)?[A-E][+-]?(?![\w’'/-])|\b(?:is|be|likely|probably|[Ee]xpect|becomes?|makes?|as)\s+(?:a|an)\s+[A-E][+-]?(?=[\s.,;!?)]|$)|(?:^|[.!?]\s+)An?\s+[A-E][+-]?\s+(?:is|would|could|will|grade)\b|\b[A-E][+-]?-grade\s+(?:work|essay|piece|EE|TOK|standard|level)\b|\bthe\s+[A-E][+-]?\s+(?:boundary|grade|band)\b|\b[A-G][12]?\s*[=:]\s*\d+\s*[,;]\s*[A-G][12]?\s*[=:]\s*\d/;
 
 /**
  * Whether a sentence of the free preview could state or narrow a mark. Pattern lists kept
@@ -296,7 +297,7 @@ export function statesMark(s: string, opts: MarkTextOptions = {}): boolean {
     .replace(/\b\d{1,3}(?:,\d{3})+\b|\b\d+\b/g, (m) => (Number(m.replace(/,/g, "")) > 45 ? " " : m));
   const aboutOthers = WHOLE_WORK.test(t)
     || (opts.ownLetter
-      ? Array.from(t.matchAll(/\bcriteri(?:on|a)\s+([a-g][12]?\b(?:\s*(?:,|&|and|or|to)\s*[a-g][12]?\b)*)/gi)).some((m) => (m[1].match(/\b[a-g]/gi) || []).some((l) => l.toLowerCase() !== opts.ownLetter!.toLowerCase()))
+      ? Array.from(t.matchAll(/\bcriteri(?:on|a)\s+([a-g][12]?\b(?:\s*(?:,|&|and|or|to)\s*[a-g][12]?\b)*)/gi)).some((m) => (m[1].match(/\b[a-g][12]?\b/gi) || []).some((l) => l.toLowerCase() !== opts.ownLetter!.toLowerCase()))
       : /\bcriteri(?:on|a)\s+[a-g]\b/i.test(t));
   // A number tied to another criterion's name or to the whole work: "your reflection at 2",
   // "your investigation would score 12", "3 on analysis". Names are ordinary words ("evaluation"),
@@ -306,6 +307,12 @@ export function statesMark(s: string, opts: MarkTextOptions = {}): boolean {
     if (!n) return false;
     const name = n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     return new RegExp(String.raw`\b${name}\b[^.;:]{0,30}?\b(?:is|are|was|sits?|sitting|at|scores?|scored|scoring|earns?|earned|gets?|got|reach(?:es|ed)?|receives?|received|awarded|would be|comes? to|lands?|with|on)\s+(?:a\s+|an\s+|only\s+|just\s+|around\s+|about\s+|roughly\s+)?\d|\b${name}\b\s*(?:[:=(\[]|,)\s*\d|\b\d+(?:\s*\/\s*\d+)?\s+(?:marks?\s+)?(?:on|for|in)\s+(?:the\s+|your\s+)?${name}\b`, "i").test(digits);
+  });
+  // Another criterion placed on its scale by name: "your analysis is in the top band".
+  const placesOther = (opts.otherNames || []).some((n) => {
+    if (!n || WHOLE_WORK_NOUNS.includes(n)) return false;
+    const name = n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return new RegExp(String.raw`\b${name}\b[^.;:]{0,30}?\b(?:mid|middle|upper|lower|top|bottom|highest|lowest)[- ](?:band|bands|level|levels|markband|descriptor)s?\b|\b(?:mid|middle|upper|lower|top|bottom|highest|lowest)[- ](?:band|bands|level|levels|markband)s?\s+(?:for|on|in)\s+(?:the\s+|your\s+)?${name}\b`, "i").test(t);
   });
   // Beside its own shown mark, the weakest criterion's comment may speak of that criterion's
   // scale ("a score of 1", "for 5-6 marks", "to reach 3/3"): it says nothing about the total.
@@ -321,18 +328,18 @@ export function statesMark(s: string, opts: MarkTextOptions = {}): boolean {
   if (/\d/.test(measured)) return true;
   const own = String(opts.ownLetter || "").toLowerCase();
   const equals = t.match(CRITERION_EQUALS);
-  if (equals && !(opts.allow && equals[1].toLowerCase() === own)) return true;
+  if (equals && !(opts.allow && `${equals[1]}${equals[2] ?? ""}`.toLowerCase() === own)) return true;
   if (PERCENT_OF_MAX.test(t) || OUT_OF_100.test(t) || PLURAL_MARKS.test(t) || LETTER_GRADE.test(t) || BAND_MOVE.test(t)) return true;
   if (AVERAGE.test(t) && MARK_TALK.test(t)) return true;
   // A rule that names a criterion is that criterion's mark: "Criterion C receives no marks".
-  if (RULE.test(t) && !/\bcriteri(?:on|a)\s+[a-g]\b/i.test(t) && !POSITION.test(t) && !NEAR_LEVEL.test(t) && !NUMBER_WORD_MARK.test(t)) return false;
+  if (RULE.test(t) && !/\bcriteri(?:on|a)\s+[a-g]\b/i.test(t) && !POSITION.test(t) && !NEAR_LEVEL.test(t) && !NUMBER_WORD_MARK.test(t) && !AT_TOP.test(t) && !BAND_POSITION.test(t) && !CANNOT_SCORE.test(t)) return false;
   // "full marks" in the weakest criterion's own comment is about that criterion's scale.
   if (!(opts.allow && !aboutOthers) && (NO_MARKS.test(t) || NUMBER_WORD_MARK.test(measured))) return true;
   if (POSITION.test(t)) return true;
-  if (opts.holistic) return HOLISTIC_MARK_WORDS.test(t) || NEAR_LEVEL.test(t) || NEAR_NAMED_LEVEL.test(t) || CANNOT_SCORE.test(t) || /\b\d+\s*(?:%|per ?cent)(?!\s+of\s+(?!the\s+marks|marks|the\s+total))/i.test(t);
+  if (opts.holistic) return HOLISTIC_MARK_WORDS.test(t) || NEAR_LEVEL.test(t) || NEAR_NAMED_LEVEL.test(t) || CANNOT_SCORE.test(t) || AT_TOP.test(t) || BAND_POSITION.test(t) || /\b\d+\s*(?:%|per ?cent)(?!\s+of\s+(?!the\s+marks|marks|the\s+total))/i.test(t);
   // The weakest criterion's own position and caps are what its shown mark already says.
   const placed = AT_TOP.test(t) || BAND_POSITION.test(t) || CANNOT_SCORE.test(t);
-  if (opts.allow) return placed && aboutOthers;
+  if (opts.allow) return (placed && aboutOthers) || placesOther;
   return placed;
 }
 
@@ -399,18 +406,42 @@ export function softTruncate(text: string, limit: number): string {
   return window.replace(/\s+\S*$/, "") + "\u2026";
 }
 
+const NAME_STOP_WORDS = new Set(["with", "from", "into", "that", "this", "their", "your", "work", "line", "use", "used", "using", "level", "levels", "overall"]);
+/** Only what the preview card shows: a key the model added ("score_label": "7/10") went out unfiltered. */
+function previewCriterion(c: any) {
+  return { name: c?.name, max: c?.max, score: c?.score ?? null, comment: c?.comment };
+}
+
 /** What the weakest criterion's comment may keep: its own shown mark and scale, nothing about the rest. */
 function weakestMarkOptions(weakest: any, criteria: any[], holistic: boolean): MarkTextOptions {
   const allow = !holistic && typeof weakest?.score === "number" ? `${weakest.score}/${weakest.max}` : undefined;
   const ownName = String(weakest?.name || "");
-  const ownLetter = ownName.match(/criterion\s+([a-g])/i)?.[1];
+  const ownLetter = ownName.match(/criterion\s+([a-g][12]?)\b/i)?.[1];
   const bare = (n: string) => n.replace(/^\s*(?:criterion|section)\s+[a-z0-9]+[12]?\s*[:.\-]\s*|^\s*[ivx]+\.\s*/i, "").trim().toLowerCase();
   const own = bare(ownName);
-  const otherNames = criteria
-    .map((c) => bare(String(c?.name || "")))
-    .filter((n) => n.length >= 4 && n !== own && !own.includes(n))
+  const ownWords = new Set(own.split(/[^a-z]+/).filter(Boolean));
+  const names = criteria.map((c) => bare(String(c?.name || ""))).filter((n) => n.length >= 4 && n !== own && !own.includes(n));
+  // A criterion is often called by one word of its name: "your analysis sits at 5".
+  const words = names.flatMap((n) => n.split(/[^a-z]+/)).filter((w) => w.length >= 4 && !ownWords.has(w) && !NAME_STOP_WORDS.has(w));
+  const otherNames = Array.from(new Set([...names, ...words]))
     .concat(WHOLE_WORK_NOUNS.filter((n) => !new RegExp(String.raw`\b${n}\b`).test(own)));
   return { allow, holistic, ownMax: allow ? Number(weakest.max) : undefined, ownLetter, otherNames };
+}
+
+/**
+ * The IB band of a task marked as a whole, as a range. A model that wrote "7/10" in the band
+ * field was served band "7", the exact mark; a band that is not a range is worked out from the
+ * mark on the instrument's two-mark bands.
+ */
+function holisticBand(result: any): string | null {
+  const written = typeof result?.band_range === "string" ? result.band_range.match(/(\d+)\s*[-\u2013\u2014]\s*(\d+)(?!\s*\/)/) : null;
+  if (written && Number(written[2]) - Number(written[1]) >= 1) return `${written[1]}-${written[2]}`;
+  const score = Number(result?.predicted_score ?? result?.criteria?.[0]?.score);
+  const max = Number(result?.max_score ?? result?.criteria?.[0]?.max);
+  if (!Number.isFinite(score) || max !== 10) return null;
+  if (score <= 0) return "0";
+  const hi = Math.min(10, Math.ceil(score / 2) * 2);
+  return `${hi - 1}-${hi}`;
 }
 
 export function computeTeaser(result: any) {
@@ -421,6 +452,7 @@ export function computeTeaser(result: any) {
   let commentTrimmed = false;
   // Nothing in the preview's text may state a mark: only the weakest criterion's own mark,
   // when it is shown, stays.
+  if (weakest) weakest = previewCriterion(weakest);
   if (weakest && typeof weakest.comment === "string") {
     const cleaned = stripMarksDetailed(weakest.comment, weakestMarkOptions(weakest, criteria, holistic));
     commentTrimmed = cleaned.dropped > 0;
@@ -441,12 +473,9 @@ export function computeTeaser(result: any) {
   // range the model centred on the total, which gave the paid mark away. A task marked as
   // a whole keeps its IB band. Whether the total sits near a band edge is not shown: it
   // would say where in the band the mark is.
-  const bandRange = cell
-    ? cell.band
-    : typeof result?.band_range === "string"
-      ? (result.band_range.match(/\d+\s*[-\u2013\u2014]\s*\d+|\d+/)?.[0] ?? result.band_range).trim()
-      : result?.band_range ?? null;
+  const bandRange = cell ? cell.band : holisticBand(result);
   const risks = (Array.isArray(result?.risks) ? result.risks : [])
+    .filter((r: any) => typeof r === "string" || (r && typeof r === "object"))
     .filter((r: any) => !isRiskAboutMissingReflection(r))
     .filter((r: any) => !statesMark(typeof r === "string" ? r : String(r?.title || ""), { holistic }))
     // A preview that names no criterion lists no risks either: with so few totals possible,
@@ -499,7 +528,7 @@ export function buildTeaser(result: any) {
 export function sanitiseFrozenPreview(frozen: any) {
   const names: any[] = Array.isArray(frozen?.criteria_names) ? frozen.criteria_names : [];
   const holistic = (frozen?.criteria_count ?? names.length) === 1;
-  let weakest = frozen?.weakest_criterion ?? null;
+  let weakest = frozen?.weakest_criterion ? previewCriterion(frozen.weakest_criterion) : null;
   let trimmed = !!frozen?.weakest_comment_trimmed;
   if (weakest && typeof weakest.comment === "string") {
     const cleaned = stripMarksDetailed(weakest.comment, weakestMarkOptions(weakest, names, holistic));
@@ -509,6 +538,7 @@ export function sanitiseFrozenPreview(frozen: any) {
     }
   }
   const risks = (Array.isArray(frozen?.risks) ? frozen.risks : [])
+    .filter((r: any) => typeof r === "string" || (r && typeof r === "object"))
     .filter((r: any) => !statesMark(typeof r === "string" ? r : String(r?.title || ""), { holistic }))
     .map((r: any) => {
       if (typeof r === "string") return { risk: r, gone: false };

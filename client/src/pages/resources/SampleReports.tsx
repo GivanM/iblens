@@ -263,9 +263,9 @@ export default function SampleReports() {
         receive 0, unless it were clearly a modified version of one of that session's prescribed titles; the weak report says so. Before publishing, we read every report against the TOK instrument. Earlier runs
         asked for things the instrument does not, such as a named thinker, and one placed essays by checklist, which the TOK
         guide rules out. We changed the grader's TOK instructions to the guide's own whole-essay method and ran all
-        three essays again on 13 September 2026. Since then the grader has also been instructed not to write marks, or where a mark
-        sits within its level, inside its comments. That is an instruction to a language model, not a guarantee: a
-        report made today can still write a mark, or where a mark sits within its level, into a comment. Each report carries a note on the clearest places where its
+        three essays again on 13 September 2026. Since then the grader has also been instructed not to write marks as numbers inside its comments, and to
+        explain in words why a mark is the higher or the lower one of its band. That is an instruction to a language model,
+        not a guarantee: a report made today can still write a mark as a number. Each report carries a note on the clearest places where its
         explanation describes a level in words its descriptor does not use; the reports are otherwise left exactly as the
         grader wrote them.
       </p>

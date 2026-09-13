@@ -55,7 +55,7 @@ export default function AcademicIntegrity() {
         <li><strong>Get feedback, not text.</strong> Use the criterion breakdown to see where marks are lost, then fix it in your own words.</li>
         <li><strong>Keep your drafts.</strong> A visible draft history is your best evidence that the work is yours.</li>
         <li><strong>Ask first, then say that you used it.</strong> Ask your teacher before you use it on an IA or the TOK essay, and your supervisor before you use it on the Extended Essay, and follow your school's policy on how to record it.</li>
-        <li><strong>Never submit AI-written text.</strong> Not sentences, not paragraphs. Feedback in, your own writing out.</li>
+        <li><strong>Never submit AI-written text as your own.</strong> Not sentences, not paragraphs. Feedback in, your own writing out.</li>
       </ul>
 
       <h2>How to acknowledge AI feedback</h2>

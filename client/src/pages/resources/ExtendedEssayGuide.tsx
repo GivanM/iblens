@@ -88,7 +88,7 @@ export default function ExtendedEssayGuide() {
       </p>
 
       <ul>
-        <li><strong>Title page:</strong> from May 2027, your student code, your research question, the DP subject the essay relates to (for an interdisciplinary essay, the two DP subjects and the interdisciplinary framework it connects with) and the word count; through November 2026, the title, the research question, the subject the essay is registered in (with the category for a language essay, or the theme and the two subjects for a world studies essay) and the word count. If any footnote does more than give a reference, include it in the word count on the title page and add the statement "the stated word count includes explanatory footnotes". Leave off your name, your supervisor's name, your candidate session number and your school's name: Extended Essays are marked anonymously.</li>
+        <li><strong>Title page:</strong> from May 2027, your student code, your research question, the DP subject the essay relates to (for an interdisciplinary essay, the two DP subjects and the interdisciplinary framework it connects with) and the word count; through November 2026, the title, the research question, the subject the essay is registered in (with the category for a language essay, or the theme and the two subjects for a world studies essay) and the word count. From May 2027, if any footnote does more than give a reference, include it in the word count on the title page and add the statement "the stated word count includes explanatory footnotes". Leave off your name, your supervisor's name, your candidate session number and your school's name: Extended Essays are marked anonymously.</li>
         <li><strong>Table of contents:</strong> With page numbers</li>
         <li><strong>Introduction (300-400 words):</strong> Context, research question, scope, methodology overview</li>
         <li><strong>Body (3,000-3,200 words):</strong> Organised into logical sections with clear headings, presenting evidence, analysis, and argumentation</li>
@@ -207,7 +207,7 @@ export default function ExtendedEssayGuide() {
 
       <ul>
         <li>Word count is no more than 4,000 (check what is included and excluded)</li>
-        <li>Your name, candidate number and school name appear nowhere in the essay</li>
+        <li>Your name, your supervisor's name, your candidate session number and your school's name appear nowhere in the essay</li>
         <li>Research question is clearly stated on the title page and in the introduction</li>
         <li>Every section of the body directly relates to answering the research question</li>
         <li>Conclusion directly answers the research question with evidence from the body</li>

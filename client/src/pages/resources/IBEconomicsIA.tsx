@@ -31,9 +31,9 @@ export default function IBEconomicsIA() {
       </p>
       <ul>
         <li><strong>Criterion A: Diagrams (3 marks).</strong> Are the diagrams relevant, accurate and correctly labelled, and fully explained? A relevant diagram that is not explained, or explained incorrectly, is the 1-mark level, and a limited explanation is the 2-mark level.</li>
-        <li><strong>Criterion B: Terminology (2 marks).</strong> Is economic terminology used correctly and consistently throughout?</li>
+        <li><strong>Criterion B: Terminology (2 marks).</strong> Is economic terminology relevant to the article used appropriately throughout the commentary?</li>
         <li><strong>Criterion C: Application and analysis (3 marks).</strong> Is relevant economic theory applied to the article throughout the commentary, with effective economic analysis?</li>
-        <li><strong>Criterion D: Key concept (3 marks).</strong> Is one key concept identified and effectively linked to the article?</li>
+        <li><strong>Criterion D: Key concept (3 marks).</strong> Is a key concept identified, with its link to the article fully explained?</li>
         <li><strong>Criterion E: Evaluation (3 marks).</strong> Are judgements supported by effective and balanced reasoning: the short run against the long run, who gains and who loses, and the assumptions underneath?</li>
       </ul>
       <p>

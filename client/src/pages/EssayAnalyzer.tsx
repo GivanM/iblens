@@ -717,8 +717,8 @@ export default function EssayAnalyzer() {
         <Card id="saved-preview" className="mb-6 border-primary/40 bg-primary/5 scroll-mt-24">
           <CardContent className="pt-6 space-y-3">
             <div>
-              <p className="text-sm font-semibold">Your free preview is saved on this device</p>
-              <p className="text-xs text-muted-foreground">It used this device's free preview.</p>
+              <p className="text-sm font-semibold">{(lockedPreview as any).wasFreeRun === false ? "A report on this device is locked" : "Your free preview is saved on this device"}</p>
+              <p className="text-xs text-muted-foreground">{(lockedPreview as any).wasFreeRun === false ? "Its purchase was refunded, so only its preview shows." : "It used this device's free preview."}</p>
               <p className="text-xs text-muted-foreground">
                 {lockedLabel}{lockedPreview.band ? ` · ${lockedPreview.essayType === "TOK" || lockedPreview.essayType === "TOK Exhibition" ? "Band" : "Range"} ${lockedPreview.band}` : ""}
                 {lockedPreview.createdAt ? ` · ${new Date(lockedPreview.createdAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}` : ""}
@@ -1433,14 +1433,14 @@ export default function EssayAnalyzer() {
             return (
               <Card>
                 <CardContent className="p-6">
-                  <h3 style={SERIF} className="text-xl font-bold mb-2">{result.criteria.length === 1 ? `Marks still available: ${potential}` : `Where the most marks are missing: ${potential} ${potential === 1 ? "mark" : "marks"} across ${weakest.length === 1 ? "this criterion" : "these two criteria"}`}</h3>
+                  <h3 style={SERIF} className="text-xl font-bold mb-2">{result.criteria.length === 1 ? `Marks still available: ${potential}` : `Where the most marks are missing: ${potential} ${potential === 1 ? "mark" : "marks"} ${weakest.length === 1 ? "in this criterion" : "across these two criteria"}`}</h3>
                   <ul className="space-y-1.5 mb-3">
                     {weakest.map((c: any) => (
                       <li key={c.name} className="text-sm text-muted-foreground"><strong className="text-foreground">{c.name}:</strong> {c.score}/{c.max} now, +{c.max - c.score} available</li>
                     ))}
                   </ul>
                   {(isAuthenticated ? !!resultAnalysisId && !rerunId : (recheckTarget ? recheckTarget.rerunsLeft : (anonRerunsLeft ?? anonReportQ.data?.rerunsLeft ?? 0)) > 0) && (
-                    <p className="text-sm text-muted-foreground">Fix these in your draft using the comments above, then <strong>re-check</strong> the revised version to see how the {result.criteria.length === 1 ? "mark moves" : "marks move"}.</p>
+                    <p className="text-sm text-muted-foreground">{weakest.length === 1 ? "Fix this" : "Fix these"} in your draft using the comments above, then <strong>re-check</strong> the revised version to see how the {result.criteria.length === 1 ? "mark moves" : "marks move"}.</p>
                   )}
                   {isAuthenticated && resultAnalysisId && !rerunId && (
                     <Button asChild variant="outline" className="mt-3 min-h-11 h-auto whitespace-normal">

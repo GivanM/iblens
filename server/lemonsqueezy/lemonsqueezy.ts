@@ -608,9 +608,10 @@ export function registerLemonsqueezyWebhook(app: Express) {
                 const storefrontLot = await getCreditLot(`ls:${dataId}`).catch(() => null);
                 if (storefrontLot) {
                   const lotKey = `ls:${dataId}`;
+                  // Closed first: the lot's refund mark is what a run finishing now checks before it opens a report.
+                  const left = await closeCreditLot(lotKey);
                   await relockAnalysesForOrder(0, lotKey).catch(() => {});
                   await relockAnonymousForOrder(lotKey).catch(() => {});
-                  const left = await closeCreditLot(lotKey);
                   if (left && left.remaining > 0 && left.place === "account" && left.userId) {
                     const balance = (await getUserCredits(left.userId).catch(() => null))?.essayCredits ?? 0;
                     const fromAccount = Math.min(left.remaining, balance);

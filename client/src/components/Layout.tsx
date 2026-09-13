@@ -35,7 +35,7 @@ function NavLink({ href, children, active }: { href: string; children: React.Rea
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { user, isAuthenticated, logout } = useAuth();
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
 
   // Anything bought on this device belongs to the person who just signed in,
   // wherever in the site they did it. This used to happen only on /essay.
@@ -60,12 +60,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         if (d.adopted > 0) parts.push(`${d.adopted} opened report${d.adopted === 1 ? "" : "s"}`);
         toast.success(`${parts.join(" and ")} bought on this device ${d.moved + d.adopted === 1 ? "is" : "are"} now in your account.`);
       }
+      // Without a word, a locked preview simply vanished from the page when its report opened.
+      if (d.reopened > 0) {
+        toast.success(`${d.reopened === 1 ? "A report" : `${d.reopened} reports`} you had already paid for in this account ${d.reopened === 1 ? "is" : "are"} now open on this device too.`, {
+          action: { label: "Open dashboard", onClick: () => setLocation("/dashboard") },
+        });
+      }
     },
   });
+  // On sign-in, and again on each visit to a grader page: a report reopened in the dashboard
+  // opens on this device too, instead of the page offering to sell it again.
+  const onGraderPage = location === "/essay" || location.startsWith("/essay/") || location === "/ucas-personal-statement";
   useEffect(() => {
-    if (!isAuthenticated || claim.isPending || claim.isSuccess) return;
+    if (!isAuthenticated || claim.isPending) return;
+    if (claim.isSuccess && !onGraderPage) return;
     claim.mutate({ fingerprint: getAnonFingerprint() });
-  }, [isAuthenticated]);
+  }, [isAuthenticated, onGraderPage ? location : ""]);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const isHome = location === "/";

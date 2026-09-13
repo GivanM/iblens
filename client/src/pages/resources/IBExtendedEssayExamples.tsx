@@ -27,7 +27,7 @@ export default function IBExtendedEssayExamples() {
       <h2>IB Extended Essay examples by subject</h2>
 
       <h3>Economics Extended Essay examples</h3>
-      <p>Economics EEs are popular because students feel comfortable with theory, but they are frequently penalised for being too theoretical and not empirical enough. Strong Economics EEs apply specific microeconomic or macroeconomic concepts to a real, local, measurable situation.</p>
+      <p>Economics EEs are popular because students feel comfortable with theory, but they are frequently penalised for being too theoretical and not empirical enough. Strong Economics EEs apply specific microeconomic or macroeconomic concepts to a real, local, measurable situation. For November 2026, the guide asks for topics no more than approximately five years old, so the first and third questions suit May 2027 or later only.</p>
       <ul>
         <li><em>"To what extent did the introduction of the sugar tax in the UK (2018) reduce consumption of high-sugar soft drinks among 10-16-year-olds?"</em> This works because it picks a specific policy, a specific country, a specific demographic, and a specific measurable outcome.</li>
         <li><em>"How effective has price-cap regulation been in limiting profit margins for energy retailers in Germany following the 2021-2022 energy crisis?"</em> Strong because it uses a defined time window, a defined mechanism, and quantifiable profitability data.</li>

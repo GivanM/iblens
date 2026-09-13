@@ -46,13 +46,12 @@ export default function IBEEExamplesBySubject() {
 
       <h3>Economics Extended Essay</h3>
       <p>
-        <strong>Strong research question:</strong> "To what extent has the introduction
+        <strong>Strong research question:</strong> "To what extent has the 2023 expansion
         of London's Ultra Low Emission Zone increased consumer surplus for residents
         while reducing it for commuters?"
       </p>
       <p>
-        What makes this work: it is specific (one policy in one city; naming a period,
-        such as the 2023 expansion, would sharpen it further), it uses Economics concepts precisely (consumer surplus, externalities,
+        What makes this work: it is specific (one policy in one city), it uses Economics concepts precisely (consumer surplus, externalities,
         cost-benefit analysis), and it has a debatable answer: the effects on
         different groups pull in opposite directions. The student can use Transport for
         London data, academic studies of ULEZ impacts, and newspaper reports as sources.

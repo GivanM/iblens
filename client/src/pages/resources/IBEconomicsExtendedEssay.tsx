@@ -58,7 +58,8 @@ export default function IBEconomicsExtendedEssay() {
           of soft drinks sold by major supermarkets?
           <em> Why it works:</em> one policy, one defined market, measurable
           outcomes, and an obvious toolkit (indirect taxation, elasticity and
-          producer responses) to test against the evidence.
+          producer responses) to test against the evidence. (For November 2026, the levy is older
+          than the guide's five-year limit, so choose a policy from the last five years.)
         </li>
         <li>
           To what extent does the ride-hailing market in one city behave as the
@@ -106,6 +107,12 @@ export default function IBEconomicsExtendedEssay() {
         method (6), Knowledge and understanding (6), Critical thinking (12), Presentation (4) and
         Engagement (6, marked on the three RPPF reflections). The advice above carries over, because
         research, analysis, and discussion and evaluation together make up Critical thinking.
+      </p>
+      <p>
+        One rule depends on your session. If you sit your exams in November 2026, the Extended Essay
+        guide says topics should not be historical: they should relate to economic information,
+        policies, outcomes or events that are no more than approximately five years old. The guide for
+        May 2027 onward sets no such limit.
       </p>
 
       <h2>Theory, data and diagrams: what examiners expect</h2>
