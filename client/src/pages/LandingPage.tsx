@@ -86,7 +86,7 @@ export default function LandingPage() {
                 Grade My Essay Free
               </Link>
             </Button>
-            <p className="text-xs text-muted-foreground">No account needed · Results in about a minute · 14 IB subjects · 7-day money-back guarantee</p>
+            <p className="text-xs text-muted-foreground">No account needed · Results in about a minute · Coursework in 14 IB subjects · 7-day money-back guarantee</p>
           </div>
         </section>
 
@@ -116,8 +116,8 @@ export default function LandingPage() {
         <section className="py-16 bg-background">
           <div className="container max-w-2xl mx-auto">
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold tracking-tight mb-2">Here's what your grade report looks like</h2>
-              <p className="text-muted-foreground text-sm">Criterion scores, risk areas, and actionable feedback, all in one place</p>
+              <h2 className="text-2xl font-bold tracking-tight mb-2">What a full report looks like ($9.99)</h2>
+              <p className="text-muted-foreground text-sm">Every criterion scored, with the risks and the fixes. The free preview shows your band, your weakest criterion and the top risks.</p>
             </div>
 
             <Card className="border-2 shadow-lg">
@@ -188,8 +188,8 @@ export default function LandingPage() {
             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 text-sm text-muted-foreground">
               <div className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-emerald-500" /><span>Published IB criteria</span></div>
               <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-amber-500" /><span>Results in about a minute</span></div>
-              <div className="flex items-center gap-2"><Shield className="w-4 h-4 text-blue-500" /><span>Essays never stored</span></div>
-              <div className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /><span>14 IB subjects supported</span></div>
+              <div className="flex items-center gap-2"><Shield className="w-4 h-4 text-blue-500" /><span>Your full text is never stored</span></div>
+              <div className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /><span>Coursework in 14 IB subjects</span></div>
             </div>
           </div>
         </section>
@@ -205,7 +205,7 @@ export default function LandingPage() {
               />
               <FAQItem
                 question="Which essay types and subjects does IBLens support?"
-                answer="IBLens grades Extended Essays, TOK essays, the TOK exhibition and coursework in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film."
+                answer="IBLens grades Extended Essays, TOK essays, the TOK exhibition and coursework in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Visual Arts can be marked only for sessions through November 2026: from May 2027 the comparative study is no longer set."
               />
               <FAQItem
                 question="How accurate is the AI grade?"

@@ -1,6 +1,6 @@
 # IBLens
 
-> IBLens is an independent AI feedback tool for IB (International Baccalaureate) coursework. It grades drafts against the official assessment criteria, coursework in 14 subjects (the Internal Assessment in eleven, plus the externally assessed coursework in Visual Arts, Music and Film), the Extended Essay (both the current 34-mark rubric and the new 30-mark May 2027 rubric), the TOK essay and the TOK exhibition. One free preview per device; a full criterion-by-criterion report is $9.99, with no subscription. Not affiliated with the IBO. Scores are AI estimates, not guarantees.
+> IBLens is an independent AI feedback tool for IB (International Baccalaureate) coursework. It grades drafts against the published assessment criteria, coursework in 14 subjects (the Internal Assessment in eleven, plus the externally assessed coursework in Visual Arts, Music and Film), the Extended Essay (both the current 34-mark rubric and the new 30-mark May 2027 rubric), the TOK essay and the TOK exhibition. One free preview per device or account; a full criterion-by-criterion report is $9.99, with no subscription. Not affiliated with the IBO. Scores are AI estimates, not guarantees.
 
 ## Product
 

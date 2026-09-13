@@ -8,18 +8,18 @@ export default function EENewCriteria2027() {
       description="From the May 2027 session the IB Extended Essay is marked out of 30 under five new criteria, Framework, Knowledge and understanding, Analysis and line of argument, Discussion and evaluation, Reflection. What changed from the 34-mark rubric and how to check your draft."
       canonical="/resources/ib-extended-essay-new-criteria-2027"
       datePublished="2026-08-11"
-      dateModified="2026-08-11"
+      dateModified="2026-09-13"
     >
       <h1>IB Extended Essay New Criteria 2027: What Changed and How to Check Your Draft</h1>
 
       <p>
-        If you started the IB Diploma Programme in 2025 and will sit your exams in May 2027 or later, your Extended Essay is assessed under new criteria and marked out of 30, not 34. Most guides online still describe the old rubric. This page sets out exactly what changed, what examiners now reward most, and how to check your draft against the new criteria before you hand it to your supervisor.
+        If you sit your exams in May 2027 or later, your Extended Essay is assessed under new criteria and marked out of 30, not 34. Most guides online still describe the old rubric. This page sets out exactly what changed, what examiners now reward most, and how to check your draft against the new criteria before you hand it to your supervisor.
       </p>
 
       <h2>Who is assessed under the new criteria</h2>
 
       <ul>
-        <li><strong>Exams in May 2027 or later:</strong> your EE is marked out of 30 with the new criteria below. If you began the DP in autumn 2025, this is you, including the draft you are writing right now.</li>
+        <li><strong>Exams in May 2027 or later:</strong> your EE is marked out of 30 with the new criteria below. For most students who began the DP in August or September 2025, this is you, including the draft you are writing right now.</li>
         <li><strong>Sessions through November 2026:</strong> the current 34-mark criteria (Focus and method, Knowledge and understanding, Critical thinking, Presentation, Engagement) still apply.</li>
         <li>Not sure which session you are in? Your exam year decides it, and your IB coordinator can confirm.</li>
       </ul>
@@ -31,11 +31,11 @@ export default function EENewCriteria2027() {
           <tr><th>Criterion</th><th>Marks</th><th>What it assesses</th></tr>
         </thead>
         <tbody>
-          <tr><td>A: Framework for the essay</td><td>6</td><td>Research question, scope, methodology and structure: does the essay set up a coherent investigation?</td></tr>
-          <tr><td>B: Knowledge and understanding</td><td>6</td><td>Subject knowledge, use of terminology and conceptual accuracy.</td></tr>
-          <tr><td>C: Analysis and line of argument</td><td>6</td><td>How well evidence is analysed and built into a clear, sustained argument.</td></tr>
-          <tr><td>D: Discussion and evaluation</td><td>8</td><td>The heaviest criterion: critical discussion, evaluation of evidence and perspectives, and a reasoned conclusion.</td></tr>
-          <tr><td>E: Reflection</td><td>4</td><td>The quality of your reflection on the research process.</td></tr>
+          <tr><td>A: Framework for the essay</td><td>6</td><td>Research question, research methods and structure: do they give the essay an effective framework?</td></tr>
+          <tr><td>B: Knowledge and understanding</td><td>6</td><td>Knowledge of the topic, with subject terminology and concepts used accurately and consistently.</td></tr>
+          <tr><td>C: Analysis and line of argument</td><td>6</td><td>Analysis of the research, with findings relevant to the research question, and a coherent line of argument.</td></tr>
+          <tr><td>D: Discussion and evaluation</td><td>8</td><td>The heaviest criterion: a balanced discussion of the significance of the findings, supported by evidence, and an evaluation of how effective the essay is, with its strengths and limitations.</td></tr>
+          <tr><td>E: Reflection</td><td>4</td><td>Evaluative reflection, with specific examples, on how the EE learning experience affected you as a learner: growth and transfer of learning.</td></tr>
         </tbody>
       </table>
 
@@ -63,13 +63,13 @@ export default function EENewCriteria2027() {
 
       <ol>
         <li>
-          <strong>Discussion and evaluation is now the single heaviest criterion.</strong> Eight of 30 marks, more than a quarter of the total, depend on whether you critically discuss and evaluate rather than describe. Under the old rubric weak evaluation was diluted inside a broad Critical thinking criterion; now it is isolated and weighted. If a section of your essay reports sources without weighing them, that section is now measurably expensive.
+          <strong>Discussion and evaluation is now the single heaviest criterion.</strong> Eight of 30 marks, more than a quarter of the total, depend on two things: a balanced discussion of what your findings mean, backed by evidence, and an evaluation of how well the essay itself worked, with its strengths and limitations. Under the old rubric both sat inside a broad Critical thinking criterion; now they have a criterion of their own. An essay that reports its findings and stops, or never says where its own method falls short, now pays for it.
         </li>
         <li>
           <strong>Structure counts inside Criterion A.</strong> There is no separate Presentation criterion to lose marks on, but a confusing structure now weakens your Framework score instead. The essay must read as one designed investigation: question, scope, method and section plan working together.
         </li>
         <li>
-          <strong>Reflection is worth less, but still matters.</strong> Four marks instead of six, around 13% of the total. The reflection needs to show genuine intellectual decision-making, not diary entries.
+          <strong>Reflection is worth less, and it asks for something different.</strong> Four marks instead of six, around 13% of the total. The criterion rewards evaluating how the EE affected you as a learner, with specific examples of growth and of learning you can carry elsewhere. A description of the process is the lowest level.
         </li>
       </ol>
 
@@ -79,14 +79,14 @@ export default function EENewCriteria2027() {
         <li><strong>Framework:</strong> Can a reader state your research question, scope and method after the first two pages? Does every section visibly serve the question?</li>
         <li><strong>Knowledge and understanding:</strong> Is subject terminology used correctly and consistently? Would a subject teacher wince anywhere?</li>
         <li><strong>Analysis and line of argument:</strong> Does each body section move the argument forward, or does the essay read as a sequence of summaries?</li>
-        <li><strong>Discussion and evaluation:</strong> For every major piece of evidence, do you evaluate its strength, limitation or competing interpretation? Does the conclusion follow from the weighing, not just restate findings?</li>
-        <li><strong>Reflection:</strong> Do your reflections show decisions and turning points in the research, in your own voice?</li>
+        <li><strong>Discussion and evaluation:</strong> Do you discuss what your findings mean, in a balanced way and with evidence? Do you evaluate the essay itself: what its method and sources did well, and where they fall short?</li>
+        <li><strong>Reflection:</strong> Does your statement evaluate what the EE changed in you as a learner, with specific examples, rather than describe what you did?</li>
       </ul>
 
       <h2>Check your draft with IBLens</h2>
 
       <p>
-        IBLens grades Extended Essays against <strong>both</strong> rubrics. In the analyzer, keep "Exam session" on <em>May 2027, new syllabus</em>, the default, and your draft is scored out of 30 against the new criteria A to E above, criterion by criterion. Switch it to <em>May / Nov 2026, current syllabus</em> for the 34-mark rubric. The first preview is free (the estimated band range and your weakest criterion with its feedback), and a full report costs $9.99, with no subscription. For May 2027, you can also paste your RPF so that Criterion E is marked on it.
+        IBLens grades Extended Essays against <strong>both</strong> rubrics. In the analyzer, keep "Exam session" on <em>May 2027, new syllabus</em>, the default, and your draft is scored out of 30 against the new criteria A to E above, criterion by criterion. Switch it to <em>May / Nov 2026, current syllabus</em> for the 34-mark rubric. The first preview is free (the estimated band range, your weakest criterion with its feedback, and the top risks), and a full report costs $9.99, with no subscription. For May 2027, you can also paste your RPF so that Criterion E is marked on it.
       </p>
 
       <p>

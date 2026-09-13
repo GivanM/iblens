@@ -103,7 +103,14 @@ async function assertClientMetaMatches(routeMeta) {
 
 const SITE_URL = "https://iblens.com";
 const SITE_NAME = "IBLens";
-const DEFAULT_OG_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663456034410/fPpXrWUtmpLttw7Fz9wKLE/og-image-CS5C2Vq6Jk92bXNFNMwCXg.png";
+const DEFAULT_OG_IMAGE = "https://iblens.com/og-image.png";
+// Article dates as each page sets them, written by render-crawler-bodies.mjs.
+let ARTICLE_DATES = {};
+try {
+  ARTICLE_DATES = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../dist/crawler-meta.json"), "utf8"));
+} catch {
+  ARTICLE_DATES = {};
+}
 
 // The page metadata lives in one place: server/seo-prerender.ts, which the running
 // server uses. This script used to keep a second copy, and the two drifted apart
@@ -165,8 +172,9 @@ function generateJsonLd(routePath, meta) {
       }
     };
     schema.image = DEFAULT_OG_IMAGE;
-    schema.datePublished = "2026-04-15";
-    schema.dateModified = "2026-05-02";
+    const dates = ARTICLE_DATES[routePath] || {};
+    if (dates.datePublished) schema.datePublished = dates.datePublished;
+    if (dates.dateModified) schema.dateModified = dates.dateModified;
   }
 
   // BreadcrumbList for navigation context

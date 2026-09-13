@@ -75,7 +75,8 @@ IMPORTANT FORMATTING RULES:
 - Respond with a single valid JSON object. No markdown, no text before or after the JSON.
 - Write ALL text in plain text only. NEVER use HTML entities like &amp; &lt; &gt; &quot;. Write the actual characters instead: & < > "
 - Do not use em dashes or en dashes as punctuation anywhere in the text. Use a comma, a colon, brackets or a new sentence instead. Write number ranges with a plain hyphen, for example 13-16.
-- Do not use any HTML tags or HTML encoding in your response.`;
+- Do not use any HTML tags or HTML encoding in your response.
+- Never write sentences or paragraphs the student could paste into their work: no rewritten passages, model answers, example paragraphs or suggested wording. Describe what to change and why, and quote the student's own words only to point at a passage.`;
 
   if (rubricFragment) {
     base += "\n" + rubricFragment;
@@ -265,6 +266,11 @@ function buildTeaser(result: any) {
   if (weakest && criteria.length === 1 && typeof weakest.comment === "string" && weakest.comment.length > 320) {
     weakest = { ...weakest, comment: softTruncate(weakest.comment, 320) };
   }
+  // With a single holistic criterion its score is the exact mark, which the free
+  // preview does not include. The band stays visible.
+  if (weakest && criteria.length === 1) {
+    weakest = { ...weakest, score: null };
+  }
   let nearEdge: boolean | null = null;
   const m = String(result?.band_range || "").match(/(\d+)\s*[-\u2013\u2014]\s*(\d+)/);
   if (m && typeof result?.predicted_score === "number") {
@@ -275,8 +281,9 @@ function buildTeaser(result: any) {
     // client-side copy of this logic was fixed last round and is never rendered;
     // this is the one the page actually shows.
     const width = hi - lo + 1;
+    // In a two-mark band every mark is at an edge, so the question has no answer.
     nearEdge = width <= 2
-      ? result.predicted_score >= hi
+      ? null
       : result.predicted_score <= lo || result.predicted_score >= hi;
   }
   // The model sometimes writes "14-18 out of 26" into band_range. The number of
@@ -342,6 +349,8 @@ const essayRouter = router({
             resultJson: rec.resultJson,
             predictedGrade: rec.predictedGrade,
             unlocked: true,
+            // The device row stays unlocked; linking it lets Delete remove both.
+            adoptedFromId: rec.id,
           });
           if (copy?.id) await markAnalysisUnlocked(copy.id);
         }
@@ -1063,6 +1072,8 @@ const paymentRouter = router({
       /** Signed-in buyers have a device too, and their report lives on it. */
       fingerprint: z.string().min(1).optional(),
       returnTo: z.enum(["essay", "ucas-personal-statement"]).optional(),
+      /** The locked account report the buyer is looking at, opened when the payment lands. */
+      analysisId: z.number().int().positive().optional(),
     }))
     .mutation(async ({ ctx, input }) => {
       if (input.productKey === "UNIVERSITY_SINGLE") {
@@ -1099,6 +1110,13 @@ const paymentRouter = router({
       // Create LemonSqueezy checkout. The device travels with it for signed-in
       // buyers too: their report is an anonymous row until they unlock it, and
       // without this a paid UCAS review could never be opened at all.
+      // A signed-in preview is an account row, so name it; only a report this
+      // account owns can be opened by its payment.
+      let unlockAnalysisId: number | undefined;
+      if (input.analysisId) {
+        const own = await getAnalysisById(input.analysisId, ctx.user.id);
+        if (own && (own as any).userId === ctx.user.id && !(own as any).unlocked) unlockAnalysisId = own.id;
+      }
       const { checkoutUrl } = await createLemonsqueezyCheckout(
         orderId,
         variantId,
@@ -1107,6 +1125,7 @@ const paymentRouter = router({
         product.priceAmount, // valueUsd in cents for redirect URL tracking
         input.fingerprint,
         input.returnTo,
+        unlockAnalysisId,
       );
 
       return { checkoutUrl, orderId };

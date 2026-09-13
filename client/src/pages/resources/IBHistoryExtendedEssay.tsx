@@ -8,7 +8,7 @@ export default function IBHistoryExtendedEssay() {
       description="How to write an IB History Extended Essay: strong research questions, source evaluation and historiography, criteria A-E, common mistakes and grading tips."
       canonical="/resources/ib-history-extended-essay"
       datePublished="2026-07-10"
-      dateModified="2026-07-10"
+      dateModified="2026-09-13"
     >
       <p>
         <strong>Sitting your exams in May 2027 or later?</strong> Your Extended Essay is
@@ -174,7 +174,7 @@ export default function IBHistoryExtendedEssay() {
         IBLens analyses Extended Essays against the five official criteria and shows
         you, criterion by criterion, where marks are being lost, including the most
         common History problem: an essay that narrates where it should argue. Paste
-        a draft into the <Link href="/essay/extended-essay">free Extended Essay grader</Link> to
+        a draft into the <Link href="/essay/extended-essay">Extended Essay grader</Link>, where the first preview is free, to
         see where your History EE stands, and read the <Link href="/resources/ib-extended-essay-guide">complete IB Extended Essay guide</Link> for
         the full process from topic choice to final reflection.
       </p>

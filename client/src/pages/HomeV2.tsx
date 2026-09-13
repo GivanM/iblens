@@ -23,7 +23,7 @@ const FAQ = [
   },
   {
     q: "Which IB essay types does IBLens support?",
-    a: "The Extended Essay, the TOK essay, the TOK exhibition, and coursework in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Each is marked against its own criteria.",
+    a: "The Extended Essay, the TOK essay, the TOK exhibition, and coursework in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Each is marked against its own criteria. Visual Arts can be marked only for sessions through November 2026: from May 2027 the comparative study is no longer set.",
   },
   {
     q: "Is my first essay analysis really free?",
@@ -43,7 +43,7 @@ const FAQ = [
   },
   {
     q: "What happens if I revise and want a second opinion?",
-    a: "A paid report includes two re-checks of the same piece of work within 14 days of the payment, at no extra cost. Revise, run it again, and see whether the criterion moved.",
+    a: "A paid report includes two re-checks of the same piece of work within 14 days of the report opening, at no extra cost. Revise, run it again, and see whether the criterion moved.",
   },
   {
     q: "What if I am not satisfied with my analysis?",

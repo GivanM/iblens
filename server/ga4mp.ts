@@ -56,12 +56,12 @@ export async function sendGA4PurchaseEvent(event: GA4PurchaseEvent): Promise<boo
 
   const url = `https://www.google-analytics.com/mp/collect?measurement_id=${measurementId}&api_secret=${apiSecret}`;
 
-  // GA4 MP requires a client_id. We use the userId as a stable identifier.
-  const clientId = event.userId || "server-webhook";
+  // GA4 MP requires a client_id. This event is sent without the visitor's consent
+  // choice, so it carries the order and nothing that identifies the buyer.
+  const clientId = `order.${event.orderId}`;
 
   const payload = {
     client_id: clientId,
-    user_id: event.userId || undefined,
     events: [
       {
         name: "purchase",

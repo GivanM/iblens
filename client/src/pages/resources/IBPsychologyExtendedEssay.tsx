@@ -8,7 +8,7 @@ export default function IBPsychologyExtendedEssay() {
       description="How to write an IB Psychology Extended Essay: research questions, engaging real studies critically, avoiding pop psychology, criteria A-E and common mistakes."
       canonical="/resources/ib-psychology-extended-essay"
       datePublished="2026-07-10"
-      dateModified="2026-07-10"
+      dateModified="2026-09-13"
     >
       <p>
         <strong>Sitting your exams in May 2027 or later?</strong> Your Extended Essay is
@@ -167,7 +167,7 @@ export default function IBPsychologyExtendedEssay() {
         IBLens analyses Extended Essays against the five official criteria and shows
         you, criterion by criterion, where marks are being lost, including the
         Psychology classics: description without evaluation, and causal claims the
-        evidence cannot support. Paste a draft into the <Link href="/essay/extended-essay">free Extended Essay grader</Link> to
+        evidence cannot support. Paste a draft into the <Link href="/essay/extended-essay">Extended Essay grader</Link>, where the first preview is free, to
         see where your Psychology EE stands, and read the <Link href="/resources/ib-extended-essay-guide">complete IB Extended Essay guide</Link> for
         the full process from question to final reflection.
       </p>

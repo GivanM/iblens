@@ -81,11 +81,11 @@ function EssayReportPreview() {
             <div className="space-y-1">
               <div className="flex items-start gap-1">
                 <span className="text-red-400 text-[10px] mt-0.5">●</span>
-                <span className="text-[9px] text-gray-600 leading-tight">Counter-arguments need deeper evaluation</span>
+                <span className="text-[9px] text-gray-600 leading-tight">Findings reported, their significance not discussed</span>
               </div>
               <div className="flex items-start gap-1">
                 <span className="text-red-400 text-[10px] mt-0.5">●</span>
-                <span className="text-[9px] text-gray-600 leading-tight">Conclusion hedges instead of answering the question</span>
+                <span className="text-[9px] text-gray-600 leading-tight">No evaluation of the essay's own limitations</span>
               </div>
             </div>
           </div>

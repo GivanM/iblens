@@ -797,8 +797,19 @@ export async function updateAnonymousResult(id: number, resultJson: any, predict
 export async function deleteUserAnalysis(id: number, userId: number): Promise<boolean> {
   const db = await getDb();
   if (!db) return false;
+  const rows = await db.select({ adoptedFromId: analyses.adoptedFromId }).from(analyses)
+    .where(and(eq(analyses.id, id), eq(analyses.userId, userId))).limit(1);
+  if (!rows[0]) return false;
   const res: any = await db.delete(analyses).where(and(eq(analyses.id, id), eq(analyses.userId, userId)));
-  return Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0) > 0;
+  const removed = Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0) > 0;
+  // A report bought on a device and copied into the account kept its device row:
+  // unlocked, so retention never removed it, and adoption copied it back on the next
+  // signed-in page load. The dashboard promises the report goes for good.
+  const sourceId = (rows[0] as any).adoptedFromId;
+  if (removed && sourceId) {
+    await db.delete(anonymousAnalyses).where(eq(anonymousAnalyses.id, sourceId));
+  }
+  return removed;
 }
 
 /** Remove a claimed-but-failed free slot so a broken run does not cost the student theirs. */

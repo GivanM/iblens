@@ -50,7 +50,14 @@ async function startServer() {
   // This is per address and deliberately generous for a school behind one NAT.
   const analysisHits = new Map<string, number[]>();
   app.use("/api/trpc", (req, res, next) => {
-    const path = String(req.path || "");
+    // Express leaves req.path percent-encoded and tRPC decodes it, so
+    // /essay%2EanalyzeAnonymous reached the model without being counted here.
+    let path = String(req.path || "");
+    try {
+      path = decodeURIComponent(path);
+    } catch {
+      // A malformed escape: tRPC cannot route it either, so nothing runs.
+    }
     // Only the calls that actually run a model. canAnalyzeAnonymous is a status
     // check made on every page load and must not count against the budget.
     const EXPENSIVE = /(^|\.|,)(analyze|analyzeAnonymous|analyzeUcasAnonymous|rerunAnalysis|rerunAnonymous|analyzeUniversity)(,|$)/i;

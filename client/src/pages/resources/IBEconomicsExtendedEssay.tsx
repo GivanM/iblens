@@ -8,7 +8,7 @@ export default function IBEconomicsExtendedEssay() {
       description="How to write an IB Economics Extended Essay: focused research questions, applying theory and real data with diagrams, criteria A-E and common mistakes."
       canonical="/resources/ib-economics-extended-essay"
       datePublished="2026-07-10"
-      dateModified="2026-07-10"
+      dateModified="2026-09-13"
     >
       <p>
         <strong>Sitting your exams in May 2027 or later?</strong> Your Extended Essay is
@@ -161,7 +161,7 @@ export default function IBEconomicsExtendedEssay() {
         IBLens analyses Extended Essays against the five official criteria and shows
         you, criterion by criterion, where marks are being lost, including the
         classic Economics failure modes: theory without data, and diagrams that
-        decorate instead of analyse. Paste a draft into the <Link href="/essay/extended-essay">free Extended Essay grader</Link> to
+        decorate instead of analyse. Paste a draft into the <Link href="/essay/extended-essay">Extended Essay grader</Link>, where the first preview is free, to
         see where your Economics EE stands, and read the <Link href="/resources/ib-extended-essay-guide">complete IB Extended Essay guide</Link> for
         the full process from topic choice to final reflection.
       </p>

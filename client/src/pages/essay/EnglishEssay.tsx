@@ -21,7 +21,7 @@ const config: SubjectConfig = {
   guide: {
     rubricHeading: "What the Individual Oral criteria reward (40 marks)",
     rubricIntro: [
-      "The Individual Oral is spoken, not written: you explore how a global issue is presented in extracts from two works. English A: Literature and English A: Language and Literature mark it on the same four criteria of 10 marks each. Your teacher marks it and the IB moderates the marking.",
+      "The Individual Oral is spoken, not written: you explore how a global issue is presented in an extract from each of two texts. In Literature they are two works, one of them studied in translation. In Language and Literature they are one literary work and one non-literary body of work. Both courses mark the oral on the same four criteria of 10 marks each, and your teacher marks it before the IB moderates the marking.",
       "Because the oral is spoken, IBLens reads a transcript of a practice run or your outline. A transcript gives the fullest report. An outline gives much less to go on, especially for Language.",
     ],
     rubricItems: [

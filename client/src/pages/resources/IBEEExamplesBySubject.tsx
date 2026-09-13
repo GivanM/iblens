@@ -9,7 +9,7 @@ export default function IBEEExamplesBySubject() {
       description="What separates top-band Extended Essays in Economics, History, Biology, English, Psychology, Mathematics and Physics, criterion by criterion."
       canonical="/resources/ib-ee-examples-by-subject"
       datePublished="2026-06-09"
-      dateModified="2026-06-09"
+      dateModified="2026-09-13"
     >
       <p>
         The IB Extended Essay is a 4,000-word independent research project that every
@@ -203,8 +203,8 @@ export default function IBEEExamplesBySubject() {
         essay meets that standard is where most students lose marks.
       </p>
       <p>
-        IBLens analyses your Extended Essay draft against the official IB rubric, the same criteria your examiner uses, and provides criterion-by-criterion
-        feedback so you know exactly where marks are being lost before you submit.
+        IBLens analyses your Extended Essay draft against the published criteria for your exam session and gives criterion-by-criterion
+        feedback, so you can see where marks are being lost before you submit.
       </p>
       <p>
         <Link to="/essay">Paste your Extended Essay draft into IBLens for rubric-based feedback →</Link>

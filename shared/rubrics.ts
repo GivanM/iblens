@@ -54,7 +54,7 @@ const BM_IA: Rubric = {
   label: "Business Management IA (Business research project, 2024 syllabus)",
   totalMarks: 25,
   criteria: [
-    { name: "Criterion A: Integration of a key concept", max: 5, descriptor: "How well one chosen key concept (change, creativity, ethics or sustainability) is integrated throughout the project and linked to the research question" },
+    { name: "Criterion A: Integration of a key concept", max: 5, descriptor: "How effectively the analysis of the connection between the one chosen key concept (change, creativity, ethics or sustainability) and the organization is integrated throughout the project: describing the connection is 2 marks, analysing it 3, partially integrating that analysis 4, integrating it throughout 5" },
     { name: "Criterion B: Supporting documents", max: 4, descriptor: "Three to five relevant supporting documents that address the research question in sufficient depth; the top mark needs a range of ideas and views (documents all from one company do not give balance). One or two, or more than five, documents limit this criterion to 1 mark" },
     { name: "Criterion C: Selection and application of tools and theories", max: 4, descriptor: "Appropriate selection and accurate application of business management tools and theories to the research question" },
     { name: "Criterion D: Analysis and evaluation", max: 5, descriptor: "Selection and use of data from the supporting documents in the analysis and evaluation of the research question; the top mark needs sustained integration of ideas and consideration of the assumptions underpinning the arguments and their implications" },
@@ -102,10 +102,10 @@ const SCIENCES_IA: Rubric = {
   label: "Sciences IA, Scientific investigation (Biology / Chemistry / Physics, 2025 syllabus)",
   totalMarks: 24,
   criteria: [
-    { name: "Research design", max: 6, descriptor: "Research question within a broader context, methodology (variables/controls or database/model choices), and consideration of safety, ethical and environmental issues" },
+    { name: "Research design", max: 6, descriptor: "Research question described within a specific and appropriate context (a broad context is the 3-4 band); methodological considerations explained (measurement of variables, choice of database or model and sampling, range and repetition of data, control variables, safety, ethical and environmental issues); methodology described well enough for the investigation to be reproduced" },
     { name: "Data analysis", max: 6, descriptor: "Recording, processing and presentation of data, including consideration of uncertainties, in ways relevant to the research question" },
     { name: "Conclusion", max: 6, descriptor: "Conclusion justified by the analysis, answering the research question and compared with the accepted scientific context" },
-    { name: "Evaluation", max: 6, descriptor: "Evaluation of methodological weaknesses and limitations, with realistic improvements" },
+    { name: "Evaluation", max: 6, descriptor: "The relative impact of specific methodological weaknesses or limitations explained, with realistic improvements relevant to them explained (generic weaknesses are the 1-2 band)" },
   ],
   notes: "Report maximum 3,000 words. SL and HL use the same criteria. (The pre-2025 rubric, Personal engagement / Exploration / Analysis / Evaluation / Communication, no longer applies to any current candidate.)",
   wordLimit: { max: 3000, excludes: "charts and diagrams, data tables, equations and calculations, citations and references, the bibliography and headers" },
@@ -117,12 +117,12 @@ const MATH_IA: Rubric = {
   totalMarks: 20,
   criteria: [
     { name: "Criterion A: Presentation", max: 4, descriptor: "Organization and coherence of the exploration" },
-    { name: "Criterion B: Mathematical communication", max: 4, descriptor: "Appropriate mathematical language, notation, symbols and terminology; definitions of key terms; appropriate use of technology" },
-    { name: "Criterion C: Personal engagement", max: 3, descriptor: "Evidence of independent thinking, creativity and personal interest" },
+    { name: "Criterion B: Mathematical communication", max: 4, descriptor: "Relevant, appropriate and consistent mathematical communication: notation, symbols and terminology; key terms and variables defined where required; multiple forms of representation where appropriate; deductive method and proofs set out logically where appropriate (calculator or computer notation is acceptable only in software output)" },
+    { name: "Criterion C: Personal engagement", max: 3, descriptor: "Evidence that the student makes the mathematics their own: thinking independently or creatively, presenting ideas in their own way, exploring the topic from different perspectives, making and testing predictions (not a measure of effort; textbook-style reproduction rarely reaches the higher levels)" },
     { name: "Criterion D: Reflection", max: 3, descriptor: "Critical reflection on the exploration linked to the aim, and on the significance of results" },
-    { name: "Criterion E: Use of mathematics", max: 6, descriptor: "Relevant mathematics commensurate with the level of the course, used correctly; at HL the top levels additionally require sophistication and rigour" },
+    { name: "Criterion E: Use of mathematics", max: 6, descriptor: "Relevant mathematics commensurate with the level of the course, correct, with understanding demonstrated; at HL level 5 also requires sophistication or rigour, and level 6 precise mathematics with sophistication and rigour" },
   ],
-  notes: "Criterion E has separate SL and HL level descriptors (same maximum): HL top marks require sophistication/rigour; SL requires correct mathematics commensurate with the course level, demonstrating thorough understanding. The analyzer does not ask for the course or level. If the text states them (AA or AI, SL or HL), apply that level; if it does not, say in the Criterion E comment which level you assumed and why.",
+  notes: "Criterion E has separate SL and HL level descriptors (same maximum): HL level 5 requires sophistication or rigour and level 6 both; SL requires correct mathematics commensurate with the course level, demonstrating thorough understanding. The analyzer does not ask for the course or level. If the text states them (AA or AI, SL or HL), apply that level; if it does not, say in the Criterion E comment which level you assumed and why.",
 };
 
 // ─── Psychology IA (guide first assessment 2019, LAST assessment Nov 2026) ──
@@ -133,7 +133,7 @@ const PSYCHOLOGY_IA: Rubric = {
   totalMarks: 22,
   criteria: [
     { name: "I. Introduction", max: 6, descriptor: "Aim, link to the background theory or model, and operationalized variables" },
-    { name: "II. Exploration", max: 4, descriptor: "Research design, sampling, participant characteristics, controlled variables, materials, sufficient for replication" },
+    { name: "II. Exploration", max: 4, descriptor: "Research design, sampling technique, choice of participants, controlled variables and choice of materials explained (described only is the 1-2 band)" },
     { name: "III. Analysis", max: 6, descriptor: "Correct descriptive and inferential statistics, appropriately graphed, with statistical significance addressed" },
     { name: "IV. Evaluation", max: 6, descriptor: "Findings discussed in the context of the background theory; strengths, limitations and improvements" },
   ],
@@ -171,7 +171,7 @@ const EXTENDED_ESSAY: Rubric = {
     { name: "Criterion D: Presentation", max: 4, descriptor: "Structure and layout following expected conventions" },
     { name: "Criterion E: Engagement", max: 6, descriptor: "Intellectual engagement and reflection on the process and its focus (assessed with the RPPF)" },
   ],
-  notes: "Word limit 4,000: examiners do not read or assess beyond it (no separate deduction). There is NO minimum word count. Citations/references, bibliography, contents page, tables, equations, maps/charts/diagrams and the RPPF are excluded from the count; quotations and substantive (non-reference) footnotes are included. The abstract was abolished in 2018 and must not be included.",
+  notes: "Word limit 4,000: examiners do not read or assess beyond it (no separate deduction). There is NO minimum word count. Citations/references, bibliography, contents page, tables, equations, maps/charts/diagrams and the RPPF are excluded from the count; quotations and substantive (non-reference) footnotes are included. An abstract is no longer required (dropped in 2018).",
   wordLimit: { max: 4000, excludes: "citations and references, the bibliography, contents page, tables, equations, charts and diagrams", stopsAt: true },
 };
 
@@ -195,7 +195,7 @@ const TOK_EXHIBITION: Rubric = {
   criteria: [
     { name: "Holistic assessment, global impression", max: 10, descriptor: "Does the exhibition successfully show how TOK manifests in the world around us?" },
   ],
-  notes: "Marked holistically against ONE instrument (no sub-criteria), guided by: \"Does the exhibition successfully show how TOK manifests in the world around us?\" Bands: Excellent 9-10 (three objects with specific real-world contexts; links to the ONE selected IA prompt clearly made and well explained; strong justification of each object\u2019s contribution; points supported by evidence and explicit references to the prompt). Good 7-8; Satisfactory 5-6; Basic 3-4; Rudimentary 1-2; 0 = below standard or not using an official IA prompt. Commentary max 950 words total. Rules of thumb: only two objects, max 6 marks; only one object, max 3 marks.",
+  notes: "Marked holistically against ONE instrument (no sub-criteria), guided by: \"Does the exhibition successfully show how TOK manifests in the world around us?\" Bands: Excellent 9-10 (three objects with specific real-world contexts; links to the ONE selected IA prompt clearly made and well explained; strong justification of each object\u2019s contribution; points supported by evidence and explicit references to the prompt). Good 7-8 (three objects and their real-world contexts identified; links to the selected IA prompt explained, though the explanation may lack precision and clarity in parts; a justification of each object's contribution; many points supported by appropriate evidence and references to the prompt). Satisfactory 5-6 (three objects, but their real-world contexts may be vaguely or imprecisely stated; some explanation of the links to the prompt; some justification for including each object; some points supported by evidence and references to the prompt). Basic 3-4 (three objects, but contexts may be implied rather than stated; basic links to the prompt whose explanation is unconvincing and/or unfocused; superficial justification for each object, not supported by appropriate evidence and/or lacking relevance to the prompt; there may be significant repetition across the justifications). Rudimentary 1-2 (three objects, but contexts not stated, or images that are highly generic images of types of object rather than specific real-world objects; links minimal, tenuous or unclear; very little justification; highly descriptive or unsupported assertions). 0 = does not reach these levels or does not use one of the IA prompts. Commentary max 950 words total. Rules: with images and commentaries for only two objects the maximum is 6 marks; with only one object the maximum is 3 marks.",
   wordLimit: { max: 950, excludes: "text on the objects themselves, acknowledgments, references and the bibliography", stopsAt: true },
 };
 
@@ -226,7 +226,7 @@ const ENGLISH_LIT_IA: Rubric = {
 // SL instrument (30). HL adds Criterion F: Making connections to own art-making practice (12) = 42.
 // TODO(M27): component ABOLISHED in the new VA syllabus (first assessment 2027).
 const VISUAL_ARTS_IA: Rubric = {
-  label: "Visual Arts, Comparative Study (SL instrument, through Nov 2026)",
+  label: "Visual Arts, Comparative Study (externally assessed, SL instrument, through Nov 2026)",
   totalMarks: 30,
   criteria: [
     { name: "Criterion A: Analysis of formal qualities", max: 6, descriptor: "Analysis of the formal qualities of the selected artworks" },
@@ -235,34 +235,34 @@ const VISUAL_ARTS_IA: Rubric = {
     { name: "Criterion D: Making comparisons and connections", max: 6, descriptor: "Critical comparison and connections between the selected pieces" },
     { name: "Criterion E: Presentation and subject-specific language", max: 6, descriptor: "Structured presentation using appropriate subject-specific language" },
   ],
-  notes: "This is the SL instrument (30). HL is additionally assessed on Criterion F: Making connections to own art-making practice (12), total 42, state which level the work is for. The comparative study is abolished in the 2027 syllabus.",
+  notes: "This is the comparative study, externally assessed coursework, not the Visual Arts internal assessment (the exhibition). This is the SL instrument (30). HL is additionally assessed on Criterion F: Making connections to own art-making practice (12), total 42, state which level the work is for. The comparative study is abolished in the 2027 syllabus.",
 };
 
 // ─── Music, Exploring music in context (portfolio, FA 2022) ─────────────────
 const MUSIC_IA: Rubric = {
-  label: "Music, Exploring music in context",
+  label: "Music, Exploring music in context (externally assessed portfolio)",
   totalMarks: 24,
   criteria: [
-    { name: "Criterion A: Selection of evidence", max: 6, descriptor: "Appropriate selection of musical material and evidence for the portfolio" },
-    { name: "Criterion B1: Conducting musical research", max: 9, descriptor: "Quality and depth of musical research into the selected material" },
-    { name: "Criterion B2: Implications", max: 3, descriptor: "Implications drawn from the research for the student\u2019s own music-making" },
+    { name: "Criterion A: Selection of evidence", max: 6, descriptor: "Diversity, breadth and balance of the musical material chosen as evidence (contrasting material from personal, local and global contexts in at least two areas of inquiry), with evidence well chosen to support the findings" },
+    { name: "Criterion B1: Conducting musical research", max: 9, descriptor: "How well the student extracts, communicates and locates musical and extra-musical findings, and how effective those findings are, using accurate terminology" },
+    { name: "Criterion B2: Implications", max: 3, descriptor: "Explanation of the implications of the research for creating and performing in the selected styles" },
     { name: "Criterion C1: Understanding creating conventions", max: 3, descriptor: "Understanding of creating conventions demonstrated in the practical exercises" },
     { name: "Criterion C2: Understanding performing practices", max: 3, descriptor: "Understanding of performing practices demonstrated in the practical exercises" },
   ],
-  notes: "Portfolio maximum 2,400 words.",
+  notes: "This is Exploring music in context, externally assessed coursework, not the Music internal assessment (Experimenting with music). Portfolio maximum 2,400 words.",
   wordLimit: { max: 2400, excludes: "track lists in an appendix, citations and the bibliography" },
 };
 
 // ─── Film, Textual Analysis (external, FA 2019 / 2nd edition FA 2023) ───────
 const FILM_IA: Rubric = {
-  label: "Film, Textual Analysis",
+  label: "Film, Textual Analysis (externally assessed)",
   totalMarks: 28,
   criteria: [
-    { name: "Criterion A: Cultural context", max: 8, descriptor: "Understanding of the film\u2019s cultural context and its influence on the extract" },
+    { name: "Criterion A: Cultural context", max: 8, descriptor: "Understanding of the cultural context of the film text, supported by research from appropriate and relevant sources" },
     { name: "Criterion B: Film elements", max: 12, descriptor: "Analysis of how film elements construct meaning in the extract" },
-    { name: "Criterion C: Relationships within the film text", max: 8, descriptor: "How the extract relates to the film as a whole" },
+    { name: "Criterion C: Relationships within the film text", max: 8, descriptor: "How the cultural context and the identified film elements in the extract relate to each other and to the film text as a whole (and, where appropriate, to other films)" },
   ],
-  notes: "1,750 words plus a list of sources.",
+  notes: "This is the textual analysis, externally assessed coursework, not the Film internal assessment (the film portfolio). 1,750 words plus a list of sources.",
   wordLimit: { max: 1750, excludes: "the list of sources and the labels on illustrations", stopsAt: true },
 };
 
@@ -276,9 +276,9 @@ const EXTENDED_ESSAY_2027: Rubric = {
   criteria: [
     { name: "Criterion A: Framework for the essay", max: 6, descriptor: "Research question, method and structure appropriate to the essay (absorbs the former Presentation criterion)" },
     { name: "Criterion B: Knowledge and understanding", max: 6, descriptor: "Knowledge and understanding of the topic and effective use of subject-specific terminology and concepts" },
-    { name: "Criterion C: Analysis and line of argument", max: 6, descriptor: "Analysis of the research and a clear, coherent line of argument" },
-    { name: "Criterion D: Discussion and evaluation", max: 8, descriptor: "Discussion and evaluation of the argument, evidence and viewpoints. This is the highest-weighted criterion" },
-    { name: "Criterion E: Reflection", max: 4, descriptor: "Reflection on the research process (assessed with the 500-word reflective statement, RPF)" },
+    { name: "Criterion C: Analysis and line of argument", max: 6, descriptor: "Effective analysis of the research, with findings consistently relevant to the research question, and a coherent line of argument" },
+    { name: "Criterion D: Discussion and evaluation", max: 8, descriptor: "A balanced discussion of the significance of the findings, supported by appropriate evidence, and an evaluation of the effectiveness of the essay with its relevant strengths and limitations explained. This is the highest-weighted criterion" },
+    { name: "Criterion E: Reflection", max: 4, descriptor: "Evaluative reflection, with specific examples, on the effect of the extended essay learning experience on the student as a learner, showing growth and transfer of learning (reflection that only describes the process is the lowest level); assessed on the 500-word reflective statement (RPF)" },
   ],
   notes: "New EE for the May 2027 session onward: 30 marks. Word limit 4,000. The RPPF is replaced by the RPF, a single reflective statement of up to 500 words.",
   wordLimit: { max: 4000, excludes: "citations and references, the bibliography, contents page, tables, equations, charts and diagrams", stopsAt: true },
@@ -303,11 +303,11 @@ const CS_IA_2027: Rubric = {
   label: "Computer Science IA, Computational solution (May 2027 syllabus)",
   totalMarks: 30,
   criteria: [
-    { name: "Criterion A: Problem specification", max: 4, descriptor: "The problem scenario, its computational context and the success criteria" },
-    { name: "Criterion B: Planning", max: 4, descriptor: "Decomposition of the problem and planning of a solution that addresses the success criteria" },
-    { name: "Criterion C: System overview", max: 6, descriptor: "The system model, the algorithms and the testing strategy" },
-    { name: "Criterion D: Development", max: 12, descriptor: "The development process and a fully functional product, supported by the video, with sources acknowledged" },
-    { name: "Criterion E: Evaluation", max: 4, descriptor: "Evaluation of the solution, including how far it meets the success criteria, with recommendations for improvement" },
+    { name: "Criterion A: Problem specification", max: 4, descriptor: "The problem scenario described in terms of measurable solution requirements; appropriate success criteria; the choice of computational context explained" },
+    { name: "Criterion B: Planning", max: 4, descriptor: "A reasonable decomposition of the problem scenario and a plan that addresses the success criteria" },
+    { name: "Criterion C: System overview", max: 6, descriptor: "A complete system model; algorithms for its components that enable the product to perform; a testing strategy aligned with the success criteria" },
+    { name: "Criterion D: Development", max: 12, descriptor: "A fully functional product constructed with appropriate techniques to implement the algorithms; the choices made to implement the algorithms evaluated; the effectiveness of the testing strategy justified" },
+    { name: "Criterion E: Evaluation", max: 4, descriptor: "Evaluation of the extent to which the success criteria were met, and justified improvements to the product" },
   ],
   notes: "Documentation capped at 2,000 words (excluding code excerpts, comments and diagrams) plus a video of up to 5 minutes. The former client requirement is removed. The product and the video are not part of the pasted documentation: mark Development on what the documentation shows, and say in that comment that the product and video were not seen.",
   wordLimit: { max: 2000, excludes: "code excerpts, comments and diagrams" },

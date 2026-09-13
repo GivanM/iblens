@@ -8,7 +8,7 @@ export default function RPF2027() {
       description="From the May 2027 session the EE RPPF is replaced by the RPF, a single reflective statement of up to 500 words, assessed under Criterion E: Reflection (4 of 30 marks). What it is and how to write one."
       canonical="/resources/ib-rpf-extended-essay-2027"
       datePublished="2026-08-11"
-      dateModified="2026-08-11"
+      dateModified="2026-09-13"
     >
       <h1>The EE Reflective Statement (RPF): What Replaces the RPPF in 2027</h1>
 
@@ -21,19 +21,19 @@ export default function RPF2027() {
       <ul>
         <li><strong>One statement instead of three staged entries.</strong> You still have three reflection sessions with your supervisor, but you write one reflective statement of up to 500 words after the last of them, and it is submitted with the essay.</li>
         <li><strong>Assessed under Criterion E: Reflection, 4 marks of 30</strong> (about 13% of the EE grade). Under the old rubric, reflection fed Criterion E: Engagement, worth 6 of 34.</li>
-        <li><strong>The criterion assesses reflection on the research process:</strong> how you engaged with the investigation, not a diary of what you did when.</li>
+        <li><strong>The criterion assesses the effect of the EE on you as a learner:</strong> evaluative reflection with specific examples, and evidence of growth and of transfer of learning. A description of the process is the lowest level.</li>
       </ul>
 
       <h2>What a strong reflective statement shows</h2>
 
       <p>
-        Criterion E rewards reflection on the research process. In practice, the statements that read as genuine and earn marks tend to show three things:
+        Criterion E has two strands. One asks how evaluative your reflection on the EE learning experience is, and whether it uses specific examples. The other asks for evidence of your growth as a learner and of learning you can transfer elsewhere. A strong statement shows:
       </p>
 
       <ul>
-        <li><strong>Decisions, with reasons.</strong> Where the investigation could have gone another way (a narrowed research question, a source you rejected, a method you replaced) and why you chose as you did.</li>
-        <li><strong>Turning points.</strong> The moment evidence pushed back: a result that surprised you, a counter-argument that forced a rethink. Reflection on a process with no turning points reads as reconstruction, not reflection.</li>
-        <li><strong>Intellectual honesty about limits.</strong> What you would do differently, and what your final essay still cannot claim. This overlaps with the evaluative skill Criterion D rewards inside the essay itself.</li>
+        <li><strong>Evaluation, not narration.</strong> Not what happened, but what it did to your thinking and working: which approach worked, which did not, and why.</li>
+        <li><strong>Specific examples.</strong> A moment you can point to, such as a source that changed your question or a draft your supervisor pushed back on, and what you did about it.</li>
+        <li><strong>Growth and transfer.</strong> What you can now do as a researcher or writer that you could not before, and where you will use it next.</li>
       </ul>
 
       <h2>What to avoid</h2>
@@ -48,9 +48,9 @@ export default function RPF2027() {
 
       <ul>
         <li>Under 500 words.</li>
-        <li>At least two concrete decisions with reasoning a reader can follow.</li>
-        <li>At least one genuine turning point, and what changed because of it.</li>
-        <li>One honest limitation or "what I would do differently".</li>
+        <li>Reflection that evaluates, not a description of the process.</li>
+        <li>At least two specific examples from your own EE.</li>
+        <li>A clear statement of how you grew as a learner and where that learning transfers.</li>
         <li>No content summary, no timeline padding.</li>
       </ul>
 
@@ -73,7 +73,7 @@ export default function RPF2027() {
 
       <h3>How long should the RPF be?</h3>
       <p>
-        Up to 500 words. Length is a ceiling, not a target: a focused 400-word statement with real decisions beats 500 words of timeline.
+        Up to 500 words. Length is a ceiling, not a target: a focused 400-word statement that evaluates what the EE changed in you, with specific examples, beats 500 words of timeline.
       </p>
 
       <h3>Do November 2026 students write an RPF?</h3>

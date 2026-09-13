@@ -8,7 +8,7 @@ export default function ExtendedEssayGuide() {
       description="A complete guide to the IB Extended Essay: the 4,000-word limit, structure, the research question, the assessment criteria for both rubrics, and the mistakes that cost marks."
       canonical="/resources/ib-extended-essay-guide"
       datePublished="2026-05-01"
-      dateModified="2026-05-01"
+      dateModified="2026-09-13"
     >
       <h1>The Complete IB Extended Essay Guide</h1>
 
@@ -27,7 +27,7 @@ export default function ExtendedEssayGuide() {
       <h2>What Is the IB Extended Essay?</h2>
 
       <p>
-        The Extended Essay is a required component for all IB Diploma candidates. It is an in-depth study of a focused topic, usually in one of the student's DP subjects, or written as an interdisciplinary World Studies essay. The essay must be the result of the student's own research and must demonstrate the ability to formulate an appropriate research question, engage in personal exploration of the topic, communicate ideas effectively, and develop a reasoned argument.
+        The Extended Essay is a required component for all IB Diploma candidates. It is an in-depth study of a focused topic, usually in one of the student's DP subjects. Through November 2026 it can also be an interdisciplinary World Studies essay; from May 2027 that option is replaced by the interdisciplinary extended essay. The essay must be the result of the student's own research and must demonstrate the ability to formulate an appropriate research question, engage in personal exploration of the topic, communicate ideas effectively, and develop a reasoned argument.
       </p>
 
       <p>

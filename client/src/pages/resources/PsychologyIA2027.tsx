@@ -8,7 +8,7 @@ export default function PsychologyIA2027() {
       description="From the May 2027 session the IB Psychology IA becomes a research proposal marked out of 24, and no experiment is conducted. The new criteria, what changed from the 22-mark report, and how to check your draft."
       canonical="/resources/ib-psychology-ia-2027"
       datePublished="2026-08-11"
-      dateModified="2026-08-11"
+      dateModified="2026-09-13"
     >
       <h1>IB Psychology IA Changes 2027: The Research Proposal, Explained</h1>
 
@@ -30,10 +30,10 @@ export default function PsychologyIA2027() {
           <tr><th>Criterion</th><th>Marks</th><th>What it assesses</th></tr>
         </thead>
         <tbody>
-          <tr><td>A: Introduction</td><td>6</td><td>Research question, relevant background theory and research, and the rationale for the proposed study.</td></tr>
-          <tr><td>B: Research methodology</td><td>6</td><td>Appropriate research method, design and participant considerations for the proposal.</td></tr>
-          <tr><td>C: Data collection</td><td>6</td><td>Planned data collection: materials, procedure and ethical considerations.</td></tr>
-          <tr><td>D: Discussion</td><td>6</td><td>Anticipated outcomes, limitations and implications of the proposed study.</td></tr>
+          <tr><td>A: Introduction</td><td>6</td><td>A clearly stated, focused aim or research question; a real-life problem and its impact on the population of interest; the findings and conclusions of two pieces of relevant research, linked to the proposal.</td></tr>
+          <tr><td>B: Research methodology</td><td>6</td><td>The choice of research method and the procedure explained (sampling, sample, design, setting), with ethical considerations explicitly linked to the study.</td></tr>
+          <tr><td>C: Data collection</td><td>6</td><td>One data collection tool you create (at least five items, copy in the appendix), the decisions behind it, and the potential challenges of collecting the data.</td></tr>
+          <tr><td>D: Discussion</td><td>6</td><td>Potential findings and their implications for policy or practice, how researcher bias may affect the study, and one additional research method that would add to understanding.</td></tr>
         </tbody>
       </table>
 
@@ -46,17 +46,17 @@ export default function PsychologyIA2027() {
       <ul>
         <li><strong>No experiment.</strong> The old IA required you to run an experiment based on a published study, collect data and analyse it statistically. The new IA is a proposal: you design a study you do not run.</li>
         <li><strong>Marks: 22 → 24</strong>, and four evenly weighted criteria of 6 replace the old 6/4/6/6 split.</li>
-        <li><strong>Analysis of collected data disappears</strong> as a criterion, replaced by planned data collection (Criterion C) and anticipated outcomes (Criterion D).</li>
-        <li><strong>Discussion is forward-looking:</strong> instead of evaluating what happened, you evaluate what your design could and could not show, with its limitations and implications, before any data exists.</li>
+        <li><strong>Analysis of collected data disappears</strong> as a criterion, replaced by the design of a data collection tool (Criterion C) and a discussion of potential findings (Criterion D).</li>
+        <li><strong>Discussion is forward-looking:</strong> instead of evaluating what happened, you discuss what the study might find and what that would mean for policy or practice, how your own position could bias it, and which other method would add to the picture.</li>
       </ul>
 
       <h2>How to check your proposal draft</h2>
 
       <ul>
-        <li><strong>Introduction:</strong> is the research question precise, and does the background research genuinely lead to your rationale rather than sitting beside it as a summary?</li>
-        <li><strong>Research methodology:</strong> Are method, design and participant choices each justified for <em>this</em> question, not just named?</li>
-        <li><strong>Data collection:</strong> Could another student run your study from the materials and procedure as written? Are ethical considerations specific to your design?</li>
-        <li><strong>Discussion:</strong> Do you anticipate concrete outcomes and honestly assess what the design cannot establish?</li>
+        <li><strong>Introduction:</strong> Is the aim focused on a real-life problem and a specific population of interest, and do the two studies you summarise connect to your proposal?</li>
+        <li><strong>Research methodology:</strong> Are the method and procedure explained for <em>this</em> question, and are the ethical considerations tied to your study rather than copied from a template?</li>
+        <li><strong>Data collection:</strong> Does your tool have at least five items, a copy in the appendix, and an explanation of why each item measures what it should? Have you explained what could go wrong when collecting the data?</li>
+        <li><strong>Discussion:</strong> Do you set out potential findings and their implications, discuss researcher bias, and argue for one additional method?</li>
       </ul>
 
       <h2>Check your draft with IBLens</h2>
@@ -73,7 +73,7 @@ export default function PsychologyIA2027() {
 
       <h3>Do I still run an experiment for the Psychology IA?</h3>
       <p>
-        Not from the May 2027 session onward. The new Internal Assessment is a research proposal: you design a study, justify its methodology and data collection plan, and discuss anticipated outcomes, but no experiment is conducted.
+        Not from the May 2027 session onward. The new Internal Assessment is a research proposal: you design a study, explain its method, procedure and ethics, create a data collection tool and discuss the potential findings, but the study is never carried out.
       </p>
 
       <h3>Is the new Psychology IA different for SL and HL?</h3>

@@ -47,7 +47,7 @@ const plans: Array<{
     features: [
       "Everything in the full report",
       "$5.00 per report, 50% less than buying singly",
-      "Two free re-checks of each draft within 14 days",
+      "Two free re-checks of each report within 14 days of it opening",
       "Use across any subjects",
       "No expiry date. Without an account they live on this device until you sign in",
       "For several drafts or several subjects",
@@ -64,7 +64,7 @@ const plans: Array<{
     features: [
       "Everything in the full report",
       "$4.50 per report, 55% less than buying singly",
-      "Two free re-checks of each draft within 14 days",
+      "Two free re-checks of each report within 14 days of it opening",
       "Use across any subjects",
       "No expiry date. Without an account they live on this device until you sign in",
       "The lowest price per report",
@@ -185,6 +185,10 @@ export default function Pricing() {
             </div>
           ))}
         </div>
+
+        <p className="max-w-3xl mx-auto mt-8 text-sm text-muted-foreground text-center">
+          Without an account, this browser keeps your newest report open, with its re-checks, and holds any unused credits. To keep every report you buy and re-check each one, sign in with Google on this device, using the email you pay with.
+        </p>
 
         {/* Payment methods */}
         <div className="flex items-center justify-center gap-6 mt-12 text-sm text-muted-foreground flex-wrap">

@@ -15,7 +15,7 @@ interface SEOHeadProps {
   jsonLd?: object | object[];
 }
 
-const DEFAULT_OG_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663456034410/fPpXrWUtmpLttw7Fz9wKLE/og-image-CS5C2Vq6Jk92bXNFNMwCXg.png";
+const DEFAULT_OG_IMAGE = "https://iblens.com/og-image.png";
 
 export function SEOHead({
   title,

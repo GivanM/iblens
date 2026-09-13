@@ -14,6 +14,7 @@ import { fileURLToPath, pathToFileURL } from "url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const pagesDir = path.join(root, "client/src/pages");
 const outFile = path.join(root, "dist/crawler-bodies.json");
+const metaFile = path.join(root, "dist/crawler-meta.json");
 const bundleFile = path.join(root, "dist/.crawler-render.mjs");
 
 function walk(dir, out = []) {
@@ -156,11 +157,26 @@ const setRoute = (route) => {
 
 try {
   const { renderAll } = await import(pathToFileURL(bundleFile).href + `?t=${Date.now()}`);
-  const bodies = renderAll(setRoute);
-  for (const [route, html] of Object.entries(bodies)) {
-    if (html.length < 800) throw new Error(`${route} rendered only ${html.length} characters`);
+  const rendered = renderAll(setRoute);
+  const bodies = {};
+  const meta = {};
+  for (const [route, html] of Object.entries(rendered)) {
+    // SEOHead renders title, meta, link and JSON-LD tags where it sits, which is
+    // inside the body. The server writes the head itself, so leaving them here put
+    // two titles, two canonicals and duplicate JSON-LD on every page.
+    const published = html.match(/"datePublished":"(\d{4}-\d{2}-\d{2})"/)?.[1];
+    const modified = html.match(/"dateModified":"(\d{4}-\d{2}-\d{2})"/)?.[1];
+    if (published || modified) meta[route] = { datePublished: published, dateModified: modified };
+    const body = html
+      .replace(/<title\b[^>]*>[\s\S]*?<\/title>/gi, "")
+      .replace(/<meta\b[^>]*>/gi, "")
+      .replace(/<link\b[^>]*>/gi, "")
+      .replace(/<script\b[^>]*type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/gi, "");
+    if (body.length < 800) throw new Error(`${route} rendered only ${body.length} characters`);
+    bodies[route] = body;
   }
   fs.writeFileSync(outFile, JSON.stringify(bodies));
+  fs.writeFileSync(metaFile, JSON.stringify(meta));
   console.log(`✅ Rendered ${Object.keys(bodies).length} page bodies for crawlers → dist/crawler-bodies.json`);
 } finally {
   fs.rmSync(bundleFile, { force: true });

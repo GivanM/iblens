@@ -17,14 +17,16 @@ export default function Privacy() {
 
           <h2>What we collect</h2>
           <ul>
-            <li><strong>Essay text you submit</strong> for analysis (IA, EE or TOK), plus the subject and essay type you select.</li>
+            <li><strong>Text you submit</strong> for analysis: IB coursework (IA, EE or TOK) or UCAS personal statement answers, plus the subject, essay type, research question or course you enter.</li>
+            <li><strong>The reports we generate</strong> from that text. A report can quote short passages from what you submitted.</li>
             <li><strong>Account details</strong> if you sign in (name and email address via Google sign-in), and the email address you give at checkout if you buy without an account.</li>
+            <li><strong>Purchase records</strong>: the order, the product, the amount and the name and email address our payment provider sends us when you pay.</li>
             <li><strong>Usage and device data</strong> through cookies and analytics (Google Tag Manager, Google Analytics, Google Ads), such as pages viewed and approximate location for consent handling.</li>
           </ul>
 
           <h2>How your essay is processed (AI disclosure)</h2>
-          <p>To produce your analysis, the text you submit is transmitted over an encrypted connection to our AI provider, <strong>Anthropic PBC</strong>, which processes it on our behalf solely to generate the feedback you receive. We do not use your essay to train any AI model, and we do not sell it.</p>
-          <p>One detail most services leave out, and we would rather state it: the request does not travel to Anthropic directly. It passes through <strong>a relay server we operate in Helsinki, Finland</strong> (Hetzner Online GmbH), which exists because the connection to the model is not reliable from where this service is run. The relay holds the request and the answer only for as long as the analysis takes, and nobody else has access to it. The text of your essay is never written to our database, at any stage.</p>
+          <p>To produce your analysis, the text you submit is transmitted over an encrypted connection to our AI provider, <strong>Anthropic PBC</strong>, which processes it on our behalf solely to generate the feedback you receive. We do not use your essay to train any AI model, and we do not sell it. Anthropic's own policy for this kind of use is to delete inputs and outputs within 30 days, and to keep them longer only where content is flagged under its usage policy or the law requires it.</p>
+          <p>One detail most services leave out, and we would rather state it: the request does not travel to Anthropic directly. It passes through <strong>a relay server we operate in Helsinki, Finland</strong> (Hetzner Online GmbH), which exists because the connection to the model is not reliable from where this service is run. The relay holds the request and the answer only for as long as the analysis takes, and nobody else has access to it. The full text you submit, an essay or a personal statement, is never written to our database, at any stage; the stored report can quote short passages from it.</p>
 
           <h2>Who we share data with</h2>
           <p>We do not sell your personal data. We share it only with the service providers needed to run IBLens, each acting under their own terms:</p>
@@ -32,14 +34,15 @@ export default function Privacy() {
             <li><strong>Anthropic PBC:</strong> AI processing of your essay to generate the analysis.</li>
             <li><strong>Hetzner Online GmbH</strong> (Helsinki, Finland): the server we operate to reach the AI provider; your text passes through it in transit.</li>
             <li><strong>LemonSqueezy:</strong> payment processing and receipts (they handle your card data; we never see full card numbers).</li>
-            <li><strong>Google:</strong> analytics, advertising measurement, and sign-in.</li>
+            <li><strong>Google:</strong> analytics, advertising measurement, and sign-in. When a purchase completes, our server also sends Google Analytics the order number, the product and the amount, without your name or email address.</li>
           </ul>
           <p>We do not share your essay content with your school, universities, examiners, or other students.</p>
 
           <h2>How long we keep it</h2>
           <ul>
-            <li>Anonymous analyses: the report and the research question are deleted 90 days after the analysis, unless the report was purchased. The essay text itself is never stored.</li>
-            <li>Signed-in analysis history: kept until you delete it. Every report in your dashboard has a Delete button, and you can also ask us to remove everything.</li>
+            <li>Reports made without an account (essays and UCAS statements): the report and the research question or course are deleted 90 days after the analysis, unless the report was purchased. The full text you submitted is never stored.</li>
+            <li>Signed-in analysis history: kept until you delete it. Every report in your dashboard has a Delete button, which also removes the copy kept on the device the report was bought on, and you can ask us to remove everything.</li>
+            <li>Purchase records: kept for as long as we need them for accounting, tax and refunds.</li>
             <li>Account email: kept while your account is active, then on request.</li>
           </ul>
 

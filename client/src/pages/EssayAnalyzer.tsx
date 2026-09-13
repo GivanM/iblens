@@ -35,8 +35,18 @@ const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
 const IB_SUBJECTS: string[] = [...IA_RUBRIC_SUBJECTS];
 
+// Three of the coursework subjects are marked on an externally assessed component,
+// not on that subject's internal assessment. Under "Internal Assessment" the bare
+// subject name let a Music student submit Experimenting with music and be marked
+// on the criteria for Exploring music in context.
+const EXTERNAL_COURSEWORK_LABELS: Record<string, string> = {
+  "Visual Arts": "Visual Arts: comparative study (external)",
+  "Music": "Music: exploring music in context (external)",
+  "Film": "Film: textual analysis (external)",
+};
+
 const ESSAY_TYPES = [
-  { value: "IA", label: "Internal Assessment (IA)" },
+  { value: "IA", label: "Internal Assessment (IA) or coursework" },
   { value: "EE", label: "Extended Essay (EE)" },
   { value: "TOK", label: "TOK Essay" },
   { value: "TOK Exhibition", label: "TOK Exhibition" },
@@ -88,6 +98,8 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
     onError: (e: any) => toast.error(e.message || "Unlock failed"),
   });
   const weakest = result.weakest_criterion;
+  // A holistic instrument has one criterion, and its score is the exact mark.
+  const holistic = (result.criteria_names || []).length === 1;
   const others = (result.criteria_names || []).filter((c: any) => c?.name !== weakest?.name);
   const doUnlock = () => unlock.mutate(analysisId ? { analysisId } : { fingerprint });
   return (
@@ -105,8 +117,8 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
         <WordCheckNote check={result._wordCheck} text={essayText} />
         {weakest && (
           <div className="rounded-lg border border-amber-300 bg-amber-50 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-1.5">Your weakest criterion, full feedback</p>
-            <div className="flex justify-between text-sm font-semibold mb-1 text-foreground"><span>{weakest.name}</span><span>{weakest.score}/{weakest.max}</span></div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-1.5">{holistic ? "The start of the explanation" : "Your weakest criterion, full feedback"}</p>
+            <div className="flex justify-between text-sm font-semibold mb-1 text-foreground"><span>{weakest.name}</span><span>{typeof weakest.score === "number" ? `${weakest.score}/${weakest.max}` : `Band ${result.band_range}`}</span></div>
             <p className="text-sm text-muted-foreground leading-relaxed">{weakest.comment}</p>
           </div>
         )}
@@ -131,12 +143,14 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
                 <span className="text-xs whitespace-nowrap">?/{c.max}</span>
               </li>
             ))}
-            <li className="flex items-center gap-2 text-sm text-muted-foreground"><Lock className="w-3.5 h-3.5 shrink-0" /> Exact predicted score</li>
-            <li className="flex items-center gap-2 text-sm text-muted-foreground"><Lock className="w-3.5 h-3.5 shrink-0" /> Examiner-style overall comment</li>
+            <li className="flex items-center gap-2 text-sm text-muted-foreground"><Lock className="w-3.5 h-3.5 shrink-0" /> {holistic ? "The exact mark within the band, and the full explanation" : "Exact predicted score"}</li>
+            <li className="flex items-center gap-2 text-sm text-muted-foreground"><Lock className="w-3.5 h-3.5 shrink-0" /> The overall comment</li>
             <li className="flex items-center gap-2 text-sm text-muted-foreground"><Lock className="w-3.5 h-3.5 shrink-0" /> Step-by-step fixes, ranked by marks gained</li>
           </ul>
           <p className="text-xs text-muted-foreground mt-3">
-            The criterion shown above in full is the one where this draft loses the largest share of its available marks. The others are scored in the full report.
+            {holistic
+              ? "This task is marked as a whole, out of one instrument. The preview shows the band and the start of the explanation; the full report gives the exact mark and all of it."
+              : "The criterion shown above in full is the one where this draft loses the largest share of its available marks. The others are scored in the full report."}
           </p>
         </div>
         <div className="rounded-lg bg-primary/5 border border-primary/30 p-4">
@@ -170,7 +184,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
 const ANALYZING_STEPS = [
   "Reading your essay\u2026",
   "Checking it against the published criteria\u2026",
-  "Scoring each criterion like a strict examiner\u2026",
+  "Marking each criterion against its descriptors\u2026",
   "Finding the exact marks you\u2019re losing\u2026",
   "Writing your improvement plan\u2026",
   "Formatting your report, almost there\u2026",
@@ -598,7 +612,7 @@ export default function EssayAnalyzer() {
                   </SelectTrigger>
                   <SelectContent>
                     {IB_SUBJECTS.map((s) => (
-                      <SelectItem key={s} value={s}>{s}</SelectItem>
+                      <SelectItem key={s} value={s}>{essayType === "IA" ? (EXTERNAL_COURSEWORK_LABELS[s] ?? s) : s}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -668,7 +682,7 @@ export default function EssayAnalyzer() {
             )}
             <Label>{essayType === "TOK Exhibition" ? "Paste your commentary on all three objects" : "Paste your essay or IA text"}</Label>
             <Textarea
-              placeholder={essayType === "TOK Exhibition" ? "Paste your commentary for all three objects, including how each links to the prompt." : "Paste the full text of your work here. A short extract can be marked, but the report is only as good as what it sees. Anything past 30,000 characters, about 5,000 words, is not sent."}
+              placeholder={essayType === "TOK Exhibition" ? "Paste your commentary for all three objects, including how each links to the prompt." : "Paste the full text of your work here. A short extract can be marked, but the report is only as good as what it sees. Anything past 30,000 characters, about 5,000 words, is not passed to the AI or marked."}
               rows={10}
               value={essayText}
               onChange={(e) => setEssayText(e.target.value)}
@@ -854,6 +868,7 @@ export default function EssayAnalyzer() {
             open={essayPurchaseOpen}
             onOpenChange={setEssayPurchaseOpen}
             sku="ESSAY_SINGLE"
+            analysisId={isAuthenticated ? lastAnalysisId : null}
           />
         </CardContent>
       </Card>
@@ -1137,7 +1152,7 @@ export default function EssayAnalyzer() {
                   <div>
                     <h3 style={SERIF} className="font-bold text-xl mb-1">Keep this report in an account</h3>
                     <p className="text-sm text-muted-foreground">
-                      Sign in free and this report moves to your dashboard, where it stays until you delete it. Your next report is <strong>{PRICE_LABELS.ESSAY_SINGLE}</strong>, or five for {PRICE_LABELS.ESSAY_PACK_5} ($5.00 each).
+                      Sign in free on this device with the email you paid with, and this report moves to your dashboard, where it stays until you delete it. Your next report is <strong>{PRICE_LABELS.ESSAY_SINGLE}</strong>, or five for {PRICE_LABELS.ESSAY_PACK_5} ($5.00 each).
                     </p>
                   </div>
                 </div>

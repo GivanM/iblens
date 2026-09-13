@@ -324,8 +324,8 @@ export default function SampleReports() {
       <p>
         The weak essay scored 2, the developing essay 5 and the strong essay 9, one in each of three bands: Rudimentary,
         Satisfactory and Excellent. The mark moved with the quality, and every report, the strong one included, says what would
-        move it further. IBLens is instructed to mark strictly rather than kindly, because a low mark you see before you submit is
-        one you can still change.
+        move it further. IBLens is instructed to apply the criteria as written and to be honest about weaknesses, because a low mark you see before
+        you submit is one you can still change.
       </p>
       <p>
         Each mark is an estimate from a language model applying the published instrument, not an IB mark.

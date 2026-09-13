@@ -123,13 +123,13 @@ export default function UcasPersonalStatement() {
   return (
     <div className="container max-w-3xl mx-auto py-10 px-4 space-y-6">
       <SEOHead
-        title="UCAS Personal Statement Checker: New Three-Question Format 2026 | IBLens"
+        title="UCAS Personal Statement Checker: Three-Question Format for 2026 and 2027 Entry | IBLens"
         description="Check your UCAS personal statement against the format used from 2026 entry: three questions, 4,000 characters, 350 minimum per answer. Evidence-based feedback on each answer from an admissions-tutor perspective. Free preview, no account."
         canonical="/ucas-personal-statement"
       />
 
       <div>
-        <p className="text-xs font-bold uppercase tracking-wider text-primary mb-2">UCAS 2026 format</p>
+        <p className="text-xs font-bold uppercase tracking-wider text-primary mb-2">For 2026 and 2027 entry</p>
         <h1 style={SERIF} className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
           UCAS Personal Statement Checker
         </h1>

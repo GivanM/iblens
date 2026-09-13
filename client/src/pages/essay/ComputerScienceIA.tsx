@@ -28,11 +28,11 @@ const config: SubjectConfig = {
       "The criteria below apply from May 2027.",
     ],
     rubricItems: [
-      { title: "Criterion A: Problem specification, 4 marks", text: "The problem scenario, its computational context and the success criteria your solution will be judged against." },
-      { title: "Criterion B: Planning, 4 marks", text: "The problem decomposed, and a plan for a solution that addresses the success criteria." },
-      { title: "Criterion C: System overview, 6 marks", text: "The system model, the algorithms and the testing strategy." },
-      { title: "Criterion D: Development, 12 marks", text: "The development process and a fully functional product, supported by the video." },
-      { title: "Criterion E: Evaluation, 4 marks", text: "An evaluation of the solution, with recommendations for improvement." },
+      { title: "Criterion A: Problem specification, 4 marks", text: "The problem scenario described in terms of measurable solution requirements, appropriate success criteria, and an explanation of why the computational context you chose fits the problem." },
+      { title: "Criterion B: Planning, 4 marks", text: "A reasonable decomposition of the problem scenario and a plan that addresses the success criteria." },
+      { title: "Criterion C: System overview, 6 marks", text: "A complete system model, algorithms for its components that would let the product perform, and a testing strategy aligned with the success criteria." },
+      { title: "Criterion D: Development, 12 marks", text: "A fully functional product, shown in the video, built with appropriate techniques to implement the algorithms, with your implementation choices evaluated and the effectiveness of your testing strategy justified." },
+      { title: "Criterion E: Evaluation, 4 marks", text: "An evaluation of the extent to which the success criteria were met, and justified improvements to the product." },
     ],
     rubricNote: [
       "Through November 2026 the criteria are Planning (6 marks), Solution overview (6), Development (12), Functionality and extensibility of product (4) and Evaluation (6), with feedback from your client or adviser part of the evaluation.",
@@ -41,8 +41,8 @@ const config: SubjectConfig = {
     mistakes: [
       { title: "Success criteria nobody can test", text: "'The app should be easy to use' gives the evaluation nothing to measure. Write criteria that a test can show are met or not met." },
       { title: "A plan with no link to the success criteria", text: "A timeline written after the product was built. From May 2027, Planning rewards decomposing the problem and planning a solution that addresses the success criteria." },
-      { title: "Code with no account of the process", text: "Screenshots of code with no explanation of how and why the solution was built that way. Development marks the process as well as the product, and the documentation is where the process shows." },
-      { title: "Testing that only tries normal inputs", text: "A testing strategy that never tries invalid or boundary inputs. The system overview includes the testing strategy, and the video is expected to show examples of it." },
+      { title: "Choices shown but never evaluated", text: "Screenshots of code with no discussion of why the algorithms were implemented that way or what the alternatives were. The top band of Development asks you to evaluate your implementation choices, and the documentation is where that shows." },
+      { title: "Testing that only tries normal inputs", text: "A testing strategy that never tries invalid or boundary inputs. The system overview has to include a testing strategy aligned with the success criteria, and Development asks you to justify how effective it was." },
       { title: "Long code listings", text: "Pasting whole files into the documentation. Code excerpts do not count toward the 2,000 words from May 2027, but they do not explain your decisions either." },
     ],
     faq: [

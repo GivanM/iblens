@@ -16,7 +16,17 @@ const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 export default function AnalysisView() {
   const params = useParams();
   const id = Number(params.id);
-  const { data, isLoading, error } = trpc.dashboard.analysis.useQuery({ id }, { enabled: Number.isFinite(id) });
+  // Back from checkout: the webhook opens the report a few seconds after the payment
+  // clears, so keep asking for a short while instead of showing it as locked.
+  const paidReturn = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("payment") === "success";
+  const [pollStart] = useState(() => Date.now());
+  const { data, isLoading, error } = trpc.dashboard.analysis.useQuery({ id }, {
+    enabled: Number.isFinite(id),
+    refetchInterval: (q: any) => {
+      const d = q?.state?.data ?? q;
+      return paidReturn && !(d as any)?.unlocked && Date.now() - pollStart < 120000 ? 4000 : false;
+    },
+  });
   const [buyOpen, setBuyOpen] = useState(false);
   const utils = trpc.useUtils();
   // A locked report had no way to be opened from here: the dashboard sent people
@@ -72,7 +82,8 @@ export default function AnalysisView() {
             Buy a credit, {PRICE_LABELS.ESSAY_SINGLE}
           </Button>
         </div>
-        <PurchaseModal open={buyOpen} onOpenChange={setBuyOpen} sku="ESSAY_SINGLE" />
+        {paidReturn && <p className="text-sm text-muted-foreground">Payment received. The report opens here as soon as the payment clears, usually within a minute.</p>}
+        <PurchaseModal open={buyOpen} onOpenChange={setBuyOpen} sku="ESSAY_SINGLE" analysisId={id} />
       </div>
     );
   }

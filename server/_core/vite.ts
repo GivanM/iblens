@@ -69,6 +69,12 @@ export function serveStatic(app: Express) {
   // HTML files are excluded (index:false) so they go through injectSeoMeta below
   app.use(express.static(distPath, { index: false, redirect: false }));
 
+  // The academic integrity page lives under /resources. The short alias served the
+  // homepage metadata with a canonical of "/", so send it to the real page instead.
+  app.get(["/academic-integrity", "/academic-integrity/"], (_req, res) => {
+    res.redirect(301, "/resources/academic-integrity");
+  });
+
   // Serve all HTML routes with SEO meta injection.
   // Tries route-specific pre-rendered HTML first, falls back to index.html (SPA).
   app.use("*", (req, res) => {
@@ -76,11 +82,15 @@ export function serveStatic(app: Express) {
     const cleanPath = req.originalUrl.split("?")[0].replace(/\/+$/, "") || "/";
     // Dynamic app routes carry an id segment, so they cannot sit in the static whitelist.
     const DYNAMIC_PREFIXES = ["/dashboard/analysis/"];
-    const isValid = VALID_ROUTES.has(cleanPath) || DYNAMIC_PREFIXES.some((p) => cleanPath.startsWith(p));
+    // originalUrl is not normalised, so "/dashboard/analysis/../../.." passed the prefix
+    // check and path.resolve walked out of the build directory to any index.html.
+    const hasDotSegment = cleanPath.split("/").some((s) => s === ".." || s === ".");
+    const isValid = !hasDotSegment && (VALID_ROUTES.has(cleanPath) || DYNAMIC_PREFIXES.some((p) => cleanPath.startsWith(p)));
     const status = isValid ? 200 : 404;
     const routeHtml = path.resolve(distPath, cleanPath.slice(1), "index.html");
     const indexHtml = path.resolve(distPath, "index.html");
-    const htmlPath = (isValid && fs.existsSync(routeHtml)) ? routeHtml : indexHtml;
+    const insideDist = routeHtml.startsWith(distPath + path.sep);
+    const htmlPath = (isValid && insideDist && fs.existsSync(routeHtml)) ? routeHtml : indexHtml;
     let html = fs.readFileSync(htmlPath, "utf-8");
     const userAgent = req.headers["user-agent"] || "";
     html = injectSeoMeta(html, req.originalUrl, userAgent);

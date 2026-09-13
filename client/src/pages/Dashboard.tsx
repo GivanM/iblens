@@ -280,9 +280,7 @@ export default function Dashboard() {
                   href={
                     item.essayType === "UCAS"
                       ? "/ucas-personal-statement"
-                      : item.unlocked
-                        ? `/dashboard/analysis/${item.id}`
-                        : "/essay"
+                      : `/dashboard/analysis/${item.id}`
                   }
                   className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors flex-1 min-w-0 cursor-pointer"
                 >

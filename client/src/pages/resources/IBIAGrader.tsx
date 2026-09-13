@@ -4,11 +4,11 @@ import { Link } from "wouter";
 export default function IBIAGrader() {
   return (
     <ResourceArticle
-      title="IB IA Grader: AI Feedback on Your Internal Assessment in 14 Subjects | IBLens"
-      description="Free IB IA grader powered by AI. Grade your Internal Assessment against official IB rubrics for Biology, Chemistry, Physics, Maths, History, Economics, Psychology and more."
+      title="IB IA Grader: AI Feedback on Your Coursework in 14 Subjects | IBLens"
+      description="An IB IA grader with a free preview: AI feedback on your Internal Assessment against the published criteria for Biology, Chemistry, Physics, Maths, History, Economics, Psychology and more."
       canonical="/resources/ib-ia-grader"
       datePublished="2026-06-17"
-      dateModified="2026-06-17"
+      dateModified="2026-09-13"
     >
       <h1>IB IA Grader: AI Feedback on Your Internal Assessment</h1>
 
@@ -72,15 +72,15 @@ export default function IBIAGrader() {
       </p>
 
       <ul>
-        <li><strong>vs. RevisionDojo:</strong> RevisionDojo includes AI coursework feedback in a wider revision platform sold by subscription; check its pricing page for current prices. IBLens charges per report: $9.99 for one, $24.99 for five, with no subscription. If you need feedback on one or two IAs, paying per report is usually cheaper.</li>
+        <li><strong>vs. RevisionDojo:</strong> RevisionDojo includes AI coursework feedback in a wider revision platform sold by subscription; check its pricing page for current prices. IBLens charges per report: $9.99 for one, $24.99 for five, with no subscription. Which costs less depends on how many reports you need, so compare current prices on both sites.</li>
         <li><strong>vs. a general chatbot:</strong> a general AI model marks against whatever it remembers of the criteria, which may be an older version, such as the science criteria retired in 2025. IBLens gives the model the current criteria for your subject and session, and counts the words for you.</li>
         <li><strong>vs. a tutor:</strong> a good tutor brings subject judgement no tool has, at an hourly rate. IBLens gives you an estimate against the criteria in about a minute, for a fixed price, as often as you revise.</li>
       </ul>
 
-      <h2>Is the First IB IA Analysis Really Free?</h2>
+      <h2>Is the First IB IA Preview Really Free?</h2>
 
       <p>
-        Yes, your first analysis is free: band range, your weakest criterion with full feedback, and top risks. The complete report unlocks for $9.99 and includes two free re-checks of the same draft within 14 days. In packs it works out at $5.00 per essay (5 for $24.99) or $4.50 (10 for $44.99).
+        Yes, your first preview is free: band range, your weakest criterion with full feedback, and top risks. The complete report unlocks for $9.99 and includes two free re-checks of the same draft within 14 days. In packs it works out at $5.00 per essay (5 for $24.99) or $4.50 (10 for $44.99).
       </p>
 
       <h2>How Accurate Is the AI Grade?</h2>

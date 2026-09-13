@@ -8,7 +8,7 @@ export default function IBEnglishExtendedEssay() {
       description="How to write an IB English Extended Essay: analytical research questions, close reading over plot summary, criteria A-E, common mistakes and grading tips."
       canonical="/resources/ib-english-extended-essay"
       datePublished="2026-07-10"
-      dateModified="2026-07-10"
+      dateModified="2026-09-13"
     >
       <p>
         <strong>Sitting your exams in May 2027 or later?</strong> Your Extended Essay is
@@ -159,7 +159,7 @@ export default function IBEnglishExtendedEssay() {
       <p>
         IBLens analyses Extended Essays against the five official criteria and shows
         you exactly where marks are leaking, including whether your paragraphs are
-        analysing or quietly summarising. Paste a draft into the <Link href="/essay/extended-essay">free Extended Essay grader</Link> to
+        analysing or quietly summarising. Paste a draft into the <Link href="/essay/extended-essay">Extended Essay grader</Link>, where the first preview is free, to
         see where your English EE stands, and read the <Link href="/resources/ib-extended-essay-guide">complete IB Extended Essay guide</Link> for
         the full process from choosing a text to the final reflection.
       </p>

@@ -8,7 +8,7 @@ export default function HowIBLensWorks() {
       description="How IBLens marks IB coursework: which criteria it uses, how the estimated mark is produced, what the report includes, and what it cannot do."
       canonical="/resources/how-iblens-works"
       datePublished="2026-05-01"
-      dateModified="2026-05-01"
+      dateModified="2026-09-13"
     >
       <h1>How IBLens Works</h1>
 
@@ -68,7 +68,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        <strong>Summary section:</strong> Your overall predicted grade, total marks, and a brief overview of strengths and areas for improvement. This gives you the headline picture in 30 seconds.
+        <strong>Summary section:</strong> your estimated mark and band, with a brief overview of strengths and areas for improvement.
       </p>
 
       <p>
@@ -89,13 +89,13 @@ export default function HowIBLensWorks() {
         We believe in being transparent about what IBLens can and cannot do. No AI tool is a perfect substitute for human judgment, and understanding the limitations helps you use the tool effectively:
       </p>
 
-      <h3>What IBLens does well</h3>
+      <h3>What the report looks for</h3>
       <ul>
         <li><strong>Identifying structural issues:</strong> Missing sections, weak introductions, conclusions that do not answer the research question</li>
         <li><strong>Detecting description vs. analysis:</strong> Recognizing when you are telling rather than evaluating</li>
         <li><strong>Criterion alignment:</strong> Checking whether your essay addresses all required criteria</li>
         <li><strong>Consistency checking:</strong> Identifying where your argument contradicts itself or where evidence does not support your claims</li>
-        <li><strong>Formatting and conventions:</strong> Checking academic writing standards, citation presence, and structural requirements</li>
+        <li><strong>Word count:</strong> counted by IBLens against the official limit for the task, with what the official count leaves out</li>
       </ul>
 
       <h3>What IBLens cannot do</h3>

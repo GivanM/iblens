@@ -8,7 +8,7 @@ export default function WriteMyIBExtendedEssay() {
       description="Stuck on your IB Extended Essay? What you can fix yourself at each stage, what your supervisor can help with, and where AI feedback on your draft fits."
       canonical="/resources/ib-extended-essay-help"
       datePublished="2026-06-09"
-      dateModified="2026-06-09"
+      dateModified="2026-09-13"
     >
       <p>
         If you have typed "write my extended essay" or "help with IB extended essay"
@@ -60,8 +60,8 @@ export default function WriteMyIBExtendedEssay() {
       <p>
         Through November 2026 the Extended Essay is marked on five criteria, and from May
         2027 on a rewritten set marked out of 30. Many students never read the criteria
-        closely, so they cannot aim their writing at what the examiner is marking. The
-        current criteria are:
+        closely, so they cannot aim their writing at what the examiner is marking. Through
+        November 2026 the criteria are:
       </p>
       <ul>
         <li><strong>Criterion A: Focus and method (6 marks).</strong> Is the research question clear? Is the methodology appropriate for answering it?</li>
@@ -71,9 +71,13 @@ export default function WriteMyIBExtendedEssay() {
         <li><strong>Criterion E: Engagement (6 marks).</strong> Do the reflections on the RPPF show intellectual engagement with the investigation and genuine reflection?</li>
       </ul>
       <p>
-        Criterion C (Critical thinking) is worth 12 of the 34 marks, more than any other
-        single criterion. If you are not sure where your marks are going, start
-        with your analysis sections: are you arguing, or are you describing?
+        From May 2027 they are Criterion A: Framework for the essay (6 marks), B: Knowledge
+        and understanding (6), C: Analysis and line of argument (6), D: Discussion and
+        evaluation (8) and E: Reflection (4), with Reflection marked on the reflective
+        statement in the RPF. Critical thinking carries 12 of 34 marks under the older set;
+        Discussion and evaluation carries 8 of 30 under the new one. Either way, if you are
+        not sure where your marks are going, start with your analysis sections: are you
+        arguing, or are you describing?
       </p>
 
       <h2>What Your EE Supervisor Can (and Can't) Do</h2>
@@ -115,6 +119,7 @@ export default function WriteMyIBExtendedEssay() {
         Beyond the rule, there is a practical problem: an essay written by someone
         else leaves you with nothing real to write in the Reflections on Planning and
         Progress Form (RPPF), and Criterion E (Engagement) is marked on those reflections.
+        From May 2027 the RPF takes its place, and Criterion E (Reflection) is marked on it.
         Reflections that do not match the essay are hard to write and easy to spot.
       </p>
 
@@ -130,13 +135,12 @@ export default function WriteMyIBExtendedEssay() {
         and general feedback ("your analysis could be deeper") does not tell you where
         to make changes. What you need is specific, criterion-by-criterion feedback:
         "Your Criterion C score is limited because your argument in Section 2 describes
-        the sources rather than analysing them. Here is what analytical writing looks
-        like in contrast."
+        the sources rather than analysing them."
       </p>
       <p>
-        That is what IBLens provides. Paste your Extended Essay draft and receive feedback
-        on each criterion, the same criteria your examiner uses, so you know what to
-        improve before you submit.
+        That is the kind of feedback IBLens gives. Paste your Extended Essay draft and get
+        feedback on each criterion for your exam session: what to change and why. It does
+        not write the change for you.
       </p>
       <p>
         <Link href="/essay/extended-essay">Get criterion-by-criterion feedback on your Extended Essay draft →</Link>

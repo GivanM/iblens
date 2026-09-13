@@ -8,12 +8,12 @@ export default function ComputerScienceIA2027() {
       description="From the May 2027 session the IB Computer Science IA is a computational solution marked out of 30: Problem specification, Planning, System overview, Development (12 marks) and Evaluation. What changed from the 34-mark solution."
       canonical="/resources/ib-computer-science-ia-2027"
       datePublished="2026-08-11"
-      dateModified="2026-08-11"
+      dateModified="2026-09-13"
     >
       <h1>IB Computer Science IA Changes 2027: What Changed and How to Check Your Project</h1>
 
       <p>
-        From the May 2027 session, the IB Computer Science Internal Assessment is assessed as a <strong>computational solution marked out of 30</strong>, down from 34, with a new criterion structure and lighter documentation requirements. If you sit your exams in May 2027 or later, your IA is marked with the criteria below, not the ones in most older guides.
+        From the May 2027 session, the IB Computer Science Internal Assessment is assessed as a <strong>computational solution marked out of 30</strong>, down from 34, with a new criterion structure and no client requirement. If you sit your exams in May 2027 or later, your IA is marked with the criteria below, not the ones in most older guides.
       </p>
 
       <h2>Who is affected</h2>
@@ -30,11 +30,11 @@ export default function ComputerScienceIA2027() {
           <tr><th>Criterion</th><th>Marks</th><th>What it assesses</th></tr>
         </thead>
         <tbody>
-          <tr><td>A: Problem specification</td><td>4</td><td>Specification of the problem and success criteria.</td></tr>
-          <tr><td>B: Planning</td><td>4</td><td>Planning of the computational solution.</td></tr>
-          <tr><td>C: System overview</td><td>6</td><td>Overview of the system design.</td></tr>
-          <tr><td>D: Development</td><td>12</td><td>Development of the solution demonstrating appropriate techniques, with sources acknowledged.</td></tr>
-          <tr><td>E: Evaluation</td><td>4</td><td>Evaluation of the solution against the success criteria.</td></tr>
+          <tr><td>A: Problem specification</td><td>4</td><td>The problem scenario in terms of measurable requirements, appropriate success criteria, and why the computational context fits.</td></tr>
+          <tr><td>B: Planning</td><td>4</td><td>A reasonable decomposition of the problem and a plan that addresses the success criteria.</td></tr>
+          <tr><td>C: System overview</td><td>6</td><td>A complete system model, algorithms for its components, and a testing strategy aligned with the success criteria.</td></tr>
+          <tr><td>D: Development</td><td>12</td><td>A fully functional product built with appropriate techniques, the implementation choices evaluated, and the testing strategy justified.</td></tr>
+          <tr><td>E: Evaluation</td><td>4</td><td>How far the success criteria were met, evaluated, with justified improvements.</td></tr>
         </tbody>
       </table>
 
@@ -46,11 +46,11 @@ export default function ComputerScienceIA2027() {
 
       <ul>
         <li><strong>Total marks: 34 → 30.</strong></li>
-        <li><strong>Development is still the largest criterion:</strong> 12 marks, now 40% of the total (up from 35%). Demonstrating appropriate techniques, and acknowledging sources, decides more of the mark than before.</li>
+        <li><strong>Development is still the largest criterion:</strong> 12 marks, now 40% of the total (up from 35%). A fully functional product built with appropriate techniques, with the implementation choices evaluated and the testing strategy justified, decides more of the mark than before.</li>
         <li><strong>A new first criterion, Problem specification (4),</strong> makes the problem statement and success criteria a marked component in their own right.</li>
         <li><strong>Functionality and extensibility of product (4)</strong> no longer exists as a separate criterion.</li>
-        <li><strong>Planning drops from 6 to 4 marks, Evaluation from 6 to 4</strong>, and Evaluation is now explicitly against the success criteria you set in Criterion A.</li>
-        <li><strong>The client requirement is removed</strong>, and documentation is capped at 2,000 words plus a 5-minute video.</li>
+        <li><strong>Planning drops from 6 to 4 marks, Evaluation from 6 to 4.</strong> Evaluation still measures the product against the success criteria you set in Criterion A, and improvements now have to be justified.</li>
+        <li><strong>The client requirement is removed.</strong> The documentation stays capped at 2,000 words, and the video can be up to 5 minutes.</li>
       </ul>
 
       <h2>How to check your project documentation</h2>
@@ -59,7 +59,7 @@ export default function ComputerScienceIA2027() {
         <li><strong>Problem specification:</strong> are your success criteria specific and measurable? Criterion E evaluates against exactly these, so vague criteria here cost marks twice.</li>
         <li><strong>Planning:</strong> Does the plan show real decisions (data structures, architecture, milestones), not a generic timeline?</li>
         <li><strong>System overview:</strong> Could a competent programmer understand your design from the overview alone?</li>
-        <li><strong>Development:</strong> Are the techniques you used demonstrated and explained, and is every borrowed idea or snippet acknowledged?</li>
+        <li><strong>Development:</strong> Does the product work fully, are the techniques appropriate to the algorithms, and do you evaluate your implementation choices and justify your testing strategy? Borrowed code still has to be acknowledged under academic integrity rules.</li>
         <li><strong>Evaluation:</strong> Do you test against each success criterion from Criterion A and state honestly which are met?</li>
       </ul>
 
@@ -87,7 +87,7 @@ export default function ComputerScienceIA2027() {
 
       <h3>Which criterion is worth the most?</h3>
       <p>
-        Development: 12 of 30 marks, or 40% of the total. It rewards demonstrating appropriate techniques in your solution, with sources acknowledged.
+        Development: 12 of 30 marks, or 40% of the total. It rewards a fully functional product built with appropriate techniques, an evaluation of your implementation choices, and a justified testing strategy.
       </p>
 
       <h2>Related resources</h2>

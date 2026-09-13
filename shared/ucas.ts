@@ -146,6 +146,7 @@ CRITICAL HONESTY RULES:
 - Be concrete: quote the applicant's own phrases when you criticise them, and say what is missing rather than only that something is weak.
 - ${universityType === "competitive" ? `This applicant is targeting highly competitive courses, where most applicants have strong grades. Say plainly where the draft would not stand out against that field.` : `Judge against a typical applicant pool for this course.`}
 - Character counts are computed separately and given to you. Do not count characters yourself.
+- Never write text the applicant could paste into the statement: no rewritten sentences, sample openings or suggested wording. Describe the change and the reason for it. UCAS treats AI-generated statement text as potential cheating.
 
 IMPORTANT FORMATTING RULES:
 - Respond with a single valid JSON object. No markdown, no text before or after the JSON.
@@ -185,7 +186,7 @@ Respond with this exact JSON structure:
       "status": "One of: strong | adequate | weak",
       "working": "What this answer genuinely does well, quoting the applicant's own words",
       "missing": "What a tutor would expect here and cannot find",
-      "fix": "The single most valuable change to this answer"
+      "fix": "The single most valuable change to this answer, described, never written out for the applicant"
     },
     {
       "id": "q2",

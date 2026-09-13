@@ -32,8 +32,8 @@ const config: SubjectConfig = {
       { title: "Criterion A: Framework for the essay, 6 marks", text: "Your research question, the methods you chose to answer it and the structure of the essay. It takes in what the older Presentation criterion covered." },
       { title: "Criterion B: Knowledge and understanding, 6 marks", text: "Knowledge of the topic, with the terminology and concepts of your subject used accurately and effectively." },
       { title: "Criterion C: Analysis and line of argument, 6 marks", text: "Analysis of your research and a clear, coherent argument that runs through the essay." },
-      { title: "Criterion D: Discussion and evaluation, 8 marks", text: "Discussion and evaluation of your argument, your evidence and different viewpoints. It carries the most marks." },
-      { title: "Criterion E: Reflection, 4 marks", text: "Marked on the reflective statement in your Reflection and Progress Form (RPF), up to 500 words, not on the essay." },
+      { title: "Criterion D: Discussion and evaluation, 8 marks", text: "A balanced discussion of the significance of your findings, supported by appropriate evidence, and an evaluation of how effective the essay is, with its strengths and limitations explained. It carries the most marks." },
+      { title: "Criterion E: Reflection, 4 marks", text: "Marked on the reflective statement in your Reflection and Progress Form (RPF), up to 500 words, not on the essay. It rewards evaluative reflection, with specific examples, on how the EE affected you as a learner, showing growth and transfer of learning. A description of the process is the lowest level." },
     ],
     rubricNote: [
       "Through November 2026 the criteria are Focus and method (6 marks), Knowledge and understanding (6), Critical thinking (12), Presentation (4) and Engagement (6). Engagement is marked on the three reflections in the Reflections on planning and progress form (RPPF), 500 words in total.",
@@ -42,7 +42,7 @@ const config: SubjectConfig = {
     mistakes: [
       { title: "A question too broad for 4,000 words", text: "A topic such as the impact of social media cannot be argued in depth at this length. A narrow question gives Criterion A something to reward and leaves room for the discussion and evaluation that carry the most marks." },
       { title: "Summary in place of analysis", text: "Paragraphs that report what sources say without using them to build your answer. From May 2027 analysis and a line of argument are a criterion of their own, and before that they sit inside Critical thinking." },
-      { title: "Viewpoints listed, never evaluated", text: "Naming a counter-argument and moving on. Discussion and evaluation is the highest-weighted criterion from May 2027." },
+      { title: "An essay that never evaluates itself", text: "Findings reported without discussing their significance, and no account of the strengths and limitations of the essay's own method and sources. From May 2027 those are the two strands of Criterion D, the highest-weighted criterion." },
       { title: "Words past the limit", text: "Examiners do not read beyond 4,000 words, so an over-length essay loses on every criterion, not just one. Footnotes that are not references count toward the limit. Citations, the bibliography, tables, charts, equations and the contents page do not." },
       { title: "No reflections pasted", text: "Criterion E is marked on the RPF or the RPPF, not on the essay. Paste your reflections into their own box in the analyzer. Without them the report leaves that criterion unmarked and totals the others." },
     ],

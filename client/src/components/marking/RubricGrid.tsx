@@ -16,7 +16,7 @@ const DEMO: Record<string, { awarded: number; note: string; weak?: boolean }> = 
   "Criterion A": { awarded: 4, note: "The question is properly bounded, but the scope and the plan only arrive on page four." },
   "Criterion B": { awarded: 4, note: "One piece of real subject knowledge, the 1985 debt standstill. The rest stays general." },
   "Criterion C": { awarded: 3, note: "Three parallel explanations, no line between them. The conclusion about timing is never argued for.", weak: true },
-  "Criterion D": { awarded: 4, note: "The competing readings are reported, not weighed. This is the most expensive gap in the draft.", weak: true },
+  "Criterion D": { awarded: 4, note: "The findings are reported but their significance is not discussed, and the essay never weighs its own limits. This is the most expensive gap in the draft.", weak: true },
 };
 
 const UNMARKED_NOTE = "Marked on the reflective statement (RPF), which this draft did not include.";
@@ -60,7 +60,7 @@ export function RubricGrid() {
               <th scope="col">What it assesses</th>
               <th scope="col">Marks</th>
               <th scope="col">This draft</th>
-              <th scope="col">Examiner's note</th>
+              <th scope="col">Note on this draft</th>
             </tr>
           </thead>
           <tbody>

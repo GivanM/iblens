@@ -6,34 +6,14 @@ import { getLoginUrl } from "@/const";
 import { PRICE_LABELS, type ProductKey } from "@shared/pricing";
 import { SEOHead } from "@/components/SEOHead";
 import { PurchaseModal } from "@/components/PurchaseModal";
-import { useState, useEffect, useMemo } from "react";
+import { useState } from "react";
 import {
   CheckCircle2, ArrowRight, Gift,
-  Clock, ChevronDown, ChevronUp, ShieldCheck
+  ChevronDown, ChevronUp, ShieldCheck
 } from "lucide-react";
 import { SampleReports } from "@/components/SampleReports";
 
 const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
-
-function useExamCountdown() {
-  const [now, setNow] = useState(new Date());
-  const examDate = useMemo(() => {
-    const current = new Date();
-    let year = current.getFullYear();
-    const may1 = new Date(year, 4, 1);
-    if (current > may1) year++;
-    return new Date(year, 4, 1);
-  }, []);
-
-  useEffect(() => {
-    const timer = setInterval(() => setNow(new Date()), 60000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const diff = examDate.getTime() - now.getTime();
-  const days = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
-  return { days, examYear: examDate.getFullYear() };
-}
 
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
@@ -70,7 +50,6 @@ const SAMPLE_CRITERIA = [
 
 export default function Home() {
   const { isAuthenticated } = useAuth();
-  const { days, examYear } = useExamCountdown();
   const [purchaseModalOpen, setPurchaseModalOpen] = useState(false);
   const [purchaseSku, setPurchaseSku] = useState<ProductKey>("ESSAY_PACK_5");
 
@@ -167,7 +146,7 @@ export default function Home() {
                 name: "Can I use IBLens for multiple subjects?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "IBLens marks coursework in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Each analysis uses that subject's own criteria. Subjects outside this list are not offered, because we would have no published criteria to mark them against.",
+                  text: "IBLens marks coursework in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Each analysis uses that subject's own criteria. Subjects outside this list are not offered, because we would have no published criteria to mark them against. Visual Arts can be marked only for sessions through November 2026: from May 2027 the comparative study is no longer set.",
                 },
               },
               {
@@ -183,17 +162,6 @@ export default function Home() {
         ]}
       />
       <div>
-        {/* Exam Countdown Banner */}
-        {days > 0 && days < 200 && (
-          <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white py-2.5 text-center text-sm font-medium">
-            <div className="container flex items-center justify-center gap-2">
-              <Clock className="w-4 h-4" />
-              <span>About {days} days until the IB {examYear} exams. Check your coursework while there is time to act.</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </div>
-          </div>
-        )}
-
         {/* Hero Section */}
         <section className="py-20 md:py-28 bg-background">
           <div className="container">
@@ -215,7 +183,7 @@ export default function Home() {
                     <Link href="/resources/sample-reports">See real sample reports</Link>
                   </Button>
                 </div>
-                <p className="text-sm text-muted-foreground">No subscription. No account for your first essay. Instructed to mark <strong>strictly</strong>, not to flatter.</p>
+                <p className="text-sm text-muted-foreground">No subscription. No account for your first essay. Instructed to apply the criteria as written and to be <strong>honest</strong> about weaknesses.</p>
               </div>
 
               {/* Right column, score card */}
@@ -516,7 +484,7 @@ export default function Home() {
               />
               <FAQItem
                 question="Can I use IBLens for multiple subjects?"
-                answer="IBLens marks coursework in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Each analysis uses that subject's own criteria. Subjects outside this list are not offered, because we would have no published criteria to mark them against."
+                answer="IBLens marks coursework in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Each analysis uses that subject's own criteria. Subjects outside this list are not offered, because we would have no published criteria to mark them against. Visual Arts can be marked only for sessions through November 2026: from May 2027 the comparative study is no longer set."
               />
               <FAQItem
                 question="What if I'm not satisfied with my analysis?"

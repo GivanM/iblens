@@ -21,6 +21,23 @@ function loadRenderedBodies(): Record<string, string> {
 
 const allStaticContent: Record<string, string> = loadRenderedBodies();
 
+/** Publication dates read from each article's own props at build time. */
+function loadArticleDates(): Record<string, { datePublished?: string; dateModified?: string }> {
+  const here = typeof import.meta !== "undefined" && (import.meta as any).dirname ? (import.meta as any).dirname : process.cwd();
+  for (const candidate of [path.resolve(here, "crawler-meta.json"), path.resolve(process.cwd(), "dist/crawler-meta.json")]) {
+    try {
+      return JSON.parse(fs.readFileSync(candidate, "utf8"));
+    } catch {
+      // try the next location
+    }
+  }
+  return {};
+}
+
+const articleDates = loadArticleDates();
+
+const escapeAttr = (s: string) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
 // SEO Pre-rendering Middleware (JSON-LD Strategy)
 //
 // The Manus platform CDN replaces ALL title, description, canonical, og:*, and
@@ -48,7 +65,8 @@ interface PageMeta {
 
 const SITE_URL = "https://iblens.com";
 const SITE_NAME = "IBLens";
-const DEFAULT_OG_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663456034410/fPpXrWUtmpLttw7Fz9wKLE/og-image-CS5C2Vq6Jk92bXNFNMwCXg.png";
+// Served from client/public. The CloudFront image every page pointed at returned 403.
+const DEFAULT_OG_IMAGE = "https://iblens.com/og-image.png";
 
 const routeMeta: Record<string, PageMeta> = {
   "/privacy": {
@@ -67,16 +85,16 @@ const routeMeta: Record<string, PageMeta> = {
   },
 
   "/remark": {
-    title: "IB Remark 2026: Is an EUR Worth It? Check Before You Pay | IBLens",
-    description: "An IB re-mark can lower your grade as well as raise it, and May session requests close on 15 September. Mark the EE or TOK essay you submitted first and see whether it sits near a band edge before you pay.",
+    title: "IB Remark: Is an Enquiry Upon Results Worth It? Check Before You Pay | IBLens",
+    description: "An IB re-mark can lower your grade as well as raise it. Requests close on 15 September for the May session and 15 March for November. See how the EE or TOK essay you submitted reads against the criteria before you decide.",
     ogType: "website",
     canonical: "/remark",
     schemaType: "WebPage",
     faq: [
-      { question: "How much does an IB remark cost in 2026?", answer: "The IB publishes its enquiry upon results fees to schools rather than on its public website, so ask your coordinator for the current fee. There is no charge for a category 1 re-mark that results in a change of grade." },
-      { question: "Can my grade go down after an IB remark?", answer: "Yes. A category 1 re-mark can raise or lower the grade, and your school must have your written consent before requesting one. A re-mark makes most sense when you have reason to think you are near a boundary." },
-      { question: "What is the IB remark deadline?", answer: "Enquiry upon results requests for the May session can be made up to 15 September, two months after results. Your school submits them and may set an earlier deadline, so ask your coordinator as soon as results are out." },
-      { question: "Should I remark or retake?", answer: "Consider a re-mark if your externally assessed essay (EE or TOK) reads close to a boundary. Consider a November retake if you are several marks off; registering by 29 July keeps the fees lowest." },
+      { question: "How much does an IB remark cost?", answer: "The IB publishes its enquiry upon results fees to schools rather than on its public website, so ask your coordinator for the current fee. There is no charge for a category 1 re-mark that results in a change of grade." },
+      { question: "Can my grade go down after an IB remark?", answer: "Yes. A category 1 re-mark can raise or lower the grade, and your school must have your written consent before requesting one. A re-mark makes most sense when your component mark is close to a grade boundary." },
+      { question: "What is the IB remark deadline?", answer: "Enquiry upon results requests can be made up to 15 September for the May session and up to 15 March for the November session. Your school submits them and may set an earlier deadline, so ask your coordinator as soon as results are out." },
+      { question: "Should I remark or retake?", answer: "Consider a re-mark if your component mark for an externally assessed essay (EE or TOK) is one or two marks from a grade boundary. Consider a retake if you are several marks off; retake registration has its own deadlines and fees, so ask your coordinator early." },
     ],
   },
   "/resources/sample-reports": {
@@ -291,8 +309,8 @@ const routeMeta: Record<string, PageMeta> = {
     schemaType: "Article",
   },
   "/resources/ib-ia-grader": {
-    title: "IB IA Grader: AI Feedback on Your Internal Assessment in 14 Subjects | IBLens",
-    description: "Free IB IA grader powered by AI. Grade your Internal Assessment against official IB rubrics for Biology, Chemistry, Physics, Maths, History, Economics, Psychology and more.",
+    title: "IB IA Grader: AI Feedback on Your Coursework in 14 Subjects | IBLens",
+    description: "An IB IA grader with a free preview: AI feedback on your Internal Assessment against the published criteria for Biology, Chemistry, Physics, Maths, History, Economics, Psychology and more.",
     ogType: "article",
     canonical: "/resources/ib-ia-grader",
     schemaType: "Article",
@@ -368,7 +386,7 @@ const routeMeta: Record<string, PageMeta> = {
     schemaType: "Article",
   },
   "/ucas-personal-statement": {
-    title: "UCAS Personal Statement Checker: New Three-Question Format 2026 | IBLens",
+    title: "UCAS Personal Statement Checker: Three-Question Format for 2026 and 2027 Entry | IBLens",
     description: "Check your UCAS personal statement against the format used from 2026 entry: three questions, 4,000 characters, 350 minimum per answer. Evidence-based feedback on each answer from an admissions-tutor perspective. Free preview, no account.",
     ogType: "article",
     canonical: "/ucas-personal-statement",
@@ -446,7 +464,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/auth/signin": {
     title: "Sign In: IBLens",
-    description: "Sign in to IBLens with Google to keep your IB essay and personal statement reports, your credits and your purchase history in one account.",
+    description: "Sign in to IBLens with Google to keep new reports, your credits and your purchase history in one account. Reports bought without an account move in when you sign in on the same device with the email you paid with.",
     ogType: "website",
     canonical: "/auth/signin",
     schemaType: "WebPage",
@@ -586,8 +604,11 @@ function generateJsonLd(meta: PageMeta): string {
       logo: { "@type": "ImageObject", url: DEFAULT_OG_IMAGE },
     };
     schema.image = DEFAULT_OG_IMAGE;
-    schema.datePublished = "2026-04-15";
-    schema.dateModified = "2026-05-02";
+    // Every article used to claim 15 April and 2 May 2026. Use the page's own dates,
+    // or none.
+    const dates = articleDates[meta.canonical];
+    if (dates?.datePublished) schema.datePublished = dates.datePublished;
+    if (dates?.dateModified) schema.dateModified = dates.dateModified;
   }
 
   // BreadcrumbList
@@ -665,17 +686,26 @@ export function injectSeoMeta(html: string, url: string, _userAgent: string): st
   html = html.replace(/<link\s+rel="canonical"[^>]*\/>/gi, '');
   html = html.replace(/<meta\s+property="og:[^"]*"[^>]*\/>/gi, '');
   html = html.replace(/<meta\s+name="twitter:[^"]*"[^>]*\/>/gi, '');
+  // The pre-rendered file carries its own JSON-LD; the blocks below replace it.
+  html = html.replace(/\s*<script\s+type="application\/ld\+json">[\s\S]*?<\/script>/gi, '');
 
   // Inject/replace description, og:title, og:description, canonical before </head>
   const canonicalUrl = `${SITE_URL}${meta.canonical}`;
   const metaTags = `
-    <meta name="description" content="${meta.description}" />
+    <meta name="description" content="${escapeAttr(meta.description)}" />
     <link rel="canonical" href="${canonicalUrl}" />
-    <meta property="og:title" content="${meta.title}" />
-    <meta property="og:description" content="${meta.description}" />
+    <meta property="og:type" content="${meta.ogType || "website"}" />
+    <meta property="og:site_name" content="IBLens" />
+    <meta property="og:title" content="${escapeAttr(meta.title)}" />
+    <meta property="og:description" content="${escapeAttr(meta.description)}" />
     <meta property="og:url" content="${canonicalUrl}" />
-    <meta name="twitter:title" content="${meta.title}" />
-    <meta name="twitter:description" content="${meta.description}" />`;
+    <meta property="og:image" content="${DEFAULT_OG_IMAGE}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${escapeAttr(meta.title)}" />
+    <meta name="twitter:description" content="${escapeAttr(meta.description)}" />
+    <meta name="twitter:image" content="${DEFAULT_OG_IMAGE}" />`;
 
   const jsonLd = generateJsonLd(meta);
   html = html.replace("</head>", `${metaTags}\n${jsonLd}\n</head>`);

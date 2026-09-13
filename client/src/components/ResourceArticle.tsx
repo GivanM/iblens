@@ -40,7 +40,7 @@ export function ResourceArticle({
         canonical={canonical}
         ogType="article"
         article={{
-          author: "IBLens Team",
+          author: "IBLens",
           datePublished,
           dateModified,
         }}

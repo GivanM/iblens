@@ -8,12 +8,12 @@ export default function CourseworkReviewTools() {
       description="An honest comparison of the AI tools IB students use to review IAs, EEs and TOK work: IBLens, RevisionDojo, MyRevisionAgent, Clastify and general chatbots. What each reviews, how it charges, and which support the May 2027 EE criteria."
       canonical="/resources/ib-coursework-review-tools"
       datePublished="2026-08-11"
-      dateModified="2026-08-11"
+      dateModified="2026-09-13"
     >
       <h1>AI Tools IB Students Use to Review Coursework Before Submission (2026)</h1>
 
       <p>
-        Before the coursework deadline, most IB students want the same thing: an honest read on where a draft stands against the actual assessment criteria, without burning their one supervisor draft to get it. A handful of tools now do this with AI. Here is how they compare, including where we fit, stated as plainly as we describe everyone else. Details below were checked in August 2026; features and prices change, so verify on each site.
+        Before the coursework deadline, most IB students want the same thing: an honest read on where a draft stands against the actual assessment criteria, without burning their one supervisor draft to get it. A handful of tools now do this with AI. Here is how they compare, including where we fit, stated as plainly as we describe everyone else. Details below were checked in August 2026, and the RevisionDojo row again on 13 September 2026; features and prices change, so verify on each site.
       </p>
 
       <h2>The comparison</h2>
@@ -24,9 +24,9 @@ export default function CourseworkReviewTools() {
         </thead>
         <tbody>
           <tr><td>IBLens</td><td>coursework in 14 subjects, EE, TOK essay, TOK exhibition</td><td>Free preview; full report $9.99, no subscription</td><td>Yes: marks against both the 34-mark and the new 30-mark criteria</td></tr>
-          <tr><td>RevisionDojo</td><td>Coursework grader for EE, IA and TOK alongside a large IB resource library</td><td>See site</td><td>Not stated on the grader as of August 2026</td></tr>
+          <tr><td>RevisionDojo</td><td>Coursework grader for EE, IA and TOK alongside a large IB resource library</td><td>See site</td><td>Yes: a grader page for the Extended Essay first assessed in 2027 (revisiondojo.com/grader/rubric/extended-essay-2027, checked 13 September 2026)</td></tr>
           <tr><td>MyRevisionAgent</td><td>TOK essay (/10), EE, IA across 27 subject-levels</td><td>2 free grading tokens on signup; token packs from £4.99</td><td>No: EE graded /34 on the current criteria as of August 2026</td></tr>
-          <tr><td>Clastify</td><td>AI grader plus paid human review by IB examiners; large library of examiner-verified exemplars</td><td>See site</td><td>Not stated on the grader as of August 2026</td></tr>
+          <tr><td>Clastify</td><td>AI grader plus paid human review by IB examiners; large library of examiner-verified exemplars</td><td>See site</td><td>Check the site</td></tr>
           <tr><td>Generic chatbots (ChatGPT and others)</td><td>Anything you paste</td><td>Free tiers and subscriptions</td><td>Only if you paste the criteria in yourself</td></tr>
         </tbody>
       </table>
@@ -57,7 +57,7 @@ export default function CourseworkReviewTools() {
       <h2>How IBLens works</h2>
 
       <p>
-        Paste your draft, pick the work type, subject and exam session, and IBLens marks it against the criteria for that combination, including both Extended Essay rubrics and the 2027 formats for Psychology and Computer Science. It also counts the words against the limit for the task. The preview (predicted band range and weakest criterion) is free with no account; the full criterion-by-criterion report is $9.99 per essay, with no subscription to cancel.
+        Paste your draft, pick the work type, subject and exam session, and IBLens marks it against the criteria for that combination, including both Extended Essay rubrics and the 2027 formats for Psychology and Computer Science. It also counts the words against the limit for the task. The preview (band range, weakest criterion and top risks) is free with no account; the full criterion-by-criterion report is $9.99 per essay, with no subscription to cancel.
       </p>
 
       <p>
@@ -73,7 +73,7 @@ export default function CourseworkReviewTools() {
 
       <h3>Which tool supports the new May 2027 Extended Essay criteria?</h3>
       <p>
-        As of August 2026, IBLens grades against the new 30-mark criteria (with a session switch for the current 34-mark rubric). MyRevisionAgent's EE grader used the 34-mark rubric, and RevisionDojo and Clastify did not state 2027 support on their grader pages when we checked.
+        IBLens grades against the new 30-mark criteria, with a session switch for the 34-mark rubric. RevisionDojo has a grader page for the Extended Essay first assessed in 2027 (checked 13 September 2026). MyRevisionAgent's EE grader used the 34-mark rubric when we checked in August 2026. For Clastify, check its site.
       </p>
 
       <h3>Can an AI tool predict my exact mark?</h3>

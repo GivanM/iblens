@@ -27,6 +27,8 @@ interface PurchaseModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   sku: ProductKey;
+  /** A signed-in buyer's locked report, opened by this payment. */
+  analysisId?: number | null;
 }
 
 // Map ProductKey to analytics ProductSlug
@@ -37,7 +39,7 @@ const SKU_TO_SLUG: Record<ProductKey, ProductSlug> = {
   UNIVERSITY_SINGLE: "university_strategy",
 };
 
-export function PurchaseModal({ open, onOpenChange, sku }: PurchaseModalProps) {
+export function PurchaseModal({ open, onOpenChange, sku, analysisId }: PurchaseModalProps) {
   const { isAuthenticated } = useAuth();
   const [loading, setLoading] = useState(false);
   const [guestEmail, setGuestEmail] = useState("");
@@ -105,6 +107,7 @@ export function PurchaseModal({ open, onOpenChange, sku }: PurchaseModalProps) {
       returnTo: typeof window !== "undefined" && window.location.pathname.startsWith("/ucas")
         ? ("ucas-personal-statement" as const)
         : ("essay" as const),
+      ...(analysisId ? { analysisId } : {}),
     });
   };
 
@@ -128,9 +131,11 @@ export function PurchaseModal({ open, onOpenChange, sku }: PurchaseModalProps) {
               <div className="mt-3 rounded-lg bg-muted/50 p-3 text-left">
                 <p className="text-xs font-medium mb-1">What you get</p>
                 <ul className="text-xs text-muted-foreground space-y-1 list-disc pl-4">
-                  <li>Your current report unlocked in full: exact score, the full report with comments, ranked fix list</li>
-                  <li>Two free re-checks of the same draft within 14 days</li>
-                  <li>The report opens on this device straight after payment, and stays open here</li>
+                  <li>The report you are looking at, unlocked in full: every criterion with its comments and the ranked fix list</li>
+                  <li>Two free re-checks of the same draft within 14 days of the report opening</li>
+                  {isAuthenticated
+                    ? <li>The report opens in your account as soon as the payment clears</li>
+                    : <li>The report opens in this browser as soon as the payment clears. Without an account it stays in this browser; sign in with Google on this device to keep it in an account</li>}
                 </ul>
               </div>
             )}
@@ -153,7 +158,7 @@ export function PurchaseModal({ open, onOpenChange, sku }: PurchaseModalProps) {
                 autoFocus
               />
               <p className="text-xs text-muted-foreground">
-                Credits will be linked to this email after payment.
+                For your receipt. Without an account, what you buy stays in this browser: the report opens here, and unused credits wait here until you sign in with Google on this device.
               </p>
             </div>
           )}

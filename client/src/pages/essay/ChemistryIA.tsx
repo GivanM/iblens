@@ -37,7 +37,7 @@ const config: SubjectConfig = {
       { title: "Precision that changes from table to table", text: "Results quoted to more significant figures than the measurements support, or with a different number of decimal places in each table. Precise communication in Data analysis means following these conventions." },
       { title: "A literature value quoted but not used", text: "Giving the accepted value without using it to judge your result. Say how far your result is from it and whether your uncertainty accounts for the difference." },
       { title: "A generic evaluation", text: "Human error and more repeats, with no step of the method named and no sense of how much it moved the result." },
-      { title: "Calculations with no reaction behind them", text: "Mole calculations for a reaction that is never written down. A balanced equation lets the reader follow the ratios your processing relies on." },
+      { title: "A method nobody could repeat", text: "Concentrations, volumes, masses or the precision of the equipment left out of the method. Every band of Research design judges whether the investigation could be reproduced from your description." },
     ],
     faq: [
       { q: "Can I submit a database or model investigation?", a: "Yes. The criteria cover investigations that select data from a database or a model, and Research design then looks at how the data were selected and sampled." },

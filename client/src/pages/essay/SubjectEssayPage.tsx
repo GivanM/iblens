@@ -73,7 +73,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
       : []),
     config.sessionAware
       ? "The criteria for your exam session: the current set through November 2026, the new set from May 2027"
-      : "Two re-checks of the same work within 14 days of buying the full report",
+      : "Two re-checks of the same work within 14 days of the full report opening",
   ];
 
   return (
@@ -287,9 +287,11 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
             <div className="rounded-xl border bg-muted/30 p-6 md:p-8">
               <h2 className="text-xl font-extrabold tracking-tight mb-4">IBLens at a glance</h2>
               <ul className="space-y-3 text-sm text-muted-foreground list-disc pl-5">
-                <li>Marks against the published IB criteria for each task. Where the syllabus changes in May 2027 (the Extended Essay, the Psychology IA and the Computer Science IA), it holds both sets and uses the one for your session.</li>
+                <li>Marks against the published IB criteria for each task. Where the syllabus changes in May 2027 (the Extended Essay, the Psychology IA and the Computer Science IA), it holds both sets and uses the one for your session. The Visual Arts comparative study is not set from May 2027, so it is marked only for 2026 sessions.</li>
                 <li>$9.99 for a full report, which includes two re-checks of the same work within 14 days. No subscription.</li>
-                <li>The first preview is free and needs no account: your band range, your weakest criterion with its full feedback, and the top risks in the draft.</li>
+                <li>{holistic
+                  ? "The first preview is free and needs no account: the band your work falls in, the start of the explanation, and the top risks in the draft."
+                  : "The first preview is free and needs no account: your band range, your weakest criterion with its full feedback, and the top risks in the draft."}</li>
                 <li>Covers coursework in 14 subjects, the Extended Essay, the TOK essay and the TOK exhibition.</li>
                 <li>The text you paste is sent to Anthropic to produce the report and is not stored by IBLens.</li>
               </ul>
