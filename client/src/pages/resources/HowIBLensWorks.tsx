@@ -27,10 +27,10 @@ export default function HowIBLensWorks() {
       </p>
 
       <ul>
-        <li><strong>Criterion-by-criterion scoring:</strong> Your essay is evaluated against the specific IB assessment criteria for your subject and essay type. Each criterion receives an estimated score with an explanation of why that score was assigned.</li>
+        <li><strong>Criterion-by-criterion scoring:</strong> Your essay is evaluated against the specific IB assessment criteria for your subject and essay type. Each criterion receives an estimated score with an explanation of why that score was assigned. A criterion judged on something you cannot paste, such as a Music recording or Extended Essay reflections you left out, is shown as not marked rather than guessed.</li>
         <li><strong>Overall estimate:</strong> based on the criterion scores, an estimated mark out of the total for your task, with the band range the draft currently sits in.</li>
         <li><strong>Risk areas:</strong> Specific sections or aspects of your essay that are likely to lose marks, with explanations of why and suggestions for improvement.</li>
-        <li><strong>Leverage zones:</strong> Areas where small improvements would yield the largest mark gains, helping you prioritise your revision time.</li>
+        <li><strong>Where marks are recoverable:</strong> Areas where small improvements would yield the largest mark gains, helping you prioritise your revision time.</li>
         <li><strong>Next steps:</strong> concrete suggestions for improving the criteria that are losing marks, in plain language, in order of how many marks they are likely to recover.</li>
         <li><strong>Word count:</strong> the words you pasted, counted against the limit for your task where the guide sets one, with what the official count leaves out.</li>
       </ul>
@@ -114,7 +114,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <ul>
-        <li><strong>Storage:</strong> The essay text is never written to our database. An anonymous report you did not buy is deleted after 90 days. A purchased report is kept. If you sign in, your history stays in your account until you delete it, and every report there has a delete button. Essay content is never shared and never used to train AI models.</li>
+        <li><strong>Storage:</strong> The essay text is never written to our database. An anonymous report you did not buy is deleted after 90 days. A purchased report is kept. If you sign in, your history stays in your account until you delete it, and every report there has a delete button. Essay content goes only to Anthropic, which marks it, and is never used to train AI models.</li>
         <li><strong>Processed only to produce your report:</strong> Your essay passes over an encrypted connection through our relay server in Helsinki to our AI provider, Anthropic, solely to generate your analysis. IBLens never stores the text itself. It is not used to train any model, not sold, and not shared with schools, universities or other students.</li>
         <li><strong>Encrypted transmission:</strong> All data is transmitted over HTTPS with industry-standard encryption.</li>
         <li><strong>No training on your data:</strong> Your essays are not used to train or improve the AI model. Your intellectual property remains yours.</li>

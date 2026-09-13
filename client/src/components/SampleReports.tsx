@@ -10,7 +10,7 @@ function EssayReportPreview() {
     { name: "A: Framework for the essay", score: 4, max: 6, color: "text-amber-600", bg: "bg-amber-50", bar: "bg-amber-500", pct: 67 },
     { name: "B: Knowledge and understanding", score: 5, max: 6, color: "text-emerald-600", bg: "bg-emerald-50", bar: "bg-emerald-500", pct: 83 },
     { name: "C: Analysis and line of argument", score: 4, max: 6, color: "text-amber-600", bg: "bg-amber-50", bar: "bg-amber-500", pct: 67 },
-    { name: "D: Discussion and evaluation", score: 4, max: 8, color: "text-orange-600", bg: "bg-orange-50", bar: "bg-orange-500", pct: 50, note: "main weakness" },
+    { name: "D: Discussion and evaluation", score: 4, max: 8, color: "text-amber-600", bg: "bg-amber-50", bar: "bg-amber-500", pct: 50, note: "main weakness" },
     { name: "E: Reflection", score: 3, max: 4, color: "text-emerald-600", bg: "bg-emerald-50", bar: "bg-emerald-500", pct: 75 },
   ];
 
@@ -61,23 +61,10 @@ function EssayReportPreview() {
           ))}
         </div>
 
-        {/* Strengths & Weaknesses */}
+        {/* Two of the report's own sections, under the names the report uses */}
         <div className="grid grid-cols-2 gap-3 mb-3">
           <div>
-            <p className="text-[11px] font-bold text-emerald-700 uppercase tracking-wider mb-1.5">Strengths</p>
-            <div className="space-y-1">
-              <div className="flex items-start gap-1">
-                <span className="text-emerald-500 text-xs mt-0.5">●</span>
-                <span className="text-xs text-gray-600 leading-snug">Strong historical evidence with primary sources</span>
-              </div>
-              <div className="flex items-start gap-1">
-                <span className="text-emerald-500 text-xs mt-0.5">●</span>
-                <span className="text-xs text-gray-600 leading-snug">Clear thesis and focused research question</span>
-              </div>
-            </div>
-          </div>
-          <div>
-            <p className="text-[11px] font-bold text-red-600 uppercase tracking-wider mb-1.5">Weaknesses</p>
+            <p className="text-[11px] font-bold text-red-600 uppercase tracking-wider mb-1.5">What is losing marks</p>
             <div className="space-y-1">
               <div className="flex items-start gap-1">
                 <span className="text-red-400 text-xs mt-0.5">●</span>
@@ -86,6 +73,19 @@ function EssayReportPreview() {
               <div className="flex items-start gap-1">
                 <span className="text-red-400 text-xs mt-0.5">●</span>
                 <span className="text-xs text-gray-600 leading-snug">Limitations stated but not explained</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p className="text-[11px] font-bold text-emerald-700 uppercase tracking-wider mb-1.5">Where marks are recoverable</p>
+            <div className="space-y-1">
+              <div className="flex items-start gap-1">
+                <span className="text-emerald-500 text-xs mt-0.5">●</span>
+                <span className="text-xs text-gray-600 leading-snug">Weigh sanctions against internal resistance in Criterion D</span>
+              </div>
+              <div className="flex items-start gap-1">
+                <span className="text-emerald-500 text-xs mt-0.5">●</span>
+                <span className="text-xs text-gray-600 leading-snug">Say how each limitation affects the conclusion</span>
               </div>
             </div>
           </div>
@@ -195,7 +195,7 @@ export function SampleReports() {
         <div className="flex justify-center max-w-[460px] mx-auto">
           {/* Essay Report */}
           <div className="flex flex-col items-center gap-5">
-            <div className="transition-transform duration-300 hover:scale-[0.98] cursor-pointer w-full flex justify-center">
+            <div className="w-full flex justify-center">
               <EssayReportPreview />
             </div>
             <Button size="lg" className="shadow-lg shadow-primary/20" asChild>

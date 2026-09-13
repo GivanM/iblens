@@ -5,6 +5,15 @@ import type { TrpcContext } from "./context";
 
 const t = initTRPC.context<TrpcContext>().create({
   transformer: superjson,
+  // An unexpected failure reached the browser with its own message, which for a
+  // database error is the SQL statement and its parameters. Only errors thrown on
+  // purpose carry their message out; anything else is logged and said plainly.
+  errorFormatter({ shape, error }) {
+    const internal = error.code === "INTERNAL_SERVER_ERROR" && /Failed query|ER_[A-Z_]+|SQL|ECONN|ETIMEDOUT|drizzle/i.test(String(error.cause?.message ?? error.message));
+    if (!internal) return shape;
+    console.error("[tRPC] internal error:", error.cause ?? error);
+    return { ...shape, message: "Something went wrong on our side. Please try again.", data: { ...shape.data, stack: undefined } };
+  },
 });
 
 export const router = t.router;

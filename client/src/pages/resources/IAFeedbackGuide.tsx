@@ -8,12 +8,12 @@ export default function IAFeedbackGuide() {
       description="How to check your IB Internal Assessment against the official criteria without a tutor: what each subject is marked out of, where the heaviest criteria sit, and a self-check sequence for any subject."
       canonical="/resources/ib-ia-feedback"
       datePublished="2026-08-11"
-      dateModified="2026-08-11"
+      dateModified="2026-09-13"
     >
       <h1>How to Check Your IB IA Against the Official Criteria (Without a Tutor)</h1>
 
       <p>
-        Every IB Internal Assessment is marked against published criteria with fixed mark allocations, which means you can check a draft against the same criteria your teacher and the moderator will use. The catch: the criteria differ completely by subject, and the smartest check starts from where the marks actually are. This guide shows what each subject is marked out of, where the heaviest criteria sit, and a self-check sequence that works for any of them.
+        Every subject Internal Assessment is marked against published criteria with fixed mark allocations (the TOK exhibition is marked holistically), which means you can check a draft against the same criteria your teacher and the moderator will use. The catch: the criteria differ completely by subject, and the smartest check starts from where the marks actually are. This guide shows what each subject is marked out of, where the heaviest criteria sit, and a self-check sequence that works for any of them.
       </p>
 
       <h2>Know what your IA is marked out of</h2>

@@ -386,8 +386,8 @@ export async function canAnonymousAnalyze(fingerprint: string, kind: "essay" | "
     return {
       allowed: false,
       reason: kind === "ucas"
-        ? "You have used your free review from this device."
-        : "You have used your free analysis from this device.",
+        ? "You have used the free UCAS preview on this device."
+        : "You have used the free preview on this device.",
     };
   }
   return { allowed: true };
@@ -736,7 +736,7 @@ export async function consumePaidEssayCredit(userId: number) {
     .set({ essayCredits: sql`${users.essayCredits} - 1` })
     .where(and(eq(users.id, userId), sql`${users.essayCredits} > 0`));
   if (Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0) === 0) {
-    throw new Error("Unlocking the full report requires a paid credit. Buy one for $9.99.");
+    throw new Error("You have no paid reports left. A full report is $9.99.");
   }
 }
 
@@ -952,13 +952,46 @@ export async function addDeviceCredits(fingerprint: string, amount: number, orde
   console.log(`[DeviceCredits] +${amount} for ${fingerprint.slice(0, 8)}...`);
 }
 
-/** The purchase behind the credits on this device, if one is recorded. */
-export async function getDeviceCreditOrderId(fingerprint: string): Promise<string | null> {
+/**
+ * The purchase a report opened with a paid credit is charged to: the oldest paid
+ * purchase that still has reports left, first in, first out. For a device that means
+ * the purchases whose reports went to that browser; for an account, the account's
+ * purchases. A refund closes the reports its purchase paid for, so every spend has
+ * to name one. Charging device reports to the newest purchase, and account reports
+ * to none, closed the wrong reports or none at all.
+ */
+export async function orderForCreditSpend(owner: { fingerprint?: string; userId?: number }): Promise<string | null> {
   const db = await getDb();
   if (!db) return null;
+  const scope = owner.fingerprint
+    ? eq(orders.deviceFingerprint, owner.fingerprint)
+    : owner.userId ? eq(orders.userId, owner.userId) : null;
+  if (scope) {
+    const lots = await db.select({ id: orders.id, createdAt: orders.createdAt }).from(orders)
+      .where(and(scope, eq(orders.status, "paid")));
+    // In the order the purchases were credited. Timestamps have one-second resolution and
+    // order ids are random, so two purchases in the same second sorted at random; the
+    // ledger's own sequence says which was paid first.
+    const firstGrant = new Map<string, number>();
+    for (const lot of lots as any[]) {
+      const rows = await db.select({ first: sql<number>`MIN(${creditLedger.id})` }).from(creditLedger)
+        .where(and(eq(creditLedger.orderId, lot.id), sql`${creditLedger.delta} > 0`));
+      firstGrant.set(lot.id, Number((rows[0] as any)?.first ?? Number.MAX_SAFE_INTEGER));
+    }
+    const ordered = (lots as any[]).sort((a, b) =>
+      (firstGrant.get(a.id)! - firstGrant.get(b.id)!) || (new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()));
+    for (const lot of ordered) {
+      if ((await countReportsOpenedByOrder(lot.id)) < (await ledgerAmountForOrder(lot.id))) return lot.id;
+    }
+  }
+  if (!owner.fingerprint) return null;
   const rows = await db.select({ lastOrderId: deviceCredits.lastOrderId }).from(deviceCredits)
-    .where(eq(deviceCredits.fingerprint, fingerprint)).limit(1);
+    .where(eq(deviceCredits.fingerprint, owner.fingerprint)).limit(1);
   return (rows[0] as any)?.lastOrderId ?? null;
+}
+
+export async function getDeviceCreditOrderId(fingerprint: string): Promise<string | null> {
+  return orderForCreditSpend({ fingerprint });
 }
 
 export async function getDeviceCredits(fingerprint: string): Promise<number> {
@@ -1110,10 +1143,10 @@ export async function ledgerHasEntry(reason: string, orderId: string): Promise<b
  * credits twice. The claimer is remembered, so a later refund knows where the
  * credits went.
  */
-export async function takeAllDeviceCredits(fingerprint: string, claimedBy: number): Promise<number> {
+export async function takeAllDeviceCredits(fingerprint: string, claimedBy: number, amount?: number): Promise<number> {
   const db = await getDb();
   if (!db) return 0;
-  // Compare and swap: read the balance, then zero it only if it is still that
+  // Compare and swap: read the balance, then lower it only if it is still that
   // balance. Returning claimedAmount, which counts everything ever put here,
   // handed people more credits than they had left.
   for (let attempt = 0; attempt < 3; attempt++) {
@@ -1121,11 +1154,13 @@ export async function takeAllDeviceCredits(fingerprint: string, claimedBy: numbe
     const rec: any = rows[0];
     const balance = rec?.credits ?? 0;
     if (!rec || balance <= 0) return 0;
+    const take = Math.min(balance, amount ?? balance);
+    if (take <= 0) return 0;
     const res: any = await db.update(deviceCredits)
-      .set({ credits: 0, claimedByUserId: claimedBy })
+      .set({ credits: balance - take, claimedByUserId: claimedBy })
       .where(and(eq(deviceCredits.fingerprint, fingerprint), eq(deviceCredits.credits, balance)));
     const changed = Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0);
-    if (changed > 0) return balance;
+    if (changed > 0) return take;
   }
   return 0;
 }
@@ -1210,10 +1245,12 @@ export async function relockAnonymousForOrder(orderId: string) {
 }
 
 /** Record how much of a purchase was placed on a device. */
-export async function setOrderDeviceCredits(orderId: string, amount: number) {
+export async function setOrderDeviceCredits(orderId: string, amount: number, fingerprint?: string) {
   const db = await getDb();
   if (!db) return;
-  await db.update(orders).set({ deviceCreditsGranted: amount }).where(eq(orders.id, orderId));
+  await db.update(orders)
+    .set({ deviceCreditsGranted: amount, ...(fingerprint ? { deviceFingerprint: fingerprint } : {}) })
+    .where(eq(orders.id, orderId));
 }
 
 /** Give a re-check back when the model failed and the student got nothing. */
@@ -1264,11 +1301,11 @@ export async function createRerunAnalysis(prev: any, resultJson: any, predictedG
  * Two unlock clicks that arrive together both see a locked report; only the one
  * that actually flips it may keep the credit it spent.
  */
-export async function claimAnalysisUnlock(id: number): Promise<boolean> {
+export async function claimAnalysisUnlock(id: number, orderId?: string | null): Promise<boolean> {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   const res: any = await db.update(analyses)
-    .set({ unlocked: true, unlockedAt: new Date() })
+    .set({ unlocked: true, unlockedAt: new Date(), ...(orderId ? { unlockOrderId: orderId } : {}) })
     .where(and(eq(analyses.id, id), eq(analyses.unlocked, false)));
   return Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0) > 0;
 }
@@ -1281,6 +1318,27 @@ export async function claimAnonymousUnlock(id: number, orderId?: string | null):
     .set({ unlocked: true, unlockedAt: new Date(), ...(orderId ? { unlockOrderId: orderId } : {}) })
     .where(and(eq(anonymousAnalyses.id, id), eq(anonymousAnalyses.unlocked, false)));
   return Number(res?.[0]?.affectedRows ?? res?.affectedRows ?? 0) > 0;
+}
+
+/**
+ * An earlier verified delivery of the same event. LemonSqueezy resends, and the log's
+ * unique key includes the processing status, so a resend inserts a fresh row; the
+ * order status alone did not stop a resend that arrived after a refund. Only earlier
+ * rows count, so of two copies arriving together the first is processed, and a
+ * delivery that failed while processing does not count, so a manual resend can
+ * still repair it.
+ */
+export async function hasEarlierVerifiedWebhookEvent(eventKey: string, thisId?: number): Promise<boolean> {
+  const db = await getDb();
+  if (!db) return false;
+  const rows = await db.select({ id: webhookEvents.id, status: webhookEvents.paymentStatus }).from(webhookEvents)
+    .where(and(
+      eq(webhookEvents.provider, "lemonsqueezy"),
+      eq(webhookEvents.npPaymentId, eventKey),
+      eq(webhookEvents.signatureValid, true),
+    ));
+  if (!thisId) return false;
+  return (rows as any[]).some((r) => r.id < thisId && r.status !== "processing_error");
 }
 
 export async function markAnalysisUnlocked(id: number, orderId?: string) {

@@ -98,12 +98,12 @@ export default function TokEssayChecklist() {
 
       <h3>How is the TOK essay marked, are there separate criteria?</h3>
       <p>
-        No. Unlike the Extended Essay or Internal Assessments, the TOK essay uses one holistic assessment instrument out of 10. Examiners judge the essay as a whole against the question "does the student provide a clear, coherent and critical exploration of the essay title?" and place it in one of five levels.
+        No. Unlike the Extended Essay and subject internal assessments, the TOK essay, like the TOK exhibition, uses one holistic assessment instrument out of 10. Examiners judge the essay as a whole against the question "does the student provide a clear, coherent and critical exploration of the essay title?" and place it in one of five levels.
       </p>
 
       <h3>How many points is the TOK essay worth for my Diploma?</h3>
       <p>
-        The essay is marked out of 10 and determines most of your TOK grade (A-E). Your TOK grade then combines with your Extended Essay grade to award up to 3 bonus points towards the Diploma. An E in either component is a failing condition.
+        The essay is marked out of 10 and determines most of your TOK grade (A-E). Your TOK grade then combines with your Extended Essay grade to award up to 3 bonus points towards the Diploma. A grade E in TOK or in the Extended Essay is a failing condition.
       </p>
 
       <h3>Can I just ask ChatGPT to check my TOK essay?</h3>

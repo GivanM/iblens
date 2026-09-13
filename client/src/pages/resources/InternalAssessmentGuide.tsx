@@ -36,7 +36,7 @@ export default function InternalAssessmentGuide() {
         <li><strong>Group 3 (Individuals and Societies):</strong> a written investigation (History: 2,200 words; Business Management: 1,800 words; Economics: three commentaries of up to 800 words each; Psychology: an experimental report through November 2026, and from May 2027 a research proposal marked out of 24)</li>
         <li><strong>Group 4 (Sciences):</strong> Scientific investigation (Biology, Chemistry, Physics: up to 3,000 words, marked out of 24)</li>
         <li><strong>Group 5 (Mathematics):</strong> the mathematical exploration (approximately 12 to 20 pages)</li>
-        <li><strong>Group 6 (The Arts):</strong> varies by subject (Visual Arts: the exhibition, replaced from May 2027 by the new internally assessed component; Music: experimenting with music; Film: the film portfolio). The Visual Arts comparative study and the Music and Film coursework IBLens marks are externally assessed components.</li>
+        <li><strong>Group 6 (The Arts):</strong> varies by subject (Visual Arts: the exhibition, replaced from May 2027 by the new internally assessed component; Music: experimenting with music, and at HL also the contemporary music-maker; Film: the film portfolio). The Visual Arts comparative study and the Music and Film coursework IBLens marks are externally assessed components.</li>
       </ul>
 
       <p>
@@ -70,7 +70,7 @@ export default function InternalAssessmentGuide() {
       <h3>Economics (Group 3)</h3>
 
       <p>
-        Economics requires three commentaries of 800 words each, based on published news articles. Each commentary must apply economic theory to explain a real-world event, use appropriate diagrams, and evaluate the economic implications. The challenge is <strong>depth of analysis within a tight word limit</strong>: every sentence has to contribute. Commentaries that describe the article without applying economic theory lose marks on application and analysis.
+        Economics requires three commentaries of up to 800 words each, based on published news articles. Each commentary must apply economic theory to explain a real-world event, use appropriate diagrams, and evaluate the economic implications. The challenge is <strong>depth of analysis within a tight word limit</strong>: every sentence has to contribute. Commentaries that describe the article without applying economic theory lose marks on application and analysis.
       </p>
 
       <h2>Assessment Criteria Explained</h2>

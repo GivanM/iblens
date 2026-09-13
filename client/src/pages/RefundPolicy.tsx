@@ -15,14 +15,14 @@ export default function RefundPolicy() {
 
         <div className="prose prose-sm max-w-none text-foreground space-y-6">
           <section>
-            <h2 className="text-xl font-semibold mb-3">7-Day Money-Back Guarantee</h2>
+            <h2 className="text-xl font-semibold mb-3">7-day money-back guarantee</h2>
             <p className="text-muted-foreground leading-relaxed">
               We want you to be completely satisfied with your IBLens purchase. If for any reason you are not happy with your essay or personal statement report, you may request a full refund within <strong className="text-foreground">7 days</strong> of your purchase date, no questions asked.
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold mb-3">How to Request a Refund</h2>
+            <h2 className="text-xl font-semibold mb-3">How to request a refund</h2>
             <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
               <li>Email us at <a href="mailto:glushkovim@gmail.com" className="text-primary hover:underline font-medium">glushkovim@gmail.com</a> within 7 days of your purchase.</li>
               <li>Include the email address you used at checkout and the product you purchased.</li>
@@ -31,7 +31,7 @@ export default function RefundPolicy() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold mb-3">Refund Methods</h2>
+            <h2 className="text-xl font-semibold mb-3">Refund methods</h2>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground">
               <li><strong className="text-foreground">All payments (via Lemon Squeezy):</strong> Refunded to the original payment method, whichever you used at checkout. Please allow 5-10 business days for the refund to appear on your statement.</li>
             </ul>
@@ -59,7 +59,7 @@ export default function RefundPolicy() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold mb-3">Contact Us</h2>
+            <h2 className="text-xl font-semibold mb-3">Contact us</h2>
             <p className="text-muted-foreground leading-relaxed">
               If you have any questions about our refund policy, please reach out to <a href="mailto:glushkovim@gmail.com" className="text-primary hover:underline font-medium">glushkovim@gmail.com</a>. Every refund request gets an answer by email.
             </p>

@@ -84,11 +84,11 @@ export default function ExtendedEssayGuide() {
       <h2>Structure and Formatting</h2>
 
       <p>
-        While the IBO does not mandate a single structure for all Extended Essays (since structure varies by subject), most successful essays follow this general framework:
+        The Extended Essay guide says these structural elements must be present in every essay: a title page, a contents page, an introduction, the body, a conclusion, and a reference list or bibliography. Within the body, follow the conventions of your subject. For May 2027 onward the guide also sets the format: font size 12, 1.5 line spacing, page numbers on every page after the contents page (mandatory), and no student, supervisor or school name anywhere in the file. The framework below fills in those elements:
       </p>
 
       <ul>
-        <li><strong>Title page:</strong> the title, the research question, the subject the essay is registered in, and the word count. Leave off your name, candidate number and school name: Extended Essays are marked anonymously.</li>
+        <li><strong>Title page:</strong> the title, the research question, the subject the essay is registered in, and the word count. Leave off your name, your supervisor's name, your candidate number and your school's name: Extended Essays are marked anonymously.</li>
         <li><strong>Table of contents:</strong> With page numbers</li>
         <li><strong>Introduction (300-400 words):</strong> Context, research question, scope, methodology overview</li>
         <li><strong>Body (3,000-3,200 words):</strong> Organised into logical sections with clear headings, presenting evidence, analysis, and argumentation</li>

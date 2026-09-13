@@ -6,7 +6,7 @@ export default function Terms() {
     <div className="py-16 bg-background">
       <SEOHead
         title="Terms of Use | IBLens"
-        description="Terms for using IBLens: scores are AI estimates not official IB grades, acceptable use, and IBLens independence from the International Baccalaureate Organization."
+        description="Terms for using IBLens: scores are AI estimates, not official IB grades; acceptable use; and the independence of IBLens from the International Baccalaureate Organization."
         canonical="/terms"
       />
       <div className="container max-w-3xl">
@@ -16,7 +16,7 @@ export default function Terms() {
           <p>By using IBLens you agree to these terms. If you do not agree, please do not use the service.</p>
 
           <h2>What IBLens is</h2>
-          <p>IBLens is an AI tool that reads a piece of work you paste in (an Internal Assessment, Extended Essay, Theory of Knowledge essay or exhibition commentary, or a UCAS personal statement) and gives feedback on how it performs against the published assessment criteria or guidance, before you submit it.</p>
+          <p>IBLens is an AI tool that reads a piece of work you paste in (coursework in 14 subjects, including the externally assessed Visual Arts, Music and Film coursework, an Extended Essay, a Theory of Knowledge essay or exhibition commentary, or a UCAS personal statement) and gives feedback on how it performs against the published assessment criteria or guidance, before you submit it.</p>
 
           <h2>Estimates, not official grades</h2>
           <p>Any score or band shown by IBLens is an <strong>AI-generated estimate</strong> to help you improve your own work. It is not an official grade, not a prediction of your final result, and not a substitute for your teacher's or the examiner's assessment. Your school and the examining body determine your actual marks. Do not make irreversible decisions (such as whether to pay for a re-mark) solely on the basis of IBLens output.</p>
@@ -41,7 +41,6 @@ export default function Terms() {
 
       <p>
         IBLens is built for students in the IB Diploma Programme, most of whom are 16 to 18 years old.
-        You may use the free preview at any age with the awareness of a parent, guardian or teacher.
       </p>
 
       <p>

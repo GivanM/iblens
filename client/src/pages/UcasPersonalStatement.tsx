@@ -131,8 +131,10 @@ export default function UcasPersonalStatement() {
   );
   const deviceCredits = isAuthenticated ? 0 : (deviceCreditsQ.data?.credits ?? 0);
   const canPayHere = hasCredit || deviceCredits > 0;
-  // A saved preview on this device means its free review has been used.
-  const previewUsed = (lockedUcasQ.data as any)?.exists === true;
+  // Whether this device's free UCAS preview has been used, asked of the server. A saved
+  // review used to count as the preview, so buying a review first hid the free one.
+  const ucasFreeQ = trpc.essay.canAnalyzeAnonymous.useQuery({ clientFingerprint: anonFp, kind: "ucas" });
+  const previewUsed = ucasFreeQ.data ? ucasFreeQ.data.canAnalyze === false : (lockedUcasQ.data as any)?.exists === true;
   const onFullReview = (d: any) => {
     setResult(d.result);
     setLimitReached(null);
@@ -182,7 +184,7 @@ export default function UcasPersonalStatement() {
         out.push(`Question ${i + 1} is ${len} characters; UCAS requires at least ${UCAS_MIN_CHARS_PER_ANSWER}.`);
     });
     if (total > UCAS_TOTAL_CHAR_LIMIT)
-      out.push(`Your answers are ${total - UCAS_TOTAL_CHAR_LIMIT} characters over the ${UCAS_TOTAL_CHAR_LIMIT} limit.`);
+      out.push(`Your answers are ${(total - UCAS_TOTAL_CHAR_LIMIT).toLocaleString("en-GB")} characters over the ${UCAS_TOTAL_CHAR_LIMIT.toLocaleString("en-GB")} limit.`);
     return out;
   }, [course, answers, total]);
 
@@ -191,13 +193,13 @@ export default function UcasPersonalStatement() {
   return (
     <div className="container max-w-3xl mx-auto py-10 px-4 space-y-6">
       <SEOHead
-        title="UCAS Personal Statement Checker: Three-Question Format for 2026 and 2027 Entry | IBLens"
+        title="UCAS Personal Statement Checker: Three-Question Format for 2027 Entry | IBLens"
         description="Check your UCAS personal statement against the format used from 2026 entry: three questions, 4,000 characters, 350 minimum per answer. Evidence-based feedback on each answer from an admissions-tutor perspective. Free preview, no account."
         canonical="/ucas-personal-statement"
       />
 
       <div>
-        <p className="text-xs font-bold uppercase tracking-wider text-primary mb-2">For 2026 and 2027 entry</p>
+        <p className="text-xs font-bold uppercase tracking-wider text-primary mb-2">For 2027 entry, and 2028 deferred entry</p>
         <h1 style={SERIF} className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
           UCAS Personal Statement Checker
         </h1>
@@ -224,6 +226,7 @@ export default function UcasPersonalStatement() {
 
       <DeviceReportsList
         reports={ucasReports}
+        showSingle={unlockedQ.data?.unlocked !== true}
         selectedId={ucasTarget?.id ?? null}
         opening={openingReview}
         onOpen={async (r) => {
@@ -344,85 +347,58 @@ export default function UcasPersonalStatement() {
             </div>
           )}
 
-          <Button
-            size="lg"
-            className="w-full"
-            disabled={blockers.length > 0 || review.isPending || recheck.isPending}
-            onClick={() => {
-              // Re-checks belong to the review that was bought. Once they are gone,
-              // a new statement is a new review, not a dead button.
-              if (isUnlocked && (effectiveRechecks === null || effectiveRechecks > 0)) {
-                recheck.mutate({ fingerprint: anonFp, answers, ...(ucasTarget ? { recordId: ucasTarget.latestId } : {}) });
+          {(() => {
+            // One decision for the main button: a re-check of the review that was bought,
+            // then the free preview while it is unused, then a paid report, then buying.
+            // The free preview used to disappear as soon as anything had been bought.
+            const busy = review.isPending || recheck.isPending;
+            const canRecheck = isUnlocked && (effectiveRechecks === null || effectiveRechecks > 0);
+            const mode: "recheck" | "free" | "paid" | "buy" = canRecheck ? "recheck" : !previewUsed ? "free" : canPayHere ? "paid" : "buy";
+            const run = (m: "free" | "paid") => review.mutate({
+              course: course.trim(), universityType,
+              q1: answers.q1, q2: answers.q2, q3: answers.q3,
+              clientFingerprint: anonFp,
+              // A credit is spent only by a button that says so.
+              spendCredit: m === "paid" && hasCredit,
+              spendDeviceCredit: m === "paid" && !hasCredit && deviceCredits > 0,
+            });
+            const onMain = () => {
+              if (mode === "recheck") {
+                recheck.mutate({ fingerprint: anonFp, answers, course: course.trim(), ...(ucasTarget ? { recordId: ucasTarget.latestId } : {}) });
                 return;
               }
-              // Nothing left to spend here: buying is the next step, not a request
-              // the server is certain to refuse.
-              if (isUnlocked && !canPayHere) {
+              if (mode === "buy") {
                 setBuyFor("new");
                 setPurchaseOpen(true);
                 return;
               }
-              // The free review on this device is used and nothing is paid for: buying
-              // is the next step, not a request the server will refuse.
-              if (!isUnlocked && !canPayHere && previewUsed) {
-                setBuyFor("new");
-                setPurchaseOpen(true);
-                return;
-              }
-              if (isUnlocked) {
-                review.mutate({
-                  course: course.trim(), universityType,
-                  q1: answers.q1, q2: answers.q2, q3: answers.q3,
-                  clientFingerprint: anonFp,
-                  spendCredit: hasCredit,
-                  spendDeviceCredit: !hasCredit && deviceCredits > 0,
-                });
-                return;
-              }
-              review.mutate({
-                course: course.trim(),
-                universityType,
-                q1: answers.q1,
-                q2: answers.q2,
-                q3: answers.q3,
-                clientFingerprint: anonFp,
-                // Only when the button says so, and it says so only when there is
-                // a credit to spend.
-                spendCredit: hasCredit,
-                spendDeviceCredit: !hasCredit && deviceCredits > 0,
-              });
-            }}
-          >
-            {review.isPending || recheck.isPending ? (
-              <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Reading your statement…</>
-            ) : isUnlocked && effectiveRechecks === 0 ? (
-              canPayHere ? "Review a new statement (uses 1 paid report)" : "Review a new statement, $9.99"
-            ) : isUnlocked ? (
-              `Re-check my statement (free${effectiveRechecks !== null ? `, ${effectiveRechecks} left` : ""})`
-            ) : canPayHere ? (
-              "Review my statement in full (uses 1 paid report)"
-            ) : previewUsed ? (
-              "Buy a full review of these answers, $9.99"
-            ) : (
-              "Review my statement, free"
-            )}
-          </Button>
-          {isUnlocked && canPayHere && (effectiveRechecks ?? 0) > 0 && (
-            <Button
-              variant="outline"
-              className="w-full min-h-11 h-auto whitespace-normal"
-              disabled={blockers.length > 0 || review.isPending || recheck.isPending}
-              onClick={() => review.mutate({
-                course: course.trim(), universityType,
-                q1: answers.q1, q2: answers.q2, q3: answers.q3,
-                clientFingerprint: anonFp,
-                spendCredit: hasCredit,
-                spendDeviceCredit: !hasCredit && deviceCredits > 0,
-              })}
-            >
-              Review a different statement instead (uses 1 paid report)
-            </Button>
-          )}
+              run(mode);
+            };
+            const mainLabel = mode === "recheck"
+              ? `Re-check my statement (free${effectiveRechecks !== null ? `, ${effectiveRechecks} left` : ""})`
+              : mode === "free"
+                ? (isUnlocked ? "Review a new statement: free preview" : "Review my statement, free")
+                : mode === "paid"
+                  ? (isUnlocked ? "Review a new statement (uses 1 paid report)" : "Review my statement in full (uses 1 paid report)")
+                  : (isUnlocked ? "Review a new statement, $9.99" : "Buy a full review of these answers, $9.99");
+            return (
+              <>
+                <Button size="lg" className="w-full min-h-11 h-auto whitespace-normal" disabled={blockers.length > 0 || busy} onClick={onMain}>
+                  {busy ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Reading your statement…</> : mainLabel}
+                </Button>
+                {mode === "recheck" && !previewUsed && (
+                  <Button variant="outline" className="w-full min-h-11 h-auto whitespace-normal" disabled={blockers.length > 0 || busy} onClick={() => run("free")}>
+                    Review a different statement: free preview
+                  </Button>
+                )}
+                {(mode === "recheck" || mode === "free") && canPayHere && (
+                  <Button variant="outline" className="w-full min-h-11 h-auto whitespace-normal" disabled={blockers.length > 0 || busy} onClick={() => run("paid")}>
+                    {mode === "recheck" ? "Review a different statement instead (uses 1 paid report)" : "Review it in full instead (uses 1 paid report)"}
+                  </Button>
+                )}
+              </>
+            );
+          })()}
         </CardContent>
       </Card>
 

@@ -32,7 +32,7 @@ export default function TokEssayGuide() {
 
       <ul>
         <li><strong>Identify and analyse knowledge questions:</strong> Questions about the nature, scope, and limitations of knowledge (e.g., "How do we distinguish between correlation and causation?")</li>
-        <li><strong>Develop knowledge claims and counter-claims:</strong> Make assertions about knowledge and then challenge them with alternative perspectives</li>
+        <li><strong>Develop clear, coherent arguments:</strong> support them with examples and consider their implications</li>
         <li><strong>Use specific, concrete examples:</strong> Illustrate abstract arguments with real-world cases from different areas of knowledge</li>
         <li><strong>Evaluate perspectives:</strong> Assess the strengths and limitations of different approaches to knowledge without simply declaring one "right"</li>
       </ul>
@@ -65,7 +65,7 @@ export default function TokEssayGuide() {
       <h2>Building Knowledge Claims and Counter-Claims</h2>
 
       <p>
-        The backbone of a TOK essay is the claim/counter-claim structure. A <strong>knowledge claim</strong> is an assertion about knowledge, for example: "Mathematical knowledge is more certain than historical knowledge because it is based on logical proof rather than interpretation of evidence."
+        Many students build a TOK essay from claims and counter-claims. The TOK guide does not require this structure; it is one way to develop arguments and weigh different points of view. A <strong>knowledge claim</strong> is an assertion about knowledge, for example: "Mathematical knowledge is more certain than historical knowledge because it is based on logical proof rather than interpretation of evidence."
       </p>
 
       <p>
@@ -169,7 +169,7 @@ export default function TokEssayGuide() {
       <h2>Worked Example: Strong vs. Weak Argumentation</h2>
 
       <p>
-        Consider the prescribed title: "Is certainty achievable in any area of knowledge?"
+        Consider this example title, written for this guide and not one of the IB's prescribed titles: "Is certainty achievable in any area of knowledge?"
       </p>
 
       <p>

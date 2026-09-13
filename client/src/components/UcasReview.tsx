@@ -54,7 +54,7 @@ export function UcasReview({ result, course, isUnlocked, onBuy, buyLabel, buyPen
             ))}
             <div className="flex items-center justify-between text-sm border-t pt-2">
               <span className="text-muted-foreground">Total</span>
-              <span>{mechanics.totalChars} of {UCAS_TOTAL_CHAR_LIMIT}</span>
+              <span>{Number(mechanics.totalChars).toLocaleString("en-GB")} of {UCAS_TOTAL_CHAR_LIMIT.toLocaleString("en-GB")}</span>
             </div>
             {mechanics.problems?.map((p: string, i: number) => (
               <p key={i} className="text-xs text-amber-700 flex gap-2"><AlertTriangle className="w-3.5 h-3.5 shrink-0 mt-0.5" />{p}</p>

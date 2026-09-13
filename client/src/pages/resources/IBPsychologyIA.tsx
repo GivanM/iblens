@@ -136,8 +136,8 @@ export default function IBPsychologyIA() {
 
       <h2>Before Your Teacher Marks the Final Draft</h2>
       <p>
-        Your teacher marks the report and the IB moderates a sample of the school's work,
-        so the mark is largely settled before any moderator reads it. The time to find out
+        Your teacher marks the report, the IB moderates a sample of the school's work, and
+        any moderation factor is applied to every student's mark. The time to find out
         which criterion is weakest is while you can still change the report.
       </p>
       <p>

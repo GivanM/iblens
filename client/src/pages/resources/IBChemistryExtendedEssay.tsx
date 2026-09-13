@@ -62,11 +62,10 @@ export default function IBChemistryExtendedEssay() {
       <p>
         The most common error is a question that is essentially confirming a known
         result without adding analytical depth. "How does temperature affect the rate
-        of a reaction?" is not an EE question. "How does temperature (20-70 degrees C,
-        in 10 degree increments) affect the rate constant k of the saponification of ethyl
-        acetate, and how does the activation energy found from an Arrhenius plot compare
-        with the literature value?" is an EE question, because it tests your experimental
-        result against published work.
+        of a reaction?" is not an EE question. "What is the activation energy of the
+        saponification of ethyl acetate, found from the rate constant k between 20 and
+        70 degrees C?" is an EE question: it asks one thing, and the result can be tested
+        against the literature value.
       </p>
 
       <h2>IB Chemistry EE Assessment Criteria</h2>

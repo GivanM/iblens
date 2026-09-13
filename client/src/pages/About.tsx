@@ -13,7 +13,7 @@ export default function About() {
       <h1>About IBLens</h1>
 
       <p>
-        IBLens gives IB students an honest, criterion-level read on their coursework before they submit it. Paste a draft (an Internal Assessment, an Extended Essay, a TOK essay or an exhibition commentary) and get feedback structured around the published assessment criteria it will be marked on, in about a minute.
+        IBLens gives IB students an honest, criterion-level read on their coursework before they submit it. Paste a draft (coursework in 14 subjects, including the externally assessed Visual Arts, Music and Film coursework, an Extended Essay, a TOK essay or an exhibition commentary) and get feedback structured around the published assessment criteria it will be marked on, in about a minute. There is also a checker for the three answers of a UCAS personal statement.
       </p>
 
       <h2>Where IBLens came from</h2>
@@ -29,7 +29,7 @@ export default function About() {
           <strong>The published criteria, per subject and session.</strong> The grading engine carries the assessment criteria for each supported component (the criterion names, their mark allocations and a short description of what each one assesses), including both Extended Essay rubrics (the current 34-mark criteria and the new 30-mark May 2027 criteria) and the 2027 formats for Psychology and Computer Science IAs. You pick the work type, subject and exam session; the engine applies the matching instrument.
         </li>
         <li>
-          <strong>AI analysis.</strong> The essay is analysed by a large language model (Anthropic's Claude) instructed with the relevant criteria. A full report gives an estimated mark for each criterion and overall, with the band range, concrete comments and, where your task has a word limit, a word count against it.
+          <strong>AI analysis.</strong> The essay is analysed by a large language model (Anthropic's Claude) instructed with the relevant criteria. A full report gives an estimated mark overall and for each criterion that can be judged from the text, with the band range, concrete comments and, where your task has a word limit, a word count against it.
         </li>
         <li>
           <strong>Estimates, not guarantees.</strong> Scores are AI estimates. Real marking involves examiner judgement and moderation, and no tool can promise your final mark. What IBLens is built to do well is show which criterion is costing you most while you still have time to act.

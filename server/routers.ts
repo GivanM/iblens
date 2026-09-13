@@ -32,6 +32,8 @@ import {
   consumeDeviceCredit,
   addDeviceCredits,
   getDeviceCreditOrderId,
+  orderForCreditSpend,
+  getOrderById,
   deleteAnonymousAnalysis,
   deleteUserAnalysis,
   updateAnonymousResult,
@@ -180,7 +182,7 @@ NO REFLECTIVE STATEMENT WAS SUBMITTED. The reflection criterion is marked on the
     ? (subject.trim().toLowerCase() === "exhibition" ? "TOK exhibition" : "TOK essay")
     : `${essayType} for: ${subject}`;
   return `Analyse this IB ${task}
-Research Question: ${researchQuestion || "not provided"}
+Research Question: ${(researchQuestion || "").slice(0, 500) || "not provided"}
 
 TEXT:
 ${essayText.substring(0, 30000)}${reflectionBlock}${wordBlock}
@@ -237,6 +239,35 @@ function isRiskAboutMissingReflection(r: any): boolean {
  * transport and parsing failures ("relay poll timeout after 240s", "Failed to parse
  * AI response") do not, because they read as a broken site and say nothing useful.
  */
+/**
+ * The exam session a stored report was marked on. Checks from /remark and older rows
+ * saved none, and re-checking those on whatever the form showed moved a 34-mark
+ * Extended Essay onto the 30-mark criteria. The total it was marked out of says which.
+ */
+function sessionOfReport(rec: any, fallback?: "nov2026" | "may2027"): "nov2026" | "may2027" | undefined {
+  if (rec?.examSession === "nov2026" || rec?.examSession === "may2027") return rec.examSession;
+  const total = Number((rec?.resultJson as any)?._rubricTotalMarks ?? 0);
+  const nov = getRubric(String(rec?.essayType ?? ""), String(rec?.subject ?? ""), "nov2026")?.totalMarks;
+  const may = getRubric(String(rec?.essayType ?? ""), String(rec?.subject ?? ""), "may2027")?.totalMarks;
+  if (total && nov !== may) {
+    if (total === nov) return "nov2026";
+    if (total === may) return "may2027";
+  }
+  return fallback;
+}
+
+/** What a re-check is compared with: the totals and each criterion's mark before it. */
+function previousScores(prev: any) {
+  return {
+    predicted_score: prev?.predicted_score ?? null,
+    max_score: prev?.max_score ?? null,
+    band_range: prev?.band_range ?? null,
+    criteria: Array.isArray(prev?.criteria)
+      ? prev.criteria.map((c: any) => ({ name: String(c?.name ?? ""), score: typeof c?.score === "number" ? c.score : null, max: typeof c?.max === "number" ? c.max : null }))
+      : [],
+  };
+}
+
 function friendlyRunError(error: any, what: string): string {
   const msg = String(error?.message || "");
   if (!msg || /relay|timeout|timed out|parse|json|fetch|econn|socket|network|status code|\b5\d\d\b|overloaded|rate.?limit|anthropic|invalid response|unexpected token|undefined|null/i.test(msg)) {
@@ -380,9 +411,11 @@ const essayRouter = router({
         if (!rec || rec.userId !== ctx.user.id || !rec.resultJson) throw new Error("Report not found");
         if (!(rec as any).unlocked) {
           await consumePaidEssayCredit(ctx.user.id);
+          // The purchase this report is charged to, so a refund of it closes this report.
+          const orderId = await orderForCreditSpend({ userId: ctx.user.id });
           // A double click sends two of these; only the one that opens the report
           // keeps the credit, the other gives it straight back.
-          if (!(await claimAnalysisUnlock(rec.id))) {
+          if (!(await claimAnalysisUnlock(rec.id, orderId))) {
             await refundEssayConsumption(ctx.user.id, false);
           }
         }
@@ -395,9 +428,10 @@ const essayRouter = router({
         if (!rec || !rec.resultJson) throw new Error("No report found for this device");
         if (!(rec as any).unlocked) {
           await consumePaidEssayCredit(ctx.user.id);
+          const orderId = await orderForCreditSpend({ userId: ctx.user.id });
           // As above: the request that lost the race returns its credit and does
           // not add a second copy to the dashboard.
-          if (!(await claimAnonymousUnlock(rec.id))) {
+          if (!(await claimAnonymousUnlock(rec.id, orderId))) {
             await refundEssayConsumption(ctx.user.id, false);
             return { result: normalizeDashes(rec.resultJson) };
           }
@@ -415,8 +449,9 @@ const essayRouter = router({
             examSession: (rec as any).examSession ?? null,
             // The device row stays unlocked; linking it lets Delete remove both.
             adoptedFromId: rec.id,
+            unlockOrderId: orderId,
           });
-          if (copy?.id) await markAnalysisUnlocked(copy.id);
+          if (copy?.id) await markAnalysisUnlocked(copy.id, orderId ?? undefined);
         }
         return { result: normalizeDashes(rec.resultJson) };
       }
@@ -430,7 +465,7 @@ const essayRouter = router({
   rerunAnalysis: protectedProcedure
     .input(z.object({
       analysisId: z.number(),
-      essayText: z.string().min(300, "Paste at least 300 characters, roughly 50 words, or there is nothing to mark.").max(120000, "That is longer than any IB coursework. Paste the work itself, up to about 20,000 words."),
+      essayText: z.string().min(300, "Paste at least 300 characters, roughly 50 words, or there is nothing to mark.").max(120000, "That is far longer than any IB coursework, and only the first 30,000 characters, about 5,000 words, are marked. Paste the work itself."),
       reflections: z.string().max(8000).optional(),
       examSession: z.enum(["nov2026", "may2027"]).optional(),
     }))
@@ -444,7 +479,7 @@ const essayRouter = router({
         // The session comes from the report being re-checked. Taking it from the
         // form re-marked a November 2026 report on the May 2027 scale, and the
         // before/after comparison we sell then compared two different rubrics.
-        const session = (rec.examSession as "nov2026" | "may2027" | null) ?? input.examSession;
+        const session = sessionOfReport(rec, input.examSession);
         const systemPrompt = buildEssaySystemPrompt(rec.essayType, rec.subject, session);
         const userPrompt = buildEssayUserPrompt(rec.essayType, rec.subject, rec.researchQuestion || undefined, input.essayText, session, input.reflections);
         const startedAt = Date.now();
@@ -478,20 +513,17 @@ const essayRouter = router({
           predictedGrade: `${result.predicted_score}/${result.max_score}`,
           unlocked: true,
           rerunOf: rec.rerunOf ?? rec.id,
-          examSession: rec.examSession ?? input.examSession ?? null,
+          examSession: session ?? null,
+          // A re-check belongs to the purchase that opened the report, so a refund closes it too.
+          unlockOrderId: rec.unlockOrderId ?? null,
         });
-        if (analysis?.id) await markAnalysisUnlocked(analysis.id);
+        if (analysis?.id) await markAnalysisUnlocked(analysis.id, rec.unlockOrderId ?? undefined);
 
-        const prev: any = rec.resultJson || {};
         return {
           id: analysis.id,
           result,
           rerunsLeft: gate.rerunsLeft,
-          previous: {
-            predicted_score: prev?.predicted_score ?? null,
-            max_score: prev?.max_score ?? null,
-            band_range: prev?.band_range ?? null,
-          },
+          previous: previousScores(rec.resultJson || {}),
         };
       } catch (error: any) {
         // The student got nothing back, so the re-check they spent returns.
@@ -512,7 +544,7 @@ const essayRouter = router({
       q1: z.string().default(""),
       q2: z.string().default(""),
       q3: z.string().default(""),
-      clientFingerprint: z.string().min(1),
+      clientFingerprint: z.string().min(1).max(64),
       /** Explicitly buy this review with a credit the user already owns. */
       spendCredit: z.boolean().optional(),
       /** Or with a credit this device owns, bought without an account. */
@@ -552,8 +584,8 @@ const essayRouter = router({
           throw new TRPCError({
             code: "FORBIDDEN",
             message: user
-              ? "You have used your free review. Unlock a full review for $9.99 to continue."
-              : "You have used your free review from this device. A full review is $9.99, and no account is needed.",
+              ? "You have used the free UCAS preview. A full review is $9.99."
+              : "You have used the free UCAS preview on this device. A full review is $9.99, and no account is needed.",
           });
         }
       }
@@ -562,6 +594,9 @@ const essayRouter = router({
       // Take the credit before the model too, not ninety seconds later: two tabs
       // on one credit produced two full reviews.
       if (paidCredit) await consumePaidEssayCredit(user.id);
+      // The purchase each paid review is charged to, so a refund of it closes the review.
+      const creditOrderId = paidCredit ? await orderForCreditSpend({ userId: user.id }) : null;
+      const deviceOrderId = paidByDevice ? await getDeviceCreditOrderId(input.clientFingerprint) : null;
 
       // Claim the free slot before the model is called: the check and the write
       // were eighty seconds apart, which is a free second review for anyone who
@@ -576,7 +611,7 @@ const essayRouter = router({
         predictedGrade: null,
       }, "ucas");
       if (!(paidCredit || paidByDevice) && !claim) {
-        throw new TRPCError({ code: "FORBIDDEN", message: "You have used your free review from this device." });
+        throw new TRPCError({ code: "FORBIDDEN", message: "You have used the free UCAS preview on this device." });
       }
 
       try {
@@ -619,7 +654,7 @@ const essayRouter = router({
             // re-checks, could not be reopened, and retention would delete it.
             unlocked: paid,
             unlockedAt: paid ? new Date() : null,
-            unlockOrderId: paidByDevice ? await getDeviceCreditOrderId(fingerprint) : null,
+            unlockOrderId: paidByDevice ? deviceOrderId : creditOrderId,
           });
         }
 
@@ -637,6 +672,7 @@ const essayRouter = router({
             unlocked: true,
             unlockedAt: new Date(),
             adoptedFromId: saved.id,
+            unlockOrderId: creditOrderId,
           }).catch((copyErr) => console.warn("[UCAS PS Review] Account copy failed:", copyErr));
         }
         if (paid) {
@@ -660,7 +696,7 @@ const essayRouter = router({
    */
   rerunAnonymous: publicProcedure
     .input(z.object({
-      fingerprint: z.string().min(1),
+      fingerprint: z.string().min(1).max(64),
       essayText: z.string().min(300).max(120000).optional(),
       reflections: z.string().max(8000).optional(),
       examSession: z.enum(["nov2026", "may2027"]).optional(),
@@ -674,7 +710,13 @@ const essayRouter = router({
       const gate = await consumeAnonymousRerun(input.fingerprint, input.answers ? "ucas" : "essay", input.recordId);
       if (!gate.ok) throw new TRPCError({ code: "FORBIDDEN", message: gate.reason });
       const rec: any = gate.record;
-      const headId: number = (gate as any).head?.id ?? rec.id;
+      const head: any = (gate as any).head ?? rec;
+      const headId: number = head?.id ?? rec.id;
+      // The purchase fixes the standard: the session and, for UCAS, the applicant pool
+      // come from the report that was bought, not from the newest re-check's JSON.
+      const session = sessionOfReport(head) ?? sessionOfReport(rec, input.examSession);
+      const ucasLevel = ((head?.resultJson as any)?._universityType === "competitive" ? "competitive" : "typical") as "typical" | "competitive";
+      const ucasCourse = (input.course || String(rec.subject || "your course")).trim();
 
       try {
         let systemPrompt: string;
@@ -684,14 +726,10 @@ const essayRouter = router({
         if (rec.essayType === "UCAS") {
           if (!input.answers) throw new Error("Paste your revised answers to re-check them.");
           mechanics = checkUcasMechanics(input.answers);
-          const course = (input.course || String(rec.subject || "your course")).trim();
-          // Keep the standard the first review was written against.
-          const level = ((rec.resultJson as any)?._universityType === "competitive" ? "competitive" : "typical") as "typical" | "competitive";
-          systemPrompt = buildUcasSystemPrompt(course, level);
-          userPrompt = buildUcasUserPrompt(course, input.answers, mechanics);
+          systemPrompt = buildUcasSystemPrompt(ucasCourse, ucasLevel);
+          userPrompt = buildUcasUserPrompt(ucasCourse, input.answers, mechanics);
         } else {
           if (!input.essayText) throw new Error("Paste your revised draft to re-check it.");
-          const session = (rec.examSession as "nov2026" | "may2027" | null) ?? input.examSession;
           systemPrompt = buildEssaySystemPrompt(rec.essayType, rec.subject, session);
           userPrompt = buildEssayUserPrompt(rec.essayType, rec.subject, rec.researchQuestion || undefined, input.essayText, session, input.reflections);
         }
@@ -711,14 +749,15 @@ const essayRouter = router({
         const result = normalizeDashes(JSON.parse(jsonMatch[0].replace(/,\s*([\]\}])/g, "$1")));
         if (mechanics) {
           result._mechanics = mechanics;
-          result._course = rec.subject;
+          result._course = ucasCourse;
           result._format = "ucas_2026";
+          result._universityType = ucasLevel;
         }
 
         // Keep the marker of whether real criteria were behind this, exactly as the
         // first run does, or the report silently loses its provenance badge.
         if (rec.essayType !== "UCAS") {
-          const rubric = getRubric(rec.essayType, rec.subject, (rec.examSession as any) ?? input.examSession);
+          const rubric = getRubric(rec.essayType, rec.subject, session);
           result._rubricAvailable = !!rubric;
           result._rubricLabel = rubric?.label ?? null;
           result._rubricTotalMarks = rubric?.totalMarks ?? null;
@@ -742,15 +781,10 @@ const essayRouter = router({
             adoptedFromId: child.id,
           }).catch((copyErr) => console.warn("[Re-check] Account copy failed:", copyErr));
         }
-        const prev: any = rec.resultJson || {};
         return {
           result,
           rerunsLeft: gate.rerunsLeft,
-          previous: {
-            predicted_score: prev?.predicted_score ?? null,
-            max_score: prev?.max_score ?? null,
-            band_range: prev?.band_range ?? null,
-          },
+          previous: previousScores(rec.resultJson || {}),
         };
       } catch (error: any) {
         console.error("[Re-check] Error:", error);
@@ -771,11 +805,14 @@ const essayRouter = router({
    * the way to keep them while actually stranding them there.
    */
   claimDeviceCredits: protectedProcedure
-    .input(z.object({ fingerprint: z.string().min(1) }))
+    .input(z.object({ fingerprint: z.string().min(1).max(64) }))
     .mutation(async ({ ctx, input }) => {
       // Reports first: they are what was actually bought, and they used to stay
       // in one browser for ever.
       const adopted = await adoptDeviceReports(input.fingerprint, ctx.user.id).catch(() => 0);
+      // Unused reports go to whoever signs in on this browser, whatever e-mail paid for
+      // them: signing out starts a new device id, so credits left behind for another
+      // address could never be used again. The checkout says so.
       const credits = await getDeviceCredits(input.fingerprint);
       if (credits <= 0) return { moved: 0, adopted };
       const taken = await takeAllDeviceCredits(input.fingerprint, ctx.user.id);
@@ -786,7 +823,7 @@ const essayRouter = router({
 
   /** Reports this device has already paid for and not yet spent. */
   deviceCredits: publicProcedure
-    .input(z.object({ fingerprint: z.string().min(1) }))
+    .input(z.object({ fingerprint: z.string().min(1).max(64) }))
     .query(async ({ input }) => ({ credits: await getDeviceCredits(input.fingerprint) })),
 
   /**
@@ -795,7 +832,7 @@ const essayRouter = router({
    * short of pasting the work again and paying for a second run.
    */
   unlockPreviewWithDeviceCredit: publicProcedure
-    .input(z.object({ fingerprint: z.string().min(1), kind: z.enum(["essay", "ucas"]).optional() }))
+    .input(z.object({ fingerprint: z.string().min(1).max(64), kind: z.enum(["essay", "ucas"]).optional() }))
     .mutation(async ({ input }) => {
       const rec: any = input.kind === "ucas"
         ? await getLatestAnonymousUcas(input.fingerprint)
@@ -814,7 +851,7 @@ const essayRouter = router({
     }),
 
   anonymousReport: publicProcedure
-    .input(z.object({ fingerprint: z.string().min(1), kind: z.enum(["essay", "ucas"]).optional() }))
+    .input(z.object({ fingerprint: z.string().min(1).max(64), kind: z.enum(["essay", "ucas"]).optional() }))
     .query(async ({ input }) => {
       const rec: any = input.kind === "ucas"
         ? await getLatestAnonymousUcas(input.fingerprint)
@@ -836,12 +873,12 @@ const essayRouter = router({
 
   /** Every paid report on this device, newest first, one entry per purchase. */
   deviceReports: publicProcedure
-    .input(z.object({ fingerprint: z.string().min(1), kind: z.enum(["essay", "ucas"]) }))
+    .input(z.object({ fingerprint: z.string().min(1).max(64), kind: z.enum(["essay", "ucas"]) }))
     .query(async ({ input }) => getDeviceReports(input.fingerprint, input.kind)),
 
   /** One paid report on this device, to reopen it. */
   deviceReport: publicProcedure
-    .input(z.object({ fingerprint: z.string().min(1), id: z.number().int().positive() }))
+    .input(z.object({ fingerprint: z.string().min(1).max(64), id: z.number().int().positive() }))
     .query(async ({ input }) => {
       const rec: any = await getAnonymousRowForDevice(input.fingerprint, input.id);
       if (!rec || !rec.unlocked || !rec.resultJson) return { found: false as const };
@@ -849,7 +886,7 @@ const essayRouter = router({
     }),
 
   lockedReport: publicProcedure
-    .input(z.object({ fingerprint: z.string().min(1), kind: z.enum(["essay", "ucas"]).optional() }))
+    .input(z.object({ fingerprint: z.string().min(1).max(64), kind: z.enum(["essay", "ucas"]).optional() }))
     .query(async ({ input }) => {
       const ucas = input.kind === "ucas";
       const rec = ucas ? await getLatestAnonymousUcas(input.fingerprint) : await getLatestAnonymousEssay(input.fingerprint);
@@ -873,11 +910,11 @@ const essayRouter = router({
   analyzeAnonymous: publicProcedure
     .input(z.object({
       essayType: z.enum(ESSAY_TYPES),
-      subject: z.string().min(1),
-      researchQuestion: z.string().optional(),
-      essayText: z.string().min(300, "Paste at least 300 characters, roughly 50 words, or there is nothing to mark.").max(120000, "That is longer than any IB coursework. Paste the work itself, up to about 20,000 words."),
+      subject: z.string().min(1).max(100),
+      researchQuestion: z.string().max(500, "Keep the research question or title under 500 characters.").optional(),
+      essayText: z.string().min(300, "Paste at least 300 characters, roughly 50 words, or there is nothing to mark.").max(120000, "That is far longer than any IB coursework, and only the first 30,000 characters, about 5,000 words, are marked. Paste the work itself."),
       reflections: z.string().max(8000).optional(),
-      clientFingerprint: z.string().min(1),
+      clientFingerprint: z.string().min(1).max(64),
       examSession: z.enum(["nov2026", "may2027"]).optional(),
       /** Spend a credit this device owns. Asked for explicitly, never assumed. */
       spendDeviceCredit: z.boolean().optional(),
@@ -902,7 +939,7 @@ const essayRouter = router({
         if (!paidByDevice) {
           throw new TRPCError({
             code: "FORBIDDEN",
-            message: usage.reason || "You have used your free analysis on this device.",
+            message: usage.reason || "You have used the free preview on this device.",
           });
         }
       }
@@ -921,8 +958,10 @@ const essayRouter = router({
         examSession: input.examSession ?? null,
       }, "essay");
       if (!paidByDevice && !claim) {
-        throw new TRPCError({ code: "FORBIDDEN", message: "You have used your free analysis from this device." });
+        throw new TRPCError({ code: "FORBIDDEN", message: "You have used the free preview on this device." });
       }
+      // The purchase this report is charged to, fixed when the credit is taken.
+      const deviceOrderId = paidByDevice ? await getDeviceCreditOrderId(fingerprint) : null;
 
       const systemPrompt = buildEssaySystemPrompt(input.essayType, input.subject, input.examSession);
       const userPrompt = buildEssayUserPrompt(input.essayType, input.subject, input.researchQuestion, input.essayText, input.examSession, input.reflections);
@@ -966,7 +1005,7 @@ const essayRouter = router({
             unlockedAt: paidByDevice ? new Date() : null,
             // Opened with a pack credit: tie it to the pack, so it follows the buyer
             // into their account and closes if the pack is refunded.
-            unlockOrderId: paidByDevice ? await getDeviceCreditOrderId(fingerprint) : null,
+            unlockOrderId: deviceOrderId,
             essayType: input.essayType,
             subject: input.subject,
             researchQuestion: input.researchQuestion || null,
@@ -990,20 +1029,26 @@ const essayRouter = router({
 
   // Check if anonymous user can still analyze
   canAnalyzeAnonymous: publicProcedure
-    .input(z.object({ clientFingerprint: z.string().min(1) }))
+    .input(z.object({ clientFingerprint: z.string().min(1).max(64), kind: z.enum(["essay", "ucas"]).optional() }))
     .query(async ({ input }) => {
-      const usage = await canAnonymousAnalyze(input.clientFingerprint);
+      const usage = await canAnonymousAnalyze(input.clientFingerprint, input.kind ?? "essay");
       return { canAnalyze: usage.allowed };
     }),
 
   analyze: protectedProcedure
     .input(z.object({
       essayType: z.enum(ESSAY_TYPES),
-      subject: z.string().min(1),
-      researchQuestion: z.string().optional(),
-      essayText: z.string().min(300, "Paste at least 300 characters, roughly 50 words, or there is nothing to mark.").max(120000, "That is longer than any IB coursework. Paste the work itself, up to about 20,000 words."),
+      subject: z.string().min(1).max(100),
+      researchQuestion: z.string().max(500, "Keep the research question or title under 500 characters.").optional(),
+      essayText: z.string().min(300, "Paste at least 300 characters, roughly 50 words, or there is nothing to mark.").max(120000, "That is far longer than any IB coursework, and only the first 30,000 characters, about 5,000 words, are marked. Paste the work itself."),
       reflections: z.string().max(8000).optional(),
       examSession: z.enum(["nov2026", "may2027"]).optional(),
+      /**
+       * Mark this work with a paid report even though the free preview is unused. Without
+       * it the free slot always went first, so a buyer's first report cost the preview
+       * as well as a credit.
+       */
+      spendCredit: z.boolean().optional(),
     }))
     .mutation(async ({ ctx, input }) => {
       const unmarkable = unmarkableReason(input.essayType, input.subject, input.examSession);
@@ -1021,10 +1066,17 @@ const essayRouter = router({
       // run two free analyses, the same race the anonymous path had.
       // What was actually taken, not what we predicted would be taken: the free
       // slot can be gone by now, and giving back the wrong one loses a credit.
-      const consumed = await consumeEssayCredit(ctx.user.id);
+      let consumed: "free" | "credit";
+      if (input.spendCredit === true) {
+        await consumePaidEssayCredit(ctx.user.id);
+        consumed = "credit";
+      } else {
+        consumed = await consumeEssayCredit(ctx.user.id);
+      }
       // Decided by what was taken. The earlier read can say "free" when a second
       // tab took the free slot first, and this run then spends a paid credit.
       const wasFree = consumed === "free";
+      const creditOrderId = wasFree ? null : await orderForCreditSpend({ userId: ctx.user.id });
 
       try {
         const startedAt = Date.now();
@@ -1062,6 +1114,8 @@ const essayRouter = router({
           resultJson: result,
           predictedGrade: `${result.predicted_score}/${result.max_score}`,
           unlocked: !wasFree,
+          unlockedAt: wasFree ? null : new Date(),
+          unlockOrderId: creditOrderId,
           // Recorded so a re-check cannot silently move the work to another rubric.
           examSession: input.examSession ?? null,
         });
@@ -1159,13 +1213,25 @@ const pricingRouter = router({
 
 // ---- Payment Router (LemonSqueezy) ----
 const paymentRouter = router({
+  /**
+   * Whether an order has been paid, for the purchase event on the page the buyer returns
+   * to. Taking the product and amount from the address bar let anyone record a sale.
+   */
+  orderStatus: publicProcedure
+    .input(z.object({ orderId: z.string().uuid() }))
+    .query(async ({ input }) => {
+      const order: any = await getOrderById(input.orderId);
+      if (!order || order.status !== "paid") return { paid: false as const };
+      return { paid: true as const, sku: String(order.sku), valueUsd: Number(order.amountUsd) / 100 };
+    }),
+
   // Create LemonSqueezy card checkout for guest (unauthenticated) users
   createGuestCheckout: publicProcedure
     .input(z.object({
       productKey: z.enum(["ESSAY_SINGLE", "ESSAY_PACK_5", "ESSAY_PACK_10", "UNIVERSITY_SINGLE"]),
       email: z.string().email("Please enter a valid email address"),
       /** Device the locked report sits on, so the payment can open it without an account. */
-      fingerprint: z.string().min(1).optional(),
+      fingerprint: z.string().min(1).max(64).optional(),
       /** Page to return to after paying. */
       returnTo: z.enum(["essay", "ucas-personal-statement"]).optional(),
       /** Bought beside a locked preview, which the payment should open. */
@@ -1229,7 +1295,7 @@ const paymentRouter = router({
     .input(z.object({
       productKey: z.enum(["ESSAY_SINGLE", "ESSAY_PACK_5", "ESSAY_PACK_10", "UNIVERSITY_SINGLE"]),
       /** Signed-in buyers have a device too, and their report lives on it. */
-      fingerprint: z.string().min(1).optional(),
+      fingerprint: z.string().min(1).max(64).optional(),
       returnTo: z.enum(["essay", "ucas-personal-statement"]).optional(),
       /** The locked account report the buyer is looking at, opened when the payment lands. */
       analysisId: z.number().int().positive().optional(),

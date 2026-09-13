@@ -32,7 +32,7 @@ export default function EENewCriteria2027() {
         </thead>
         <tbody>
           <tr><td>A: Framework for the essay</td><td>6</td><td>Research question, research methods and structure: do they give the essay an effective framework?</td></tr>
-          <tr><td>B: Knowledge and understanding</td><td>6</td><td>Knowledge of the topic, with subject terminology and concepts used accurately and consistently.</td></tr>
+          <tr><td>B: Knowledge and understanding</td><td>6</td><td>Comprehensive, relevant research materials used to establish knowledge of the subject matter, relevant terminology used accurately and consistently, and relevant concepts explained and used effectively.</td></tr>
           <tr><td>C: Analysis and line of argument</td><td>6</td><td>Analysis of the research, with findings relevant to the research question, and a coherent line of argument.</td></tr>
           <tr><td>D: Discussion and evaluation</td><td>8</td><td>The heaviest criterion: a balanced discussion of the significance of the findings, supported by evidence, and an evaluation of how effective the essay is, with its strengths and limitations.</td></tr>
           <tr><td>E: Reflection</td><td>4</td><td>Evaluative reflection, with specific examples, on how the EE learning experience affected you as a learner: growth and transfer of learning.</td></tr>
@@ -86,7 +86,7 @@ export default function EENewCriteria2027() {
       <h2>Check your draft with IBLens</h2>
 
       <p>
-        IBLens grades Extended Essays against <strong>both</strong> rubrics. In the grader, keep "Exam session" on <em>Exams in May 2027 or later</em>, the default, and your draft is scored out of 30 against the new criteria A to E above, criterion by criterion. Switch it to <em>Exams in May or November 2026</em> for the 34-mark rubric. The first preview is free (the estimated band range, your weakest criterion with its feedback, and the top risks), and a full report costs $9.99, with no subscription. For May 2027, you can also paste your RPF so that Criterion E is marked on it.
+        IBLens grades Extended Essays against <strong>both</strong> rubrics. In the grader, keep "Exam session" on <em>Exams in May 2027 or later</em>, the default, and your draft is scored out of 30 against the new criteria A to E above, criterion by criterion. Switch it to <em>Exams in November 2026, or work submitted in May 2026</em> for the 34-mark rubric. The first preview is free (the estimated band range, your weakest criterion with its feedback, and the top risks), and a full report costs $9.99, with no subscription. For May 2027, you can also paste your RPF so that Criterion E is marked on it.
       </p>
 
       <p>

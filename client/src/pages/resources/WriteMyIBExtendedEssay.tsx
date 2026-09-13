@@ -111,7 +111,7 @@ export default function WriteMyIBExtendedEssay() {
         This needs to be said plainly: submitting work written by someone else as
         your own is academic misconduct under IB regulations. If it is found, no grade is
         awarded for the EE, and without an EE grade the Diploma cannot be awarded. The IB
-        submits samples of work to plagiarism detection, and your supervisor, who has
+        checks all coursework it receives with text-matching software, and your supervisor, who has
         seen your drafts and your reflections, has to confirm that the essay is your own
         work. The risk is not worth it.
       </p>

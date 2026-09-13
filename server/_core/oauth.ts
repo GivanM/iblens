@@ -39,6 +39,17 @@ export function registerOAuthRoutes(app: Express) {
     const expectedState = cookieHeader.split(";").map((c) => c.trim())
       .find((c) => c.startsWith("iblens_oauth_state="))?.slice("iblens_oauth_state=".length) || "";
     res.clearCookie("iblens_oauth_state", { path: "/api/oauth" });
+    // Where the reader was when they chose to sign in. Only a path on this site.
+    const rawReturn = (() => {
+      try {
+        return decodeURIComponent(cookieHeader.split(";").map((c) => c.trim())
+          .find((c) => c.startsWith("iblens_return_to="))?.slice("iblens_return_to=".length) || "");
+      } catch {
+        return "";
+      }
+    })();
+    const returnTo = /^\/(?!\/)[^\\\s]*$/.test(rawReturn) && !rawReturn.startsWith("/api/") ? rawReturn : "/";
+    res.clearCookie("iblens_return_to", { path: "/api/oauth" });
     if (!returnedState || !expectedState || returnedState !== expectedState) {
       console.warn("[OAuth] State mismatch, sign-in refused");
       res.redirect("/auth/signin?auth_error=state");
@@ -54,19 +65,22 @@ export function registerOAuthRoutes(app: Express) {
         return;
       }
 
+      // An address Google has not verified proves nothing about who owns it, and the
+      // e-mail is what hands over purchases made as a guest.
+      const verifiedEmail = userInfo.verified_email === false ? null : (userInfo.email ?? null);
       await db.upsertUser({
         openId: userInfo.id,
         name: userInfo.name || null,
-        email: userInfo.email ?? null,
+        email: verifiedEmail,
         loginMethod: "google",
         lastSignedIn: new Date(),
       });
 
       // Anything bought as a guest with this email belongs to this person.
-      if (userInfo.email) {
+      if (verifiedEmail) {
         try {
           const signedIn = await db.getUserByOpenId(userInfo.id);
-          if (signedIn?.id) await db.absorbGuestAccount(userInfo.email, signedIn.id);
+          if (signedIn?.id) await db.absorbGuestAccount(verifiedEmail, signedIn.id);
         } catch (mergeErr) {
           console.warn("[OAuth] Guest merge failed (non-fatal)", mergeErr);
         }
@@ -76,14 +90,14 @@ export function registerOAuthRoutes(app: Express) {
       // have none: those users were signed in, bounced, and signed in again for
       // ever. Fall back to the e-mail.
       const sessionToken = await sdk.createSessionToken(userInfo.id, {
-        name: userInfo.name || userInfo.email || "IBLens user",
+        name: userInfo.name || verifiedEmail || "IBLens user",
         expiresInMs: ONE_YEAR_MS,
       });
 
       const cookieOptions = getSessionCookieOptions(req);
       res.cookie(COOKIE_NAME, sessionToken, { ...cookieOptions, maxAge: ONE_YEAR_MS });
 
-      res.redirect(302, "/");
+      res.redirect(302, returnTo);
     } catch (err) {
       console.error("[OAuth] Callback failed", err);
       res.status(500).json({ error: "OAuth callback failed" });

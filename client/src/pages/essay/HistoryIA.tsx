@@ -32,9 +32,9 @@ const config: SubjectConfig = {
     mistakesHeading: "Mistakes the History IA criteria penalise",
     mistakes: [
       { title: "Narrative in place of analysis", text: "A Section 2 that tells the story of the events. Mainly narrative or descriptive work is the 4-6 band of Criterion B, and the top band needs well-developed critical analysis focused on the question." },
-      { title: "Perspectives named but not weighed", text: "Mentioning that historians disagree without evaluating their views. Awareness of perspectives without evaluation stops at the 7-9 band." },
+      { title: "Perspectives named but not weighed", text: "Mentioning that historians disagree without evaluating their views. Awareness of perspectives without evaluation is how the 7-9 band describes this strand; 10-12 describes some evaluation, and the top band evaluation of different perspectives." },
       { title: "Source evaluation that fits any source", text: "Calling a source biased because its author had a view, without saying what that means for its value and limitations in your investigation. Criterion A asks for value and limitations for this investigation, with reference to origin, purpose and content." },
-      { title: "A reflection about history in general", text: "Section 3 has to connect explicitly to your own investigation. A reflection where that connection is only implied stays in the lower band." },
+      { title: "A reflection about history in general", text: "Section 3 has to connect explicitly to your own investigation. A reflection where that connection is only implied matches the 1-2 descriptor on that strand; 3-4 describes a clear and explicit connection." },
       { title: "A topic that is too recent", text: "The topic must be historical, so it cannot be about events in the last 10 years." },
       { title: "A question too broad for 1,300 words", text: "A question like 'What caused the First World War?' cannot be investigated at this length. Narrow it by place, period or factor." },
     ],

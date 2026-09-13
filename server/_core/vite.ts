@@ -65,6 +65,19 @@ export function serveStatic(app: Express) {
     );
   }
 
+  // Prerendered pages live at <route>/index.html. Asked for by that name, the file was
+  // served as it is on disk, without the per-route robots tag or crawler body, so a
+  // withdrawn page could be indexed through it. Send those requests to the route.
+  app.use((req, res, next) => {
+    const p = req.path;
+    if (p === "/index.html" || p.endsWith("/index.html")) {
+      const target = p.slice(0, -"index.html".length).replace(/\/+$/, "") || "/";
+      const qs = req.originalUrl.includes("?") ? req.originalUrl.slice(req.originalUrl.indexOf("?")) : "";
+      return res.redirect(301, target + qs);
+    }
+    next();
+  });
+
   // Serve non-HTML static assets (JS, CSS, images, fonts) with default caching
   // HTML files are excluded (index:false) so they go through injectSeoMeta below
   app.use(express.static(distPath, { index: false, redirect: false }));

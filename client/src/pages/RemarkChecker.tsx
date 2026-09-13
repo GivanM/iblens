@@ -8,6 +8,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertTriangle, TrendingDown, CalendarClock, ArrowRight, CheckCircle2 } from "lucide-react";
+import { REMARK_FAQ } from "@shared/remarkFaq";
 
 const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
@@ -53,7 +54,7 @@ function RemarkQuickCheck() {
   }, [analyze.isPending]);
 
   const errMsg = analyze.error ? String(analyze.error.message || "") : "";
-  const alreadyUsed = /already used|used your free|sign in/i.test(errMsg);
+  const alreadyUsed = /already used|used (your|the) free|sign in/i.test(errMsg);
 
   return (
     <div className="rounded-xl border-2 border-primary bg-card p-6 mb-12 shadow-sm">
@@ -85,7 +86,8 @@ function RemarkQuickCheck() {
             <span className="text-xs text-muted-foreground">{essayText.trim() ? essayText.trim().split(/\s+/).length.toLocaleString("en-GB") + " words" : "Uses this device's free essay preview, one per device or account. No account needed. Full report $9.99."}</span>
             <Button disabled={essayText.trim().length < 300 || analyze.isPending}
               onClick={() => analyze.mutate({
-      spendDeviceCredit: false, essayType, subject: essayType === "TOK" ? "Theory of Knowledge" : subject, essayText, clientFingerprint: fp })}>
+      // Every essay checked here was submitted, so it was marked on the criteria in force through November 2026.
+      spendDeviceCredit: false, essayType, subject: essayType === "TOK" ? "Theory of Knowledge" : subject, essayText, clientFingerprint: fp, examSession: "nov2026" as const })}>
               {analyze.isPending ? QUICK_STEPS[Math.min(step, QUICK_STEPS.length - 1)] : "See where my essay stands"}
             </Button>
           </div>
@@ -94,7 +96,7 @@ function RemarkQuickCheck() {
             <p className="text-xs text-muted-foreground mt-2">Keep pasting: the check needs the full essay.</p>
           )}
           {alreadyUsed && (
-            <p className="text-sm mt-3">You have already used your free check on this device. A full report is $9.99 on the <Link href="/essay?session=nov2026" className="text-primary font-medium underline">grader page</Link>, with no account needed.</p>
+            <p className="text-sm mt-3">You have already used the free preview on this device. A full report is $9.99 on the <Link href="/essay?session=nov2026" className="text-primary font-medium underline">grader page</Link>, with no account needed.</p>
           )}
           {errMsg && !alreadyUsed && (
             <p className="text-sm mt-3 text-destructive">{errMsg.replace(/[.\s]*$/, ".")} Please try again.</p>
@@ -139,7 +141,7 @@ function RemarkQuickCheck() {
             </ul>
           )}
           <p className="text-sm text-muted-foreground mb-3">The full report, with the estimated mark, the full comments and a ranked list of fixes, unlocks for $9.99 on the grader page, where this preview is saved. Everything here is an estimate from a language model, not the IB's mark.</p>
-          <Button asChild><Link href="/essay">Unlock the full report, $9.99</Link></Button>
+          <Button asChild><Link href="/essay?session=nov2026">Unlock it on the grader page, $9.99</Link></Button>
         </div>
       )}
     </div>
@@ -250,22 +252,12 @@ export default function RemarkChecker() {
 
           <h2 style={SERIF} className="text-2xl font-bold mb-4">Frequently asked questions</h2>
           <div className="space-y-5 mb-12">
-            <div>
-              <p className="font-semibold text-sm mb-1">How much does an IB re-mark cost?</p>
-              <p className="text-sm text-muted-foreground">The IB publishes its enquiry upon results fees to schools rather than on its public website, so ask your coordinator for the current fee. There is no charge for a category 1 re-mark that results in a change of grade.</p>
-            </div>
-            <div>
-              <p className="font-semibold text-sm mb-1">Can my grade go down after a re-mark?</p>
-              <p className="text-sm text-muted-foreground">Yes. A category 1 re-mark can raise or lower the grade, and your school must have your written consent before requesting one. That is why a re-mark makes most sense when you have reason to think you are near a boundary.</p>
-            </div>
-            <div>
-              <p className="font-semibold text-sm mb-1">What is the re-mark deadline?</p>
-              <p className="text-sm text-muted-foreground">Enquiry upon results requests can be made up to 15 September for the May session and up to 15 March for the November session. Your school submits them and may set an earlier deadline, so ask your coordinator as soon as results are out.</p>
-            </div>
-            <div>
-              <p className="font-semibold text-sm mb-1">Should I ask for a re-mark of my EE or TOK essay?</p>
-              <p className="text-sm text-muted-foreground">The EE and the TOK essay are externally assessed, so a category 1 re-mark covers them. Whether it is worth it depends on how far your component mark is from a grade boundary, which your coordinator can tell you. Checking the submitted essay against the criteria shows where it is strong and weak, but no tool can predict a re-mark.</p>
-            </div>
+            {REMARK_FAQ.map((f) => (
+              <div key={f.question}>
+                <p className="font-semibold text-sm mb-1">{f.question}</p>
+                <p className="text-sm text-muted-foreground">{f.answer}</p>
+              </div>
+            ))}
           </div>
 
           <div className="text-center border-t border-border pt-10">

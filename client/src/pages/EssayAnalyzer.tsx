@@ -201,6 +201,49 @@ const ANALYZING_STEPS = [
   "Formatting your report, almost there\u2026",
 ];
 
+type RecheckChange = {
+  summary: string;
+  moved: Array<{ name: string; before: number | null; after: number | null; max: number | null }>;
+  /** Whether criterion marks could be compared at all. */
+  compared: boolean;
+};
+
+/**
+ * What a re-check changed: the total, and every criterion whose mark moved. The page
+ * promises "which criteria moved and by how much", and it used to show the total only.
+ */
+function describeRecheck(previous: any, now: any): RecheckChange | null {
+  const before = previous?.predicted_score;
+  const after = now?.predicted_score;
+  if (before == null || after == null) return null;
+  const beforeMax = previous?.max_score;
+  const afterMax = now?.max_score;
+  const move = after - before;
+  // Totals differ when a criterion was assessed one time and not the other
+  // (an EE reflection pasted once, an oral given as a transcript then an outline).
+  const summary = beforeMax && afterMax && beforeMax !== afterMax
+    ? `Before: ${before}/${beforeMax}. Now: ${after}/${afterMax}. The totals differ because a different set of criteria was assessed, so the two totals are not directly comparable.`
+    : `Before: ${before}${afterMax ? `/${afterMax}` : ""}. Now: ${after}${afterMax ? `/${afterMax}` : ""}. ` +
+      (move > 0 ? `Up ${move} mark${move === 1 ? "" : "s"}.` : move < 0 ? `Down ${Math.abs(move)} mark${Math.abs(move) === 1 ? "" : "s"}.` : "No change in the total.");
+  const prevCriteria: any[] = Array.isArray(previous?.criteria) ? previous.criteria : [];
+  const nowCriteria: any[] = Array.isArray(now?.criteria) ? now.criteria : [];
+  // A task marked as a whole has one criterion, and the total already says how it moved.
+  const compared = prevCriteria.length > 1 && nowCriteria.length > 1;
+  const prevByName = new Map(prevCriteria.map((c: any) => [String(c?.name ?? ""), c]));
+  const moved = compared
+    ? nowCriteria.map((c: any) => {
+        const p: any = prevByName.get(String(c?.name ?? ""));
+        return {
+          name: String(c?.name ?? ""),
+          before: typeof p?.score === "number" ? p.score : null,
+          after: typeof c?.score === "number" ? c.score : null,
+          max: typeof c?.max === "number" ? c.max : null,
+        };
+      }).filter((c) => c.before !== c.after)
+    : [];
+  return { summary, moved, compared };
+}
+
 export default function EssayAnalyzer() {
   const { isAuthenticated, loading: authLoading } = useAuth();
   usePurchaseTracking();
@@ -233,6 +276,8 @@ export default function EssayAnalyzer() {
   })();
   const [essayText, setEssayText] = useState("");
   const [result, setResult] = useState<EssayResult | null>(null);
+  // What the last re-check changed, shown above the report it produced.
+  const [rerunDelta, setRerunDelta] = useState<RecheckChange | null>(null);
   const [essayPurchaseOpen, setEssayPurchaseOpen] = useState(false);
   // What a purchase from this page is for: the locked preview on screen, or new work.
   // The difference decides what the payment opens, so every button says which it is.
@@ -271,7 +316,8 @@ export default function EssayAnalyzer() {
   const rerunMutation = trpc.essay.rerunAnalysis.useMutation({
     onSuccess: (data: any) => {
       setResult(data.result as EssayResult);
-      setLastAnalysisId(data.id);
+      setResultAnalysisId(data.id);
+      setRerunDelta(describeRecheck(data.previous, data.result));
       toast.success(`Re-check complete. ${data.rerunsLeft} free ${data.rerunsLeft === 1 ? "re-check" : "re-checks"} left for this draft.`);
     },
     onError: (err: any) => {
@@ -282,7 +328,7 @@ export default function EssayAnalyzer() {
   const analyzeMutation = trpc.essay.analyze.useMutation({
     onSuccess: (data) => {
       setResult(data.result as EssayResult);
-      setLastAnalysisId((data as any).id ?? null);
+      setResultAnalysisId((data as any).id ?? null);
       creditsQuery.refetch();
       const r = data.result as EssayResult;
       analytics.completeEssayAnalysis(subject, `${r.predicted_score}/${r.max_score}`);
@@ -304,7 +350,7 @@ export default function EssayAnalyzer() {
   const anonAnalyzeMutation = trpc.essay.analyzeAnonymous.useMutation({
     onSuccess: (data: any) => {
       setResult(data.result as EssayResult);
-      setLastAnalysisId(null);
+      setResultAnalysisId(null);
       // A run paid for with a device credit comes back open. Without this the
       // page kept treating it as the locked preview and blurred the fix list
       // the buyer had just paid for.
@@ -335,7 +381,10 @@ export default function EssayAnalyzer() {
   const isAnalyzing = analyzeMutation.isPending || anonAnalyzeMutation.isPending || rerunMutation.isPending;
 
 
-  const [lastAnalysisId, setLastAnalysisId] = useState<number | null>(null);
+  // The account report now on screen, if it is one. Set only by a run or re-check on the
+  // account and cleared whenever anything else is shown: left over, it attached a new
+  // report's purchase and re-check link to an earlier piece of work.
+  const [resultAnalysisId, setResultAnalysisId] = useState<number | null>(null);
   // Guests too: a reload used to drop the free preview for good, and the page then
   // offered to sell "the report you are looking at" with nothing on the screen.
   const lockedQ = trpc.essay.lockedReport.useQuery(
@@ -368,6 +417,7 @@ export default function EssayAnalyzer() {
   useEffect(() => {
     if (paidReportQ.data?.unlocked && !result) {
       setResult(paidReportQ.data.result as EssayResult);
+      setResultAnalysisId(null);
       // A pack opened here also put reports on the device.
       deviceCreditsQ.refetch();
       deviceReportsQ.refetch();
@@ -401,13 +451,15 @@ export default function EssayAnalyzer() {
       if (d?.found) {
         setResultWork({ label: deviceReportLabel(r), kind: r.essayType === "TOK" || r.essayType === "TOK Exhibition" ? "tok" : "essay" });
         setResult(d.result as EssayResult);
+        setResultAnalysisId(null);
         setRecheckTargetId(r.id);
       }
     } finally {
       setOpeningReport(null);
     }
   };
-  const anonUnlocked = !isAuthenticated && (anonReportQ.data?.unlocked === true || paidRunUnlocked);
+  // This browser holds a paid report, the newest row or an older one under a newer free preview.
+  const anonUnlocked = !isAuthenticated && (anonReportQ.data?.unlocked === true || paidRunUnlocked || reportsOnDevice.length > 0);
   const deviceCreditsQ = trpc.essay.deviceCredits.useQuery(
     { fingerprint: anonFp },
     {
@@ -439,39 +491,29 @@ export default function EssayAnalyzer() {
   useEffect(() => {
     if (anonReportQ.data?.unlocked && !result) {
       setResult(anonReportQ.data.result as EssayResult);
+      setResultAnalysisId(null);
     }
   }, [anonReportQ.data, result]);
-  const [rerunDelta, setRerunDelta] = useState<string | null>(null);
   const rerunAnonMutation = trpc.essay.rerunAnonymous.useMutation({
     onSuccess: (d: any) => {
       setResult(d.result as EssayResult);
+      setResultAnalysisId(null);
       setAnonRerunsLeft(d.rerunsLeft);
       deviceReportsQ.refetch();
-      const before = d.previous?.predicted_score;
-      const after = d.result?.predicted_score;
-      if (before != null && after != null) {
-        const beforeMax = d.previous?.max_score;
-        const afterMax = d.result?.max_score;
-        const move = after - before;
-        // Totals differ when a criterion was assessed one time and not the other
-        // (an EE reflection pasted once, an oral given as a transcript then an outline).
-        setRerunDelta(beforeMax && afterMax && beforeMax !== afterMax
-          ? `Before: ${before}/${beforeMax}. Now: ${after}/${afterMax}. The totals differ because a different set of criteria was assessed, so the two marks are not directly comparable.`
-          : `Before: ${before}${afterMax ? `/${afterMax}` : ""}. Now: ${after}${afterMax ? `/${afterMax}` : ""}. ` +
-            (move > 0 ? `Up ${move} mark${move === 1 ? "" : "s"}.` : move < 0 ? `Down ${Math.abs(move)}.` : "No change."));
-      }
+      setRerunDelta(describeRecheck(d.previous, d.result));
       toast.success(`Re-check complete. ${d.rerunsLeft} free ${d.rerunsLeft === 1 ? "re-check" : "re-checks"} left for this draft.`);
     },
     onError: (e: any) => toast.error(e.message || "Re-check unavailable"),
   });
 
   const pageUnlock = trpc.essay.unlockAnalysis.useMutation({
-    onSuccess: (d: any) => { setResult(d.result as EssayResult); lockedQ.refetch(); creditsQuery.refetch(); },
+    onSuccess: (d: any) => { setResult(d.result as EssayResult); setResultAnalysisId(null); lockedQ.refetch(); creditsQuery.refetch(); },
     onError: (e: any) => toast.error(e.message || "Unlock failed"),
   });
   const deviceUnlock = trpc.essay.unlockPreviewWithDeviceCredit.useMutation({
     onSuccess: (d: any) => {
       setResult(d.result as EssayResult);
+      setResultAnalysisId(null);
       setPaidRunUnlocked(true);
       lockedQ.refetch();
       deviceCreditsQ.refetch();
@@ -553,12 +595,14 @@ export default function EssayAnalyzer() {
         essayText,
         reflections: reflections || undefined,
         examSession,
+        // The button that says it uses a paid report; the free preview stays unused.
+        spendCredit: mode === "paid",
       });
     } else {
       // Which button was pressed decides this. Reading it from state gave the
       // handler the value from the previous render, so the re-check button spent
       // a credit on its first click.
-      if (anonUnlocked && (deviceCredits === 0 || mode === "recheck")) {
+      if (anonUnlocked && mode === "recheck") {
         rerunAnonMutation.mutate({
           fingerprint: anonFp,
           essayText,
@@ -620,6 +664,7 @@ export default function EssayAnalyzer() {
       {!isAuthenticated && (
         <DeviceReportsList
           reports={reportsOnDevice}
+          showSingle={anonReportQ.data?.unlocked !== true}
           selectedId={recheckTarget?.id ?? null}
           opening={openingReport}
           onOpen={openDeviceReport}
@@ -634,7 +679,7 @@ export default function EssayAnalyzer() {
         <div className="mb-6 rounded-lg border border-border bg-muted/40 p-3 text-sm flex flex-col sm:flex-row sm:items-center gap-2">
           <span className="flex-1 text-muted-foreground">The free preview on this device was used on {lockedLabel || "another piece of work"}. A full report for the work below is {PRICE_LABELS.ESSAY_SINGLE}.</span>
           {lockedPreview.preview && (
-            <Button variant="ghost" className="min-h-11 h-auto whitespace-normal" onClick={() => { setResultWork({ label: lockedLabel || "", kind: lockedPreview.essayType === "TOK" || lockedPreview.essayType === "TOK Exhibition" ? "tok" : "essay" }); setResult(lockedPreview.preview as EssayResult); }}>
+            <Button variant="ghost" className="min-h-11 h-auto whitespace-normal" onClick={() => { setResultWork({ label: lockedLabel || "", kind: lockedPreview.essayType === "TOK" || lockedPreview.essayType === "TOK Exhibition" ? "tok" : "essay" }); setResult(lockedPreview.preview as EssayResult); setResultAnalysisId(null); }}>
               Reopen that preview
             </Button>
           )}
@@ -654,7 +699,7 @@ export default function EssayAnalyzer() {
             </div>
             <div className="flex flex-col sm:flex-row gap-2">
               {lockedPreview.preview && (
-                <Button variant="outline" className="min-h-11 h-auto whitespace-normal" onClick={() => { setResultWork({ label: lockedLabel || "", kind: lockedPreview.essayType === "TOK" || lockedPreview.essayType === "TOK Exhibition" ? "tok" : "essay" }); setResult(lockedPreview.preview as EssayResult); }}>
+                <Button variant="outline" className="min-h-11 h-auto whitespace-normal" onClick={() => { setResultWork({ label: lockedLabel || "", kind: lockedPreview.essayType === "TOK" || lockedPreview.essayType === "TOK Exhibition" ? "tok" : "essay" }); setResult(lockedPreview.preview as EssayResult); setResultAnalysisId(null); }}>
                   Reopen my free preview
                 </Button>
               )}
@@ -716,12 +761,12 @@ export default function EssayAnalyzer() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="nov2026">Exams in May or November 2026</SelectItem>
+                    <SelectItem value="nov2026">Exams in November 2026, or work submitted in May 2026</SelectItem>
                     <SelectItem value="may2027">Exams in May 2027 or later</SelectItem>
                   </SelectContent>
                 </Select>
                 {essayType === "EE" && examSession === "may2027" && (
-                  <p className="text-xs text-muted-foreground">Sitting your exams in May or November 2026? Choose that session for the 34-mark criteria.</p>
+                  <p className="text-xs text-muted-foreground">Exams in November 2026, or checking an essay you submitted in May 2026? Choose that session for the 34-mark criteria.</p>
                 )}
                 {essayType === "IA" && subject === "Visual Arts" && examSession === "nov2026" && (
                   <p className="text-xs text-muted-foreground">Marked on the SL criteria, out of 30. At HL, Criterion F (connections to your own art-making, 12 marks) is not marked.</p>
@@ -831,11 +876,6 @@ export default function EssayAnalyzer() {
             </div>
           )}
 
-          {rerunDelta && (
-            <div className="text-sm p-3 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200">
-              <strong>Re-check done.</strong> {rerunDelta}
-            </div>
-          )}
 
           {/* Paid guest who bought reports for new work */}
           {paidReturn && !paidOpens && !isAuthenticated && !result && (
@@ -866,8 +906,8 @@ export default function EssayAnalyzer() {
             </div>
           )}
 
-          {/* Anonymous: first-time free analysis banner */}
-          {!authLoading && !isAuthenticated && canAnonAnalyze && !anonUnlocked && (
+          {/* Anonymous: the free preview is unused, whatever else this browser has bought */}
+          {!authLoading && !isAuthenticated && canAnonAnalyze && (
             <div className="text-sm p-3 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
               <span>Your first preview is <strong>free</strong>, one per device or account, so check the task and subject above. The full report unlocks for {PRICE_LABELS.ESSAY_SINGLE}.</span>
@@ -883,7 +923,7 @@ export default function EssayAnalyzer() {
           )}
 
           {/* Anonymous: analyze button (first-time) */}
-          {!authLoading && !isAuthenticated && canAnonAnalyze && !anonUnlocked && (
+          {!authLoading && !isAuthenticated && canAnonAnalyze && (
             <Button
               className="w-full min-h-11 h-auto py-2.5 whitespace-normal"
               onClick={() => handleAnalyze("free")}
@@ -990,6 +1030,12 @@ export default function EssayAnalyzer() {
                   </>
                 )}
               </Button>
+              {!rerunId && credits?.freeEssayAvailable && (credits?.essayCredits ?? 0) > 0 && (
+                <Button variant="outline" className="w-full min-h-11 h-auto py-2.5 whitespace-normal" onClick={() => handleAnalyze("paid")} disabled={isAnalyzing || !!unmarkableNow}>
+                  <FileText className="w-4 h-4 mr-2 shrink-0" />
+                  Mark this work in full instead (uses 1 of your {credits.essayCredits} paid {credits.essayCredits === 1 ? "report" : "reports"})
+                </Button>
+              )}
             </>
           )}
 
@@ -997,7 +1043,7 @@ export default function EssayAnalyzer() {
             open={essayPurchaseOpen}
             onOpenChange={setEssayPurchaseOpen}
             sku="ESSAY_SINGLE"
-            analysisId={isAuthenticated && buyFor === "preview" ? lastAnalysisId : null}
+            analysisId={isAuthenticated && buyFor === "preview" ? resultAnalysisId : null}
             unlocksPreview={buyFor === "preview"}
             previewLabel={buyFor === "preview" ? buyLabel : null}
             kind={buyFor === "preview" ? buyKind : undefined}
@@ -1047,13 +1093,13 @@ export default function EssayAnalyzer() {
 
           {/* Criteria bars */}
           <div className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Criteria Breakdown</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Criteria breakdown</p>
             {[
               { name: "Criterion A: Integration of a key concept", score: 3, max: 5, color: "bg-amber-500" },
               { name: "Criterion B: Supporting documents", score: 3, max: 4, color: "bg-emerald-500" },
-              { name: "Criterion C: Selection and application of tools and theories", score: 3, max: 4, color: "bg-amber-500" },
+              { name: "Criterion C: Selection and application of tools and theories", score: 3, max: 4, color: "bg-emerald-500" },
               { name: "Criterion D: Analysis and evaluation", score: 2, max: 5, color: "bg-red-500" },
-              { name: "Criterion E: Conclusions", score: 2, max: 3, color: "bg-emerald-500" },
+              { name: "Criterion E: Conclusions", score: 2, max: 3, color: "bg-amber-500" },
               { name: "Criterion F: Structure", score: 2, max: 2, color: "bg-emerald-500" },
               { name: "Criterion G: Presentation", score: 1, max: 2, color: "bg-amber-500" },
             ].map((c) => (
@@ -1095,6 +1141,15 @@ export default function EssayAnalyzer() {
             </div>
           </div>
 
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">What to fix first</p>
+            <ol className="space-y-1.5 text-sm list-decimal pl-5">
+              <li>Use the figures in two of your supporting documents to weigh each option in Criterion D.</li>
+              <li>End with a direct answer to the research question, drawn from that analysis.</li>
+              <li>Label every table and chart with its source and what it shows.</li>
+            </ol>
+          </div>
+
           <div className="pt-3 border-t text-center">
             <p className="text-sm font-medium mb-1">↑ This is what a full report looks like, unlocked for $9.99. Your free preview shows the band range, your weakest criterion in full, and the top risks.</p>
             <p className="text-xs text-muted-foreground">Paste your work in the form above: <strong>the first preview is free</strong>, then $9.99 per report, with two re-checks included</p>
@@ -1109,14 +1164,28 @@ export default function EssayAnalyzer() {
       {/* Results */}
       {result && (
         <div ref={resultRef} className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 scroll-mt-20">
+          {rerunDelta && !(result as any).locked && (
+            <div className="text-sm p-4 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200 space-y-2">
+              <p><strong>Re-check done.</strong> {rerunDelta.summary}</p>
+              {rerunDelta.moved.length > 0 ? (
+                <ul className="space-y-1">
+                  {rerunDelta.moved.map((c) => (
+                    <li key={c.name}>{c.name}: {c.before ?? "not marked"} → {c.after ?? "not marked"}{c.max ? ` out of ${c.max}` : ""}</li>
+                  ))}
+                </ul>
+              ) : rerunDelta.compared ? (
+                <p>No criterion's mark changed.</p>
+              ) : null}
+            </div>
+          )}
           {(result as any).locked ? (
-            <LockedTeaser essayText={essayText} result={result} isAuthenticated={isAuthenticated} hasPaidCredit={(credits?.essayCredits ?? 0) > 0} fingerprint={anonFp} analysisId={lastAnalysisId} onUnlocked={(full: any) => setResult(full as EssayResult)} deviceCredits={deviceCredits} deviceUnlocking={deviceUnlock.isPending} onDeviceUnlock={() => deviceUnlock.mutate({ fingerprint: anonFp })} onBuy={() => openBuy("preview", resultWork?.label ?? lockedLabel, resultWork?.kind ?? "essay", (result as any)?.criteria_names ?? null)} />
+            <LockedTeaser essayText={essayText} result={result} isAuthenticated={isAuthenticated} hasPaidCredit={(credits?.essayCredits ?? 0) > 0} fingerprint={anonFp} analysisId={resultAnalysisId} onUnlocked={(full: any) => setResult(full as EssayResult)} deviceCredits={deviceCredits} deviceUnlocking={deviceUnlock.isPending} onDeviceUnlock={() => deviceUnlock.mutate({ fingerprint: anonFp })} onBuy={() => openBuy("preview", resultWork?.label ?? lockedLabel, resultWork?.kind ?? "essay", (result as any)?.criteria_names ?? null)} />
           ) : (<>
           {/* Overall Score */}
           <Card>
             <CardHeader>
               <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-                Overall Result
+                Overall comment
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -1164,7 +1233,7 @@ export default function EssayAnalyzer() {
           <Card>
             <CardHeader>
               <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-                Criteria Breakdown
+                {result.criteria.length === 1 ? "The mark and its explanation" : "Criteria breakdown"}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-5">
@@ -1262,7 +1331,7 @@ export default function EssayAnalyzer() {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    const text = `IBLens estimates my IB ${essayType === "TOK" ? "TOK essay" : essayType === "TOK Exhibition" ? "TOK exhibition" : `${essayType} in ${subject}`} at ${result.predicted_score}/${result.max_score} against the published criteria. Free preview at iblens.com`;
+                    const text = `IBLens estimates my IB ${resultWork?.label || formWork().label} at ${result.predicted_score}/${result.max_score} against the published criteria. Free preview at iblens.com`;
                     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
                   }}
                 >
@@ -1273,7 +1342,7 @@ export default function EssayAnalyzer() {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    const text = `IBLens estimates my IB ${essayType === "TOK" ? "TOK essay" : essayType === "TOK Exhibition" ? "TOK exhibition" : `${essayType} in ${subject}`} at ${result.predicted_score}/${result.max_score} against the published criteria. Free preview at iblens.com`;
+                    const text = `IBLens estimates my IB ${resultWork?.label || formWork().label} at ${result.predicted_score}/${result.max_score} against the published criteria. Free preview at iblens.com`;
                     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
                   }}
                 >
@@ -1284,9 +1353,9 @@ export default function EssayAnalyzer() {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    const text = `IBLens estimates my IB ${essayType === "TOK" ? "TOK essay" : essayType === "TOK Exhibition" ? "TOK exhibition" : `${essayType} in ${subject}`} at ${result.predicted_score}/${result.max_score} (band ${result.band_range}) against the published criteria. Free preview at iblens.com`;
+                    const text = `IBLens estimates my IB ${resultWork?.label || formWork().label} at ${result.predicted_score}/${result.max_score} (band ${result.band_range}) against the published criteria. Free preview at iblens.com`;
                     navigator.clipboard.writeText(text);
-                    toast.success("Score copied to clipboard!");
+                    toast.success("Copied.");
                   }}
                 >
                   <Copy className="w-4 h-4 mr-2" />
@@ -1315,9 +1384,9 @@ export default function EssayAnalyzer() {
                     ))}
                   </ul>
                   <p className="text-sm text-muted-foreground">Fix these in your draft using the comments above, then run a <strong>re-check</strong> of the revised version: you will see which criteria moved and by how much.</p>
-                  {isAuthenticated && lastAnalysisId && !rerunId && (
+                  {isAuthenticated && resultAnalysisId && !rerunId && (
                     <Button asChild variant="outline" className="mt-3 min-h-11 h-auto whitespace-normal">
-                      <a href={`/essay?rerun=${lastAnalysisId}&session=${examSession}&type=${encodeURIComponent(essayType)}${subject ? `&subject=${encodeURIComponent(subject)}` : ""}`}>Re-check a revised version (free, two per report)</a>
+                      <a href={`/essay?rerun=${resultAnalysisId}&session=${examSession}&type=${encodeURIComponent(essayType)}${subject ? `&subject=${encodeURIComponent(subject)}` : ""}`}>Re-check a revised version (free, two per report)</a>
                     </Button>
                   )}
                 </CardContent>
@@ -1363,7 +1432,7 @@ export default function EssayAnalyzer() {
                   {credits?.essayCredits ? `You have ${credits.essayCredits} paid report${credits.essayCredits > 1 ? 's' : ''} left.` : 'A different piece of work needs a new report. Revisions of this one use your free re-checks.'}
                 </p>
                 <div className="flex gap-3 justify-center">
-                  <Button onClick={() => { setResult(null); window.scrollTo(0, 0); }}>
+                  <Button onClick={() => { setResult(null); setResultAnalysisId(null); setRerunDelta(null); window.scrollTo(0, 0); }}>
                     <FileText className="w-4 h-4 mr-2" />
                     Mark another piece of work
                   </Button>

@@ -107,7 +107,7 @@ export function checkUcasMechanics(answers: UcasAnswers): UcasMechanicalCheck {
   const withinTotalLimit = totalChars <= UCAS_TOTAL_CHAR_LIMIT;
   if (!withinTotalLimit) {
     problems.push(
-      `Your three answers total ${totalChars} characters, ${totalChars - UCAS_TOTAL_CHAR_LIMIT} over the ${UCAS_TOTAL_CHAR_LIMIT} limit.`,
+      `Your three answers total ${totalChars.toLocaleString("en-GB")} characters, ${(totalChars - UCAS_TOTAL_CHAR_LIMIT).toLocaleString("en-GB")} over the ${UCAS_TOTAL_CHAR_LIMIT.toLocaleString("en-GB")} limit.`,
     );
   }
 
@@ -117,7 +117,7 @@ export function checkUcasMechanics(answers: UcasAnswers): UcasMechanicalCheck {
     // Not a rule: UCAS lets applicants split the 4,000 characters however they like and
     // sets no total minimum. Listing it with the rules hid "within the UCAS rules".
     advice.push(
-      `${unused} of the ${UCAS_TOTAL_CHAR_LIMIT} characters are unused. UCAS does not require you to use them, but the space can hold more evidence.`,
+      `${unused.toLocaleString("en-GB")} of the ${UCAS_TOTAL_CHAR_LIMIT.toLocaleString("en-GB")} characters are unused. UCAS does not require you to use them, but the space can hold more evidence.`,
     );
   }
 

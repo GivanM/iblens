@@ -115,7 +115,7 @@ export default function Home() {
               },
               {
                 "@type": "Question",
-                name: "Is my first essay analysis really free?",
+                name: "Is the first preview really free?",
                 acceptedAnswer: {
                   "@type": "Answer",
                   text: "Yes. The first preview is free: your band range, feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark and comments for every criterion and a ranked list of fixes, unlocks for $9.99.",
@@ -134,7 +134,7 @@ export default function Home() {
                 name: "Is my essay data kept private and secure?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Your essay is sent to our AI provider (Anthropic PBC) over an encrypted connection solely to generate your analysis. We do not use it to train any AI model, we do not sell it, and we do not share it with your school, universities, or other students. IBLens never saves the essay text; Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. An anonymous report you did not buy is deleted after 90 days.",
+                  text: "Your essay passes over an encrypted connection through our relay server in Helsinki to Anthropic PBC, solely to produce your report. We do not use it to train any AI model, we do not sell it, and we do not share it with your school, universities, or other students. IBLens never saves the essay text; Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. An anonymous report you did not buy is deleted after 90 days.",
                 },
               },
               {
@@ -155,7 +155,7 @@ export default function Home() {
               },
               {
                 "@type": "Question",
-                name: "What if I'm not satisfied with my analysis?",
+                name: "What if I'm not satisfied with my report?",
                 acceptedAnswer: {
                   "@type": "Answer",
                   text: "Email us at glushkovim@gmail.com within 7 days of your purchase and we'll refund you in full, no questions asked. We process refunds via the original payment method within 3-5 business days.",
@@ -268,7 +268,7 @@ export default function Home() {
                   Get detailed feedback on your IA, Extended Essay, TOK essay or exhibition, or English A individual oral. Estimated marks against the published criteria, and specific steps to improve.
                 </p>
                 <ul className="space-y-2.5 text-sm mb-6">
-                  {["Estimated score & IB band", "Criteria breakdown with progress bars", "Risk areas that lose marks", "Leverage zones to gain marks", "Actionable next steps"].map((item) => (
+                  {["Estimated mark and band", "Criteria breakdown", "What is losing marks", "Where marks are recoverable", "What to fix first"].map((item) => (
                     <li key={item} className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                       <span>{item}</span>
@@ -367,10 +367,10 @@ export default function Home() {
                 <p className="text-xs text-muted-foreground">Knows you and your school, and marks your IA against the criteria, but comments on coursework drafts are limited, usually to one.</p>
               </div>
               <div className="bg-primary/5 border-2 border-primary rounded-xl p-5 text-center relative">
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full whitespace-nowrap">Recommended</div>
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full whitespace-nowrap">Between teacher drafts</div>
                 <p className="font-semibold mb-1">IBLens</p>
                 <div style={SERIF} className="text-2xl font-bold text-primary mb-1">$9.99</div>
-                <p className="text-xs text-muted-foreground">Full criterion breakdown, estimated score and risk areas in about a minute, with two re-checks.</p>
+                <p className="text-xs text-muted-foreground">Criterion-by-criterion feedback (TOK as a whole), an estimated mark and what is losing marks, in about a minute, with two re-checks.</p>
               </div>
             </div>
             <p className="text-sm text-muted-foreground">Your first preview is free, one per device or account. No credit card, no account.</p>
@@ -471,7 +471,7 @@ export default function Home() {
                 answer="IBLens supports coursework in 14 subjects (the IA in eleven, plus the externally assessed coursework in Visual Arts, Music and Film), Extended Essays (EE), TOK essays and the TOK exhibition. Each type is analysed against its own published criteria."
               />
               <FAQItem
-                question="Is my first essay analysis really free?"
+                question="Is the first preview really free?"
                 answer="Yes. The first preview is free: your band range, feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark and comments for every criterion and a ranked list of fixes, unlocks for $9.99."
               />
               <FAQItem
@@ -480,7 +480,7 @@ export default function Home() {
               />
               <FAQItem
                 question="Is my essay data kept private and secure?"
-                answer="Your essay is sent to our AI provider (Anthropic PBC) over an encrypted connection solely to generate your analysis. We do not use it to train any AI model, we do not sell it, and we do not share it with your school, universities, or other students. IBLens never saves the essay text; Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. An anonymous report you did not buy is deleted after 90 days."
+                answer="Your essay passes over an encrypted connection through our relay server in Helsinki to Anthropic PBC, solely to produce your report. We do not use it to train any AI model, we do not sell it, and we do not share it with your school, universities, or other students. IBLens never saves the essay text; Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. An anonymous report you did not buy is deleted after 90 days."
               />
               <FAQItem
                 question="What payment methods do you accept?"
@@ -491,7 +491,7 @@ export default function Home() {
                 answer="IBLens marks coursework in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Each analysis uses that subject's own criteria. Subjects outside this list are not offered, because the grader carries only the criteria for the subjects listed here. Visual Arts can be marked only for sessions through November 2026: from May 2027 the comparative study is no longer set."
               />
               <FAQItem
-                question="What if I'm not satisfied with my analysis?"
+                question="What if I'm not satisfied with my report?"
                 answer="Email us at glushkovim@gmail.com within 7 days of your purchase and we'll refund you in full, no questions asked. We process refunds via the original payment method within 3-5 business days."
               />
             </div>
@@ -528,7 +528,7 @@ export default function Home() {
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold mb-3">Supported Subjects</h4>
+                <h4 className="font-semibold mb-3">Subject pages</h4>
                 <ul className="space-y-2 text-muted-foreground">
                   <li><Link href="/essay/business-management-ia" className="hover:text-foreground transition-colors">Business Management IA</Link></li>
                   <li><Link href="/essay/economics-ia" className="hover:text-foreground transition-colors">Economics IA</Link></li>
@@ -537,6 +537,9 @@ export default function Home() {
                   <li><Link href="/essay/chemistry-ia" className="hover:text-foreground transition-colors">Chemistry IA</Link></li>
                   <li><Link href="/essay/physics-ia" className="hover:text-foreground transition-colors">Physics IA</Link></li>
                   <li><Link href="/essay/math-ia" className="hover:text-foreground transition-colors">Mathematics IA</Link></li>
+                  <li><Link href="/essay/maths-aa-ia" className="hover:text-foreground transition-colors">Maths AA IA</Link></li>
+                  <li><Link href="/essay/maths-ai-ia" className="hover:text-foreground transition-colors">Maths AI IA</Link></li>
+                  <li><Link href="/essay/computer-science-ia" className="hover:text-foreground transition-colors">Computer Science IA</Link></li>
                   <li><Link href="/essay/psychology-ia" className="hover:text-foreground transition-colors">Psychology IA</Link></li>
                   <li><Link href="/essay/english-essay" className="hover:text-foreground transition-colors">English Individual Oral</Link></li>
                   <li><Link href="/essay/tok-essay" className="hover:text-foreground transition-colors">TOK Essay</Link></li>

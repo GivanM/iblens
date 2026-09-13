@@ -8,7 +8,7 @@ export default function TokEssayStructure() {
       description="Step-by-step IB TOK essay structure: introduction, knowledge claims, counter-claims, conclusion. Paragraph-by-paragraph guide and examiner tips for 2026."
       canonical="/resources/tok-essay-structure"
       datePublished="2026-06-27"
-      dateModified="2026-06-27"
+      dateModified="2026-09-13"
     >
       <h1>IB TOK Essay Structure: The Complete 2026 Guide</h1>
 
@@ -48,10 +48,10 @@ export default function TokEssayStructure() {
       <p>Each AOK body section follows the same internal structure:</p>
 
       <ol>
-        <li><strong>Knowledge claim (80-100 words):</strong> Make a specific assertion about how knowledge works in this AOK in relation to the prescribed title. The claim must be arguable: not a fact and not an opinion, but a claim about the nature of knowledge. Example: "In the natural sciences, the replicability of experimental results provides a form of certainty that is unavailable in other AOKs."</li>
-        <li><strong>Specific real-world example (100-150 words):</strong> Support the claim with a concrete, named example, such as a specific scientific discovery, historical event or work of art, described in enough detail to do real work in the argument. "Large randomised trials of statins, repeated by independent research groups, show how replication builds reliable knowledge" is better than "science uses experiments".</li>
-        <li><strong>Counter-claim (100-120 words):</strong> Challenge your own claim from within the same area or from a different perspective. The upper levels of the instrument describe awareness and evaluation of different points of view, and a counter-claim is the most direct way to show it. Example: "However, the history of science also shows that apparently certain knowledge can be overturned: Newtonian mechanics was treated as certain until relativity limited its scope."</li>
-        <li><strong>Mini-synthesis (60-80 words):</strong> What does this area tell us about the prescribed title, given both the claim and the counter-claim? Do not repeat the claim; advance the argument.</li>
+        <li><strong>Knowledge claim (100-120 words):</strong> Make a specific assertion about how knowledge works in this AOK in relation to the prescribed title. The claim must be arguable: not a fact and not an opinion, but a claim about the nature of knowledge. Example: "In the natural sciences, the replicability of experimental results provides a form of certainty that is unavailable in other AOKs."</li>
+        <li><strong>Specific real-world example (150-180 words):</strong> Support the claim with a concrete, named example, such as a specific scientific discovery, historical event or work of art, described in enough detail to do real work in the argument. "Large randomised trials of statins, repeated by independent research groups, show how replication builds reliable knowledge" is better than "science uses experiments".</li>
+        <li><strong>Counter-claim (150-180 words):</strong> Challenge your own claim from within the same area or from a different perspective. The upper levels of the instrument describe awareness and evaluation of different points of view, and a counter-claim is the most direct way to show it. Example: "However, the history of science also shows that apparently certain knowledge can be overturned: Newtonian mechanics was treated as certain until relativity limited its scope."</li>
+        <li><strong>Mini-synthesis (100-120 words):</strong> What does this area tell us about the prescribed title, given both the claim and the counter-claim? Do not repeat the claim; advance the argument.</li>
       </ol>
 
       <h3>Body section 2: the second area of knowledge (500-600 words)</h3>
@@ -73,7 +73,7 @@ export default function TokEssayStructure() {
       <ol>
         <li><strong>Answer the prescribed title directly:</strong> State your overall position in one or two clear sentences. Do not hedge.</li>
         <li><strong>Synthesise, not summarise:</strong> Draw a conclusion that goes beyond what either AOK section said individually. The synthesis should be something that only becomes visible when you consider both AOKs together.</li>
-        <li><strong>Acknowledge a genuine limitation:</strong> what does your argument not fully account for? Acknowledging the limits of your argument, and its implications, is part of what the top level describes.</li>
+        <li><strong>Acknowledge a genuine limitation:</strong> what does your argument not fully account for? Considering the implications of your arguments is part of what the top level describes; acknowledging a limitation is good practice, not descriptor wording.</li>
         <li><strong>Connect to broader significance:</strong> Optional, but effective. One sentence on why this knowledge question matters beyond the exam.</li>
       </ol>
 
@@ -103,8 +103,8 @@ export default function TokEssayStructure() {
 
       <ul>
         <li><strong>Too many areas:</strong> three or more areas rarely get enough depth in 1,600 words. Unless your title asks otherwise, two is plenty.</li>
-        <li><strong>Claims without examples:</strong> abstract claims with no concrete illustration keep an essay out of the upper levels, which describe arguments supported by specific examples.</li>
-        <li><strong>No counter-claims:</strong> an essay that never considers another view misses the Satisfactory level's "some awareness of different points of view" and cannot show the evaluation that Good and Excellent describe.</li>
+        <li><strong>Claims without examples:</strong> from Satisfactory upward the descriptors describe arguments supported by examples, and only Excellent describes specific examples; unillustrated claims read like the Basic descriptor's arguments "not supported by effective examples".</li>
+        <li><strong>No counter-claims:</strong> an essay that never considers another view shows none of the awareness of different points of view that the Satisfactory descriptor mentions, or the evaluation that Good and Excellent describe.</li>
         <li><strong>Restating the title as the conclusion:</strong> your conclusion must go beyond the introduction; it should be the outcome of your analysis, not a rephrasing of your starting position.</li>
         <li><strong>Headings like "Claim 1:":</strong> no rule forbids headings, but labels like these push an essay towards a formula. Most strong essays read as continuous prose.</li>
       </ul>

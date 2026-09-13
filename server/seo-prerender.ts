@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { REMARK_FAQ } from "../shared/remarkFaq";
 /**
  * Crawler bodies are rendered from the React pages at build time
  * (scripts/render-crawler-bodies.mjs), so a crawler reads the same text as a
@@ -80,7 +81,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/terms": {
     title: "Terms of Use | IBLens",
-    description: "Terms for using IBLens: scores are AI estimates not official IB grades, acceptable use, and IBLens independence from the International Baccalaureate Organization.",
+    description: "Terms for using IBLens: scores are AI estimates, not official IB grades; acceptable use; and the independence of IBLens from the International Baccalaureate Organization.",
     ogType: "website",
     canonical: "/terms",
     schemaType: "WebPage",
@@ -92,12 +93,7 @@ const routeMeta: Record<string, PageMeta> = {
     ogType: "website",
     canonical: "/remark",
     schemaType: "WebPage",
-    faq: [
-      { question: "How much does an IB remark cost?", answer: "The IB publishes its enquiry upon results fees to schools rather than on its public website, so ask your coordinator for the current fee. There is no charge for a category 1 re-mark that results in a change of grade." },
-      { question: "Can my grade go down after an IB remark?", answer: "Yes. A category 1 re-mark can raise or lower the grade, and your school must have your written consent before requesting one. A re-mark makes most sense when your component mark is close to a grade boundary." },
-      { question: "What is the IB remark deadline?", answer: "Enquiry upon results requests can be made up to 15 September for the May session and up to 15 March for the November session. Your school submits them and may set an earlier deadline, so ask your coordinator as soon as results are out." },
-      { question: "Should I remark or retake?", answer: "Consider a re-mark if your component mark for an externally assessed essay (EE or TOK) is one or two marks from a grade boundary. Consider a retake if you are several marks off; retake registration has its own deadlines and fees, so ask your coordinator early." },
-    ],
+    faq: REMARK_FAQ,
   },
   "/resources/sample-reports": {
     title: "Sample IBLens Reports: Three TOK Essays, Marked and Unedited | IBLens",
@@ -108,7 +104,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/academic-integrity": {
     title: "AI Feedback and IB Academic Integrity: Is It Allowed? | IBLens",
-    description: "What the IB academic integrity policy means for AI feedback on your EE, TOK essay or IA, and how IBLens handles your data: no training on your essays, no sharing, deletion on request.",
+    description: "What the IB academic integrity policy means for AI feedback on your EE, TOK essay or IA, and how IBLens handles your data: no training on your essays, no sharing beyond the AI provider that marks them, deletion on request.",
     ogType: "article",
     canonical: "/resources/academic-integrity",
     schemaType: "Article",
@@ -389,7 +385,7 @@ const routeMeta: Record<string, PageMeta> = {
     schemaType: "Article",
   },
   "/ucas-personal-statement": {
-    title: "UCAS Personal Statement Checker: Three-Question Format for 2026 and 2027 Entry | IBLens",
+    title: "UCAS Personal Statement Checker: Three-Question Format for 2027 Entry | IBLens",
     description: "Check your UCAS personal statement against the format used from 2026 entry: three questions, 4,000 characters, 350 minimum per answer. Evidence-based feedback on each answer from an admissions-tutor perspective. Free preview, no account.",
     ogType: "article",
     canonical: "/ucas-personal-statement",

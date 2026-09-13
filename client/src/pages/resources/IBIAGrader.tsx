@@ -17,7 +17,7 @@ export default function IBIAGrader() {
       </p>
 
       <p>
-        IBLens is an AI grader that reads your Internal Assessment against the assessment criteria for your subject and gives you an estimated mark for each criterion, the marks you are losing, and what to change. It takes about a minute, and the first preview is free.
+        IBLens is an AI grader that reads your Internal Assessment against the assessment criteria for your subject and gives you an estimated mark for each criterion it can judge from the text, the marks you are losing, and what to change. It takes about a minute, and the first preview is free.
       </p>
 
       <p>
@@ -52,14 +52,14 @@ export default function IBIAGrader() {
         <li><strong>Choose your essay type and subject.</strong> Select "Internal Assessment (IA) or coursework" and your IB subject from the dropdown.</li>
         <li><strong>Paste your IA text.</strong> Copy in the full text of your Internal Assessment: method, analysis, evaluation, everything.</li>
         <li><strong>Enter your research question.</strong> This helps the AI assess whether your investigation stays focused on a specific, answerable question.</li>
-        <li><strong>Get your report.</strong> In about a minute you receive an estimated mark for each criterion, the marks you are losing and why, and specific steps to recover them. IBLens also counts the words against your subject's limit.</li>
+        <li><strong>Get your report.</strong> In about a minute you receive an estimated mark for each criterion your text shows, the marks you are losing and why, and specific steps to recover them. IBLens also counts the words against your subject's limit.</li>
       </ol>
 
       <h2>What You Get in the Report</h2>
 
       <ul>
         <li><strong>Estimated mark and band:</strong> where your IA sits overall against the criteria, with the mark range the draft currently falls in</li>
-        <li><strong>Criterion breakdown:</strong> each criterion marked individually, with the reasons for that mark</li>
+        <li><strong>Criterion breakdown:</strong> each criterion marked individually, with the reasons for that mark (one judged on something text cannot carry, such as a Music recording, is shown as not marked)</li>
         <li><strong>Risk areas:</strong> the specific parts of your IA that are losing marks, and why</li>
         <li><strong>Leverage zones:</strong> criteria where a small improvement would gain the most marks</li>
         <li><strong>Next steps:</strong> concrete changes to make before submission</li>

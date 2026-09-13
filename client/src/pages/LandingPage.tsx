@@ -33,14 +33,16 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 }
 
 // The current Business research project criteria (first assessment 2024), out of 25.
+// The same sample as the grader page and the Business Management page, coloured by the
+// report's own thresholds: two versions of one sample disagreed on every mark.
 const SAMPLE_CRITERIA = [
-  { label: "A: Integration of a key concept", score: 3, max: 5, color: "bg-amber-400" },
+  { label: "A: Integration of a key concept", score: 3, max: 5, color: "bg-amber-500" },
   { label: "B: Supporting documents", score: 3, max: 4, color: "bg-emerald-500" },
-  { label: "C: Selection and application of tools and theories", score: 2, max: 4, color: "bg-orange-400" },
-  { label: "D: Analysis and evaluation", score: 2, max: 5, color: "bg-orange-400" },
-  { label: "E: Conclusions", score: 2, max: 3, color: "bg-emerald-500" },
-  { label: "F: Structure", score: 1, max: 2, color: "bg-amber-400" },
-  { label: "G: Presentation", score: 2, max: 2, color: "bg-emerald-500" },
+  { label: "C: Selection and application of tools and theories", score: 3, max: 4, color: "bg-emerald-500" },
+  { label: "D: Analysis and evaluation", score: 2, max: 5, color: "bg-red-500" },
+  { label: "E: Conclusions", score: 2, max: 3, color: "bg-amber-500" },
+  { label: "F: Structure", score: 2, max: 2, color: "bg-emerald-500" },
+  { label: "G: Presentation", score: 1, max: 2, color: "bg-amber-500" },
 ];
 
 export default function LandingPage() {
@@ -119,7 +121,7 @@ export default function LandingPage() {
           <div className="container max-w-2xl mx-auto">
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold tracking-tight mb-2">What a full report looks like ($9.99)</h2>
-              <p className="text-muted-foreground text-sm">Every criterion scored, with the risks and the fixes. The free preview shows your band, your weakest criterion and the top risks.</p>
+              <p className="text-muted-foreground text-sm">A mark for each criterion your text lets us judge, with the risks and the fixes. The free preview shows your band, your weakest criterion and the top risks.</p>
             </div>
 
             <Card className="border-2 shadow-lg">
@@ -128,10 +130,10 @@ export default function LandingPage() {
                 <div className="flex items-center justify-between mb-5 pb-4 border-b">
                   <div>
                     <p className="text-xs text-muted-foreground mb-0.5">Business Management IA · Draft 2</p>
-                    <p className="font-semibold text-sm">The Impact of Remote Work on Employee Productivity</p>
+                    <p className="font-semibold text-sm">Should Brewhaus Coffee Ltd open a second branch in the city centre?</p>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-extrabold text-primary">15</div>
+                    <div className="text-3xl font-extrabold text-primary">16</div>
                     <div className="text-xs text-muted-foreground">/ 25 marks</div>
                     <div className="text-xs font-semibold text-amber-600 bg-amber-50 px-2 py-0.5 rounded mt-1">Sample</div>
                   </div>
@@ -219,7 +221,7 @@ export default function LandingPage() {
               />
               <FAQItem
                 question="Is my essay private?"
-                answer="Your essay is sent to our AI provider over an encrypted connection to generate your analysis. We do not use it to train any model or sell it. IBLens never saves the essay text; Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. An anonymous report you did not buy is deleted after 90 days."
+                answer="Your essay passes over an encrypted connection through our relay server in Helsinki to Anthropic PBC, solely to produce your report. We do not use it to train any model or sell it. IBLens never saves the essay text; Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. An anonymous report you did not buy is deleted after 90 days."
               />
             </div>
           </div>

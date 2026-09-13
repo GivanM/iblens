@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "wouter";
 import { toast } from "sonner";
 import { PRICE_LABELS } from "@shared/pricing";
@@ -34,6 +34,13 @@ export default function AnalysisView() {
   // clears, so keep asking for a short while instead of showing it as locked.
   const paidReturn = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("payment") === "success";
   const [pollStart] = useState(() => Date.now());
+  // Polling stops after two minutes; this re-renders once then, so the fallback shows.
+  const [, setWaitedOut] = useState(false);
+  useEffect(() => {
+    if (!paidReturn) return;
+    const t = setTimeout(() => setWaitedOut(true), 121000);
+    return () => clearTimeout(t);
+  }, [paidReturn]);
   const { data, isLoading, error } = trpc.dashboard.analysis.useQuery({ id }, {
     enabled: Number.isFinite(id),
     refetchInterval: (q: any) => {
@@ -176,7 +183,17 @@ export default function AnalysisView() {
                 <Lock className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary" />
                 <span>The full report adds {fullReportAdds(p?.criteria_names)}, with two free re-checks of revised versions within 14 days of it opening.</span>
               </p>
-              {paidLeft > 0 ? (
+              {paidReturn ? (
+                // Just paid for this report: offering to buy it again while the webhook lands invited a second payment.
+                <p className="text-sm text-muted-foreground flex items-center gap-2">
+                  {Date.now() - pollStart <= 120000 && <Loader2 className="w-4 h-4 flex-shrink-0 animate-spin" />}
+                  <span>
+                    {Date.now() - pollStart > 120000
+                      ? <>Your payment went through but the report has not opened. This is on us: email glushkovim@gmail.com with order <code className="text-xs">{new URLSearchParams(window.location.search).get("order") || ""}</code> and we will open it or refund you.</>
+                      : "Payment received. The report opens here as soon as the payment clears, usually within a few seconds."}
+                  </span>
+                </p>
+              ) : paidLeft > 0 ? (
                 <Button className="min-h-11 h-auto whitespace-normal" disabled={unlockHere.isPending} onClick={() => unlockHere.mutate({ analysisId: id })}>
                   {unlockHere.isPending ? "Unlocking…" : `Unlock with 1 of your ${paidLeft} paid ${paidLeft === 1 ? "report" : "reports"}`}
                 </Button>
@@ -185,7 +202,6 @@ export default function AnalysisView() {
                   Unlock the full report, {PRICE_LABELS.ESSAY_SINGLE}
                 </Button>
               )}
-              {paidReturn && <p className="text-sm text-muted-foreground">Payment received. The report opens here as soon as the payment clears, usually within a minute.</p>}
             </div>
           </CardContent>
         </Card>
@@ -241,7 +257,7 @@ export default function AnalysisView() {
 
           {criteria.length > 0 && (
             <div className="space-y-4">
-              <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Criteria</h2>
+              <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">{criteria.length === 1 ? "The mark and its explanation" : "Criteria breakdown"}</h2>
               {criteria.map((c: any, i: number) => (
                 <div key={i} className="border-t pt-3">
                   <div className="flex items-start justify-between gap-3 mb-1">

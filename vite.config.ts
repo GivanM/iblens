@@ -4,8 +4,10 @@ import react from "@vitejs/plugin-react";
 import path from "node:path";
 import { defineConfig } from "vite";
 
-export default defineConfig({
-  plugins: [react(), tailwindcss(), jsxLocPlugin()],
+// The source-location attributes help while developing; in the production bundle they
+// published a file path and line for every element.
+export default defineConfig(({ command }) => ({
+  plugins: [react(), tailwindcss(), ...(command === "serve" ? [jsxLocPlugin()] : [])],
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
@@ -33,4 +35,4 @@ export default defineConfig({
       deny: ["**/.*"],
     },
   },
-});
+}));

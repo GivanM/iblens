@@ -90,21 +90,20 @@ export default function IBEEExamplesBySubject() {
 
       <h3>Biology Extended Essay</h3>
       <p>
-        <strong>Strong research question:</strong> "How does the concentration of
-        anthocyanin in red cabbage vary with soil pH, and what does this suggest about
-        its role as a stress indicator in plants?"
+        <strong>Strong research question:</strong> "To what extent does soil pH affect
+        the concentration of anthocyanin in red cabbage leaves?"
       </p>
       <p>
-        What makes this work: it is experimentally testable (the student can grow
-        red cabbage in soils of different pH and measure anthocyanin spectrophotometrically),
-        it connects to plant biology theory, and the second part of the question
-        ("what does this suggest about its role") ensures the analysis goes beyond
-        description.
+        What makes this work: it asks one question, as the guide advises (a question that
+        combines two is usually too broad for 4,000 words), it is experimentally testable
+        (the student can grow red cabbage in soils of different pH and measure anthocyanin
+        spectrophotometrically), it connects to plant biology theory, and the role of
+        anthocyanin as a stress response gives the discussion its context.
       </p>
       <p>
         For Biology, the methodology section must be detailed enough to replicate;
-        the analysis must include statistical processing (means, standard deviations,
-        significance testing); and the evaluation must discuss whether the observed
+        the analysis should use statistical methods where they suit the data (for example
+        means, standard deviations and, where appropriate, a significance test); and the evaluation must discuss whether the observed
         effect is physiologically plausible given the literature on anthocyanin biosynthesis.
       </p>
 
@@ -130,9 +129,9 @@ export default function IBEEExamplesBySubject() {
 
       <h3>Mathematics Extended Essay</h3>
       <p>
-        <strong>Strong research question:</strong> "How accurately does the logistic
-        growth model predict the long-run population of a bounded ecosystem, and
-        under what conditions does the model break down?"
+        <strong>Strong research question:</strong> "Under what conditions does the logistic
+        growth model stop predicting the long-run population of a bounded ecosystem
+        accurately?"
       </p>
       <p>
         Math EEs succeed when the mathematics is used with real understanding rather
@@ -149,9 +148,8 @@ export default function IBEEExamplesBySubject() {
 
       <h3>Psychology Extended Essay</h3>
       <p>
-        <strong>Strong research question:</strong> "To what extent does social media
-        use predict depressive symptoms in adolescents, and does this relationship
-        differ by platform type?"
+        <strong>Strong research question:</strong> "To what extent does published research
+        show that heavy social media use predicts depressive symptoms in adolescents?"
       </p>
       <p>
         Psychology EEs are built on published research with a critical argument, not on
@@ -164,8 +162,7 @@ export default function IBEEExamplesBySubject() {
       <h3>Physics Extended Essay</h3>
       <p>
         <strong>Strong research question:</strong> "How does the drag coefficient of
-        a cycling helmet change with wind speed, and what are the implications for
-        optimal aerodynamic position in time trials?"
+        a cycling helmet change with wind speed?"
       </p>
       <p>
         A Physics EE with original experimental data gives the analysis and discussion criteria

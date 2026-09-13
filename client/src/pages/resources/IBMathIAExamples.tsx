@@ -36,7 +36,7 @@ export default function IBMathIAExamples() {
       <p>
         Marks of 4, 4, 3, 3 and 5 make 19 out of 20. Mathematics at the level of the
         course with only limited understanding shown (3 on Criterion E at SL) together
-        with almost no reflection (1 on Criterion D) brings the same exploration down to
+        with reflection that only describes the results (1 on Criterion D, limited reflection) brings the same exploration down to
         15, and those are the marks this guide is about.
       </p>
 

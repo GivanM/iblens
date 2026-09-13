@@ -8,7 +8,7 @@ export default function ExtendedEssayFeedback() {
       description="Every legitimate way to get feedback on your IB Extended Essay before submission: supervisor rules, self-checking against the criteria, peers, and where AI feedback fits, with the limits of each channel."
       canonical="/resources/ib-extended-essay-feedback"
       datePublished="2026-08-11"
-      dateModified="2026-08-11"
+      dateModified="2026-09-13"
     >
       <h1>How to Get Feedback on Your IB Extended Essay Before You Submit</h1>
 
@@ -24,7 +24,7 @@ export default function ExtendedEssayFeedback() {
         </thead>
         <tbody>
           <tr><td>Supervisor</td><td>Expert, subject-aware comments; the only person who formally guides the EE</td><td>Written comments on one complete draft; cannot edit or proof-read; sessions are short</td></tr>
-          <tr><td>Reflection sessions</td><td>Three formal check-ins to test your direction, including the interim reflection</td><td>Guidance on process and thinking, not line-by-line feedback</td></tr>
+          <tr><td>Reflection sessions</td><td>Three mandatory reflection sessions with your supervisor (first, interim and the viva voce), separate from informal check-ins</td><td>Guidance on process and thinking, not line-by-line feedback</td></tr>
           <tr><td>Peers and family</td><td>A fresh reader: do the argument and structure make sense to a non-expert?</td><td>They do not know the criteria; encouragement is not assessment</td></tr>
           <tr><td>Self-check against criteria</td><td>Free, unlimited, and exactly what examiners use</td><td>Hard to be objective about your own writing</td></tr>
           <tr><td>AI rubric check</td><td>A criterion-by-criterion read in about a minute, at any time, before your one supervisor draft</td><td>An estimate, not an official mark; quality depends on the tool applying the real criteria</td></tr>

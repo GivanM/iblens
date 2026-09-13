@@ -46,7 +46,7 @@ export default function IBExtendedEssayExamples() {
       <p>Many strong Biology EEs are built on a self-designed experiment or other primary data, though a well-chosen published dataset can also work.</p>
       <ul>
         <li><em>"How does the concentration of caffeine in growth medium affect the germination rate and early root elongation of Vigna radiata (mung bean) seeds?"</em></li>
-        <li><em>"To what extent does the gut microbiome composition of Crohn's disease patients differ from healthy controls, and what implications does this have for probiotic therapy?"</em></li>
+        <li><em>"To what extent does the gut microbiome composition of patients with Crohn's disease differ from that of healthy controls?"</em></li>
         <li><em>"What is the relationship between ambient light intensity and the rate of photosynthesis in Elodea canadensis measured by oxygen bubble production?"</em></li>
       </ul>
 
@@ -66,8 +66,8 @@ export default function IBExtendedEssayExamples() {
 
       <h3>Physics Extended Essay Examples</h3>
       <ul>
-        <li><em>"How does the angle of incidence of a laser beam on a diffraction grating affect the spacing of interference fringes, and how well does this conform to the grating equation?"</em></li>
-        <li><em>"How does the terminal velocity of a falling paper cone depend on its mass, and what drag coefficient does the relationship imply?"</em></li>
+        <li><em>"How does the angle of incidence of a laser beam on a diffraction grating affect the spacing of interference fringes?"</em></li>
+        <li><em>"What drag coefficient does the relationship between the mass and the terminal velocity of a falling paper cone imply?"</em></li>
       </ul>
 
       <h2>What Kills an Extended Essay Score</h2>

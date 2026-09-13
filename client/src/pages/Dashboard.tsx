@@ -14,9 +14,9 @@ import {
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import confetti from "canvas-confetti";
-import { trackPurchase, sha256 } from "@/lib/analytics/track";
-import type { ProductSlug, PaymentMethod as AnalyticsPaymentMethod } from "@/lib/analytics/config";
 import { SEOHead } from "@/components/SEOHead";
+import { usePurchaseTracking } from "@/hooks/usePurchaseTracking";
+import { deviceReportLabel } from "@/components/DeviceReportsList";
 
 const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
@@ -26,44 +26,31 @@ export default function Dashboard() {
   const [modalSku, setModalSku] = useState<ProductKey>("ESSAY_SINGLE");
 
   const confettiFired = useRef(false);
-  const [pendingPurchase, setPendingPurchase] = useState<
-    { orderId: string; product: ProductSlug; method: AnalyticsPaymentMethod } | null
-  >(null);
-
+  // Back from checkout. The webhook adds the reports a few seconds after the payment
+  // clears, so the page waits for the order to be paid before it says so. Confirming
+  // at once, with the reports not yet there, showed a paid buyer an empty account.
+  const purchase = usePurchaseTracking();
+  const [returnedFromCheckout] = useState(() => new URLSearchParams(window.location.search).get("payment") === "success");
+  const [waitedFor, setWaitedFor] = useState(0);
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    if (params.get("payment") === "success" && !confettiFired.current) {
-      confettiFired.current = true;
-
-      confetti({
-        particleCount: 120,
-        spread: 80,
-        origin: { y: 0.6 },
-      });
-
-      const message = "Payment confirmed. Your reports are ready to use.";
-
-      toast.success(message, { duration: 6000 });
-
-      // Reported only once per order, and only for an order that exists on the
-      // account. The amount comes from the order, not from the address bar:
-      // reloading the page or typing ?payment=success used to book a purchase.
-      const orderId = params.get("order") || "unknown";
-      setPendingPurchase({
-        orderId,
-        product: (params.get("product") || "essay_single") as ProductSlug,
-        method: (params.get("method") || "lemonsqueezy") as AnalyticsPaymentMethod,
-      });
-
-      window.history.replaceState({}, "", "/dashboard");
-
-      creditsQuery.refetch();
-      ordersQuery.refetch();
-    } else if (params.get("payment") === "cancelled") {
-      toast.info("Payment was cancelled.");
-      window.history.replaceState({}, "", "/dashboard");
-    }
+    if (params.get("payment") === "cancelled") toast.info("Payment was cancelled.");
+    if (params.get("payment")) window.history.replaceState({}, "", "/dashboard");
   }, []);
+  useEffect(() => {
+    if (!returnedFromCheckout || purchase.paid) return;
+    const t = setInterval(() => setWaitedFor((w) => w + 4000), 4000);
+    return () => clearInterval(t);
+  }, [returnedFromCheckout, purchase.paid]);
+  useEffect(() => {
+    if (!purchase.paid || confettiFired.current) return;
+    confettiFired.current = true;
+    confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+    toast.success("Payment confirmed.", { duration: 6000 });
+    creditsQuery.refetch();
+    ordersQuery.refetch();
+    historyQuery.refetch();
+  }, [purchase.paid]);
 
   const creditsQuery = trpc.dashboard.credits.useQuery(undefined, { enabled: isAuthenticated });
   const historyQuery = trpc.dashboard.history.useQuery({ limit: 500 }, { enabled: isAuthenticated });
@@ -81,24 +68,6 @@ export default function Dashboard() {
   });
   const credits = creditsQuery.data;
 
-  // The purchase reaches analytics only once the order is confirmed on the
-  // account, with the amount taken from the order. Typing ?payment=success or
-  // reloading the page used to book a sale that never happened.
-  useEffect(() => {
-    if (!pendingPurchase) return;
-    const known = (ordersQuery.data || []).find((o: any) => o.id === pendingPurchase.orderId && o.status === "paid");
-    if (!known) return;
-    const key = `iblens_purchase_reported_${pendingPurchase.orderId}`;
-    try {
-      if (localStorage.getItem(key) === "1") { setPendingPurchase(null); return; }
-      localStorage.setItem(key, "1");
-    } catch { /* no storage, report once per page load */ }
-    const value = (known.amountUsd ?? 0) / 100;
-    // The privacy policy says Google receives the order without the buyer's identity,
-    // so neither an email hash nor the account id goes with the purchase event.
-    trackPurchase(pendingPurchase.orderId, pendingPurchase.product, value, pendingPurchase.method, "", "");
-    setPendingPurchase(null);
-  }, [pendingPurchase, ordersQuery.data, user]);
 
   if (authLoading) {
     return (
@@ -140,6 +109,17 @@ export default function Dashboard() {
         <h1 style={SERIF} className="text-3xl font-bold mb-1">Dashboard</h1>
         <p className="text-muted-foreground text-sm">Welcome back{user?.name ? `, ${user.name}` : ""}.</p>
       </div>
+
+      {returnedFromCheckout && purchase.orderId && !purchase.paid && (
+        <div className="mb-8 text-sm p-3 rounded-lg bg-primary/5 border border-primary/30 flex items-center gap-2">
+          {waitedFor <= 120000 && <Loader2 className="w-4 h-4 flex-shrink-0 animate-spin" />}
+          <span>
+            {waitedFor > 120000
+              ? <>Your payment went through but the reports have not arrived. This is on us: email glushkovim@gmail.com with order <code className="text-xs">{purchase.orderId}</code> and we will add them or refund you.</>
+              : "Payment received. Adding your reports to your account, this takes a few seconds."}
+          </span>
+        </div>
+      )}
 
       {/* Credits Overview */}
       <div className="grid sm:grid-cols-3 gap-4 mb-8">
@@ -284,7 +264,7 @@ export default function Dashboard() {
                       {item.essayType === "UCAS"
                         ? `UCAS personal statement, ${item.subject || "your course"}`
                         : item.type === "essay"
-                          ? `${item.essayType}, ${item.subject || "Unknown"}`
+                          ? deviceReportLabel({ essayType: item.essayType, subject: item.subject })
                           : `University Strategy, ${item.fieldOfStudy || "Unknown"}`}
                     </p>
                     <p className="text-xs text-muted-foreground">
@@ -358,7 +338,7 @@ export default function Dashboard() {
                       </td>
                       <td className="py-3 pr-3">${(o.amountUsd / 100).toFixed(2)}</td>
                       <td className="py-3 pr-3">
-                        {o.provider === "lemonsqueezy" ? "Card"
+                        {o.provider === "lemonsqueezy" ? "Lemon Squeezy"
                           : o.provider === "nowpayments" ? "Crypto"
                           : "Other"}
                       </td>

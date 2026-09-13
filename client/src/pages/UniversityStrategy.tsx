@@ -52,7 +52,7 @@ export default function UniversityStrategy() {
             <h2 className="font-semibold">Applying through UCAS?</h2>
             <p className="text-sm text-muted-foreground">
               From 2026 entry the personal statement is three separate questions. We review each answer
-              from an admissions-tutor perspective, and the first review is free.
+              from an admissions-tutor perspective, and the first review is a free preview.
             </p>
             <Button variant="outline" size="sm" asChild>
               <Link href="/ucas-personal-statement">Check my statement <ArrowRight className="w-4 h-4 ml-1" /></Link>

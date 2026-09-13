@@ -23,7 +23,7 @@ const config: SubjectConfig = {
       "The essay is placed in one of five bands.",
     ],
     rubricItems: [
-      { title: "Excellent, 9-10", text: "A sustained focus on the title, linked effectively to areas of knowledge. Arguments are clear, coherent and supported by specific examples, their implications are considered, and different points of view are evaluated." },
+      { title: "Excellent, 9-10", text: "A sustained focus on the title, linked effectively to areas of knowledge. Arguments are clear, coherent and effectively supported by specific examples, their implications are considered, and there is clear awareness and evaluation of different points of view." },
       { title: "Good, 7-8", text: "Focused on the title and linked effectively to areas of knowledge. Arguments are clear, coherent and supported by examples, with awareness and some evaluation of different points of view." },
       { title: "Satisfactory, 5-6", text: "Focused on the title and developed with some links to areas of knowledge. Arguments are offered and supported by examples, with some awareness of different points of view." },
       { title: "Basic, 3-4", text: "Connected to the title, with superficial or limited links to areas of knowledge. Largely descriptive, with limited arguments that are unclear and not supported by effective examples." },

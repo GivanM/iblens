@@ -225,7 +225,7 @@ const REPORTS = [
       "In paragraph nine, add a sentence that explicitly distinguishes between pragmatic justification (being warranted in acting on a claim) and logical certainty (the method leaves no room for revision), and state clearly which of these you are claiming the natural sciences can achieve and to what extent.",
       "In the conclusion or in paragraph three, revisit your opening definition of certainty against the conditional certainty of mathematics: ask explicitly whether a certainty that depends on chosen axioms leaves room for the claim to be overturned when applied to the world, and give a direct answer, so the thesis is tested by its own criterion."
     ],
-    "editorNote": "It calls the title prescribed (it is not, see above). In the comment under the mark and in its risks it says a 10 needs complete and sustained excellence or more evaluative depth. The TOK guide says the top level does not mean faultless work and that markers should not hesitate to give the top mark."
+    "editorNote": "It calls the title prescribed (it is not, see above). In the explanation of the mark and in its risks it says a 10 needs complete and sustained excellence or more evaluative depth. The TOK guide says the highest level does not imply faultless performance, and that examiners should not hesitate to use the extremes when they are appropriate descriptions of the work."
   }
 ] as const;
 
@@ -296,14 +296,23 @@ export default function SampleReports() {
               <strong>Where we disagree with this report</strong> (our note, not grader output): {r.editorNote}
             </p>
           )}
-          <p style={{ fontSize: "0.8rem", fontWeight: 600, marginBottom: 4 }}>The comment under the mark</p>
-          <p style={{ ...small, marginTop: 0, whiteSpace: "pre-line" }}>{r.criterionComment}</p>
-          <p style={{ fontSize: "0.8rem", fontWeight: 600, marginBottom: 4, marginTop: 16 }}>Overall comment</p>
+          {/* The sections in the order and under the names the live report uses. */}
+          <h3 style={{ fontSize: "1rem", marginTop: 20 }}>Overall comment</h3>
           <p style={{ ...small, marginTop: 0, whiteSpace: "pre-line" }}>{r.overall}</p>
+
+          <h3 style={{ fontSize: "1rem", marginTop: 20 }}>The mark and its explanation</h3>
+          <p style={{ ...small, marginTop: 0, whiteSpace: "pre-line" }}>{r.criterionComment}</p>
 
           <h3 style={{ fontSize: "1rem", marginTop: 20 }}>What is losing marks</h3>
           <ol style={{ ...small, paddingLeft: 20 }}>
             {r.risks.map((x) => (
+              <li key={x.title} style={{ marginBottom: 8 }}><strong>{x.title}.</strong> {x.description}</li>
+            ))}
+          </ol>
+
+          <h3 style={{ fontSize: "1rem", marginTop: 20 }}>Where marks are recoverable</h3>
+          <ol style={{ ...small, paddingLeft: 20 }}>
+            {r.leverage.map((x) => (
               <li key={x.title} style={{ marginBottom: 8 }}><strong>{x.title}.</strong> {x.description}</li>
             ))}
           </ol>
@@ -314,15 +323,6 @@ export default function SampleReports() {
               <li key={x} style={{ marginBottom: 8 }}>{x}</li>
             ))}
           </ol>
-
-          <details style={{ marginTop: 12 }}>
-            <summary style={{ fontSize: "0.9rem", fontWeight: 600, cursor: "pointer", color: "#7B1D2E", padding: "10px 0" }}>Where marks are recoverable</summary>
-            <ol style={{ ...small, paddingLeft: 20, marginTop: 8 }}>
-              {r.leverage.map((x) => (
-                <li key={x.title} style={{ marginBottom: 8 }}><strong>{x.title}.</strong> {x.description}</li>
-              ))}
-            </ol>
-          </details>
 
         </div>
       ))}

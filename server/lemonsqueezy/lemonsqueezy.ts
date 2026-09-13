@@ -8,6 +8,7 @@ import {
   updateOrderStatus,
   insertWebhookEvent,
   updateWebhookEvent,
+  hasEarlierVerifiedWebhookEvent,
   grantCreditsViaLedger,
   getUserById,
   getUserCredits,
@@ -244,6 +245,14 @@ export function registerLemonsqueezyWebhook(app: Express) {
 
       console.log(`[LemonSqueezy Webhook] Signature VALID for event=${eventName}, dataId=${dataId}`);
 
+      if (await hasEarlierVerifiedWebhookEvent(eventKey, webhookEventId).catch(() => false)) {
+        console.log(`[LemonSqueezy Webhook] ${eventKey} was already delivered and handled, skipping`);
+        if (webhookEventId) {
+          await updateWebhookEvent(webhookEventId, { paymentStatus: "duplicate" }).catch(() => {});
+        }
+        return res.status(200).json({ ok: true, message: "Already processed" });
+      }
+
       // ===== STEP 3: PROCESS EVENT =====
       try {
         // Extract order_id from custom_data
@@ -326,8 +335,9 @@ export function registerLemonsqueezyWebhook(app: Express) {
 
           // LemonSqueezy retries deliveries, and the dedup key used to include the
           // processing status, so a retry looked new and granted the credits again.
-          // The order is the thing that can only be paid once.
-          if (order.status === "paid") {
+          // The order is the thing that can only be paid once, and a refunded order
+          // stays refunded: a resend after the refund used to hand everything back.
+          if (order.status === "paid" || order.status === "refunded") {
             console.log(`[LemonSqueezy] Order ${order.id} already paid, skipping credit grant`);
             if (webhookEventId) {
               await updateWebhookEvent(webhookEventId, { paymentStatus: "duplicate" }).catch(() => {});
@@ -416,7 +426,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
               const toDevice = buyerIsGuest ? credits.essay - spentNow : 0;
               if (toDevice > 0) {
                 await addDeviceCredits(unlockFp, toDevice, order.id);
-                await setOrderDeviceCredits(order.id, toDevice);
+                await setOrderDeviceCredits(order.id, toDevice, unlockFp);
               }
               // Only the part that moved to the device. The one credit the unlock
               // below consumes stays on the account until it is spent there.
@@ -435,7 +445,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
                   });
                 } else if (buyerIsGuest) {
                   await addDeviceCredits(unlockFp, 1, order.id);
-                  await setOrderDeviceCredits(order.id, toDevice + 1);
+                  await setOrderDeviceCredits(order.id, toDevice + 1, unlockFp);
                   await debitAccountCredits(order.userId, 1);
                 }
                 // A signed-in buyer keeps what they paid for in the account. The device

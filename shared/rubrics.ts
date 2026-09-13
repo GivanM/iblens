@@ -89,7 +89,7 @@ const HISTORY_IA: Rubric = {
   totalMarks: 25,
   criteria: [
     { name: "Criterion A: Identification and evaluation of sources", max: 6, descriptor: "The question for investigation clearly stated as a question; appropriate, relevant sources with their relevance to the investigation explained; detailed analysis and evaluation of two sources, with explicit discussion of their value and limitations for the investigation by reference to origins, purpose and content" },
-    { name: "Criterion B: Investigation", max: 15, descriptor: "A clear, coherent, well-organized investigation with well-developed critical analysis focused on the question, evidence from a range of sources used effectively, evaluation of different perspectives (awareness without evaluation stays in the 7-9 band), and a reasoned conclusion consistent with the evidence" },
+    { name: "Criterion B: Investigation", max: 15, descriptor: "A clear, coherent, well-organized investigation with well-developed critical analysis focused on the question, evidence from a range of sources used effectively, evaluation of different perspectives (the 7-9 descriptor describes awareness of perspectives without evaluation; weigh this strand with the others, best fit), and a reasoned conclusion consistent with the evidence" },
     { name: "Criterion C: Reflection", max: 4, descriptor: "Reflection on what the investigation highlighted about the methods used by historians and the challenges they face, with a clear and explicit connection to the rest of the investigation" },
   ],
   notes: "Word limit 2,200 (bibliography and references not counted). SL and HL identical. Section 1 = Criterion A, Section 2 = Criterion B, Section 3 = Criterion C. The topic cannot be about events in the last 10 years. Sources may be primary, secondary or both.",
@@ -132,10 +132,10 @@ const PSYCHOLOGY_IA: Rubric = {
   label: "Psychology IA (experimental report, through Nov 2026)",
   totalMarks: 22,
   criteria: [
-    { name: "I. Introduction", max: 6, descriptor: "Aim, link to the background theory or model, and operationalized variables" },
+    { name: "I. Introduction", max: 6, descriptor: "Aim stated with its relevance explained; the theory or model described and its link to the investigation explained; independent and dependent variables operationalised in the null or research hypotheses" },
     { name: "II. Exploration", max: 4, descriptor: "Research design, sampling technique, choice of participants, controlled variables and choice of materials explained (described only is the 1-2 band)" },
-    { name: "III. Analysis", max: 6, descriptor: "Correct descriptive and inferential statistics, appropriately graphed, with statistical significance addressed" },
-    { name: "IV. Evaluation", max: 6, descriptor: "Findings discussed in the context of the background theory; strengths, limitations and improvements" },
+    { name: "III. Analysis", max: 6, descriptor: "Descriptive and inferential statistics appropriately and accurately applied; a correctly presented graph that addresses the hypothesis; statistical findings interpreted with regard to the data and linked to the hypothesis" },
+    { name: "IV. Evaluation", max: 6, descriptor: "Findings discussed with reference to the background theory or model; strengths and limitations of the design, sample and procedure explained; modifications explicitly linked to the limitations and justified" },
   ],
   notes: "Report 1,800-2,200 words. This rubric applies through November 2026; the May 2027 syllabus replaces it with a research proposal (24 marks).",
   wordLimit: { min: 1800, max: 2200, excludes: "the appendices" },
@@ -281,8 +281,8 @@ const EXTENDED_ESSAY_2027: Rubric = {
   label: "Extended Essay (May 2027 syllabus)",
   totalMarks: 30,
   criteria: [
-    { name: "Criterion A: Framework for the essay", max: 6, descriptor: "Research question, method and structure appropriate to the essay (absorbs the former Presentation criterion)" },
-    { name: "Criterion B: Knowledge and understanding", max: 6, descriptor: "Knowledge and understanding of the topic and effective use of subject-specific terminology and concepts" },
+    { name: "Criterion A: Framework for the essay", max: 6, descriptor: "Research question, research methods and structural conventions that together give the essay an effective framework" },
+    { name: "Criterion B: Knowledge and understanding", max: 6, descriptor: "Comprehensive, relevant research materials used to establish knowledge of the subject matter, relevant terminology used accurately and consistently, and relevant concepts explained and used effectively" },
     { name: "Criterion C: Analysis and line of argument", max: 6, descriptor: "Effective analysis of the research, with findings consistently relevant to the research question, and a coherent line of argument" },
     { name: "Criterion D: Discussion and evaluation", max: 8, descriptor: "A balanced discussion of the significance of the findings, supported by appropriate evidence, and an evaluation of the effectiveness of the essay with its relevant strengths and limitations explained. This is the highest-weighted criterion" },
     { name: "Criterion E: Reflection", max: 4, descriptor: "Evaluative reflection, with specific examples, on the effect of the extended essay learning experience on the student as a learner, showing growth and transfer of learning (reflection that only describes the process is the lowest level); assessed on the 500-word reflective statement (RPF)" },
@@ -407,7 +407,7 @@ export function getRubric(essayType: string, subject: string, examSession?: stri
  */
 export function unmarkableReason(essayType: string, subject: string, examSession?: string): string | null {
   if (examSession === "may2027" && essayType === "IA" && subject.trim().toLowerCase() === "visual arts") {
-    return "From May 2027 the Visual Arts comparative study is replaced by the connections study (SL) and the artist project (HL). IBLens does not have criteria for those yet, so it cannot mark Visual Arts work for the May 2027 session. If you sit your exams in 2026, choose the session \"Exams in May or November 2026\".";
+    return "From May 2027 the Visual Arts comparative study is replaced by the connections study (SL) and the artist project (HL). IBLens does not have criteria for those yet, so it cannot mark Visual Arts work for the May 2027 session. If you sit your exams in 2026, choose the session \"Exams in November 2026, or work submitted in May 2026\".";
   }
   return null;
 }

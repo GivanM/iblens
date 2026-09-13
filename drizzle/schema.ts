@@ -76,6 +76,12 @@ export const orders = mysqlTable("orders", {
   npPaymentId: varchar("npPaymentId", { length: 255 }),
   /** How many credits of this order were placed on a device, so a refund removes that many. */
   deviceCreditsGranted: int("deviceCreditsGranted").notNull().default(0),
+  /**
+   * The device those credits went to. Reports opened there are charged to the oldest
+   * purchase on the device that still has reports left, which needs to know which
+   * purchases a device holds.
+   */
+  deviceFingerprint: varchar("deviceFingerprint", { length: 64 }),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });

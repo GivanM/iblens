@@ -14,11 +14,11 @@ export default function IBIAScorePredictor() {
       <p>Your teacher has marked your Internal Assessment and you want to know whether that mark will hold. It may not: the mark is checked against a global standard before it counts. Knowing how that check works, and reading your own work criterion by criterion, gets you a realistic range rather than a single hopeful number.</p>
 
       <div className="not-prose my-6 rounded-xl border border-primary/30 bg-primary/5 p-5">
-        <p className="text-base font-semibold text-foreground mb-1">The predictor</p>
+        <p className="text-base font-semibold text-foreground mb-1">The estimate</p>
         <p className="text-sm text-muted-foreground mb-3">
-          Paste your IA into IBLens and get an estimated mark for each criterion, marked against the published criteria for your subject and session. The first preview is free: your band range, your weakest criterion with its feedback, and the top risks. Every mark is an estimate, not an IB mark.
+          Paste your IA into IBLens and get an estimated mark for each criterion your text can show, marked against the published criteria for your subject and session. The first preview is free: your band range, your weakest criterion with its feedback, and the top risks. Every mark is an estimate, not an IB mark.
         </p>
-        <Link href="/essay?type=IA" className="inline-flex min-h-11 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90">Predict my IA score</Link>
+        <Link href="/essay?type=IA" className="inline-flex min-h-11 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90">Estimate my IA mark</Link>
       </div>
 
       <h2>How IB Internal Assessment Marking Works</h2>
@@ -65,7 +65,7 @@ export default function IBIAScorePredictor() {
 
       <h2>Get Your IA Read Criterion by Criterion</h2>
       <p>Self-assessment has one limit you cannot get around: you know what you meant, so it is hard to see where the page does not say it.</p>
-      <p><Link href="/essay">IBLens reads your Internal Assessment against the assessment criteria for your subject</Link> and returns an estimated mark for each criterion with the reasons behind it, so you can see which criterion is costing you the most before you submit. It is an estimate produced by a language model, not a moderated mark.</p>
+      <p><Link href="/essay">IBLens reads your Internal Assessment against the assessment criteria for your subject</Link> and returns an estimated mark for each criterion it can judge from the text, with the reasons behind it, so you can see which criterion is costing you the most before you submit. It is an estimate produced by a language model, not a moderated mark.</p>
 
       <h2>Frequently Asked Questions</h2>
       <h3>Can I predict my IA mark before my teacher marks it?</h3>

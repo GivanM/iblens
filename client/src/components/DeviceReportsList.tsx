@@ -24,14 +24,19 @@ export function deviceReportLabel(r: { essayType: string | null; subject: string
  * Every report bought on this browser, so a guest with a pack can go back to any of
  * them and re-check the one they revised, not only the newest.
  */
-export function DeviceReportsList({ reports, selectedId, onOpen, onRecheck, opening }: {
+export function DeviceReportsList({ reports, selectedId, onOpen, onRecheck, opening, showSingle = false }: {
   reports: DeviceReport[];
   selectedId: number | null;
   onOpen: (r: DeviceReport) => void;
   onRecheck: (r: DeviceReport) => void;
   opening?: number | null;
+  /**
+   * List a single report too. The page shows the newest row on its own, so one bought
+   * report was hidden as soon as a newer free preview sat on top of it.
+   */
+  showSingle?: boolean;
 }) {
-  if (reports.length < 2) return null;
+  if (reports.length === 0 || (reports.length < 2 && !showSingle)) return null;
   return (
     <Card className="mb-6">
       <CardContent className="pt-6 space-y-3">

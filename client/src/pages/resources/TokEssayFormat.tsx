@@ -43,7 +43,7 @@ export default function TokEssayFormat() {
         <li><strong>The word count:</strong> you indicate the number of words when the essay is uploaded during the submission process.</li>
         <li><strong>Anonymity:</strong> coursework is marked anonymously, so leave your name, your candidate session number and your school's name off every page, including any title page. Your coordinator will tell you what the upload itself needs.</li>
         <li><strong>Type size and spacing:</strong> the TOK guide requires standard 12-point type and double line spacing. Use a plain, readable font.</li>
-        <li><strong>Page numbers:</strong> the TOK guide does not mention them, but most schools expect numbered pages, and they cost nothing.</li>
+        <li><strong>Page numbers:</strong> the TOK guide does not mention them, but the IB's Assessment procedures require numbered pages in all written eCoursework, which includes the TOK essay.</li>
       </ul>
 
       <h2>Essay Structure: A Workable Shape</h2>

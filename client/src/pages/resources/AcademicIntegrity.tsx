@@ -5,7 +5,7 @@ export default function AcademicIntegrity() {
   return (
     <ResourceArticle
       title="AI Feedback and IB Academic Integrity: Is It Allowed? | IBLens"
-      description="What the IB academic integrity policy means for AI feedback on your EE, TOK essay or IA, and how IBLens handles your data: no training on your essays, no sharing, deletion on request."
+      description="What the IB academic integrity policy means for AI feedback on your EE, TOK essay or IA, and how IBLens handles your data: no training on your essays, no sharing beyond the AI provider that marks them, deletion on request."
       canonical="/resources/academic-integrity"
       datePublished="2026-07-03"
       dateModified="2026-09-13"
@@ -53,14 +53,14 @@ export default function AcademicIntegrity() {
       <ul>
         <li><strong>AI text in your work must be credited.</strong> The IB statement says any AI-generated text, image or graph included in your work must be credited in the body of the text and referenced in the bibliography. IBLens describes what to change and does not write it for you, so there should be none to credit.</li>
         <li><strong>Mention it to your teacher or supervisor,</strong> as the rule above says. For the Extended Essay, a supervision session is the natural place.</li>
-        <li><strong>Keep the reports with your drafts.</strong> Together they show that the revisions came from you. Save each report as a PDF: the Save as PDF button on a report, or your browser's print to PDF.</li>
+        <li><strong>Keep the reports with your drafts.</strong> Together they show that the revisions came from you. Save each report with your browser's print to PDF (saved reports in an account also have a Save as PDF button).</li>
         <li><strong>Orals and the TOK exhibition work the same way.</strong> The ideas and words in your individual oral or exhibition commentary must be yours. Feedback on your outline or a practice transcript is fine; a script written by a tool is not.</li>
       </ul>
 
       <h2>What IBLens does with your essay</h2>
       <ul>
         <li><strong>We do not train models on your essays.</strong> Your text is sent to the grading model, scored, and returned. It does not become training data.</li>
-        <li><strong>We do not share, sell or publish your essay.</strong> No exemplar library built from user submissions, no reselling, no indexing.</li>
+        <li><strong>We do not sell or publish your essay, and share it only with Anthropic, which marks it.</strong> No exemplar library built from user submissions, no reselling, no indexing.</li>
         <li><strong>IBLens never saves the essay text, and an anonymous report you did not buy is deleted after 90 days.</strong> Anthropic, which marks it, deletes the text within 30 days unless it is flagged under its usage policy or the law requires otherwise. Signed-in users keep their history in their dashboard; you can request full deletion at any time.</li>
         <li><strong>Nothing goes into plagiarism databases.</strong> IBLens does not feed Turnitin or any similarity database. Getting feedback here does not create a record that later flags your submission.</li>
       </ul>

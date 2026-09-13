@@ -63,8 +63,8 @@ export default function IBPsychologyExtendedEssay() {
           witnesses.
         </li>
         <li>
-          To what extent is heavy social-media use associated with depressive
-          symptoms in adolescents, and does the evidence support a causal link?
+          To what extent does the evidence support a causal link between heavy
+          social-media use and depressive symptoms in adolescents?
           <em> Why it works:</em> it builds the correlation-versus-causation
           distinction into the question, and the literature contains genuinely
           conflicting findings to weigh.

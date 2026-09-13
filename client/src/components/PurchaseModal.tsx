@@ -188,10 +188,10 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPrev
                   ? "Two free re-checks of revised versions of the same work with each report, within 14 days of that report opening"
                   : "Two free re-checks of revised versions of the same work, within 14 days of the report opening"}</li>
                 {isAuthenticated
-                  ? <li>{opensPreview ? "The report opens in your account" : "The reports are added to your account"} as soon as the payment clears</li>
+                  ? <li>{opensPreview && count === 1 ? "The report opens in your account" : opensPreview ? "The report opens in your account and the rest are added to it" : count > 1 ? "The reports are added to your account" : "The report is added to your account"} as soon as the payment clears</li>
                   : <>
                       <li>No account needed. {opensPreview && count === 1 ? "The report opens in this browser" : `The ${count > 1 ? "reports go" : "report goes"} to this browser`} as soon as the payment clears. Without an account, this browser keeps every report you buy, each with its re-checks, and any unused reports, for as long as its site data is kept; clearing it loses them.</li>
-                      <li>To keep every report in an account and use them on another device, sign in with Google on this device with the email you enter below. Buying for your child or someone else? Pay on their phone or computer, or have them sign in here with their own Google account first. Paid on the wrong device? Email glushkovim@gmail.com with your order number and we will move the reports.</li>
+                      <li>To keep your reports in an account and use them on another device, sign in with Google on this device with the email you enter below: reports you have opened move to an account with that email, and unused reports move to whichever Google account signs in here first. Buying for your child or someone else? Pay on their phone or computer, or have them sign in here with their own Google account first. Paid on the wrong device? Email glushkovim@gmail.com with your order number and we will move the reports.</li>
                     </>}
               </ul>
             </div>
