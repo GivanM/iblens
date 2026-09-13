@@ -180,14 +180,14 @@ export default function GradeBoundaries() {
       </p>
 
       <p>
-        For more on how essays and IAs are marked, see <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB Essay Criteria Explained</Link> and the <Link href="/resources/ib-internal-assessment-guide" className="text-primary hover:underline">Internal Assessment Guide</Link>.
+        For more on how essays and IAs are marked, see <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB essay criteria explained</Link> and the <Link href="/resources/ib-internal-assessment-guide" className="text-primary hover:underline">Internal Assessment guide</Link>.
       </p>
       <h2>After results day</h2>
 
       <ul>
         <li><Link href="/remark">Is an IB re-mark worth it?</Link></li>
-        <li><Link href="/resources/ib-score-calculator">IB Score Calculator</Link></li>
-        <li><Link href="/resources/ib-ia-score-predictor">IA Score Estimator</Link></li>
+        <li><Link href="/resources/ib-score-calculator">IB score calculator</Link></li>
+        <li><Link href="/resources/ib-ia-score-predictor">IA score estimator</Link></li>
       </ul>
 
     </ResourceArticle>

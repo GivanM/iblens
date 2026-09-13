@@ -71,8 +71,8 @@ export default function IBChemistryIAExamples() {
         to measure colour change quantitatively using a colorimeter and apply Le
         Chatelier's principle. Avoid cobalt(II) chloride, which is classified as a
         carcinogen: the IB's experimentation guidelines do not allow students to handle
-        carcinogens, and ask for toxic substances such as nitrogen dioxide to be replaced
-        where possible. A strong version compares experimental equilibrium constants
+        carcinogens, and ask for toxic substances to be replaced by less harmful ones when
+        possible, so a toxic-gas system such as the nitrogen dioxide equilibrium is best avoided too. A strong version compares experimental equilibrium constants
         at different temperatures with literature values for ΔH, and discusses
         why the observed shift matches (or doesn't match) the exothermic/endothermic
         prediction.
@@ -179,9 +179,9 @@ export default function IBChemistryIAExamples() {
       <h2>Internal Assessment in other subjects</h2>
 
       <ul>
-        <li><Link href="/resources/ib-biology-ia-examples">Biology IA Examples</Link></li>
-        <li><Link href="/resources/ib-physics-ia-examples">Physics IA Examples</Link></li>
-        <li><Link href="/resources/ib-math-ia-examples">Math IA Examples</Link></li>
+        <li><Link href="/resources/ib-biology-ia-examples">Biology IA examples</Link></li>
+        <li><Link href="/resources/ib-physics-ia-examples">Physics IA examples</Link></li>
+        <li><Link href="/resources/ib-math-ia-examples">Math IA examples</Link></li>
         <li><Link href="/resources/ib-ia-feedback">Check your IA against the criteria</Link></li>
       </ul>
 

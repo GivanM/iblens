@@ -26,7 +26,7 @@ const config: SubjectConfig = {
     ],
     rubricItems: [
       { title: "Research design, 6 marks", text: "A research question described within a specific and appropriate context, with the methodological choices explained: how the variables are measured, the range and number of readings, how control variables are held, and the safety, ethical and environmental issues. The method has to be described well enough for someone else to repeat it." },
-      { title: "Data analysis, 6 marks", text: "Data recorded, processed and presented clearly and precisely, with units, appropriate significant figures and labelled graphs, an appropriate treatment of uncertainties, and processing that is accurate and relevant to the research question." },
+      { title: "Data analysis, 6 marks", text: "Data recorded, processed and presented clearly and precisely, with units, appropriate significant figures, correctly annotated tables and any graphs you use, an appropriate treatment of uncertainties, and processing that is accurate and relevant to the research question." },
       { title: "Conclusion, 6 marks", text: "A conclusion that answers the research question, is consistent with the processed data and its uncertainties, and is justified by comparison with the accepted scientific context, such as published research or values." },
       { title: "Evaluation, 6 marks", text: "The relative impact of specific weaknesses or limitations in your method, with realistic improvements that address them. Weaknesses that would apply to almost any investigation are what the lowest band describes." },
     ],

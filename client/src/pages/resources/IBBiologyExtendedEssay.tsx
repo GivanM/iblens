@@ -87,7 +87,7 @@ export default function IBBiologyExtendedEssay() {
         If you sit your exams in November 2026, the essay is marked out of 34 instead: Focus and
         method (6), Knowledge and understanding (6), Critical thinking (12), Presentation (4) and
         Engagement (6, marked on the three RPPF reflections). The advice above carries over, because
-        analysis, discussion and evaluation together make up Critical thinking.
+        research, analysis, and discussion and evaluation together make up Critical thinking.
       </p>
 
       <h2>How to structure a Biology EE</h2>
@@ -97,7 +97,7 @@ export default function IBBiologyExtendedEssay() {
         <li><strong>Background Theory (500-700 words):</strong> Explain the biology your investigation depends on, going beyond the syllabus where the question needs it. This is where Criterion B marks are won.</li>
         <li><strong>Methodology (400-600 words):</strong> Write a complete, reproducible method. State variables explicitly: independent, dependent, controlled, and uncontrolled. Justify sample size and replication numbers.</li>
         <li><strong>Results and Analysis (700-900 words):</strong> Present data in labelled tables and graphs. Apply appropriate statistical tests with error bars. Identify trends and anomalies.</li>
-        <li><strong>Discussion and Evaluation (800-1,000 words):</strong> Compare your findings to published literature explicitly. Discuss methodological limitations systematically. Suggest specific improvements.</li>
+        <li><strong>Discussion (800-1,000 words):</strong> Compare your findings to published literature explicitly. Do not save evaluation for this section: the guide wants it integrated throughout the essay, so weigh the strengths and weaknesses of your method, data and sources where they arise, then draw their effect on the conclusion together here and suggest specific improvements.</li>
         <li><strong>Conclusion (200-300 words):</strong> Answer the research question directly. State your confidence in the answer given the limitations identified.</li>
       </ul>
 
@@ -142,7 +142,7 @@ export default function IBBiologyExtendedEssay() {
         <li><Link href="/resources/ib-history-extended-essay">History Extended Essay</Link></li>
         <li><Link href="/resources/ib-english-extended-essay">English Extended Essay</Link></li>
         <li><Link href="/resources/ib-economics-extended-essay">Economics Extended Essay</Link></li>
-        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE New Criteria 2027 (marked /30)</Link></li>
+        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE new criteria 2027 (marked out of 30)</Link></li>
       </ul>
 
     </ResourceArticle>

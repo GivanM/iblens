@@ -93,14 +93,14 @@ export default function IBScoreCalculator() {
       <p>Penalties for academic misconduct range from a warning letter to zero marks for a component, no grade ("N") for the subject and, in repeated or very serious cases, no grade in any subject. An N for TOK, the EE or a contributing subject means the Diploma is not awarded; for the Extended Essay the IB does not use a zero-marks penalty, because it has the same result as no grade.</p>
 
       <h2>Improve your essay scores, improve your Diploma total</h2>
-      <p>Your Extended Essay grade and your TOK grade decide your bonus points between them (the TOK grade combines the essay, two-thirds, and the exhibition, one-third), and a weak draft usually also shapes the grade your teachers predict. Both are still in your hands while you are drafting. For the Extended Essay, ask your supervisor before you use any outside feedback: its guide allows no help with the research, writing or proofreading beyond what your supervisor permits.</p>
+      <p>Your Extended Essay grade and your TOK grade decide your bonus points between them (the TOK grade combines the essay, two-thirds, and the exhibition, one-third), and a weak draft usually also shapes the grade your teachers predict. Both are still in your hands while you are drafting. For the Extended Essay, ask your supervisor before you use any outside feedback: its guide says students are not allowed to receive assistance with any aspect of the research, writing or proofreading of the essay beyond that which is permitted through their supervisor.</p>
       <p><Link href="/essay">IBLens reads your essay against the assessment criteria and shows which criterion is losing you the most marks →</Link></p>
       <h2>Related tools</h2>
 
       <ul>
         <li><Link href="/remark">Is an IB re-mark worth it?</Link></li>
-        <li><Link href="/resources/ib-grade-boundaries">IB Grade Boundaries</Link></li>
-        <li><Link href="/resources/ib-ia-score-predictor">IA Score Estimator</Link></li>
+        <li><Link href="/resources/ib-grade-boundaries">IB grade boundaries</Link></li>
+        <li><Link href="/resources/ib-ia-score-predictor">IA score estimator</Link></li>
       </ul>
 
     </ResourceArticle>

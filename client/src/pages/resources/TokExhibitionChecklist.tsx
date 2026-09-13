@@ -50,7 +50,6 @@ export default function TokExhibitionChecklist() {
         <li><strong>Some justification rather than a strong one:</strong> the commentary explains what each object is, but only partly argues why it belongs in an exhibition on this prompt.</li>
         <li><strong>Vague contexts:</strong> at 5-6 the contexts "may be vaguely or imprecisely stated"; "a textbook" or "a painting" with no specific context sits there or below.</li>
         <li><strong>Prompt drift:</strong> the discussion wanders to a theme the student prefers rather than the prompt as worded.</li>
-        <li><strong>Weak justification of each object:</strong> the instrument asks for a justification of the particular contribution each object makes to the exhibition; three commentaries that never say why this object, for this prompt, lose that.</li>
       </ul>
 
       <h2>Check your commentary with IBLens</h2>

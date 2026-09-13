@@ -48,7 +48,7 @@ export default function EENewCriteria2027() {
         <tbody>
           <tr><td>A: Focus and method (6)</td><td>A: Framework for the essay (6), which now also carries the structural expectations that used to sit under Presentation</td></tr>
           <tr><td>B: Knowledge and understanding (6)</td><td>B: Knowledge and understanding (6)</td></tr>
-          <tr><td>C: Critical thinking (12)</td><td>Split into C: Analysis and line of argument (6) and D: Discussion and evaluation (8)</td></tr>
+          <tr><td>C: Critical thinking (12)</td><td>Split into C: Analysis and line of argument (6) and D: Discussion and evaluation (8), with research materials now assessed under B: Knowledge and understanding</td></tr>
           <tr><td>D: Presentation (4)</td><td>Removed as a separate criterion</td></tr>
           <tr><td>E: Engagement (6)</td><td>E: Reflection (4)</td></tr>
           <tr><td><strong>Total: 34</strong></td><td><strong>Total: 30</strong></td></tr>
@@ -56,7 +56,7 @@ export default function EENewCriteria2027() {
       </table>
 
       <p>
-        The 2027 syllabus replaces the world studies essay with an interdisciplinary pathway alongside the classic subject-focused EE, but the headline change for most students is the rubric above.
+        The 2027 guide replaces the world studies essay with an interdisciplinary pathway alongside the classic subject-focused EE, but the headline change for most students is the rubric above.
       </p>
 
       <h2>What this means for your draft</h2>
@@ -120,7 +120,7 @@ export default function EENewCriteria2027() {
       <ul>
         <li><Link href="/resources/ib-extended-essay-guide">IB Extended Essay Guide: structure and research question</Link></li>
         <li><Link href="/resources/ib-extended-essay-examples">IB Extended Essay Examples</Link></li>
-        <li><Link href="/resources/ib-extended-essay-word-count">The 4,000-Word Limit Explained</Link></li>
+        <li><Link href="/resources/ib-extended-essay-word-count">The 4,000-word limit explained</Link></li>
       </ul>
       <h2>Also changing for May 2027</h2>
 

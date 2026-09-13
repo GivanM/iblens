@@ -96,7 +96,7 @@ export default function TokEssayChecklist() {
 
       <h2>Frequently asked questions</h2>
 
-      <h3>How is the TOK essay marked, are there separate criteria?</h3>
+      <h3>How is the TOK essay marked? Are there separate criteria?</h3>
       <p>
         No. Unlike the Extended Essay and subject internal assessments, the TOK essay, like the TOK exhibition, uses one holistic assessment instrument out of 10. Examiners judge the essay as a whole against the question "does the student provide a clear, coherent and critical exploration of the essay title?" and place it in one of five levels.
       </p>

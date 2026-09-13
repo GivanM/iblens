@@ -73,7 +73,7 @@ export default function IBChemistryExtendedEssay() {
       <ul>
         <li><strong>Criterion A: Framework for the essay (6 marks).</strong> A clear, focused research question, a detailed and reproducible method with a justified choice of variables and equipment, and a structure that serves the question.</li>
         <li><strong>Criterion B: Knowledge and understanding (6 marks).</strong> Accurate chemistry, going beyond the syllabus where the question needs it. Correct use of IUPAC nomenclature, mechanisms and theory, with relevant, reliable sources.</li>
-        <li><strong>Criterion C: Analysis and line of argument (6 marks).</strong> Analysis that goes beyond describing data: processed results, uncertainties and trends tied to the question in a coherent argument.</li>
+        <li><strong>Criterion C: Analysis and line of argument (6 marks).</strong> Analysis that goes beyond describing data: standard quantitative and statistical processing, with trends tied to the question in a coherent argument (clearly processed data and uncertainties in calculations are structural conventions under Criterion A).</li>
         <li><strong>Criterion D: Discussion and evaluation (8 marks).</strong> The highest-weighted criterion. Do you compare experimental results with literature values, discuss systematic error and alternative explanations, and evaluate what your method could and could not establish?</li>
         <li><strong>Criterion E: Reflection (4 marks).</strong> Marked on the reflective statement in your RPF. It rewards evaluative reflection, with specific examples, on how the investigation changed you as a learner.</li>
       </ul>
@@ -81,7 +81,7 @@ export default function IBChemistryExtendedEssay() {
         If you sit your exams in November 2026, the essay is marked out of 34 instead: Focus and
         method (6), Knowledge and understanding (6), Critical thinking (12), Presentation (4) and
         Engagement (6, marked on the three RPPF reflections). The advice above carries over, because
-        analysis, discussion and evaluation together make up Critical thinking.
+        research, analysis, and discussion and evaluation together make up Critical thinking.
       </p>
       <p>
         Grade boundaries for the new scale are set only after the May 2027 session is marked; on
@@ -98,7 +98,7 @@ export default function IBChemistryExtendedEssay() {
         <li><strong>Background Chemistry (500-700 words):</strong> Explain the chemistry your investigation depends on, going beyond the syllabus where the question needs it: Michaelis-Menten theory for enzyme kinetics, for example, or the Nernst equation for cell potentials that change with concentration. Criterion B marks are won here.</li>
         <li><strong>Methodology (500-700 words):</strong> Write a reproducible method. State which variables are independent, dependent, and controlled. Justify your choice of analytical technique (why titration rather than spectrophotometry?). State replicate numbers and justify them statistically.</li>
         <li><strong>Results and Analysis (800-1,000 words):</strong> Present raw data, processed data, and appropriate statistical analysis. Include error propagation for calculated values. Use graphs with error bars. Identify and investigate anomalous data points.</li>
-        <li><strong>Discussion (600-800 words):</strong> Compare your results to published literature values with explicit citations. If your result differs from the literature, propose specific chemical explanations. Evaluate the methodology: what systematic errors exist, and how do they affect the conclusion?</li>
+        <li><strong>Discussion (600-800 words):</strong> Compare your results to published literature values with explicit citations. If your result differs from the literature, propose specific chemical explanations. Evaluate the methodology: what systematic errors exist, and how do they affect the conclusion? Evaluate as you go, not only here: the guide wants evaluation integrated throughout the essay.</li>
         <li><strong>Conclusion (200-300 words):</strong> Answer the research question directly. State the degree of confidence in your answer given the limitations identified.</li>
       </ul>
 
@@ -131,7 +131,7 @@ export default function IBChemistryExtendedEssay() {
         <li><Link href="/resources/ib-history-extended-essay">History Extended Essay</Link></li>
         <li><Link href="/resources/ib-english-extended-essay">English Extended Essay</Link></li>
         <li><Link href="/resources/ib-economics-extended-essay">Economics Extended Essay</Link></li>
-        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE New Criteria 2027 (marked /30)</Link></li>
+        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE new criteria 2027 (marked out of 30)</Link></li>
       </ul>
 
     </ResourceArticle>

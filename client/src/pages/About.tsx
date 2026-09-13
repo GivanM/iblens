@@ -13,7 +13,7 @@ export default function About() {
       <h1>About IBLens</h1>
 
       <p>
-        IBLens gives IB students an honest, criterion-level read on their coursework before they submit it. Paste a draft (coursework in 14 subjects, including the externally assessed Visual Arts, Music and Film coursework, an Extended Essay, a TOK essay or an exhibition commentary) and get feedback structured around the published assessment criteria it will be marked on, in about a minute. There is also a checker for the three answers of a UCAS personal statement. For the Extended Essay, ask your supervisor first: its guide allows no help with the research, writing or proofreading beyond what your supervisor permits.
+        IBLens gives IB students an honest, criterion-level read on their coursework before they submit it. Paste a draft (coursework in 14 subjects, including the externally assessed Visual Arts, Music and Film coursework, an Extended Essay, a TOK essay or an exhibition commentary) and get feedback structured around the published assessment criteria it will be marked on, in about a minute. There is also a checker for the three answers of a UCAS personal statement. For the Extended Essay, ask your supervisor first: its guide says students are not allowed to receive assistance with any aspect of the research, writing or proofreading of the essay beyond that which is permitted through their supervisor.
       </p>
 
       <h2>Where IBLens came from</h2>

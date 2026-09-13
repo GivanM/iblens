@@ -108,7 +108,7 @@ export default function IBEnglishExtendedEssay() {
         If you sit your exams in November 2026, the essay is marked out of 34 instead: Focus and
         method (6), Knowledge and understanding (6), Critical thinking (12), Presentation (4) and
         Engagement (6, marked on the three RPPF reflections). The advice above carries over, because
-        analysis, discussion and evaluation together make up Critical thinking.
+        research, analysis, and discussion and evaluation together make up Critical thinking.
       </p>
 
       <h2>Method: close reading, not plot summary</h2>
@@ -187,7 +187,7 @@ export default function IBEnglishExtendedEssay() {
         <li><Link href="/resources/ib-chemistry-extended-essay">Chemistry Extended Essay</Link></li>
         <li><Link href="/resources/ib-history-extended-essay">History Extended Essay</Link></li>
         <li><Link href="/resources/ib-economics-extended-essay">Economics Extended Essay</Link></li>
-        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE New Criteria 2027 (marked /30)</Link></li>
+        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE new criteria 2027 (marked out of 30)</Link></li>
       </ul>
 
     </ResourceArticle>

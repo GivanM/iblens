@@ -818,11 +818,11 @@ export default function EssayAnalyzer() {
 
           {essayType === "EE" ? (
             <p className="text-xs rounded-md border border-amber-300 bg-amber-50 text-amber-900 px-2.5 py-2">
-              The Extended Essay guide allows no assistance with the research, writing or proofreading beyond what your supervisor permits. Ask your supervisor before you use IBLens on your EE.
+              The Extended Essay guide says students are not allowed to receive assistance with any aspect of the research, writing or proofreading of the essay beyond that which is permitted through their supervisor. Ask your supervisor before you use IBLens on your EE.
             </p>
           ) : (
             <p className="text-xs text-muted-foreground">
-              The IB asks students not to receive assistance beyond what the subject or TOK guide permits, so check that your teacher and your school allow outside feedback on this work before you use IBLens.
+              The IB academic integrity policy asks students to abstain from receiving non-permitted assistance in the completion or editing of their work, such as from friends, relatives, other students or private tutors, so check that your teacher and your school allow outside feedback on this work before you use IBLens.
             </p>
           )}
           {essayType === "EE" && (
@@ -1432,13 +1432,13 @@ export default function EssayAnalyzer() {
             return (
               <Card>
                 <CardContent className="p-6">
-                  <h3 style={SERIF} className="text-xl font-bold mb-2">Your fastest wins: +{potential} marks on the table</h3>
+                  <h3 style={SERIF} className="text-xl font-bold mb-2">Where the most marks are missing: {potential} across these criteria</h3>
                   <ul className="space-y-1.5 mb-3">
                     {weakest.map((c: any) => (
                       <li key={c.name} className="text-sm text-muted-foreground"><strong className="text-foreground">{c.name}:</strong> {c.score}/{c.max} now, +{c.max - c.score} available</li>
                     ))}
                   </ul>
-                  {(isAuthenticated || (recheckTarget ? recheckTarget.rerunsLeft : (anonRerunsLeft ?? anonReportQ.data?.rerunsLeft ?? 0)) > 0) && (
+                  {(isAuthenticated ? !!resultAnalysisId && !rerunId : (recheckTarget ? recheckTarget.rerunsLeft : (anonRerunsLeft ?? anonReportQ.data?.rerunsLeft ?? 0)) > 0) && (
                     <p className="text-sm text-muted-foreground">Fix these in your draft using the comments above, then <strong>re-check</strong> the revised version to see how the {result.criteria.length === 1 ? "mark moves" : "marks move"}.</p>
                   )}
                   {isAuthenticated && resultAnalysisId && !rerunId && (

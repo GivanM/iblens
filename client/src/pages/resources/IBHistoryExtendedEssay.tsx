@@ -53,7 +53,7 @@ export default function IBHistoryExtendedEssay() {
       <ul>
         <li><strong>Argumentative:</strong> It invites a judgement, "to what extent", "how significant", "how far", not a description of what happened.</li>
         <li><strong>Bounded:</strong> It fixes the period, the place, and the actors, so the essay has edges.</li>
-        <li><strong>Debatable:</strong> Historians (or plausible interpretations) genuinely disagree about the answer, giving you something to weigh.</li>
+        <li><strong>Debatable:</strong> Historians (or plausible interpretations) disagree about the answer, giving you something to weigh.</li>
         <li><strong>Researchable:</strong> Primary and secondary sources exist, are accessible to you, and are in a language you can read.</li>
       </ul>
       <p>
@@ -119,7 +119,7 @@ export default function IBHistoryExtendedEssay() {
         If you sit your exams in November 2026, the essay is marked out of 34 instead: Focus and
         method (6), Knowledge and understanding (6), Critical thinking (12), Presentation (4) and
         Engagement (6, marked on the three RPPF reflections). The advice above carries over, because
-        analysis, discussion and evaluation together make up Critical thinking.
+        research, analysis, and discussion and evaluation together make up Critical thinking.
       </p>
 
       <h2>Sources, method and historiography</h2>
@@ -202,7 +202,7 @@ export default function IBHistoryExtendedEssay() {
         <li><Link href="/resources/ib-chemistry-extended-essay">Chemistry Extended Essay</Link></li>
         <li><Link href="/resources/ib-english-extended-essay">English Extended Essay</Link></li>
         <li><Link href="/resources/ib-economics-extended-essay">Economics Extended Essay</Link></li>
-        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE New Criteria 2027 (marked /30)</Link></li>
+        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE new criteria 2027 (marked out of 30)</Link></li>
       </ul>
 
     </ResourceArticle>

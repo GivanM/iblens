@@ -37,6 +37,7 @@ import {
   moveDeviceLotsToAccount,
   findAccountCopyOf,
   reopenAccountChain,
+  findUnlockedCopyInChain,
   getUserById,
   getLatestAccountVersion,
   getOrderById,
@@ -63,7 +64,7 @@ import { LEMONSQUEEZY_VARIANTS, PRODUCT_KEY_TO_LS_SKU } from "../shared/pricing"
 import { randomUUID } from "crypto";
 import { PRODUCTS } from "./products";
 import { getRubric, buildRubricPromptFragment, unmarkableReason } from "../shared/rubrics";
-import { reconcileScores, isNotAssessableFromText, pickWeakest, previewBand, stripMarks, stripMarksDetailed, statesMark } from "./scores";
+import { reconcileScores, buildTeaser, computeTeaser, softTruncate } from "./scores";
 
 const IB_SUBJECTS = [
   "Business Management", "Economics", "History", "Biology", "Chemistry",
@@ -224,12 +225,6 @@ ORDER: list "risks" from the one costing the most marks to the least, "leverage_
  */
 
 /** Same rule for risks: never bill a student for a document the form did not ask for. */
-function isRiskAboutMissingReflection(r: any): boolean {
-  const text = `${r?.title || ""} ${r?.description || ""}`.toLowerCase();
-  if (!/\brpf\b|\brppf\b|reflect/.test(text)) return false;
-  return /missing|not submitted|absence|no reflection|without a reflect|automatic 0|automatic zero/.test(text);
-}
-
 /**
  * The exam session a stored report was marked on. Checks from /remark and older rows
  * saved none, and re-checking those on whatever the form showed moved a 34-mark
@@ -295,14 +290,6 @@ function normalizeDashes<T>(value: T): T {
 }
 
 /** Cut at a sentence boundary where possible so the teaser reads as deliberate, not broken. */
-function softTruncate(text: string, limit: number): string {
-  if (typeof text !== "string" || text.length <= limit) return text;
-  const window = text.slice(0, limit);
-  const lastStop = Math.max(window.lastIndexOf(". "), window.lastIndexOf("! "), window.lastIndexOf("? "));
-  if (lastStop > limit * 0.5) return window.slice(0, lastStop + 1);
-  return window.replace(/\s+\S*$/, "") + "\u2026";
-}
-
 /**
  * Free preview for a personal statement. The character arithmetic is given away in full — it is
  * factual, the applicant can verify it in the UCAS form anyway, and withholding it would just look
@@ -329,71 +316,6 @@ function buildUcasTeaser(result: any) {
   };
 }
 
-function buildTeaser(result: any) {
-  const criteria: any[] = Array.isArray(result?.criteria) ? result.criteria : [];
-  let weakest: any = pickWeakest(criteria).weakest;
-  const cell = previewBand(result);
-  const holistic = criteria.length === 1;
-  let commentTrimmed = false;
-  // Nothing in the preview's text may state a mark: only the weakest criterion's own mark,
-  // when it is shown, stays.
-  if (weakest && typeof weakest.comment === "string") {
-    const allow = !holistic && typeof weakest.score === "number" ? `${weakest.score}/${weakest.max}` : undefined;
-    const cleaned = stripMarksDetailed(weakest.comment, { allow, holistic });
-    commentTrimmed = cleaned.dropped > 0;
-    weakest = { ...weakest, comment: cleaned.text || "The full explanation is in the report." };
-  }
-  // Holistic instruments have a single criterion whose comment IS the whole verdict:
-  // truncate it in the teaser so the full reasoning stays behind the unlock.
-  if (weakest && holistic && typeof weakest.comment === "string" && weakest.comment.length > 320) {
-    weakest = { ...weakest, comment: softTruncate(weakest.comment, 320) };
-  }
-  // With a single holistic criterion its score is the exact mark, which the free
-  // preview does not include. The band stays visible.
-  if (weakest && criteria.length === 1) {
-    weakest = { ...weakest, score: null };
-  }
-  if (cell?.hideWeakest) weakest = null;
-  // A report marked on criteria shows the cell of the scale its total falls in, never a
-  // range the model centred on the total, which gave the paid mark away. A task marked as
-  // a whole keeps its IB band. Whether the total sits near a band edge is not shown: it
-  // would say where in the band the mark is.
-  const bandRange = cell
-    ? cell.band
-    : typeof result?.band_range === "string"
-      ? (result.band_range.match(/\d+\s*[-\u2013\u2014]\s*\d+|\d+/)?.[0] ?? result.band_range).trim()
-      : result?.band_range ?? null;
-  const risks = (Array.isArray(result?.risks) ? result.risks : [])
-    .filter((r: any) => !isRiskAboutMissingReflection(r))
-    .filter((r: any) => !statesMark(typeof r === "string" ? r : String(r?.title || ""), { holistic }))
-    // A preview that names no criterion lists no risks either: with so few totals possible,
-    // naming the weak parts of the draft would narrow it to the mark.
-    .filter(() => !cell?.hideWeakest)
-    .map((r: any) => ({
-    title: typeof r === "string" ? r : r?.title || "",
-    description: typeof r === "string" ? "" : softTruncate(stripMarks(String(r?.description || ""), { holistic }), 280),
-    hadDescription: typeof r !== "string" && !!String(r?.description || "").trim(),
-  }))
-    // A risk whose whole explanation stated marks is left out rather than shown as a bare title.
-    .filter((r: any) => !r.hadDescription || r.description)
-    .slice(0, 3)
-    .map(({ hadDescription, ...r }: any) => r);
-  return {
-    locked: true as const,
-    band_range: bandRange,
-    max_score: result?.max_score ?? null,
-    weakest_criterion: weakest,
-    weakest_comment_trimmed: !!weakest && commentTrimmed,
-    risks,
-    // Unassessed criteria (null score) are not sold as locked marks in the full report.
-    criteria_names: criteria.map((c) => ({ name: c?.name, max: c?.max, assessed: typeof c?.score === "number" })),
-    criteria_count: criteria.length,
-    _rubricAvailable: result?._rubricAvailable,
-    _rubricLabel: result?._rubricLabel,
-    _rubricTotalMarks: result?._rubricTotalMarks,
-    _wordCheck: result?._wordCheck ?? null,
-  };
-}
 
 // ---- Essay Analysis Router ----
 const essayRouter = router({
@@ -429,6 +351,13 @@ const essayRouter = router({
           : await getLatestAnonymousEssay(input.fingerprint);
         if (!rec || !rec.resultJson) throw new Error("No report found for this device");
         if (!(rec as any).unlocked) {
+          // Already open in the account (reopened there after a refund): open the device rows
+          // for the same purchase without charging a second time.
+          const openCopy = await findUnlockedCopyInChain(ctx.user.id, rec as any).catch(() => null);
+          if (openCopy) {
+            await claimAnonymousUnlock(rec.id, openCopy.unlockOrderId ?? null);
+            return { result: normalizeDashes(rec.resultJson) };
+          }
           await consumePaidEssayCredit(ctx.user.id);
           const orderId = await takeFromOldestLot({ userId: ctx.user.id });
           // As above: the request that lost the race returns its credit and does
@@ -1036,6 +965,8 @@ const essayRouter = router({
         }
         result._wordCheck = storableWordCheck(checkWordLimit(rubric, input.essayText));
         reconcileScores(result, { essayType: input.essayType, subject: input.subject, reflectionsPasted: !!input.reflections?.trim(), session: input.examSession });
+        // The preview is kept with the report, so the student is always shown the same one.
+        result._preview = computeTeaser(result);
 
         // Fill in the slot claimed before the model ran, or write a fresh row for
         // a run paid with a device credit.
@@ -1153,6 +1084,7 @@ const essayRouter = router({
         }
         result._wordCheck = storableWordCheck(checkWordLimit(rubric, input.essayText));
         reconcileScores(result, { essayType: input.essayType, subject: input.subject, reflectionsPasted: !!input.reflections?.trim(), session: input.examSession });
+        result._preview = computeTeaser(result);
 
         const analysis = await createAnalysis({
           userId: ctx.user.id,

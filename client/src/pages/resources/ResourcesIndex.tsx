@@ -28,7 +28,7 @@ const resources = [
   },
   {
     slug: "/resources/ib-extended-essay-new-criteria-2027",
-    title: "EE New Criteria 2027 (Marked /30)",
+    title: "EE new criteria 2027 (marked out of 30)",
     description: "The May 2027 Extended Essay rubric explained: Framework, Knowledge and understanding, Analysis, Discussion and evaluation, Reflection, what changed from the 34-mark rubric, and how to check your draft.",
     icon: FileText,
     readTime: "5 min read",
@@ -56,7 +56,7 @@ const resources = [
   },
   {
     slug: "/resources/ib-computer-science-ia-2027",
-    title: "Computer Science IA 2027 (Marked /30)",
+    title: "Computer Science IA 2027 (marked out of 30)",
     description: "The new CS IA criteria from May 2027: Problem specification, Planning, System overview, Development at 12 marks, Evaluation, and what changed from /34.",
     icon: Cpu,
     readTime: "3 min read",

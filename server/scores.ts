@@ -165,7 +165,7 @@ const HOLISTIC_MARK_WORDS = /\b(?:band|bands|level|levels|boundary|mark|marks|ma
 const SMALL_WORD = /\b(?:a|an)\s+(?:one|two|three|four|five|six|seven|eight|nine|ten)\b(?!-)/i;
 const SMALL_NUMBER = /\b(?:10|[0-9])\b(?!\s*(?:,\d{3}|words?|%|per ?cent|pages?|sources?|objects?|prompts?|titles?|areas?|examples?|claims?|paragraphs?|sections?|minutes?|hours?|years?|knowers?|perspectives?))/i;
 
-export type MarkTextOptions = { allow?: string; holistic?: boolean };
+export type MarkTextOptions = { allow?: string; holistic?: boolean; ownMax?: number; ownLetter?: string };
 
 /**
  * The free preview's text without any sentence that states a mark. The model sometimes
@@ -202,28 +202,84 @@ export function stripMarks(text: string, opts: MarkTextOptions = {}): string {
   return stripMarksDetailed(text, opts).text;
 }
 
-// A rule the student must know, not their mark: "receives no marks", "no higher than three",
-// "marking stops at the limit". Removing these hid consequences the guide attaches to the work.
-const RULE = /\b(?:no marks|receives? zero|awarded zero|no higher than|cannot be higher than|marking stops|stops? reading|examiners? (?:do not|will not) read)\b/i;
+// A rule the student must know, not their mark: "an essay not on a prescribed title receives
+// no marks", "marking stops at the word limit". Kept only when it carries no number at all.
+const RULE = /\b(?:no marks|receives? zero|awarded zero|marking stops|stops? reading|examiners? (?:do not|will not) read)\b/i;
+// Numbers that measure the work rather than mark it: "4,000 words", "20%", "25 °C", "3 sources".
+const COUNTED_NOUNS = String.raw`(?:words?|characters?|pages?|sources?|documents?|articles?|objects?|prompts?|titles?|areas?|examples?|quotations?|participants?|samples?|trials?|repeats?|measurements?|readings?|data points?|variables?|questions?|paragraphs?|sections?|commentaries|units?|concepts?|poems?|texts?|works?|studies|references?|footnotes?|figures?|tables?|graphs?|charts?|diagrams?|interviews?|responses?|people|students?|knowers?|perspectives?|ways?|parts?|objects?|criteria)`;
+// "two areas of knowledge", "one of four key concepts", "one of the prescribed titles", "3 of 5 sources".
+const COUNTED_WORDS = new RegExp(String.raw`\b(?:\d[\d,.]*|one|two|three|four|five|six|seven|eight|nine|ten)\s+(?:of\s+(?:the\s+|your\s+|its\s+)?(?:\d+\s+|one\s+|two\s+|three\s+|four\s+|five\s+|six\s+|seven\s+|eight\s+|nine\s+|ten\s+)?)?(?:(?!(?:because|and|but|or|so|as|since|while|for|to|the|a|an|is|are|was|were|be|been|marks?|points?|out|band|level|score[ds]?|awarded)\b)[a-z-]+\s+)?${COUNTED_NOUNS}\b`, "gi");
+// Mathematics in a comment: "x = 1.2", "2x", "3^2".
+const MATHS = /\b[a-z]\s*[=<>≤≥]\s*[-−]?\d[\d.,]*[a-z]?(?:\s*[+\-−×*^]\s*\d[\d.,]*[a-z]?)*|\b[a-z]\s*[+\-−×*^]\s*\d[\d.,]*|\b\d[\d.,]*[a-z]\b|\d\s*[\^×*+]\s*\d|\^\d/gi;
+const SAFE_NUMBER = /\b\d[\d,.]*\s*(?:words?|characters?|%|per ?cent|pages?|minutes?|mins?|hours?|seconds?|days?|weeks?|months?|years?|°\s*[CF]?|degrees?|cm|mm|km|kg|mg|ml|mol|hz|kpa|sources?|documents?|articles?|objects?|prompts?|titles?|areas?|examples?|quotations?|participants?|samples?|trials?|repeats?|measurements?|readings?|data points?|variables?|questions?|paragraphs?|sections?|commentaries|units?|concepts?|poems?|texts?|works?|studies|references?|footnotes?|figures?|tables?|graphs?|charts?|diagrams?|interviews?|responses?|people|students?|decimal places?|significant figures?|s\.f\.|d\.p\.)(?![A-Za-z])/gi;
+// Number words, including compounds up to forty-five, turned into numbers so they are judged like digits.
+const UNITS: Record<string, number> = { zero: 0, nil: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19 };
+const TENS: Record<string, number> = { twenty: 20, thirty: 30, forty: 40 };
+const NUMBER_WORDS_ANY = /\b(?:(twenty|thirty|forty)(?:[-\s](one|two|three|four|five|six|seven|eight|nine))?|(zero|nil|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen))\b/gi;
+// "One" that is not a number: "no one", "one of the", "one another", "this one".
+const NOT_A_NUMBER = /\b(?:no|each|this|that|the|any|every|which|someone|anyone)\s+one\b|\bone\s+(?:another|of\b)|\bone-(?=[a-z])/gi;
+function numberWordsToDigits(text: string): string {
+  return text.replace(NOT_A_NUMBER, " ").replace(NUMBER_WORDS_ANY, (_m, tens, unit, single) => {
+    if (tens) return String(TENS[tens.toLowerCase()] + (unit ? UNITS[unit.toLowerCase()] : 0));
+    return String(UNITS[String(single).toLowerCase()]);
+  });
+}
+// Symbols with numbers in them, prices and rates are not marks: "AD1 to AD2", "BC547", "€90,000", "15 per group", "173 lux".
+const ALNUM = /\b[A-Za-zκαβγδλμ]+[-+]?\d+[A-Za-z0-9]*\b/g;
+const CURRENCY = /[€$£¥₹]\s?\d[\d,.]*\s*(?:[kKmMbB]n?|million|billion)?/g;
+const PER_UNIT = /\b\d[\d,.]*\s*(?:per\s+\w+|lux|lm|nm|µm|rpm|ppm|ppb|mA|mV|kV|kW|kJ|MJ|Pa|kPa|atm|bar|mmHg|dB|Hz|K|V|A|W|J|N|g|s|ms|min|h|L|mL|dm3|cm3|M|mM|customers?|respondents?|pupils?|children|adults?|subjects?|patients?|plants?|seeds?|pots?|leaves|households?|firms?|countries|cases?)\b/g;
+// List numbering, labels and measured values are not marks: "(2)", "Figure 1", "Section 5", "1.18".
+const ENUMERATION = /(?:^|\s)\(?\d{1,2}[.)](?=\s)|\(\d{1,2}\)/g;
+const LABEL_NUMBER = /\b(?:figure|fig\.|table|section|appendix|source|document|step|stage|part|question|paragraph|page|line|equation|chapter|graph|diagram|object|trial|sample|group|experiment|version|model|method|level\s+of\s+significance)\s*\d+[a-z]?\b/gi;
+const DECIMAL = /[-−~≈]?\b\d+\.\d+\b/g;
+// A number word as a mark: "one mark", "two marks", "a score of two", "full marks".
+const NUMBER_WORD_MARK = /\b(?:zero|nil|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|full|maximum|minimum)\s+(?:\w+\s+)?(?:marks?|points?|out of|band|level)\b|\b(?:score|mark|awarded|band|level)\s+(?:of\s+)?(?:a\s+|an\s+)?(?:zero|nil|one|two|three|four|five|six|seven|eight|nine|ten)\b|\bfull marks\b|\b(?:high|low|mid)\s+(?:teens|twenties|thirties)\b/i;
+const YEAR = /\b(?:1[89]|20)\d{2}\b/g;
+const NUMBER_WORD = /\b(?:zero|nil|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|full marks|maximum|minimum|teens|twenties|thirties)\b/i;
+const NO_MARKS = /\b(?:no|zero|unearned|full|all)\s+(?:\w+\s+)?marks?\b|\bmarks?\s+(?:on|in|for)\s+any\b/i;
 
+/**
+ * Whether a sentence of the free preview could state or narrow a mark. Pattern lists kept
+ * missing new wordings, so the preview is now held to a blunter rule: no number is left once
+ * measurements of the work and years are set aside; in text about a task marked as a whole,
+ * no level, band or mark vocabulary and no nearness to a level; in the weakest criterion's
+ * comment, only its own shown mark.
+ */
 export function statesMark(s: string, opts: MarkTextOptions = {}): boolean {
   let t = String(s || "");
-  if (RULE.test(t) && !FRACTION.test(t) && !POSITION.test(t)) return false;
   if (opts.allow) {
     // The whole token only: removing "1/2" as a substring cut "21/25" down to "2 5".
     const [sc, mx] = opts.allow.split("/").map((x) => x.trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
     t = t.replace(new RegExp(`(?<![\\d.])${sc}\\s*\\/\\s*${mx}(?!\\.?\\d)`, "g"), " ");
   }
-  if (opts.holistic && (POSITION.test(t) || HOLISTIC_MARK_WORDS.test(t) || NEAR_LEVEL.test(t))) return true;
+  // Counted things first ("two sources"), then any number word left is judged as a number.
+  let measured = numberWordsToDigits(t.replace(COUNTED_WORDS, " "))
+    .replace(CURRENCY, " ")
+    .replace(ALNUM, " ")
+    .replace(ENUMERATION, " ")
+    .replace(LABEL_NUMBER, " ")
+    .replace(DECIMAL, " ")
+    .replace(COUNTED_WORDS, " ")
+    .replace(SAFE_NUMBER, " ")
+    .replace(YEAR, " ")
+    .replace(MATHS, " ")
+    .replace(PER_UNIT, " ")
+    // No IB mark or total goes above 45: larger numbers measure something else.
+    .replace(/\b\d{1,3}(?:,\d{3})+\b|\b\d+\b/g, (m) => (Number(m.replace(/,/g, "")) > 45 ? " " : m));
+  const aboutOthers = /\b(?:total|overall)\b/i.test(t) || (opts.ownLetter ? new RegExp(String.raw`\bcriteri(?:on|a)\s+(?![${opts.ownLetter}]\b)[a-g][12]?\b`, "i").test(t) : /\bcriteri(?:on|a)\s+[a-g]\b/i.test(t));
+  // Beside its own shown mark, the weakest criterion's comment may speak of that criterion's
+  // scale ("a score of 1", "for 5-6 marks", "to reach 3/3"): it says nothing about the total.
+  if (opts.allow && opts.ownMax && !aboutOthers) {
+    measured = measured.replace(/\b\d+\s*(?:[-–—\/]\s*\d+)?\b/g, (m) => (m.match(/\d+/g) || []).every((n) => Number(n) <= opts.ownMax!) ? " " : m);
+  }
+  if (/\d/.test(measured)) return true;
+  if (RULE.test(t) && !POSITION.test(t) && !NEAR_LEVEL.test(t) && !NUMBER_WORD_MARK.test(t)) return false;
+  // "full marks" in the weakest criterion's own comment is about that criterion's scale.
+  if (!(opts.allow && !aboutOthers) && (NO_MARKS.test(t) || NUMBER_WORD_MARK.test(measured))) return true;
   if (POSITION.test(t)) return true;
-  // With the criterion's own mark shown, "the top band descriptor asks for" gives nothing
-  // away; it still does when it is about the total.
-  const aboutTotal = /\b(?:total|overall)\b/i.test(t);
-  if (RANGE_MARK.test(t) || WORD_MARK.test(t) || CRITERION_COLON.test(t) || CRITERION_NUMBER.test(t) || TOTAL_IS.test(t) || CAPPED.test(t)) return true;
-  if ((AT_TOP.test(t) || GOT.test(t)) && (!opts.allow || aboutTotal)) return true;
-  t = t.replace(RANGE, " ");
-  if (FRACTION.test(t) || COUNTED.test(t) || GIVEN.test(t) || N_OF_N.test(t)) return true;
-  return !!opts.holistic && (SMALL_NUMBER.test(t) || SMALL_WORD.test(t));
+  if (opts.holistic) return HOLISTIC_MARK_WORDS.test(t) || NEAR_LEVEL.test(t);
+  if (opts.allow) return AT_TOP.test(t) && aboutOthers;
+  return AT_TOP.test(t);
 }
 
 export type ReconcileOptions = {
@@ -273,4 +329,98 @@ export function reconcileScores(result: any, opts: ReconcileOptions) {
   result.max_score = max;
   result.band_range = previewBand(result)?.band ?? bandCell(total, max);
   return result;
+}
+
+export function isRiskAboutMissingReflection(r: any): boolean {
+  const text = `${r?.title || ""} ${r?.description || ""}`.toLowerCase();
+  if (!/\brpf\b|\brppf\b|reflect/.test(text)) return false;
+  return /missing|not submitted|absence|no reflection|without a reflect|automatic 0|automatic zero/.test(text);
+}
+
+export function softTruncate(text: string, limit: number): string {
+  if (typeof text !== "string" || text.length <= limit) return text;
+  const window = text.slice(0, limit);
+  const lastStop = Math.max(window.lastIndexOf(". "), window.lastIndexOf("! "), window.lastIndexOf("? "));
+  if (lastStop > limit * 0.5) return window.slice(0, lastStop + 1);
+  return window.replace(/\s+\S*$/, "") + "\u2026";
+}
+
+export function computeTeaser(result: any) {
+  const criteria: any[] = Array.isArray(result?.criteria) ? result.criteria : [];
+  let weakest: any = pickWeakest(criteria).weakest;
+  const cell = previewBand(result);
+  const holistic = criteria.length === 1;
+  let commentTrimmed = false;
+  // Nothing in the preview's text may state a mark: only the weakest criterion's own mark,
+  // when it is shown, stays.
+  if (weakest && typeof weakest.comment === "string") {
+    const allow = !holistic && typeof weakest.score === "number" ? `${weakest.score}/${weakest.max}` : undefined;
+    const ownLetter = String(weakest.name || "").match(/criterion\s+([a-g])/i)?.[1];
+    const cleaned = stripMarksDetailed(weakest.comment, { allow, holistic, ownMax: allow ? Number(weakest.max) : undefined, ownLetter });
+    commentTrimmed = cleaned.dropped > 0;
+    weakest = { ...weakest, comment: cleaned.text || "The full explanation is in the report." };
+  }
+  // Holistic instruments have a single criterion whose comment IS the whole verdict:
+  // truncate it in the teaser so the full reasoning stays behind the unlock.
+  if (weakest && holistic && typeof weakest.comment === "string" && weakest.comment.length > 320) {
+    weakest = { ...weakest, comment: softTruncate(weakest.comment, 320) };
+  }
+  // With a single holistic criterion its score is the exact mark, which the free
+  // preview does not include. The band stays visible.
+  if (weakest && criteria.length === 1) {
+    weakest = { ...weakest, score: null };
+  }
+  if (cell?.hideWeakest) weakest = null;
+  // A report marked on criteria shows the cell of the scale its total falls in, never a
+  // range the model centred on the total, which gave the paid mark away. A task marked as
+  // a whole keeps its IB band. Whether the total sits near a band edge is not shown: it
+  // would say where in the band the mark is.
+  const bandRange = cell
+    ? cell.band
+    : typeof result?.band_range === "string"
+      ? (result.band_range.match(/\d+\s*[-\u2013\u2014]\s*\d+|\d+/)?.[0] ?? result.band_range).trim()
+      : result?.band_range ?? null;
+  const risks = (Array.isArray(result?.risks) ? result.risks : [])
+    .filter((r: any) => !isRiskAboutMissingReflection(r))
+    .filter((r: any) => !statesMark(typeof r === "string" ? r : String(r?.title || ""), { holistic }))
+    // A preview that names no criterion lists no risks either: with so few totals possible,
+    // naming the weak parts of the draft would narrow it to the mark.
+    .filter(() => !cell?.hideWeakest)
+    .map((r: any) => ({
+    title: typeof r === "string" ? r : r?.title || "",
+    description: typeof r === "string" ? "" : softTruncate(stripMarks(String(r?.description || ""), { holistic }), 280),
+    hadDescription: typeof r !== "string" && !!String(r?.description || "").trim(),
+  }))
+    // A risk whose whole explanation stated marks is left out rather than shown as a bare title.
+    .filter((r: any) => !r.hadDescription || r.description)
+    .slice(0, 3)
+    .map(({ hadDescription, ...r }: any) => r);
+  return {
+    locked: true as const,
+    band_range: bandRange,
+    max_score: result?.max_score ?? null,
+    weakest_criterion: weakest,
+    weakest_comment_trimmed: !!weakest && commentTrimmed,
+    risks,
+    // Unassessed criteria (null score) are not sold as locked marks in the full report.
+    criteria_names: criteria.map((c) => ({ name: c?.name, max: c?.max, assessed: typeof c?.score === "number" })),
+    criteria_count: criteria.length,
+    _rubricAvailable: result?._rubricAvailable,
+    _rubricLabel: result?._rubricLabel,
+    _rubricTotalMarks: result?._rubricTotalMarks,
+    _wordCheck: result?._wordCheck ?? null,
+  };
+}
+
+/**
+ * The free preview of a report marked on criteria or as a whole. Once shown, a preview is kept
+ * with the report and served as it was: a later change to how previews are built used to show
+ * the same student a second range, and the two together narrowed the mark.
+ */
+export function buildTeaser(result: any) {
+  const frozen = result?._preview;
+  if (frozen && typeof frozen === "object" && frozen.locked === true) {
+    return { ...frozen, _wordCheck: result?._wordCheck ?? frozen._wordCheck ?? null };
+  }
+  return computeTeaser(result);
 }

@@ -16,7 +16,8 @@ export function sentenceCase(name: string): string {
   return words.map((w, i) => {
     const bare = w.replace(/[^A-Za-z]/g, "");
     if (i === 0 || KEEP_CAPS.has(bare) || (bare === "Essay" && words[i - 1] === "Extended") || /[A-Z].*[A-Z]/.test(w) || /\d/.test(w)) return w;
-    return w.charAt(0).toLowerCase() + w.slice(1);
+    // The first letter, even after a bracket: "(Marked /30)".
+    return w.replace(/[A-Za-z]/, (c) => c.toLowerCase());
   }).join(" ");
 }
 

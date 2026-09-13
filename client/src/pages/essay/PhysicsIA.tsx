@@ -26,7 +26,7 @@ const config: SubjectConfig = {
     ],
     rubricItems: [
       { title: "Research design, 6 marks", text: "A focused research question described within a specific context, with the physics that predicts the relationship, and the methodological choices explained: how each variable is measured, the range and interval of the independent variable, repeats, control variables and safety. The method should be described well enough to reproduce." },
-      { title: "Data analysis, 6 marks", text: "Data recorded and processed clearly and precisely, with units, appropriate significant figures, labelled graphs and an appropriate treatment of uncertainties, for example uncertainty bars and the uncertainty in a gradient when a graph is used to find a value." },
+      { title: "Data analysis, 6 marks", text: "Data recorded and processed clearly and precisely, with units, appropriate significant figures, correctly annotated tables and any graphs you use, and an appropriate treatment of uncertainties, for example uncertainty bars and the uncertainty in a gradient when a graph is used to find a value." },
       { title: "Conclusion, 6 marks", text: "A conclusion consistent with the processed data and its uncertainties, justified by comparison with accepted physics, such as a theoretical prediction or a published value." },
       { title: "Evaluation, 6 marks", text: "The relative impact of specific weaknesses and limitations explained, such as how well variables were controlled, the precision of the measurements or the range of data collected, with realistic improvements that address them." },
     ],

@@ -38,7 +38,7 @@ export default function IBIAScorePredictor() {
       <p>Each of the three commentaries is marked on Diagrams, Terminology, Application and analysis, Key concept and Evaluation, 14 marks per commentary, and the portfolio earns 3 more under Criterion F for meeting the rubric requirements. A common loss: a supply and demand diagram that is drawn correctly but never tied back to what happened in the article. Evaluation means weighing the issue from different stakeholders and time frames, not restating the analysis after the word "however".</p>
 
       <h3>History</h3>
-      <p>The Historical Investigation has three sections. In Section 1 you evaluate two of your sources for their origins, purpose, value and limitations. Saying a source "might be biased" stays in the lower levels; the top level asks for a detailed analysis and evaluation of two sources, with explicit discussion of their value and limitations for the investigation, with reference to their origins, purpose and content.</p>
+      <p>The Historical Investigation has three sections. In Section 1 you analyse the value and limitations of two of your sources, with reference to their origins, purpose and content. Saying a source "might be biased" stays in the lower levels; the top level asks for a detailed analysis and evaluation of two sources, with explicit discussion of their value and limitations for the investigation, with reference to their origins, purpose and content.</p>
 
       <h3>Psychology</h3>
       <p>Through November 2026 the IA is a report on a simple experiment based on a published study, theory or model, marked on Introduction, Exploration, Analysis and Evaluation. The Introduction needs an operationalised hypothesis. Evaluation is where marks slip most easily: the results are not related back to the original study, or the conclusions claim more than a small sample can support. From May 2027 the IA becomes a research proposal marked out of 24.</p>
@@ -82,8 +82,8 @@ export default function IBIAScorePredictor() {
 
       <h2>Related tools</h2>
       <ul>
-        <li><Link href="/resources/ib-score-calculator">IB Score Calculator</Link></li>
-        <li><Link href="/resources/ib-grade-boundaries">IB Grade Boundaries</Link></li>
+        <li><Link href="/resources/ib-score-calculator">IB score calculator</Link></li>
+        <li><Link href="/resources/ib-grade-boundaries">IB grade boundaries</Link></li>
         <li><Link href="/remark">Is an IB re-mark worth it?</Link></li>
       </ul>
     </ResourceArticle>

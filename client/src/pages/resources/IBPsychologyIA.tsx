@@ -54,7 +54,7 @@ export default function IBPsychologyIA() {
         <li><strong>Nothing the guide excludes:</strong> no placebos, no food, drink, smoking or drugs, and no deprivation of sleep or food.</li>
         <li><strong>A dependent variable you can measure as a number:</strong> words recalled, seconds taken, a rating on a scale.</li>
         <li><strong>Participants you can reach:</strong> a study that needs a clinical population, an age group you cannot access or specialist equipment will not work. The guide sets no minimum sample, but with only a handful of people per condition an inferential test has very little to work with.</li>
-        <li><strong>Ethics the guide allows:</strong> experiments that cause anxiety, stress, pain or discomfort are not permitted, and neither are conformity or obedience experiments. Partial deception is allowed only where full knowledge would change the outcome, no harm is done and participants are fully debriefed. Consent must be given on a consent form, children under 12 cannot take part, and participants aged 12 to 16 need the written consent of a parent or guardian.</li>
+        <li><strong>Ethics the guide allows:</strong> experiments that cause anxiety, stress, pain or discomfort are not permitted, and neither are conformity or obedience experiments. Partial deception is allowed only where full knowledge would change the outcome, no harm is done and participants are fully debriefed. Consent must be given on a consent form, children under 12 cannot take part, and participants aged 12 to 16 need the written consent of a parent or guardian, and an experiment with children in a school also needs the written consent of the teachers concerned.</li>
       </ol>
 
       <h2>Studies that adapt well</h2>

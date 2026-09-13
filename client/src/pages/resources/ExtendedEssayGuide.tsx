@@ -13,7 +13,7 @@ export default function ExtendedEssayGuide() {
       <h1>The complete IB Extended Essay guide</h1>
 
       <p>
-        <strong>In short: the Extended Essay is a 4,000-word independent research essay. From the May 2027 session it is marked out of 30 (Framework for the essay 6, Knowledge and understanding 6, Analysis and line of argument 6, Discussion and evaluation 8, Reflection 4); through November 2026 it is marked out of 34 on the older criteria. Together with TOK it contributes up to 3 bonus points to your Diploma.</strong>
+        <strong>the Extended Essay is a 4,000-word independent research essay. From the May 2027 session it is marked out of 30 (Framework for the essay 6, Knowledge and understanding 6, Analysis and line of argument 6, Discussion and evaluation 8, Reflection 4); through November 2026 it is marked out of 34 on the older criteria. Together with TOK it contributes up to 3 bonus points to your Diploma.</strong>
       </p>
 
       <p>
@@ -88,7 +88,7 @@ export default function ExtendedEssayGuide() {
       </p>
 
       <ul>
-        <li><strong>Title page:</strong> the title, the research question, the subject the essay is registered in, and the word count. Leave off your name, your supervisor's name, your candidate number and your school's name: Extended Essays are marked anonymously.</li>
+        <li><strong>Title page:</strong> from May 2027, your student code, your research question, the DP subject the essay relates to (for an interdisciplinary essay, the two DP subjects and the interdisciplinary framework it connects with) and the word count; through November 2026, the title, the research question, the subject the essay is registered in (with the category for a language essay, or the theme and the two subjects for a world studies essay) and the word count. If any footnote does more than give a reference, the word count on the title page must include it and state that "the stated word count includes explanatory footnotes". Leave off your name, your supervisor's name, your candidate session number and your school's name: Extended Essays are marked anonymously.</li>
         <li><strong>Table of contents:</strong> With page numbers</li>
         <li><strong>Introduction (300-400 words):</strong> Context, research question, scope, methodology overview</li>
         <li><strong>Body (3,000-3,200 words):</strong> Organised into logical sections with clear headings, presenting evidence, analysis, and argumentation</li>
@@ -180,7 +180,7 @@ export default function ExtendedEssayGuide() {
       </p>
 
       <p>
-        <strong>Clear, focused research question</strong> that is genuinely interesting and allows for in-depth analysis within 4,000 words. The best RQs often emerge from genuine curiosity rather than from trying to find a "safe" topic.
+        <strong>Clear, focused research question</strong> that is interesting and allows for in-depth analysis within 4,000 words. The best RQs often emerge from genuine curiosity rather than from trying to find a "safe" topic.
       </p>
 
       <p>
@@ -226,7 +226,7 @@ export default function ExtendedEssayGuide() {
       </p>
 
       <p>
-        For more on how IB assessment criteria work across all essay types, see our guide on <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB Essay Criteria Explained</Link>. If you are working on an IA instead, check our <Link href="/resources/ib-internal-assessment-guide" className="text-primary hover:underline">Internal Assessment Guide</Link>.
+        For more on how IB assessment criteria work across all essay types, see our guide on <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB essay criteria explained</Link>. If you are working on an IA instead, check our <Link href="/resources/ib-internal-assessment-guide" className="text-primary hover:underline">Internal Assessment guide</Link>.
       </p>
       <h2>Extended Essay by subject</h2>
 

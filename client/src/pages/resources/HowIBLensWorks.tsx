@@ -16,9 +16,6 @@ export default function HowIBLensWorks() {
         IBLens gives AI feedback on IB Diploma coursework. It reads coursework against the published assessment criteria: criterion by criterion for the Internal Assessment and the Extended Essay, and against the single holistic scale for TOK, which has no sub-criteria. The report comes back in about a minute.
       </p>
 
-      <p>
-        This page explains exactly how IBLens works: what happens when you paste an essay, how the AI generates its feedback, what the output looks like, what the tool can and cannot do, and how it compares to alternatives like private tutors or peer review.
-      </p>
 
       <h2>What IBLens does</h2>
 
@@ -64,7 +61,7 @@ export default function HowIBLensWorks() {
       <h2>What feedback looks like</h2>
 
       <p>
-        When you receive your IBLens analysis, the output is laid out in this order. Here is what a typical analysis includes:
+        The report is laid out in this order:
       </p>
 
       <p>
@@ -85,8 +82,7 @@ export default function HowIBLensWorks() {
 
       <h2>Limitations and what AI can and cannot do</h2>
 
-      <p>
-        No AI tool is a perfect substitute for human judgement, and understanding the limitations helps you use the tool effectively:
+      <p> What IBLens cannot do:
       </p>
 
       <h3>What the report looks for</h3>
@@ -110,7 +106,7 @@ export default function HowIBLensWorks() {
       <h2>Privacy and data handling</h2>
 
       <p>
-        Here is how IBLens handles your data:
+        How IBLens handles your data:
       </p>
 
       <ul>
@@ -128,7 +124,7 @@ export default function HowIBLensWorks() {
       <h2>Pricing overview</h2>
 
       <p>
-        IBLens offers several pricing tiers to match different needs:
+        Prices:
       </p>
 
       <table>
@@ -227,7 +223,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        The most effective approach combines multiple feedback sources: use IBLens for rapid, criterion-based feedback during revision, and your teacher for authoritative subject guidance. Check with your teacher before you use any outside feedback, peers included, because the IB academic integrity policy asks students not to receive assistance beyond what the subject guide permits. The Extended Essay is the exception: its guide allows no help with the research, writing or proofreading beyond what your supervisor permits, so ask your supervisor before using IBLens or anyone else on it.
+        The most effective approach combines multiple feedback sources: use IBLens for rapid, criterion-based feedback during revision, and your teacher for authoritative subject guidance. Check with your teacher before you use any outside feedback, peers included, because the IB academic integrity policy asks students to abstain from receiving non-permitted assistance in the completion or editing of their work, such as from friends, relatives, other students or private tutors. The Extended Essay is the exception: its guide says students are not allowed to receive assistance with any aspect of the research, writing or proofreading of the essay beyond that which is permitted through their supervisor, so ask your supervisor before using IBLens or anyone else on it.
       </p>
 
       <p>

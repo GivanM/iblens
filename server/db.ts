@@ -1106,6 +1106,18 @@ export async function getLatestAccountVersion(headId: number, userId: number) {
 }
 
 /** An account's copy of a device report, if the account has one. */
+/** An unlocked account copy of any row in a device report's chain, for this user. */
+export async function findUnlockedCopyInChain(userId: number, deviceRow: { id: number; rerunOf?: number | null }) {
+  const db = await getDb();
+  if (!db) return null;
+  const headId = deviceRow.rerunOf ?? deviceRow.id;
+  const chain = await db.select({ id: anonymousAnalyses.id }).from(anonymousAnalyses).where(eq(anonymousAnalyses.rerunOf, headId));
+  const ids = [headId, ...(chain as any[]).map((r) => r.id)];
+  const rows = await db.select({ id: analyses.id, unlockOrderId: analyses.unlockOrderId }).from(analyses)
+    .where(and(eq(analyses.userId, userId), inArray(analyses.adoptedFromId, ids), eq(analyses.unlocked, true))).limit(1);
+  return (rows[0] as any) ?? null;
+}
+
 /** Open a locked account copy and its re-check copies, for the purchase that paid for them. */
 export async function reopenAccountChain(copyId: number, orderId: string | null) {
   const db = await getDb();
@@ -1504,9 +1516,14 @@ export async function claimAnalysisUnlock(id: number, orderId?: string | null): 
     // After a refund the newest row can be a re-check. Paying for it opens the report it
     // belongs to as well, where the re-check allowance is counted.
     const [row] = await db.select({ rerunOf: analyses.rerunOf }).from(analyses).where(eq(analyses.id, id)).limit(1);
+    const headId = row?.rerunOf ?? id;
     if (row?.rerunOf) {
       await db.update(analyses).set(opened).where(and(eq(analyses.id, row.rerunOf), eq(analyses.unlocked, false)));
     }
+    // The report's other re-check versions, locked by the same refund, open with it: left locked,
+    // they were offered for sale again although this payment covers them.
+    await db.update(analyses).set({ unlocked: true, ...(orderId ? { unlockOrderId: orderId } : {}) })
+      .where(and(eq(analyses.rerunOf, headId), eq(analyses.unlocked, false)));
   }
   return claimed;
 }
@@ -1526,9 +1543,14 @@ export async function claimAnonymousUnlock(id: number, orderId?: string | null):
     // After a refund the newest row can be a re-check. Paying for it opens the report it
     // belongs to as well, where the re-check allowance is counted.
     const [row] = await db.select({ rerunOf: anonymousAnalyses.rerunOf }).from(anonymousAnalyses).where(eq(anonymousAnalyses.id, id)).limit(1);
+    const headId = row?.rerunOf ?? id;
     if (row?.rerunOf) {
       await db.update(anonymousAnalyses).set(opened).where(and(eq(anonymousAnalyses.id, row.rerunOf), eq(anonymousAnalyses.unlocked, false)));
     }
+    // The report's other re-check versions, locked by the same refund, open with it: left locked,
+    // they were offered for sale again although this payment covers them.
+    await db.update(anonymousAnalyses).set({ unlocked: true, ...(orderId ? { unlockOrderId: orderId } : {}) })
+      .where(and(eq(anonymousAnalyses.rerunOf, headId), eq(anonymousAnalyses.unlocked, false)));
   }
   return claimed;
 }
@@ -1585,7 +1607,7 @@ export async function consumeAnalysisRerun(id: number, userId: number) {
   // re-checks come from that same allowance. Without this, every re-check was a
   // fresh report with two more free runs attached to it, for ever.
   if (rec.rerunOf) {
-    return { ok: false as const, reason: "Re-checks belong to the report you bought. Open that one to use the second." };
+    return { ok: false as const, reason: "Re-checks belong to the report you bought. Open that report to use any re-check it has left." };
   }
   const started = rec.unlockedAt ? new Date(rec.unlockedAt).getTime() : new Date(rec.createdAt).getTime();
   const days = (Date.now() - started) / 86400000;

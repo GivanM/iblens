@@ -95,10 +95,10 @@ export default function IBIAGrader() {
       <h2>Subject-specific IA guides</h2>
 
       <ul>
-        <li><Link href="/resources/ib-biology-ia-examples">Biology IA Examples</Link></li>
-        <li><Link href="/resources/ib-chemistry-ia-examples">Chemistry IA Examples</Link></li>
-        <li><Link href="/resources/ib-physics-ia-examples">Physics IA Examples</Link></li>
-        <li><Link href="/resources/ib-math-ia-examples">Math IA Examples</Link></li>
+        <li><Link href="/resources/ib-biology-ia-examples">Biology IA examples</Link></li>
+        <li><Link href="/resources/ib-chemistry-ia-examples">Chemistry IA examples</Link></li>
+        <li><Link href="/resources/ib-physics-ia-examples">Physics IA examples</Link></li>
+        <li><Link href="/resources/ib-math-ia-examples">Math IA examples</Link></li>
         <li><Link href="/resources/ib-ia-feedback">Check your IA against the criteria</Link></li>
       </ul>
 

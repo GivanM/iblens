@@ -13,7 +13,7 @@ export default function InternalAssessmentGuide() {
       <h1>The complete IB Internal Assessment guide</h1>
 
       <p>
-        <strong>In short: every IB subject includes an internally assessed component marked against published criteria: the sciences out of 24, History and Business Management out of 25, Mathematics out of 20, Economics 14 per commentary. Your teacher marks it and the IB moderates a sample, so the criteria are what count.</strong>
+        <strong>every IB subject includes an internally assessed component marked against published criteria: the sciences out of 24, History and Business Management out of 25, Mathematics out of 20, Economics 14 per commentary. Your teacher marks it and the IB moderates a sample, so the criteria are what count.</strong>
       </p>
 
       <p>
@@ -31,7 +31,7 @@ export default function InternalAssessmentGuide() {
       </p>
 
       <ul>
-        <li><strong>Group 1 (Studies in Language and Literature):</strong> the individual oral, a recorded oral on a global issue explored through an extract from each of two works (in Language and Literature, one literary work and one non-literary body of work)</li>
+        <li><strong>Group 1 (Studies in Language and Literature):</strong> the individual oral, a recorded oral on a global issue explored through an extract from each of two works (in Literature, one work originally written in the language studied and one work studied in translation; in Language and Literature, one literary work and one non-literary body of work)</li>
         <li><strong>Group 2 (Language Acquisition):</strong> an individual oral, based on a visual stimulus at SL and an extract from a literary work at HL in Language B</li>
         <li><strong>Group 3 (Individuals and Societies):</strong> a written investigation (History: 2,200 words; Business Management: 1,800 words; Economics: three commentaries of up to 800 words each; Psychology: an experimental report through November 2026, and from May 2027 a research proposal marked out of 24)</li>
         <li><strong>Group 4 (Sciences):</strong> Scientific investigation (Biology, Chemistry, Physics: up to 3,000 words, marked out of 24)</li>
@@ -64,7 +64,7 @@ export default function InternalAssessmentGuide() {
       <h3>Mathematics (Group 5)</h3>
 
       <p>
-        The mathematical exploration asks you to explore a topic of your own choosing. There is no fixed structure, but the criteria look for <strong>personal engagement</strong> with the mathematics, appropriate notation and terminology, and mathematics used with understanding rather than only calculation. The strongest explorations connect the mathematics to a context that genuinely interests the student, then use mathematics at the level of the course within that context.
+        The mathematical exploration asks you to explore a topic of your own choosing. There is no fixed structure, but the criteria look for <strong>personal engagement</strong> with the mathematics, appropriate notation and terminology, and mathematics used with understanding rather than only calculation. The strongest explorations connect the mathematics to a context that interests the student, then use mathematics at the level of the course within that context.
       </p>
 
       <h3>Economics (Group 3)</h3>
@@ -91,7 +91,7 @@ export default function InternalAssessmentGuide() {
           <tr>
             <td><strong>Research Question / Focus</strong></td>
             <td>Clear, specific, answerable question appropriate to the subject</td>
-            <td>Too broad, too vague, or not genuinely investigable</td>
+            <td>Too broad, too vague, or not investigable</td>
           </tr>
           <tr>
             <td><strong>Methodology / Investigation</strong></td>
@@ -213,7 +213,7 @@ export default function InternalAssessmentGuide() {
       </p>
 
       <p>
-        For a deeper understanding of how criterion-based marking works across all IB essay types, see our <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB Essay Criteria Explained</Link> guide. If you are working on your Extended Essay alongside your IA, our <Link href="/resources/ib-extended-essay-guide" className="text-primary hover:underline">Extended Essay Guide</Link> covers the specific requirements for that component. For understanding how your IA mark contributes to your overall IB score, check our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">IB Grade Boundaries</Link> explainer.
+        For a deeper understanding of how criterion-based marking works across all IB essay types, see our <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB essay criteria explained</Link> guide. If you are working on your Extended Essay alongside your IA, our <Link href="/resources/ib-extended-essay-guide" className="text-primary hover:underline">Extended Essay Guide</Link> covers the specific requirements for that component. For understanding how your IA mark contributes to your overall IB score, check our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">IB grade boundaries</Link> explainer.
       </p>
 
       <p>
@@ -222,10 +222,10 @@ export default function InternalAssessmentGuide() {
       <h2>Subject-specific IA guides</h2>
 
       <ul>
-        <li><Link href="/resources/ib-biology-ia-examples">Biology IA Examples</Link></li>
-        <li><Link href="/resources/ib-chemistry-ia-examples">Chemistry IA Examples</Link></li>
-        <li><Link href="/resources/ib-physics-ia-examples">Physics IA Examples</Link></li>
-        <li><Link href="/resources/ib-math-ia-examples">Math IA Examples</Link></li>
+        <li><Link href="/resources/ib-biology-ia-examples">Biology IA examples</Link></li>
+        <li><Link href="/resources/ib-chemistry-ia-examples">Chemistry IA examples</Link></li>
+        <li><Link href="/resources/ib-physics-ia-examples">Physics IA examples</Link></li>
+        <li><Link href="/resources/ib-math-ia-examples">Math IA examples</Link></li>
         <li><Link href="/resources/ib-economics-ia">Economics IA</Link></li>
         <li><Link href="/resources/ib-history-ia">History IA</Link></li>
       </ul>

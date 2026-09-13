@@ -173,7 +173,7 @@ export default function IBHistoryIA() {
         <li><Link href="/resources/ib-economics-ia">Economics IA</Link></li>
         <li><Link href="/resources/ib-psychology-ia">Psychology IA</Link></li>
         <li><Link href="/resources/ib-ia-feedback">Check your IA against the criteria</Link></li>
-        <li><Link href="/resources/ib-ia-grader">IB IA Grader</Link></li>
+        <li><Link href="/resources/ib-ia-grader">IB IA grader</Link></li>
       </ul>
 
     </ResourceArticle>

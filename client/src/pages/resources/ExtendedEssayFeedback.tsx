@@ -16,7 +16,7 @@ export default function ExtendedEssayFeedback() {
         The Extended Essay is the one piece of IB work where feedback is both most valuable and most rationed. Your supervisor's written comments are limited to one complete draft, supervisors cannot edit your work, and by the time the deadline is close, most students have exactly one question: <em>is this good enough, and what do I fix first?</em> This guide covers every legitimate feedback channel, what each one can tell you, what it cannot, and when in the process to use it.
       </p>
 
-      <h2>The feedback channels, honestly compared</h2>
+      <h2>The feedback channels compared</h2>
 
       <table>
         <thead>
@@ -44,7 +44,7 @@ export default function ExtendedEssayFeedback() {
       </p>
 
       <p>
-        The highest-leverage self-check questions, whichever rubric applies:
+        The most useful self-check questions, whichever rubric applies:
       </p>
 
       <ul>
@@ -84,8 +84,8 @@ export default function ExtendedEssayFeedback() {
       <h2>Related resources</h2>
 
       <ul>
-        <li><Link href="/resources/ib-extended-essay-guide">IB Extended Essay Guide</Link></li>
-        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE New Criteria 2027 (Marked /30)</Link></li>
+        <li><Link href="/resources/ib-extended-essay-guide">IB Extended Essay guide</Link></li>
+        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE new criteria 2027 (marked out of 30)</Link></li>
         <li><Link href="/resources/ib-ee-examples-by-subject">EE Examples by Subject</Link></li>
       </ul>
     </ResourceArticle>

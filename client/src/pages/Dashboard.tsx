@@ -286,7 +286,7 @@ export default function Dashboard() {
                   className="flex-shrink-0 text-muted-foreground hover:text-destructive"
                   disabled={deleteAnalysis.isPending}
                   onClick={() => {
-                    if (!window.confirm("Delete this report? IBLens never saved the text of your essay, but the report and its research question go for good.")) return;
+                    if (!window.confirm(item.essayType === "UCAS" ? "Delete this review? IBLens never saved your statement, but the review and its course go for good." : "Delete this report? IBLens never saved the text of your essay, but the report and its research question go for good.")) return;
                     deleteAnalysis.mutate({ id: item.id });
                   }}
                 >

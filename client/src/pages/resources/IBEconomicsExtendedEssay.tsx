@@ -97,7 +97,7 @@ export default function IBEconomicsExtendedEssay() {
       <ul>
         <li><strong>Criterion A: Framework for the essay (6 marks).</strong> A sharply bounded question, a credible research design (what data you gathered, from where, over what period, and which models you applied to it) and a structure that follows the investigation. Examiners check that the method can actually answer the question as worded.</li>
         <li><strong>Criterion B: Knowledge and understanding (6 marks).</strong> Correct terminology and models chosen because they fit the case, not because they are familiar. Understanding shows in the selection: the essay uses the theory the situation demands.</li>
-        <li><strong>Criterion C: Analysis and line of argument (6 marks).</strong> Analysis of your evidence through theory, with findings that stay relevant to the question and add up to a coherent argument. Labelled tables, figures and diagrams that are used in the text are part of that analysis.</li>
+        <li><strong>Criterion C: Analysis and line of argument (6 marks).</strong> Analysis of your evidence through theory, with findings that stay relevant to the question and add up to a coherent argument. Diagrams earn credit here when they carry the analysis; labelling them and referring to them in the text are structural conventions assessed under Criterion A.</li>
         <li><strong>Criterion D: Discussion and evaluation (8 marks).</strong> The highest-weighted criterion. It rewards a balanced discussion of what your findings mean, including where your data and the model disagree, and an evaluation of the essay itself: the model's assumptions, the limits of your data and what they do to your conclusion.</li>
         <li><strong>Criterion E: Reflection (4 marks).</strong> Marked on the reflective statement in your RPF. Strong reflection evaluates, with specific examples, how the investigation changed you as a researcher, such as what a data source that fell through taught you about planning.</li>
       </ul>
@@ -105,7 +105,7 @@ export default function IBEconomicsExtendedEssay() {
         If you sit your exams in November 2026, the essay is marked out of 34 instead: Focus and
         method (6), Knowledge and understanding (6), Critical thinking (12), Presentation (4) and
         Engagement (6, marked on the three RPPF reflections). The advice above carries over, because
-        analysis, discussion and evaluation together make up Critical thinking.
+        research, analysis, and discussion and evaluation together make up Critical thinking.
       </p>
 
       <h2>Theory, data and diagrams: what examiners expect</h2>
@@ -113,7 +113,7 @@ export default function IBEconomicsExtendedEssay() {
         An Economics EE needs real evidence. That can be primary data, such as prices
         you recorded across shops or weeks or a small survey, or secondary data from
         official statistics and credible industry sources. Neither is automatically
-        better; what matters is that the data genuinely bears on your question and
+        better; what matters is that the data bears on your question and
         that you treat it honestly, including its gaps. An essay that never touches
         data cannot demonstrate application, and application is where the analysis
         criteria live.
@@ -184,7 +184,7 @@ export default function IBEconomicsExtendedEssay() {
         <li><Link href="/resources/ib-chemistry-extended-essay">Chemistry Extended Essay</Link></li>
         <li><Link href="/resources/ib-history-extended-essay">History Extended Essay</Link></li>
         <li><Link href="/resources/ib-english-extended-essay">English Extended Essay</Link></li>
-        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE New Criteria 2027 (marked /30)</Link></li>
+        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE new criteria 2027 (marked out of 30)</Link></li>
       </ul>
 
     </ResourceArticle>

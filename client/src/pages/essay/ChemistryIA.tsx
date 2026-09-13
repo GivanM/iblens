@@ -27,7 +27,7 @@ const config: SubjectConfig = {
     ],
     rubricItems: [
       { title: "Research design, 6 marks", text: "A research question in a specific chemical context, with the choices behind the method explained: how the variables are measured, the range and repetition of trials, how other variables are controlled, and the safety, ethical and environmental issues of the chemicals used. Someone else should be able to reproduce the method from your description." },
-      { title: "Data analysis, 6 marks", text: "Clear and precise recording and processing: units, appropriate significant figures or decimal places, labelled graphs, uncertainties carried through the calculations, and processing that is accurate and relevant to the question." },
+      { title: "Data analysis, 6 marks", text: "Clear and precise recording and processing: units, appropriate significant figures or decimal places, correctly annotated tables and any graphs you use, uncertainties carried through the calculations, and processing that is accurate and relevant to the question." },
       { title: "Conclusion, 6 marks", text: "A conclusion consistent with the processed data and its uncertainties, justified by comparison with accepted chemistry such as literature values or theory." },
       { title: "Evaluation, 6 marks", text: "The relative impact of specific weaknesses or limitations explained, with realistic improvements that address them." },
     ],

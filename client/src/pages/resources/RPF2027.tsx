@@ -86,13 +86,13 @@ export default function RPF2027() {
 
       <ul>
         <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE New Criteria 2027: the full rubric</Link></li>
-        <li><Link href="/resources/ib-extended-essay-feedback">How to Get EE Feedback Before You Submit</Link></li>
-        <li><Link href="/resources/ib-extended-essay-guide">IB Extended Essay Guide</Link></li>
+        <li><Link href="/resources/ib-extended-essay-feedback">How to get EE feedback before you submit</Link></li>
+        <li><Link href="/resources/ib-extended-essay-guide">IB Extended Essay guide</Link></li>
       </ul>
       <h2>Related for the 2027 cohort</h2>
 
       <ul>
-        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE New Criteria 2027 (marked /30)</Link></li>
+        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE new criteria 2027 (marked out of 30)</Link></li>
         <li><Link href="/resources/ib-psychology-ia-2027">Psychology IA 2027: research proposal</Link></li>
         <li><Link href="/resources/ib-computer-science-ia-2027">Computer Science IA 2027</Link></li>
       </ul>

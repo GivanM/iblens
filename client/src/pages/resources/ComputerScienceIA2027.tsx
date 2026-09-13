@@ -100,7 +100,7 @@ export default function ComputerScienceIA2027() {
       <h2>Other 2027 syllabus changes</h2>
 
       <ul>
-        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE New Criteria 2027 (marked /30)</Link></li>
+        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE new criteria 2027 (marked out of 30)</Link></li>
         <li><Link href="/resources/ib-psychology-ia-2027">Psychology IA 2027: research proposal</Link></li>
         <li><Link href="/resources/ib-rpf-extended-essay-2027">The EE RPF: 500-word reflective statement</Link></li>
       </ul>

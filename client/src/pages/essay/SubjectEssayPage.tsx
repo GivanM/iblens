@@ -64,7 +64,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
   const reportsLeft = `${paidLeft} paid report${paidLeft === 1 ? "" : "s"} left`;
   // The rule to read before pasting: the EE page sets its own; every other task needs the teacher's agreement.
   const heroNote = config.heroNote
-    ?? `Ask your teacher first: the IB asks students not to receive assistance beyond what the subject or TOK guide permits, so check that your teacher and your school allow outside feedback on this work.${/individual oral$/i.test(config.subject) ? " Never use it on a rehearsal of the oral you will deliver." : ""}`;
+    ?? `Ask your teacher first: the IB academic integrity policy asks students to abstain from receiving non-permitted assistance in the completion or editing of their work, such as from friends, relatives, other students or private tutors, so check that your teacher and your school allow outside feedback on this work.${/individual oral$/i.test(config.subject) ? " Never use it on a rehearsal of the oral you will deliver." : ""}`;
   // The task name inside a sentence: "your TOK essay", not "your TOK Essay".
   const taskName = config.subject === "Extended Essay" ? config.subject : config.subject.replace(/ (Essay|Exhibition|Individual Oral)$/i, (m) => m.toLowerCase());
   // What goes into the grader: for the oral, never a rehearsal of the actual oral.
@@ -178,10 +178,10 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
           <div className="container max-w-2xl mx-auto">
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold tracking-tight mb-2">
-                What the {taskName} breakdown looks like
+                What the {taskName} {holistic ? "report" : "breakdown"} looks like
               </h2>
               <p className="text-muted-foreground text-sm">
-                An illustration with made-up scores. Your report marks your own draft and explains every mark.
+                {holistic ? "An illustration with a made-up mark. Your report places your own draft in a band and explains the mark." : "An illustration with made-up scores. Your report marks your own draft and explains every mark."}
               </p>
             </div>
 
@@ -227,7 +227,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
 
                 <div className="mt-6 pt-5 border-t flex flex-col sm:flex-row gap-3 items-center justify-between">
                   <p className="text-xs text-muted-foreground">
-                    {previewUsed ? (paidLeft > 0 ? "Your own draft: the full breakdown and fix list, using one of your paid reports" : "Your own draft: the full breakdown and fix list for $9.99") : paidLeft > 0 ? "Your own draft: a free preview first, then the full breakdown and fix list with one of your paid reports" : "Your own draft: a free preview first, then the full breakdown and fix list for $9.99"}
+                    {previewUsed ? (paidLeft > 0 ? (holistic ? "Your own draft: the mark, the whole explanation and the fix list, using one of your paid reports" : "Your own draft: the full breakdown and fix list, using one of your paid reports") : (holistic ? "Your own draft: the mark, the whole explanation and the fix list for $9.99" : "Your own draft: the full breakdown and fix list for $9.99")) : paidLeft > 0 ? (holistic ? "Your own draft: a free preview first, then the mark, the whole explanation and the fix list with one of your paid reports" : "Your own draft: a free preview first, then the full breakdown and fix list with one of your paid reports") : (holistic ? "Your own draft: a free preview first, then the mark, the whole explanation and the fix list for $9.99" : "Your own draft: a free preview first, then the full breakdown and fix list for $9.99")}
                   </p>
                   <Button size="sm" className="min-h-11" asChild>
                     <Link href={config.analyzerHref}>

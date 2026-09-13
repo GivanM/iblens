@@ -12,7 +12,7 @@ export default function WriteMyIBExtendedEssay() {
     >
       <p>
         If you have typed "write my extended essay" or "help with IB extended essay"
-        into a search bar at 11pm, you are not alone. The Extended Essay is the longest
+        into a search bar at 11pm. The Extended Essay is the longest
         piece of academic writing most IB students have ever attempted, and it is easy
         to get stuck, not because you are not capable, but because you are not sure what
         "good enough" looks like. This guide explains the most common
@@ -20,7 +20,7 @@ export default function WriteMyIBExtendedEssay() {
         what kind of help is actually worth pursuing.
       </p>
 
-      <h2>Why the Extended Essay feels impossible (and why it isn't)</h2>
+      <h2>Why students get stuck on the Extended Essay</h2>
 
       <h3>You don't have a focused enough research question</h3>
       <p>
@@ -33,8 +33,8 @@ export default function WriteMyIBExtendedEssay() {
       </p>
       <p>
         If you are stuck, the first thing to do is not to write more but to narrow your
-        question until it is specific enough to answer. Your supervisor's main
-        job during the EE process is to help you with exactly this. Book a meeting
+        question until it is specific enough to answer. Helping you design a focused,
+        manageable research question is one of your supervisor's responsibilities. Book a meeting
         and come with three versions of your question, each narrower than the last.
       </p>
 
@@ -108,7 +108,7 @@ export default function WriteMyIBExtendedEssay() {
 
       <h2>What paying someone to write your essay actually costs you</h2>
       <p>
-        This needs to be said plainly: submitting work written by someone else as
+        Submitting work written by someone else as
         your own is academic misconduct under IB regulations. If it is found, no grade is
         awarded for the EE, and without an EE grade the Diploma cannot be awarded. The IB
         checks all coursework it receives with text-matching software, and your supervisor, who has
@@ -131,9 +131,8 @@ export default function WriteMyIBExtendedEssay() {
         which sections are weak on which criteria, and fixing them before submission.
       </p>
       <p>
-        Your supervisor comments in writing on one full draft, and the EE guide does not
-        allow other assistance with the research, writing or proofreading beyond what your
-        supervisor permits. General feedback ("your analysis could be deeper") does not tell
+        Your supervisor comments in writing on one full draft, and the EE guide says
+        students are not allowed to receive assistance with any aspect of the research, writing or proofreading of the essay beyond that which is permitted through their supervisor. General feedback ("your analysis could be deeper") does not tell
         you where to make changes; criterion-by-criterion feedback does: "Your Criterion C
         score is limited because your argument in Section 2 describes the sources rather than
         analysing them."

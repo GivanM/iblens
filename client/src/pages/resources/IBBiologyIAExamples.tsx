@@ -111,7 +111,7 @@ export default function IBBiologyIAExamples() {
         to study human biology, choose a variable you can measure physiologically
         (heart rate, reaction time with a standard protocol) rather than survey-based
         self-reporting, and follow the IB's rules for human subjects: teacher approval,
-        written informed consent, parental consent under 16, a health questionnaire (such as a PAR-Q)
+        written informed consent, written consent from a parent or guardian for participants under 16, a health questionnaire (such as a PAR-Q)
         before moderate or vigorous exercise, no substances given to participants, caffeine
         included, and no body fluids such as sweat or saliva.
       </p>
@@ -180,9 +180,9 @@ export default function IBBiologyIAExamples() {
       <h2>Internal Assessment in other subjects</h2>
 
       <ul>
-        <li><Link href="/resources/ib-chemistry-ia-examples">Chemistry IA Examples</Link></li>
-        <li><Link href="/resources/ib-physics-ia-examples">Physics IA Examples</Link></li>
-        <li><Link href="/resources/ib-math-ia-examples">Math IA Examples</Link></li>
+        <li><Link href="/resources/ib-chemistry-ia-examples">Chemistry IA examples</Link></li>
+        <li><Link href="/resources/ib-physics-ia-examples">Physics IA examples</Link></li>
+        <li><Link href="/resources/ib-math-ia-examples">Math IA examples</Link></li>
         <li><Link href="/resources/ib-ia-feedback">Check your IA against the criteria</Link></li>
       </ul>
 

@@ -35,7 +35,7 @@ export default function AcademicIntegrity() {
         Getting <strong>feedback on work you wrote yourself</strong> is different from having it written or
         edited for you, but it is not automatically allowed. For most IAs and the TOK essay your teacher comments on one draft (for the individual
         oral, on your outline and on practice orals), and your supervisor comments in writing on one full draft of your EE. The IB academic
-        integrity policy asks students not to receive assistance beyond what the subject guide permits,
+        integrity policy asks students to abstain from receiving non-permitted assistance in the completion or editing of their work, such as from friends, relatives, other students or private tutors,
         whether from friends, relatives, other students or private tutors, and the Extended Essay guide is
         stricter still, as set out above. Before you use outside feedback on an IA or the TOK essay, AI tools
         included, check that your teacher and your school's policy allow it. The IB has also publicly stated that it will not ban AI tools, and that their use

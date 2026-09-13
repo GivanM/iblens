@@ -34,7 +34,7 @@ export default function TokEssayStructure() {
 
       <ol>
         <li><strong>Unpack the prescribed title:</strong> Restate it in your own words to show you understand what it is asking. Avoid simply repeating the title verbatim.</li>
-        <li><strong>Define key terms:</strong> Identify one or two genuinely ambiguous terms in the title and give your working definitions. For example, if the title uses "certainty", define what you mean by it in the context of your argument.</li>
+        <li><strong>Define key terms:</strong> Identify one or two ambiguous terms in the title and give your working definitions. For example, if the title uses "certainty", define what you mean by it in the context of your argument.</li>
         <li><strong>State your thesis:</strong> Take a position. Your thesis should directly answer the prescribed title question, not just say "this is a complex topic."</li>
         <li><strong>Signpost your areas of knowledge:</strong> name the areas you will use, following what your title asks for. This gives the examiner a map.</li>
       </ol>
@@ -95,7 +95,7 @@ export default function TokEssayStructure() {
 
       <ul>
         <li><strong>Create meaningful contrast:</strong> Sciences vs. Arts, or History vs. Mathematics, typically generate more interesting analysis than two similar AOKs</li>
-        <li><strong>You genuinely know:</strong> Specific, accurate examples score more than vague claims about an AOK you know poorly</li>
+        <li><strong>You know:</strong> Specific, accurate examples score more than vague claims about an AOK you know poorly</li>
         <li><strong>Actually fit the prescribed title:</strong> Some titles work better with certain AOKs. Read the title carefully before choosing</li>
       </ul>
 
@@ -112,7 +112,7 @@ export default function TokEssayStructure() {
       <h2>Check your structure with IBLens</h2>
 
       <p>
-        Once you have drafted your TOK essay, IBLens reads it against the TOK assessment instrument: whether your claims are developed enough, whether counter-claims are genuinely addressed, and whether the essay actually answers the prescribed title.
+        Once you have drafted your TOK essay, IBLens reads it against the TOK assessment instrument: whether your claims are developed enough, whether counter-claims are addressed, and whether the essay actually answers the prescribed title.
       </p>
 
       <p>

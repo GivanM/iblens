@@ -23,6 +23,10 @@ export default function PsychologyIA2027() {
         <li><strong>Sessions through November 2026:</strong> the experimental report remains, marked out of 22 (Introduction 6, Exploration 4, Analysis 6, Evaluation 6).</li>
       </ul>
 
+      <p>
+        Some topics must not be the focus of the proposal, even though the study is never run: abuse (sexual, physical or emotional), self-harm (including suicide), pornography, rape or other sexual acts, and serial killers or acts of torture. Ingestion and the use of animals are not allowed either.
+      </p>
+
       <h2>The new criteria (marked out of 24)</h2>
 
       <table>
@@ -31,8 +35,8 @@ export default function PsychologyIA2027() {
         </thead>
         <tbody>
           <tr><td>A: Introduction</td><td>6</td><td>A clearly stated, focused aim or research question; a real-life problem and its impact on the population of interest; the findings and conclusions of two pieces of relevant research, linked to the proposal.</td></tr>
-          <tr><td>B: Research methodology</td><td>6</td><td>The choice of research method and the procedure explained (sampling, sample, design, setting), with ethical considerations explicitly linked to the study.</td></tr>
-          <tr><td>C: Data collection</td><td>6</td><td>One data collection tool you create (at least five items, copy in the appendix), the decisions behind it, and the potential challenges of collecting the data.</td></tr>
+          <tr><td>B: Research methodology</td><td>6</td><td>The choice of one of the four research methods (experiment, interview, observation, or survey or questionnaire) and the procedure explained (sampling technique, sample characteristics, design if experimental, setting and process), with relevant ethical considerations explicitly linked to the study.</td></tr>
+          <tr><td>C: Data collection</td><td>6</td><td>One data collection tool you create (at least five items, copy in the appendix), the decisions behind it, including how it measures what it is meant to measure, and the potential challenges of collecting the data.</td></tr>
           <tr><td>D: Discussion</td><td>6</td><td>Potential findings and their implications for policy or practice, how researcher bias may affect the study, and one additional research method that would add to understanding.</td></tr>
         </tbody>
       </table>
@@ -46,6 +50,7 @@ export default function PsychologyIA2027() {
       <ul>
         <li><strong>No experiment.</strong> The old IA required you to run an experiment based on a published study, collect data and analyse it statistically. The new IA is a proposal: you design a study you do not run.</li>
         <li><strong>Marks: 22 → 24</strong>, and four evenly weighted criteria of 6 replace the old 6/4/6/6 split.</li>
+        <li><strong>Weighting at SL: 25% → 30%.</strong> At HL the IA stays at 20%.</li>
         <li><strong>Analysis of collected data disappears</strong> as a criterion, replaced by the design of a data collection tool (Criterion C) and a discussion of potential findings (Criterion D).</li>
         <li><strong>Discussion is forward-looking:</strong> instead of evaluating what happened, you discuss what the study might find and what that would mean for policy or practice, how your own position could bias it, and which other method would add to the picture.</li>
       </ul>
@@ -89,14 +94,14 @@ export default function PsychologyIA2027() {
       <h2>Related resources</h2>
 
       <ul>
-        <li><Link href="/resources/ib-psychology-ia">IB Psychology IA Guide (current syllabus)</Link></li>
+        <li><Link href="/resources/ib-psychology-ia">IB Psychology IA guide (experimental report, through November 2026)</Link></li>
         <li><Link href="/resources/ib-extended-essay-new-criteria-2027">IB Extended Essay New Criteria 2027</Link></li>
         <li><Link href="/resources/ib-internal-assessment-guide">IB Internal Assessment Guide</Link></li>
       </ul>
       <h2>Other 2027 syllabus changes</h2>
 
       <ul>
-        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE New Criteria 2027 (marked /30)</Link></li>
+        <li><Link href="/resources/ib-extended-essay-new-criteria-2027">EE new criteria 2027 (marked out of 30)</Link></li>
         <li><Link href="/resources/ib-computer-science-ia-2027">Computer Science IA 2027</Link></li>
         <li><Link href="/resources/ib-rpf-extended-essay-2027">The EE RPF: 500-word reflective statement</Link></li>
         <li><Link href="/resources/ib-psychology-ia">Psychology IA</Link></li>

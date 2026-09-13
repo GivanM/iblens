@@ -13,7 +13,7 @@ export default function TokEssayGuide() {
       <h1>The complete IB TOK essay guide</h1>
 
       <p>
-        <strong>In short: the TOK essay is up to 1,600 words on one of six prescribed titles, marked holistically out of 10 on one instrument with five levels and no separate criteria. Your TOK grade, together with your Extended Essay grade, decides up to 3 bonus points on your Diploma.</strong>
+        <strong>the TOK essay is up to 1,600 words on one of six prescribed titles, marked holistically out of 10 on one instrument with five levels and no separate criteria. Your TOK grade, together with your Extended Essay grade, decides up to 3 bonus points on your Diploma.</strong>
       </p>
 
       <p>
@@ -27,18 +27,18 @@ export default function TokEssayGuide() {
       <h2>What TOK is testing</h2>
 
       <p>
-        TOK is not testing your knowledge of any particular subject. It is testing your ability to think critically about knowledge itself. Specifically, the TOK essay assesses whether you can:
+        TOK is not testing your knowledge of any particular subject. It is testing your ability to think critically about knowledge itself. The essay instrument asks one question, whether you provide a clear, coherent and critical exploration of the title, and the course assessment objectives behind it include being able to:
       </p>
 
       <ul>
-        <li><strong>Identify and analyse knowledge questions:</strong> Questions about the nature, scope, and limitations of knowledge (e.g., "How do we distinguish between correlation and causation?")</li>
+        <li><strong>Explore knowledge questions:</strong> questions about the nature, scope and limitations of knowledge (e.g., "How do we distinguish between correlation and causation?"). They appear in the course's assessment objectives, although the essay instrument does not ask for a separately stated knowledge question</li>
         <li><strong>Develop clear, coherent arguments:</strong> support them with examples and consider their implications</li>
         <li><strong>Use specific, concrete examples:</strong> Illustrate abstract arguments with real-world cases from different areas of knowledge</li>
         <li><strong>Evaluate perspectives:</strong> Assess the strengths and limitations of different approaches to knowledge without simply declaring one "right"</li>
       </ul>
 
       <p>
-        The most common misconception about TOK is that it is about expressing opinions. It is not. TOK requires <strong>reasoned argument</strong>: claims supported with evidence and reasoning, and counter-claims genuinely engaged with rather than dismissed.
+        The most common misconception about TOK is that it is about expressing opinions. It is not. TOK requires <strong>reasoned argument</strong>: claims supported with evidence and reasoning, and counter-claims engaged with rather than dismissed.
       </p>
 
       <h2>The prescribed titles structure</h2>
@@ -59,7 +59,7 @@ export default function TokEssayGuide() {
       </ul>
 
       <p>
-        When choosing your title, consider: Which title genuinely interests you? Which title can you find strong, specific examples for? Which title connects to areas of knowledge where you have personal experience or deep understanding? The best TOK essays come from genuine intellectual curiosity, not from choosing the title that seems "easiest."
+        When choosing your title, consider: Which title interests you? Which title can you find strong, specific examples for? Which title connects to areas of knowledge where you have personal experience or deep understanding? The best TOK essays come from genuine intellectual curiosity, not from choosing the title that seems "easiest."
       </p>
 
       <h2>Building knowledge claims and counter-claims</h2>
@@ -85,7 +85,7 @@ export default function TokEssayGuide() {
       </ul>
 
       <p>
-        The evaluation step is crucial. Weak essays present claims and counter-claims but never resolve the tension between them. Strong essays show <strong>judgement</strong>: perhaps the claim holds in one context but not another, or the answer lies in a synthesis of both perspectives.
+        Do not skip the evaluation step. Weak essays present claims and counter-claims but never resolve the tension between them. Strong essays show <strong>judgement</strong>: perhaps the claim holds in one context but not another, or the answer lies in a synthesis of both perspectives.
       </p>
 
       <h2>Areas of Knowledge</h2>
@@ -141,7 +141,7 @@ export default function TokEssayGuide() {
           </tr>
           <tr>
             <td><strong>Examples</strong></td>
-            <td>Use specific, varied examples that genuinely illuminate the argument</td>
+            <td>Use specific, varied examples that illuminate the argument</td>
             <td>Use vague or generic examples, or examples that don't connect to the argument</td>
           </tr>
           <tr>
@@ -201,7 +201,7 @@ export default function TokEssayGuide() {
       </ul>
 
       <p>
-        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <Link href="/essay/tok-essay" className="text-primary hover:underline">IBLens reads your TOK essay against the holistic instrument</Link> and places it in a band in about a minute, counting the words against the 1,600-word limit as it does. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">IB Grade Boundaries</Link> guide. For a broader look at how IB criteria work across essay types, read our <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB Essay Criteria Explained</Link> article.
+        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <Link href="/essay/tok-essay" className="text-primary hover:underline">IBLens reads your TOK essay against the holistic instrument</Link> and places it in a band in about a minute, counting the words against the 1,600-word limit as it does. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">IB grade boundaries</Link> guide. For a broader look at how IB criteria work across essay types, read our <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB essay criteria explained</Link> article.
       </p>
       <h2>More on TOK</h2>
 

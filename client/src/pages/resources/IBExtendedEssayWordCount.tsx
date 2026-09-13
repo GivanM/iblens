@@ -48,7 +48,9 @@ export default function IBExtendedEssayWordCount() {
         Note the difference between two kinds of footnote. A footnote that gives a
         reference is not counted. A footnote that adds explanation or argument is
         counted, like any other sentence of the essay. Putting analysis in footnotes
-        does not save words, and it makes the argument harder to follow.
+        does not save words, and it makes the argument harder to follow. If you do use explanatory
+        footnotes, include them in the word count on your title page and state that "the stated word
+        count includes explanatory footnotes".
       </p>
 
       <h2>What happens if you go over 4,000 words</h2>

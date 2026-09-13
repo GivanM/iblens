@@ -30,9 +30,9 @@ export default function IBEconomicsIA() {
         and using one three times up to 6.
       </p>
       <ul>
-        <li><strong>Criterion A: Diagrams (3 marks).</strong> Are diagrams used? Are they accurately labelled? Do they directly illustrate the economics being discussed?</li>
+        <li><strong>Criterion A: Diagrams (3 marks).</strong> Are the diagrams relevant, accurate and correctly labelled, and fully explained? A relevant diagram that is not explained, or explained incorrectly, is the 1-mark level, and a limited explanation is the 2-mark level.</li>
         <li><strong>Criterion B: Terminology (2 marks).</strong> Is economic terminology used correctly and consistently throughout?</li>
-        <li><strong>Criterion C: Application and analysis (3 marks).</strong> Is relevant economic theory applied to the article, with developed and accurate analysis?</li>
+        <li><strong>Criterion C: Application and analysis (3 marks).</strong> Is relevant economic theory applied to the article throughout the commentary, with effective economic analysis?</li>
         <li><strong>Criterion D: Key concept (3 marks).</strong> Is one key concept identified and effectively linked to the article?</li>
         <li><strong>Criterion E: Evaluation (3 marks).</strong> Are judgements supported by effective and balanced reasoning: the short run against the long run, who gains and who loses, and the assumptions underneath?</li>
       </ul>
@@ -166,9 +166,10 @@ export default function IBEconomicsIA() {
       <h2>Word count and structure</h2>
       <p>
         Each commentary has an 800-word limit, and moderators do not read beyond 800
-        words. Diagrams and their short labels, tables of statistical data, equations and
-        calculations, citations and references are not counted; definitions and quotations
-        are. A structure that works well:
+        words. Diagrams, labels of five words or fewer, headings on diagrams of 10 words or fewer,
+        tables of statistical data, equations and calculations, citations and references are not
+        counted. Footnotes and endnotes may be used for references only, and definitions and
+        quotations, which must be in the body, are counted. A structure that works well:
       </p>
       <ul>
         <li><strong>Opening context (50-70 words):</strong> say briefly what the article is about and name the economics involved. Do not summarise the article: you are analysing it.</li>
@@ -198,7 +199,7 @@ export default function IBEconomicsIA() {
         <li><Link href="/resources/ib-history-ia">History IA</Link></li>
         <li><Link href="/resources/ib-psychology-ia">Psychology IA</Link></li>
         <li><Link href="/resources/ib-ia-feedback">Check your IA against the criteria</Link></li>
-        <li><Link href="/resources/ib-ia-grader">IB IA Grader</Link></li>
+        <li><Link href="/resources/ib-ia-grader">IB IA grader</Link></li>
       </ul>
 
     </ResourceArticle>

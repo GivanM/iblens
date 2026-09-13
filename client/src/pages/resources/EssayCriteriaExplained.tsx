@@ -13,7 +13,7 @@ export default function EssayCriteriaExplained() {
       <h1>IB essay criteria explained</h1>
 
       <p>
-        <strong>In short: Most IB coursework is marked against published criteria with fixed mark allocations. The TOK essay and exhibition are the exception: they are marked holistically, as a single global impression. The fastest way to raise a grade is to find the heaviest criterion for your component and check your draft against its top markband first.</strong>
+        <strong>Most IB coursework is marked against published criteria with fixed mark allocations. The TOK essay and exhibition are the exception: they are marked holistically, as a single global impression. The fastest way to raise a grade is to find the heaviest criterion for your component and check your draft against its top markband first.</strong>
       </p>
 
       <p>
@@ -204,11 +204,11 @@ export default function EssayCriteriaExplained() {
         <li><strong>Make the criterion's work visible, not its vocabulary.</strong> Phrases like "a critical examination reveals" earn nothing on their own; the evaluation itself does. Check that each criterion has somewhere in the work where it is clearly being done.</li>
         <li><strong>Make your question and approach clear early.</strong> Best-fit marking reads the whole piece, and a reader who knows from the first page what you are trying to show can see how each section serves it.</li>
         <li><strong>Do not sacrifice one criterion for another.</strong> A beautifully written essay (high communication marks) that lacks analysis will not score well overall. Balance your effort across all criteria.</li>
-        <li><strong>Check word and page limits.</strong> In many components, including the Extended Essay, the TOK essay and exhibition, and the Economics and Business Management IAs, examiners or moderators stop reading at the limit; everywhere else the limit is still a rule.</li>
+        <li><strong>Check word and page limits.</strong> In many components, including the Extended Essay, the TOK essay and exhibition, and the Economics and Business Management IAs, examiners or moderators stop reading at the limit; everywhere else the limit is still a rule (the Mathematics exploration has only a suggested length of about 12 to 20 pages).</li>
       </ul>
 
       <p>
-        For subject-specific guidance on how criteria apply to different essay types, see our guides on the <Link href="/resources/ib-extended-essay-guide" className="text-primary hover:underline">Extended Essay</Link>, <Link href="/resources/ib-internal-assessment-guide" className="text-primary hover:underline">Internal Assessment</Link>, and <Link href="/resources/tok-essay-guide" className="text-primary hover:underline">TOK Essay</Link>. To understand how criterion scores translate into final grades, read our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">IB Grade Boundaries</Link> explainer.
+        For subject-specific guidance on how criteria apply to different essay types, see our guides on the <Link href="/resources/ib-extended-essay-guide" className="text-primary hover:underline">Extended Essay</Link>, <Link href="/resources/ib-internal-assessment-guide" className="text-primary hover:underline">Internal Assessment</Link>, and <Link href="/resources/tok-essay-guide" className="text-primary hover:underline">TOK Essay</Link>. To understand how criterion scores translate into final grades, read our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">IB grade boundaries</Link> explainer.
       </p>
     </ResourceArticle>
   );

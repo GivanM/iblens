@@ -99,7 +99,7 @@ export default function IBExtendedEssayExamples() {
 
       <h2>Before you submit: get feedback on your draft</h2>
       <p>One of the hardest parts of the EE process is getting objective feedback. Your supervisor may be encouraging but not specific. By the time you have spent months on a topic, it is almost impossible to read your own essay with fresh eyes.</p>
-      <p>Check with your supervisor first: the EE guide allows no assistance with the research, writing or proofreading beyond what your supervisor permits. If they agree, <Link href="/essay/extended-essay">IBLens reads your Extended Essay draft against the criteria for your session</Link> and gives you feedback on each criterion before you hand it in: where the argument loses coherence, where the sources need strengthening, and whether the conclusion actually answers the research question.</p>
+      <p>Check with your supervisor first: the EE guide says students are not allowed to receive assistance with any aspect of the research, writing or proofreading of the essay beyond that which is permitted through their supervisor. If they agree, <Link href="/essay/extended-essay">IBLens reads your Extended Essay draft against the criteria for your session</Link> and gives you feedback on each criterion before you hand it in: where the argument loses coherence, where the sources need strengthening, and whether the conclusion actually answers the research question.</p>
 
       <h2>Final checklist before submitting</h2>
       <ul>
@@ -111,7 +111,7 @@ export default function IBExtendedEssayExamples() {
         <li>Does your conclusion explicitly answer the research question?</li>
         <li>Have you written your RPF (or, for November 2026, your RPPF) as reflection that evaluates what you learned rather than describing the process?</li>
       </ul>
-      <p>The Extended Essay rewards students who treat it as an intellectual exercise. Choose a question you are genuinely curious about, narrow it until it feels almost too specific, and build an argument you are willing to defend.</p>
+      <p>The Extended Essay rewards students who treat it as an intellectual exercise. Choose a question you are curious about, narrow it until it feels almost too specific, and build an argument you are willing to defend.</p>
       <h2>Extended Essay by subject</h2>
 
       <ul>
