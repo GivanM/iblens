@@ -65,7 +65,9 @@ for (const file of walk(path.join(pagesDir, "essay"))) {
   const src = fs.readFileSync(file, "utf8");
   const canonical = src.match(/canonicalPath:\s*"([^"]+)"/)?.[1];
   if (!canonical) throw new Error(`${path.relative(root, file)} has no canonicalPath`);
-  pages.push({ file, canonical, dynamic: false });
+  // Subject pages ask whether this visitor has used the free preview, so they need the
+  // same providers as the app.
+  pages.push({ file, canonical, dynamic: true });
 }
 for (const file of walk(pagesDir)) {
   const src = fs.readFileSync(file, "utf8");

@@ -20,6 +20,9 @@ export const ENV = {
   // LemonSqueezy
   lemonsqueezyApiKey: process.env.LEMONSQUEEZY_API_KEY ?? "",
   lemonsqueezyWebhookSecret: process.env.LEMONSQUEEZY_WEBHOOK_SECRET ?? "",
+  // Set only while the signing secret is being rotated: the old secret stays valid
+  // until the new one is saved in LemonSqueezy, then this line is removed.
+  lemonsqueezyWebhookSecretPrevious: process.env.LEMONSQUEEZY_WEBHOOK_SECRET_PREVIOUS ?? "",
   lemonsqueezyStoreId: process.env.LEMONSQUEEZY_STORE_ID ?? "",
   // Resend (transactional email)
   resendApiKey: process.env.RESEND_API_KEY ?? "",

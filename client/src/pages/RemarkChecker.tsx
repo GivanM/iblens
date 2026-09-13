@@ -15,7 +15,7 @@ const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 const TIMELINE = [
   { date: "Early July", event: "May session results released on candidates.ibo.org" },
   { date: "15 September", event: "Last day for enquiry upon results requests for the May session, made through your school" },
-  { date: "Mid-December", event: "November session results released (17 December for students in 2025)" },
+  { date: "Mid-December", event: "November session results released, usually in mid-December (17 December in 2025): your coordinator confirms the date" },
   { date: "15 March", event: "Last day for enquiry upon results requests for the November session, made through your school" },
 ];
 
@@ -138,7 +138,7 @@ function RemarkQuickCheck() {
               ))}
             </ul>
           )}
-          <p className="text-sm text-muted-foreground mb-3">The full report, with the predicted mark, the full comments and a ranked list of fixes, unlocks for $9.99 on the grader page, where this preview is saved. Everything here is an estimate from a language model, not the IB's mark.</p>
+          <p className="text-sm text-muted-foreground mb-3">The full report, with the estimated mark, the full comments and a ranked list of fixes, unlocks for $9.99 on the grader page, where this preview is saved. Everything here is an estimate from a language model, not the IB's mark.</p>
           <Button asChild><Link href="/essay">Unlock the full report, $9.99</Link></Button>
         </div>
       )}
@@ -158,7 +158,7 @@ export default function RemarkChecker() {
         <div className="max-w-3xl mx-auto px-4 py-16">
           <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-4">IB results and re-marks</p>
           <h1 style={SERIF} className="text-4xl font-bold leading-tight mb-4">
-            Should you pay for an IB remark?
+            Should you pay for an IB re-mark?
           </h1>
           <p className="text-lg text-muted-foreground leading-relaxed mb-10">
             A re-mark (enquiry upon results, category 1) costs a fee set by the IB, refunded only if
@@ -232,7 +232,7 @@ export default function RemarkChecker() {
             ))}
           </div>
 
-          <h2 style={SERIF} className="text-2xl font-bold mb-4">Remark or retake?</h2>
+          <h2 style={SERIF} className="text-2xl font-bold mb-4">Re-mark or retake?</h2>
           <div className="space-y-3 mb-12">
             <div className="flex gap-3 items-start">
               <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
@@ -251,19 +251,19 @@ export default function RemarkChecker() {
           <h2 style={SERIF} className="text-2xl font-bold mb-4">Frequently asked questions</h2>
           <div className="space-y-5 mb-12">
             <div>
-              <p className="font-semibold text-sm mb-1">How much does an IB remark cost?</p>
+              <p className="font-semibold text-sm mb-1">How much does an IB re-mark cost?</p>
               <p className="text-sm text-muted-foreground">The IB publishes its enquiry upon results fees to schools rather than on its public website, so ask your coordinator for the current fee. There is no charge for a category 1 re-mark that results in a change of grade.</p>
             </div>
             <div>
-              <p className="font-semibold text-sm mb-1">Can my grade go down after a remark?</p>
+              <p className="font-semibold text-sm mb-1">Can my grade go down after a re-mark?</p>
               <p className="text-sm text-muted-foreground">Yes. A category 1 re-mark can raise or lower the grade, and your school must have your written consent before requesting one. That is why a re-mark makes most sense when you have reason to think you are near a boundary.</p>
             </div>
             <div>
-              <p className="font-semibold text-sm mb-1">What is the remark deadline?</p>
+              <p className="font-semibold text-sm mb-1">What is the re-mark deadline?</p>
               <p className="text-sm text-muted-foreground">Enquiry upon results requests can be made up to 15 September for the May session and up to 15 March for the November session. Your school submits them and may set an earlier deadline, so ask your coordinator as soon as results are out.</p>
             </div>
             <div>
-              <p className="font-semibold text-sm mb-1">Should I remark my EE or TOK essay?</p>
+              <p className="font-semibold text-sm mb-1">Should I ask for a re-mark of my EE or TOK essay?</p>
               <p className="text-sm text-muted-foreground">The EE and the TOK essay are externally assessed, so a category 1 re-mark covers them. Whether it is worth it depends on how far your component mark is from a grade boundary, which your coordinator can tell you. Checking the submitted essay against the criteria shows where it is strong and weak, but no tool can predict a re-mark.</p>
             </div>
           </div>

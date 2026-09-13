@@ -28,7 +28,7 @@ const plans: Array<{
     description: "One report on IB coursework or a UCAS statement",
     popular: false,
     features: [
-      "IB coursework: an estimated mark and band, every criterion marked with comments (TOK: the whole explanation for the band), the risks and ranked next steps",
+      "IB coursework: an estimated mark and band, a mark and comments on each criterion that can be judged from your text (TOK: the whole explanation for the band), the risks and ranked next steps",
       "UCAS statement: all three answers reviewed, issues across the statement and a ranked revision list, with no score, because UCAS publishes no mark scheme",
       "Two free re-checks of a revised version of the same work, within 14 days of the report opening",
       "No account needed to buy",
@@ -177,7 +177,7 @@ export default function Pricing() {
           <Link href="/refund-policy" className="underline">Refund policy</Link>
         </p>
         <p className="max-w-3xl mx-auto mt-3 text-sm text-muted-foreground text-center">
-          Without an account, this browser keeps your newest report open, with its re-checks, and holds any unused paid reports, for as long as its site data is kept. To keep every report you buy in an account, with the re-checks of IB work, sign in with Google on this device, using the email you pay with (UCAS re-checks stay with the browser the review was made in). Buying for your child? Pay on their device, or have them sign in with their own Google account first: reports then follow that account to any device.
+          Without an account, this browser keeps every report you buy, with its re-checks, and any unused paid reports, for as long as its site data is kept. To keep every report you buy in an account, with the re-checks of IB work, sign in with Google on this device, using the email you pay with (UCAS re-checks stay with the browser the review was made in). Buying for your child or someone else? Pay on their device, or have them sign in with their own Google account first: reports then follow that account to any device. Paid on the wrong device? Email glushkovim@gmail.com with your order number and we will move the reports.
         </p>
 
         {/* Payment methods */}

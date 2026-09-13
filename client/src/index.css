@@ -12,7 +12,10 @@
 }
 .prose td,
 .prose th {
-  overflow-wrap: anywhere;
+  /* break-word only splits a word that cannot fit at all; "anywhere" let the table
+     shrink columns until short words like "Purpose" broke across lines */
+  overflow-wrap: break-word;
+  min-width: 6rem;
 }
 
 @custom-variant dark (&:is(.dark *));

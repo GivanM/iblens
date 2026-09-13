@@ -19,9 +19,17 @@ export default function Privacy() {
           <ul>
             <li><strong>Text you submit</strong> for analysis: IB coursework (IA, EE or TOK) or UCAS personal statement answers, plus the subject, essay type, research question or course you enter.</li>
             <li><strong>The reports we generate</strong> from that text. A report can quote short passages from what you submitted.</li>
-            <li><strong>Account details</strong> if you sign in (name and email address via Google sign-in), and the email address you type into the checkout dialog if you buy without an account. It is stored when you continue to checkout, even if you then do not pay.</li>
+            <li><strong>Account details</strong> if you sign in: your name and email address from Google sign-in (Google also sends your profile picture, which we do not keep), and the email address you type into the checkout form if you buy without an account. It is stored when you continue to checkout, even if you then do not pay.</li>
             <li><strong>Purchase records</strong>: the order, the product, the amount and the name and email address our payment provider sends us when you pay.</li>
             <li><strong>Usage and device data</strong> through Google Tag Manager, Google Analytics and Google Ads, such as pages viewed. Their scripts load on every page. Until you accept analytics and advertising cookies they run in Google's consent mode, which sets no such cookies but can still send Google basic signals without cookies, such as that a page was loaded. We also keep a random device identifier in your browser that ties a free preview, a purchase made without an account and its re-checks to this browser.</li>
+          </ul>
+
+          <h2>Why we are allowed to use it</h2>
+          <ul>
+            <li><strong>To provide what you ask for</strong> (performance of a contract): marking your work, your free preview, purchases, re-checks and your account.</li>
+            <li><strong>Your consent</strong>: analytics and advertising cookies. You can withdraw it at any time under "Cookie settings".</li>
+            <li><strong>Legal obligation</strong>: keeping purchase records for accounting and tax.</li>
+            <li><strong>Legitimate interests</strong>: keeping the free preview to one per device with the random device identifier, preventing abuse and keeping the service secure. You can object by emailing us.</li>
           </ul>
 
           <h2>How your essay is processed (AI disclosure)</h2>
@@ -33,7 +41,7 @@ export default function Privacy() {
           <ul>
             <li><strong>Anthropic PBC:</strong> AI processing of your essay to generate the analysis.</li>
             <li><strong>Hetzner Online GmbH</strong> (Helsinki, Finland): the server we operate to reach the AI provider; your text passes through it in transit.</li>
-            <li><strong>LemonSqueezy:</strong> payment processing and receipts (they handle your card data; we never see full card numbers).</li>
+            <li><strong>Lemon Squeezy:</strong> payment processing and receipts (they handle your card data; we never see full card numbers).</li>
             <li><strong>Google:</strong> analytics, advertising measurement, sign-in, and web fonts (Google Fonts receives your IP address when a page loads). When a purchase completes, the page and our server send Google the order number, the product and the amount, without your name, email address or account.</li>
           </ul>
           <p>We do not share your essay content with your school, universities, examiners, or other students.</p>
@@ -41,7 +49,7 @@ export default function Privacy() {
           <h2>How long we keep it</h2>
           <ul>
             <li>Reports made without an account (essays and UCAS statements): the report and the research question or course are deleted 90 days after the analysis, unless the report was purchased. Purchased reports are kept so you can reopen them and use your re-checks; ask us and we delete them. The full text you submitted is never stored.</li>
-            <li>Checkouts that are started but never paid: the order and the email typed into the checkout dialog are deleted after 30 days.</li>
+            <li>Checkouts that are started but never paid: the order and the email typed into the checkout form are deleted after 30 days.</li>
             <li>Signed-in analysis history: kept until you delete it. Every report in your dashboard has a Delete button, which also removes the copy kept on the device the report was bought on, and you can ask us to remove everything.</li>
             <li>Purchase records: kept for as long as we need them for accounting, tax and refunds.</li>
             <li>Account email: kept while your account is active, then on request.</li>

@@ -27,7 +27,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <ul>
-        <li><strong>Criterion-by-criterion scoring:</strong> Your essay is evaluated against the specific IB assessment criteria for your subject and essay type. Each criterion receives a predicted score with an explanation of why that score was assigned.</li>
+        <li><strong>Criterion-by-criterion scoring:</strong> Your essay is evaluated against the specific IB assessment criteria for your subject and essay type. Each criterion receives an estimated score with an explanation of why that score was assigned.</li>
         <li><strong>Overall estimate:</strong> based on the criterion scores, an estimated mark out of the total for your task, with the band range the draft currently sits in.</li>
         <li><strong>Risk areas:</strong> Specific sections or aspects of your essay that are likely to lose marks, with explanations of why and suggestions for improvement.</li>
         <li><strong>Leverage zones:</strong> Areas where small improvements would yield the largest mark gains, helping you prioritise your revision time.</li>
@@ -58,7 +58,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        <strong>No calibration against marked scripts:</strong> IBLens has not been tested against a set of officially marked scripts. A predicted mark is the model's reading of the published criteria, which is why it is shown as an estimate with a band range, and why the criterion it flags matters more than the exact number.
+        <strong>No calibration against marked scripts:</strong> IBLens has not been tested against a set of officially marked scripts. An estimated mark is the model's reading of the published criteria, which is why it is shown as an estimate with a band range, and why the criterion it flags matters more than the exact number.
       </p>
 
       <h2>What Feedback Looks Like</h2>
@@ -102,7 +102,7 @@ export default function HowIBLensWorks() {
       <ul>
         <li><strong>Verify factual accuracy:</strong> the model cannot reliably check whether your historical facts, scientific data or calculations are correct. It assesses how you use evidence, not whether the evidence itself is accurate.</li>
         <li><strong>Replace your teacher:</strong> Your teacher knows your subject, your school's expectations, and your personal development. IBLens provides a second opinion, not a replacement for teacher guidance.</li>
-        <li><strong>Guarantee a specific grade:</strong> predicted marks are estimates. Actual grades depend on the examiner or moderator, the grade boundaries for that session, and moderation.</li>
+        <li><strong>Guarantee a specific grade:</strong> the marks are estimates. Actual grades depend on the examiner or moderator, the grade boundaries for that session, and moderation.</li>
         <li><strong>Assess practical components:</strong> For subjects with practical elements (science experiments, art portfolios, music performances), IBLens can only assess the written component.</li>
         <li><strong>Detect plagiarism:</strong> IBLens is not a plagiarism detection tool. It assumes the work submitted is your own.</li>
       </ul>
@@ -169,7 +169,7 @@ export default function HowIBLensWorks() {
       </table>
 
       <p>
-        All purchases include a <Link href="/refund-policy" className="text-primary hover:underline">7-day money-back guarantee</Link>. For any reason, within 7 days of purchase, email glushkovim@gmail.com within 7 days for a full refund.
+        All purchases include a <Link href="/refund-policy" className="text-primary hover:underline">7-day money-back guarantee</Link>. For any reason, email glushkovim@gmail.com within 7 days of purchase for a full refund.
       </p>
 
       <p>

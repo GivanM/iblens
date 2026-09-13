@@ -111,8 +111,9 @@ export default function IBBiologyIAExamples() {
         to study human biology, choose a variable you can measure physiologically
         (heart rate, reaction time with a standard protocol) rather than survey-based
         self-reporting, and follow the IB's rules for human subjects: teacher approval,
-        written informed consent, parental consent under 16, and no substances given to
-        participants, caffeine included.
+        written informed consent, parental consent under 16, a health questionnaire (such as a PAR-Q)
+        before moderate or vigorous exercise, no substances given to participants, caffeine
+        included, and no body fluids such as sweat or saliva.
       </p>
 
       <h3>Germination rate experiments</h3>

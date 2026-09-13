@@ -136,6 +136,9 @@ export function trackPurchase(
 ) {
   push({
     event: "purchase",
+    // The container's Ads and GA4 purchase tags read these two top-level fields.
+    orderId,
+    value: priceUsd,
     ecommerce: {
       transaction_id: orderId,
       currency: "USD",
@@ -153,16 +156,8 @@ export function trackPurchase(
     // No user data: the privacy policy promises the order without the buyer's identity.
   });
 
-  // Direct Google Ads conversion, fires in parallel with GTM dataLayer push.
-  // Required because GTM is not yet configured with a Google Ads conversion tag.
-  if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
-    (window as any).gtag("event", "conversion", {
-      send_to: `${GOOGLE_ADS_CONVERSION_ID}/${GOOGLE_ADS_PURCHASE_LABEL}`,
-      value: priceUsd,
-      currency: "USD",
-      transaction_id: orderId,
-    });
-  }
+  // The container already has a Google Ads purchase conversion tag on this event;
+  // a direct gtag conversion here counted every purchase twice.
 }
 
 // ─── Consent Mode ───────────────────────────────────────────────────────────

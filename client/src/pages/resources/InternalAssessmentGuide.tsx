@@ -5,7 +5,7 @@ export default function InternalAssessmentGuide() {
   return (
     <ResourceArticle
       title="IB Internal Assessment Guide 2026: Criteria, Marking & Subject Tips | IBLens"
-      description="How IB Internal Assessments are marked: criteria by subject group, what examiners look for, the moderation process, and strategies for top marks across sciences, humanities and languages."
+      description="How IB Internal Assessments are marked: criteria by subject group, what teachers and moderators look for, the moderation process, and strategies for top marks across sciences, humanities and languages."
       canonical="/resources/ib-internal-assessment-guide"
       datePublished="2026-05-01"
       dateModified="2026-09-13"

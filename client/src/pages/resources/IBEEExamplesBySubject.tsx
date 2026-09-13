@@ -51,8 +51,8 @@ export default function IBEEExamplesBySubject() {
         while reducing it for commuters?"
       </p>
       <p>
-        What makes this work: it is specific (one policy, one city, a defined time
-        period), it uses Economics concepts precisely (consumer surplus, externalities,
+        What makes this work: it is specific (one policy in one city; naming a period,
+        such as the 2023 expansion, would sharpen it further), it uses Economics concepts precisely (consumer surplus, externalities,
         cost-benefit analysis), and it has a debatable answer: the effects on
         different groups pull in opposite directions. The student can use Transport for
         London data, academic studies of ULEZ impacts, and newspaper reports as sources.
@@ -189,7 +189,7 @@ export default function IBEEExamplesBySubject() {
             <ExamplesBridge
         workLabel="Extended Essay"
         ctaHref="/essay/extended-essay"
-        note={"If you sit your exams in November 2026, your EE is marked out of 34 on the older criteria (Focus and method, Knowledge and understanding, Critical thinking, Presentation, Engagement), and many older example essays and mark schemes describe that rubric. The rows below use the criteria for May 2027 onward."}
+        note={"If you sit your exams in November 2026, your EE is marked out of 34 on the older criteria (Focus and method, Knowledge and understanding, Critical thinking, Presentation, Engagement), and many older example essays and mark schemes describe that rubric. The table above uses the criteria for May 2027 onward."}
         rows={[
           { criterion: "A: Framework for the essay", typical: "The research question restates the topic and could fill a book; scope and method are never stated.", top: "The question is narrow enough to answer in 4,000 words, the method fits it, and every section visibly serves it." },
           { criterion: "B: Knowledge and understanding", typical: "Sources are summarised one after another in the order they were read.", top: "Subject terminology is used precisely, and sources are positioned against each other rather than listed." },

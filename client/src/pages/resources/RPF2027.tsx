@@ -47,7 +47,7 @@ export default function RPF2027() {
       <h2>Checklist before you submit</h2>
 
       <ul>
-        <li>Under 500 words.</li>
+        <li>Up to 500 words.</li>
         <li>Reflection that evaluates, not a description of the process.</li>
         <li>At least two specific examples from your own EE.</li>
         <li>A clear statement of how you grew as a learner and where that learning transfers.</li>

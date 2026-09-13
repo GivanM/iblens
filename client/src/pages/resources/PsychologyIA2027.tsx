@@ -38,7 +38,7 @@ export default function PsychologyIA2027() {
       </table>
 
       <p>
-        The word limit is 2,200, and examiners are instructed to stop reading when it is reached. References and appendices are not counted. SL and HL students write the same proposal against the same criteria.
+        The word limit is 2,200, and anything past it is not marked, by your teacher or by the moderator. References and appendices are not counted. SL and HL students write the same proposal against the same criteria.
       </p>
 
       <h2>What changed from the experimental report</h2>
@@ -83,7 +83,7 @@ export default function PsychologyIA2027() {
 
       <h3>What is the word limit?</h3>
       <p>
-        2,200 words. Examiners stop reading at the limit, so a proposal that runs long loses whatever sits past it. IBLens counts the words of what you paste against the limit.
+        2,200 words. Anything past the limit is not marked, so a proposal that runs long loses whatever sits past it. IBLens counts the words of what you paste against the limit.
       </p>
 
       <h2>Related resources</h2>

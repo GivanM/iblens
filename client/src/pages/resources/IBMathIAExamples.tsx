@@ -21,7 +21,7 @@ export default function IBMathIAExamples() {
         IA examples actually look like and how to replicate their structure.
       </p>
 
-      <h2>What the Examiner Is Looking For</h2>
+      <h2>What the Criteria Look For</h2>
       <p>
         The IB Math IA is marked out of 20 on five criteria. A and B are worth 4 marks
         each, C and D 3 marks each, and E 6 marks:

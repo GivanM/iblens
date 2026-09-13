@@ -13,6 +13,7 @@ import { CONSENT_STORAGE_KEY } from "@/lib/analytics/config";
 
 export function CookieConsent() {
   const [visible, setVisible] = useState(false);
+  const [current, setCurrent] = useState<"granted" | "denied" | null>(null);
 
   useEffect(() => {
     let stored: string | null = null;
@@ -27,7 +28,13 @@ export function CookieConsent() {
 
   // "Cookie settings" in the footer reopens the choice at any time.
   useEffect(() => {
-    const open = () => setVisible(true);
+    const open = () => {
+      try {
+        const v = localStorage.getItem(CONSENT_STORAGE_KEY);
+        setCurrent(v === "granted" || v === "denied" ? v : null);
+      } catch { setCurrent(null); }
+      setVisible(true);
+    };
     window.addEventListener("iblens:cookie-settings", open);
     return () => window.removeEventListener("iblens:cookie-settings", open);
   }, []);
@@ -50,9 +57,12 @@ export function CookieConsent() {
     <div className="fixed bottom-0 left-0 right-0 z-40 p-4 md:p-6 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-t border-gray-200 dark:border-gray-700 shadow-lg">
       <div className="container max-w-4xl flex flex-col sm:flex-row items-start sm:items-center gap-4">
         <p className="text-sm text-gray-700 dark:text-gray-300 flex-1">
-          We would like to use analytics and advertising cookies to measure how the site is used.
-          They stay off unless you click "Accept", and you can change this later under "Cookie settings" in the footer. What we collect and who
-          receives it is set out in our <a href="/privacy" className="underline">privacy notice</a>.
+          {current === "granted"
+            ? "You have accepted analytics and advertising cookies. You can withdraw that here at any time."
+            : current === "denied"
+              ? "You have rejected analytics and advertising cookies, so they are off. You can change that here."
+              : "We would like to use analytics and advertising cookies to measure how the site is used. They stay off unless you click \"Accept\", and you can change this later under \"Cookie settings\" at the bottom of every page."}{" "}
+          What we collect and who receives it is set out in our <a href="/privacy" className="underline">Privacy Policy</a>.
         </p>
         <div className="flex gap-2 shrink-0">
           <Button variant="outline" onClick={handleReject} className="min-h-11 min-w-24">
@@ -61,6 +71,11 @@ export function CookieConsent() {
           <Button variant="outline" onClick={handleAccept} className="min-h-11 min-w-24">
             Accept
           </Button>
+          {current && (
+            <Button variant="ghost" onClick={() => setVisible(false)} className="min-h-11" aria-label="Close cookie settings">
+              Close
+            </Button>
+          )}
         </div>
       </div>
     </div>

@@ -15,6 +15,8 @@ import { toast } from "sonner";
 import { Loader2, Lock, AlertTriangle, CheckCircle2 } from "lucide-react";
 import { PurchaseModal } from "@/components/PurchaseModal";
 import { UcasReview } from "@/components/UcasReview";
+import { DeviceReportsList, type DeviceReport } from "@/components/DeviceReportsList";
+import { usePurchaseTracking } from "@/hooks/usePurchaseTracking";
 import {
   UCAS_QUESTIONS,
   UCAS_TOTAL_CHAR_LIMIT,
@@ -46,17 +48,32 @@ export default function UcasPersonalStatement() {
 
   // The device id the free review and the purchase are both tied to.
   const [anonFp] = useState(getAnonFingerprint);
+  // Every UCAS review bought on this browser, and the one a re-check goes to.
+  const ucasReportsQ = trpc.essay.deviceReports.useQuery({ fingerprint: anonFp, kind: "ucas" });
+  const ucasReports: DeviceReport[] = (ucasReportsQ.data as any) ?? [];
+  const [ucasTargetId, setUcasTargetId] = useState<number | null>(null);
+  const ucasTarget = ucasReports.find((r) => r.id === ucasTargetId) ?? ucasReports[0] ?? null;
+  const [openingReview, setOpeningReview] = useState<number | null>(null);
+  const ucasUtils = trpc.useUtils();
 
   // Coming back from checkout: the webhook has already unlocked the review.
   const paidReturn = typeof window !== "undefined"
     && new URLSearchParams(window.location.search).get("payment") === "success";
   const paidOpens = typeof window !== "undefined"
     && new URLSearchParams(window.location.search).get("opened") !== "0";
+  const [pageOpenedAt] = useState(() => Date.now());
+  usePurchaseTracking();
   const paidReviewQ = trpc.essay.anonymousReport.useQuery(
     { fingerprint: anonFp, kind: "ucas" },
     // Keep asking until the full review is on the page. Stopping as soon as any result was
     // shown froze the page on the saved preview when the webhook landed a second later.
-    { enabled: paidReturn && paidOpens && !(result && result.answers), refetchInterval: (d: any) => (d?.unlocked ? false : 4000) }
+    {
+      enabled: paidReturn && paidOpens && !(result && result.answers),
+      refetchInterval: (q: any) => {
+        const d = q?.state?.data ?? q;
+        return (d as any)?.unlocked || Date.now() - pageOpenedAt > 120_000 ? false : 4000;
+      },
+    }
   );
   // The free preview survives a reload. It used to vanish, leaving only a buy button.
   const lockedUcasQ = trpc.essay.lockedReport.useQuery({ fingerprint: anonFp, kind: "ucas" }, { enabled: !result });
@@ -84,12 +101,14 @@ export default function UcasPersonalStatement() {
     if (unlockedQ.data?.unlocked && !result) setResult((unlockedQ.data as any).result);
   }, [unlockedQ.data, result]);
   const serverRechecks = (unlockedQ.data as any)?.rerunsLeft ?? (paidReviewQ.data as any)?.rerunsLeft ?? null;
-  const effectiveRechecks = rechecksLeft ?? serverRechecks;
+  // With several reviews on this browser, the count is the selected review's.
+  const effectiveRechecks = ucasReports.length > 1 && ucasTarget ? ucasTarget.rerunsLeft : (rechecksLeft ?? serverRechecks);
   const recheck = trpc.essay.rerunAnonymous.useMutation({
     onSuccess: (d: any) => {
       setResult(d.result);
       setRechecksLeft(d.rerunsLeft);
-      toast.success(`Re-check complete. ${d.rerunsLeft} free re-check(s) left for this statement.`);
+      ucasReportsQ.refetch();
+      toast.success(`Re-check complete. ${d.rerunsLeft} free ${d.rerunsLeft === 1 ? "re-check" : "re-checks"} left for this statement.`);
     },
     onError: (e: any) => toast.error(e.message || "Re-check unavailable"),
   });
@@ -133,7 +152,17 @@ export default function UcasPersonalStatement() {
   };
 
   const review = trpc.essay.analyzeUcasAnonymous.useMutation({
-    onSuccess: (data: any) => setResult(data.result),
+    // A paid review opens with its own two re-checks: refresh everything that decides
+    // the next button, or it kept offering another paid review.
+    onSuccess: (data: any) => {
+      setResult(data.result);
+      setRechecksLeft(null);
+      unlockedQ.refetch();
+      creditsQ.refetch();
+      deviceCreditsQ.refetch();
+      lockedUcasQ.refetch();
+      ucasReportsQ.refetch();
+    },
     onError: (err: any) => {
       const msg = err?.message || "Review failed";
       if (/free review/i.test(msg)) setLimitReached(msg);
@@ -193,6 +222,25 @@ export default function UcasPersonalStatement() {
         similarity checks. <Link href="/resources/academic-integrity" className="underline">How to use AI feedback safely</Link>
       </div>
 
+      <DeviceReportsList
+        reports={ucasReports}
+        selectedId={ucasTarget?.id ?? null}
+        opening={openingReview}
+        onOpen={async (r) => {
+          setOpeningReview(r.latestId);
+          try {
+            const d: any = await ucasUtils.essay.deviceReport.fetch({ fingerprint: anonFp, id: r.latestId });
+            if (d?.found) { setResult(d.result); setUcasTargetId(r.id); }
+          } finally {
+            setOpeningReview(null);
+          }
+        }}
+        onRecheck={(r) => {
+          setUcasTargetId(r.id);
+          document.getElementById("q1")?.scrollIntoView({ behavior: "smooth", block: "center" });
+        }}
+      />
+
       <Card>
         <CardContent className="pt-6 space-y-5">
           <div className="grid sm:grid-cols-2 gap-4">
@@ -247,6 +295,14 @@ export default function UcasPersonalStatement() {
             {remaining >= 0 ? ` · ${remaining.toLocaleString("en-GB")} left` : ` · ${Math.abs(remaining).toLocaleString("en-GB")} over the limit`}
           </div>
 
+          {paidReturn && paidOpens && !isUnlocked && (
+            <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 text-sm">
+              {Date.now() - pageOpenedAt > 120_000
+                ? "Your payment went through but the review has not opened yet. Reload the page, and if it still has not opened, email glushkovim@gmail.com with your order number and we will open it or refund you."
+                : "Payment received. Opening your full review, this takes a few seconds."}
+            </div>
+          )}
+
           {paidReturn && !paidOpens && !isAuthenticated && (
             <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 text-sm">
               {deviceCredits > 0
@@ -296,7 +352,7 @@ export default function UcasPersonalStatement() {
               // Re-checks belong to the review that was bought. Once they are gone,
               // a new statement is a new review, not a dead button.
               if (isUnlocked && (effectiveRechecks === null || effectiveRechecks > 0)) {
-                recheck.mutate({ fingerprint: anonFp, answers });
+                recheck.mutate({ fingerprint: anonFp, answers, ...(ucasTarget ? { recordId: ucasTarget.latestId } : {}) });
                 return;
               }
               // Nothing left to spend here: buying is the next step, not a request
@@ -375,7 +431,7 @@ export default function UcasPersonalStatement() {
           result={result}
           course={course}
           isUnlocked={isUnlocked}
-          onBuy={openFullReview}
+          onBuy={paidReturn && paidOpens && !isUnlocked ? undefined : openFullReview}
           buyLabel={canPayHere ? "Open the full review (uses 1 paid report)" : undefined}
           buyPending={unlockWithAccount.isPending || unlockWithDevice.isPending}
         />

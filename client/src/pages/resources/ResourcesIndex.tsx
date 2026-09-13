@@ -12,6 +12,20 @@ const resources = [
     readTime: "Tool",
   },
   {
+    slug: "/resources/sample-reports",
+    title: "Sample IBLens Reports",
+    description: "Three TOK essays at three levels, each with its full, unedited report and a note on where we disagree with the grader.",
+    icon: BarChart3,
+    readTime: "Examples",
+  },
+  {
+    slug: "/resources/academic-integrity",
+    title: "AI Feedback and IB Academic Integrity",
+    description: "What the IB allows, whether your teacher will know, and how to acknowledge AI feedback on IAs, the EE, orals and TOK.",
+    icon: Lightbulb,
+    readTime: "5 min read",
+  },
+  {
     slug: "/resources/ib-extended-essay-new-criteria-2027",
     title: "EE New Criteria 2027 (Marked /30)",
     description: "The May 2027 Extended Essay rubric explained: Framework, Knowledge and understanding, Analysis, Discussion and evaluation, Reflection, what changed from the 34-mark rubric, and how to check your draft.",
@@ -58,7 +72,7 @@ const resources = [
     title: "AI Coursework Review Tools Compared",
     description: "IBLens, RevisionDojo, MyRevisionAgent, Clastify and generic chatbots side by side: coverage, pricing models, free tiers, May 2027 rubric support.",
     icon: BarChart3,
-    readTime: "3 min read",
+    readTime: "4 min read",
   },
   {
     slug: "/resources/tok-exhibition-checklist",
@@ -107,7 +121,7 @@ const resources = [
     title: "IB Grade Boundaries Explained",
     description: "How the 7-point scale works, how subject grades and EE and TOK bonus points make up the Diploma score, the failing conditions, and why boundaries move.",
     icon: BarChart3,
-    readTime: "4 min read",
+    readTime: "5 min read",
   },
   {
     slug: "/resources/ib-essay-criteria-explained",

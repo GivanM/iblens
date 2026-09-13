@@ -35,7 +35,7 @@ export default function IBExtendedEssayExamples() {
       </ul>
 
       <h3>History Extended Essay Examples</h3>
-      <p>Very recent events make risky History EE topics: the IB's history guidance treats events from the last 10 years as too recent for a historical investigation, and they rarely have a body of historical writing to engage with. The strongest essays work with historiographical debate.</p>
+      <p>Very recent events make risky History EE topics. The History guide rules out anything from the last 10 years for the internal assessment, because the topic must be historical; the Extended Essay guide sets no fixed cut-off, but recent events rarely have a body of historical writing to engage with. The strongest essays work with historiographical debate.</p>
       <ul>
         <li><em>"To what extent was Stalin's collectivisation policy driven by ideological commitment to Marxism rather than pragmatic economic necessity, 1929-1933?"</em></li>
         <li><em>"How significant was the role of Japanese-American internment in shaping domestic opposition to civil liberties restrictions in post-war America?"</em></li>
@@ -73,7 +73,7 @@ export default function IBExtendedEssayExamples() {
       <h2>What Kills an Extended Essay Score</h2>
 
       <h3>The "Big Topic" Trap</h3>
-      <p>One of the most common reasons for a low score is a research question that is too broad. "What caused World War One?" is a subject for a book, not a 4,000-word essay. The problem shows from the first page, and a question that cannot be answered in the space holds down Criterion A and everything that depends on it.</p>
+      <p>One of the most common reasons for a low score is a research question that is too broad. "What caused the First World War?" is a subject for a book, not a 4,000-word essay. The problem shows from the first page, and a question that cannot be answered in the space holds down Criterion A and everything that depends on it.</p>
 
       <h3>Description Masquerading as Analysis</h3>
       <p>Many students describe what sources say without evaluating why it matters. Discussion and evaluation accounts for 8 of the 30 marks from May 2027, as critical thinking did for 12 of 34 before it. In History, engage with historiography. In Biology, discuss limitations of your method. In Economics, apply theory to real data.</p>
@@ -87,7 +87,7 @@ export default function IBExtendedEssayExamples() {
             <ExamplesBridge
         workLabel="Extended Essay"
         ctaHref="/essay/extended-essay"
-        note={"If you sit your exams in November 2026, your EE is marked out of 34 on the older criteria (Focus and method, Knowledge and understanding, Critical thinking, Presentation, Engagement), and many older example essays and mark schemes describe that rubric. The rows below use the criteria for May 2027 onward."}
+        note={"If you sit your exams in November 2026, your EE is marked out of 34 on the older criteria (Focus and method, Knowledge and understanding, Critical thinking, Presentation, Engagement), and many older example essays and mark schemes describe that rubric. The table above uses the criteria for May 2027 onward."}
         rows={[
           { criterion: "A: Framework for the essay", typical: "The research question restates the topic and could fill a book; scope and method are never stated.", top: "The question is narrow enough to answer in 4,000 words, the method fits it, and every section visibly serves it." },
           { criterion: "B: Knowledge and understanding", typical: "Sources are summarised one after another in the order they were read.", top: "Subject terminology is used precisely, and sources are positioned against each other rather than listed." },

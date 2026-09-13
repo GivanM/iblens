@@ -124,7 +124,7 @@ export function RequestSlip() {
           </div>
           <div className="ms-fr">
             <span>Payments handled by</span>
-            <b>LemonSqueezy</b>
+            <b>Lemon Squeezy</b>
           </div>
           <p className="ms-hand">No subscription. Nothing renews.</p>
           <p className="ms-slipnote">

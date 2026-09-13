@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { SEOHead } from "@/components/SEOHead";
 import { CheckCircle2, ArrowRight, FileText, Clock, ListOrdered } from "lucide-react";
+import { usePreviewUsed } from "@/hooks/usePreviewUsed";
 
 export interface SubjectConfig {
   subject: string;
@@ -19,6 +20,11 @@ export interface SubjectConfig {
    * submitted without changing the dropdown was marked against the wrong criteria.
    */
   analyzerHref: string;
+  /**
+   * Replaces "a mark for every criterion" where a criterion depends on something beyond
+   * the main paste, so the page does not promise a mark the report cannot give.
+   */
+  criteriaCaveat?: string;
   /** The official word limit as a phrase ("3,000-word"), when the task has one. */
   wordLimit?: string;
   /** The analyzer holds a May 2027 criteria set for this task as well as the current one. */
@@ -52,6 +58,7 @@ function getBarColor(ratio: number): string {
 }
 
 export default function SubjectEssayPage({ config }: { config: SubjectConfig }) {
+  const previewUsed = usePreviewUsed();
   const totalMax = config.criteria.reduce((s, c) => s + c.max, 0);
   const totalSample = config.criteria.reduce((s, c) => s + c.sampleScore, 0);
   const holistic = config.criteria.length === 1;
@@ -65,7 +72,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
   const reportCovers = [
     holistic
       ? `One holistic mark out of ${totalMax}, placed in a band and explained, because that is how this task is marked`
-      : "A mark for every criterion, with the reason for each one",
+      : config.criteriaCaveat ?? "A mark for every criterion, with the reason for each one",
     "The risks costing you the most marks, ranked, with what in the text causes them",
     "Next steps ranked by the marks they are likely to recover",
     ...(config.wordLimit
@@ -107,7 +114,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
         <section className="bg-gradient-to-b from-primary/5 to-background py-14 md:py-20">
           <div className="container max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold mb-6 uppercase tracking-wide">
-              One free preview per device or account · No account needed · No card
+              {previewUsed ? "Full report $9.99 · No account needed · Refundable within 7 days" : "One free preview per device or account · No account needed · No card"}
             </div>
             <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
               {config.heroHeadline}
@@ -118,7 +125,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
             <Button size="lg" className="text-base px-10 shadow-lg shadow-primary/25 mb-4 h-auto min-h-11 py-3 whitespace-normal" asChild>
               <Link href={config.analyzerHref}>
                 <FileText className="w-4 h-4 mr-2" />
-                Get a free preview
+                {previewUsed ? "Mark my work ($9.99)" : "Get a free preview"}
               </Link>
             </Button>
             <p className="text-xs text-muted-foreground">
@@ -209,11 +216,11 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
 
                 <div className="mt-6 pt-5 border-t flex flex-col sm:flex-row gap-3 items-center justify-between">
                   <p className="text-xs text-muted-foreground">
-                    Your own draft: a free preview first, then the full breakdown and fix list for $9.99
+                    {previewUsed ? "Your own draft: the full breakdown and fix list for $9.99" : "Your own draft: a free preview first, then the full breakdown and fix list for $9.99"}
                   </p>
-                  <Button size="sm" asChild>
+                  <Button size="sm" className="min-h-11" asChild>
                     <Link href={config.analyzerHref}>
-                      Get my free preview <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+                      {previewUsed ? "Mark my work" : "Get my free preview"} <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
                     </Link>
                   </Button>
                 </div>
@@ -306,7 +313,9 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
               Ready to see where your draft stands?
             </h2>
             <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-              Paste your {config.subject} and get a free preview in about a minute. The full report is $9.99.
+              {previewUsed
+                ? `Paste your ${config.subject}: the free preview on this device has been used, and a full report is $9.99 with two re-checks included.`
+                : `Paste your ${config.subject} and get a free preview in about a minute. The full report is $9.99.`}
             </p>
             <Button size="lg" className="text-base px-6 sm:px-10 shadow-lg shadow-primary/25 h-auto min-h-11 py-3 whitespace-normal" asChild>
               <Link href={config.analyzerHref}>

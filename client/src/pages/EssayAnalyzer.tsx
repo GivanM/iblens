@@ -23,12 +23,15 @@ import {
   CheckCircle2, XCircle, Lock, Share2, Twitter, Copy, BookmarkPlus, CreditCard
 } from "lucide-react";
 import { PurchaseModal } from "@/components/PurchaseModal";
+import { DeviceReportsList, deviceReportLabel, type DeviceReport } from "@/components/DeviceReportsList";
+import { usePurchaseTracking } from "@/hooks/usePurchaseTracking";
 import { PRICE_LABELS, type ProductKey } from "@shared/pricing";
 import { WordCheckNote } from "@/components/WordCheckNote";
 import { countWords, type WordCheck } from "@shared/wordcount";
 import { IA_RUBRIC_SUBJECTS, unmarkableReason } from "@shared/rubrics";
 import { analytics } from "@/lib/analytics";
 import { getAnonFingerprint } from "@/lib/fingerprint";
+import { capitalise, fullReportAdds, type CriterionScope } from "@/lib/reportScope";
 import { trackEssaySubmitted, trackEssayUploadStarted } from "@/lib/analytics/track";
 
 const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
@@ -40,6 +43,8 @@ const IB_SUBJECTS: string[] = [...IA_RUBRIC_SUBJECTS];
 // subject name let a Music student submit Experimenting with music and be marked
 // on the criteria for Exploring music in context.
 const EXTERNAL_COURSEWORK_LABELS: Record<string, string> = {
+  "English A: Language and Literature": "English A: Language and Literature (individual oral)",
+  "English A: Literature": "English A: Literature (individual oral)",
   "Visual Arts": "Visual Arts: comparative study (external)",
   "Music": "Music: exploring music in context (external)",
   "Film": "Film: textual analysis (external)",
@@ -100,7 +105,8 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
   const weakest = result.weakest_criterion;
   // A holistic instrument has one criterion, and its score is the exact mark.
   const holistic = (result.criteria_names || []).length === 1;
-  const others = (result.criteria_names || []).filter((c: any) => c?.name !== weakest?.name);
+  const others = (result.criteria_names || []).filter((c: any) => c?.name !== weakest?.name && c?.assessed !== false);
+  const unassessed = (result.criteria_names || []).filter((c: any) => c?.assessed === false);
   const doUnlock = () => unlock.mutate(analysisId ? { analysisId } : { fingerprint });
   return (
     <Card className="border-primary/40">
@@ -143,14 +149,14 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
                 <span className="text-xs whitespace-nowrap">?/{c.max}</span>
               </li>
             ))}
-            <li className="flex items-center gap-2 text-sm text-muted-foreground"><Lock className="w-3.5 h-3.5 shrink-0" /> {holistic ? "Your predicted mark within the band, and the full explanation" : "Your predicted score, and a mark for every criterion"}</li>
+            <li className="flex items-center gap-2 text-sm text-muted-foreground"><Lock className="w-3.5 h-3.5 shrink-0" /> {holistic ? "Your estimated mark within the band, and the full explanation" : unassessed.length ? "Your estimated score, and a mark for every criterion that could be assessed" : "Your estimated score, and a mark for every criterion"}</li>
             <li className="flex items-center gap-2 text-sm text-muted-foreground"><Lock className="w-3.5 h-3.5 shrink-0" /> The overall comment</li>
             <li className="flex items-center gap-2 text-sm text-muted-foreground"><Lock className="w-3.5 h-3.5 shrink-0" /> Step-by-step fixes, ranked by marks gained</li>
           </ul>
           <p className="text-xs text-muted-foreground mt-3">
             {holistic
-              ? "This task is marked as a whole, against one instrument. The preview shows the band and the start of the explanation; the full report gives the predicted mark and the whole explanation."
-              : "The criterion shown above in full is the one where this draft loses the largest share of its available marks. The others are scored in the full report."}
+              ? "This task is marked as a whole, against one instrument. The preview shows the band and the start of the explanation; the full report gives the estimated mark and the whole explanation."
+              : `The criterion shown above in full is the one where this draft loses the largest share of its available marks. The others are scored in the full report.${unassessed.length ? ` Not assessed from the pasted text: ${unassessed.map((c: any) => c.name).join(", ")}.` : ""}`}
           </p>
         </div>
         <div className="rounded-lg bg-primary/5 border border-primary/30 p-4">
@@ -176,7 +182,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
             </div>
           ) : (
             <div className="flex flex-col sm:flex-row items-center gap-3">
-              <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report, $9.99.</strong> Your predicted mark, comments on every criterion, your ranked fix list, and two free re-checks of revised versions of this work within 14 days, so you can see whether your edits landed.</p>
+              <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report, $9.99.</strong> {capitalise(fullReportAdds(result.criteria_names))}, plus two free re-checks of revised versions of this work within 14 days, so you can see whether your edits landed.</p>
               <Button className="min-h-11" onClick={onBuy}>Buy &amp; unlock, $9.99</Button>
             </div>
           )}
@@ -197,6 +203,7 @@ const ANALYZING_STEPS = [
 
 export default function EssayAnalyzer() {
   const { isAuthenticated, loading: authLoading } = useAuth();
+  usePurchaseTracking();
   // The homepage submission slip hands over the task and session it was filled
   // in with, so the same choice is not asked for twice.
   const handoff = (() => {
@@ -232,6 +239,8 @@ export default function EssayAnalyzer() {
   const [buyFor, setBuyFor] = useState<"preview" | "new">("new");
   const [buyLabel, setBuyLabel] = useState<string | null>(null);
   const [buyKind, setBuyKind] = useState<"essay" | "tok">("essay");
+  // The criteria of the preview being bought, so the dialog promises only what it marks.
+  const [buyCriteria, setBuyCriteria] = useState<CriterionScope[] | null>(null);
   // The work the report on screen belongs to, fixed when it was produced or reopened.
   // Reading the form instead named the wrong work after the task was switched.
   const [resultWork, setResultWork] = useState<{ label: string; kind: "essay" | "tok" } | null>(null);
@@ -239,10 +248,11 @@ export default function EssayAnalyzer() {
     label: [essayType === "EE" ? "Extended Essay" : essayType === "TOK" ? "TOK essay" : essayType === "TOK Exhibition" ? "TOK exhibition" : "IA", essayType === "TOK" || essayType === "TOK Exhibition" ? null : subject].filter(Boolean).join(", "),
     kind: (essayType === "TOK" || essayType === "TOK Exhibition" ? "tok" : "essay") as "essay" | "tok",
   });
-  const openBuy = (kind: "preview" | "new", label: string | null = null, work: "essay" | "tok" = "essay") => {
+  const openBuy = (kind: "preview" | "new", label: string | null = null, work: "essay" | "tok" = "essay", criteria: CriterionScope[] | null = null) => {
     setBuyFor(kind);
     setBuyLabel(label);
     setBuyKind(work);
+    setBuyCriteria(kind === "preview" ? criteria : null);
     setEssayPurchaseOpen(true);
   };
   const resultRef = useRef<HTMLDivElement | null>(null);
@@ -262,7 +272,7 @@ export default function EssayAnalyzer() {
     onSuccess: (data: any) => {
       setResult(data.result as EssayResult);
       setLastAnalysisId(data.id);
-      toast.success(`Re-check complete. ${data.rerunsLeft} free re-check(s) left for this draft.`);
+      toast.success(`Re-check complete. ${data.rerunsLeft} free ${data.rerunsLeft === 1 ? "re-check" : "re-checks"} left for this draft.`);
     },
     onError: (err: any) => {
       toast.error(err.message || "Re-check unavailable");
@@ -283,7 +293,7 @@ export default function EssayAnalyzer() {
       if (data.wasFree) {
         toast.success(`Free preview ready. The full report unlocks for ${PRICE_LABELS.ESSAY_SINGLE}.`);
       } else {
-        toast.success("Analysis complete!");
+        toast.success("Your full report is ready below.");
       }
     },
     onError: (error: { message: string }) => {
@@ -301,6 +311,10 @@ export default function EssayAnalyzer() {
       if (data.unlocked === true) {
         setPaidRunUnlocked(true);
         deviceCreditsQ.refetch();
+        setAnonRerunsLeft(null);
+        setRerunDelta(null);
+        setRecheckTargetId(null);
+        deviceReportsQ.refetch();
       }
       localStorage.setItem('iblens_anon_used', 'true');
       anonCheckQuery.refetch();
@@ -354,6 +368,9 @@ export default function EssayAnalyzer() {
   useEffect(() => {
     if (paidReportQ.data?.unlocked && !result) {
       setResult(paidReportQ.data.result as EssayResult);
+      // A pack opened here also put reports on the device.
+      deviceCreditsQ.refetch();
+      deviceReportsQ.refetch();
       toast.success("Payment confirmed. Your full report is open below.");
     }
   }, [paidReportQ.data, result]);
@@ -366,6 +383,30 @@ export default function EssayAnalyzer() {
     { enabled: !isAuthenticated }
   );
   const [paidRunUnlocked, setPaidRunUnlocked] = useState(false);
+  // Every paid report on this browser, and the one a guest re-check will go to.
+  const deviceReportsQ = trpc.essay.deviceReports.useQuery(
+    { fingerprint: anonFp, kind: "essay" },
+    { enabled: !isAuthenticated }
+  );
+  const reportsOnDevice: DeviceReport[] = (deviceReportsQ.data as any) ?? [];
+  const [recheckTargetId, setRecheckTargetId] = useState<number | null>(null);
+  // Tracked by the purchase (the head of its chain), which survives each re-check adding a version.
+  const recheckTarget = reportsOnDevice.find((r) => r.id === recheckTargetId) ?? reportsOnDevice[0] ?? null;
+  const [openingReport, setOpeningReport] = useState<number | null>(null);
+  const trpcUtils = trpc.useUtils();
+  const openDeviceReport = async (r: DeviceReport) => {
+    setOpeningReport(r.latestId);
+    try {
+      const d: any = await trpcUtils.essay.deviceReport.fetch({ fingerprint: anonFp, id: r.latestId });
+      if (d?.found) {
+        setResultWork({ label: deviceReportLabel(r), kind: r.essayType === "TOK" || r.essayType === "TOK Exhibition" ? "tok" : "essay" });
+        setResult(d.result as EssayResult);
+        setRecheckTargetId(r.id);
+      }
+    } finally {
+      setOpeningReport(null);
+    }
+  };
   const anonUnlocked = !isAuthenticated && (anonReportQ.data?.unlocked === true || paidRunUnlocked);
   const deviceCreditsQ = trpc.essay.deviceCredits.useQuery(
     { fingerprint: anonFp },
@@ -405,17 +446,21 @@ export default function EssayAnalyzer() {
     onSuccess: (d: any) => {
       setResult(d.result as EssayResult);
       setAnonRerunsLeft(d.rerunsLeft);
+      deviceReportsQ.refetch();
       const before = d.previous?.predicted_score;
       const after = d.result?.predicted_score;
       if (before != null && after != null) {
-        const max = d.result?.max_score ?? d.previous?.max_score;
+        const beforeMax = d.previous?.max_score;
+        const afterMax = d.result?.max_score;
         const move = after - before;
-        setRerunDelta(
-          `Before: ${before}${max ? `/${max}` : ""}. Now: ${after}${max ? `/${max}` : ""}. ` +
-          (move > 0 ? `Up ${move} mark${move === 1 ? "" : "s"}.` : move < 0 ? `Down ${Math.abs(move)}.` : "No change.")
-        );
+        // Totals differ when a criterion was assessed one time and not the other
+        // (an EE reflection pasted once, an oral given as a transcript then an outline).
+        setRerunDelta(beforeMax && afterMax && beforeMax !== afterMax
+          ? `Before: ${before}/${beforeMax}. Now: ${after}/${afterMax}. The totals differ because a different set of criteria was assessed, so the two marks are not directly comparable.`
+          : `Before: ${before}${afterMax ? `/${afterMax}` : ""}. Now: ${after}${afterMax ? `/${afterMax}` : ""}. ` +
+            (move > 0 ? `Up ${move} mark${move === 1 ? "" : "s"}.` : move < 0 ? `Down ${Math.abs(move)}.` : "No change."));
       }
-      toast.success(`Re-check complete. ${d.rerunsLeft} free re-check(s) left for this draft.`);
+      toast.success(`Re-check complete. ${d.rerunsLeft} free ${d.rerunsLeft === 1 ? "re-check" : "re-checks"} left for this draft.`);
     },
     onError: (e: any) => toast.error(e.message || "Re-check unavailable"),
   });
@@ -439,11 +484,22 @@ export default function EssayAnalyzer() {
   }, [result]);
   const lockedPreview: any = lockedQ.data?.exists && !lockedQ.data.unlocked ? lockedQ.data : null;
   const typeLabel = (t?: string | null) => t === "EE" ? "Extended Essay" : t === "TOK" ? "TOK essay" : t === "TOK Exhibition" ? "TOK exhibition" : t === "IA" ? "IA" : (t || "");
+  // Exhibitions are stored as task "TOK" with subject "Exhibition".
   const lockedLabel = lockedPreview
-    ? [typeLabel(lockedPreview.essayType), lockedPreview.essayType === "TOK" || lockedPreview.essayType === "TOK Exhibition" ? null : lockedPreview.subject]
-        .filter(Boolean).join(", ")
+    ? lockedPreview.essayType === "TOK"
+      ? (lockedPreview.subject === "Exhibition" ? "TOK exhibition" : "TOK essay")
+      : [typeLabel(lockedPreview.essayType), lockedPreview.subject].filter(Boolean).join(", ")
     : null;
   const unmarkableNow = unmarkableReason(essayType, subject, examSession);
+  const isOral = essayType === "IA" && subject.startsWith("English A");
+  // Arriving from a page for different work (a History IA link while the saved preview
+  // is a Biology IA), the saved preview steps aside instead of heading the page.
+  const handoffApi = handoff.type === "TOK Exhibition" ? { type: "TOK", subject: "Exhibition" } : handoff.type === "TOK" ? { type: "TOK", subject: "Essay" } : { type: handoff.type, subject: handoff.subject };
+  const otherWorkRequested: boolean = !!lockedPreview && (
+    (!!handoffApi.type && handoffApi.type !== lockedPreview.essayType) ||
+    (!!handoffApi.subject && lockedPreview.essayType !== "TOK" && handoffApi.subject !== lockedPreview.subject) ||
+    (handoffApi.type === "TOK" && !!handoffApi.subject && (lockedPreview.subject === "Exhibition") !== (handoffApi.subject === "Exhibition"))
+  );
 
   const [analyzingStep, setAnalyzingStep] = useState(0);
   useEffect(() => {
@@ -508,6 +564,7 @@ export default function EssayAnalyzer() {
           essayText,
           reflections: reflections || undefined,
           examSession,
+          ...(recheckTarget ? { recordId: recheckTarget.latestId } : {}),
         });
         return;
       }
@@ -560,11 +617,36 @@ export default function EssayAnalyzer() {
         </p>
       </div>
 
-      {!result && lockedPreview && (
+      {!isAuthenticated && (
+        <DeviceReportsList
+          reports={reportsOnDevice}
+          selectedId={recheckTarget?.id ?? null}
+          opening={openingReport}
+          onOpen={openDeviceReport}
+          onRecheck={(r) => {
+            setRecheckTargetId(r.id);
+            document.getElementById("essay-text")?.scrollIntoView({ behavior: "smooth", block: "center" });
+          }}
+        />
+      )}
+
+      {!result && lockedPreview && otherWorkRequested && (
+        <div className="mb-6 rounded-lg border border-border bg-muted/40 p-3 text-sm flex flex-col sm:flex-row sm:items-center gap-2">
+          <span className="flex-1 text-muted-foreground">The free preview on this device was used on {lockedLabel || "another piece of work"}. A full report for the work below is {PRICE_LABELS.ESSAY_SINGLE}.</span>
+          {lockedPreview.preview && (
+            <Button variant="ghost" className="min-h-11 h-auto whitespace-normal" onClick={() => { setResultWork({ label: lockedLabel || "", kind: lockedPreview.essayType === "TOK" || lockedPreview.essayType === "TOK Exhibition" ? "tok" : "essay" }); setResult(lockedPreview.preview as EssayResult); }}>
+              Reopen that preview
+            </Button>
+          )}
+        </div>
+      )}
+
+      {!result && lockedPreview && !otherWorkRequested && (
         <Card className="mb-6 border-primary/40 bg-primary/5">
           <CardContent className="pt-6 space-y-3">
             <div>
               <p className="text-sm font-semibold">Your free preview is saved on this device</p>
+              <p className="text-xs text-muted-foreground">This device's one free preview has been used on it.</p>
               <p className="text-xs text-muted-foreground">
                 {lockedLabel}{lockedPreview.band ? ` · Band ${lockedPreview.band}` : ""}
                 {lockedPreview.createdAt ? ` · ${new Date(lockedPreview.createdAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}` : ""}
@@ -584,8 +666,8 @@ export default function EssayAnalyzer() {
                 <Button className="min-h-11 h-auto whitespace-normal" disabled={deviceUnlock.isPending} onClick={() => deviceUnlock.mutate({ fingerprint: anonFp })}>
                   {deviceUnlock.isPending ? "Unlocking…" : "Unlock the full report (uses 1 paid report)"}
                 </Button>
-              ) : (
-                <Button className="min-h-11 h-auto whitespace-normal" onClick={() => openBuy("preview", lockedLabel, lockedPreview.essayType === "TOK" || lockedPreview.essayType === "TOK Exhibition" ? "tok" : "essay")}>
+              ) : paidReturn && paidOpens ? null : (
+                <Button className="min-h-11 h-auto whitespace-normal" onClick={() => openBuy("preview", lockedLabel, lockedPreview.essayType === "TOK" || lockedPreview.essayType === "TOK Exhibition" ? "tok" : "essay", (lockedPreview.preview as any)?.criteria_names ?? null)}>
                   Unlock this {lockedLabel || "preview"} in full, {PRICE_LABELS.ESSAY_SINGLE}
                 </Button>
               )}
@@ -600,7 +682,7 @@ export default function EssayAnalyzer() {
             <div className="space-y-2">
               <Label>Type of work</Label>
               <Select value={essayType} onValueChange={setEssayType}>
-                <SelectTrigger className="w-full data-[size=default]:h-auto min-h-9 py-1.5 whitespace-normal text-left *:data-[slot=select-value]:line-clamp-2">
+                <SelectTrigger className="w-full data-[size=default]:h-auto min-h-11 sm:min-h-9 py-1.5 whitespace-normal text-left *:data-[slot=select-value]:line-clamp-2" aria-label="Type of work">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -614,7 +696,7 @@ export default function EssayAnalyzer() {
               <div className="space-y-2">
                 <Label>Subject</Label>
                 <Select value={subject} onValueChange={setSubject}>
-                  <SelectTrigger className="w-full data-[size=default]:h-auto min-h-9 py-1.5 whitespace-normal text-left *:data-[slot=select-value]:line-clamp-2">
+                  <SelectTrigger className="w-full data-[size=default]:h-auto min-h-11 sm:min-h-9 py-1.5 whitespace-normal text-left *:data-[slot=select-value]:line-clamp-2" aria-label="Subject">
                     <SelectValue placeholder="Choose your subject" />
                   </SelectTrigger>
                   <SelectContent>
@@ -630,7 +712,7 @@ export default function EssayAnalyzer() {
               <div className="space-y-2">
                 <Label>Exam session</Label>
                 <Select value={examSession} onValueChange={(v) => setExamSession(v as "nov2026" | "may2027")}>
-                  <SelectTrigger className="w-full data-[size=default]:h-auto min-h-9 py-1.5 whitespace-normal text-left *:data-[slot=select-value]:line-clamp-2">
+                  <SelectTrigger className="w-full data-[size=default]:h-auto min-h-11 sm:min-h-9 py-1.5 whitespace-normal text-left *:data-[slot=select-value]:line-clamp-2" aria-label="Exam session">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -652,10 +734,10 @@ export default function EssayAnalyzer() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="rq-input">{essayType === "TOK Exhibition" ? "Your exhibition prompt (one of the 35 prompts in the TOK guide)" : essayType === "TOK" ? "Prescribed title" : "Research question or title (optional)"}</Label>
+            <Label htmlFor="rq-input">{essayType === "TOK Exhibition" ? "Your exhibition prompt (one of the 35 prompts in the TOK guide)" : essayType === "TOK" ? "Prescribed title" : (isOral ? "Global issue (optional)" : "Research question or title (optional)")}</Label>
             <Input
               id="rq-input"
-              placeholder={essayType === "TOK Exhibition" ? "e.g. What counts as knowledge?" : essayType === "TOK" ? "The prescribed title, copied exactly" : "Your research question or title"}
+              placeholder={essayType === "TOK Exhibition" ? "e.g. What counts as knowledge?" : essayType === "TOK" ? "The prescribed title, copied exactly" : (isOral ? "The global issue your oral explores" : "Your research question or title")}
               value={researchQuestion}
               onChange={(e) => setResearchQuestion(e.target.value)}
             />
@@ -696,7 +778,7 @@ export default function EssayAnalyzer() {
                 <strong>Re-checking a report you bought.</strong> Paste the revised version of the same work below. This re-check is free and does not use a paid report.
               </div>
             )}
-            <Label htmlFor="essay-text">{essayType === "TOK Exhibition" ? "Paste your commentary on all three objects" : essayType === "TOK" ? "Paste your TOK essay" : essayType === "EE" ? "Paste your Extended Essay" : "Paste your work"}</Label>
+            <Label htmlFor="essay-text">{essayType === "TOK Exhibition" ? "Paste your commentary on all three objects" : essayType === "TOK" ? "Paste your TOK essay" : essayType === "EE" ? "Paste your Extended Essay" : isOral ? "Paste your oral transcript or outline" : "Paste your work"}</Label>
             <Textarea
               id="essay-text"
               placeholder={essayType === "TOK Exhibition" ? "Paste your commentary for all three objects, including how each links to the prompt." : "Paste the full text of your work here. A short extract can be marked, but the report is only as good as what it sees. Anything past 30,000 characters, about 5,000 words, is not passed to the AI or marked."}
@@ -716,6 +798,12 @@ export default function EssayAnalyzer() {
             )}
             {essayType === "TOK" && (
               <p className="text-xs text-muted-foreground">Up to 1,600 words. Examiners stop reading at the limit.</p>
+            )}
+            {isOral && (
+              <p className="text-xs text-muted-foreground">A transcript of a practice run is marked on all four criteria. From an outline, criteria A to C are marked and Criterion D (language) is not, because spoken language cannot be judged from notes.</p>
+            )}
+            {essayType === "IA" && subject === "Music" && (
+              <p className="text-xs text-muted-foreground">Paste the written portfolio. Criteria A, B1 and B2 are marked on it. C1 and C2 judge the creating exercise and the performed adaptation themselves, which text cannot carry, so the report leaves them unmarked and gives the estimated mark out of the 18 marks it assessed.</p>
             )}
             {essayType === "IA" && subject === "Economics" && (
               <p className="text-xs text-muted-foreground">Paste one commentary at a time, up to 800 words each. Each commentary is its own report.</p>
@@ -827,7 +915,7 @@ export default function EssayAnalyzer() {
           )}
 
           {/* Paid guest: the two re-checks they were promised */}
-          {anonUnlocked && (anonRerunsLeft ?? anonReportQ.data?.rerunsLeft ?? 2) > 0 && (
+          {anonUnlocked && (recheckTarget ? recheckTarget.rerunsLeft : (anonRerunsLeft ?? anonReportQ.data?.rerunsLeft ?? 2)) > 0 && (
             <Button
               className="w-full min-h-11 h-auto py-2.5 whitespace-normal"
               onClick={() => handleAnalyze("recheck")}
@@ -841,7 +929,9 @@ export default function EssayAnalyzer() {
               ) : (
                 <>
                   <FileText className="w-4 h-4 mr-2" />
-                  Re-check your revised version (free, {anonRerunsLeft ?? anonReportQ.data?.rerunsLeft ?? 2} left)
+                  {recheckTarget
+                    ? `Re-check your revised ${deviceReportLabel(recheckTarget)} (free, ${recheckTarget.rerunsLeft} left)`
+                    : `Re-check your revised version (free, ${anonRerunsLeft ?? anonReportQ.data?.rerunsLeft ?? 2} left)`}
                 </>
               )}
             </Button>
@@ -911,6 +1001,7 @@ export default function EssayAnalyzer() {
             unlocksPreview={buyFor === "preview"}
             previewLabel={buyFor === "preview" ? buyLabel : null}
             kind={buyFor === "preview" ? buyKind : undefined}
+            criteria={buyFor === "preview" ? buyCriteria : null}
           />
           <p className="text-xs text-muted-foreground text-center">
             IBLens is independent of the International Baccalaureate and not endorsed by it. Every mark is an AI estimate, not an IB mark.{" "}
@@ -937,8 +1028,8 @@ export default function EssayAnalyzer() {
           {/* Score summary */}
           <div className="grid grid-cols-3 gap-3">
             {[
-              { label: "Predicted score", value: "16/25", color: "text-amber-600" },
-              { label: "Weakest criterion", value: "D", color: "text-foreground" },
+              { label: "Estimated score", value: "16/25", color: "text-amber-600" },
+              { label: "Band range", value: "15-17", color: "text-foreground" },
               { label: "Share of marks", value: "64%", color: "text-foreground" },
             ].map((s) => (
               <div key={s.label} className="text-center p-2 sm:p-4 bg-muted/50 rounded-lg border border-border min-w-0">
@@ -949,7 +1040,7 @@ export default function EssayAnalyzer() {
           </div>
 
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Your IA demonstrates solid understanding of business concepts and makes good use of the supporting documents.
+            Your IA demonstrates solid understanding of business concepts, and the supporting documents are well chosen, but their data is used only superficially.
             The main areas for improvement are the depth of analysis in Criterion D and the connection
             between your research question and conclusions.
           </p>
@@ -981,7 +1072,7 @@ export default function EssayAnalyzer() {
           {/* Risks & wins */}
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-red-600 mb-2">Losing Marks</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-red-600 mb-2">What is losing marks</p>
               <div className="space-y-2">
                 <div className="p-3 bg-red-50 border-l-2 border-red-400 rounded-r text-sm">
                   <strong>Thin use of the documents:</strong> Criterion D needs the data in your supporting documents used to analyse and evaluate the research question.
@@ -992,7 +1083,7 @@ export default function EssayAnalyzer() {
               </div>
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-emerald-600 mb-2">Quick Wins</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-emerald-600 mb-2">Where marks are recoverable</p>
               <div className="space-y-2">
                 <div className="p-3 bg-emerald-50 border-l-2 border-emerald-400 rounded-r text-sm">
                   <strong>+2 marks possible:</strong> bring figures from your supporting documents into the evaluation of each option.
@@ -1019,7 +1110,7 @@ export default function EssayAnalyzer() {
       {result && (
         <div ref={resultRef} className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 scroll-mt-20">
           {(result as any).locked ? (
-            <LockedTeaser essayText={essayText} result={result} isAuthenticated={isAuthenticated} hasPaidCredit={(credits?.essayCredits ?? 0) > 0} fingerprint={anonFp} analysisId={lastAnalysisId} onUnlocked={(full: any) => setResult(full as EssayResult)} deviceCredits={deviceCredits} deviceUnlocking={deviceUnlock.isPending} onDeviceUnlock={() => deviceUnlock.mutate({ fingerprint: anonFp })} onBuy={() => openBuy("preview", resultWork?.label ?? lockedLabel, resultWork?.kind ?? "essay")} />
+            <LockedTeaser essayText={essayText} result={result} isAuthenticated={isAuthenticated} hasPaidCredit={(credits?.essayCredits ?? 0) > 0} fingerprint={anonFp} analysisId={lastAnalysisId} onUnlocked={(full: any) => setResult(full as EssayResult)} deviceCredits={deviceCredits} deviceUnlocking={deviceUnlock.isPending} onDeviceUnlock={() => deviceUnlock.mutate({ fingerprint: anonFp })} onBuy={() => openBuy("preview", resultWork?.label ?? lockedLabel, resultWork?.kind ?? "essay", (result as any)?.criteria_names ?? null)} />
           ) : (<>
           {/* Overall Score */}
           <Card>
@@ -1044,7 +1135,7 @@ export default function EssayAnalyzer() {
                   <div style={SERIF} className={`text-3xl font-bold ${getScoreColor(result.predicted_score, result.max_score)}`}>
                     {result.predicted_score}/{result.max_score}
                   </div>
-                  <div className="text-xs text-muted-foreground mt-1">Predicted score</div>
+                  <div className="text-xs text-muted-foreground mt-1">Estimated score</div>
                 </div>
                 <div className="text-center p-4 bg-muted/50 rounded-lg">
                   <div style={SERIF} className="text-3xl font-bold">{result.band_range}</div>
@@ -1103,7 +1194,7 @@ export default function EssayAnalyzer() {
               <CardHeader>
                 <CardTitle className="text-sm font-semibold text-red-600 uppercase tracking-wider flex items-center gap-2">
                   <XCircle className="w-4 h-4" />
-                  What's Losing Marks
+                  What is losing marks
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
@@ -1123,7 +1214,7 @@ export default function EssayAnalyzer() {
               <CardHeader>
                 <CardTitle className="text-sm font-semibold text-emerald-600 uppercase tracking-wider flex items-center gap-2">
                   <TrendingUp className="w-4 h-4" />
-                  Score Leverage Zones
+                  Where marks are recoverable
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
@@ -1142,7 +1233,7 @@ export default function EssayAnalyzer() {
               <Card>
                 <CardHeader>
                   <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-                    Next Steps
+                    What to fix first
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">

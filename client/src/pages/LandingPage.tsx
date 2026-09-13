@@ -48,7 +48,7 @@ export default function LandingPage() {
     <>
       <SEOHead
         title="IB Essay Grader: Free Preview of Your IA, EE or TOK Marks in About a Minute | IBLens"
-        description="Paste your IB essay and get a free preview in about a minute: your band range, weakest criterion and top risks. The full report marks every criterion. Extended Essay, IA or TOK, no account needed."
+        description="Paste your IB essay and get a free preview in about a minute: your band range, weakest criterion and top risks. The full report gives the estimated mark and the reasons for it. Extended Essay, IA or TOK, no account needed."
         canonical="/grade"
       />
 
@@ -80,7 +80,7 @@ export default function LandingPage() {
               Grade Your IB Essay<br />in About a Minute
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">
-              Paste your IA, Extended Essay or TOK work. The free preview comes back in about a minute with your band range, weakest criterion and top risks; the full report marks every criterion and ranks the fixes.
+              Paste your IA, Extended Essay or TOK work. The free preview comes back in about a minute with your band range, weakest criterion and top risks; the full report gives the estimated mark, criterion by criterion (the TOK essay and exhibition as a whole), and ranks the fixes.
             </p>
             <Button size="lg" className="text-base px-10 h-14 shadow-lg shadow-primary/25 mb-4" asChild>
               <Link href="/essay">
@@ -160,7 +160,7 @@ export default function LandingPage() {
                   <div className="space-y-3 blur-sm select-none pointer-events-none">
                     <div>
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-medium">Risk Areas & Leverage Zones</span>
+                        <span className="text-xs font-medium">What is losing marks, and where marks are recoverable</span>
                         <span className="text-xs text-muted-foreground">3 items</span>
                       </div>
                       <div className="h-2 bg-muted rounded-full overflow-hidden">
@@ -168,7 +168,7 @@ export default function LandingPage() {
                       </div>
                     </div>
                     <div className="text-xs text-muted-foreground">Criterion D: analysis summarises the documents instead of weighing them...</div>
-                    <div className="text-xs text-muted-foreground">Quick win: answer the research question directly in the conclusion...</div>
+                    <div className="text-xs text-muted-foreground">Recoverable: answer the research question directly in the conclusion...</div>
                   </div>
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Button size="sm" asChild>
@@ -203,19 +203,19 @@ export default function LandingPage() {
             <div className="bg-background rounded-xl border p-5">
               <FAQItem
                 question="Is the first preview really free?"
-                answer="Yes. The first preview is free: your band range, feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark and comments for every criterion and a ranked list of fixes, unlocks for $9.99."
+                answer="Yes. The first preview is free: your band range, feedback on your weakest criterion (for the TOK essay and exhibition, which are marked as a whole, the start of the explanation) and the top risks in your draft. The complete report, with an estimated mark, comments criterion by criterion (for the TOK essay and exhibition, the whole explanation) and a ranked list of fixes, unlocks for $9.99."
               />
               <FAQItem
                 question="Which essay types and subjects does IBLens support?"
                 answer="IBLens grades Extended Essays, TOK essays, the TOK exhibition and coursework in 14 subjects: Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, Visual Arts, Music and Film. Visual Arts can be marked only for sessions through November 2026: from May 2027 the comparative study is no longer set."
               />
               <FAQItem
-                question="How accurate is the AI grade?"
+                question="How accurate is the estimated mark?"
                 answer="It is an estimate, not a mark. IBLens reads your essay against the published criteria for your subject and session, and the value of the report is in which criterion it flags and why, more than in the exact number."
               />
               <FAQItem
                 question="What payment methods do you accept?"
-                answer="Payments are handled by LemonSqueezy, which accepts major cards and the other methods shown at checkout. Your reports are added automatically once the payment is confirmed, and you do not need an account to pay."
+                answer="Payments are handled by Lemon Squeezy, which accepts major cards and the other methods shown at checkout. Your reports are added automatically once the payment is confirmed, and you do not need an account to pay."
               />
               <FAQItem
                 question="Is my essay private?"
@@ -240,15 +240,18 @@ export default function LandingPage() {
         </section>
       </main>
 
-      {/* Minimal Footer */}
-      <footer className="py-6 border-t bg-background text-center text-xs text-muted-foreground">
-        <div className="flex items-center justify-center gap-6">
+      {/* Minimal footer. This page renders outside the shared layout, so it carries the
+          two things every page promises: the cookie settings and the independence notice. */}
+      <footer className="py-6 border-t bg-background text-center text-xs text-muted-foreground space-y-3 px-4">
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           <Link href="/" className="font-semibold text-foreground">IBLens</Link>
           <Link href="/pricing" className="hover:text-foreground transition-colors">Pricing</Link>
           <Link href="/refund-policy" className="hover:text-foreground transition-colors">Refund Policy</Link>
           <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
           <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
+          <button type="button" onClick={() => window.dispatchEvent(new Event("iblens:cookie-settings"))} className="hover:text-foreground transition-colors cursor-pointer min-h-11">Cookie settings</button>
         </div>
+        <p>&copy; {new Date().getFullYear()} IBLens. Independent of the International Baccalaureate Organization, which does not endorse it. Every mark is an AI estimate, not an IB mark.</p>
       </footer>
     </>
   );

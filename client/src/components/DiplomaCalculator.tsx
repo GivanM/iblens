@@ -88,7 +88,7 @@ export function DiplomaCalculator() {
       </div>
       <div className="mt-5 rounded-lg bg-muted/50 p-4" aria-live="polite">
         <p className="text-foreground">
-          <span className="text-3xl font-bold">{total}</span>
+          <span className={`text-3xl font-bold ${problems.length ? "text-muted-foreground line-through decoration-2" : ""}`}>{total}</span>
           <span className="text-muted-foreground"> / 45</span>
           <span className="ml-3 text-sm text-muted-foreground">{subjectPoints} subject points + {bonus} bonus {bonus === 1 ? "point" : "points"}</span>
         </p>
@@ -97,7 +97,8 @@ export function DiplomaCalculator() {
           <p className="mt-2 text-sm text-emerald-700">No failing condition applies to these grades. CAS and academic integrity also have to be met, and cannot be checked from grades.</p>
         ) : (
           <ul className="mt-2 space-y-1 text-sm text-rose-700">
-            {problems.map((p) => <li key={p}>Diploma not awarded: {p}</li>)}
+            <li className="font-medium">{total} points, but the Diploma is not awarded:</li>
+            {problems.map((p) => <li key={p}>{p}</li>)}
           </ul>
         )}
       </div>

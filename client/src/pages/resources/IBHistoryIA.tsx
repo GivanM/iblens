@@ -113,7 +113,7 @@ export default function IBHistoryIA() {
         IA research questions have these properties:
       </p>
       <ul>
-        <li><strong>Narrow enough to answer in about 1,300 words of analysis.</strong> "What caused World War One?" cannot be answered in 1,300 words. "To what extent did the Schlieffen Plan's failure determine Germany's military strategy in 1914?" can.</li>
+        <li><strong>Narrow enough to answer in about 1,300 words of analysis.</strong> "What caused the First World War?" cannot be answered in 1,300 words. "To what extent did the Schlieffen Plan's failure determine Germany's military strategy in 1914?" can.</li>
         <li><strong>Debatable, requiring evaluation of evidence, not just description.</strong> A question that can be answered by reciting a sequence of events is not suitable. A question where historians disagree, where you must weigh evidence and come to a justified position, is ideal.</li>
         <li><strong>Supported by accessible sources.</strong> The guide stresses that there must be enough sources to support the investigation. Topics with sources available in translation, digitised, or in a local archive are easier than topics whose sources all sit in an archive in another country.</li>
         <li><strong>Historical, and not too recent.</strong> The guide rules out events from the last 10 years. The topic does not have to come from the syllabus, and a topic you have not studied in class can show more independent thinking.</li>

@@ -8,7 +8,7 @@ export default function IBExtendedEssayWordCount() {
       description="What counts towards the 4,000-word limit of the IB Extended Essay, what does not, how close to the limit to aim, and what happens if you go over."
       canonical="/resources/ib-extended-essay-word-count"
       datePublished="2026-06-09"
-      dateModified="2026-06-09"
+      dateModified="2026-09-13"
     >
       <p>
         The IB Extended Essay has a maximum of 4,000 words. It is one of the most
@@ -60,9 +60,11 @@ export default function IBExtendedEssayWordCount() {
       </p>
       <p>
         There is no separate deduction of marks for going over. The loss is in what is
-        not read: the guide points out that knowledge shown beyond the limit is treated
-        as if it were not there for Criterion B, and analysis or evaluation beyond it as
-        if it had not been made for Criterion C. If you write 4,500 words, the last 500
+        not read. The guide for sessions through November 2026 points out that knowledge
+        shown beyond the limit is treated as if it were not there for Criterion B, and
+        analysis or evaluation beyond it as if it had not been made for Critical thinking
+        (Criterion C in that guide); the May 2027 guide says an essay over the limit is
+        negatively compromised across all assessment criteria. If you write 4,500 words, the last 500
         count for nothing, and they are usually where the conclusion is.
       </p>
 

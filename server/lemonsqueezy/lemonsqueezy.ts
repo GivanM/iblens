@@ -30,6 +30,7 @@ import {
   markAnalysisUnlocked,
   createAnalysis,
   claimAnonymousUnlock,
+  countReportsOpenedByOrder,
 } from "../db";
 import { sendPaymentConfirmationEmail, getSkuHumanName } from "../email";
 import { sendGA4PurchaseEvent } from "../ga4mp";
@@ -69,6 +70,22 @@ function computeHmac(rawBody: string | Buffer, secret: string): string {
 }
 
 /**
+ * The configured secret that signed this delivery, or null. The previous secret is
+ * accepted only while a rotation is under way, so a new secret can go live here
+ * before it is saved in LemonSqueezy without failing a real payment in between.
+ */
+function signingSecretFor(rawBody: string, signature: string): { secret: string; previous: boolean } | null {
+  if (verifyLsSignature(rawBody, signature, ENV.lemonsqueezyWebhookSecret)) {
+    return { secret: ENV.lemonsqueezyWebhookSecret, previous: false };
+  }
+  const previous = ENV.lemonsqueezyWebhookSecretPrevious;
+  if (previous && verifyLsSignature(rawBody, signature, previous)) {
+    return { secret: previous, previous: true };
+  }
+  return null;
+}
+
+/**
  * Map LemonSqueezy SKU (from variant) to credit amounts.
  */
 /** Our sku for a LemonSqueezy variant id, or null when the variant is not ours. */
@@ -77,6 +94,8 @@ export function skuForVariantId(variantId: number): string | null {
   const hit = Object.entries(LEMONSQUEEZY_VARIANTS).find(([, v]) => v === variantId);
   return hit ? hit[0] : null;
 }
+
+const unverifiedWindow = { start: 0, count: 0 };
 
 export function lsSkuToCredits(sku: string): { essay: number; university: number } {
   switch (sku) {
@@ -132,15 +151,24 @@ export function registerLemonsqueezyWebhook(app: Express) {
       // an unsigned request writing the key first made the genuine webhook look
       // like a duplicate, so the payment was swallowed. Unverified requests get a
       // throwaway key and are logged for inspection only.
-      const signatureHeader = (req.headers["x-signature"] as string) || "";
-      const secretForKey = ENV.lemonsqueezyWebhookSecret || "";
-      const preVerified = !!secretForKey && !!signatureHeader
-        && verifyLsSignature(rawBodyStr, signatureHeader, secretForKey);
+      const signedWith = signature ? signingSecretFor(rawBodyStr, signature) : null;
+      const preVerified = signedWith !== null;
       const eventKey = preVerified
         ? `${dataId}_${eventName}`
         : `unverified_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 
       console.log(`[LemonSqueezy Webhook] Incoming: event=${eventName}, dataId=${dataId}, bodyLen=${rawBodyStr.length}`);
+
+      // Unsigned requests are recorded for diagnosis, but only a few a minute: anyone
+      // can POST here, and the table lives on a server other sites share.
+      if (!preVerified) {
+        const now = Date.now();
+        if (now - unverifiedWindow.start > 60_000) { unverifiedWindow.start = now; unverifiedWindow.count = 0; }
+        unverifiedWindow.count += 1;
+        if (unverifiedWindow.count > 20) {
+          return res.status(401).json({ error: "Invalid signature" });
+        }
+      }
 
       // ===== STEP 1: LOG FIRST — write to DB before any validation =====
       let webhookEventId: number | undefined;
@@ -149,7 +177,8 @@ export function registerLemonsqueezyWebhook(app: Express) {
           provider: "lemonsqueezy",
           npPaymentId: eventKey,
           paymentStatus: "received", // initial status
-          rawBody: rawBodyStr.substring(0, 65535), // text column limit safety
+          // Only a signed delivery earns a full copy; anyone can POST here.
+          rawBody: preVerified ? rawBodyStr.substring(0, 65535) : rawBodyStr.substring(0, 500),
           signatureValid: false, // will update after verification
           requestHeaders: JSON.stringify({
             "x-signature": signature ? `${signature.substring(0, 16)}...` : "(missing)",
@@ -185,21 +214,23 @@ export function registerLemonsqueezyWebhook(app: Express) {
         return res.status(200).json({ ok: true, message: "Secret not configured" });
       }
 
-      const computed = computeHmac(rawBodyStr, secret);
-      const isValid = verifyLsSignature(rawBodyStr, signature, secret);
-
-      if (!isValid) {
-        console.error(`[LemonSqueezy Webhook] HMAC verification FAILED. received_sig=${signature?.substring(0, 16)}..., computed=${computed.substring(0, 16)}...`);
+      if (!signedWith) {
+        // The valid signature for a body someone else chose is never written down:
+        // stored, it would let anyone who reads this table sign that body.
+        console.error(`[LemonSqueezy Webhook] HMAC verification FAILED. received_sig=${signature?.substring(0, 16)}...`);
         if (webhookEventId) {
           await updateWebhookEvent(webhookEventId, {
             signatureValid: false,
             paymentStatus: "invalid_signature",
-            errorMessage: `HMAC mismatch. Received: ${signature || "(empty)"}. Computed: ${computed}`,
-            computedSignature: computed,
+            errorMessage: `HMAC mismatch. Received: ${signature ? signature.substring(0, 16) + "..." : "(empty)"}`,
           }).catch(() => {});
         }
         // Return 401 for invalid signature — LS won't retry 4xx
         return res.status(401).json({ error: "Invalid signature" });
+      }
+
+      if (signedWith.previous) {
+        console.warn(`[LemonSqueezy Webhook] event=${eventName} dataId=${dataId} was signed with the PREVIOUS secret: save the new secret in LemonSqueezy, then remove LEMONSQUEEZY_WEBHOOK_SECRET_PREVIOUS`);
       }
 
       // Signature valid — update record
@@ -207,7 +238,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
         await updateWebhookEvent(webhookEventId, {
           signatureValid: true,
           paymentStatus: "verified",
-          computedSignature: computed,
+          computedSignature: computeHmac(rawBodyStr, signedWith.secret),
         }).catch(() => {});
       }
 
@@ -224,7 +255,11 @@ export function registerLemonsqueezyWebhook(app: Express) {
           // checkouts are kept) is paid for all the same, so it is credited like a
           // storefront purchase instead of being dropped.
           const knownOrder = orderId ? await getOrderById(orderId) : undefined;
-          if (!orderId || !knownOrder) {
+          // The checkout link carries the order id and can be paid again. A different
+          // LemonSqueezy order on an order we already settled is a new payment, credited
+          // like a storefront purchase under its own id, not dropped as a duplicate.
+          const secondPayment = !!knownOrder && knownOrder.status !== "pending" && !!(knownOrder as any).npPaymentId && (knownOrder as any).npPaymentId !== dataId;
+          if (!orderId || !knownOrder || secondPayment) {
             // A purchase made straight from the LemonSqueezy storefront carries no
             // order of ours. It used to be logged and dropped, so the money was
             // taken and nothing was given. Credit it to the buyer's e-mail so it
@@ -469,7 +504,9 @@ export function registerLemonsqueezyWebhook(app: Express) {
         } else if (eventName === "order_refunded") {
           // An order id we do not hold was credited like a storefront purchase, so its
           // refund has to be taken back the same way.
-          const refundOrder = orderId ? await getOrderById(orderId) : undefined;
+          const refundOrderRow = orderId ? await getOrderById(orderId) : undefined;
+          // A refund of a second payment on the same order id belongs to that payment.
+          const refundOrder = refundOrderRow && (!(refundOrderRow as any).npPaymentId || (refundOrderRow as any).npPaymentId === dataId) ? refundOrderRow : undefined;
           if (!orderId || !refundOrder) {
             // A storefront purchase has no order of ours, but it was credited by
             // e-mail, so the refund has to take that back the same way.
@@ -524,36 +561,34 @@ export function registerLemonsqueezyWebhook(app: Express) {
           // Mark order as refunded
           await updateOrderStatus(order.id, "refunded", dataId);
 
+          // Take back what this order granted, once, in order: the reports it opened,
+          // then what it still has on the device, then the account for the rest.
+          // Doing all three in full removed credits that other purchases had paid for.
+          const grantedEssay = await ledgerAmountForOrder(order.id).catch(() => 0);
+          const opened = await countReportsOpenedByOrder(order.id).catch(() => 0);
+
           // Close what the payment opened. Refunding the money and leaving the
           // report readable is a free report for anyone who asks for one.
-          // Close anything this order opened for a signed-in buyer as well.
           await relockAnalysesForOrder(order.userId, order.id).catch((e) =>
             console.warn("[LemonSqueezy] Re-lock of account reports failed:", e));
-
-          // Take back exactly what this order put on the device, not the price
-          // list value, and close exactly the report it opened.
-          const refundFp = String(customData.unlock_fp || "");
-          if (refundFp && (order as any).deviceCreditsGranted > 0) {
-            await removeDeviceCredits(refundFp, (order as any).deviceCreditsGranted).catch(() => {});
-          }
           await relockAnonymousForOrder(order.id).catch((e) =>
             console.warn("[LemonSqueezy] Anonymous re-lock failed:", e));
 
-          // Deduct what this order actually granted, as the ledger recorded it: the
-          // paid variant can differ from the order's sku.
-          const priceListCredits = lsSkuToCredits(order.sku);
-          const grantedEssay = await ledgerAmountForOrder(order.id).catch(() => 0);
-          const credits = { essay: grantedEssay > 0 ? grantedEssay : priceListCredits.essay, university: priceListCredits.university };
-          if (credits.essay > 0 || credits.university > 0) {
-            await grantCreditsViaLedger(
-              order.userId,
-              -credits.essay,
-              -credits.university,
-              `refund:${order.id}`,
-              order.id,
-            );
-            console.log(`[LemonSqueezy] Credits deducted from user ${order.userId} (refund): essay=-${credits.essay}, university=-${credits.university}`);
+          let toTake = Math.max(0, grantedEssay - opened);
+          const refundFp = String(customData.unlock_fp || "");
+          const deviceShare = Math.min(toTake, Number((order as any).deviceCreditsGranted ?? 0));
+          if (refundFp && deviceShare > 0) {
+            await removeDeviceCredits(refundFp, deviceShare).catch(() => {});
+            toTake -= deviceShare;
           }
+          if (toTake > 0) {
+            const balance = (await getUserCredits(order.userId).catch(() => null))?.essayCredits ?? 0;
+            const fromAccount = Math.min(toTake, balance);
+            if (fromAccount > 0) {
+              await grantCreditsViaLedger(order.userId, -fromAccount, 0, `refund:${order.id}`, order.id);
+            }
+          }
+          console.log(`[LemonSqueezy] Refund of ${order.id}: granted ${grantedEssay}, ${opened} report(s) re-locked, ${deviceShare} from the device, the rest from the account`);
 
           if (webhookEventId) {
             await updateWebhookEvent(webhookEventId, { paymentStatus: "processed" }).catch(() => {});

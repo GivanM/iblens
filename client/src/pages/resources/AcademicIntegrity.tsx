@@ -45,15 +45,16 @@ export default function AcademicIntegrity() {
       <ul>
         <li><strong>Get feedback, not text.</strong> Use the criterion breakdown to see where marks are lost, then fix it in your own words.</li>
         <li><strong>Keep your drafts.</strong> A visible draft history is your best evidence that the work is yours.</li>
-        <li><strong>Follow your school policy.</strong> If your school requires you to disclose AI-assisted feedback, disclose it, the same way you would mention that a tutor reviewed your draft.</li>
+        <li><strong>Say that you used it.</strong> Follow your school's policy on how. If it has none, mention it to your teacher or supervisor the way you would mention that a tutor read your draft.</li>
         <li><strong>Never submit AI-written text.</strong> Not sentences, not paragraphs. Feedback in, your own writing out.</li>
       </ul>
 
       <h2>How to acknowledge AI feedback</h2>
       <ul>
         <li><strong>AI text in your work must be credited.</strong> The IB statement says any AI-generated text, image or graph included in your work must be credited in the body of the text and referenced in the bibliography. IBLens describes what to change and does not write it for you, so there should be none to credit.</li>
-        <li><strong>Tell your teacher or supervisor you used it,</strong> in the way your school's policy asks. For the Extended Essay, a supervision session is the natural place to mention it.</li>
-        <li><strong>Keep the reports with your drafts.</strong> Together they show that the revisions came from you.</li>
+        <li><strong>Mention it to your teacher or supervisor,</strong> as the rule above says. For the Extended Essay, a supervision session is the natural place.</li>
+        <li><strong>Keep the reports with your drafts.</strong> Together they show that the revisions came from you. Save each report as a PDF: the Save as PDF button on a report, or your browser's print to PDF.</li>
+        <li><strong>Orals and the TOK exhibition work the same way.</strong> The ideas and words in your individual oral or exhibition commentary must be yours. Feedback on your outline or a practice transcript is fine; a script written by a tool is not.</li>
       </ul>
 
       <h2>What IBLens does with your essay</h2>
@@ -63,6 +64,15 @@ export default function AcademicIntegrity() {
         <li><strong>IBLens never saves the essay text, and an anonymous report you did not buy is deleted after 90 days.</strong> Anthropic, which marks it, deletes the text within 30 days unless it is flagged under its usage policy or the law requires otherwise. Signed-in users keep their history in their dashboard; you can request full deletion at any time.</li>
         <li><strong>Nothing goes into plagiarism databases.</strong> IBLens does not feed Turnitin or any similarity database. Getting feedback here does not create a record that later flags your submission.</li>
       </ul>
+
+      <h2>Will my teacher know I used IBLens?</h2>
+      <p>
+        Not from IBLens: it does not contact your school, and it adds nothing to your work or to any database
+        a school or the IB checks. Your teacher will know if you tell them, and you should, as the rules above
+        explain: the IB allows AI tools used within its academic integrity policy, and saying you had feedback
+        is how you use them openly. What does get noticed, and counts as misconduct, is AI-written text in the
+        work you submit.
+      </p>
 
       <h2>Will Turnitin or the IB flag me for using AI feedback?</h2>
       <p>

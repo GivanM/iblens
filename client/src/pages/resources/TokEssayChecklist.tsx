@@ -8,7 +8,7 @@ export default function TokEssayChecklist() {
       description="A practical TOK essay checklist built on the official holistic assessment instrument: the five bands out of 10, the exact question examiners ask, and the concrete checks to run on your draft before submission, no tutor needed."
       canonical="/resources/tok-essay-checklist"
       datePublished="2026-08-11"
-      dateModified="2026-08-11"
+      dateModified="2026-09-13"
     >
       <h1>TOK Essay Checklist: How to Check Your Essay Against the IB Criteria (Without a Tutor)</h1>
 
@@ -51,7 +51,7 @@ export default function TokEssayChecklist() {
       <h3>Knowledge questions and Areas of Knowledge</h3>
       <ul>
         <li>The essay explores <em>knowledge questions</em>: how knowledge is produced, tested and trusted, not just facts about a topic.</li>
-        <li>Two Areas of Knowledge are developed in genuine depth (unless the title directs otherwise), and the pairing creates a real contrast rather than two parallel summaries.</li>
+        <li>The areas of knowledge the title involves are linked to the discussion, not just named (a tip: two developed in depth usually serve a 1,600-word essay better than several touched on).</li>
       </ul>
 
       <h3>Examples</h3>
@@ -80,7 +80,7 @@ export default function TokEssayChecklist() {
         <li><strong>Links to areas of knowledge that are present but not effective:</strong> "some links" is the 5-6 wording; "linked effectively" is 7-8.</li>
         <li><strong>Arguments offered but not clear and coherent:</strong> points are made and illustrated, but they do not build into one line of argument.</li>
         <li><strong>Perspectives noticed but not evaluated:</strong> "some people think X, others think Y" is awareness. Weighing them is what "some evaluation" asks for.</li>
-        <li><strong>Description:</strong> an essay that is largely descriptive sits in the 3-4 level, however accurate it is.</li>
+        <li><strong>Description:</strong> "the discussion is largely descriptive" is how the 3-4 level describes an essay; read as a whole, a largely descriptive essay tends to fit that level, however accurate it is.</li>
         <li><strong>Title drift:</strong> the introduction addresses the title and the body addresses the topic. Every level is judged on the exploration <em>of the title</em>.</li>
       </ul>
 

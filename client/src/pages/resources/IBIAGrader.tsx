@@ -55,7 +55,7 @@ export default function IBIAGrader() {
         <li><strong>Get your report.</strong> In about a minute you receive an estimated mark for each criterion, the marks you are losing and why, and specific steps to recover them. IBLens also counts the words against your subject's limit.</li>
       </ol>
 
-      <h2>What You Get in the Grade Report</h2>
+      <h2>What You Get in the Report</h2>
 
       <ul>
         <li><strong>Estimated mark and band:</strong> where your IA sits overall against the criteria, with the mark range the draft currently falls in</li>

@@ -5,7 +5,7 @@ export default function TokEssayFormat() {
   return (
     <ResourceArticle
       title="IB TOK Essay Format: Word Count, Structure & Formatting Rules | IBLens"
-      description="Official IB TOK essay format: 1,600-word limit, introduction and body structure, citation requirements, what counts towards the word count, and examiner formatting expectations."
+      description="TOK essay rules and conventions: the 1,600-word limit and what counts towards it, the prescribed title, anonymity, a workable structure and consistent citations."
       canonical="/resources/tok-essay-format"
       datePublished="2026-06-17"
       dateModified="2026-09-13"
@@ -24,7 +24,7 @@ export default function TokEssayFormat() {
 
       <ul>
         <li><strong>Essays that exceed 1,600 words:</strong> examiners are instructed to stop reading after 1,600 words and to base their assessment on the first 1,600 only. Any argument, example or conclusion after that point is not assessed, so a strong conclusion on the last page may never be read.</li>
-        <li><strong>Acknowledgments, references and the bibliography are not counted.</strong></li>
+        <li><strong>Acknowledgements, references and the bibliography are not counted.</strong></li>
         <li><strong>Footnotes with references are not counted:</strong> the word count covers the body of the essay including quotations, and excludes references given in footnotes, endnotes or in text. A footnote carrying argument rather than a reference is a different matter: keep argument in the body, where the examiner reads it.</li>
         <li><strong>Quotations are counted:</strong> Direct quotes from sources are included in the word count.</li>
         <li><strong>Maps, charts, diagrams, annotated illustrations and tables:</strong> not counted. Do not use them to carry argument that belongs in the prose.</li>
@@ -43,10 +43,10 @@ export default function TokEssayFormat() {
         <li><strong>The word count:</strong> you indicate the number of words when the essay is uploaded during the submission process.</li>
         <li><strong>Anonymity:</strong> coursework is marked anonymously, so leave your name, your candidate session number and your school's name off every page, including any title page. Your coordinator will tell you what the upload itself needs.</li>
         <li><strong>Type size and spacing:</strong> the TOK guide requires standard 12-point type and double line spacing. Use a plain, readable font.</li>
-        <li><strong>Page numbers:</strong> required. The IB's formatting rules for written coursework ask for numbered pages.</li>
+        <li><strong>Page numbers:</strong> the TOK guide does not mention them, but most schools expect numbered pages, and they cost nothing.</li>
       </ul>
 
-      <h2>Essay Structure: The Expected Format</h2>
+      <h2>Essay Structure: A Workable Shape</h2>
 
       <p>
         The TOK essay has no required structure. It is marked holistically on one question: does it provide a clear, coherent and critical exploration of the title? The shape below is a common and workable way to meet that, not a rule.

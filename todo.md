@@ -253,7 +253,7 @@
 ## Analytics Config — Real IDs
 - [x] Verify GTM_CONTAINER_ID = GTM-WSLBPQMP in config.ts (already set)
 - [x] Verify GA4_MEASUREMENT_ID = G-391DXZEC51 in config.ts (already set)
-- [x] Set GA4_API_SECRET = RD4myuWXQ6WX_OjNIKw32Q via env var (NOT hardcoded)
+- [x] Set GA4_API_SECRET via env var (NOT hardcoded)
 - [x] Confirm Google Ads IDs remain as AW-PLACEHOLDER
 - [x] Confirm no Meta Pixel code exists
 - [x] Verify GTM snippet fires on page source (dev server — live site needs re-publish)

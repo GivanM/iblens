@@ -177,7 +177,7 @@ export default function TokEssayGuide() {
       </p>
 
       <p>
-        <strong>Strong approach:</strong> "Mathematical certainty appears absolute within formal systems: the Pythagorean theorem, for instance, has been proven with logical necessity. However, Gödel's incompleteness theorems show that any consistent formal system rich enough to express arithmetic contains statements it can neither prove nor disprove, suggesting that even mathematical certainty has boundaries. In contrast, historical knowledge operates through inference from evidence rather than proof. The historian's claim that 'the Treaty of Versailles contributed to World War II' cannot be proven with mathematical certainty, yet the weight of evidence makes it a highly justified belief. This suggests that certainty exists on a spectrum rather than as a binary, and that the appropriate standard of certainty varies by area of knowledge."
+        <strong>Strong approach:</strong> "Mathematical certainty appears absolute within formal systems: the Pythagorean theorem, for instance, has been proven with logical necessity. However, Gödel's incompleteness theorems show that any consistent formal system rich enough to express arithmetic contains statements it can neither prove nor disprove, suggesting that even mathematical certainty has boundaries. In contrast, historical knowledge operates through inference from evidence rather than proof. The historian's claim that 'the Treaty of Versailles contributed to the Second World War' cannot be proven with mathematical certainty, yet the weight of evidence makes it a highly justified belief. This suggests that certainty exists on a spectrum rather than as a binary, and that the appropriate standard of certainty varies by area of knowledge."
       </p>
 
       <p>
@@ -197,7 +197,7 @@ export default function TokEssayGuide() {
         <li><strong>False balance:</strong> Presenting claim and counter-claim as equally valid without evaluation, ending with "it depends on the person" rather than a reasoned conclusion</li>
         <li><strong>Excessive use of areas-of-knowledge jargon:</strong> Forcing every sentence through the AOK framework rather than using these concepts naturally where they illuminate the argument</li>
         <li><strong>Exceeding word count:</strong> The 1,600-word limit is strict. Examiners stop reading at the limit</li>
-        <li><strong>No personal voice:</strong> Essays that read like they were assembled from TOK textbook passages rather than reflecting genuine personal thinking</li>
+        <li><strong>Textbook recycling (a tip, not a descriptor):</strong> essays assembled from standard TOK examples and phrasing tend to describe rather than argue, which is what the lower descriptors pick up</li>
       </ul>
 
       <p>

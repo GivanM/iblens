@@ -8,7 +8,7 @@ export default function About() {
       description="IBLens is an independent AI feedback tool for IB coursework. How the grader works, which official criteria it applies, what it will not do, and how to reach us."
       canonical="/about"
       datePublished="2026-08-11"
-      dateModified="2026-08-11"
+      dateModified="2026-09-13"
     >
       <h1>About IBLens</h1>
 
@@ -29,7 +29,7 @@ export default function About() {
           <strong>The published criteria, per subject and session.</strong> The grading engine carries the assessment criteria for each supported component (the criterion names, their mark allocations and a short description of what each one assesses), including both Extended Essay rubrics (the current 34-mark criteria and the new 30-mark May 2027 criteria) and the 2027 formats for Psychology and Computer Science IAs. You pick the work type, subject and exam session; the engine applies the matching instrument.
         </li>
         <li>
-          <strong>AI analysis.</strong> The essay is analysed by a large language model (Anthropic's Claude) instructed with the relevant criteria. A full report gives a predicted mark for each criterion and overall, with the band range, concrete comments and, where your task has a word limit, a word count against it.
+          <strong>AI analysis.</strong> The essay is analysed by a large language model (Anthropic's Claude) instructed with the relevant criteria. A full report gives an estimated mark for each criterion and overall, with the band range, concrete comments and, where your task has a word limit, a word count against it.
         </li>
         <li>
           <strong>Estimates, not guarantees.</strong> Scores are AI estimates. Real marking involves examiner judgement and moderation, and no tool can promise your final mark. What IBLens is built to do well is show which criterion is costing you most while you still have time to act.
@@ -51,7 +51,7 @@ export default function About() {
       <h2>Pricing, briefly</h2>
 
       <p>
-        The first preview is free, with no account needed: the predicted band range, feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks. A full report costs $9.99 and includes two free re-checks of a revised version of the same work, within 14 days of the report opening. There is no subscription, and a <Link href="/refund-policy">7-day money-back guarantee</Link> applies.
+        The first preview is free, with no account needed: the estimated band, feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks. A full report costs $9.99 and includes two free re-checks of a revised version of the same work, within 14 days of the report opening. There is no subscription, and a <Link href="/refund-policy">7-day money-back guarantee</Link> applies.
       </p>
 
       <h2>Contact</h2>

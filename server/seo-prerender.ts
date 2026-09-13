@@ -100,7 +100,7 @@ const routeMeta: Record<string, PageMeta> = {
     ],
   },
   "/resources/sample-reports": {
-    title: "Sample IBLens Reports: Three Essays, Three Honest Grades | IBLens",
+    title: "Sample IBLens Reports: Three TOK Essays, Marked and Unedited | IBLens",
     description: "Real, unedited IBLens output: three demonstration TOK essays on one title, written at three levels of quality and marked 2/10, 4/10 and 9/10 on the holistic instrument, each with its full report.",
     ogType: "article",
     canonical: "/resources/sample-reports",
@@ -130,7 +130,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/grade": {
     title: "IB Essay Grader: Free Preview of Your IA, EE or TOK Marks in About a Minute | IBLens",
-    description: "Paste your IB essay and get a free preview in about a minute: your band range, weakest criterion and top risks. The full report marks every criterion. Extended Essay, IA or TOK, no account needed.",
+    description: "Paste your IB essay and get a free preview in about a minute: your band range, weakest criterion and top risks. The full report gives the estimated mark and the reasons for it. Extended Essay, IA or TOK, no account needed.",
     ogType: "website",
     canonical: "/grade",
     schemaType: "WebPage",
@@ -173,7 +173,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/ib-internal-assessment-guide": {
     title: "IB Internal Assessment Guide 2026: Criteria, Marking & Subject Tips | IBLens",
-    description: "How IB Internal Assessments are marked: criteria by subject group, what examiners look for, the moderation process, and strategies for top marks across sciences, humanities and languages.",
+    description: "How IB Internal Assessments are marked: criteria by subject group, what teachers and moderators look for, the moderation process, and strategies for top marks across sciences, humanities and languages.",
     ogType: "article",
     canonical: "/resources/ib-internal-assessment-guide",
     schemaType: "Article",
@@ -208,7 +208,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/ib-university-admissions": {
     title: "IB University Admissions: UK, US and Europe Requirements | IBLens",
-    description: "How IB Diploma scores translate to university offers in the UK, US, Europe and beyond, with typical IB requirements at top universities.",
+    description: "How UK, US and other systems read the IB Diploma, and where each university publishes its requirements.",
     ogType: "article",
     canonical: "/resources/ib-university-admissions",
     schemaType: "Article",
@@ -362,7 +362,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/tok-exhibition-checklist": {
     title: "TOK Exhibition Checklist: Check Your Commentary Against the IB Criteria | IBLens",
-    description: "Check your TOK exhibition commentary against the official holistic instrument: the examiner question, five bands out of 10, and concrete checks for your three objects, contexts and IA prompt links.",
+    description: "Check your TOK exhibition commentary against the official holistic instrument: the question it asks, five bands out of 10, and concrete checks for your three objects, contexts and IA prompt links.",
     ogType: "article",
     canonical: "/resources/tok-exhibition-checklist",
     schemaType: "Article",
@@ -397,7 +397,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/tok-essay-format": {
     title: "IB TOK Essay Format: Word Count, Structure & Formatting Rules | IBLens",
-    description: "Official IB TOK essay format: 1,600-word limit, introduction and body structure, citation requirements, what counts towards the word count, and examiner formatting expectations.",
+    description: "TOK essay rules and conventions: the 1,600-word limit and what counts towards it, the prescribed title, anonymity, a workable structure and consistent citations.",
     ogType: "article",
     canonical: "/resources/tok-essay-format",
     schemaType: "Article",
@@ -412,6 +412,7 @@ const routeMeta: Record<string, PageMeta> = {
   "/resources/ib-university-consultant-cost": {
     title: "IB University Guidance: No Longer Offered | IBLens",
     description: "This part of IBLens is no longer offered. We withdrew it rather than sell university guidance we cannot keep current. IBLens still marks IB coursework, with a free preview first.",
+    noindex: true,
     ogType: "website",
     canonical: "/resources/ib-university-consultant-cost",
     schemaType: "WebPage",
@@ -419,6 +420,7 @@ const routeMeta: Record<string, PageMeta> = {
   "/resources/ib-university-chances": {
     title: "IB University Chances: No Longer Offered | IBLens",
     description: "This part of IBLens is no longer offered. We withdrew it rather than sell university guidance we cannot keep current. IBLens still marks IB coursework, with a free preview first.",
+    noindex: true,
     ogType: "website",
     canonical: "/resources/ib-university-chances",
     schemaType: "WebPage",
@@ -531,7 +533,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/essay/english-essay": {
     title: "IB English Individual Oral Grader: AI Feedback on Your IO | IBLens",
-    description: "AI feedback on the IB English A Individual Oral, marked out of 40 against the four published criteria. Paste an outline or a transcript. The HL essay is a separate component and is not covered.",
+    description: "AI feedback on the IB English A Individual Oral against the four published criteria: a transcript is marked out of 40, an outline on the first three. The HL essay is a separate component and is not covered.",
     ogType: "website",
     canonical: "/essay/english-essay",
     schemaType: "WebPage",

@@ -5,10 +5,10 @@ export default function TokExhibitionChecklist() {
   return (
     <ResourceArticle
       title="TOK Exhibition Checklist: Check Your Commentary Against the IB Criteria | IBLens"
-      description="Check your TOK exhibition commentary against the official holistic instrument: the examiner question, five bands out of 10, and concrete checks for your three objects, contexts and IA prompt links."
+      description="Check your TOK exhibition commentary against the official holistic instrument: the question it asks, five bands out of 10, and concrete checks for your three objects, contexts and IA prompt links."
       canonical="/resources/tok-exhibition-checklist"
       datePublished="2026-08-11"
-      dateModified="2026-08-11"
+      dateModified="2026-09-13"
     >
       <h1>TOK Exhibition Checklist: How to Check Your Commentary Against the IB Criteria</h1>
 
@@ -50,7 +50,7 @@ export default function TokExhibitionChecklist() {
         <li><strong>Some justification rather than a strong one:</strong> the commentary explains what each object is, but only partly argues why it belongs in an exhibition on this prompt.</li>
         <li><strong>Vague contexts:</strong> at 5-6 the contexts "may be vaguely or imprecisely stated"; "a textbook" or "a painting" with no specific context sits there or below.</li>
         <li><strong>Prompt drift:</strong> the discussion wanders to a theme the student prefers rather than the prompt as worded.</li>
-        <li><strong>Three parallel mini-essays:</strong> no sense of the exhibition as one argument in three parts.</li>
+        <li><strong>Weak justification of each object:</strong> the instrument asks for a justification of the particular contribution each object makes to the exhibition; three commentaries that never say why this object, for this prompt, lose that.</li>
       </ul>
 
       <h2>Check your commentary with IBLens</h2>

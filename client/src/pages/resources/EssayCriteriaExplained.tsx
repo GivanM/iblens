@@ -8,7 +8,7 @@ export default function EssayCriteriaExplained() {
       description="How IB criterion-based marking works: the criteria common across subjects, how examiners apply the level descriptors, and how to self-assess your work before you submit."
       canonical="/resources/ib-essay-criteria-explained"
       datePublished="2026-05-01"
-      dateModified="2026-05-01"
+      dateModified="2026-09-13"
     >
       <h1>IB Essay Criteria Explained</h1>
 
@@ -179,7 +179,7 @@ export default function EssayCriteriaExplained() {
       </p>
 
       <ul>
-        <li><strong>Per-criterion scores:</strong> A predicted mark for each criterion, showing where you are strong and where you need improvement</li>
+        <li><strong>Per-criterion scores:</strong> An estimated mark for each criterion, showing where you are strong and where you need improvement</li>
         <li><strong>Band-level feedback:</strong> Explanation of which band your work currently matches and what would be needed to reach the next band</li>
         <li><strong>Specific evidence:</strong> Pointing to particular sections of your essay that demonstrate (or fail to demonstrate) each criterion</li>
         <li><strong>Actionable suggestions:</strong> Concrete steps you can take to improve your score on each criterion</li>

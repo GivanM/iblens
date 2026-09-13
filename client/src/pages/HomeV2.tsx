@@ -30,7 +30,7 @@ const FAQ = [
     a: "The first one returns a free preview: your mark range, feedback on your weakest criterion (for the TOK essay and exhibition, the start of the explanation) and the top risks in the draft. That is one free preview per device or account, not one per essay. The complete report, with every criterion scored and a ranked fix list, unlocks for $9.99.",
   },
   {
-    q: "How accurate is the predicted IB score?",
+    q: "How accurate is the estimated IB score?",
     a: "It is an estimate, not a mark. No tool can promise an exact score, and for the May 2027 Extended Essay the grade boundaries do not exist yet: the IB sets them after the session is marked. The value of the report is in which criterion it flags and why, not in the number.",
   },
   {
@@ -47,7 +47,7 @@ const FAQ = [
   },
   {
     q: "What if I am not satisfied with my analysis?",
-    a: "Email glushkovim@gmail.com within 7 days of your purchase for a full refund, no questions asked. Payments run through LemonSqueezy, which is the merchant of record, so the refund goes back to the card you paid with. We start it within 3 to 5 business days and the bank can take another 5 to 10 to show it.",
+    a: "Email glushkovim@gmail.com within 7 days of your purchase for a full refund, no questions asked. Payments run through Lemon Squeezy, which is the merchant of record, so the refund goes back to the card you paid with. We start it within 3 to 5 business days and the bank can take another 5 to 10 to show it.",
   },
 ];
 
@@ -108,7 +108,7 @@ export default function HomeV2() {
       <footer className="ms-foot">
         <span>IBLens</span>
         <span>Independent of the International Baccalaureate Organization</span>
-        <span>Predicted scores are estimates, not official marks</span>
+        <span>Scores are estimates, not official marks</span>
         <span>Scripts pass through our server in Finland and are processed by Anthropic PBC</span>
         <Link href="/privacy">Privacy</Link>
         <Link href="/terms">Terms</Link>

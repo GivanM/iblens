@@ -5,10 +5,10 @@ export default function UniversityAdmissionsGuide() {
   return (
     <ResourceArticle
       title="IB University Admissions: UK, US and Europe Requirements | IBLens"
-      description="How IB Diploma scores translate to university offers in the UK, US, Europe and beyond, with typical IB requirements at top universities."
+      description="How UK, US and other systems read the IB Diploma, and where each university publishes its requirements."
       canonical="/resources/ib-university-admissions"
       datePublished="2026-05-01"
-      dateModified="2026-05-01"
+      dateModified="2026-09-13"
     >
       <h1>IB to University: How Scores Translate to Admissions</h1>
 

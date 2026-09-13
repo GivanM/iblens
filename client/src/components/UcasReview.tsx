@@ -81,11 +81,11 @@ export function UcasReview({ result, course, isUnlocked, onBuy, buyLabel, buyPen
               <p className="text-sm leading-relaxed whitespace-pre-line">{result.sample_answer.working}</p>
             </div>
             <div>
-              <p className="text-xs font-medium text-muted-foreground mb-1">What a tutor would miss here</p>
+              <p className="text-xs font-medium text-muted-foreground mb-1">What is missing</p>
               <p className="text-sm leading-relaxed whitespace-pre-line">{result.sample_answer.missing}</p>
             </div>
             <div>
-              <p className="text-xs font-medium text-muted-foreground mb-1">Fix this first</p>
+              <p className="text-xs font-medium text-muted-foreground mb-1">Change this first</p>
               <p className="text-sm leading-relaxed whitespace-pre-line">{result.sample_answer.fix}</p>
             </div>
           </div>
@@ -106,7 +106,7 @@ export function UcasReview({ result, course, isUnlocked, onBuy, buyLabel, buyPen
                   <p className="text-sm leading-relaxed whitespace-pre-line">{a.working}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">What a tutor cannot find</p>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">What is missing</p>
                   <p className="text-sm leading-relaxed whitespace-pre-line">{a.missing}</p>
                 </div>
                 <div>
@@ -160,7 +160,7 @@ export function UcasReview({ result, course, isUnlocked, onBuy, buyLabel, buyPen
               ))}
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Lock className="w-3.5 h-3.5 shrink-0" />
-                {result.statement_level_count} issue(s) across the statement as a whole
+                {result.statement_level_count} {result.statement_level_count === 1 ? "issue" : "issues"} across the statement as a whole
               </li>
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Lock className="w-3.5 h-3.5 shrink-0" />How convincingly this reads as an application for {result.course || course || "your course"}

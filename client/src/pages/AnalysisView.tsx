@@ -11,6 +11,8 @@ import { Badge } from "@/components/ui/badge";
 import { Loader2, ArrowLeft, Printer, Lock } from "lucide-react";
 import { SEOHead } from "@/components/SEOHead";
 import { WordCheckNote } from "@/components/WordCheckNote";
+import { usePurchaseTracking } from "@/hooks/usePurchaseTracking";
+import { fullReportAdds } from "@/lib/reportScope";
 
 const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
@@ -27,6 +29,7 @@ const dateLabel = (d: any) => new Date(d).toLocaleDateString("en-GB", { day: "nu
 export default function AnalysisView() {
   const params = useParams();
   const id = Number(params.id);
+  usePurchaseTracking();
   // Back from checkout: the webhook opens the report a few seconds after the payment
   // clears, so keep asking for a short while instead of showing it as locked.
   const paidReturn = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("payment") === "success";
@@ -68,9 +71,11 @@ export default function AnalysisView() {
   const r: any = a.resultJson || {};
   const title = a.essayType === "UCAS"
     ? `UCAS personal statement, ${a.subject || "your course"}`
-    : a.essayType === "TOK" || a.essayType === "TOK Exhibition"
-      ? TYPE_LABEL[a.essayType]
-      : `${TYPE_LABEL[a.essayType] || a.essayType}, ${a.subject}`;
+    : a.essayType === "TOK"
+      ? (a.subject === "Exhibition" ? "TOK exhibition" : "TOK essay")
+      : a.essayType === "TOK Exhibition"
+        ? "TOK exhibition"
+        : `${TYPE_LABEL[a.essayType] || a.essayType}, ${a.subject}`;
 
   // Re-checks run for 14 days from the report opening; after that the server refuses
   // them, so the page must not keep offering them.
@@ -86,7 +91,7 @@ export default function AnalysisView() {
         <div className="flex flex-wrap items-center gap-2">
           {a.essayType !== "UCAS" && !a.rerunOf && rechecksLeft > 0 && (
             <Button asChild variant="outline" size="sm">
-              <a href={`/essay?rerun=${id}${a.examSession ? `&session=${a.examSession}` : ""}&type=${encodeURIComponent(a.essayType || "")}${a.subject ? `&subject=${encodeURIComponent(a.subject)}` : ""}`}>Re-check a revised version</a>
+              <a href={`/essay?rerun=${id}${a.examSession ? `&session=${a.examSession}` : ""}&type=${encodeURIComponent(a.essayType === "TOK" && a.subject === "Exhibition" ? "TOK Exhibition" : a.essayType || "")}${a.subject && a.essayType !== "TOK" ? `&subject=${encodeURIComponent(a.subject)}` : ""}`}>Re-check a revised version</a>
             </Button>
           )}
           <Button variant="outline" size="sm" onClick={() => window.print()}>
@@ -169,7 +174,7 @@ export default function AnalysisView() {
             <div className="rounded-lg bg-primary/5 border border-primary/30 p-4 space-y-3">
               <p className="text-sm flex items-start gap-2">
                 <Lock className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary" />
-                <span>The full report adds your predicted mark, comments on every criterion and your ranked fix list, with two free re-checks of revised versions within 14 days of it opening.</span>
+                <span>The full report adds {fullReportAdds(p?.criteria_names)}, with two free re-checks of revised versions within 14 days of it opening.</span>
               </p>
               {paidLeft > 0 ? (
                 <Button className="min-h-11 h-auto whitespace-normal" disabled={unlockHere.isPending} onClick={() => unlockHere.mutate({ analysisId: id })}>
@@ -184,7 +189,7 @@ export default function AnalysisView() {
             </div>
           </CardContent>
         </Card>
-        <PurchaseModal open={buyOpen} onOpenChange={setBuyOpen} sku="ESSAY_SINGLE" analysisId={id} unlocksPreview previewLabel={title} />
+        <PurchaseModal open={buyOpen} onOpenChange={setBuyOpen} sku="ESSAY_SINGLE" analysisId={id} unlocksPreview previewLabel={title} kind={holistic ? "tok" : "essay"} criteria={p?.criteria_names ?? null} />
       </div>
     );
   }
@@ -215,7 +220,7 @@ export default function AnalysisView() {
           <div className="flex flex-wrap items-center gap-6">
             <div>
               <div style={SERIF} className="text-3xl font-bold">{r.predicted_score}/{r.max_score}</div>
-              <p className="text-xs text-muted-foreground">Predicted score (an estimate, not an IB mark)</p>
+              <p className="text-xs text-muted-foreground">Estimated score (not an IB mark)</p>
             </div>
             {r.band_range && (
               <div>

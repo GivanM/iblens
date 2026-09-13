@@ -25,7 +25,7 @@ export default function CourseworkReviewTools() {
         <tbody>
           <tr><td>IBLens</td><td>coursework in 14 subjects, EE, TOK essay, TOK exhibition</td><td>Free preview; full report $9.99, no subscription</td><td>Yes: marks against both the 34-mark and the new 30-mark criteria</td></tr>
           <tr><td>RevisionDojo</td><td>Coursework grader for EE, IA and TOK alongside a large IB resource library</td><td>See site</td><td>Yes: a grader page for the Extended Essay first assessed in 2027 (revisiondojo.com/grader/rubric/extended-essay-2027, checked 13 September 2026)</td></tr>
-          <tr><td>MyRevisionAgent</td><td>TOK essay (/10), EE, IA across 27 subject-levels</td><td>2 free grading tokens on signup; token packs from £4.99</td><td>No: EE graded /34 on the current criteria as of August 2026</td></tr>
+          <tr><td>MyRevisionAgent</td><td>TOK essay (/10), EE, IA across 27 subject-levels</td><td>2 free grading tokens on sign-up; token packs from £4.99</td><td>No: EE graded /34 on the current criteria as of August 2026</td></tr>
           <tr><td>Clastify</td><td>AI grader plus paid human review by IB examiners; large library of examiner-verified exemplars</td><td>See site</td><td>Check the site</td></tr>
           <tr><td>Generic chatbots (ChatGPT and others)</td><td>Anything you paste</td><td>Free tiers and subscriptions</td><td>Only if you paste the criteria in yourself</td></tr>
         </tbody>
@@ -57,7 +57,7 @@ export default function CourseworkReviewTools() {
       <h2>How IBLens works</h2>
 
       <p>
-        Paste your draft, pick the work type, subject and exam session, and IBLens marks it against the criteria for that combination, including both Extended Essay rubrics and the 2027 formats for Psychology and Computer Science. It also counts the words against the limit for the task. The preview (band range, weakest criterion and top risks) is free with no account; the full criterion-by-criterion report is $9.99 per essay, with no subscription to cancel.
+        Paste your draft, pick the work type, subject and exam session, and IBLens marks it against the criteria for that combination, including both Extended Essay rubrics and the 2027 formats for Psychology and Computer Science. It also counts the words against the limit for the task. The preview (band range, weakest criterion and top risks) is free with no account; the full report (criterion by criterion, or for the TOK essay and exhibition one holistic mark, explained) is $9.99 per piece of work, with no subscription to cancel.
       </p>
 
       <p>

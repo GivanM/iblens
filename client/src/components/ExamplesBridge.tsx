@@ -27,7 +27,7 @@ export function ExamplesBridge({ workLabel, rows, ctaHref, note }: Props) {
       </p>
 
       <p>
-        So the real question behind &ldquo;show me an example&rdquo; is usually this: <em>what separates a top-band {workLabel} from an average one?</em> That difference is not stylistic. It sits in specific, nameable behaviours against each assessment criterion:
+        So the real question behind "show me an example" is usually this: <em>what separates a top-band {workLabel} from an average one?</em> That difference is not stylistic. It sits in specific, nameable behaviours against each assessment criterion:
       </p>
 
       <table>
@@ -60,7 +60,7 @@ export function ExamplesBridge({ workLabel, rows, ctaHref, note }: Props) {
       <h3>The faster route: check your own draft</h3>
 
       <p>
-        Reading someone else&rsquo;s work tells you what good looks like in general. It cannot tell you what is missing from <em>yours</em>. IBLens marks your draft against these criteria and names your weakest one. The estimated band range and the full feedback on that weakest criterion are free, with no account needed.
+        Reading someone else's work tells you what good looks like in general. It cannot tell you what is missing from <em>yours</em>. IBLens marks your draft against these criteria and names your weakest one. The estimated band range and the full feedback on that weakest criterion are free, with no account needed.
       </p>
 
       <p>

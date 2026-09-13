@@ -16,7 +16,7 @@ export default function IBIAScorePredictor() {
       <div className="not-prose my-6 rounded-xl border border-primary/30 bg-primary/5 p-5">
         <p className="text-base font-semibold text-foreground mb-1">The predictor</p>
         <p className="text-sm text-muted-foreground mb-3">
-          Paste your IA into IBLens and get a predicted mark for each criterion, marked against the published criteria for your subject and session. The first preview is free: your band range, your weakest criterion with its feedback, and the top risks. Every mark is an estimate, not an IB mark.
+          Paste your IA into IBLens and get an estimated mark for each criterion, marked against the published criteria for your subject and session. The first preview is free: your band range, your weakest criterion with its feedback, and the top risks. Every mark is an estimate, not an IB mark.
         </p>
         <Link href="/essay?type=IA" className="inline-flex min-h-11 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90">Predict my IA score</Link>
       </div>
@@ -38,7 +38,7 @@ export default function IBIAScorePredictor() {
       <p>Each of the three commentaries is marked on Diagrams, Terminology, Application and analysis, Key concept and Evaluation, 14 marks per commentary, and the portfolio earns 3 more under Criterion F for meeting the rubric requirements. A common loss: a supply and demand diagram that is drawn correctly but never tied back to what happened in the article. Evaluation means weighing the issue from different stakeholders and time frames, not restating the analysis after the word "however".</p>
 
       <h3>History</h3>
-      <p>The Historical Investigation has three sections. In Section 1 you evaluate two of your sources for their origins, purpose, value and limitations. Saying a source "might be biased" stays in the lower levels; the top level asks for a clear analysis of each source's value and limitations with explicit reference to its origins, purpose and content.</p>
+      <p>The Historical Investigation has three sections. In Section 1 you evaluate two of your sources for their origins, purpose, value and limitations. Saying a source "might be biased" stays in the lower levels; the top level asks for a detailed analysis and evaluation of two sources, with explicit discussion of their value and limitations for the investigation, with reference to their origins, purpose and content.</p>
 
       <h3>Psychology</h3>
       <p>Through November 2026 the IA is a report on a simple experiment based on a published study, marked on Introduction, Exploration, Analysis and Evaluation. The Introduction needs an operationalised hypothesis. Evaluation is where marks slip most easily: the results are not related back to the original study, or the conclusions claim more than a small sample can support. From May 2027 the IA becomes a research proposal marked out of 24.</p>

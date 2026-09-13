@@ -6,12 +6,13 @@ const config: SubjectConfig = {
   keyword: "IB English Individual Oral",
   metaTitle: "IB English Individual Oral Grader: AI Feedback on Your IO | IBLens",
   metaDescription:
-    "AI feedback on the IB English A Individual Oral, marked out of 40 against the four published criteria. Paste an outline or a transcript. The HL essay is a separate component and is not covered.",
+    "AI feedback on the IB English A Individual Oral against the four published criteria: a transcript is marked out of 40, an outline on the first three. The HL essay is a separate component and is not covered.",
   canonicalPath: "/essay/english-essay",
   heroHeadline: "Get your IB English Individual Oral checked in about a minute",
   heroSubline:
-    "Paste the outline or a transcript of your English A Individual Oral and receive feedback on the four criteria, with a free preview and no account required.",
-  analyzerHref: "/essay?type=IA&subject=English%20A%3A%20Language%20and%20Literature",
+    "Paste a transcript of a practice run or your outline for the English A Individual Oral. A transcript is marked on all four criteria, an outline on the first three. Free preview, no account required.",
+  analyzerHref: "/essay?type=IA",
+  criteriaCaveat: "A mark for every criterion from a transcript, with the reason for each one. From an outline, Criterion D (language) is not marked",
   criteria: [
     { name: "Criterion A: Knowledge, understanding and interpretation", max: 10, sampleScore: 6 },
     { name: "Criterion B: Analysis and evaluation", max: 10, sampleScore: 6 },
@@ -41,14 +42,14 @@ const config: SubjectConfig = {
       { q: "Can I paste a transcript of my oral?", a: "Yes. Record a practice run, transcribe it and paste the transcript. It gives the fullest picture of your analysis, your organisation and your language." },
       { q: "Does it cover the HL essay or Paper 1?", a: "No. It covers the Individual Oral only. The HL essay and the exam papers are marked on different criteria." },
       { q: "Literature or Language and Literature?", a: "Choose your course in the grader. The four criteria and their marks are the same, and the wording differs slightly: Language and Literature refers to works and texts, Literature to works." },
-      { q: "How accurate is the predicted mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. Your teacher marks the work and the IB moderates that marking, so their mark is the one that counts. Use the report to find what to fix before you submit." },
-      { q: "Is it free?", a: "The first preview is free and needs no account: your band range, your weakest criterion with its full feedback, and the top risks in the draft. The full report, with every criterion marked and a ranked list of fixes, is $9.99, or $24.99 for a pack of five." },
+      { q: "How accurate is the estimated mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. Your teacher marks the work and the IB moderates that marking, so their mark is the one that counts. Use the report to find what to fix before you submit." },
+      { q: "Is it free?", a: "The first preview is free and needs no account: your band range, your weakest criterion with its full feedback, and the top risks in the draft. The full report, with every criterion marked and a ranked list of fixes, is $9.99, or $24.99 for five and $44.99 for ten." },
       { q: "Is my work stored?", a: "IBLens never saves the text you paste. It passes through our relay server to Anthropic, the AI provider, to produce the report, and Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },
     ],
   },
   relatedResources: [
-    { label: "English Extended Essay", href: "/resources/ib-english-extended-essay" },
     { label: "Check your IA against the criteria", href: "/resources/ib-ia-feedback" },
+    { label: "Using AI feedback within IB rules", href: "/resources/academic-integrity" },
   ],
   relatedSubjects: [
     { label: "History IA", href: "/essay/history-ia" },

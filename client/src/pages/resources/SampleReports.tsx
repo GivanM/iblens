@@ -89,7 +89,7 @@ const REPORTS = [
       "Take your two strongest examples, one from mathematics and one from natural science, and rewrite each one so that it tests your argument rather than simply illustrating it. For the mathematics example, consider whether the existence of results mathematicians cannot prove (such as unprovable propositions) complicates your certainty claim. For the science example, push beyond 'science changes' to ask what the process of revision tells us about the nature of scientific knowledge.",
       "Write a genuine counterargument section that presents the strongest possible case against your main thesis, engage with it seriously for at least one full paragraph, and then explain specifically why you find your original position more convincing despite that challenge. This alone could move the essay from the Rudimentary band toward the Satisfactory band by demonstrating real awareness and evaluation of different points of view."
     ],
-    "editorNote": "Two sentences in this report misquote the instrument. The risk about points of view says the Satisfactory level requires some awareness and evaluation of them; its descriptor asks only for some awareness, and evaluation appears from Good upward. The risk about digressions says every level above Rudimentary requires a coherent discussion; clear, coherent arguments are described only at Good and Excellent. The title is also not an IB prescribed title, as the report says: the essays were written to show the grader at work, not for a session."
+    "editorNote": "In its risks and next steps it says the Satisfactory level needs some evaluation of other points of view; the TOK descriptor for Satisfactory asks only for some awareness of them. It says examples must be specific at the Good level; \"specific\" appears only in the Excellent descriptor. It also says every level above Rudimentary needs a coherent discussion, while \"clear, coherent\" arguments are described only at Good and Excellent. As its overall comment says, the title is not one of the IB's prescribed titles, so an essay submitted on it would score 0."
   },
   {
     "tier": "developing",
@@ -162,7 +162,7 @@ const REPORTS = [
       "Revisit each paragraph where you raise a counter-perspective and expand it to at least three sentences of genuine engagement before offering your response, so that the opposing view is presented at its strongest rather than in a weakened form that is easy to dismiss.",
       "Write a new conclusion that identifies one thing you now think differently about, or one way your initial claim has been qualified by the discussion, so that the ending reflects real intellectual movement rather than a summary of the opening position."
     ],
-    "editorNote": "The overall comment gives missing critical reflection and thin links to areas of knowledge as ways of thinking as reasons this essay does not reach Satisfactory. Neither phrase is in the instrument: Satisfactory describes a discussion focused on the title with some links to areas of knowledge, arguments offered and supported by examples, and some awareness of different points of view. Reading the descriptors as a whole, as the TOK guide asks, we think this essay could reasonably receive 5."
+    "editorNote": "Its overall comment calls the title prescribed (it is not, see above) and says the essay misses Satisfactory for lack of \"critical reflection\" and of links to areas of knowledge \"as ways of thinking\": neither phrase is in the TOK descriptors, and Satisfactory describes a discussion focused on the title, with some links to areas of knowledge, arguments supported by examples and some awareness of other points of view. It says Good is out of reach partly because implications are not followed through, but implications appear only in the Excellent descriptor, and one risk calls missing engagement with opposing views a defining feature of Basic, which the Basic descriptor does not mention. Read as a whole, this essay could reasonably receive 5 rather than 4."
   },
   {
     "tier": "strong",
@@ -225,7 +225,7 @@ const REPORTS = [
       "In paragraph nine, add a sentence that explicitly distinguishes between pragmatic justification (being warranted in acting on a claim) and logical certainty (the method leaves no room for revision), and state clearly which of these you are claiming the natural sciences can achieve and to what extent.",
       "In the conclusion or in paragraph three, revisit your opening definition of certainty against the conditional certainty of mathematics: ask explicitly whether a certainty that depends on chosen axioms leaves room for the claim to be overturned when applied to the world, and give a direct answer, so the thesis is tested by its own criterion."
     ],
-    "editorNote": "The criterion comment says the top mark requires complete and sustained excellence. The TOK guide says the highest level does not imply faultless performance and asks markers not to hesitate to use the extremes."
+    "editorNote": "It calls the title prescribed (it is not, see above). In the comment under the mark and in its risks it says a 10 needs complete and sustained excellence or more evaluative depth. The TOK guide says the top level does not mean faultless work and that markers should not hesitate to give the top mark."
   }
 ] as const;
 
@@ -235,13 +235,13 @@ const small = { fontSize: "0.85rem", color: "#4b5563", lineHeight: 1.6 };
 export default function SampleReports() {
   return (
     <ResourceArticle
-      title="Sample IBLens Reports: Three Essays, Three Honest Grades | IBLens"
+      title="Sample IBLens Reports: Three TOK Essays, Marked and Unedited | IBLens"
       description="Real, unedited IBLens output: three demonstration TOK essays on one title, written at three levels of quality and marked 2/10, 4/10 and 9/10 on the holistic instrument, each with its full report."
       canonical="/resources/sample-reports"
       datePublished="2026-07-03"
       dateModified="2026-09-13"
     >
-      <h1>Three essays. Three honest grades.</h1>
+      <h1>Three TOK essays, marked and unedited.</h1>
 
       <p>
         A grader is only useful if the mark moves when the quality of the work moves. To show how IBLens behaves, we wrote three
@@ -259,12 +259,13 @@ export default function SampleReports() {
         mark to the last next step, came from the grader.
       </p>
       <p>
-        The title is TOK-style, not one of the IB&rsquo;s prescribed titles, so an essay submitted on it for a session would
+        The title is TOK-style, not one of the IB's prescribed titles, so an essay submitted on it for a session would
         receive 0; the weak report says so. Before publishing, we read every report against the TOK instrument. Earlier runs
         asked for things the instrument does not, such as a named thinker, and one placed essays by checklist, which the TOK
-        guide rules out. We changed the grader&rsquo;s TOK instructions to the guide&rsquo;s own whole-essay method, which every
-        TOK report now uses, and ran all three essays again. Where a report still describes a level in words its descriptor
-        does not use, a note under the report says so, and the reports are otherwise left exactly as the grader wrote them.
+        guide rules out. We changed the grader's TOK instructions to the guide's own whole-essay method, which every
+        TOK report now uses, and ran all three essays again. Each report carries a note on the clearest places where its
+        explanation describes a level in words its descriptor does not use; the reports are otherwise left exactly as the
+        grader wrote them.
       </p>
 
       {REPORTS.map((r) => (
@@ -274,9 +275,9 @@ export default function SampleReports() {
           <p style={{ fontSize: "0.9rem", color: "#6b7280", marginBottom: 16 }}><strong>How we wrote it:</strong> {r.designNote}</p>
 
           <div style={{ background: "#faf7f5", borderRadius: 8, padding: 16, fontSize: "0.9rem", color: "#4b5563", marginBottom: 20 }}>
-            <p style={{ fontStyle: "italic", margin: 0 }}>&ldquo;{r.excerpt}&rdquo;</p>
+            <p style={{ fontStyle: "italic", margin: 0 }}>"{r.excerpt}"</p>
             <details style={{ marginTop: 10 }}>
-              <summary style={{ fontSize: "0.8rem", fontWeight: 600, cursor: "pointer", color: "#7B1D2E" }}>Read the full essay ({r.wordCount.toLocaleString("en-GB")} words, as IBLens counted them)</summary>
+              <summary style={{ fontSize: "0.9rem", fontWeight: 600, cursor: "pointer", color: "#7B1D2E", padding: "10px 0" }}>Read the full essay ({r.wordCount.toLocaleString("en-GB")} words, as IBLens counted them)</summary>
               {r.paragraphs.map((p, i) => (
                 <p key={i} style={{ marginTop: 10, lineHeight: 1.7, fontWeight: i === 0 ? 600 : 400 }}>{p}</p>
               ))}
@@ -285,27 +286,29 @@ export default function SampleReports() {
 
           <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 12 }}>
             <span style={{ ...SERIF, fontSize: "2.5rem", fontWeight: 700, color: "#7B1D2E" }}>{r.score}<span style={{ fontSize: "1.2rem", color: "#9ca3af" }}> / {r.max}</span></span>
-            <span style={{ fontSize: "0.9rem", color: "#6b7280" }}>predicted · band {r.band}</span>
+            <span style={{ fontSize: "0.9rem", color: "#6b7280" }}>estimated · band {r.band}</span>
           </div>
           <div style={{ height: 6, background: "#f3f4f6", borderRadius: 3, overflow: "hidden", marginBottom: 12 }}>
             <div style={{ height: "100%", width: (r.score / r.max) * 100 + "%", background: "#7B1D2E", borderRadius: 3 }} />
           </div>
-          <p style={{ fontSize: "0.8rem", fontWeight: 600, marginBottom: 4 }}>{r.criterionName}</p>
-          <p style={{ ...small, marginTop: 0, whiteSpace: "pre-line" }}>{r.criterionComment}</p>
           {r.editorNote && (
-            <p style={{ fontSize: "0.85rem", lineHeight: 1.6, background: "#fff7ed", border: "1px solid #fdba74", borderRadius: 8, padding: 12, color: "#7c2d12" }}>
-              <strong>Note from IBLens, not grader output:</strong> {r.editorNote}
+            <p style={{ fontSize: "0.9rem", lineHeight: 1.6, background: "#fff7ed", border: "1px solid #fdba74", borderRadius: 8, padding: 12, color: "#7c2d12" }}>
+              <strong>Where we disagree with this report</strong> (our note, not grader output): {r.editorNote}
             </p>
           )}
+          <p style={{ fontSize: "0.8rem", fontWeight: 600, marginBottom: 4 }}>The comment under the mark</p>
+          <p style={{ ...small, marginTop: 0, whiteSpace: "pre-line" }}>{r.criterionComment}</p>
+          <p style={{ fontSize: "0.8rem", fontWeight: 600, marginBottom: 4, marginTop: 16 }}>Overall comment</p>
+          <p style={{ ...small, marginTop: 0, whiteSpace: "pre-line" }}>{r.overall}</p>
 
-          <h3 style={{ fontSize: "1rem", marginTop: 20 }}>Risks, ranked</h3>
+          <h3 style={{ fontSize: "1rem", marginTop: 20 }}>What is losing marks</h3>
           <ol style={{ ...small, paddingLeft: 20 }}>
             {r.risks.map((x) => (
               <li key={x.title} style={{ marginBottom: 8 }}><strong>{x.title}.</strong> {x.description}</li>
             ))}
           </ol>
 
-          <h3 style={{ fontSize: "1rem", marginTop: 20 }}>Next steps, ranked</h3>
+          <h3 style={{ fontSize: "1rem", marginTop: 20 }}>What to fix first</h3>
           <ol style={{ ...small, paddingLeft: 20 }}>
             {r.nextSteps.map((x) => (
               <li key={x} style={{ marginBottom: 8 }}>{x}</li>
@@ -313,17 +316,14 @@ export default function SampleReports() {
           </ol>
 
           <details style={{ marginTop: 12 }}>
-            <summary style={{ fontSize: "0.85rem", fontWeight: 600, cursor: "pointer", color: "#7B1D2E" }}>Where the marks are recoverable</summary>
+            <summary style={{ fontSize: "0.9rem", fontWeight: 600, cursor: "pointer", color: "#7B1D2E", padding: "10px 0" }}>Where marks are recoverable</summary>
             <ol style={{ ...small, paddingLeft: 20, marginTop: 8 }}>
               {r.leverage.map((x) => (
                 <li key={x.title} style={{ marginBottom: 8 }}><strong>{x.title}.</strong> {x.description}</li>
               ))}
             </ol>
           </details>
-          <details style={{ marginTop: 8 }}>
-            <summary style={{ fontSize: "0.85rem", fontWeight: 600, cursor: "pointer", color: "#7B1D2E" }}>Overall comment</summary>
-            <p style={{ ...small, marginTop: 8, whiteSpace: "pre-line" }}>{r.overall}</p>
-          </details>
+
         </div>
       ))}
 

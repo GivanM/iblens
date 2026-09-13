@@ -66,7 +66,7 @@ export default function IBPhysicsIAExamples() {
         allows frame-by-frame position measurement, making the velocity and
         acceleration calculations rigorous. A student who extracts a drag
         coefficient from the data and compares it to expected values for the
-        projectile's shape earns strong Analysis and Evaluation marks.
+        projectile's shape earns strong marks in Data analysis and Evaluation.
       </p>
 
       <h3>4. Electromagnetic induction: Faraday's law</h3>

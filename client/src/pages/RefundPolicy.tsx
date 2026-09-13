@@ -33,7 +33,7 @@ export default function RefundPolicy() {
           <section>
             <h2 className="text-xl font-semibold mb-3">Refund Methods</h2>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-              <li><strong className="text-foreground">All payments (via LemonSqueezy):</strong> Refunded to the original payment method, whichever you used at checkout. Please allow 5-10 business days for the refund to appear on your statement.</li>
+              <li><strong className="text-foreground">All payments (via Lemon Squeezy):</strong> Refunded to the original payment method, whichever you used at checkout. Please allow 5-10 business days for the refund to appear on your statement.</li>
             </ul>
           </section>
 
@@ -48,6 +48,13 @@ export default function RefundPolicy() {
             <h2 className="text-xl font-semibold mb-3">Partly used packs</h2>
             <p className="text-muted-foreground leading-relaxed">
               If you bought a pack of 5 or 10 reports and have used some of them, we will still issue a full refund within the 7-day window. We believe in making this process simple and fair.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold mb-3">What a refund closes</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              A refund cancels what that purchase paid for. The reports it opened lock again, showing only their free preview, and their re-checks end. Any reports from it you have not used yet are removed. Reports and packs you paid for separately are not affected.
             </p>
           </section>
 

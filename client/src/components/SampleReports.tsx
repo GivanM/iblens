@@ -81,11 +81,11 @@ function EssayReportPreview() {
             <div className="space-y-1">
               <div className="flex items-start gap-1">
                 <span className="text-red-400 text-xs mt-0.5">●</span>
-                <span className="text-xs text-gray-600 leading-snug">Findings reported, their significance not discussed</span>
+                <span className="text-xs text-gray-600 leading-snug">Significance of the findings only partly discussed</span>
               </div>
               <div className="flex items-start gap-1">
                 <span className="text-red-400 text-xs mt-0.5">●</span>
-                <span className="text-xs text-gray-600 leading-snug">No evaluation of the essay's own limitations</span>
+                <span className="text-xs text-gray-600 leading-snug">Limitations stated but not explained</span>
               </div>
             </div>
           </div>
@@ -200,7 +200,7 @@ export function SampleReports() {
             </div>
             <Button size="lg" className="shadow-lg shadow-primary/20" asChild>
               <Link href="/essay">
-                Grade My Essay <ArrowRight className="w-4 h-4 ml-2" />
+                Grade my essay <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
           </div>

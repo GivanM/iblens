@@ -66,10 +66,13 @@ export default function IBChemistryIAExamples() {
 
       <h3>3. Effect of temperature on equilibrium position (Le Chatelier's principle)</h3>
       <p>
-        Investigating the equilibrium between NO₂ and N₂O₄, or the cobalt(II)
-        chloride equilibrium in different solvents, allows a student to measure
-        colour change quantitatively using a colorimeter and apply Le Chatelier's
-        principle. A strong version compares experimental equilibrium constants
+        Investigating a coloured equilibrium that needs no carcinogenic or highly
+        toxic reagents, such as the iron(III) thiocyanate equilibrium, allows a student
+        to measure colour change quantitatively using a colorimeter and apply Le
+        Chatelier's principle. Avoid cobalt(II) chloride, which is classified as a
+        carcinogen: the IB's experimentation guidelines do not allow students to handle
+        carcinogens, and ask for toxic substances such as nitrogen dioxide to be replaced
+        where possible. A strong version compares experimental equilibrium constants
         at different temperatures with literature values for ΔH, and discusses
         why the observed shift matches (or doesn't match) the exothermic/endothermic
         prediction.

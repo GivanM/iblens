@@ -41,6 +41,9 @@ import {
   claimAnonymousUnlock,
   consumeAnonymousRerun,
   createRerunAnalysis,
+  getAnonymousChainHead,
+  getAnonymousRowForDevice,
+  getDeviceReports,
   refundAnonymousRerun,
   refundAnalysisRerun,
   consumeAnalysisRerun,
@@ -145,7 +148,10 @@ function buildEssayUserPrompt(essayType: string, subject: string, researchQuesti
   // from May 2027, RPPF before it), not on the essay. Marking it from the essay
   // text invents a score; deducting for its absence charges the student for a
   // document this form did not ask for. Say which of the two situations we are in.
-  const reflectionText = (reflections || "").trim();
+  // Examiners stop reading reflections at 500 words, so only those reach the model.
+  const reflectionWords = (reflections || "").trim().split(/\s+/).filter(Boolean);
+  const reflectionOver = reflectionWords.length > 500;
+  const reflectionText = reflectionOver ? reflectionWords.slice(0, 500).join(" ") : (reflections || "").trim();
   let reflectionBlock = "";
   if (essayType === "EE") {
     if (reflectionText) {
@@ -154,7 +160,8 @@ function buildEssayUserPrompt(essayType: string, subject: string, researchQuesti
 REFLECTIVE STATEMENT (the student's ${examSession === "may2027" ? "RPF" : "RPPF"}, submitted separately from the essay):
 ${reflectionText.substring(0, 6000)}
 
-Mark the reflection criterion on this statement alone, never on the essay text.`;
+Mark the reflection criterion on this statement alone, never on the essay text.${reflectionOver ? `
+The student pasted ${reflectionWords.length} words; examiners stop reading at 500, so only the first 500 are shown above. Include a risk saying that everything after word 500 of the reflection will not be read.` : ""}`;
     } else {
       reflectionBlock = `
 
@@ -248,7 +255,7 @@ function normalizeDashes<T>(value: T): T {
   if (typeof value === "string") {
     return value
       .replace(/(\d)\s*[\u2013\u2014]\s*(\d)/g, "$1-$2")
-      .replace(/\b([A-G])\s*[\u2013\u2014]\s*([A-G])\b/g, "$1-$2")
+      .replace(/\b([A-G])[\u2013\u2014]([A-G])\b/g, "$1-$2")
       .replace(/\s*[\u2013\u2014]\s*/g, ", ") as unknown as T;
   }
   if (Array.isArray(value)) return value.map((v) => normalizeDashes(v)) as unknown as T;
@@ -345,7 +352,8 @@ function buildTeaser(result: any) {
     max_score: result?.max_score ?? null,
     weakest_criterion: weakest,
     risks,
-    criteria_names: criteria.map((c) => ({ name: c?.name, max: c?.max })),
+    // Unassessed criteria (null score) are not sold as locked marks in the full report.
+    criteria_names: criteria.map((c) => ({ name: c?.name, max: c?.max, assessed: typeof c?.score === "number" })),
     near_band_edge: nearEdge,
     criteria_count: criteria.length,
     _rubricAvailable: result?._rubricAvailable,
@@ -659,11 +667,14 @@ const essayRouter = router({
       answers: z.object({ q1: z.string(), q2: z.string(), q3: z.string() }).optional(),
       /** The course as it stands now, in case the applicant changed it. */
       course: z.string().max(120).optional(),
+      /** Which report on this device to re-check; the newest of its kind when absent. */
+      recordId: z.number().int().positive().optional(),
     }))
     .mutation(async ({ ctx, input }) => {
-      const gate = await consumeAnonymousRerun(input.fingerprint, input.answers ? "ucas" : "essay");
+      const gate = await consumeAnonymousRerun(input.fingerprint, input.answers ? "ucas" : "essay", input.recordId);
       if (!gate.ok) throw new TRPCError({ code: "FORBIDDEN", message: gate.reason });
       const rec: any = gate.record;
+      const headId: number = (gate as any).head?.id ?? rec.id;
 
       try {
         let systemPrompt: string;
@@ -714,7 +725,7 @@ const essayRouter = router({
           result._wordCheck = storableWordCheck(checkWordLimit(rubric, input.essayText ?? ""));
         }
 
-        const child = await createRerunAnalysis(rec, result, result?.predicted_score != null ? String(result.predicted_score) : undefined);
+        const child = await createRerunAnalysis(rec, result, result?.predicted_score != null ? String(result.predicted_score) : undefined, headId);
         const signedIn = (ctx as any).user;
         if (signedIn && child?.id && rec.essayType === "UCAS") {
           await createAnalysis({
@@ -744,7 +755,7 @@ const essayRouter = router({
       } catch (error: any) {
         console.error("[Re-check] Error:", error);
         // The student got nothing, so the re-check they spent comes back.
-        await refundAnonymousRerun(rec.id).catch(() => {});
+        await refundAnonymousRerun(headId).catch(() => {});
         throw new Error(friendlyRunError(error, "re-check"));
       }
     }),
@@ -809,16 +820,32 @@ const essayRouter = router({
         ? await getLatestAnonymousUcas(input.fingerprint)
         : await getLatestAnonymousEssay(input.fingerprint);
       if (!rec || !rec.resultJson || !rec.unlocked) return { unlocked: false as const };
-      const started = rec.unlockedAt ? new Date(rec.unlockedAt).getTime() : new Date(rec.createdAt).getTime();
+      const head: any = await getAnonymousChainHead(rec);
+      const started = head.unlockedAt ? new Date(head.unlockedAt).getTime() : new Date(head.createdAt).getTime();
       const daysLeft = Math.max(0, 14 - (Date.now() - started) / 86400000);
       return {
         unlocked: true as const,
+        id: rec.id as number,
         result: normalizeDashes(rec.resultJson),
         // Past the 14 days there are none, whatever the counter says: the page offered
         // "2 left" and the server then refused every one.
-        rerunsLeft: daysLeft > 0 ? Math.max(0, 2 - (rec.rerunsUsed ?? 0)) : 0,
+        rerunsLeft: daysLeft > 0 ? Math.max(0, 2 - (head.rerunsUsed ?? 0)) : 0,
         daysLeft: Math.floor(daysLeft),
       };
+    }),
+
+  /** Every paid report on this device, newest first, one entry per purchase. */
+  deviceReports: publicProcedure
+    .input(z.object({ fingerprint: z.string().min(1), kind: z.enum(["essay", "ucas"]) }))
+    .query(async ({ input }) => getDeviceReports(input.fingerprint, input.kind)),
+
+  /** One paid report on this device, to reopen it. */
+  deviceReport: publicProcedure
+    .input(z.object({ fingerprint: z.string().min(1), id: z.number().int().positive() }))
+    .query(async ({ input }) => {
+      const rec: any = await getAnonymousRowForDevice(input.fingerprint, input.id);
+      if (!rec || !rec.unlocked || !rec.resultJson) return { found: false as const };
+      return { found: true as const, id: rec.id as number, essayType: rec.essayType, subject: rec.subject, examSession: rec.examSession, result: normalizeDashes(rec.resultJson) };
     }),
 
   lockedReport: publicProcedure

@@ -12,6 +12,7 @@ import {
   ChevronDown, ChevronUp, ShieldCheck
 } from "lucide-react";
 import { SampleReports } from "@/components/SampleReports";
+import { usePreviewUsed } from "@/hooks/usePreviewUsed";
 
 const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
@@ -51,6 +52,7 @@ const SAMPLE_CRITERIA = [
 ];
 
 export default function Home() {
+  const previewUsed = usePreviewUsed();
   const { isAuthenticated } = useAuth();
   const [purchaseModalOpen, setPurchaseModalOpen] = useState(false);
   const [purchaseSku, setPurchaseSku] = useState<ProductKey>("ESSAY_PACK_5");
@@ -73,7 +75,7 @@ export default function Home() {
             "@type": "Organization",
             name: "IBLens",
             url: "https://iblens.com",
-            description: "AI-powered IB essay grader providing criterion-based feedback and predicted grades for Extended Essays, Internal Assessments, and TOK essays.",
+            description: "AI-powered IB essay grader providing criterion-based feedback and estimated marks for Extended Essays, Internal Assessments, and TOK essays.",
             
           },
           {
@@ -100,7 +102,7 @@ export default function Home() {
                 name: "How does IBLens analyse my IB essay?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "IBLens uses a large language model instructed with the published IB assessment criteria for your subject and session. It marks each criterion (the set depends on your subject), gives a predicted score, identifies the risks that could lose marks, and suggests specific improvements.",
+                  text: "IBLens uses a large language model instructed with the published IB assessment criteria for your subject and session. It marks each criterion (the set depends on your subject), gives an estimated score, identifies the risks that could lose marks, and suggests specific improvements.",
                 },
               },
               {
@@ -140,7 +142,7 @@ export default function Home() {
                 name: "What payment methods do you accept?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Payments are handled by LemonSqueezy, which accepts major cards and the other methods shown at checkout. Your reports are added automatically once the payment is confirmed.",
+                  text: "Payments are handled by Lemon Squeezy, which accepts major cards and the other methods shown at checkout. Your reports are added automatically once the payment is confirmed.",
                 },
               },
               {
@@ -178,8 +180,8 @@ export default function Home() {
                   Paste your essay. AI marks it against the published IB criteria in about a minute.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 mb-4">
-                  <Button size="lg" className="text-base px-8 shadow-lg shadow-primary/25" asChild>
-                    <Link href="/essay">Get my free preview</Link>
+                  <Button size="lg" className="text-base px-8 shadow-lg shadow-primary/25 min-h-11" asChild>
+                    <Link href="/essay">{previewUsed ? "Mark my essay" : "Get my free preview"}</Link>
                   </Button>
                   <Button size="lg" variant="ghost" asChild>
                     <Link href="/resources/sample-reports">See sample TOK reports</Link>
@@ -240,7 +242,7 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {[
                 { n: "01", title: "The published criteria", desc: "The criteria for your subject and exam session, with their real mark allocations, including the May 2027 changes." },
-                { n: "02", title: "Criterion feedback", desc: "Specific written feedback on every criterion in the full report, not just a total. See where the marks are lost." },
+                { n: "02", title: "Criterion feedback", desc: "Written feedback criterion by criterion in the full report, not just a total. See where the marks are lost." },
                 { n: "03", title: "About a minute", desc: "Paste, click, read. No account needed for your first preview, and IBLens counts your words against the official limit." },
               ].map(f => (
                 <div key={f.n} className="border-t-2 border-primary pt-6">
@@ -263,10 +265,10 @@ export default function Home() {
               <div className="rounded-xl border border-border bg-card p-8">
                 <h3 style={SERIF} className="text-xl font-bold mb-3">Essay Grader</h3>
                 <p className="text-muted-foreground mb-5 leading-relaxed">
-                  Get detailed feedback on your IA, Extended Essay, or TOK essay. Estimated marks against the published criteria, and specific steps to improve.
+                  Get detailed feedback on your IA, Extended Essay, TOK essay or exhibition, or English A individual oral. Estimated marks against the published criteria, and specific steps to improve.
                 </p>
                 <ul className="space-y-2.5 text-sm mb-6">
-                  {["Predicted score & IB band", "Criteria breakdown with progress bars", "Risk areas that lose marks", "Leverage zones to gain marks", "Actionable next steps"].map((item) => (
+                  {["Estimated score & IB band", "Criteria breakdown with progress bars", "Risk areas that lose marks", "Leverage zones to gain marks", "Actionable next steps"].map((item) => (
                     <li key={item} className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                       <span>{item}</span>
@@ -368,7 +370,7 @@ export default function Home() {
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full whitespace-nowrap">Recommended</div>
                 <p className="font-semibold mb-1">IBLens</p>
                 <div style={SERIF} className="text-2xl font-bold text-primary mb-1">$9.99</div>
-                <p className="text-xs text-muted-foreground">Full criterion breakdown, predicted score and risk areas in about a minute, with two re-checks.</p>
+                <p className="text-xs text-muted-foreground">Full criterion breakdown, estimated score and risk areas in about a minute, with two re-checks.</p>
               </div>
             </div>
             <p className="text-sm text-muted-foreground">Your first preview is free, one per device or account. No credit card, no account.</p>
@@ -462,7 +464,7 @@ export default function Home() {
             <div className="max-w-2xl mx-auto bg-background rounded-xl border p-6 md:p-8">
               <FAQItem
                 question="How does IBLens analyse my IB essay?"
-                answer="IBLens uses a large language model instructed with the published IB assessment criteria for your subject and session. It marks each criterion (the set depends on your subject), gives a predicted score, identifies the risks that could lose marks, and suggests specific improvements."
+                answer="IBLens uses a large language model instructed with the published IB assessment criteria for your subject and session. It marks each criterion (the set depends on your subject), gives an estimated score, identifies the risks that could lose marks, and suggests specific improvements."
               />
               <FAQItem
                 question="Which IB essay types does IBLens support?"
@@ -482,7 +484,7 @@ export default function Home() {
               />
               <FAQItem
                 question="What payment methods do you accept?"
-                answer="Payments are handled by LemonSqueezy, which accepts major cards and the other methods shown at checkout. Your reports are added automatically once the payment is confirmed."
+                answer="Payments are handled by Lemon Squeezy, which accepts major cards and the other methods shown at checkout. Your reports are added automatically once the payment is confirmed."
               />
               <FAQItem
                 question="Can I use IBLens for multiple subjects?"
@@ -538,6 +540,7 @@ export default function Home() {
                   <li><Link href="/essay/psychology-ia" className="hover:text-foreground transition-colors">Psychology IA</Link></li>
                   <li><Link href="/essay/english-essay" className="hover:text-foreground transition-colors">English Individual Oral</Link></li>
                   <li><Link href="/essay/tok-essay" className="hover:text-foreground transition-colors">TOK Essay</Link></li>
+                  <li><Link href="/essay/tok-exhibition" className="hover:text-foreground transition-colors">TOK Exhibition</Link></li>
                   <li><Link href="/essay/extended-essay" className="hover:text-foreground transition-colors">Extended Essay (EE)</Link></li>
                 </ul>
               </div>

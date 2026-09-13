@@ -131,6 +131,11 @@ export const anonymousAnalyses = mysqlTable("anonymous_analyses", {
   /** Which purchase opened this, so a refund closes exactly what it paid for. */
   unlockOrderId: varchar("unlockOrderId", { length: 64 }),
   /**
+   * The purchased report a re-check belongs to. The re-check count lives on that
+   * report, so a browser holding several paid reports keeps two re-checks for each.
+   */
+  rerunOf: int("rerunOf"),
+  /**
    * "essay" or "ucas" on the row that took this device's free run, null on every
    * other row. The unique index is what makes the free run single: a count read
    * followed by an insert let two tabs submitted together both pass.

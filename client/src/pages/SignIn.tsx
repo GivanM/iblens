@@ -41,7 +41,7 @@ export default function SignIn() {
               <Shield className="w-4 h-4 text-primary mt-0.5 shrink-0" />
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Sign in securely with your <strong className="text-foreground">Google account</strong>.
-                We only access your name and email address.
+                Google shares your name, email address and profile picture; we keep only your name and email address.
               </p>
             </div>
           </div>

@@ -360,20 +360,21 @@ export function generateFingerprint(ip: string, userAgent: string): string {
 }
 
 /**
- * Free runs already used on this device, counted per product. The essay grader and
- * the UCAS checker each advertise their own free run, and they share a device id,
- * so counting every row here would silently take one of the two away.
+ * Free runs already used on this device, counted per product. Only the row that
+ * claimed the free run counts: a report opened with a paid credit, or a re-check,
+ * is not the free preview, and counting every row took the preview away from a
+ * guest who happened to spend a paid report first. Rows from before the claim
+ * column existed were given their claim when it was added.
  */
 export async function getAnonymousAnalysisCount(fingerprint: string, kind: "essay" | "ucas" = "essay"): Promise<number> {
   const db = await getDb();
   if (!db) return 0;
 
-  const isUcas = eq(anonymousAnalyses.essayType, "UCAS");
   const result = await db.select({ count: sql<number>`count(*)` })
     .from(anonymousAnalyses)
     .where(and(
       eq(anonymousAnalyses.fingerprint, fingerprint),
-      kind === "ucas" ? isUcas : sql`(${anonymousAnalyses.essayType} IS NULL OR ${anonymousAnalyses.essayType} <> 'UCAS')`,
+      eq(anonymousAnalyses.freeClaim, kind),
     ));
 
   return result[0]?.count ?? 0;
@@ -780,34 +781,105 @@ export async function setAnonymousUnlocked(id: number, orderId?: string) {
  * without an account, so the window and the counter live on the anonymous row.
  * Returns the record to re-run, or the reason it cannot be re-run.
  */
-export async function consumeAnonymousRerun(fingerprint: string, kind: "essay" | "ucas" = "essay") {
+/** One device row, only if it belongs to that device. */
+export async function getAnonymousRowForDevice(fingerprint: string, id: number) {
+  const db = await getDb();
+  if (!db) return null;
+  const rows = await db.select().from(anonymousAnalyses)
+    .where(and(eq(anonymousAnalyses.id, id), eq(anonymousAnalyses.fingerprint, fingerprint))).limit(1);
+  return rows[0] ?? null;
+}
+
+/** The purchased report a device row belongs to: itself, or the report it re-checks. */
+export async function getAnonymousChainHead(rec: any) {
+  if (!rec?.rerunOf) return rec;
+  return (await getAnonymousRowForDevice(rec.fingerprint, rec.rerunOf)) ?? rec;
+}
+
+export async function consumeAnonymousRerun(fingerprint: string, kind: "essay" | "ucas" = "essay", recordId?: number) {
   const db = await getDb();
   if (!db) return { ok: false as const, reason: "Database not available" };
-  // Pick the row of the product being re-checked. A device can hold both an essay
-  // report and a UCAS review, and taking "the latest row" burned a re-check on
-  // whichever happened to be newer.
-  const rec: any = kind === "ucas"
-    ? await getLatestAnonymousUcas(fingerprint)
-    : await getLatestAnonymousEssay(fingerprint);
+  // The report being re-checked: the one the student picked, or the newest of its
+  // kind. A device can hold several paid reports and a UCAS review side by side.
+  const rec: any = recordId
+    ? await getAnonymousRowForDevice(fingerprint, recordId)
+    : kind === "ucas"
+      ? await getLatestAnonymousUcas(fingerprint)
+      : await getLatestAnonymousEssay(fingerprint);
   if (!rec || !rec.resultJson) return { ok: false as const, reason: "No report found for this device." };
+  if ((kind === "ucas") !== (rec.essayType === "UCAS")) return { ok: false as const, reason: "That report is not this kind of work." };
   if (!rec.unlocked) return { ok: false as const, reason: "This report is not unlocked." };
-  const started = rec.unlockedAt ? new Date(rec.unlockedAt).getTime() : new Date(rec.createdAt).getTime();
+  // The allowance and the 14 days belong to the purchase, which is the head of the chain.
+  const head: any = await getAnonymousChainHead(rec);
+  const started = head.unlockedAt ? new Date(head.unlockedAt).getTime() : new Date(head.createdAt).getTime();
   if ((Date.now() - started) / 86400000 > 14) {
-    return { ok: false as const, reason: "Your 14-day re-check window for this draft has ended." };
+    return { ok: false as const, reason: "Your 14-day re-check window for this report has ended." };
   }
-  if ((rec.rerunsUsed ?? 0) >= 2) {
-    return { ok: false as const, reason: "You have used both re-checks for this draft." };
+  if ((head.rerunsUsed ?? 0) >= 2) {
+    return { ok: false as const, reason: "You have used both re-checks for this report." };
   }
   // Counted in the database, not from the number read above: two re-checks sent
   // together both read the same count, both wrote count + 1, and a third got in.
   const taken: any = await db.update(anonymousAnalyses)
     .set({ rerunsUsed: sql`COALESCE(${anonymousAnalyses.rerunsUsed}, 0) + 1` })
-    .where(and(eq(anonymousAnalyses.id, rec.id), sql`COALESCE(${anonymousAnalyses.rerunsUsed}, 0) < 2`));
+    .where(and(eq(anonymousAnalyses.id, head.id), sql`COALESCE(${anonymousAnalyses.rerunsUsed}, 0) < 2`));
   if (Number(taken?.[0]?.affectedRows ?? taken?.affectedRows ?? 0) === 0) {
-    return { ok: false as const, reason: "You have used both re-checks for this draft." };
+    return { ok: false as const, reason: "You have used both re-checks for this report." };
   }
-  const used = await getAnonymousRerunsUsed(rec.id);
-  return { ok: true as const, record: rec, rerunsLeft: Math.max(0, 2 - used) };
+  const used = await getAnonymousRerunsUsed(head.id);
+  return { ok: true as const, record: rec, head, rerunsLeft: Math.max(0, 2 - used) };
+}
+
+/**
+ * Every paid report on a device, one entry per purchase with its newest version.
+ * Without this a guest saw only the newest report, and opening a second one hid the
+ * first together with the re-checks it still had.
+ */
+export async function getDeviceReports(fingerprint: string, kind: "essay" | "ucas") {
+  const db = await getDb();
+  if (!db) return [];
+  const rows: any[] = await db.select({
+    id: anonymousAnalyses.id,
+    essayType: anonymousAnalyses.essayType,
+    subject: anonymousAnalyses.subject,
+    createdAt: anonymousAnalyses.createdAt,
+    unlockedAt: anonymousAnalyses.unlockedAt,
+    rerunsUsed: anonymousAnalyses.rerunsUsed,
+    rerunOf: anonymousAnalyses.rerunOf,
+  }).from(anonymousAnalyses)
+    .where(and(
+      eq(anonymousAnalyses.fingerprint, fingerprint),
+      eq(anonymousAnalyses.unlocked, true),
+      sql`${anonymousAnalyses.resultJson} IS NOT NULL`,
+      kind === "ucas"
+        ? eq(anonymousAnalyses.essayType, "UCAS")
+        : sql`(${anonymousAnalyses.essayType} IS NULL OR ${anonymousAnalyses.essayType} <> 'UCAS')`,
+    ))
+    .orderBy(desc(anonymousAnalyses.id))
+    .limit(200);
+  const heads = new Map<number, any>();
+  for (const r of rows) if (!r.rerunOf) heads.set(r.id, { ...r, latestId: r.id, versions: 1 });
+  for (const r of rows) {
+    if (!r.rerunOf) continue;
+    const h = heads.get(r.rerunOf);
+    if (!h) { heads.set(r.id, { ...r, rerunOf: null, latestId: r.id, versions: 1 }); continue; }
+    h.versions += 1;
+    if (r.id > h.latestId) h.latestId = r.id;
+  }
+  return Array.from(heads.values()).sort((a, b) => b.latestId - a.latestId).map((h) => {
+    const started = h.unlockedAt ? new Date(h.unlockedAt).getTime() : new Date(h.createdAt).getTime();
+    const windowOpen = (Date.now() - started) / 86400000 <= 14;
+    return {
+      id: h.id,
+      latestId: h.latestId,
+      essayType: h.essayType,
+      subject: h.subject,
+      createdAt: h.createdAt,
+      versions: h.versions,
+      rerunsLeft: windowOpen ? Math.max(0, 2 - (h.rerunsUsed ?? 0)) : 0,
+      windowOpen,
+    };
+  });
 }
 
 /** The re-check count on a device row as it stands now. */
@@ -948,7 +1020,12 @@ export async function adoptDeviceReports(fingerprint: string, userId: number): P
   const orderIds = new Set((paidOrders as any[]).map((o) => o.id));
   const candidates = await db.select().from(anonymousAnalyses)
     .where(and(eq(anonymousAnalyses.fingerprint, fingerprint), eq(anonymousAnalyses.unlocked, true)));
-  const rows = (candidates as any[]).filter((r) => r.unlockOrderId && orderIds.has(r.unlockOrderId));
+  // Purchases before their re-checks, so each re-check can point at its report's copy
+  // and does not arrive in the account as a report with two re-checks of its own.
+  const rows = (candidates as any[])
+    .filter((r) => r.unlockOrderId && orderIds.has(r.unlockOrderId))
+    .sort((a, b) => (a.rerunOf ? 1 : 0) - (b.rerunOf ? 1 : 0) || a.id - b.id);
+  const accountIdFor = new Map<number, number>();
   let copied = 0;
   for (const rec of rows as any[]) {
     // By the source row id. Comparing a JSON column to a bound string is always
@@ -956,8 +1033,8 @@ export async function adoptDeviceReports(fingerprint: string, userId: number): P
     // same paid reports again, each copy carrying two fresh re-checks with it.
     const existing = await db.select({ id: analyses.id }).from(analyses)
       .where(and(eq(analyses.userId, userId), eq(analyses.adoptedFromId, rec.id))).limit(1);
-    if (existing.length > 0) continue;
-    await db.insert(analyses).values({
+    if (existing.length > 0) { accountIdFor.set(rec.id, existing[0].id); continue; }
+    const [inserted] = await db.insert(analyses).values({
       userId,
       type: "essay",
       essayType: rec.essayType,
@@ -971,7 +1048,9 @@ export async function adoptDeviceReports(fingerprint: string, userId: number): P
       examSession: rec.examSession ?? null,
       unlockOrderId: rec.unlockOrderId ?? null,
       adoptedFromId: rec.id,
-    });
+      rerunOf: rec.rerunOf ? (accountIdFor.get(rec.rerunOf) ?? null) : null,
+    }).$returningId();
+    if (inserted?.id) accountIdFor.set(rec.id, inserted.id);
     copied++;
   }
   if (copied > 0) console.log(`[Adopt] ${copied} paid report(s) moved to account ${userId}`);
@@ -1103,6 +1182,22 @@ export async function relockAnalysesForOrder(userId: number, orderId: string) {
   console.log(`[Refund] ${n} account report(s) re-locked for order ${orderId}`);
 }
 
+/**
+ * How many reports an order opened: device rows and account rows it unlocked, a
+ * device row and its account copy counting once, re-checks not counting at all.
+ * Read before the re-lock, which is what makes a refund take back each report once.
+ */
+export async function countReportsOpenedByOrder(orderId: string): Promise<number> {
+  const db = await getDb();
+  if (!db) return 0;
+  const dev = await db.select({ id: anonymousAnalyses.id }).from(anonymousAnalyses)
+    .where(and(eq(anonymousAnalyses.unlockOrderId, orderId), eq(anonymousAnalyses.unlocked, true), sql`${anonymousAnalyses.rerunOf} IS NULL`));
+  const devIds = new Set((dev as any[]).map((r) => r.id));
+  const acct = await db.select({ id: analyses.id, adoptedFromId: analyses.adoptedFromId }).from(analyses)
+    .where(and(eq(analyses.unlockOrderId, orderId), eq(analyses.unlocked, true), sql`${analyses.rerunOf} IS NULL`));
+  return devIds.size + (acct as any[]).filter((r) => !r.adoptedFromId || !devIds.has(r.adoptedFromId)).length;
+}
+
 /** Close the anonymous report a given order opened. */
 export async function relockAnonymousForOrder(orderId: string) {
   const db = await getDb();
@@ -1134,7 +1229,7 @@ export async function refundAnonymousRerun(id: number) {
  * A re-check is a new report, not a replacement. The old one is what the student
  * paid for, and the before/after comparison we sell needs both to exist.
  */
-export async function createRerunAnalysis(prev: any, resultJson: any, predictedGrade?: string | null) {
+export async function createRerunAnalysis(prev: any, resultJson: any, predictedGrade?: string | null, headId?: number) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   const [row] = await db.insert(anonymousAnalyses).values({
@@ -1152,7 +1247,9 @@ export async function createRerunAnalysis(prev: any, resultJson: any, predictedG
     // number made every re-check hand out two more.
     // Read again now: a re-check that ran alongside this one has counted itself on
     // the parent since prev was read, and the newest row is what the next gate sees.
-    rerunsUsed: Math.max((prev.rerunsUsed ?? 0) + 1, await getAnonymousRerunsUsed(prev.id)),
+    rerunsUsed: Math.max((prev.rerunsUsed ?? 0) + 1, await getAnonymousRerunsUsed(headId ?? prev.id)),
+    // The purchase this re-check belongs to, so its count and window stay on that report.
+    rerunOf: headId ?? prev.rerunOf ?? prev.id,
     examSession: prev.examSession ?? null,
     // The re-check belongs to the purchase that opened the original, so a refund
     // closes the child as well as the parent.
