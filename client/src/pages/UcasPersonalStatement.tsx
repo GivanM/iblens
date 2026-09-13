@@ -84,10 +84,13 @@ export default function UcasPersonalStatement() {
   );
   // The free preview survives a reload. It used to vanish, leaving only a buy button.
   const lockedUcasQ = trpc.essay.lockedReport.useQuery({ fingerprint: anonFp, kind: "ucas" }, { enabled: !result });
+  // Set when the reader chose to re-check a paid review: the locked preview of another
+  // statement must not come back over it.
+  const [lockedPreviewDismissed, setLockedPreviewDismissed] = useState(false);
   useEffect(() => {
     const d: any = lockedUcasQ.data;
-    if (!result && d?.exists && !d.unlocked && d.preview) setResult(d.preview);
-  }, [lockedUcasQ.data, result]);
+    if (!result && !lockedPreviewDismissed && d?.exists && !d.unlocked && d.preview) setResult(d.preview);
+  }, [lockedUcasQ.data, result, lockedPreviewDismissed]);
   useEffect(() => {
     if (paidReviewQ.data?.unlocked && !(result && result.answers)) {
       setResult(paidReviewQ.data.result);
@@ -258,7 +261,7 @@ export default function UcasPersonalStatement() {
         onRecheck={(r) => {
           setUcasTargetId(r.id);
           // A locked preview of another statement on screen blocked the re-check this chose.
-          if ((result as any)?.locked) setResult(null);
+          if ((result as any)?.locked) { setLockedPreviewDismissed(true); setResult(null); }
           document.getElementById("q1")?.scrollIntoView({ behavior: "smooth", block: "center" });
         }}
       />

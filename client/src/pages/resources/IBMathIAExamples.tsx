@@ -47,7 +47,8 @@ export default function IBMathIAExamples() {
       <h4>1. Modelling the spread of a rumour using differential equations</h4>
       <p>
         This classic exploration uses a logistic differential equation to model how
-        information spreads through a population. A student who chooses a real data
+        information spreads through a population. It suits AA HL: solving the logistic
+        differential equation by separating variables is additional higher level content (AHL 5.18). A student who chooses a real data
         source, such as post counts from a news story that went viral, gives Personal
         engagement something to reward: the context is self-chosen and the data is
         their own. The mathematics involves solving the logistic equation,

@@ -61,7 +61,7 @@ import { LEMONSQUEEZY_VARIANTS, PRODUCT_KEY_TO_LS_SKU } from "../shared/pricing"
 import { randomUUID } from "crypto";
 import { PRODUCTS } from "./products";
 import { getRubric, buildRubricPromptFragment, unmarkableReason } from "../shared/rubrics";
-import { reconcileScores, isNotAssessableFromText, pickWeakest, previewBand, stripMarks, statesMark } from "./scores";
+import { reconcileScores, isNotAssessableFromText, pickWeakest, previewBand, stripMarks, stripMarksDetailed, statesMark } from "./scores";
 
 const IB_SUBJECTS = [
   "Business Management", "Economics", "History", "Biology", "Chemistry",
@@ -93,7 +93,7 @@ IMPORTANT FORMATTING RULES:
 - Write to the student in the second person ("you", "your essay"). Never refer to them as "the student" or "the candidate".
 - In every comment longer than three sentences, put a blank line (two newline characters) between separate points, so it reads as short paragraphs.
 - Use British spelling (analyse, organise, recognise, behaviour).
-- Never write a criterion's mark or the total inside a comment, risk, leverage zone, next step or the overall comment: the report shows the marks separately. Describe the level in words (for example "the Good band descriptor"), never as a number. Rules the notes ask you to explain, such as a cap or no marks for an essay not on a prescribed title, must still be stated, in words.
+- Never write a criterion's mark or the total inside a comment, risk, leverage zone, next step or the overall comment: the report shows the marks separately. Describe the level in words (for example "the Good band descriptor"), never as a number, and never say where in a level the mark sits (top, bottom, upper or lower end). Rules the notes ask you to explain, such as a cap or no marks for an essay not on a prescribed title, must still be stated, in words.
 - The work arrives as pasted text, so graphs, images, photos, diagrams and screenshots never come through, and tables may lose their layout. Never lower a mark because a graph or image is not visible, and never call one missing. Where the work describes a graph or image, judge what the description shows, and put anything about the graph itself (axes, error bars, labels) as a check for the student to make, not as a reason for the mark. If the criteria require a diagram or graph and the text refers to none, say that none was referred to and ask the student to check.`;
 
   if (rubricFragment) {
@@ -337,9 +337,9 @@ function buildTeaser(result: any) {
   // when it is shown, stays.
   if (weakest && typeof weakest.comment === "string") {
     const allow = !holistic && typeof weakest.score === "number" ? `${weakest.score}/${weakest.max}` : undefined;
-    const clean = stripMarks(weakest.comment, { allow, holistic });
-    commentTrimmed = clean.length < weakest.comment.trim().length;
-    weakest = { ...weakest, comment: clean || "The full explanation is in the report." };
+    const cleaned = stripMarksDetailed(weakest.comment, { allow, holistic });
+    commentTrimmed = cleaned.dropped > 0;
+    weakest = { ...weakest, comment: cleaned.text || "The full explanation is in the report." };
   }
   // Holistic instruments have a single criterion whose comment IS the whole verdict:
   // truncate it in the teaser so the full reasoning stays behind the unlock.
@@ -436,7 +436,11 @@ const essayRouter = router({
           // refund is copied with its report and linked, not as a report with re-checks of its own.
           if ((rec as any).rerunOf) {
             await adoptDeviceReports(input.fingerprint, ctx.user.id).catch(() => 0);
-            return { result: normalizeDashes(rec.resultJson) };
+            // Adoption copies only reports bought by this account's orders. A credit from a
+            // storefront purchase or another email opens the report too, so without a copy of
+            // the original, the version itself is kept below rather than lost at sign-out.
+            const originalCopy = await findAccountCopyOf(ctx.user.id, (rec as any).rerunOf).catch(() => null);
+            if (originalCopy) return { result: normalizeDashes(rec.resultJson) };
           }
           const copy = await upsertAccountCopy({
             userId: ctx.user.id,

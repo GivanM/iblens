@@ -18,7 +18,7 @@ export function isNotAssessableFromText(c: any): boolean {
   // lost the most was then passed over for the preview.
   // The Maths "Reflection" and History "Reflection" criteria are marked on the text, so the
   // comment must be about the separate reflection form, and say it was absent.
-  const aboutForm = /\brpf\b|\brppf\b|reflective statement|reflection (and|&) progress form|reflections on planning|reflections? (was|were) not (pasted|submitted|provided|included)/.test(comment);
+  const aboutForm = /\brpf\b|\brppf\b|reflective statement|reflection (and|&) progress form|reflections on planning (and|&) progress/.test(comment);
   const absent = /not (been )?(submitted|provided|included|attached|pasted)|not assessed|absence of|was not part of|were not part of/.test(comment);
   return aboutForm && absent;
 }
@@ -139,41 +139,76 @@ function hiddenRange(criteria: any[], max: number, total: number): [number, numb
   return total >= range[0] && total <= range[1] ? range : [0, max];
 }
 
-const RANGE = /\b\d[\d,]*\s*[-\u2013\u2014]\s*\d[\d,]*\b/g;
+const RANGE = /\b\d[\d,]*\s*[-–—]\s*\d[\d,]*\b/g;
+// Things counted in coursework that are not marks: "3 of 5 sources", "one of four key concepts".
+const COUNTED_NOUN = String.raw`(?!\s+(?:of\s+)?(?:your\s+|the\s+)?(?:key\s+)?(?:concepts?|sources?|objects?|commentaries|commentary|areas?|prompts?|units?|documents?|articles?|words?|pages?|paragraphs?|sections?|examples?|questions?|variables?|trials?|repeats?))`;
 const FRACTION = /\d+(?:\.\d+)?\s*(?:\/|out of)\s*\d+/i;
-const COUNTED = /\b\d+(?:\.\d+)?\s*(?:marks?|points?)\b/i;
+const COUNTED = /\b(?:\d+(?:\.\d+)?|one|two|three|four|five|six)\s*(?:marks?|points?)\b/i;
 const GIVEN = /\b(?:award(?:s|ed)?|scor(?:e|es|ed|ing)|mark(?:s|ed)?|receiv(?:e|es|ed|ing)|earn(?:s|ed|ing)?|gain(?:s|ed|ing)?|lean(?:s|ing)?\s+towards?|sits?\s+at|placed\s+at|level)\s+(?:of\s+|at\s+|a\s+|an\s+|around\s+|about\s+|roughly\s+)?\d+(?:\.\d+)?\b/i;
-const RANGE_MARK = /\d+\s*[-\u2013\u2014]\s*\d+\s*(?:\/|out of|of)\s*\d+/i;
-const N_OF_N = /\b\d+(?:\.\d+)?\s+of\s+\d+\b/i;
+const RANGE_MARK = /\d+\s*[-–—]\s*\d+\s*(?:\/|out of|of)\s*\d+|\b\d+\s*[-–—]\s*\d+\s+(?:in|for|on)\s+criterion\b/i;
+const N_OF_N = new RegExp(String.raw`\b\d+(?:\.\d+)?\s+of\s+\d+\b` + COUNTED_NOUN, "i");
 const TOTAL_IS = /\b(?:total|overall)\s+(?:mark\s+|score\s+)?(?:is\s+|of\s+|would be\s+|at\s+|comes to\s+)?(?:about\s+|around\s+|roughly\s+)?\d+(?![\d,]*\s*(?:words?|characters?|%|pages?))/i;
 const CRITERION_COLON = /\bcriterion\s+[a-g][12]?\s*[:=]\s*\d+\b/i;
+const CAPPED = /\b(?:scor(?:e|es|ing)|mark(?:s|ed)?)\s+(?:above|below|at|of|higher than|more than|lower than)\s+\d+\b|\bcapped at\s+\d+\b|\bcannot (?:score|get|go|be awarded) (?:above|higher than|more than|beyond)\s+\d+\b|\b(?:puts?|places?)\s+criterion\s+[a-g][12]?\s+at\s+\d+\b|\bis an?\s+\d+\b(?![\d,.]*\s*(?:-|words?|%|pages?|minutes?|°|degrees?))/i;
 const GOT = /\b(?:got|gets|get|getting|achiev(?:e|es|ed|ing)|reach(?:es|ed)?)\s+(?:a\s+|an\s+)?\d+\b(?!\s*(?:words?|%|sources?|pages?))/i;
-const WORD_MARK = /\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\s+(?:out of|of)\s+(?:\d+|four|five|six|eight|ten|twelve)\b|\bout of (?:four|five|six|eight|ten|twelve)\b/i;
+const WORD_MARK = new RegExp(String.raw`\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\s+(?:out of|of)\s+(?:\d+|four|five|six|eight|ten|twelve)\b` + COUNTED_NOUN + String.raw`|\bout of (?:four|five|six|eight|ten|twelve)\b` + COUNTED_NOUN, "i");
 const AT_TOP = /\b(?:full marks|top band|top of the (?:band|scale|range)|highest band|maximum mark|the maximum|top mark|bottom of the (?:band|scale|range)|lowest band)\b/i;
+// Where in a level a mark sits: "at the top of the Satisfactory band", "the upper end of that level".
+const POSITION = /\b(?:top|bottom|upper|lower|higher|highest|lowest|high|low)\s+(?:end|mark|boundary|edge|half|part|limit|reaches)\b|\b(?:top|bottom|upper|lower)\s+of\s+(?:the\s+|this\s+|that\s+|its\s+)?(?:[a-z]+\s+)?(?:band|level|range|scale)\b/i;
+// A task marked as a whole shows its band already; any sentence about band, level or mark says more.
+const HOLISTIC_MARK_WORDS = /\b(?:band|bands|level|levels|boundary|mark|marks|marked|marking|score|scored|scores|grade|graded)\b/i;
 const SMALL_WORD = /\b(?:a|an)\s+(?:one|two|three|four|five|six|seven|eight|nine|ten)\b(?!-)/i;
 const SMALL_NUMBER = /\b(?:10|[0-9])\b(?!\s*(?:,\d{3}|words?|%|per ?cent|pages?|sources?|objects?|prompts?|titles?|areas?|examples?|claims?|paragraphs?|sections?|minutes?|hours?|years?|knowers?|perspectives?))/i;
 
+export type MarkTextOptions = { allow?: string; holistic?: boolean };
+
 /**
  * The free preview's text without any sentence that states a mark. The model sometimes
- * wrote the mark into the explanation or a risk ("awarded 7", "would receive 0/25"), and
- * the preview quoted it next to the range that was built not to give it away.
- * `allow` is a mark the preview shows anyway (the weakest criterion's own "3/6").
+ * wrote the mark into the explanation or a risk ("awarded 7", "would receive 0/25", "at
+ * the top of the Satisfactory band"), and the preview quoted it next to the range that was
+ * built not to give it away. `allow` is a mark the preview shows anyway (the weakest
+ * criterion's own "3/6"). Paragraph breaks are kept.
  */
-export function stripMarks(text: string, opts: { allow?: string; holistic?: boolean } = {}): string {
-  if (typeof text !== "string" || !text) return text;
-  const sentences = text.split(/(?<=[.!?])\s+/);
-  const kept = sentences.filter((s) => !statesMark(s, opts));
-  return kept.join(" ").trim();
+export function stripMarksDetailed(text: string, opts: MarkTextOptions = {}): { text: string; dropped: number } {
+  if (typeof text !== "string" || !text) return { text, dropped: 0 };
+  const parts = text.split(/((?<=[.!?])\s+)/);
+  let out = "";
+  let pendingBreak = "";
+  let dropped = 0;
+  for (let i = 0; i < parts.length; i += 2) {
+    const sentence = parts[i];
+    const sep = parts[i + 1] ?? "";
+    if (!sentence) continue;
+    if (statesMark(sentence, opts)) {
+      dropped++;
+      if (/\n\s*\n/.test(sep)) pendingBreak = "\n\n";
+      continue;
+    }
+    if (out && pendingBreak && !/\n\s*$/.test(out)) out = out.replace(/\s+$/, "") + pendingBreak;
+    pendingBreak = "";
+    out += sentence + sep;
+  }
+  return { text: out.trim(), dropped };
 }
 
-export function statesMark(s: string, opts: { allow?: string; holistic?: boolean } = {}): boolean {
+export function stripMarks(text: string, opts: MarkTextOptions = {}): string {
+  return stripMarksDetailed(text, opts).text;
+}
+
+export function statesMark(s: string, opts: MarkTextOptions = {}): boolean {
   let t = String(s || "");
   if (opts.allow) {
     // The whole token only: removing "1/2" as a substring cut "21/25" down to "2 5".
     const [sc, mx] = opts.allow.split("/").map((x) => x.trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
-    t = t.replace(new RegExp(`(?<![\\d.])${sc}\\s*\\/\\s*${mx}(?![\\d.])`, "g"), " ");
+    t = t.replace(new RegExp(`(?<![\\d.])${sc}\\s*\\/\\s*${mx}(?!\\.?\\d)`, "g"), " ");
   }
-  if (RANGE_MARK.test(t) || AT_TOP.test(t) || WORD_MARK.test(t) || CRITERION_COLON.test(t) || TOTAL_IS.test(t) || GOT.test(t)) return true;
+  if (opts.holistic && (POSITION.test(t) || HOLISTIC_MARK_WORDS.test(t))) return true;
+  if (POSITION.test(t)) return true;
+  // With the criterion's own mark shown, "the top band descriptor asks for" gives nothing
+  // away; it still does when it is about the total.
+  const aboutTotal = /\b(?:total|overall)\b/i.test(t);
+  if (RANGE_MARK.test(t) || WORD_MARK.test(t) || CRITERION_COLON.test(t) || TOTAL_IS.test(t) || CAPPED.test(t)) return true;
+  if ((AT_TOP.test(t) || GOT.test(t)) && (!opts.allow || aboutTotal)) return true;
   t = t.replace(RANGE, " ");
   if (FRACTION.test(t) || COUNTED.test(t) || GIVEN.test(t) || N_OF_N.test(t)) return true;
   return !!opts.holistic && (SMALL_NUMBER.test(t) || SMALL_WORD.test(t));

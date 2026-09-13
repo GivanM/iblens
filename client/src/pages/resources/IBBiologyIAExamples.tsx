@@ -25,10 +25,10 @@ export default function IBBiologyIAExamples() {
         The IA is marked out of 24 across four criteria (2025 syllabus, first assessment May 2025):
       </p>
       <ul>
-        <li><strong>Research design (6 marks):</strong> A focused research question in a genuine context, a methodology with identified variables and controls, and consideration of safety, ethical and environmental issues.</li>
+        <li><strong>Research design (6 marks):</strong> A research question described within a specific and appropriate context, the methodological considerations explained (how the variables are measured, the range and repetition of measurements, how control variables are controlled, and safety, ethical and environmental issues), and a method described well enough to be reproduced.</li>
         <li><strong>Data analysis (6 marks):</strong> Recording, processing and presenting data in ways relevant to the question, including uncertainties and appropriate graphs.</li>
         <li><strong>Conclusion (6 marks):</strong> A conclusion justified by the analysis, answering the research question and compared with the accepted scientific context.</li>
-        <li><strong>Evaluation (6 marks):</strong> Honest assessment of methodological weaknesses and limitations, with realistic improvements.</li>
+        <li><strong>Evaluation (6 marks):</strong> The relative impact of specific methodological weaknesses or limitations explained, with realistic improvements relevant to them explained.</li>
       </ul>
       <p>
         The IA is 20% of the subject grade. Evaluation is a frequent weak point: the
@@ -155,7 +155,7 @@ export default function IBBiologyIAExamples() {
         ctaHref="/essay/biology-ia"
         rows={[
           { criterion: "Research design", typical: "The method is lifted from a standard class practical and the variables are simply listed.", top: "The method is justified for this specific question: why this range, this many trials, these controls." },
-          { criterion: "Data analysis", typical: "Raw data is tabulated and a mean is plotted; uncertainties appear once and are then forgotten.", top: "Uncertainties are propagated through the processing, and the processing chosen is the one that actually tests the hypothesis." },
+          { criterion: "Data analysis", typical: "Raw data is tabulated and a mean is plotted; uncertainties appear once and are then forgotten.", top: "Uncertainties are considered appropriately in the recording and processing, and the processing chosen is the one that answers the research question." },
           { criterion: "Conclusion", typical: "\"The hypothesis was supported\", with no reference to how strongly.", top: "The conclusion is stated with its uncertainty and compared against accepted values or published work." },
           { criterion: "Evaluation", typical: "Generic weaknesses: human error, not enough time, more trials next time.", top: "The relative impact of specific methodological weaknesses explained, with realistic improvements that address them explained." },
         ]}

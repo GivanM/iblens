@@ -28,7 +28,7 @@ import { usePurchaseTracking } from "@/hooks/usePurchaseTracking";
 import { PRICE_LABELS, type ProductKey } from "@shared/pricing";
 import { WordCheckNote } from "@/components/WordCheckNote";
 import { countWords, type WordCheck } from "@shared/wordcount";
-import { IA_RUBRIC_SUBJECTS, EE_SUBJECTS, unmarkableReason } from "@shared/rubrics";
+import { IA_RUBRIC_SUBJECTS, EE_SUBJECTS, COURSEWORK_LABELS, unmarkableReason } from "@shared/rubrics";
 import { analytics } from "@/lib/analytics";
 import { getAnonFingerprint } from "@/lib/fingerprint";
 import { capitalise, fullReportAdds, type CriterionScope } from "@/lib/reportScope";
@@ -44,13 +44,7 @@ const subjectsFor = (type: string) => (type === "EE" ? EE_SUBJECT_LIST : IB_SUBJ
 // not on that subject's internal assessment. Under "Internal Assessment" the bare
 // subject name let a Music student submit Experimenting with music and be marked
 // on the criteria for Exploring music in context.
-const EXTERNAL_COURSEWORK_LABELS: Record<string, string> = {
-  "English A: Language and Literature": "English A: Language and Literature (individual oral)",
-  "English A: Literature": "English A: Literature (individual oral)",
-  "Visual Arts": "Visual Arts: comparative study (external)",
-  "Music": "Music: exploring music in context (external)",
-  "Film": "Film: textual analysis (external)",
-};
+const EXTERNAL_COURSEWORK_LABELS = COURSEWORK_LABELS;
 
 const ESSAY_TYPES = [
   { value: "IA", label: "Internal Assessment (IA) or coursework" },

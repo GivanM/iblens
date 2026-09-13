@@ -1,20 +1,20 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { PRICE_LABELS } from "@shared/pricing";
-import { IA_RUBRIC_SUBJECTS } from "@shared/rubrics";
+import { IA_RUBRIC_SUBJECTS, COURSEWORK_LABELS } from "@shared/rubrics";
 import { analytics } from "@/lib/analytics";
 import { Sheet, Slug } from "./Sheet";
 
 const TASKS = [
   { value: "EE", label: "Extended Essay" },
-  { value: "IA", label: "Internal Assessment" },
+  { value: "IA", label: "Internal Assessment (IA) or coursework" },
   { value: "TOK", label: "TOK essay" },
   { value: "TOK Exhibition", label: "TOK exhibition" },
 ];
 
 const SESSIONS = [
-  { value: "may2027", label: "May 2027" },
-  { value: "nov2026", label: "November 2026" },
+  { value: "may2027", label: "Exams in May 2027 or later" },
+  { value: "nov2026", label: "Exams in November 2026, or work submitted in May 2026" },
 ];
 
 const SUBJECTS: string[] = [...IA_RUBRIC_SUBJECTS];
@@ -85,7 +85,7 @@ export function RequestSlip() {
               <select className="ms-inp" id="ms-subject" value={subject} onChange={(e) => setSubject(e.target.value)}>
                 {SUBJECTS.map((s) => (
                   <option key={s} value={s}>
-                    {s}
+                    {task === "IA" ? (COURSEWORK_LABELS[s] ?? s) : s}
                   </option>
                 ))}
               </select>
