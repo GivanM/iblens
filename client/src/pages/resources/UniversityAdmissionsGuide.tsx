@@ -69,7 +69,7 @@ export default function UniversityAdmissionsGuide() {
       <h2>Europe</h2>
 
       <p>
-        <strong>Switzerland:</strong> ETH Zurich publishes a requirement of 38 out of 42 points, without bonus points, with Mathematics, one of Physics, Chemistry or Biology, and one Language A at Higher Level. EPFL publishes its own subject and grade requirements, including Mathematics and Physics at HL.
+        <strong>Switzerland:</strong> ETH Zurich publishes a requirement of 38 out of 42 points, without bonus points, with Mathematics, one of Physics, Chemistry or Biology, and one Language A at Higher Level, and three further subjects from a set list at Standard Level, for admission without an entrance examination. EPFL publishes its own subject and grade requirements, including Mathematics and Physics at HL.
       </p>
 
       <p>

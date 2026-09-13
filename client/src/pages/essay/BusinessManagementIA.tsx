@@ -44,7 +44,7 @@ const config: SubjectConfig = {
       { title: "Tools used as templates", text: "A SWOT analysis or a set of ratios that is filled in but never used to answer the research question. Criterion C rewards tools applied with clear relevance to the question." },
       { title: "A key concept on the title page only", text: "Naming the concept without analysing its connection to the organisation. Criterion A rewards that analysis integrated throughout the project." },
       { title: "A conclusion that adds new points", text: "The conclusion should answer the research question explicitly, and the guide advises against introducing facts or arguments that were not discussed earlier." },
-      { title: "Words past 1,800", text: "Moderators do not read beyond 1,800 words, and your teacher's mark is based on the first 1,800. Definitions and quotations count. Tables of data, diagrams, calculations, the supporting documents, citations and the bibliography do not." },
+      { title: "Words past 1,800", text: "Moderators do not read beyond 1,800 words, and your teacher's mark is based on the first 1,800. Definitions and quotations count. Tables of statistical data, diagrams, calculations, the supporting documents, citations and the bibliography do not." },
     ],
     faq: [
       { q: "Should I paste my supporting documents too?", a: "Paste the project itself. If there is room, add a short list of your supporting documents with their publishers and dates, so the feedback on Criterion B can take their range and age into account." },

@@ -33,10 +33,9 @@ export default function IBPsychologyExtendedEssay() {
         Through November 2026 the Psychology IA is an experiment based on a published
         study, with your own participants, data and statistics; from May 2027 it is a
         research proposal. The EE is the opposite arrangement: no
-        data collection of your own, and all of the marks in the argument. Running
-        your own study for the EE raises ethical problems and is the wrong format for
-        the task: examiners want to see you interrogate the existing evidence base,
-        not add a small sample to it. If the IA is about doing
+        data collection of your own, and all of the marks in the argument. The EE is
+        the opposite arrangement: it must be based on secondary sources only, and collecting
+        your own data is not permitted. If the IA is about doing
         psychology (see our <Link href="/resources/ib-psychology-ia">IB Psychology IA guide</Link>),
         the EE is about judging psychology: weighing methods, samples and
         conflicting findings until a defensible answer to your question emerges.

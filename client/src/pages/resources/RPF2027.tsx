@@ -13,7 +13,7 @@ export default function RPF2027() {
       <h1>The EE reflective statement (RPF): what replaces the RPPF in 2027</h1>
 
       <p>
-        From the May 2027 session, the Extended Essay's RPPF is replaced by the <strong>Reflection and Progress Form (RPF), with a single reflective statement of up to 500 words</strong>, written after your final reflection session, the viva voce. It is assessed under Criterion E: Reflection, worth 4 of the essay's 30 marks. If you sit your exams in May 2027 or later, this is the format you submit; sessions through November 2026 keep the RPPF under the old 34-mark rubric.
+        From the May 2027 session, the Extended Essay's RPPF is replaced by the <strong>reflection and progress form (RPF), with a single reflective statement of up to 500 words</strong>, written after your final reflection session, the viva voce. It is assessed under Criterion E: Reflection, worth 4 of the essay's 30 marks. If you sit your exams in May 2027 or later, this is the format you submit; sessions through November 2026 keep the RPPF under the old 34-mark rubric.
       </p>
 
       <h2>What changed</h2>

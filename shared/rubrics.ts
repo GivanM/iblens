@@ -108,7 +108,7 @@ const SCIENCES_IA: Rubric = {
     { name: "Evaluation", max: 6, descriptor: "The relative impact of specific methodological weaknesses or limitations explained, with realistic improvements relevant to them explained (generic weaknesses are the 1-2 band)" },
   ],
   notes: "Report maximum 3,000 words. SL and HL use the same criteria. (The pre-2025 rubric, Personal engagement / Exploration / Analysis / Evaluation / Communication, no longer applies to any current candidate.) Graphs may not come through pasted text: judge presentation of data only on what the text shows. If the report refers to a graph, say in the Data analysis comment that it was not seen; the criteria do not require a graph, so do not ask for one as a condition of a level.",
-  wordLimit: { max: 3000, excludes: "charts and diagrams, data tables, equations and calculations, citations and references, the bibliography and headers" },
+  wordLimit: { max: 3000, excludes: "charts and diagrams, data tables, equations, formulas and calculations, citations and references, the bibliography and headers" },
 };
 
 // ─── Mathematics AA & AI IA, "Exploration" (first assessment 2021) ──────────
@@ -148,9 +148,9 @@ const CS_IA: Rubric = {
   label: "Computer Science IA (solution, through Nov 2026)",
   totalMarks: 34,
   criteria: [
-    { name: "Criterion A: Planning", max: 6, descriptor: "Problem definition, rationale for the proposed solution, and success criteria" },
-    { name: "Criterion B: Solution overview", max: 6, descriptor: "Record of tasks and design overview including test plan" },
-    { name: "Criterion C: Development", max: 12, descriptor: "Use of appropriate techniques demonstrating complexity and ingenuity, with sources acknowledged" },
+    { name: "Criterion A: Planning", max: 6, descriptor: "An appropriate scenario for investigation for an identified client, with evidence of consultation, described; the rationale for the proposed product justified; a range of appropriate criteria for evaluating the success of the product (a client identified without evidence of consultation is the 1-2 band)" },
+    { name: "Criterion B: Solution overview", max: 6, descriptor: "Record of tasks (the IB Record of tasks form must be used) and design overview, including an outline test plan, detailed and complete so that it is clear how the product was developed" },
+    { name: "Criterion C: Development", max: 12, descriptor: "Techniques demonstrating complexity and ingenuity in addressing the scenario in Criterion A, with appropriate use of existing tools, the techniques explained and shown to be adequate for the task, and all sources identified" },
     { name: "Criterion D: Functionality and extensibility of product", max: 4, descriptor: "A functional product with evidence (video) and maintainable design" },
     { name: "Criterion E: Evaluation", max: 6, descriptor: "Evaluation against success criteria, client/adviser feedback, and recommendations for further development" },
   ],

@@ -93,7 +93,7 @@ export function DiplomaCalculator() {
           <span className="ml-3 text-sm text-muted-foreground">{subjectPoints} subject points + {bonus} bonus {bonus === 1 ? "point" : "points"}</span>
         </p>
         {levelNote && <p className="mt-2 text-sm text-amber-700">{levelNote}</p>}
-        {problems.length === 0 ? (
+        {levelNote ? null : problems.length === 0 ? (
           <p className="mt-2 text-sm text-emerald-700">No failing condition applies to these grades. CAS and academic integrity also have to be met, and cannot be checked from grades.</p>
         ) : (
           <ul className="mt-2 space-y-1 text-sm text-rose-700">

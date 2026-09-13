@@ -58,7 +58,7 @@ export default function IBIAScorePredictor() {
       <p>Level descriptors are applied by best fit, not by ticking every phrase. This is the hardest judgement to make about your own work, and most students lean either too generous or too harsh.</p>
 
       <h3>Step 4: add up and compare</h3>
-      <p>Add your criterion marks to get a raw total. Boundaries for the IA component are set each session and published to schools, so ask your teacher which grade a total usually corresponds to in your subject, and treat an older session's boundaries as a guide rather than a rule.</p>
+      <p>Add your criterion marks to get a raw total. Boundaries for internally assessed components are set when a course is introduced and then reviewed rather than reset each session, so ask your teacher which grade a total corresponds to in your subject, and treat an older session's boundaries as a guide rather than a rule.</p>
 
       <h3>Step 5: allow for moderation</h3>
       <p>If your total sits close to a boundary, it is the most exposed to moderation. The IB does not publish how often or how far marks move, so treat your estimate as a range: the grade you calculated, or one either side of it.</p>
@@ -75,7 +75,7 @@ export default function IBIAScorePredictor() {
       <p>The IB does not publish the size of moderation adjustments. What it does publish is how they work: a factor applied to every student at your school in that component when the sampled marks are out of line. Whether an adjustment changes your grade depends on how close your total sits to a boundary.</p>
 
       <h3>Are IA grade boundaries the same every year?</h3>
-      <p>No. They are set each session, so boundaries from an earlier session are an approximation only.</p>
+      <p>Not necessarily reset: the IB sets boundaries for internally assessed components when a course is introduced and reviews them to check they remain appropriate, so recent boundaries for your course are a good guide, which your teacher can confirm.</p>
 
       <h3>Which subjects see the most moderation?</h3>
       <p>The IB does not publish moderation outcomes by subject. Every subject with an internally assessed component is moderated in the same way.</p>

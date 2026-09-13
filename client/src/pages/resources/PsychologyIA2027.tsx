@@ -60,7 +60,7 @@ export default function PsychologyIA2027() {
       <ul>
         <li><strong>Introduction:</strong> Is the aim focused on a real-life problem and a specific population of interest, and do the two studies you summarise connect to your proposal?</li>
         <li><strong>Research methodology:</strong> Are the method and procedure explained for <em>this</em> question, and are the ethical considerations tied to your study rather than copied from a template?</li>
-        <li><strong>Data collection:</strong> Does your tool have at least five items, a copy in the appendix, and an explanation of why each item measures what it should? Have you explained what could go wrong when collecting the data?</li>
+        <li><strong>Data collection:</strong> Does your tool have at least five items, a copy in the appendix, and an explanation of how the tool measures what it is meant to measure? Have you explained what could go wrong when collecting the data?</li>
         <li><strong>Discussion:</strong> Do you set out potential findings and their implications, discuss researcher bias, and argue for one additional method?</li>
       </ul>
 

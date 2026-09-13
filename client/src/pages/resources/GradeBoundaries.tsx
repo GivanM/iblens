@@ -27,7 +27,7 @@ export default function GradeBoundaries() {
       </p>
 
       <p>
-        This is why nobody can tell you your exact grade during the course. You can estimate from past boundaries, but the boundaries that count are only fixed once that session's marking is complete.
+        This is why nobody can tell you your exact grade during the course. You can estimate from past boundaries, but the boundaries that count for examined components are only set at the end of that session's marking period, shortly before results are issued.
       </p>
 
       <h2>How subject grades combine into the Diploma score</h2>
@@ -66,17 +66,17 @@ export default function GradeBoundaries() {
       <h2>What moves a boundary</h2>
 
       <p>
-        The IB sets boundaries for each component of a subject and level, and for the subject overall, once marking is complete. Two things are worth knowing about how that plays out in practice.
+        At the end of each session's marking the IB sets new boundaries for each examined component, and from them the boundaries for the subject overall; boundaries for internally assessed and coursework components are set when the course is introduced and reviewed rather than reset each session. Two things are worth knowing about how that plays out in practice.
       </p>
 
       <h3>Coursework counts towards the same total</h3>
       <p>
-        The internally assessed component is part of the total that the boundary is applied to. In the sciences and mathematics it is worth 20% of the grade, and more in some subjects, such as 30% of Economics at SL. Marks secured on the IA before the exams are marks you do not have to find on the papers.
+        The internally assessed component is part of the total that the boundary is applied to. In Biology, Chemistry, Physics and both Mathematics courses it is worth 20% of the grade, and more in some subjects, such as 30% of Economics at SL. Marks secured on the IA before the exams are marks you do not have to find on the papers.
       </p>
 
       <h3>Full marks are not required for a 7</h3>
       <p>
-        Because boundaries are set below the maximum, a 7 does not require a perfect performance on every paper, in any subject. Where exactly the line falls depends on the session, so the useful question is how close your own marks are to it, which your teacher can help you judge.
+        In published sessions the overall boundary for a 7 has sat well below the maximum, so a 7 does not require a perfect performance on every paper. Where exactly the line falls depends on the session, so the useful question is how close your own marks are to it, which your teacher can help you judge.
       </p>
 
       <h2>Bonus points from the EE and TOK matrix</h2>

@@ -56,7 +56,7 @@ export default function IBScoreCalculator() {
       </div>
 
       <h2>IB grade boundaries: what they are and why they change</h2>
-      <p>Grade boundaries are the minimum marks needed for each grade from 1 to 7. The IB sets them <em>after</em> each examination session, once marking is complete. <strong>They are not fixed.</strong> The same share of the marks can earn a 6 in one session and a 7 in another where the papers were harder.</p>
+      <p>Grade boundaries are the minimum marks needed for each grade from 1 to 7. The IB sets the boundaries for examined components at the end of each session's marking period, shortly before results are issued. <strong>They are not fixed.</strong> The same share of the marks can earn a 6 in one session and a 7 in another where the papers were harder.</p>
 
       <h3>Why grade boundaries change each session</h3>
       <ul>
@@ -72,7 +72,7 @@ export default function IBScoreCalculator() {
       <ul>
         <li><strong>Oxford:</strong> 38, 39 or 40 points including core points, depending on the course, with 6s and 7s in Higher Level subjects. Course pages range from 666 to 776 at HL, and 666 or 766 are the most common.</li>
         <li><strong>Cambridge:</strong> minimum offers of 41 to 42 points out of 45, with 776 at Higher Level. Some colleges ask for 777 or a higher total.</li>
-        <li><strong>ETH Zurich:</strong> 38 out of 42 points, without bonus points, with Mathematics, one of Physics, Chemistry or Biology, and one Language A at Higher Level.</li>
+        <li><strong>ETH Zurich:</strong> 38 out of 42 points, without bonus points, with Mathematics, one of Physics, Chemistry or Biology, and one Language A at Higher Level, and three further subjects from a set list at Standard Level, for admission without an entrance examination.</li>
       </ul>
       <p>US universities do not set IB point thresholds in the same way: they read the IB grades as part of the whole application.</p>
 

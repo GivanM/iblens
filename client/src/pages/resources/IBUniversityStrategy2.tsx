@@ -30,7 +30,7 @@ export default function IBUniversityStrategy() {
         realistic. A balanced list has three parts:
       </p>
       <ul>
-        <li><strong>Reach:</strong> courses where your predicted grades sit at or below the published requirement, or where very few applicants are admitted. Apply to a few, but never rely on them.</li>
+        <li><strong>Reach:</strong> courses where your predicted grades sit below the published requirement, or where very few applicants are admitted. Apply to a few, but never rely on them.</li>
         <li><strong>Target:</strong> courses where your predicted grades meet the published requirement and your subjects fit. For most students these are the bulk of the list.</li>
         <li><strong>Safety:</strong> courses where your predicted grades are comfortably above the requirement, at a university you would be glad to attend.</li>
       </ul>

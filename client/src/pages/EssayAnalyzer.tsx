@@ -822,7 +822,7 @@ export default function EssayAnalyzer() {
             </p>
           ) : (
             <p className="text-xs text-muted-foreground">
-              The IB academic integrity policy asks students to abstain from receiving non-permitted assistance in the completion or editing of their work, such as from friends, relatives, other students or private tutors, so check that your teacher and your school allow outside feedback on this work before you use IBLens.
+              The IB academic integrity policy asks students to abstain from receiving non-permitted assistance in the completion or editing of their work, such as from friends, relatives, other students, private tutors, essay writing or copy-editing services, so check that your teacher and your school allow outside feedback on this work before you use IBLens.
             </p>
           )}
           {essayType === "EE" && (

@@ -33,7 +33,7 @@ const config: SubjectConfig = {
       { title: "Criterion E: Use of mathematics, 6 marks", text: "At SL, the top level needs relevant mathematics commensurate with the course that is correct and shows thorough knowledge and understanding. At HL, level 5 adds sophistication or rigour, and level 6 needs precise mathematics with sophistication and rigour." },
     ],
     rubricNote: [
-      "Sophistication means mathematics from the HL syllabus, or SL mathematics used in a way beyond what could reasonably be expected of an SL student. Rigour means clear logic and language, with the mathematical claims your exploration relies on justified or proven.",
+      "Sophistication means mathematics commensurate with the HL syllabus, or SL mathematics used in a complex way beyond what could reasonably be expected of an SL student. Rigour means clear logic and language, with the mathematical claims your exploration relies on justified or proven.",
     ],
     mistakesHeading: "Mistakes the Math AA IA criteria penalise",
     mistakes: [

@@ -35,7 +35,7 @@ export default function CourseworkReviewTools() {
 
       <ul>
         <li>
-          <strong>Does it apply the real criteria for your subject and session?</strong> An EE drafted for May 2027 is marked out of 30 against new criteria; a tool grading it out of 34 is checking your work against a rubric you will never be marked with. The same applies to Psychology and Computer Science IAs, which change format in 2027.
+          <strong>Does it apply the real criteria for your subject and session?</strong> An EE drafted for May 2027 is marked out of 30 against new criteria; a tool grading it out of 34 is checking your work against a rubric you will never be marked with. The same applies to the IAs in Psychology, Computer Science, Design Technology and Visual Arts, which all change for first assessment in May 2027.
         </li>
         <li>
           <strong>Criterion-level output, not a general impression.</strong> "This is a solid essay" does not tell you what to fix first. Look for a per-criterion breakdown and an identified weakest criterion.
@@ -68,7 +68,7 @@ export default function CourseworkReviewTools() {
 
       <h3>Are these tools allowed under IB rules?</h3>
       <p>
-        Using AI to get feedback on work you wrote is a different activity from having AI produce the work, but the IB academic integrity policy still asks students to abstain from receiving non-permitted assistance in the completion or editing of their work, such as from friends, relatives, other students or private tutors, so check with your teacher and your school's AI policy before you use one. Submitting AI-written text without crediting it is academic misconduct. Keep drafts and use feedback to revise your own writing. The Extended Essay is stricter: the Extended Essay guide says students must not receive assistance with any aspect of the research, writing or proofreading beyond that which is permitted through their supervisor. Ask your supervisor before you use any outside feedback on your EE, IBLens included.
+        Using AI to get feedback on work you wrote is a different activity from having AI produce the work, but the IB academic integrity policy still asks students to abstain from receiving non-permitted assistance in the completion or editing of their work, such as from friends, relatives, other students, private tutors, essay writing or copy-editing services, so check with your teacher and your school's AI policy before you use one. Submitting AI-written text without crediting it is academic misconduct. Keep drafts and use feedback to revise your own writing. The Extended Essay is stricter: the Extended Essay guide says students must not receive assistance with any aspect of the research, writing or proofreading beyond that which is permitted through their supervisor. Ask your supervisor before you use any outside feedback on your EE, IBLens included.
       </p>
 
       <h3>Which tool supports the new May 2027 Extended Essay criteria?</h3>

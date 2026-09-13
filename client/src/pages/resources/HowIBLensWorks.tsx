@@ -223,7 +223,7 @@ export default function HowIBLensWorks() {
       </p>
 
       <p>
-        The most effective approach combines multiple feedback sources: use IBLens for rapid, criterion-based feedback during revision, and your teacher for authoritative subject guidance. Check with your teacher before you use any outside feedback, peers included, because the IB academic integrity policy asks students to abstain from receiving non-permitted assistance in the completion or editing of their work, such as from friends, relatives, other students or private tutors. The Extended Essay is the exception: its guide says students are not allowed to receive assistance with any aspect of the research, writing or proofreading of the essay beyond that which is permitted through their supervisor, so ask your supervisor before using IBLens or anyone else on it.
+        The most effective approach combines multiple feedback sources: use IBLens for rapid, criterion-based feedback during revision, and your teacher for authoritative subject guidance. Check with your teacher before you use any outside feedback, peers included, because the IB academic integrity policy asks students to abstain from receiving non-permitted assistance in the completion or editing of their work, such as from friends, relatives, other students, private tutors, essay writing or copy-editing services. The Extended Essay is the exception: its guide says students are not allowed to receive assistance with any aspect of the research, writing or proofreading of the essay beyond that which is permitted through their supervisor, so ask your supervisor before using IBLens or anyone else on it.
       </p>
 
       <p>

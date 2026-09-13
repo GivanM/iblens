@@ -30,7 +30,7 @@ const config: SubjectConfig = {
       { title: "Criterion B: Mathematical communication, 4 marks", text: "Appropriate notation, symbols and terminology used consistently, key terms and variables defined, suitable forms of representation such as formulae, graphs, tables and diagrams, and proofs set out logically where you use them. Calculator or computer notation is acceptable only in software output." },
       { title: "Criterion C: Personal engagement, 3 marks", text: "Evidence that you made the mathematics your own: thinking independently or creatively, presenting ideas in your own way, looking at the topic from different perspectives, making and testing predictions. It is not a measure of effort." },
       { title: "Criterion D: Reflection, 3 marks", text: "Review, analysis and evaluation of the exploration: what the results mean, the strengths and weaknesses of your approach, what could come next. Describing results is limited reflection. The top level needs critical reflection throughout, or reflection at the end that is of high quality and shows how it developed the exploration." },
-      { title: "Criterion E: Use of mathematics, 6 marks", text: "Relevant mathematics at the level of your course, used correctly, with understanding demonstrated rather than answers obtained. At HL, level 5 also needs sophistication or rigour, and level 6 needs both." },
+      { title: "Criterion E: Use of mathematics, 6 marks", text: "Relevant mathematics at the level of your course, used correctly, with understanding demonstrated rather than answers obtained. At HL, level 5 also needs sophistication or rigour, and level 6 needs precise mathematics with both." },
     ],
     mistakesHeading: "Mistakes the Math IA criteria penalise",
     mistakes: [

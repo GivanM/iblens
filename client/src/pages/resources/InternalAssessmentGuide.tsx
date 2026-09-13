@@ -31,7 +31,7 @@ export default function InternalAssessmentGuide() {
       </p>
 
       <ul>
-        <li><strong>Group 1 (Studies in Language and Literature):</strong> the individual oral, a recorded oral on a global issue explored through an extract from each of two works (in Literature, one work originally written in the language studied and one work studied in translation; in Language and Literature, one literary work and one non-literary body of work)</li>
+        <li><strong>Group 1 (Studies in Language and Literature):</strong> the individual oral, a recorded oral on a global issue explored through an extract from each of two works (in Literature, one work originally written in the language studied and one work studied in translation; in Language and Literature, one literary work and one non-literary text)</li>
         <li><strong>Group 2 (Language Acquisition):</strong> an individual oral, based on a visual stimulus at SL and an extract from a literary work at HL in Language B</li>
         <li><strong>Group 3 (Individuals and Societies):</strong> a written investigation (History: 2,200 words; Business Management: 1,800 words; Economics: three commentaries of up to 800 words each; Psychology: an experimental report through November 2026, and from May 2027 a research proposal marked out of 24)</li>
         <li><strong>Group 4 (Sciences):</strong> Scientific investigation (Biology, Chemistry, Physics: up to 3,000 words, marked out of 24)</li>
