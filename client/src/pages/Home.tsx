@@ -133,7 +133,7 @@ export default function Home() {
               </div>
               <div className="hc-step">
                 <h3>Your essay is not kept</h3>
-                <p>It passes through our relay in Helsinki to Anthropic, which marks it. IBLens never saves the text, and Anthropic deletes it within 30 days unless its usage policy or the law requires otherwise. <Link href="/privacy" className="hc-link">Privacy Policy</Link></p>
+                <p>Our server in Helsinki sends it to Anthropic, which marks it. IBLens never saves the text, and Anthropic deletes it within 30 days unless its usage policy or the law requires otherwise. <Link href="/privacy" className="hc-link">Privacy Policy</Link></p>
               </div>
             </div>
             <aside className="hc-card" aria-label="Sample report">

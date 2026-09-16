@@ -45,7 +45,7 @@ const config: SubjectConfig = {
       { q: "Is the exhibition marked the same way?", a: "It also has one holistic instrument out of 10, but the question behind it and the task are different, and your teacher marks it. Choose TOK exhibition in the grader for it." },
       { q: "How accurate is the estimated mark?", a: "It is an estimate, not a mark. A language model applies the published criteria to what you paste, and it can be wrong. IB examiners mark this component, so their mark is the one that counts. Use the report to find what to fix before you submit." },
       { q: "Is it free?", a: "The first preview is free and needs no account: the band your work falls in, the opening of the explanation for it, and the top risks in the draft. The full report, with the complete explanation and a ranked list of fixes, is $9.99, or $24.99 for five and $44.99 for ten." },
-      { q: "Is my work stored?", a: "IBLens never saves the text you paste. It passes through our relay server to Anthropic, the AI provider, to produce the report, and Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },
+      { q: "Is my work stored?", a: "IBLens never saves the text you paste. Our server sends it to Anthropic, the AI provider, to produce the report, and Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. Reports made without an account are deleted after 90 days unless you buy the full report, and reports in a signed-in account stay until you delete them." },
     ],
   },
   relatedResources: [

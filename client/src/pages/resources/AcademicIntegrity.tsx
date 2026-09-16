@@ -5,7 +5,7 @@ export default function AcademicIntegrity() {
   return (
     <ResourceArticle
       title="AI Feedback and IB Academic Integrity: Is It Allowed? | IBLens"
-      description="What the IB academic integrity policy means for AI feedback on your EE, TOK essay or IA, and how IBLens handles your data: no training on your essays, no sharing beyond our relay server and the AI provider that marks them, deletion on request."
+      description="What the IB academic integrity policy means for AI feedback on your EE, TOK essay or IA, and how IBLens handles your data: no training on your essays, no sharing beyond our own server and the AI provider that marks them, deletion on request."
       canonical="/resources/academic-integrity"
       datePublished="2026-07-03"
       dateModified="2026-09-13"
@@ -69,7 +69,7 @@ export default function AcademicIntegrity() {
       <h2>What IBLens does with your essay</h2>
       <ul>
         <li><strong>We do not train models on your essays.</strong> Your text is sent to the grading model, scored, and returned. It does not become training data.</li>
-        <li><strong>We do not sell or publish your essay. It passes through our relay server in Helsinki to Anthropic, which marks it, and goes to no one else.</strong> No exemplar library built from user submissions, no reselling, no indexing.</li>
+        <li><strong>We do not sell or publish your essay. Our server in Helsinki sends it to Anthropic, which marks it, and it goes to no one else.</strong> No exemplar library built from user submissions, no reselling, no indexing.</li>
         <li><strong>IBLens never saves the essay text, and an anonymous report you did not buy is deleted after 90 days.</strong> Anthropic, which marks it, deletes the text within 30 days unless it is flagged under its usage policy or the law requires otherwise. Signed-in users keep their history in their dashboard; you can request full deletion at any time.</li>
         <li><strong>Nothing goes into plagiarism databases.</strong> IBLens does not feed Turnitin or any similarity database. Getting feedback here does not create a record that later flags your submission.</li>
       </ul>

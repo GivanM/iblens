@@ -134,7 +134,7 @@ function RemarkQuickCheck() {
               {analyze.isPending ? QUICK_STEPS[Math.min(step, QUICK_STEPS.length - 1)] : "See where my essay stands"}
             </Button>
           </div>
-          <p className="text-xs text-muted-foreground mt-2">IBLens never saves the essay text. It passes through our relay server to Anthropic, which marks it and deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. <Link href="/privacy" className="underline">Privacy</Link></p>
+          <p className="text-xs text-muted-foreground mt-2">IBLens never saves the essay text. Our server sends it to Anthropic, which marks it and deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. <Link href="/privacy" className="underline">Privacy</Link></p>
           {essayText.trim().length > 0 && essayText.trim().length < 300 && (
             <p className="text-xs text-muted-foreground mt-2">Keep pasting: the check needs the full essay.</p>
           )}

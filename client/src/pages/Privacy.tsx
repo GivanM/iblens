@@ -11,7 +11,7 @@ export default function Privacy() {
       />
       <div className="container max-w-3xl">
         <h1 className="text-3xl font-bold tracking-tight mb-2">Privacy Policy</h1>
-        <p className="text-sm text-muted-foreground mb-8">Last updated: 13 September 2026</p>
+        <p className="text-sm text-muted-foreground mb-8">Last updated: 16 September 2026</p>
         <div className="prose prose-sm max-w-none text-foreground space-y-6 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:mt-8 [&_h2]:mb-3 [&_p]:text-muted-foreground [&_p]:leading-relaxed [&_li]:text-muted-foreground [&_ul]:list-disc [&_ul]:list-inside [&_ul]:space-y-1.5">
           <p>This policy explains what personal data IBLens collects, why, who processes it, how long we keep it, and the rights you have. IBLens is operated by an independent developer; for any privacy request, contact <a href="mailto:glushkovim@gmail.com" className="text-primary hover:underline">glushkovim@gmail.com</a>.</p>
 
@@ -34,15 +34,15 @@ export default function Privacy() {
 
           <h2>How your essay is processed (AI disclosure)</h2>
           <p>To produce your analysis, the text you submit is transmitted over an encrypted connection to our AI provider, <strong>Anthropic PBC</strong>, which processes it on our behalf solely to generate the feedback you receive. We do not use your essay to train any AI model, and we do not sell it. Anthropic's own policy for this kind of use is to delete inputs and outputs within 30 days, and to keep them longer only where content is flagged under its usage policy or the law requires it.</p>
-          <p>One detail most services leave out, and we would rather state it: the request does not travel to Anthropic directly. It passes through <strong>a relay server we operate in Helsinki, Finland</strong> (Hetzner Online GmbH), which exists because our main server cannot reach the AI provider reliably on its own. The relay holds your text in memory only while the analysis runs, keeps the answer in memory for up to 15 minutes so our server can collect it, writes neither to disk, and nobody else has access to it. The full text you submit, an essay or a personal statement, is never written to our database, at any stage; the stored report can quote short passages from it.</p>
+          <p>IBLens runs on <strong>a server we operate in Helsinki, Finland</strong> (Hetzner Online GmbH). That server sends your text to Anthropic and holds it in memory only while the analysis runs; it does not write the text to disk, and nobody else has access to it. The full text you submit, an essay or a personal statement, is never written to our database, at any stage; the stored report can quote short passages from it.</p>
 
           <h2>Who we share data with</h2>
           <p>We do not sell your personal data. We share it only with the service providers needed to run IBLens, each acting under their own terms:</p>
           <ul>
             <li><strong>Anthropic PBC:</strong> AI processing of your essay to generate the analysis.</li>
-            <li><strong>Hetzner Online GmbH</strong> (Helsinki, Finland): the server we operate to reach the AI provider; your text passes through it in transit.</li>
+            <li><strong>Hetzner Online GmbH</strong> (Helsinki, Finland): hosts the server that runs IBLens and its database; your text is processed there in memory on its way to Anthropic.</li>
             <li><strong>Lemon Squeezy:</strong> payment processing and receipts (they handle your card data; we never see full card numbers).</li>
-            <li><strong>Google:</strong> analytics, advertising measurement, sign-in, and web fonts (Google Fonts receives your IP address when a page loads). When a purchase completes, the page and our server send Google the order number, the product and the amount, without your name, email address or account.</li>
+            <li><strong>Google:</strong> analytics, advertising measurement and sign-in. When a purchase completes, the page and our server send Google the order number, the product and the amount, without your name, email address or account.</li>
           </ul>
           <p>We do not share your essay content with your school, universities, examiners, or other students.</p>
 

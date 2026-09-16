@@ -105,7 +105,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/resources/academic-integrity": {
     title: "AI Feedback and IB Academic Integrity: Is It Allowed? | IBLens",
-    description: "What the IB academic integrity policy means for AI feedback on your EE, TOK essay or IA, and how IBLens handles your data: no training on your essays, no sharing beyond our relay server and the AI provider that marks them, deletion on request.",
+    description: "What the IB academic integrity policy means for AI feedback on your EE, TOK essay or IA, and how IBLens handles your data: no training on your essays, no sharing beyond our own server and the AI provider that marks them, deletion on request.",
     ogType: "article",
     canonical: "/resources/academic-integrity",
     schemaType: "Article",

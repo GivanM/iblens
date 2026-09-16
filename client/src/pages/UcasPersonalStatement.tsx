@@ -238,7 +238,7 @@ export default function UcasPersonalStatement() {
         statements are checked for similarity against previously submitted work. This tool gives you
         feedback on your own writing and deliberately never hands you sentences to copy. We do not
         publish your statement, do not train models on it, and do not feed it to any similarity
-        database. IBLens never saves the answers you paste: they pass through our relay server to
+        database. IBLens never saves the answers you paste: our server sends them to
         Anthropic, which reviews them and deletes them within 30 days unless flagged under its usage
         policy or required by law. The review itself is saved and can quote short passages, as the{" "}
         <Link href="/privacy" className="underline">Privacy Policy</Link> sets out. Do not post your statement anywhere public either: that is what puts it into

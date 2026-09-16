@@ -107,9 +107,9 @@ export default function HowIBLensWorks() {
       </p>
 
       <ul>
-        <li><strong>Storage:</strong> The essay text is never written to our database. An anonymous report you did not buy is deleted after 90 days. A purchased report is kept. If you sign in, your history stays in your account until you delete it, and every report there has a delete button. Essay content goes only through our relay server to Anthropic, which marks it.</li>
-        <li><strong>Processed only to produce your report:</strong> Your essay passes over an encrypted connection through our relay server in Helsinki to our AI provider, Anthropic, solely to generate your analysis. IBLens never stores the text itself. It is not sold, and not shared with schools, universities or other students.</li>
-        <li><strong>Encrypted transmission:</strong> every connection, from your browser to our server, the relay and Anthropic, uses HTTPS.</li>
+        <li><strong>Storage:</strong> The essay text is never written to our database. An anonymous report you did not buy is deleted after 90 days. A purchased report is kept. If you sign in, your history stays in your account until you delete it, and every report there has a delete button. Essay content goes only from our server to Anthropic, which marks it.</li>
+        <li><strong>Processed only to produce your report:</strong> Your essay goes over an encrypted connection to our server in Helsinki and on to our AI provider, Anthropic, solely to generate your analysis. IBLens never stores the text itself. It is not sold, and not shared with schools, universities or other students.</li>
+        <li><strong>Encrypted transmission:</strong> every connection, from your browser to our server and from our server to Anthropic, is encrypted.</li>
         <li><strong>No training on your data:</strong> Your essays are not used to train or improve the AI model. Your intellectual property remains yours.</li>
         <li><strong>What is kept:</strong> the reports themselves (which can quote short passages), the subject and the research question or course you enter, a random device identifier, purchase records, the email you type into a checkout and, if you sign in, the name and email address from your Google account and your report history. How long each is kept is set out in the <Link href="/privacy">Privacy Policy</Link>; everything except the purchase records we must keep for accounting and tax can be deleted on request.</li>
       </ul>

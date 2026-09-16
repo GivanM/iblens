@@ -218,7 +218,7 @@ export default function LandingPage() {
               />
               <FAQItem
                 question="Is my essay private?"
-                answer="Your essay passes over an encrypted connection through our relay server in Helsinki to Anthropic PBC, solely to produce your report. We do not use it to train any model or sell it. IBLens never saves the essay text; Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. An anonymous report you did not buy is deleted after 90 days."
+                answer="Your essay goes over an encrypted connection to our server in Helsinki and on to Anthropic PBC, solely to produce your report. We do not use it to train any model or sell it. IBLens never saves the essay text; Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. An anonymous report you did not buy is deleted after 90 days."
               />
             </div>
           </div>

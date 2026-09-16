@@ -901,7 +901,7 @@ export default function EssayAnalyzer() {
               </p>
             )}
             <p className="text-xs text-muted-foreground">
-              Your text passes through our relay server to Anthropic, which marks it. IBLens never saves the text itself, and Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. The report is saved and can quote short passages: without an account it is deleted after 90 days unless you buy it, and in an account it stays until you delete it. <Link href="/privacy" className="underline">Privacy</Link>
+              Our server sends your text to Anthropic, which marks it. IBLens never saves the text itself, and Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. The report is saved and can quote short passages: without an account it is deleted after 90 days unless you buy it, and in an account it stays until you delete it. <Link href="/privacy" className="underline">Privacy</Link>
             </p>
           </div>
 

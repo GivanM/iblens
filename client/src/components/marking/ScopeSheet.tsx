@@ -57,8 +57,8 @@ export function ScopeSheet() {
             <li>
               <em aria-hidden="true">✗</em>
               <span>
-                Keep your text to itself. The essay travels through our own server in Finland, which exists to reach
-                the model at all from where this is run, and then to Anthropic PBC, which produces the analysis.{" "}
+                Keep your text to itself. The essay goes to our own server in Finland, which runs IBLens, and from there to
+                Anthropic PBC, which produces the analysis.{" "}
                 <Link href="/privacy">How the data moves</Link>.
               </span>
             </li>
