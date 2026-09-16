@@ -1,0 +1,6 @@
+[Unit]
+Description=IBLens: check that the SSH tunnel to Helsinki carries data
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/iblens-tunnel-check

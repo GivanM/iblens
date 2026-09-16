@@ -14,6 +14,10 @@ jobs:
     name: SSH deploy to iblens.com
     runs-on: ubuntu-24.04
     timeout-minutes: 20
+    env:
+      # iblens.com runs on the Helsinki server since 16 September 2026. The REG.RU server
+      # (the old SSH_HOST secret) only passes visitors through to it and has the app stopped.
+      DEPLOY_HOST: 204.168.182.63
 
     steps:
       - name: Setup SSH
@@ -21,12 +25,13 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
+          # The server's host key, pinned so a deploy cannot be answered by another machine.
+          echo "$DEPLOY_HOST ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINHpvJ7YExDGFiYxwqM+h5chwJpKpzxMAasfDow9NGkn" >> ~/.ssh/known_hosts
 
       - name: Pull, build, restart
         run: |
           ssh -i ~/.ssh/deploy_key -o ServerAliveInterval=30 \
-              ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+              deploy@"$DEPLOY_HOST" \
               "EVENT=${{ github.event_name }} BEFORE=${{ github.event.before }} bash -s" <<'REMOTE'
           set -e
           cd /opt/iblens

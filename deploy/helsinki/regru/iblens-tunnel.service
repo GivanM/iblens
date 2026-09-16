@@ -1,0 +1,13 @@
+[Unit]
+Description=IBLens: SSH tunnel to the Helsinki server, which the REG.RU edge passes iblens.com through
+# Plain HTTPS from this server to Helsinki stalls after about 20 KB; SSH does not.
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/ssh -N -i /root/.ssh/iblens_tunnel -o BatchMode=yes -o StrictHostKeyChecking=yes -o ExitOnForwardFailure=yes -o ServerAliveInterval=15 -o ServerAliveCountMax=3 -L 172.17.0.1:18443:127.0.0.1:443 iblens-tunnel@204.168.182.63
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

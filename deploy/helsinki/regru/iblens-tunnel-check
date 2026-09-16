@@ -1,0 +1,9 @@
+#!/bin/bash
+# Sends 64 KB through the tunnel. A stalled or dead tunnel does not answer in 20 s, and is restarted.
+head -c 65536 /dev/zero > /tmp/iblens-tunnel-probe
+code=$(curl -s -o /dev/null --max-time 20 -H "Expect:" --data-binary @/tmp/iblens-tunnel-probe --resolve iblens.com:18443:172.17.0.1 -w "%{http_code}" https://iblens.com:18443/api/tunnel-probe || echo 000)
+rm -f /tmp/iblens-tunnel-probe
+if [ "$code" = "000" ]; then
+  echo "tunnel probe failed, restarting"
+  systemctl restart iblens-tunnel
+fi
