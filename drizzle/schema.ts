@@ -1,4 +1,15 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, json, boolean, decimal, uniqueIndex } from "drizzle-orm/mysql-core";
+import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, json, boolean, decimal, uniqueIndex, date, primaryKey } from "drizzle-orm/mysql-core";
+
+/** Daily totals for a page test: how often each version was shown and what followed. No visitor rows. */
+export const abCounts = mysqlTable("ab_counts", {
+  test: varchar("test", { length: 32 }).notNull(),
+  variant: int("variant").notNull(),
+  event: varchar("event", { length: 16 }).notNull(),
+  day: date("day", { mode: "string" }).notNull(),
+  n: int("n").default(0).notNull(),
+}, (table) => [
+  primaryKey({ name: "ab_counts_pk", columns: [table.test, table.variant, table.event, table.day] }),
+]);
 
 export const users = mysqlTable("users", {
   id: int("id").autoincrement().primaryKey(),

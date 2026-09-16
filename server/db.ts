@@ -1059,6 +1059,13 @@ export async function createCreditLot(lot: { lotKey: string; place: "account" | 
   }).onDuplicateKeyUpdate({ set: { lotKey: lot.lotKey } });
 }
 
+/** One more of a page-test event for today. Totals only: nothing about the visitor is kept. */
+export async function countAbEvent(test: string, variant: number, event: string) {
+  const db = await getDb();
+  if (!db) return;
+  await db.execute(sql`INSERT INTO ab_counts (test, variant, event, day, n) VALUES (${test}, ${variant}, ${event}, UTC_DATE(), 1) ON DUPLICATE KEY UPDATE n = n + 1`);
+}
+
 export async function getCreditLot(lotKey: string) {
   const db = await getDb();
   if (!db) return null;

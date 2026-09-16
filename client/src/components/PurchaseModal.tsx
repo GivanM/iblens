@@ -17,6 +17,7 @@ import { PRICE_LABELS, PRICES, type ProductKey } from "@shared/pricing";
 import { trackBeginCheckout, trackViewItem } from "@/lib/analytics/track";
 import type { ProductSlug } from "@/lib/analytics/config";
 import { fullReportAdds, type CriterionScope } from "@/lib/reportScope";
+import { recordHeadline } from "@/lib/headlineTest";
 
 const SKU_LABELS: Record<ProductKey, string> = {
   ESSAY_SINGLE: "Full report",
@@ -117,6 +118,7 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPrev
       setEmailError(null);
       setLoading(true);
       trackBeginCheckout(SKU_TO_SLUG[sku], PRICES[sku] / 100, "lemonsqueezy");
+      recordHeadline("checkout");
       // The device id always travels: a guest's reports live on this browser.
       createGuestCheckout.mutate({
         productKey: sku,
@@ -130,6 +132,7 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPrev
 
     setLoading(true);
     trackBeginCheckout(SKU_TO_SLUG[sku], PRICES[sku] / 100, "lemonsqueezy");
+    recordHeadline("checkout");
     createCardCheckout.mutate({
       productKey: sku,
       fingerprint: getAnonFingerprint(),

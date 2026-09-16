@@ -33,6 +33,7 @@ import { analytics } from "@/lib/analytics";
 import { getAnonFingerprint } from "@/lib/fingerprint";
 import { capitalise, fullReportAdds, type CriterionScope } from "@/lib/reportScope";
 import { trackEssaySubmitted, trackEssayUploadStarted } from "@/lib/analytics/track";
+import { recordHeadline } from "@/lib/headlineTest";
 
 const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 
@@ -604,6 +605,7 @@ export default function EssayAnalyzer() {
     setResultWork(formWork());
     trackEssayUploadStarted(subject, essayType);
     trackEssaySubmitted(subject, essayType, wordCount, !!isFreeFirst);
+    recordHeadline("submit");
     analytics.startEssayAnalysis(subject);
 
     if (isAuthenticated) {
@@ -678,16 +680,16 @@ export default function EssayAnalyzer() {
   };
 
   return (
-    <div className="container py-12 max-w-4xl mx-auto">
+    <div className="container py-6 md:py-12 max-w-4xl mx-auto">
       <SEOHead
         title="IB Essay Grader: AI Feedback on IA, Extended Essay and TOK | IBLens"
         description="AI feedback on your IB Internal Assessment, Extended Essay or TOK work in 14 subjects: a free preview with a range of totals and, for most drafts, your weakest criterion and the top risks, then a full report against the published criteria."
         canonical="/essay"
       />
-      <div className="mb-10">
-        <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3">Essay Grader</p>
-        <h1 style={SERIF} className="text-4xl font-bold mb-3">IB essay grader</h1>
-        <p className="text-muted-foreground text-lg max-w-2xl">
+      <div className="mb-5 md:mb-10">
+        <p className="hidden sm:block text-xs font-semibold tracking-widest text-primary uppercase mb-3">Essay Grader</p>
+        <h1 style={SERIF} className="text-3xl md:text-4xl font-bold mb-2 md:mb-3">IB essay grader</h1>
+        <p className="text-muted-foreground text-base md:text-lg max-w-2xl">
           AI feedback on your Extended Essay, IA or TOK work in about a minute, against the published criteria, with an estimated mark.
         </p>
       </div>
@@ -753,8 +755,8 @@ export default function EssayAnalyzer() {
         </Card>
       )}
 
-      <Card className="mb-8">
-        <CardContent className="p-6 space-y-5">
+      <Card className="mb-8 py-2 sm:py-6">
+        <CardContent className="p-4 sm:p-6 space-y-5">
           <div className="grid sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label>Type of work</Label>
@@ -821,13 +823,9 @@ export default function EssayAnalyzer() {
             />
           </div>
 
-          {essayType === "EE" ? (
+          {essayType === "EE" && (
             <p className="text-xs rounded-md border border-amber-300 bg-amber-50 text-amber-900 px-2.5 py-2">
               The Extended Essay guide says students are not allowed to receive assistance with any aspect of the research, writing or proofreading of the essay beyond that which is permitted through their supervisor. Ask your supervisor before you use IBLens on your EE.
-            </p>
-          ) : (
-            <p className="text-xs text-muted-foreground">
-              The IB academic integrity policy asks students to abstain from receiving non-permitted assistance in the completion or editing of work, such as from friends, relatives, other students, private tutors, essay writing or copy-editing services, pre-written essay banks or file sharing websites, so check that your teacher and your school allow outside feedback on this work before you use IBLens.
             </p>
           )}
           {essayType === "EE" && (
@@ -898,6 +896,11 @@ export default function EssayAnalyzer() {
             )}
             {essayType === "IA" && subject === "Economics" && (
               <p className="text-xs text-muted-foreground">Paste one commentary at a time, up to 800 words each. Each commentary is its own report.</p>
+            )}
+            {essayType !== "EE" && (
+              <p className="text-xs text-muted-foreground">
+                The IB academic integrity policy asks students to abstain from receiving non-permitted assistance in the completion or editing of work, such as from friends, relatives, other students, private tutors, essay writing or copy-editing services, pre-written essay banks or file sharing websites, so check that your teacher and your school allow outside feedback on this work before you use IBLens.
+              </p>
             )}
             <p className="text-xs text-muted-foreground">
               Your text passes through our relay server to Anthropic, which marks it. IBLens never saves the text itself, and Anthropic deletes it within 30 days unless it is flagged under its usage policy or the law requires otherwise. The report is saved and can quote short passages: without an account it is deleted after 90 days unless you buy it, and in an account it stays until you delete it. <Link href="/privacy" className="underline">Privacy</Link>
