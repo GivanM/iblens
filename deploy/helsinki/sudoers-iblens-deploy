@@ -1,0 +1,4 @@
+# IBLens deploy (GitHub Actions and scripts/restart.sh): only what the deploy needs.
+deploy ALL=(root) NOPASSWD: /usr/bin/chown -R deploy\:deploy /opt/iblens, /bin/chown -R deploy\:deploy /opt/iblens
+deploy ALL=(root) NOPASSWD: /usr/bin/systemctl start iblens, /usr/bin/systemctl restart iblens, /usr/bin/systemctl start iblens-b, /usr/bin/systemctl restart iblens-b
+deploy ALL=(root) NOPASSWD: /bin/systemctl start iblens, /bin/systemctl restart iblens, /bin/systemctl start iblens-b, /bin/systemctl restart iblens-b
