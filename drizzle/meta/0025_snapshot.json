@@ -1,9 +1,65 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "6412f661-c272-403f-9d88-cf3f421d5cfb",
-  "prevId": "061ff4cb-4a04-4553-b9ca-77e5a516f3cc",
+  "id": "d50a7b31-917a-4c9e-8ac9-1b412e00772c",
+  "prevId": "6412f661-c272-403f-9d88-cf3f421d5cfb",
   "tables": {
+    "ab_counts": {
+      "name": "ab_counts",
+      "columns": {
+        "test": {
+          "name": "test",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "variant": {
+          "name": "variant",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "event": {
+          "name": "event",
+          "type": "varchar(16)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "day": {
+          "name": "day",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "n": {
+          "name": "n",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "ab_counts_pk": {
+          "name": "ab_counts_pk",
+          "columns": [
+            "test",
+            "variant",
+            "event",
+            "day"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
     "analyses": {
       "name": "analyses",
       "columns": {
@@ -424,6 +480,13 @@
           "type": "int",
           "primaryKey": false,
           "notNull": true,
+          "autoincrement": false
+        },
+        "refundedAt": {
+          "name": "refundedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
           "autoincrement": false
         },
         "createdAt": {
