@@ -11,7 +11,7 @@ import {
   CheckCircle2, ArrowRight, Shield, Gift, CreditCard
 } from "lucide-react";
 
-const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
+const SERIF = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
 
 const plans: Array<{
   name: string;
@@ -100,22 +100,18 @@ export default function Pricing() {
         />
 
         {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-xs font-semibold tracking-widest text-primary uppercase mb-3">Pricing</p>
-          <h1 style={SERIF} className="text-4xl md:text-5xl font-bold mb-4">
-            Simple, transparent pricing.
+        <div className="mb-12 max-w-3xl">
+          <h1 style={SERIF} className="text-4xl md:text-5xl font-semibold mb-4 leading-[1.05]">
+            Pay per report. No subscription.
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-muted-foreground max-w-[56ch] leading-relaxed">
             No subscription and no expiry. {previewUsed ? "Your free essay preview is used; the UCAS preview is separate, one per device." : "Your first preview is free, one per device or account."} Prices in US dollars.
           </p>
         </div>
 
         {/* Free tier highlight */}
-        <div className="max-w-2xl mx-auto mb-12">
-          <div className="rounded-xl border border-border bg-card p-6 flex flex-col sm:flex-row sm:items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-              <Gift className="w-6 h-6 text-primary" />
-            </div>
+        <div className="max-w-5xl mb-10">
+          <div className="rounded-2xl bg-muted p-6 flex flex-col sm:flex-row sm:items-center gap-4">
             <div className="flex-1">
               <h3 className="font-semibold">{previewUsed ? "Your free preview is used" : "Your first preview is free"}</h3>
               <p className="text-sm text-muted-foreground mt-0.5">
@@ -131,64 +127,56 @@ export default function Pricing() {
         </div>
 
         {/* Pricing cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl">
           {plans.map((plan) => (
             <div
               key={plan.name}
-              className={`relative flex flex-col rounded-xl border bg-card p-6 ${
-                plan.popular ? "border-2 border-primary shadow-md" : "border border-border"
+              className={`relative flex flex-col rounded-2xl bg-card p-6 ${
+                plan.popular ? "border-2 border-foreground" : "border border-border"
               }`}
             >
               {plan.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <Badge className="bg-primary text-primary-foreground px-3 py-1 text-xs font-semibold shadow-sm">
-                    Lowest price per report
-                  </Badge>
-                </div>
+                <p className="text-sm font-medium text-primary mb-2">Lowest price per report</p>
               )}
 
               <div className="mb-5">
-                <h3 style={SERIF} className="text-lg font-bold mb-1">{plan.name}</h3>
-                <div style={SERIF} className="text-3xl font-bold mb-1">{plan.price}</div>
+                <h3 style={SERIF} className="text-lg font-semibold mb-1">{plan.name}</h3>
+                <div style={SERIF} className="text-4xl font-semibold mb-1">{plan.price}</div>
                 <p className="text-sm text-muted-foreground">{plan.description}</p>
               </div>
 
-              <ul className="space-y-2.5 text-sm flex-1 mb-6">
+              <ul className="text-sm flex-1 mb-6">
                 {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                    <span>{feature}</span>
-                  </li>
+                  <li key={feature} className="py-2.5 border-t border-border text-muted-foreground">{feature}</li>
                 ))}
               </ul>
 
               <Button
-                size="sm"
-                className="w-full mb-2"
+                size="lg"
+                className="w-full"
                 variant={plan.popular ? "default" : "outline"}
                 onClick={() => handleBuyNow(plan.productKey)}
               >
-                <CreditCard className="w-3.5 h-3.5 mr-1.5" />
-                Buy
+                Buy {plan.name.toLowerCase()}
               </Button>
 
             </div>
           ))}
         </div>
 
-        <p className="max-w-3xl mx-auto mt-8 text-sm text-muted-foreground text-center">
+        <p className="max-w-3xl mt-8 text-muted-foreground">
           <strong className="text-foreground">7-day money-back guarantee.</strong> Email us within 7 days of your purchase for a full refund, no questions asked.{" "}
           <Link href="/refund-policy" className="underline">Refund policy</Link>
         </p>
-        <p className="max-w-3xl mx-auto mt-3 text-sm text-muted-foreground text-center">
+        <p className="max-w-3xl mt-3 text-muted-foreground">
           Use a report on coursework only once your teacher, or for the Extended Essay your supervisor, has agreed to outside feedback.
         </p>
-        <p className="max-w-3xl mx-auto mt-3 text-sm text-muted-foreground text-center">
+        <p className="max-w-3xl mt-3 text-sm text-muted-foreground">
           Without an account, this browser keeps every report you buy, with its re-checks, and any unused paid reports, for as long as its site data is kept. To keep every report you buy in an account, with the re-checks of IB work, sign in with Google on this device, using the email you pay with: reports you have opened move to an account with that email, and unused reports move to whichever Google account signs in here first (UCAS re-checks run only in the browser the review was made in, and signing out there ends them). Buying for your child or someone else? Pay on their device, or have them sign in with their own Google account first: reports then follow that account to any device. Paid on the wrong device? Email glushkovim@gmail.com with your order number and we will move the reports.
         </p>
 
         {/* Payment methods */}
-        <div className="flex items-center justify-center gap-6 mt-12 text-sm text-muted-foreground flex-wrap">
+        <div className="flex items-center gap-6 mt-10 text-sm text-muted-foreground flex-wrap">
           <div className="flex items-center gap-1.5">
             <CreditCard className="w-4 h-4" />
             <span>Major cards and other methods at checkout</span>
@@ -204,7 +192,7 @@ export default function Pricing() {
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-16">
+        <div className="mt-14 pt-10 border-t border-border">
           <p className="text-muted-foreground mb-4">{previewUsed ? "Ready to mark your next piece of work?" : "Not sure yet? Start with the free preview."}</p>
           <Button size="lg" asChild>
             <Link href="/essay">

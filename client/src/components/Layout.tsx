@@ -16,16 +16,21 @@ import { toast } from "sonner";
 import { FileText, GraduationCap, LayoutDashboard, LogOut, User, Menu, X, DollarSign, BookOpen } from "lucide-react";
 import { useState } from "react";
 
-const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
+const SERIF = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
 
-function NavLink({ href, children, active }: { href: string; children: React.ReactNode; active: boolean }) {
+// Pages whose first screen is a photograph: the header sits over it in light text.
+const PHOTO_HEADER_PATHS = new Set(["/v2"]);
+
+function NavLink({ href, children, active, onPhoto }: { href: string; children: React.ReactNode; active: boolean; onPhoto?: boolean }) {
   return (
     <Link
       href={href}
       className={`text-sm font-medium transition-colors px-3 py-2 rounded-md ${
-        active
-          ? "text-primary"
-          : "text-muted-foreground hover:text-foreground"
+        onPhoto
+          ? (active ? "text-white" : "text-white/80 hover:text-white")
+          : active
+            ? "text-primary"
+            : "text-muted-foreground hover:text-foreground"
       }`}
     >
       {children}
@@ -78,26 +83,25 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, [isAuthenticated, onGraderPage ? location : ""]);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const isHome = location === "/";
+  const onPhoto = PHOTO_HEADER_PATHS.has(location) && !mobileMenuOpen;
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className={`sticky top-0 z-50 border-b ${isHome ? "bg-white/80 backdrop-blur-md" : "bg-background/95 backdrop-blur-md"} border-border`}>
+      <header className={PHOTO_HEADER_PATHS.has(location) ? `absolute inset-x-0 top-0 z-50 ${mobileMenuOpen ? "bg-background border-b border-border" : ""}` : "sticky top-0 z-50 border-b bg-background/95 backdrop-blur-md border-border"}>
         <div className="container flex items-center justify-between h-16">
           <div className="flex items-center gap-8">
             <Link href="/" className="flex items-center gap-2">
-              <span style={SERIF} className="text-xl font-bold">
-                IB<span className="text-primary">Lens</span>
-              </span>
+              <span style={SERIF} className={`text-xl font-bold ${onPhoto ? "text-white" : ""}`}>IBLens</span>
             </Link>
 
-            <nav className="hidden md:flex items-center gap-1">
-              <NavLink href="/essay" active={location === "/essay"}>Essay grader</NavLink>
-              <NavLink href="/ucas-personal-statement" active={location === "/ucas-personal-statement"}>UCAS statement</NavLink>
-              <NavLink href="/resources" active={location.startsWith("/resources")}>Resources</NavLink>
-              <NavLink href="/pricing" active={location === "/pricing"}>Pricing</NavLink>
+            <nav className="hidden lg:flex items-center gap-1">
+              <NavLink onPhoto={onPhoto} href="/essay" active={location === "/essay"}>Essay grader</NavLink>
+              <NavLink onPhoto={onPhoto} href="/remark" active={location === "/remark"}>Re-mark checker</NavLink>
+              <NavLink onPhoto={onPhoto} href="/ucas-personal-statement" active={location === "/ucas-personal-statement"}>UCAS statement</NavLink>
+              <NavLink onPhoto={onPhoto} href="/resources" active={location.startsWith("/resources")}>Resources</NavLink>
+              <NavLink onPhoto={onPhoto} href="/pricing" active={location === "/pricing"}>Pricing</NavLink>
               {isAuthenticated && (
-                <NavLink href="/dashboard" active={location === "/dashboard"}>Dashboard</NavLink>
+                <NavLink onPhoto={onPhoto} href="/dashboard" active={location === "/dashboard"}>Dashboard</NavLink>
               )}
             </nav>
           </div>
@@ -106,7 +110,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             {isAuthenticated ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm" className="gap-2">
+                  <Button variant="ghost" size="sm" className={`gap-2 ${onPhoto ? "text-white hover:bg-white/10 hover:text-white" : ""}`}>
                     <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center">
                       <User className="w-3.5 h-3.5 text-primary" />
                     </div>
@@ -151,7 +155,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <Button size="sm" variant="default" className="hidden sm:flex" asChild>
                   <Link href="/essay">Grade my essay</Link>
                 </Button>
-                <Button size="sm" variant="ghost" asChild>
+                <Button size="sm" variant="ghost" className={onPhoto ? "text-white hover:bg-white/10 hover:text-white" : ""} asChild>
                   <a href={getLoginUrl()}>Sign in</a>
                 </Button>
               </>
@@ -160,7 +164,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden size-11"
+              className={`lg:hidden size-11 ${onPhoto ? "text-white hover:bg-white/10 hover:text-white" : ""}`}
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileMenuOpen}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -171,7 +175,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-border bg-background p-4 space-y-2">
+          <div className="lg:hidden border-t border-border bg-background p-4 space-y-2">
             <Link
               href="/essay"
               onClick={() => setMobileMenuOpen(false)}
@@ -201,6 +205,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             >
               <BookOpen className="w-4 h-4" />
               Resources
+            </Link>
+            <Link
+              href="/remark"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
+                location === "/remark" ? "bg-primary/10 text-primary" : "text-muted-foreground"
+              }`}
+            >
+              <GraduationCap className="w-4 h-4" />
+              Re-mark checker
             </Link>
             <Link
               href="/pricing"
@@ -234,9 +248,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="container">
           <div className="grid md:grid-cols-2 gap-8 items-start">
             <div>
-              <span style={SERIF} className="text-xl font-bold block mb-2">
-                IB<span className="text-primary">Lens</span>
-              </span>
+              <span style={SERIF} className="text-xl font-bold block mb-2">IBLens</span>
               <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
                 AI-powered IB essay grader for IA, EE and TOK. Feedback against the published criteria in about a minute.
               </p>
@@ -255,7 +267,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </nav>
           </div>
           <div className="mt-8 pt-6 border-t border-border text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} IBLens. Independent of the International Baccalaureate Organization, which does not endorse it. Every mark is an AI estimate, not an IB mark.
+            &copy; {new Date().getFullYear()} IBLens. Independent of the International Baccalaureate Organization, which does not endorse it. Every mark is an AI estimate, not an IB mark. Your text is processed by Anthropic PBC.
           </div>
         </div>
       </footer>

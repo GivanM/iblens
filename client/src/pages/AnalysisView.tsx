@@ -15,7 +15,7 @@ import { usePurchaseTracking } from "@/hooks/usePurchaseTracking";
 import { fullReportAdds } from "@/lib/reportScope";
 import { deviceReportLabel } from "@/components/DeviceReportsList";
 
-const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
+const SERIF = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
 
 const TYPE_LABEL: Record<string, string> = {
   EE: "Extended Essay",

@@ -1,8 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { SEOHead } from "@/components/SEOHead";
-import { CheckCircle2, ArrowRight, FileText, Clock, ListOrdered } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useMarkingCta } from "@/hooks/useMarkingCta";
 
 export interface SubjectConfig {
@@ -53,10 +52,14 @@ export interface SubjectConfig {
   };
 }
 
-function getBarColor(ratio: number): string {
-  if (ratio >= 0.75) return "bg-emerald-500";
-  if (ratio >= 0.5) return "bg-amber-400";
-  return "bg-rose-400";
+// Highlighter colours for the criteria in the sample, the same set the home page uses.
+const SWATCHES = ["#FFC27A", "#8DE8B4", "#FF9DC8", "#9CCBFF", "#FFE45C", "#D9C4FF", "#B9E4D6"];
+const DISPLAY = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
+
+/** "Criterion B: Terminology" as its letter and its name; names without a letter are numbered A, B, C. */
+function splitCriterion(name: string, i: number): { letter: string; label: string } {
+  const m = name.match(/^Criterion\s+([A-G][12]?)\s*[:.]\s*(.+)$/i);
+  return m ? { letter: m[1].toUpperCase(), label: m[2] } : { letter: String.fromCharCode(65 + i), label: name };
 }
 
 export default function SubjectEssayPage({ config }: { config: SubjectConfig }) {
@@ -104,152 +107,111 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
 
       <main>
         {/* Breadcrumbs */}
-        <nav className="border-b border-border bg-muted/30" aria-label="Breadcrumb">
-          <div className="container py-2.5">
-            <ol className="flex items-center gap-1.5 text-xs text-muted-foreground flex-wrap">
+        <nav className="border-b border-border" aria-label="Breadcrumb">
+          <div className="container py-3">
+            <ol className="flex items-center gap-1.5 text-sm text-muted-foreground flex-wrap">
               <li>
                 <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
               </li>
-              <li className="select-none">/</li>
+              <li className="select-none" aria-hidden="true">/</li>
               <li>
                 <Link href="/essay" className="hover:text-foreground transition-colors">Essay grader</Link>
               </li>
-              <li className="select-none">/</li>
-              <li className="text-foreground font-medium">{config.subject}</li>
+              <li className="select-none" aria-hidden="true">/</li>
+              <li className="text-foreground">{config.subject}</li>
             </ol>
           </div>
         </nav>
 
-        {/* Hero */}
-        <section className="bg-gradient-to-b from-primary/5 to-background py-14 md:py-20">
-          <div className="container max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold mb-6 uppercase tracking-wide">
-              {previewUsed ? (paidLeft > 0 ? `${reportsLeft} · Each includes two re-checks` : "Full report $9.99 · No account needed · Refundable within 7 days") : "One free preview per device or account · No account needed · No card"}
+        {/* Hero: the promise on the left, the report it produces on the right */}
+        <section className="py-12 md:py-20">
+          <div className="container grid gap-10 lg:grid-cols-[7fr_5fr] lg:gap-16 items-start">
+            <div>
+              <p className="text-sm font-medium text-primary mb-4">
+                {previewUsed ? (paidLeft > 0 ? `${reportsLeft}. Each includes two re-checks.` : "Full report $9.99, no account needed, refundable within 7 days") : "One free preview per device or account, no card"}
+              </p>
+              <h1 style={DISPLAY} className="text-4xl md:text-5xl font-semibold leading-[1.05] mb-5 max-w-[20ch]">
+                {config.heroHeadline}
+              </h1>
+              <p className="text-lg text-muted-foreground mb-7 max-w-[46ch] leading-relaxed">
+                {previewUsed ? config.heroSubline.split(/(?<=\.)\s+/).filter((s) => !/\bfree\b/i.test(s)).join(" ") : config.heroSubline}
+              </p>
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-3 mb-7">
+                <Button size="lg" className="text-base px-7 h-auto min-h-12 py-3 whitespace-normal" asChild>
+                  <Link href={config.analyzerHref}>{previewUsed ? paidLabel : "Get a free preview"}</Link>
+                </Button>
+                <span className="text-sm text-muted-foreground">
+                  {previewUsed && paidLeft > 0 ? "Back in about a minute. Uses 1 of your paid reports." : paidLeft > 0 ? "Back in about a minute. The free preview uses none of your paid reports." : "Back in about a minute. Full report $9.99, refundable within 7 days."}
+                </span>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed border-l-2 border-primary pl-4 max-w-[60ch]">{heroNote}</p>
             </div>
-            <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
-              {config.heroHeadline}
-            </h1>
-            <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">
-              {previewUsed ? config.heroSubline.split(/(?<=\.)\s+/).filter((s) => !/\bfree\b/i.test(s)).join(" ") : config.heroSubline}
-            </p>
-            <p className="text-sm rounded-md border border-amber-300 bg-amber-50 text-amber-900 px-3 py-2 mb-6 max-w-xl mx-auto">{heroNote}</p>
-            <Button size="lg" className="text-base px-10 shadow-lg shadow-primary/25 mb-4 h-auto min-h-11 py-3 whitespace-normal" asChild>
-              <Link href={config.analyzerHref}>
-                <FileText className="w-4 h-4 mr-2" />
-                {previewUsed ? paidLabel : "Get a free preview"}
-              </Link>
-            </Button>
-            <p className="text-xs text-muted-foreground">
-              {previewUsed && paidLeft > 0 ? "No account needed · Back in about a minute · Uses 1 of your paid reports" : paidLeft > 0 ? "No account needed · Back in about a minute · The free preview uses none of your paid reports" : "No account needed · Back in about a minute · Full report $9.99, refundable within 7 days"}
-            </p>
+
+            <aside className="rounded-2xl bg-muted p-5 md:p-6" aria-label={`Sample ${taskName} report`}>
+              <div className="flex items-baseline justify-between gap-4 pb-4 border-b border-border">
+                <div>
+                  <p className="font-semibold">{config.subject}</p>
+                  <p className="text-sm text-muted-foreground">{holistic ? "Illustration with a made-up mark" : "Illustration with made-up scores"}</p>
+                  {config.sampleCaption && <p className="text-xs text-muted-foreground mt-1 max-w-xs">{config.sampleCaption}</p>}
+                </div>
+                <p style={DISPLAY} className="text-3xl font-semibold whitespace-nowrap">{totalSample} <span className="text-base font-normal text-muted-foreground">/ {totalMax}</span></p>
+              </div>
+              <ul>
+                {(() => {
+                  const weakest = config.criteria.reduce((w, c, i) => (c.sampleScore / c.max < config.criteria[w].sampleScore / config.criteria[w].max ? i : w), 0);
+                  return config.criteria.map(({ name, max, sampleScore }, i) => {
+                    const { letter, label } = splitCriterion(name, i);
+                    return (
+                      <li key={name} className="grid grid-cols-[1.75rem_minmax(0,1fr)_auto] items-center gap-3 py-2.5 border-t border-border first:border-t-0">
+                        <span className="w-7 h-7 rounded-md grid place-items-center text-sm font-semibold text-foreground" style={{ background: SWATCHES[i % SWATCHES.length] }}>{holistic ? "" : letter}</span>
+                        <span className="text-sm leading-snug">
+                          {label}
+                          {!holistic && i === weakest && <span className="block text-xs text-primary">Costing the most in this example</span>}
+                        </span>
+                        <span className="text-sm font-semibold tabular-nums">{sampleScore}/{max}</span>
+                      </li>
+                    );
+                  });
+                })()}
+              </ul>
+              <p className="text-sm text-muted-foreground mt-4 pt-4 border-t border-border">
+                {previewUsed ? (paidLeft > 0 ? (holistic ? "Your own draft: the mark, the whole explanation and the fix list, using one of your paid reports." : "Your own draft: the full breakdown and fix list, using one of your paid reports.") : (holistic ? "Your own draft: the mark, the whole explanation and the fix list for $9.99." : "Your own draft: the full breakdown and fix list for $9.99.")) : paidLeft > 0 ? (holistic ? "Your own draft: a free preview first, then the mark, the whole explanation and the fix list with one of your paid reports." : "Your own draft: a free preview first, then the full breakdown and fix list with one of your paid reports.") : (holistic ? "Your own draft: a free preview first, then the mark, the whole explanation and the fix list for $9.99." : "Your own draft: a free preview first, then the full breakdown and fix list for $9.99.")}
+              </p>
+            </aside>
           </div>
         </section>
 
-        {/* How it works */}
-        <section className="py-12 bg-background border-b">
-          <div className="container max-w-3xl mx-auto">
-            <h2 className="text-sm font-bold text-center mb-8 text-muted-foreground uppercase tracking-wider">
-              How it works
-            </h2>
-            <div className="grid md:grid-cols-3 gap-6">
+        {/* How it works: three moments in order, as ruled columns */}
+        <section className="border-t border-border">
+          <div className="container py-10 md:py-12">
+            <h2 className="sr-only">How it works</h2>
+            <ol className="grid md:grid-cols-3 gap-0 md:gap-10">
               {[
-                { Icon: FileText, title: "Paste your text", desc: "Copy and paste the text of your work. No file upload, and it works on any device." },
-                { Icon: Clock, title: "Marked in about a minute", desc: holistic
+                { title: "Paste your text", desc: "Copy and paste the text of your work. No file upload, and it works on any device." },
+                { title: "Marked in about a minute", desc: holistic
                     ? "An AI model applies the published assessment instrument to what you pasted."
                     : `An AI model applies the published ${taskName} criteria to what you pasted.` },
-                { Icon: ListOrdered, title: "See what to fix", desc: "The marks you are losing, and the changes most likely to recover them, in order." },
-              ].map(({ Icon, title, desc }) => (
-                <div key={title} className="flex flex-col items-center text-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Icon className="w-5 h-5 text-primary" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <p className="font-semibold mb-1">{title}</p>
-                    <p className="text-sm text-muted-foreground">{desc}</p>
-                  </div>
-                </div>
+                { title: "See what to fix", desc: "The marks you are losing, and the changes most likely to recover them, in order." },
+              ].map(({ title, desc }) => (
+                <li key={title} className="py-4 border-t border-border first:border-t-0 md:border-t-0 md:py-0">
+                  <p style={DISPLAY} className="text-lg font-semibold mb-1">{title}</p>
+                  <p className="text-muted-foreground">{desc}</p>
+                </li>
               ))}
-            </div>
+            </ol>
           </div>
         </section>
 
-        {/* Sample score widget */}
-        <section className="py-16 bg-background">
-          <div className="container max-w-2xl mx-auto">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold tracking-tight mb-2">
-                What the {taskName} {holistic ? "report" : "breakdown"} looks like
-              </h2>
-              <p className="text-muted-foreground text-sm">
-                {holistic ? "An illustration with a made-up mark. Your report places your own draft in a band and explains the mark." : "An illustration with made-up scores. Your report marks your own draft and explains every mark."}
-              </p>
-            </div>
-
-            <Card className="border-2 shadow-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-5 pb-4 border-b">
-                  <div>
-                    <p className="text-xs text-muted-foreground mb-0.5">{config.subject} · Illustration</p>
-                    {config.sampleCaption && (
-                      <p className="text-xs text-muted-foreground max-w-xs">{config.sampleCaption}</p>
-                    )}
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-extrabold text-primary">{totalSample}</div>
-                    <div className="text-xs text-muted-foreground">/ {totalMax} marks</div>
-                    <div className="text-xs font-semibold text-amber-600 bg-amber-50 px-2 py-0.5 rounded mt-1">
-                      {Math.round((totalSample / totalMax) * 100)}%
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  {config.criteria.map(({ name, max, sampleScore }) => {
-                    const ratio = sampleScore / max;
-                    return (
-                      <div key={name}>
-                        <div className="flex items-center justify-between mb-1.5">
-                          <span className="text-xs font-medium leading-snug pr-2">{name}</span>
-                          <span className="text-xs text-muted-foreground font-semibold whitespace-nowrap">
-                            {sampleScore}/{max}
-                          </span>
-                        </div>
-                        <div className="h-2 bg-muted rounded-full overflow-hidden">
-                          <div
-                            className={`h-full rounded-full transition-all ${getBarColor(ratio)}`}
-                            style={{ width: `${ratio * 100}%` }}
-                          />
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <div className="mt-6 pt-5 border-t flex flex-col sm:flex-row gap-3 items-center justify-between">
-                  <p className="text-xs text-muted-foreground">
-                    {previewUsed ? (paidLeft > 0 ? (holistic ? "Your own draft: the mark, the whole explanation and the fix list, using one of your paid reports" : "Your own draft: the full breakdown and fix list, using one of your paid reports") : (holistic ? "Your own draft: the mark, the whole explanation and the fix list for $9.99" : "Your own draft: the full breakdown and fix list for $9.99")) : paidLeft > 0 ? (holistic ? "Your own draft: a free preview first, then the mark, the whole explanation and the fix list with one of your paid reports" : "Your own draft: a free preview first, then the full breakdown and fix list with one of your paid reports") : (holistic ? "Your own draft: a free preview first, then the mark, the whole explanation and the fix list for $9.99" : "Your own draft: a free preview first, then the full breakdown and fix list for $9.99")}
-                  </p>
-                  <Button size="sm" className="min-h-11" asChild>
-                    <Link href={config.analyzerHref}>
-                      {previewUsed ? "Mark my work" : "Get my free preview"} <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        <section className="py-12 bg-background border-t">
-          <div className="container max-w-3xl mx-auto space-y-10">
+        <section className="py-14 md:py-20 border-t border-border">
+          <div className="container max-w-3xl space-y-12">
             <div>
-              <h2 className="text-2xl font-bold mb-4">{config.guide.rubricHeading}</h2>
+              <h2 style={DISPLAY} className="text-3xl font-semibold mb-5">{config.guide.rubricHeading}</h2>
               {(config.guide.rubricIntro ?? []).map((p) => (
                 <p key={p} className="text-muted-foreground leading-relaxed mb-4">{p}</p>
               ))}
-              <ul className="space-y-3">
+              <ul>
                 {config.guide.rubricItems.map((it) => (
-                  <li key={it.title} className="text-sm leading-relaxed">
+                  <li key={it.title} className="leading-relaxed py-3 border-t border-border">
                     <strong className="text-foreground">{it.title}.</strong>{" "}
                     <span className="text-muted-foreground">{it.text}</span>
                   </li>
@@ -260,10 +222,10 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
               ))}
             </div>
             <div>
-              <h2 className="text-2xl font-bold mb-4">{config.guide.mistakesHeading}</h2>
-              <ul className="space-y-3">
+              <h2 style={DISPLAY} className="text-3xl font-semibold mb-5">{config.guide.mistakesHeading}</h2>
+              <ul>
                 {config.guide.mistakes.map((it) => (
-                  <li key={it.title} className="text-sm leading-relaxed">
+                  <li key={it.title} className="leading-relaxed py-3 border-t border-border">
                     <strong className="text-foreground">{it.title}.</strong>{" "}
                     <span className="text-muted-foreground">{it.text}</span>
                   </li>
@@ -271,12 +233,12 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
               </ul>
             </div>
             <div>
-              <h2 className="text-2xl font-bold mb-4">Frequently asked questions</h2>
-              <dl className="space-y-4">
+              <h2 style={DISPLAY} className="text-3xl font-semibold mb-5">Frequently asked questions</h2>
+              <dl>
                 {config.guide.faq.map((f) => (
-                  <div key={f.q}>
-                    <dt className="font-semibold text-sm">{f.q}</dt>
-                    <dd className="text-sm text-muted-foreground leading-relaxed mt-1">{f.a}</dd>
+                  <div key={f.q} className="py-4 border-t border-border">
+                    <dt className="font-semibold">{f.q}</dt>
+                    <dd className="text-muted-foreground leading-relaxed mt-1">{f.a}</dd>
                   </div>
                 ))}
               </dl>
@@ -285,26 +247,23 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
         </section>
 
         {/* What the report covers */}
-        <section className="py-12 bg-muted/30 border-y">
-          <div className="container max-w-3xl mx-auto">
-            <h2 className="text-xl font-bold text-center mb-8">What the {taskName} report covers</h2>
-            <div className="grid sm:grid-cols-2 gap-4">
+        <section className="py-14 md:py-16 bg-muted">
+          <div className="container max-w-3xl">
+            <h2 style={DISPLAY} className="text-3xl font-semibold mb-6">What the {taskName} report covers</h2>
+            <ul className="bg-background rounded-2xl px-5">
               {reportCovers.map((text) => (
-                <div key={text} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
-                  <p className="text-sm">{text}</p>
-                </div>
+                <li key={text} className="py-3.5 border-t border-border first:border-t-0">{text}</li>
               ))}
-            </div>
+            </ul>
           </div>
         </section>
 
         {/* Fact block */}
-        <section className="py-12 bg-background">
-          <div className="container max-w-3xl mx-auto">
-            <div className="rounded-xl border bg-muted/30 p-6 md:p-8">
-              <h2 className="text-xl font-extrabold tracking-tight mb-4">IBLens at a glance</h2>
-              <ul className="space-y-3 text-sm text-muted-foreground list-disc pl-5">
+        <section className="py-14 md:py-16">
+          <div className="container max-w-3xl">
+            <div>
+              <h2 style={DISPLAY} className="text-2xl font-semibold mb-4">IBLens at a glance</h2>
+              <ul className="space-y-3 text-muted-foreground list-disc pl-5">
                 <li>Marks against the published IB criteria for each task. Where the syllabus changes in May 2027 (the Extended Essay, the Psychology IA and the Computer Science IA), it holds both sets and uses the one for your session. The Visual Arts comparative study is not set from May 2027, so it is marked only for 2026 sessions.</li>
                 <li>$9.99 for a full report, which includes two re-checks of the same work within 14 days. No subscription.</li>
                 <li>{previewUsed
@@ -320,19 +279,19 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
         </section>
 
         {/* CTA */}
-        <section className="py-16 bg-background">
-          <div className="container max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-4">
-              Ready to see where your draft stands?
+        <section className="py-14 md:py-20 border-t border-border">
+          <div className="container max-w-3xl">
+            <h2 style={DISPLAY} className="text-3xl md:text-4xl font-semibold mb-4 max-w-[20ch]">
+              See where your {taskName} stands before you submit it.
             </h2>
-            <p className="text-muted-foreground mb-8 max-w-md mx-auto">
+            <p className="text-muted-foreground mb-7 max-w-[56ch]">
               {previewUsed
                 ? paidLeft > 0
                   ? `Paste your ${pasteName} and mark it with one of your paid reports (${reportsLeft}). Each includes two re-checks.`
                   : `Paste your ${pasteName}. The free preview ${isAuthenticated ? "on your account" : "on this device"} has been used, and a full report is $9.99 with two re-checks included.`
                 : `Paste your ${pasteName} and get a free preview in about a minute. ${paidLeft > 0 ? "The full report uses one of your paid reports." : "The full report is $9.99."}`}
             </p>
-            <Button size="lg" className="text-base px-6 sm:px-10 shadow-lg shadow-primary/25 h-auto min-h-11 py-3 whitespace-normal" asChild>
+            <Button size="lg" className="text-base px-7 h-auto min-h-12 py-3 whitespace-normal" asChild>
               <Link href={config.analyzerHref}>
                 Check my {taskName} <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
@@ -341,14 +300,14 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
         </section>
 
         {config.relatedResources && config.relatedResources.length > 0 && (
-          <section className="py-10 border-t bg-background">
-            <div className="container max-w-3xl mx-auto">
-              <h2 className="text-sm font-bold text-muted-foreground uppercase tracking-wider mb-5">
+          <section className="py-10 border-t border-border">
+            <div className="container max-w-3xl">
+              <h2 style={DISPLAY} className="text-xl font-semibold mb-4">
                 Guides for {config.subject}
               </h2>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-x-5 gap-y-2">
                 {config.relatedResources.map((r) => (
-                  <Link key={r.href} href={r.href} className="text-sm underline hover:no-underline">
+                  <Link key={r.href} href={r.href} className="underline underline-offset-4 decoration-border hover:decoration-primary">
                     {r.label}
                   </Link>
                 ))}
@@ -359,19 +318,19 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
 
         {/* Related subjects */}
         {config.relatedSubjects.length > 0 && (
-          <section className="py-10 border-t bg-background">
-            <div className="container max-w-3xl mx-auto">
-              <h2 className="text-sm font-bold text-muted-foreground uppercase tracking-wider mb-5">
+          <section className="py-10 border-t border-border">
+            <div className="container max-w-3xl">
+              <h2 style={DISPLAY} className="text-xl font-semibold mb-4">
                 Also available for
               </h2>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-x-5 gap-y-2">
                 {config.relatedSubjects.map(({ label, href }) => (
                   <Link
                     key={href}
                     href={href}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border text-sm hover:border-primary hover:text-primary transition-colors"
+                    className="underline underline-offset-4 decoration-border hover:decoration-primary"
                   >
-                    {label} <ArrowRight className="w-3 h-3" />
+                    {label}
                   </Link>
                 ))}
               </div>

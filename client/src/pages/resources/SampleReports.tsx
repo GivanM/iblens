@@ -1,7 +1,7 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
 import { Link } from "wouter";
 
-const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
+const SERIF = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
 
 /**
  * Production output, copied from the stored reports without editing: three demonstration

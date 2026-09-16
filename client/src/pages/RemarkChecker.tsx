@@ -13,7 +13,7 @@ import { EE_SUBJECTS } from "@shared/rubrics";
 import { useMarkingCta } from "@/hooks/useMarkingCta";
 import { useAuth } from "@/_core/hooks/useAuth";
 
-const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
+const SERIF = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
 
 // Both sessions, so the page stays true after one window closes.
 const TIMELINE = [

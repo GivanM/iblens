@@ -5,7 +5,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
+const SERIF = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
 
 export default function SignIn() {
   const [loginUrl, setLoginUrl] = useState("");

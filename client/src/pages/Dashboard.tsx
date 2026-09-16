@@ -18,7 +18,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { usePurchaseTracking } from "@/hooks/usePurchaseTracking";
 import { deviceReportLabel } from "@/components/DeviceReportsList";
 
-const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
+const SERIF = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
 
 export default function Dashboard() {
   const { user, isAuthenticated, loading: authLoading } = useAuth();

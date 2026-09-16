@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Lock, AlertTriangle, CheckCircle2, Info } from "lucide-react";
 import { UCAS_QUESTIONS, UCAS_TOTAL_CHAR_LIMIT, UCAS_MIN_CHARS_PER_ANSWER } from "@shared/ucas";
 
-const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
+const SERIF = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
 
 const STATUS_STYLE: Record<string, string> = {
   strong: "bg-emerald-100 text-emerald-800",

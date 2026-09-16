@@ -4,6 +4,11 @@
    which compile to nothing unless the typography plugin is loaded. */
 @plugin "@tailwindcss/typography";
 
+.prose :where(h1, h2, h3, h4) {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
 /* Wide tables in articles scroll inside themselves instead of widening the page on a phone. */
 .prose table {
   display: block;
@@ -60,33 +65,36 @@
 }
 
 :root {
-  --primary: oklch(0.335 0.134 12);
-  --primary-foreground: oklch(0.98 0.005 12);
-  --sidebar-primary: oklch(0.335 0.134 12);
+  --primary: #7A1530;
+  --primary-foreground: #FFFFFF;
+  --sidebar-primary: #7A1530;
   --sidebar-primary-foreground: oklch(0.98 0.005 12);
   --chart-1: var(--color-blue-300);
   --chart-2: var(--color-blue-500);
   --chart-3: var(--color-blue-600);
   --chart-4: var(--color-blue-700);
   --chart-5: var(--color-blue-800);
-  --radius: 0.65rem;
-  --background: oklch(0.99 0.004 70);
-  --foreground: oklch(0.235 0.015 65);
-  --card: oklch(0.99 0.004 70);
-  --card-foreground: oklch(0.235 0.015 65);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.235 0.015 65);
-  --secondary: oklch(0.98 0.001 286.375);
-  --secondary-foreground: oklch(0.4 0.015 65);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.141 0.005 285.823);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.5 0.134 12);
+  /* The home page's system (see styles/home-c.css) carried to every page: white and one soft
+     grey, near-black ink, the brand maroon for actions. */
+  --radius: 0.6rem;
+  --background: #FFFFFF;
+  --foreground: #16171C;
+  --card: #FFFFFF;
+  --card-foreground: #16171C;
+  --popover: #FFFFFF;
+  --popover-foreground: #16171C;
+  --secondary: #F3F4F7;
+  --secondary-foreground: #16171C;
+  --muted: #F3F4F7;
+  --muted-foreground: #4C505B;
+  --accent: #F3F4F7;
+  --accent-foreground: #16171C;
+  --destructive: #B42318;
+  --destructive-foreground: #FFFFFF;
+  --border: #DDE0E7;
+  --input: #DDE0E7;
+  --ring: #7A1530;
+  --font-display: "Funnel Display", "Funnel Sans", system-ui, sans-serif;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.235 0.015 65);
   --sidebar-accent: oklch(0.967 0.001 286.375);
@@ -136,7 +144,12 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: "Funnel Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),

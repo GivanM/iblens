@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useMarkingCta } from "@/hooks/useMarkingCta";
 
-const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
+const SERIF = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
 
 interface ResourceArticleProps {
   title: string;
@@ -64,17 +64,17 @@ export function ResourceArticle({
           </nav>
 
           {/* Article content */}
-          <article className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-foreground prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground prose-a:text-primary hover:prose-a:text-primary/80 [&_h1]:font-serif [&_h2]:font-serif [&_h3]:font-serif">
+          <article className="prose prose-lg max-w-none prose-headings:font-semibold prose-headings:text-foreground prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground prose-a:text-primary hover:prose-a:text-primary/80">
             {!hasOwnHeading && <h1>{sentenceCase(name)}</h1>}
             {children}
           </article>
 
           {/* CTA section */}
-          <div className="mt-16 p-8 rounded-xl border border-border bg-card text-center">
-            <h2 style={SERIF} className="text-2xl font-bold text-foreground mb-3">
+          <div className="mt-16 p-6 md:p-8 rounded-2xl bg-muted">
+            <h2 style={SERIF} className="text-2xl md:text-3xl font-semibold text-foreground mb-3">
               Ready to get specific feedback on your essay?
             </h2>
-            <p className="text-muted-foreground mb-6 max-w-lg mx-auto text-sm leading-relaxed">
+            <p className="text-muted-foreground mb-6 max-w-[60ch] leading-relaxed">
               {previewUsed
                 ? `Paste your IA, TOK work or Extended Essay, once your teacher or EE supervisor has agreed to outside feedback, and get the full report, with the estimated mark, in about a minute: ${paidLeft > 0 ? "it uses one of your paid reports" : "$9.99"}.`
                 : `Paste your IA, TOK work or Extended Essay, once your teacher or EE supervisor has agreed to outside feedback, and see how it reads against the published criteria in about a minute. The first preview is free: ${/\/resources\/(tok-|sample-reports)/.test(canonical) ? 'for TOK work, the band, the start of the explanation and the top risks' : 'a range of totals and, for most drafts, your weakest criterion and the top risks'}. The full report, with the estimated mark, is $9.99.`}

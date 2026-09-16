@@ -23,7 +23,7 @@ import {
   UCAS_MIN_CHARS_PER_ANSWER,
 } from "@shared/ucas";
 
-const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
+const SERIF = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
 
 // the device id lives in one place now: lib/fingerprint.ts
 

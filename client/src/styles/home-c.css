@@ -68,7 +68,7 @@
 .hc-top .end { margin-left: auto; font-size: 0.95rem; }
 .hc-top .end a { text-decoration: none; color: rgba(255, 255, 255, 0.9); min-height: 2.75rem; display: inline-flex; align-items: center; }
 @media (min-width: 960px) { .hc-nav { display: flex; } }
-.hc-copy { margin-top: auto; padding-bottom: clamp(2.5rem, 9vh, 6rem); }
+.hc-copy { margin-top: auto; padding-top: 5rem; padding-bottom: clamp(2.5rem, 9vh, 6rem); }
 .hc-copy .kicker { color: var(--warm); font-weight: 500; font-size: 1rem; }
 .hc-copy h1 { font-family: var(--display); font-weight: 600; font-size: clamp(2.3rem, 5.4vw, 4rem); line-height: 1.04; letter-spacing: -0.02em; max-width: 15ch; margin-top: 0.6rem; }
 .hc-copy .lede { max-width: 40ch; margin-top: 1rem; color: rgba(255, 255, 255, 0.88); }

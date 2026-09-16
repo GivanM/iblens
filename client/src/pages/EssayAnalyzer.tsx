@@ -35,7 +35,7 @@ import { capitalise, fullReportAdds, type CriterionScope } from "@/lib/reportSco
 import { trackEssaySubmitted, trackEssayUploadStarted } from "@/lib/analytics/track";
 import { recordHeadline } from "@/lib/headlineTest";
 
-const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
+const SERIF = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
 
 const IB_SUBJECTS: string[] = [...IA_RUBRIC_SUBJECTS];
 const EE_SUBJECT_LIST: string[] = [...EE_SUBJECTS];

@@ -104,6 +104,7 @@ function Router() {
       <Route path="/essay/maths-aa-ia" component={MathsAAIA} />
       <Route path="/essay/maths-ai-ia" component={MathsAIIA} />
       <Route path="/university" component={UniversityStrategy} />
+      <Route path="/v2" component={HomeV2} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/pricing" component={Pricing} />
       <Route path="/refund-policy" component={RefundPolicy} />
@@ -176,7 +177,6 @@ function App() {
           <Toaster />
           <Switch>
             <Route path="/grade" component={LandingPage} />
-            <Route path="/v2" component={HomeV2} />
             <Route>
               <Layout>
                 <Router />

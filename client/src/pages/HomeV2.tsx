@@ -4,7 +4,6 @@ import { Link } from "wouter";
 import { SEOHead } from "@/components/SEOHead";
 import { PurchaseModal } from "@/components/PurchaseModal";
 import { useMarkingCta } from "@/hooks/useMarkingCta";
-import { getLoginUrl } from "@/const";
 import { PRICE_LABELS, type ProductKey } from "@shared/pricing";
 import "@/styles/home-c.css";
 
@@ -44,7 +43,7 @@ const FAQ: [string, string][] = [
 ];
 
 export default function HomeV2() {
-  const { previewUsed, paidLabel, paidLeft, isAuthenticated } = useMarkingCta();
+  const { previewUsed, paidLabel, paidLeft } = useMarkingCta();
   const [purchaseOpen, setPurchaseOpen] = useState(false);
   const [sku, setSku] = useState<ProductKey>("ESSAY_PACK_5");
   const buy = (next: ProductKey) => { setSku(next); setPurchaseOpen(true); };
@@ -59,9 +58,6 @@ export default function HomeV2() {
       />
       <Helmet>
         <meta name="robots" content="noindex" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600;700&family=Funnel+Sans:wght@400;500;600&display=swap" />
         <link rel="preload" as="image" type="image/avif" media="(max-width: 899px)" imageSrcSet="/img/home-c/desk-tall-720.avif 720w, /img/home-c/desk-tall-1080.avif 1080w" imageSizes="100vw" />
         <link rel="preload" as="image" type="image/avif" media="(min-width: 900px)" imageSrcSet="/img/home-c/desk-1024.avif 1024w, /img/home-c/desk-1600.avif 1600w, /img/home-c/desk-2400.avif 2400w" imageSizes="100vw" />
       </Helmet>
@@ -75,19 +71,6 @@ export default function HomeV2() {
           <source type="image/webp" srcSet="/img/home-c/desk-1024.webp 1024w, /img/home-c/desk-1600.webp 1600w, /img/home-c/desk-2400.webp 2400w" sizes="100vw" />
           <img src="/img/home-c/desk-1600.webp" width={2400} height={1357} alt="A printed essay draft marked with highlighters, a watch and a planner with a date circled, on a desk at night" fetchPriority="high" decoding="async" />
         </picture>
-        <header className="hc-top">
-          <div className="hc-wrap">
-            <Link href="/" className="hc-logo">IBLens</Link>
-            <nav className="hc-nav" aria-label="Main">
-              <Link href="/essay">Essay grader</Link>
-              <Link href="/remark">Re-mark checker</Link>
-              <Link href="/ucas-personal-statement">UCAS statement</Link>
-              <Link href="/resources">Guides</Link>
-              <a href="#pricing">Pricing</a>
-            </nav>
-            <div className="end">{isAuthenticated ? <Link href="/dashboard">Dashboard</Link> : <a href={getLoginUrl()}>Sign in</a>}</div>
-          </div>
-        </header>
         <div className="hc-wrap hc-copy">
           <p className="kicker">Due on Friday?</p>
           <h1>Find out tonight which criterion is costing you marks.</h1>
@@ -236,23 +219,6 @@ export default function HomeV2() {
         </section>
       </main>
 
-      <footer className="hc-foot">
-        <div className="hc-wrap">
-          <nav aria-label="Site">
-            <Link href="/essay">Essay grader</Link>
-            <Link href="/resources">Guides</Link>
-            <Link href="/remark">Re-mark checker</Link>
-            <Link href="/pricing">Pricing</Link>
-            <Link href="/about">About</Link>
-            <Link href="/privacy">Privacy</Link>
-            <Link href="/terms">Terms</Link>
-            <Link href="/refund-policy">Refund policy</Link>
-            <Link href="/resources/academic-integrity">Academic integrity</Link>
-            <button type="button" onClick={() => window.dispatchEvent(new Event("iblens:cookie-settings"))}>Cookie settings</button>
-          </nav>
-          <p className="legal">&copy; {new Date().getFullYear()} IBLens. Independent of the International Baccalaureate Organization, which does not endorse it. Every mark is an AI estimate, not an IB mark. Your text is processed by Anthropic PBC.</p>
-        </div>
-      </footer>
     </div>
   );
 }

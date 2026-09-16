@@ -11,7 +11,7 @@ import {
 import { useMarkingCta } from "@/hooks/useMarkingCta";
 import { HOME_HEADLINES, homeHeadlineVariant, recordHeadline } from "@/lib/headlineTest";
 
-const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
+const SERIF = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
 
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
