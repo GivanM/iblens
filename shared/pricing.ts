@@ -55,8 +55,10 @@ export const LEMONSQUEEZY_BUY_URLS: Record<string, string> = {
  * until the product exists in the store; the webhook also recognises it by name.
  */
 export const PAY_WHAT_YOU_WANT = {
-  buyUrl: "",
-  variantId: 0,
+  // Product "IBLens free preview: pay what you want" (id 1366245), $1 minimum, $5 suggested,
+  // not shown on the storefront. Created 16 September 2026.
+  buyUrl: "https://iblens.lemonsqueezy.com/checkout/buy/cb8c296d-5334-4ce0-9c79-b4c24a4e7e49",
+  variantId: 2134383,
   suggestedUsd: 5,
 };
 
