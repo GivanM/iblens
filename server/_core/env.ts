@@ -8,7 +8,7 @@ export const ENV = {
   googleClientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
   // Anthropic
   anthropicApiKey: process.env.ANTHROPIC_API_KEY ?? "",
-  anthropicModel: process.env.ANTHROPIC_MODEL ?? "claude-opus-4-5-20251001",
+  anthropicModel: process.env.ANTHROPIC_MODEL ?? "claude-opus-5",
   anthropicBaseUrl: process.env.ANTHROPIC_BASE_URL ?? "https://api.anthropic.com",
   anthropicRelayUrl: process.env.ANTHROPIC_RELAY_URL ?? "",
   // Local file storage

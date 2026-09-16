@@ -5,7 +5,8 @@ import { systemRouter } from "./_core/systemRouter";
 import { sdk } from "./_core/sdk";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 import { z } from "zod";
-import { invokeLLM } from "./_core/llm";
+import { invokeLLM, MODEL_DECLINED } from "./_core/llm";
+import { parseModelJson } from "./_core/modelJson";
 import {
   createAnalysis,
   upsertAccountCopy,
@@ -280,7 +281,7 @@ const REFUNDED_DURING_RECHECK = "This report's purchase was refunded while the r
 
 function friendlyRunError(error: any, what: string): string {
   const msg = String(error?.message || "");
-  if (msg === REFUNDED_DURING_RECHECK) return msg;
+  if (msg === REFUNDED_DURING_RECHECK || msg === MODEL_DECLINED) return msg;
   if (!msg || /relay|timeout|timed out|parse|json|fetch|econn|socket|network|status code|\b5\d\d\b|overloaded|rate.?limit|anthropic|invalid response|unexpected token|undefined|null/i.test(msg)) {
     return `The ${what} did not finish, and nothing was used up. Please try again in a minute.`;
   }
@@ -456,9 +457,7 @@ const essayRouter = router({
         console.log(`[Timing] re-check answered in ${((Date.now() - startedAt) / 1000).toFixed(1)}s`);
         const rawContent = response.choices?.[0]?.message?.content;
         const content = typeof rawContent === "string" ? rawContent : "";
-        const jsonMatch = content.match(/\{[\s\S]*\}/);
-        if (!jsonMatch) throw new Error("Failed to parse AI response");
-        const result = normalizeDashes(JSON.parse(jsonMatch[0].replace(/,\s*([\]\}])/g, "$1")));
+        const result = normalizeDashes(parseModelJson(content));
         const rubric = getRubric(rec.essayType, rec.subject, session);
         if (rubric) {
           result._rubricAvailable = true;
@@ -606,9 +605,7 @@ const essayRouter = router({
         console.log(`[Timing] LLM answered in ${((Date.now() - startedAt) / 1000).toFixed(1)}s`);
         const rawContent = response.choices?.[0]?.message?.content;
         const content = typeof rawContent === "string" ? rawContent : "";
-        const jsonMatch = content.match(/\{[\s\S]*\}/);
-        if (!jsonMatch) throw new Error("Failed to parse AI response");
-        const result = normalizeDashes(JSON.parse(jsonMatch[0].replace(/,\s*([\]\}])/g, "$1")));
+        const result = normalizeDashes(parseModelJson(content));
 
         result._mechanics = mechanics;
         result._course = input.course;
@@ -733,9 +730,7 @@ const essayRouter = router({
         console.log(`[Timing] re-check answered in ${((Date.now() - startedAt) / 1000).toFixed(1)}s`);
         const rawContent = response.choices?.[0]?.message?.content;
         const content = typeof rawContent === "string" ? rawContent : "";
-        const jsonMatch = content.match(/\{[\s\S]*\}/);
-        if (!jsonMatch) throw new Error("Failed to parse AI response");
-        const result = normalizeDashes(JSON.parse(jsonMatch[0].replace(/,\s*([\]\}])/g, "$1")));
+        const result = normalizeDashes(parseModelJson(content));
         if (mechanics) {
           result._mechanics = mechanics;
           result._course = ucasCourse;
@@ -1003,11 +998,7 @@ const essayRouter = router({
         console.log(`[Timing] LLM answered in ${((Date.now() - startedAt) / 1000).toFixed(1)}s`);
         const rawContent = response.choices?.[0]?.message?.content;
         const content = typeof rawContent === "string" ? rawContent : "";
-        const jsonMatch = content.match(/\{[\s\S]*\}/);
-        if (!jsonMatch) throw new Error("Failed to parse AI response");
-
-        const cleaned = jsonMatch[0].replace(/,\s*([\]\}])/g, '$1');
-        const result = normalizeDashes(JSON.parse(cleaned));
+        const result = normalizeDashes(parseModelJson(content));
 
         // Attach rubric metadata so frontend knows whether this was rubric-based
         const rubric = getRubric(input.essayType, input.subject, input.examSession);
@@ -1123,11 +1114,7 @@ const essayRouter = router({
         console.log(`[Timing] LLM answered in ${((Date.now() - startedAt) / 1000).toFixed(1)}s`);
         const rawContent = response.choices?.[0]?.message?.content;
         const content = typeof rawContent === "string" ? rawContent : "";
-        const jsonMatch = content.match(/\{[\s\S]*\}/);
-        if (!jsonMatch) throw new Error("Failed to parse AI response");
-
-        const cleaned = jsonMatch[0].replace(/,\s*([\]\}])/g, '$1');
-        const result = normalizeDashes(JSON.parse(cleaned));
+        const result = normalizeDashes(parseModelJson(content));
 
         // Attach rubric metadata
         const rubric = getRubric(input.essayType, input.subject, input.examSession);

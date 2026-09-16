@@ -213,7 +213,19 @@ function toAnthropicToolChoice(tc: ToolChoice): Record<string, unknown> {
   return { type: "auto" };
 }
 
+/**
+ * Shown to the student when the model and its fallback both decline the text. Retrying
+ * does not help, so this is not the "try again in a minute" message.
+ */
+export const MODEL_DECLINED = "The marking model declined to mark this text, and nothing was used up. This occasionally happens with work on sensitive subjects: email glushkovim@gmail.com with your subject and topic and we will check what happened.";
+
 function fromAnthropicResponse(data: Record<string, unknown>): InvokeResult {
+  // A declined request is an HTTP 200 whose content is empty or a partial answer.
+  if (data.stop_reason === "refusal") {
+    const details = data.stop_details as { category?: string | null } | undefined;
+    console.warn(`[LLM] ${String(data.model)} declined the request, category ${details?.category ?? "none"}`);
+    throw new Error(MODEL_DECLINED);
+  }
   const content = (data.content as Array<Record<string, unknown>>) ?? [];
   let textContent = "";
   const toolCalls: ToolCall[] = [];
@@ -342,6 +354,13 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
     payload.system = system;
   }
 
+  // Claude Opus 5 and Fable 5 run safety classifiers that can decline a request, and an
+  // essay on a sensitive topic can trip one. With fallbacks "default" the API reruns a
+  // declined request, in the same call, on the model Anthropic recommends for that kind
+  // of refusal.
+  const betaHeader = /^claude-(opus-5|fable-5)/.test(String(payload.model)) ? "server-side-fallback-2026-07-01" : "";
+  if (betaHeader) payload.fallbacks = "default";
+
   if (tools && tools.length > 0) {
     payload.tools = toAnthropicTools(tools);
     const tc = toolChoice ?? tool_choice;
@@ -370,7 +389,7 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
         }
       }
     };
-    const packed = zlib.gzipSync(Buffer.from(JSON.stringify({ apiKey: ENV.anthropicApiKey, anthropicVersion: "2023-06-01", payload })));
+    const packed = zlib.gzipSync(Buffer.from(JSON.stringify({ apiKey: ENV.anthropicApiKey, anthropicVersion: "2023-06-01", anthropicBeta: betaHeader || undefined, payload })));
     const PART = 8 * 1024;
     const count = Math.ceil(packed.length / PART);
     let jobId = "";
@@ -427,6 +446,7 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
           "content-type": "application/json",
           "x-api-key": ENV.anthropicApiKey,
           "anthropic-version": "2023-06-01",
+          ...(betaHeader ? { "anthropic-beta": betaHeader } : {}),
         },
         body: JSON.stringify(payload),
         signal: AbortSignal.timeout(180_000),
@@ -506,7 +526,8 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
         model: msgModel,
         stop_reason: stopReason,
         usage: { input_tokens: inputTokens, output_tokens: outputTokens },
-        content: blocks.filter(Boolean).map((b) =>
+        // Thinking and fallback-marker blocks carry no answer text.
+        content: blocks.filter((b) => b && (b.type === "text" || b.type === "tool_use")).map((b) =>
           b.type === "tool_use"
             ? { type: "tool_use", id: b.id, name: b.name, input: b.json ? JSON.parse(b.json) : {} }
             : { type: "text", text: b.text }
