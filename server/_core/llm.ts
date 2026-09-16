@@ -324,6 +324,11 @@ function relayRequest(url: string, method: "GET" | "POST", body?: Buffer | strin
   });
 }
 
+function isTimeout(error: unknown): boolean {
+  const name = (error as Error)?.name;
+  return name === "TimeoutError" || name === "AbortError";
+}
+
 export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
   if (!ENV.anthropicApiKey) {
     throw new Error("ANTHROPIC_API_KEY is not configured");
@@ -449,11 +454,14 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
           ...(betaHeader ? { "anthropic-beta": betaHeader } : {}),
         },
         body: JSON.stringify(payload),
-        signal: AbortSignal.timeout(180_000),
+        // The same limit as the relay leg. Opus 5 marks a full Extended Essay in about 100s.
+        signal: AbortSignal.timeout(240_000),
       });
     } catch (networkError) {
       lastError = networkError;
-      if (attempt < MAX_ATTEMPTS) {
+      // A request that used up its time limit is not sent again: a second four-minute
+      // attempt would outlast the proxy in front of the app and leave the student waiting.
+      if (attempt < MAX_ATTEMPTS && !isTimeout(networkError)) {
         console.warn(`[LLM] network error on attempt ${attempt}/${MAX_ATTEMPTS}, retrying:`, (networkError as Error)?.message);
         await new Promise((r) => setTimeout(r, RETRY_DELAYS_MS[attempt - 1]));
         continue;
@@ -536,7 +544,7 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
     } catch (bodyError) {
       // Connection dropped mid-body ("TypeError: terminated") — retry like a network error
       lastError = bodyError;
-      if (attempt < MAX_ATTEMPTS) {
+      if (attempt < MAX_ATTEMPTS && !isTimeout(bodyError)) {
         console.warn(`[LLM] body read failed on attempt ${attempt}/${MAX_ATTEMPTS}, retrying:`, (bodyError as Error)?.message);
         await new Promise((r) => setTimeout(r, RETRY_DELAYS_MS[attempt - 1]));
         continue;
