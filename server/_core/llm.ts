@@ -1,4 +1,8 @@
 import { ENV } from "./env";
+import http from "node:http";
+import https from "node:https";
+import zlib from "node:zlib";
+import crypto from "node:crypto";
 
 export type Role = "system" | "user" | "assistant" | "tool" | "function";
 
@@ -281,6 +285,33 @@ function normalizeResponseFormat({
 
 // ─── Main invocation ─────────────────────────────────────────────────────────
 
+/**
+ * One request to the relay on a connection of its own (no keep-alive), with an idle limit and
+ * an overall limit. See the relay note in invokeLLM for why nothing may share a connection.
+ */
+function relayRequest(url: string, method: "GET" | "POST", body?: Buffer | string, contentType?: string): Promise<{ status: number; text: string }> {
+  return new Promise((resolve, reject) => {
+    const target = new URL(url);
+    const lib = target.protocol === "https:" ? https : http;
+    const headers: Record<string, string | number> = { connection: "close" };
+    if (body !== undefined) {
+      headers["content-type"] = contentType ?? "application/json";
+      headers["content-length"] = Buffer.byteLength(body);
+    }
+    const req = lib.request(target, { method, agent: false, headers, timeout: 15_000 }, (res) => {
+      const chunks: Buffer[] = [];
+      res.on("data", (c: Buffer) => chunks.push(c));
+      res.on("end", () => { clearTimeout(overall); resolve({ status: res.statusCode ?? 0, text: Buffer.concat(chunks).toString("utf8") }); });
+      res.on("error", (e) => { clearTimeout(overall); reject(e); });
+    });
+    const overall = setTimeout(() => req.destroy(new Error("relay request took longer than 60s")), 60_000);
+    req.on("timeout", () => req.destroy(new Error("relay request idle for 15s")));
+    req.on("error", (e) => { clearTimeout(overall); reject(e); });
+    if (body !== undefined) req.write(body);
+    req.end();
+  });
+}
+
 export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
   if (!ENV.anthropicApiKey) {
     throw new Error("ANTHROPIC_API_KEY is not configured");
@@ -321,48 +352,60 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
 
   normalizeResponseFormat({ responseFormat, response_format, outputSchema, output_schema });
 
-  // Retry on transient network failures (ETIMEDOUT/ECONNRESET on the RU->FI proxy route)
-  // and on retryable upstream statuses. The request is a single idempotent completion.
-  // Relay mode: the RU->FI route kills long-lived connections (DPI), but short
-  // requests pass reliably. Submit the job to the Helsinki relay, then poll with
-  // short GETs every 3s. The relay calls Anthropic locally and buffers the result.
+  // Relay mode: the RU->FI route freezes any single connection once roughly 20 KB have been
+  // sent on it (measured 16 September 2026: 20 KB passes, 24 KB hangs, and two 12 KB requests
+  // on one kept-alive connection hang too). An essay with its rubric is 25-60 KB, so a plain
+  // submit failed for most IAs and Extended Essays. The request is gzipped and sent in 8 KB
+  // parts, each on its own connection, then committed; the relay calls Anthropic in Helsinki.
+  // Polls also use a fresh connection each, so no connection accumulates.
   if (ENV.anthropicRelayUrl) {
     const relayBase = ENV.anthropicRelayUrl.replace(/\/$/, "");
-    let jobId = "";
-    for (let attempt = 1; attempt <= 3; attempt++) {
-      try {
-        const sub = await fetch(relayBase + "/submit", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({ apiKey: ENV.anthropicApiKey, anthropicVersion: "2023-06-01", payload }),
-          signal: AbortSignal.timeout(15_000),
-        });
-        if (!sub.ok) throw new Error("relay submit failed: " + sub.status);
-        jobId = ((await sub.json()) as { id: string }).id;
-        break;
-      } catch (e) {
-        if (attempt === 3) throw e;
-        await new Promise((r) => setTimeout(r, 1500 * attempt));
+    const retry = async <T>(what: string, fn: () => Promise<T>): Promise<T> => {
+      for (let attempt = 1; ; attempt++) {
+        try {
+          return await fn();
+        } catch (e) {
+          if (attempt >= 4) throw new Error(`relay ${what} failed: ${(e as Error)?.message || e}`);
+          await new Promise((r) => setTimeout(r, 1000 * attempt));
+        }
       }
+    };
+    const packed = zlib.gzipSync(Buffer.from(JSON.stringify({ apiKey: ENV.anthropicApiKey, anthropicVersion: "2023-06-01", payload })));
+    const PART = 8 * 1024;
+    const count = Math.ceil(packed.length / PART);
+    let jobId = "";
+    for (let upload = 1; upload <= 2 && !jobId; upload++) {
+      const uploadId = crypto.randomUUID();
+      for (let i = 0; i < count; i++) {
+        const slice = packed.subarray(i * PART, (i + 1) * PART);
+        await retry(`part ${i + 1}/${count}`, async () => {
+          const r = await relayRequest(`${relayBase}/part/${uploadId}/${i}`, "POST", slice, "application/octet-stream");
+          if (r.status !== 200) throw new Error("status " + r.status);
+        });
+      }
+      const committed = await retry("commit", () => relayRequest(`${relayBase}/commit/${uploadId}`, "POST", JSON.stringify({ count }), "application/json"));
+      if (committed.status === 200) jobId = (JSON.parse(committed.text) as { id: string }).id;
+      // A commit whose reply was lost and retried finds the upload already used: send it again.
+      else if (committed.status !== 404 || upload === 2) throw new Error("relay commit failed: " + committed.status + " " + committed.text.slice(0, 200));
     }
     const deadline = Date.now() + 240_000;
     while (Date.now() < deadline) {
       await new Promise((r) => setTimeout(r, 3000));
-      let poll: Response | null = null;
+      let poll: { status: number; text: string };
       try {
-        poll = await fetch(relayBase + "/result/" + jobId, { signal: AbortSignal.timeout(15_000) });
+        poll = await relayRequest(`${relayBase}/result/${jobId}`, "GET");
       } catch {
         continue; // transient poll failure - keep polling
       }
       if (poll.status === 202) continue;
       if (poll.status === 200) {
-        const j = (await poll.json()) as { code: number; body: string };
+        const j = JSON.parse(poll.text) as { code: number; body: string };
         if (j.code !== 200) throw new Error("LLM invoke failed: " + j.code + " - " + String(j.body).slice(0, 300));
         return fromAnthropicResponse(JSON.parse(j.body) as Record<string, unknown>);
       }
       if (poll.status === 404) throw new Error("relay lost the job");
       if (poll.status === 502) {
-        const j = (await poll.json().catch(() => ({}))) as { error?: string };
+        const j = (() => { try { return JSON.parse(poll.text) as { error?: string }; } catch { return {} as { error?: string }; } })();
         throw new Error("relay upstream error: " + (j.error || "unknown"));
       }
     }

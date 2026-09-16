@@ -1,0 +1,12 @@
+[Unit]
+Description=Anthropic polling relay (Helsinki leg for RU app)
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/node /opt/anthropic-relay/relay.mjs
+Restart=always
+RestartSec=3
+User=deploy
+
+[Install]
+WantedBy=multi-user.target
