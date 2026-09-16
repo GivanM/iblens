@@ -105,7 +105,7 @@ export default function Pricing() {
             Pay per report. No subscription.
           </h1>
           <p className="text-lg text-muted-foreground max-w-[56ch] leading-relaxed">
-            No subscription and no expiry. {previewUsed ? "Your free essay preview is used; the UCAS preview is separate, one per device." : "Your first preview is free, one per device or account."} Prices in US dollars.
+            Unused reports never expire. {previewUsed ? "Your free essay preview is used; the UCAS preview is separate, one per device." : "Your first preview is free, one per device or account."} Prices in US dollars.
           </p>
         </div>
 

@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import { trpc } from "@/lib/trpc";
 import { getAnonFingerprint, rotateAnonFingerprint } from "@/lib/fingerprint";
 import { toast } from "sonner";
-import { FileText, GraduationCap, LayoutDashboard, LogOut, User, Menu, X, DollarSign, BookOpen } from "lucide-react";
+import { LayoutDashboard, LogOut, User, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 const SERIF = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
@@ -175,70 +175,36 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
 
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-border bg-background p-4 space-y-2">
-            <Link
-              href="/essay"
-              onClick={() => setMobileMenuOpen(false)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
-                location === "/essay" ? "bg-primary/10 text-primary" : "text-muted-foreground"
-              }`}
-            >
-              <FileText className="w-4 h-4" />
-              Essay grader
-            </Link>
-            <Link
-              href="/ucas-personal-statement"
-              onClick={() => setMobileMenuOpen(false)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
-                location === "/ucas-personal-statement" ? "bg-primary/10 text-primary" : "text-muted-foreground"
-              }`}
-            >
-              <FileText className="w-4 h-4" />
-              UCAS statement
-            </Link>
-            <Link
-              href="/resources"
-              onClick={() => setMobileMenuOpen(false)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
-                location.startsWith("/resources") ? "bg-primary/10 text-primary" : "text-muted-foreground"
-              }`}
-            >
-              <BookOpen className="w-4 h-4" />
-              Resources
-            </Link>
-            <Link
-              href="/remark"
-              onClick={() => setMobileMenuOpen(false)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
-                location === "/remark" ? "bg-primary/10 text-primary" : "text-muted-foreground"
-              }`}
-            >
-              <GraduationCap className="w-4 h-4" />
-              Re-mark checker
-            </Link>
-            <Link
-              href="/pricing"
-              onClick={() => setMobileMenuOpen(false)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
-                location === "/pricing" ? "bg-primary/10 text-primary" : "text-muted-foreground"
-              }`}
-            >
-              <DollarSign className="w-4 h-4" />
-              Pricing
-            </Link>
-            {isAuthenticated && (
-              <Link
-                href="/dashboard"
-                onClick={() => setMobileMenuOpen(false)}
-                className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
-                  location === "/dashboard" ? "bg-primary/10 text-primary" : "text-muted-foreground"
-                }`}
-              >
-                <LayoutDashboard className="w-4 h-4" />
-                Dashboard
-              </Link>
+          <nav aria-label="Main" className="lg:hidden border-t border-border bg-background">
+            <ul className="container divide-y divide-border">
+              {[
+                { href: "/essay", label: "Essay grader", on: location === "/essay" },
+                { href: "/remark", label: "Re-mark checker", on: location === "/remark" },
+                { href: "/ucas-personal-statement", label: "UCAS statement", on: location === "/ucas-personal-statement" },
+                { href: "/resources", label: "Resources", on: location.startsWith("/resources") },
+                { href: "/pricing", label: "Pricing", on: location === "/pricing" },
+                ...(isAuthenticated ? [{ href: "/dashboard", label: "Dashboard", on: location === "/dashboard" }] : []),
+              ].map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    aria-current={item.on ? "page" : undefined}
+                    className={`flex items-center min-h-12 text-base ${item.on ? "font-semibold text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            {!isAuthenticated && location !== "/essay" && (
+              <div className="container pb-5 pt-1">
+                <Button className="w-full min-h-12" asChild>
+                  <Link href="/essay" onClick={() => setMobileMenuOpen(false)}>Grade my essay</Link>
+                </Button>
+              </div>
             )}
-          </div>
+          </nav>
         )}
       </header>
 
