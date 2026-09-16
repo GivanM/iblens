@@ -466,8 +466,8 @@ const routeMeta: Record<string, PageMeta> = {
   },
   // A design prototype of the homepage, reachable by link only.
   "/v2": {
-    title: "IBLens: IB Essay Grader, Marked Like a Script",
-    description: "Paste an IB draft and get it marked against the published criteria, criterion by criterion, in about a minute. Free preview on the first one. Full report $9.99, no subscription.",
+    title: "IBLens: IB Essay Grader, Criterion by Criterion",
+    description: "Paste an IB draft and see where its marks go: marked against the published criteria for your subject and session, in about a minute. Free preview first, full report $9.99.",
     noindex: true,
     ogType: "website",
     canonical: "/",

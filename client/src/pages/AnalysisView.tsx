@@ -267,6 +267,9 @@ export default function AnalysisView() {
                     <Badge variant="secondary" className="flex-shrink-0">{typeof c.score === "number" ? `${c.score}/${c.max}` : "not marked"}</Badge>
                   </div>
                   <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{c.comment}</p>
+                  {criteria.length === 1 && typeof r?.band_position === "string" && r.band_position.trim() && (
+                    <p className="text-sm leading-relaxed whitespace-pre-line mt-2"><strong>Why this mark within the band:</strong> {r.band_position}</p>
+                  )}
                 </div>
               ))}
             </div>

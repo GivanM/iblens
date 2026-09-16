@@ -1315,6 +1315,9 @@ export default function EssayAnalyzer() {
                     />
                   </div>
                   <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{decodeAndSanitize(c.comment)}</p>
+                  {result.criteria.length === 1 && typeof (result as any).band_position === "string" && (result as any).band_position.trim() && (
+                    <p className="text-sm leading-relaxed whitespace-pre-line"><strong>Why this mark within the band:</strong> {decodeAndSanitize((result as any).band_position)}</p>
+                  )}
                 </div>
               ))}
             </CardContent>

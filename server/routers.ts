@@ -101,7 +101,7 @@ IMPORTANT FORMATTING RULES:
 - Write to the student in the second person ("you", "your essay"). Never refer to them as "the student" or "the candidate".
 - In every comment longer than three sentences, put a blank line (two newline characters) between separate points, so it reads as short paragraphs.
 - Use British spelling (analyse, organise, recognise, behaviour).
-- Never write a criterion's mark or the total inside a comment, risk, leverage zone, next step or the overall comment: the report shows the marks separately. Describe the level in words (for example "the Good band descriptor"), never as a number, and ${HOLISTIC_TYPES.has(essayType) ? "for this task, marked as a whole, explain in words in the criterion comment why the mark is the higher or the lower mark of its band (for example \"the higher mark of the band, because...\"), unless the mark is zero, without writing the mark itself" : "never say where in a level the mark sits (top, bottom, upper or lower end)"}; a cap may name, in words, the highest mark it allows. Rules the notes ask you to explain, such as a cap or no marks for an essay not on a prescribed title, must still be stated, in words.
+- Never write a criterion's mark or the total inside a comment, risk, leverage zone, next step or the overall comment: the report shows the marks separately. Describe the level in words (for example "the Good band descriptor"), never as a number, and never say where in a level the mark sits (top, bottom, upper or lower end) in any of those; a cap may name, in words, the highest mark it allows.${HOLISTIC_TYPES.has(essayType) ? " This task is marked as a whole: explain why the mark is the higher or the lower mark of its band only in the separate \"band_position\" field, in words and without writing the mark (leave it empty if the mark is zero), and nowhere else." : ""} Rules the notes ask you to explain, such as a cap or no marks for an essay not on a prescribed title, must still be stated, in words.
 - The work arrives as pasted text, so graphs, images, photos, diagrams and screenshots never come through, and tables may lose their layout. Never lower a mark because a graph or image is not visible, and never call one missing. Where the work describes a graph or image, judge what the description shows, and put anything about the graph itself (axes, error bars, labels) as a check for the student to make, not as a reason for the mark. If the criteria require a diagram or graph and the text refers to none, say that none was referred to and ask the student to check.`;
 
   if (rubricFragment) {
@@ -209,7 +209,8 @@ Respond with this exact JSON structure:
   "predicted_score": <integer>,
   "max_score": <total marks of the criteria you assessed>,
   "overall_comment": "Detailed overall assessment of the work",
-  "criteria": ${criteriaExample},
+  "criteria": ${criteriaExample},${essayType === "TOK" ? `
+  "band_position": "Why the mark is the higher or the lower mark of its band, in words, without the mark itself",` : ""}
   "risks": [
     {"title": "Risk title", "description": "What specifically loses marks and why"}
   ],
@@ -264,6 +265,17 @@ function previousScores(prev: any) {
  * transport and parsing failures ("relay poll timeout after 240s", "Failed to parse
  * AI response") do not, because they read as a broken site and say nothing useful.
  */
+/**
+ * A device credit and the purchase it belongs to, taken together. Signing in between the two
+ * moved the purchase to the account, and the report was saved with no purchase a refund could close.
+ */
+async function spendDeviceCredit(fingerprint: string): Promise<{ ok: boolean; orderId: string | null }> {
+  const orderId = await takeFromOldestLot({ fingerprint });
+  if (await consumeDeviceCredit(fingerprint)) return { ok: true, orderId };
+  if (orderId) await returnToLot(orderId).catch(() => true);
+  return { ok: false, orderId: null };
+}
+
 const REFUNDED_DURING_RECHECK = "This report's purchase was refunded while the re-check ran, so the re-check is closed with the report.";
 
 function friendlyRunError(error: any, what: string): string {
@@ -477,8 +489,9 @@ const essayRouter = router({
           unlockOrderId: rec.unlockOrderId ?? null,
         });
         if (analysis?.id) await markAnalysisUnlocked(analysis.id, rec.unlockOrderId ?? undefined);
-        // Refunded while the model ran: the re-check was closed with the report it belongs to.
+        // Refunded while the model ran: the re-check is removed, not left as a locked version to sell.
         if (await isPurchaseRefunded(rec.unlockOrderId).catch(() => false)) {
+          if (analysis?.id) await deleteUserAnalysis(analysis.id, ctx.user.id).catch(() => false);
           throw new TRPCError({ code: "FORBIDDEN", message: REFUNDED_DURING_RECHECK });
         }
 
@@ -532,6 +545,7 @@ const essayRouter = router({
       const user = (ctx as any).user;
       let paidCredit = false;
       let paidByDevice = false;
+      let ucasDeviceOrderId: string | null = null;
       if (user && input.spendCredit) {
         const credits = await getUserCredits(user.id);
         paidCredit = (credits?.essayCredits ?? 0) > 0;
@@ -541,7 +555,9 @@ const essayRouter = router({
       if (!paidCredit) {
         const usage = await canAnonymousAnalyze(input.clientFingerprint, "ucas");
         if (input.spendDeviceCredit === true) {
-          paidByDevice = await consumeDeviceCredit(input.clientFingerprint);
+          const spent = await spendDeviceCredit(input.clientFingerprint);
+          paidByDevice = spent.ok;
+          ucasDeviceOrderId = spent.orderId;
         }
         if (!usage.allowed && !paidByDevice) {
           throw new TRPCError({
@@ -559,7 +575,7 @@ const essayRouter = router({
       if (paidCredit) await consumePaidEssayCredit(user.id);
       // The purchase each paid review is charged to, so a refund of it closes the review.
       const creditOrderId = paidCredit ? await takeFromOldestLot({ userId: user.id }) : null;
-      const deviceOrderId = paidByDevice ? await takeFromOldestLot({ fingerprint: input.clientFingerprint }) : null;
+      const deviceOrderId = paidByDevice ? ucasDeviceOrderId : null;
 
       // Claim the free slot before the model is called: the check and the write
       // were eighty seconds apart, which is a free second review for anyone who
@@ -762,8 +778,13 @@ const essayRouter = router({
             rerunOf: parentCopy.id,
           }).catch((copyErr) => console.warn("[Re-check] Account copy failed:", copyErr));
         }
-        // Refunded while the model ran: the re-check was closed with the report it belongs to.
+        // Refunded while the model ran: the re-check and its account copy are removed, not left locked.
         if (await isPurchaseRefunded(rec.unlockOrderId).catch(() => false)) {
+          if (signedIn && child?.id) {
+            const copy = await findAccountCopyOf(signedIn.id, child.id).catch(() => null);
+            if (copy?.id) await deleteUserAnalysis(copy.id, signedIn.id).catch(() => false);
+          }
+          if (child?.id) await deleteAnonymousAnalysis(child.id).catch(() => {});
           throw new TRPCError({ code: "FORBIDDEN", message: REFUNDED_DURING_RECHECK });
         }
         return {
@@ -835,10 +856,11 @@ const essayRouter = router({
         await claimAnonymousUnlock(rec.id, openCopy.unlockOrderId ?? null);
         return { result: normalizeDashes(rec.resultJson) };
       }
-      if (!(await consumeDeviceCredit(input.fingerprint))) {
+      const spent = await spendDeviceCredit(input.fingerprint);
+      if (!spent.ok) {
         throw new TRPCError({ code: "FORBIDDEN", message: "This browser has no paid reports left. A full report is $9.99." });
       }
-      const orderId = await takeFromOldestLot({ fingerprint: input.fingerprint });
+      const orderId = spent.orderId;
       // Two taps at once: the second finds the row already open and returns its report.
       if (!(await claimAnonymousUnlock(rec.id, orderId))) {
         if (await returnToLot(orderId).catch(() => true)) await addDeviceCredits(input.fingerprint, 1).catch(() => {});
@@ -934,17 +956,17 @@ const essayRouter = router({
       let paidByDevice = false;
       // Someone who asks for a paid report gets one, even if their free preview
       // is still unused: they pressed the button that says it costs a credit.
+      let takenOrderId: string | null = null;
       if (input.spendDeviceCredit === true) {
-        paidByDevice = await consumeDeviceCredit(fingerprint);
+        const spent = await spendDeviceCredit(fingerprint);
+        paidByDevice = spent.ok;
+        takenOrderId = spent.orderId;
       }
       if (!usage.allowed && !paidByDevice) {
-        paidByDevice = input.spendDeviceCredit === true && await consumeDeviceCredit(fingerprint);
-        if (!paidByDevice) {
-          throw new TRPCError({
-            code: "FORBIDDEN",
-            message: usage.reason || "You have used the free preview on this device.",
-          });
-        }
+        throw new TRPCError({
+          code: "FORBIDDEN",
+          message: usage.reason || "You have used the free preview on this device.",
+        });
       }
 
       // Claim the free slot before the model is called, not after. The analysis
@@ -964,7 +986,7 @@ const essayRouter = router({
         throw new TRPCError({ code: "FORBIDDEN", message: "You have used the free preview on this device." });
       }
       // The purchase this report is charged to, fixed when the credit is taken.
-      const deviceOrderId = paidByDevice ? await takeFromOldestLot({ fingerprint }) : null;
+      const deviceOrderId = paidByDevice ? takenOrderId : null;
 
       const systemPrompt = buildEssaySystemPrompt(input.essayType, input.subject, input.examSession);
       const userPrompt = buildEssayUserPrompt(input.essayType, input.subject, input.researchQuestion, input.essayText, input.examSession, input.reflections);

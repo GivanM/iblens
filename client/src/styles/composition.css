@@ -1,0 +1,248 @@
+/*
+ * Home page, "composition" direction (design system: ~/.claude/design-taste/worlds/iblens.md).
+ * Every rule is scoped under .cmp so nothing leaks into the rest of the site, which keeps its
+ * own tokens. Hierarchy comes from size and tracking, not weight. The red accent is used three
+ * times on the page: the headline's second half, the weakest criterion and the free row.
+ */
+.cmp {
+  --ground: #F2EFEB;
+  --paper: #E9E5DF;
+  --ink: #1B1B1A;
+  --ink-2: #4F4C47;
+  --rule: rgba(27, 27, 26, 0.18);
+  --red: #DC2F1C;
+  --red-text: #B3261A;
+  --blue: #17368F;
+  --disp: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --pad: clamp(1.1rem, 4vw, 3.5rem);
+  --wide: min(1280px, 100% - 2 * var(--pad));
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--disp);
+  font-weight: 400;
+  font-size: clamp(1rem, 0.4vw + 0.92rem, 1.1rem);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+:where(.cmp) *, :where(.cmp) *::before, :where(.cmp) *::after { box-sizing: border-box; }
+:where(.cmp) :where(h1, h2, h3, p, figure, blockquote, ol, ul) { margin: 0; padding: 0; }
+:where(.cmp) :where(ol, ul) { list-style: none; }
+:where(.cmp) :where(h1, h2, h3) { font-weight: 400; letter-spacing: -0.035em; }
+:where(.cmp) :where(a) { color: inherit; }
+.cmp :focus-visible { outline: 2px solid var(--red-text); outline-offset: 3px; }
+.cmp-wrap { width: var(--wide); margin-inline: auto; }
+.cmp-mono { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.cmp-fine { font-family: var(--mono); font-size: 0.74rem; line-height: 1.8; color: var(--ink-2); }
+.cmp-rule { height: 1px; background: var(--rule); }
+.cmp-rule.ink { background: var(--ink); }
+
+.cmp-btn {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 3rem;
+  background: var(--ink); color: var(--ground); text-decoration: none; border: 0; cursor: pointer;
+  padding: 0.9rem 1.5rem; border-radius: 1px;
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+  transition: background-color 0.2s;
+}
+.cmp-btn:hover { background: var(--red-text); }
+.cmp-btn.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.cmp-btn.ghost:hover { background: var(--ink); color: var(--ground); }
+.cmp-link {
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.04em; text-decoration: none;
+  border-bottom: 1px solid currentColor; padding-bottom: 2px; transition: color 0.2s;
+}
+.cmp-link:hover { color: var(--red-text); }
+
+/* ---------- 1. Photograph, headline, the number on the seam ---------- */
+.cmp-hero { position: relative; }
+.cmp-top { position: absolute; inset: 0 0 auto 0; z-index: 3; }
+.cmp-top .cmp-wrap { display: flex; align-items: center; gap: 1.6rem; padding: 1rem 0; }
+.cmp-logo { font-size: 1.25rem; letter-spacing: -0.05em; text-decoration: none; font-weight: 500; }
+.cmp-nav { display: none; gap: 1.6rem; }
+.cmp-nav a { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-decoration: none; }
+.cmp-nav a:hover, .cmp-top .end a:hover { color: var(--red-text); }
+.cmp-top .end { margin-left: auto; display: flex; gap: 1.2rem; align-items: center; }
+.cmp-top .end a { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-decoration: none; min-height: 2.75rem; display: inline-flex; align-items: center; }
+@media (min-width: 900px) { .cmp-nav { display: flex; } }
+
+.cmp-shotwrap { position: relative; }
+.cmp-shot { position: relative; display: block; height: min(75vw, 22rem); overflow: hidden; background: #D8C9B1; }
+.cmp-shot img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; display: block; }
+.cmp-shot::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(242, 239, 235, 0.7) 0%, rgba(242, 239, 235, 0) 22%);
+}
+.cmp-seam { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; height: 0; }
+.cmp-seam .cmp-wrap { display: flex; justify-content: flex-end; }
+.cmp-number {
+  display: flex; align-items: baseline; gap: 0.35rem; transform: translateY(-58%);
+  text-decoration: none; color: var(--ink);
+}
+.cmp-number .n { font-weight: 700; font-size: clamp(5rem, 22vw, 15rem); line-height: 0.72; letter-spacing: -0.065em; font-feature-settings: "tnum"; }
+.cmp-number .side { display: flex; flex-direction: column; gap: 0.2rem; }
+.cmp-number .of { font-size: clamp(1.3rem, 4.5vw, 3.2rem); letter-spacing: -0.04em; line-height: 1; }
+.cmp-number .tag { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); white-space: nowrap; line-height: 1.35; }
+.cmp-h1-over { padding-top: 2.6rem; }
+.cmp-intro { padding: 0.2rem 0 2.6rem; }
+.cmp-h1 { font-size: clamp(2.1rem, 5.2vw, 4.6rem); line-height: 1.02; letter-spacing: -0.05em; max-width: 14ch; }
+.cmp-h1 em { font-style: normal; color: var(--red); }
+.cmp-lede { max-width: 46ch; margin-top: 1.1rem; color: var(--ink-2); }
+.cmp-act { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem; margin-top: 1.5rem; }
+.cmp-intro .cmp-fine { margin-top: 1rem; }
+
+@media (min-width: 900px) {
+  .cmp-shot { height: min(66vh, 56.25vw, 44rem); min-height: 30rem; }
+  .cmp-shot img { object-position: 50% 50%; }
+  .cmp-h1-over { position: absolute; left: 0; right: 0; bottom: clamp(3rem, 8vh, 5.5rem); z-index: 2; padding-top: 0; }
+  .cmp-seam .cmp-wrap { justify-content: flex-start; padding-left: calc(50% + 1rem); }
+  .cmp-intro { padding: clamp(2.2rem, 4vw, 3.2rem) 0 clamp(3rem, 6vw, 5rem); }
+  .cmp-intro .cmp-wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem; }
+  .cmp-intro .col { grid-column: 1; }
+}
+
+/* ---------- 2. The report, one criterion per band ---------- */
+.cmp-report { padding: clamp(2.4rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--ink); }
+.cmp-report .head { display: grid; gap: 0.8rem; margin-bottom: clamp(1.4rem, 3vw, 2.4rem); }
+.cmp-report h2 { font-size: clamp(1.5rem, 3.2vw, 2.4rem); line-height: 1.08; max-width: 20ch; }
+.cmp-report .head .cmp-fine { max-width: 60ch; }
+.cmp-band { display: grid; grid-template-columns: 4.6rem minmax(0, 1fr); column-gap: 1rem; row-gap: 0.35rem; align-items: baseline; padding: 1rem 0; border-top: 1px solid var(--rule); }
+.cmp-band:last-of-type { border-bottom: 1px solid var(--ink); }
+.cmp-band .n { font-size: clamp(1.7rem, 4vw, 2.8rem); letter-spacing: -0.05em; line-height: 0.95; font-feature-settings: "tnum"; }
+.cmp-band .name { font-size: clamp(1rem, 1.6vw, 1.2rem); letter-spacing: -0.02em; }
+.cmp-band .name small { display: block; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 0.15rem; }
+.cmp-band .d { grid-column: 1 / -1; font-size: 0.95rem; line-height: 1.6; color: var(--ink-2); max-width: 62ch; }
+.cmp-band.weak .n, .cmp-band.weak .name { color: var(--red-text); }
+.cmp-band.weak .d { color: var(--ink); }
+.cmp-report .foot { margin-top: 1.2rem; max-width: 64ch; }
+@media (min-width: 900px) {
+  .cmp-report .head { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; gap: 2rem; }
+  .cmp-band { grid-template-columns: 8rem minmax(0, 17rem) minmax(0, 1fr); column-gap: 2.4rem; padding: 1.4rem 0; }
+  .cmp-band .d { grid-column: auto; }
+}
+
+/* ---------- 3. How far to trust it: statement and three columns ---------- */
+.cmp-trust { padding: clamp(3.5rem, 9vw, 8rem) 0 clamp(3rem, 7vw, 6rem); }
+.cmp-trust .say { font-size: clamp(1.7rem, 4vw, 3.2rem); line-height: 1.06; letter-spacing: -0.045em; max-width: 18ch; }
+.cmp-cols { display: grid; margin-top: clamp(2rem, 5vw, 3.6rem); }
+.cmp-cols > div { padding: 1.1rem 0 1.3rem; border-top: 1px solid var(--rule); }
+.cmp-cols h3 { font-size: 1.1rem; letter-spacing: -0.02em; margin-bottom: 0.45rem; }
+.cmp-cols p { color: var(--ink-2); font-size: 0.97rem; line-height: 1.6; }
+@media (min-width: 900px) {
+  .cmp-cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .cmp-cols > div { border-top: 0; border-left: 1px solid var(--rule); padding: 0.2rem 1.6rem 0.4rem; }
+  .cmp-cols > div:first-child { border-left: 0; padding-left: 0; }
+}
+
+/* ---------- 4. The rule, on a flat blue field ---------- */
+.cmp-field { background: var(--blue); color: var(--ground); padding: clamp(3.5rem, 10vw, 8.5rem) 0 clamp(3rem, 7vw, 6rem); }
+.cmp-field .cmp-mono { color: rgba(242, 239, 235, 0.82); }
+.cmp-field blockquote { font-size: clamp(1.25rem, 2.7vw, 2.1rem); line-height: 1.22; letter-spacing: -0.03em; max-width: 34ch; margin-top: 1.2rem; }
+.cmp-field figcaption { margin-top: 1rem; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; color: rgba(242, 239, 235, 0.82); }
+.cmp-field .notes { display: grid; gap: 1.4rem; margin-top: clamp(2.2rem, 5vw, 3.6rem); }
+.cmp-field .notes p { font-size: 0.95rem; line-height: 1.6; color: rgba(242, 239, 235, 0.92); max-width: 44ch; }
+.cmp-field .notes b { display: block; font-weight: 400; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.35rem; color: var(--ground); }
+.cmp-field .cmp-link { display: inline-block; margin-top: 2rem; color: var(--ground); }
+.cmp-field .cmp-link:hover { color: #FFD9D2; }
+.cmp-field :focus-visible { outline-color: var(--ground); }
+@media (min-width: 900px) { .cmp-field .notes { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.4rem; } }
+
+/* ---------- 5. Where the text goes: a line with four stops ---------- */
+.cmp-path { padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(2.4rem, 5vw, 4rem); }
+.cmp-path h2 { font-size: clamp(1.5rem, 3.2vw, 2.4rem); line-height: 1.08; max-width: 20ch; }
+.cmp-stops { display: grid; margin: clamp(1.8rem, 4vw, 2.8rem) 0 clamp(2rem, 4vw, 3rem); }
+.cmp-stops li { position: relative; padding: 0 0 1.3rem 1.8rem; }
+.cmp-stops li::before { content: ""; position: absolute; left: 0.3rem; top: 0.45rem; width: 0.6rem; height: 0.6rem; background: var(--ink); border-radius: 50%; }
+.cmp-stops li::after { content: ""; position: absolute; left: calc(0.6rem - 0.5px); top: 1.05rem; bottom: 0; width: 1px; background: var(--ink); }
+.cmp-stops li:last-child::after { display: none; }
+.cmp-stops b { display: block; font-weight: 400; font-size: 1.1rem; letter-spacing: -0.02em; }
+.cmp-stops span { font-family: var(--mono); font-size: 0.74rem; color: var(--ink-2); }
+.cmp-facts { display: grid; gap: 1.2rem; }
+.cmp-facts p { font-size: 0.95rem; line-height: 1.6; color: var(--ink-2); max-width: 46ch; }
+.cmp-facts b { font-weight: 500; color: var(--ink); }
+@media (min-width: 900px) {
+  .cmp-stops { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .cmp-stops li { padding: 1.4rem 1rem 0 0; }
+  .cmp-stops li::before { left: 0; top: -0.3rem; }
+  .cmp-stops li::after { left: 0.6rem; right: 0; top: 0; bottom: auto; width: auto; height: 1px; }
+  .cmp-stops li:last-child::after { display: block; right: 60%; }
+  .cmp-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.4rem; }
+}
+
+/* ---------- 6. A strip of the photograph ---------- */
+.cmp-strip { height: clamp(4.5rem, 10vw, 7.5rem); overflow: hidden; position: relative; }
+.cmp-strip img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 62%; display: block; }
+.cmp-strip::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--ground), transparent 20%, transparent 80%, var(--ground)); }
+
+/* ---------- 7. Price as a ledger ---------- */
+.cmp-price { padding: clamp(2.4rem, 5vw, 4rem) 0 clamp(3.5rem, 8vw, 6.5rem); }
+.cmp-price h2 { font-size: clamp(1.5rem, 3.2vw, 2.4rem); line-height: 1.08; margin-bottom: 0.8rem; }
+.cmp-price > .cmp-wrap > .cmp-fine { max-width: 60ch; margin-bottom: clamp(1.4rem, 3vw, 2.2rem); }
+.cmp-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 1rem; row-gap: 0.2rem; align-items: baseline; padding: 0.95rem 0; border-top: 1px solid var(--rule); }
+.cmp-row:last-of-type { border-bottom: 1px solid var(--rule); }
+.cmp-row .what { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.04em; }
+.cmp-row .p { font-size: 1.5rem; letter-spacing: -0.04em; text-align: right; font-feature-settings: "tnum"; }
+.cmp-row .notes { grid-column: 1 / -1; font-size: 0.9rem; color: var(--ink-2); }
+.cmp-row.free .p { color: var(--red-text); }
+.cmp-price .cmp-act { margin-top: clamp(1.6rem, 3vw, 2.4rem); }
+@media (min-width: 900px) {
+  .cmp-row { grid-template-columns: 14rem 9rem minmax(0, 1fr); column-gap: 2rem; padding: 1.1rem 0; }
+  .cmp-row .p { text-align: left; }
+  .cmp-row .notes { grid-column: auto; }
+}
+
+/* ---------- 8. Why it exists ---------- */
+.cmp-why { padding: clamp(3.5rem, 9vw, 8rem) 0; border-top: 1px solid var(--ink); }
+.cmp-why .cmp-wrap { display: grid; gap: 1.6rem; }
+.cmp-why img { width: 5.5rem; height: 5.5rem; object-fit: cover; object-position: top; border-radius: 1px; filter: grayscale(0.2); }
+.cmp-why blockquote { font-size: clamp(1.4rem, 3.4vw, 2.6rem); line-height: 1.12; letter-spacing: -0.04em; max-width: 30ch; }
+.cmp-why p { margin-top: 1.2rem; max-width: 52ch; color: var(--ink-2); }
+.cmp-why .cmp-fine { margin-top: 1rem; }
+@media (min-width: 900px) {
+  .cmp-why .cmp-wrap { grid-template-columns: 8rem minmax(0, 1fr); gap: 3rem; }
+  .cmp-why img { width: 8rem; height: 8rem; }
+}
+
+/* ---------- 9. The other tools ---------- */
+.cmp-also { padding: 0 0 clamp(2.5rem, 6vw, 4.5rem); }
+.cmp-also a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.3rem 1.2rem; align-items: center; padding: 1.3rem 0; text-decoration: none; border-top: 1px solid var(--ink); }
+.cmp-also li:last-child a { border-bottom: 1px solid var(--ink); }
+.cmp-also .t { font-size: clamp(1.2rem, 2.6vw, 1.9rem); letter-spacing: -0.035em; line-height: 1.15; }
+.cmp-also .s { grid-column: 1; font-size: 0.92rem; color: var(--ink-2); max-width: 60ch; }
+.cmp-also .arrow { grid-column: 2; grid-row: 1 / span 2; font-size: 1.6rem; transition: transform 0.2s; }
+.cmp-also a:hover .arrow { transform: translateX(4px); color: var(--red-text); }
+
+/* ---------- 10. Questions ---------- */
+.cmp-faq { padding: clamp(2rem, 5vw, 3.5rem) 0 clamp(3rem, 7vw, 5rem); }
+.cmp-faq h2 { font-size: clamp(1.3rem, 2.6vw, 1.9rem); margin-bottom: 1rem; }
+.cmp-faq details { border-top: 1px solid var(--rule); }
+.cmp-faq details:last-of-type { border-bottom: 1px solid var(--rule); }
+.cmp-faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 0; min-height: 3rem; font-size: 1.02rem; }
+.cmp-faq summary::-webkit-details-marker { display: none; }
+.cmp-faq summary::after { content: "+"; font-family: var(--mono); color: var(--ink-2); }
+.cmp-faq details[open] summary::after { content: "\2212"; }
+.cmp-faq details p { padding: 0 0 1.2rem; max-width: 68ch; color: var(--ink-2); font-size: 0.95rem; line-height: 1.65; }
+
+/* ---------- 11. Last call, on ink ---------- */
+.cmp-end { background: var(--ink); color: var(--ground); padding: clamp(3.5rem, 9vw, 7.5rem) 0; }
+.cmp-end h2 { font-size: clamp(1.9rem, 5vw, 4rem); line-height: 1.02; letter-spacing: -0.05em; max-width: 16ch; }
+.cmp-end .cmp-btn { background: var(--ground); color: var(--ink); }
+.cmp-end .cmp-btn:hover { background: #FFD9D2; }
+.cmp-end .cmp-fine { color: rgba(242, 239, 235, 0.78); margin-top: 1rem; }
+.cmp-end :focus-visible { outline-color: var(--ground); }
+
+/* ---------- 12. Footer ---------- */
+.cmp-foot { padding: 2rem 0 3rem; }
+.cmp-foot nav { display: flex; flex-wrap: wrap; gap: 0.2rem 1.4rem; }
+.cmp-foot nav a, .cmp-foot nav button {
+  font-family: var(--mono); font-size: 0.74rem; text-decoration: none; color: var(--ink-2);
+  background: none; border: 0; padding: 0; cursor: pointer; min-height: 2.75rem; display: inline-flex; align-items: center;
+}
+.cmp-foot nav a:hover, .cmp-foot nav button:hover { color: var(--ink); }
+.cmp-foot .subjects { margin-top: 1.2rem; }
+.cmp-foot .cmp-fine { margin-top: 1.4rem; max-width: 80ch; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cmp-btn, .cmp-also .arrow, .cmp-link { transition: none; }
+}
+.cmp-strip picture { display: block; height: 100%; }

@@ -163,7 +163,7 @@ const NEAR_LEVEL = new RegExp(String.raw`\b(?:approach\w*|toward\w*|between|clos
 // A task marked as a whole shows its band already; any sentence about band, level or mark says more.
 const HOLISTIC_MARK_WORDS = /\b(?:band|bands|level|levels|boundary|mark|marks|marked|marking|score|scored|scores|grade|graded)\b/i;
 // Where a mark sits without the words band or mark: "the higher of the two", "why not higher", "one step away from Excellent".
-const HOLISTIC_PLACEMENT = /\b(?:placement|placements|placed|placing)\b|\b(?:higher|lower|upper|stronger|weaker|better|lesser|greater) of the two\b|\bwhy not (?:higher|lower)\b|\bone step (?:away )?(?:from|below|short of)\b|\b(?:weaker|stronger|better|best|weakest|strongest) (?:essays?|exhibitions?|responses?|work|ones?) (?:in|of|within|at)\b|\b(?:this|that|the same|its) range\b|\bfalls? short of the (?:higher|top|next|upper|stronger)\b|\bpossible outcomes\b/i;
+const HOLISTIC_PLACEMENT = /\b(?:placement|placements|placed|placing)\b|\b(?:higher|lower|upper|stronger|weaker|better|lesser|greater) of the two\b|\bwhy not (?:higher|lower)\b|\bone step (?:away )?(?:from|below|short of)\b|\b(?:weaker|stronger|better|best|weakest|strongest) (?:essays?|exhibitions?|responses?|work|ones?) (?:in|of|within|at)\b|\b(?:this|that|the same|its) range\b|\bfalls? short of the (?:higher|top|next|upper|stronger)\b|\bpossible outcomes\b|\b(?:higher|lower|upper)\b(?![- ](?:level thinking|order|education|school))|\b(?:stronger|weaker|better|more generous|less generous) (?:end|half|side|award|option|outcome|result|figure|number|placement|point|step|rung|one|of)\b|\brather than the (?:higher|lower|top|bottom)\b|\bend of (?:the )?(?:band|level|range|descriptor|excellent|good|satisfactory|basic|rudimentary)\b|\b(?:that|this|the) pair\b|\b(?:top|upper|lower|bottom) (?:rung|reaches|step|point)\b|\b(?:ceiling|brink|threshold|cusp) of\b|\b(?:touching distance|a whisker|just (?:below|under|above|short of))\b/i;
 const SMALL_WORD = /\b(?:a|an)\s+(?:one|two|three|four|five|six|seven|eight|nine|ten)\b(?!-)/i;
 const SMALL_NUMBER = /\b(?:10|[0-9])\b(?!\s*(?:,\d{3}|words?|%|per ?cent|pages?|sources?|objects?|prompts?|titles?|areas?|examples?|claims?|paragraphs?|sections?|minutes?|hours?|years?|knowers?|perspectives?))/i;
 
@@ -185,7 +185,7 @@ export function stripMarksDetailed(text: string, opts: MarkTextOptions = {}): { 
   // Sentences end at a full stop or a line break: a list with no full stops was one "sentence"
   // and went whole when a single line stated a mark.
   // Not after "e.g.", "i.e.", "approx.", "vs.": a mark after one of those stayed in a sentence of its own.
-  const parts = text.split(/((?<!\b(?:e\.g|i\.e|approx|cf|vs|incl|fig|figs|no|nos|p|pp|ca|c|al|eq|ref|sect?|ch|vol))(?<=[.!?])\s+|\n+)/i);
+  const parts = text.split(/((?<!\b(?:e\.g|i\.e|approx|cf|vs|incl|fig|figs|no|nos|p|pp|ca|c|al|eq|ref|sect?|ch|vol)\.)(?<=[.!?])\s+|\n+)/i);
   let out = "";
   let pendingBreak = "";
   let dropped = 0;
@@ -244,9 +244,9 @@ const NUMBER_WORD_MARK = /\b(?:zero|nil|one|two|three|four|five|six|seven|eight|
 const YEAR = /\b(?:1[89]|20)\d{2}\b/g;
 const NUMBER_WORD = /\b(?:zero|nil|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|full marks|maximum|minimum|teens|twenties|thirties)\b/i;
 // The work as a whole, or every criterion at once: not the weakest criterion's own scale.
-const WHOLE_WORK = /\b(?:total|overall|altogether|combined|in all|put together|added up|as a whole|whole (?:essay|work|report|investigation|ia|exploration|project)|other criteri(?:on|a)|remaining criteri(?:on|a)|every (?:other )?criterion|each criterion|all (?:the |five |four |six |seven )?criteria|elsewhere|across the (?:board|criteria)|the others|the other ones|the rest|everything else|every other|only criterion|no other criterion)\b/i;
+const WHOLE_WORK = /\b(?:total|overall|altogether|combined|in all|put together|added up|as a whole|whole (?:essay|work|report|investigation|ia|exploration|project)|other criteri(?:on|a)|remaining criteri(?:on|a)|every (?:other )?criterion|each criterion|all (?:the |five |four |six |seven )?criteria|elsewhere|across the (?:board|criteria)|the others|the other ones|the rest|everything else|every other|only criterion|no other criterion|other (?:sections?|areas?|parts?|strands?)|each other (?:area|section|part))\b/i;
 // Nouns for the whole piece of work: a number tied to one of them is not a criterion's own.
-export const WHOLE_WORK_NOUNS = ["essay", "ia", "ee", "report", "exploration", "investigation", "project", "commentary", "submission", "piece", "work", "draft"];
+export const WHOLE_WORK_NOUNS = ["essay", "ia", "ee", "report", "exploration", "investigation", "project", "commentary", "submission", "piece", "work", "draft", "section", "rpf", "rppf", "reflective statement", "reflections"];
 const NO_MARKS = /\b(?:no|zero|nil)\s+(?:\w+\s+)?credit\b|\b(?:cannot|can ?not|can't|will not|won't|would not|does not|do not)\s+(?:be\s+)?(?:award|give|credit|earn|gain|receive)\w*\s+(?:any|full|top|the top)\s+(?:marks?|credit)\b|\b(?:costs?|costing|los(?:e|es|t|ing)|drops?|dropping|deduct\w*)\s+(?:you\s+|it\s+|the essay\s+)?(?:a|one|the|its|another)\s+mark\b|\b(?:second|final|last|only|remaining)\s+mark\b|\b(?:no|zero|unearned|full|all)\s+(?:\w+\s+)?marks?\b|\b(?:half|a third|a quarter|most|the majority)\s+(?:of\s+)?the\s+(?:total\s+|available\s+)?marks\b|\bmarks?\s+(?:on|in|for)\s+any\b/i;
 // Where in the scale a criterion or the essay sits, without a number: "mid-band", "the lower
 // bands", "the middle band", "the second-highest band". "A high level of detail" is not one.
@@ -267,7 +267,8 @@ const CRITERION_EQUALS = /\bcriteri(?:on|a)\s+([a-g])([12])?\s*(?:[:=]|\(|\[|,)\
 const PLURAL_MARKS = /(?<![\d.,\/+-])\b\ds\s+(?:and|or|to)\s+\ds\b|(?<![\d.,\/+-])\b\ds\s+(?:across|elsewhere|everywhere|on every|on all|in every|in all|on the other|for the other)\b|\b(?:mostly|all|straight|scor\w*|gets?|earns?)\s+\ds\b/i;
 const AVERAGE = /\b(?:average|mean)\s+(?:mark\s+|score\s+)?(?:of\s+)?(?:about\s+|around\s+|roughly\s+)?\d{1,2}(?:\.\d)?\b/i;
 const MARK_TALK = /\b(?:marks?|scor\w*|criteri\w*|bands?|levels?|grades?)\b/i;
-const LETTER_GRADE = /\b(?:[Ee]arn|[Gg]et|[Aa]chiev|[Rr]eceiv|[Aa]ward|[Ss]cor|[Rr]each|[Ss]ecur|[Ll]and|[Mm]erit|[Ww]orth|[Cc]ap)\w*\s+(?:(?:a|an|the|essay|work|it|at|to|of|grade|likely|probably|only|most|best|solid|strong|low|high|around|about)\s+){0,4}["'‘“]?[A-E][+-]?["'’”]?(?![\w’'/-])|\b(?:[Aa]n?|[Gg]rade)\s+[A-E][+-]?\s+(?:grade|essay|EE|TOK|piece|level)\b|\b(?:[Aa]|[Tt]he|[Yy]our|predicted|final|overall|likely|expected|[Ee]xpect)\s+grade\s+(?:of\s+|is\s+|would be\s+)?["'\u2018\u201c]?[A-E][+-]?["'\u2019\u201d]?(?![\w\u2019'/-])|\b[Gg]rade\s+of\s+[A-E]\b|\bbetween (?:an?\s+)?[A-E][+-]? and (?:an?\s+)?[A-E][+-]?(?![\w’'/-])|\b[A-E][+-]?\/[A-E][+-]?\s+(?:borderline|boundary|grade|essay|range|border)\b|\bshort of (?:an?\s+|the\s+)?[A-E][+-]?(?![\w’'/-])|\b(?:is|be|likely|probably|[Ee]xpect|becomes?|makes?|as)\s+(?:a|an)\s+[A-E][+-]?(?=[\s.,;!?)]|$)|(?:^|[.!?]\s+)An?\s+[A-E][+-]?\s+(?:is|would|could|will|grade)\b|\b[A-E][+-]?-grade\s+(?:work|essay|piece|EE|TOK|standard|level)\b|\bthe\s+[A-E][+-]?\s+(?:boundary|grade|band)\b|\b[A-G][12]?\s*[=:]\s*\d+\s*[,;]\s*[A-G][12]?\s*[=:]\s*\d/;
+const LETTER_LIST_MARK = /\b\d{1,2}s?\s+(?:on|for|in|across)\s+(?:[Cc]riteri(?:on|a)\s+)?[A-G][12]?\b(?:\s*(?:,|and|&|or)\s*[A-G][12]?\b)*|\b[A-G][12]?(?:\s*(?:,|and|&)\s*[A-G][12]?)+\s+(?:are|were|sit|sits|score|scored|get|got|earn|earned|reach|reached)\s+(?:at\s+|a\s+|around\s+|about\s+)?\d/;
+const LETTER_GRADE = /\b(?:[Ee]arn|[Gg]et|[Aa]chiev|[Rr]eceiv|[Aa]ward|[Ss]cor|[Rr]each|[Ss]ecur|[Ll]and|[Mm]erit|[Ww]orth|[Cc]ap)\w*\s+(?:(?:a|an|the|essay|work|it|at|to|of|grade|likely|probably|only|most|best|solid|strong|low|high|around|about)\s+){0,4}["'‘“]?[A-E][+-]?["'’”]?(?![\w’'/-])|\b(?:[Aa]n?|[Gg]rade)\s+[A-E][+-]?\s+(?:grade|essay|EE|TOK|piece|level)\b|\b(?:[Aa]|[Tt]he|[Yy]our|predicted|final|overall|likely|expected|[Ee]xpect)\s+grade\s+(?:of\s+|is\s+|would be\s+)?["'\u2018\u201c]?[A-E][+-]?["'\u2019\u201d]?(?![\w\u2019'/-])|\b[Gg]rade\s+of\s+[A-E]\b|\bbetween (?:an?\s+)?[A-E][+-]? and (?:an?\s+)?[A-E][+-]?(?![\w’'/-])|\b[A-E][+-]?\/[A-E][+-]?\s+(?:borderline|boundary|grade|essay|range|border)\b|\bshort of (?:an?\s+|the\s+)?[A-E][+-]?(?![\w’'/-])|\b(?:is|be|likely|probably|[Ee]xpect|becomes?|makes?|as)\s+(?:a|an)\s+[A-E][+-]?(?=[\s.,;!?)]|$)|(?:^|[.!?]\s+)An?\s+[A-E][+-]?\s+(?:is|would|could|will|grade)\b|\b[A-E][+-]?-grade\s+(?:work|essay|piece|EE|TOK|standard|level)\b|\bthe\s+[A-E][+-]?\s+(?:boundary|grade|band)\b|\b[A-G][12]?\s*[=:]\s*\d+\s*[,;]\s*[A-G][12]?\s*[=:]\s*\d|\b(?:[Ss]olid|[Ff]irm|[Cc]lear|[Ss]ecure|[Bb]orderline|[Ll]ow|[Hh]igh|[Ss]trong|[Ww]eak|[Tt]hink)\s+[A-E][+-]?(?:\/[A-E][+-]?)?(?![\w'’/-])|\b[B-E][+-]?-level\b|\b[A-E][+-]?\s+(?:territory|range)\b|(?<![Cc]riteri(?:on|a)\s)\b[A-E][+-]? rather than (?:an? )?[A-E][+-]?(?![\w'’/-])/;
 
 /**
  * Whether a sentence of the free preview could state or narrow a mark. Pattern lists kept
@@ -327,6 +328,8 @@ export function statesMark(s: string, opts: MarkTextOptions = {}): boolean {
       return fits ? " " : m;
     });
   }
+  // Marks listed against bare criterion letters: "5s on B and C", "B, C and D are at 5".
+  if (LETTER_LIST_MARK.test(t)) return true;
   if (/\d/.test(measured)) return true;
   const own = String(opts.ownLetter || "").toLowerCase();
   const equals = t.match(CRITERION_EQUALS);

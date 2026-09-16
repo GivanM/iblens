@@ -1184,14 +1184,15 @@ export async function openDeviceRowsOfOpenCopies(fingerprint: string, userId: nu
   if (!db) return 0;
   const locked = await db.select({ id: anonymousAnalyses.id, rerunOf: anonymousAnalyses.rerunOf }).from(anonymousAnalyses)
     .where(and(eq(anonymousAnalyses.fingerprint, fingerprint), eq(anonymousAnalyses.unlocked, false), sql`${anonymousAnalyses.resultJson} IS NOT NULL`))
+    .orderBy(sql`${anonymousAnalyses.rerunOf} IS NULL DESC`, anonymousAnalyses.id)
     .limit(50);
-  let opened = 0;
+  // One report is counted once, whichever of its rows opened it: a re-check opens its head too.
+  const reports = new Set<number>();
   for (const row of locked as any[]) {
     const copy = await findUnlockedCopyInChain(userId, row).catch(() => null);
-    // One report is counted once: its re-checks open with it.
-    if (copy && await claimAnonymousUnlock(row.id, copy.unlockOrderId ?? null) && !row.rerunOf) opened++;
+    if (copy && await claimAnonymousUnlock(row.id, copy.unlockOrderId ?? null)) reports.add(row.rerunOf ?? row.id);
   }
-  return opened;
+  return reports.size;
 }
 
 export async function findAccountCopyOf(userId: number, deviceRowId: number) {
