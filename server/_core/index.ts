@@ -8,7 +8,7 @@ import { registerOAuthRoutes } from "./oauth";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
-import { purgeOldAnonymousAnalyses, purgeExpiredRevokedSessions, purgeAbandonedCheckouts, releaseInterruptedFreeRuns, countAbEvent } from "../db";
+import { purgeOldAnonymousAnalyses, purgeExpiredRevokedSessions, purgeAbandonedCheckouts, releaseInterruptedFreeRuns } from "../db";
 import { registerLemonsqueezyWebhook } from "../lemonsqueezy/lemonsqueezy";
 import { ENV } from "./env";
 
@@ -45,24 +45,6 @@ async function startServer() {
   app.use("/uploads", express.static(path.resolve(ENV.uploadsDir)));
   // OAuth callback under /api/oauth/callback
   registerOAuthRoutes(app);
-  // The home page headline test: daily totals per version, sent without cookies or ids.
-  const abHits = new Map<string, number[]>();
-  app.post("/api/ab", async (req, res) => {
-    res.status(204).end();
-    const { t, v, e } = (req.body || {}) as { t?: unknown; v?: unknown; e?: unknown };
-    if (t !== "home_h1" || !Number.isInteger(v) || (v as number) < 0 || (v as number) > 2) return;
-    if (e !== "view" && e !== "cta" && e !== "submit" && e !== "checkout") return;
-    if (/bot|crawl|spider|slurp|headless|lighthouse|preview|facebookexternalhit|embedly/i.test(String(req.headers["user-agent"] || ""))) return;
-    const ip = String(req.headers["x-forwarded-for"] || req.socket.remoteAddress || "unknown").split(",")[0].trim();
-    const now = Date.now();
-    const hits = (abHits.get(ip) || []).filter((x) => now - x < 60_000);
-    if (hits.length >= 12) return;
-    hits.push(now);
-    abHits.set(ip, hits);
-    if (abHits.size > 5000) abHits.clear();
-    await countAbEvent(t, v as number, e).catch(() => {});
-  });
-
   // A cheap ceiling on the expensive procedures. The free-run gate is a browser
   // id, so anyone willing to rotate it could spend our model budget in a loop.
   // This is per address and deliberately generous for a school behind one NAT.

@@ -1,11 +1,10 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Redirect, Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
-import HomeV2 from "./pages/HomeV2";
 import EssayAnalyzer from "./pages/EssayAnalyzer";
 import UniversityStrategy from "./pages/UniversityStrategy";
 import Dashboard from "./pages/Dashboard";
@@ -104,7 +103,8 @@ function Router() {
       <Route path="/essay/maths-aa-ia" component={MathsAAIA} />
       <Route path="/essay/maths-ai-ia" component={MathsAIIA} />
       <Route path="/university" component={UniversityStrategy} />
-      <Route path="/v2" component={HomeV2} />
+      {/* The preview of the home page before it went live; old links land on the page itself. */}
+      <Route path="/v2"><Redirect to="/" /></Route>
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/pricing" component={Pricing} />
       <Route path="/refund-policy" component={RefundPolicy} />

@@ -33,7 +33,6 @@ import { analytics } from "@/lib/analytics";
 import { getAnonFingerprint } from "@/lib/fingerprint";
 import { capitalise, fullReportAdds, type CriterionScope } from "@/lib/reportScope";
 import { trackEssaySubmitted, trackEssayUploadStarted } from "@/lib/analytics/track";
-import { recordHeadline } from "@/lib/headlineTest";
 
 const SERIF = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
 
@@ -605,7 +604,6 @@ export default function EssayAnalyzer() {
     setResultWork(formWork());
     trackEssayUploadStarted(subject, essayType);
     trackEssaySubmitted(subject, essayType, wordCount, !!isFreeFirst);
-    recordHeadline("submit");
     analytics.startEssayAnalysis(subject);
 
     if (isAuthenticated) {

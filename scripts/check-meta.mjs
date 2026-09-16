@@ -48,7 +48,7 @@ for (const file of walkTsx(path.resolve(pagesDir, "essay"))) {
 }
 
 for (const file of walkTsx(pagesDir)) {
-  if (file.includes(`${path.sep}essay${path.sep}`) || file.endsWith("HomeV2.tsx")) continue;
+  if (file.includes(`${path.sep}essay${path.sep}`)) continue;
   // Read the props from the tag's opening, not up to "/>": the homepage passes a long
   // JSON-LD array, and a length cap on the whole tag silently skipped it.
   const src = fs.readFileSync(file, "utf8");

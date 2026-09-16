@@ -19,7 +19,7 @@ import { useState } from "react";
 const SERIF = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
 
 // Pages whose first screen is a photograph: the header sits over it in light text.
-const PHOTO_HEADER_PATHS = new Set(["/v2"]);
+const PHOTO_HEADER_PATHS = new Set(["/"]);
 
 function NavLink({ href, children, active, onPhoto }: { href: string; children: React.ReactNode; active: boolean; onPhoto?: boolean }) {
   return (

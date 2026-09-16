@@ -72,9 +72,6 @@ async function assertClientMetaMatches(routeMeta) {
   // Every other page passes them straight to SEOHead.
   for (const file of walkTsx(pagesDir)) {
     if (file.includes(`${path.sep}essay${path.sep}`)) continue;
-    // The staging homepage shares the canonical of the live one on purpose while
-    // it is behind noindex, so it is not a divergence.
-    if (file.endsWith("HomeV2.tsx")) continue;
     const src = fs.readFileSync(file, "utf8");
     const block = src.match(/<SEOHead[\s\S]{0,900}?\/>/);
     if (!block) continue;

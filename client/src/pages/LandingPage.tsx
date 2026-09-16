@@ -61,10 +61,7 @@ export default function LandingPage() {
       {/* Minimal Header */}
       <header className="border-b border-border bg-background sticky top-0 z-50">
         <div className="container flex items-center justify-between h-14">
-          <Link href="/" className="font-bold text-lg tracking-tight flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
-              <FileText className="w-4 h-4 text-primary-foreground" />
-            </div>
+          <Link href="/" className="font-bold text-xl" style={{ fontFamily: "'Funnel Display', 'Funnel Sans', sans-serif", letterSpacing: "-0.015em" }}>
             IBLens
           </Link>
           <Button size="sm" asChild>
@@ -77,45 +74,39 @@ export default function LandingPage() {
 
       <main>
         {/* Hero */}
-        <section className="bg-gradient-to-b from-primary/5 to-background py-16 md:py-24">
-          <div className="container max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold mb-6 uppercase tracking-wide">
-              {previewUsed ? (paidLeft > 0 ? "Uses 1 of your paid reports · No account" : "Full report $9.99 · No account · Refundable within 7 days") : "First preview free · No account · No card"}
-            </div>
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-5 leading-tight">
-              Grade your IB essay<br />in about a minute
+        <section className="py-14 md:py-20">
+          <div className="container max-w-4xl">
+            <p className="text-sm font-medium text-primary mb-4">
+              {previewUsed ? (paidLeft > 0 ? "Uses 1 of your paid reports, no account" : "Full report $9.99, no account, refundable within 7 days") : "First preview free, no account, no card"}
+            </p>
+            <h1 className="text-4xl md:text-6xl font-semibold mb-5 leading-[1.03] max-w-[14ch]">
+              Grade your IB essay in about a minute
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">
+            <p className="text-lg text-muted-foreground mb-8 max-w-[58ch] leading-relaxed">
               {previewUsed
                 ? "Paste your IA, TOK work or Extended Essay once your teacher or supervisor has agreed to outside feedback. The full report comes back in about a minute with the estimated mark, criterion by criterion (the TOK essay and exhibition as a whole), and ranks the fixes."
                 : "Paste your IA, TOK work or Extended Essay once your teacher or supervisor has agreed to outside feedback. The free preview comes back in about a minute with a range of totals and, for most drafts, your weakest criterion and the top risks; the full report gives the estimated mark, criterion by criterion (the TOK essay and exhibition as a whole), and ranks the fixes."}
             </p>
-            <Button size="lg" className="text-base px-10 h-14 shadow-lg shadow-primary/25 mb-4" asChild>
-              <Link href="/essay">
-                <FileText className="w-4 h-4 mr-2" />
-                {cta}
-              </Link>
+            <Button size="lg" className="text-base px-8 h-auto min-h-12 py-3 mb-4" asChild>
+              <Link href="/essay">{cta}</Link>
             </Button>
-            <p className="text-xs text-muted-foreground">No account needed · Results in about a minute · Coursework in 14 IB subjects · 7-day money-back guarantee</p>
+            <p className="text-sm text-muted-foreground">No account needed. Coursework in 14 IB subjects. 7-day money-back guarantee.</p>
           </div>
         </section>
 
         {/* How It Works */}
-        <section className="py-12 bg-background border-b">
-          <div className="container max-w-3xl mx-auto">
-            <h2 className="text-xl font-bold text-center mb-8 text-muted-foreground uppercase tracking-wider text-sm">How it works</h2>
-            <div className="grid md:grid-cols-3 gap-6">
+        <section className="border-y border-border">
+          <div className="container max-w-4xl py-10">
+            <h2 className="sr-only">How it works</h2>
+            <div className="grid md:grid-cols-3 gap-0 md:gap-10">
               {[
                 { step: "1", Icon: FileText, title: "Paste your essay", desc: "Copy and paste your IA, EE or TOK text and choose the task and subject." },
                 { step: "2", Icon: Clock, title: "AI marks it in about a minute", desc: "Marked against the published criteria for your subject, task and exam session." },
                 { step: "3", Icon: ListOrdered, title: "See what to fix", desc: "The marks you are losing against the criteria, and the fixes ranked by what they recover." },
-              ].map(({ step, Icon, title, desc }) => (
-                <div key={step} className="flex flex-col items-center text-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center"><Icon className="w-5 h-5 text-primary" aria-hidden="true" /></div>
-                  <div>
-                    <p className="font-semibold mb-1">{title}</p>
-                    <p className="text-sm text-muted-foreground">{desc}</p>
-                  </div>
+              ].map(({ step, title, desc }) => (
+                <div key={step} className="py-4 border-t border-border first:border-t-0 md:border-t-0 md:py-0">
+                  <p className="font-semibold text-lg mb-1" style={{ fontFamily: "'Funnel Display', 'Funnel Sans', sans-serif" }}>{title}</p>
+                  <p className="text-muted-foreground">{desc}</p>
                 </div>
               ))}
             </div>
@@ -124,13 +115,13 @@ export default function LandingPage() {
 
         {/* Sample Result Mockup */}
         <section className="py-16 bg-background">
-          <div className="container max-w-2xl mx-auto">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold tracking-tight mb-2">What a full report looks like ($9.99)</h2>
-              <p className="text-muted-foreground text-sm">A mark for each criterion your text lets us judge, with the risks and the fixes.{previewUsed ? "" : " The free preview shows a range of totals and, for most drafts, your weakest criterion and the top risks."}</p>
+          <div className="container max-w-4xl">
+            <div className="mb-6">
+              <h2 className="text-3xl font-semibold mb-2">What a full report looks like ($9.99)</h2>
+              <p className="text-muted-foreground">A mark for each criterion your text lets us judge, with the risks and the fixes.{previewUsed ? "" : " The free preview shows a range of totals and, for most drafts, your weakest criterion and the top risks."}</p>
             </div>
 
-            <Card className="border-2 shadow-lg">
+            <Card className="border-0 shadow-none bg-muted rounded-2xl">
               <CardContent className="p-6">
                 {/* Mock header */}
                 <div className="flex items-center justify-between mb-5 pb-4 border-b">
@@ -193,22 +184,22 @@ export default function LandingPage() {
         </section>
 
         {/* Trust badges */}
-        <section className="py-8 bg-muted/30 border-y">
-          <div className="container">
-            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-emerald-500" /><span>Published IB criteria</span></div>
-              <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-amber-500" /><span>Results in about a minute</span></div>
-              <div className="flex items-center gap-2"><Shield className="w-4 h-4 text-blue-500" /><span>IBLens never saves your text</span></div>
-              <div className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /><span>Coursework in 14 IB subjects</span></div>
-            </div>
+        <section className="py-8 border-y border-border">
+          <div className="container max-w-4xl">
+            <ul className="flex flex-wrap gap-x-8 gap-y-2 text-muted-foreground">
+              <li>Published IB criteria</li>
+              <li>Results in about a minute</li>
+              <li>IBLens never saves your text</li>
+              <li>Coursework in 14 IB subjects</li>
+            </ul>
           </div>
         </section>
 
         {/* FAQ */}
-        <section className="py-16 bg-muted/30">
-          <div className="container max-w-xl mx-auto">
-            <h2 className="text-2xl font-bold text-center mb-8">Questions</h2>
-            <div className="bg-background rounded-xl border p-5">
+        <section className="py-14 md:py-16">
+          <div className="container max-w-3xl">
+            <h2 className="text-3xl font-semibold mb-6">Questions</h2>
+            <div>
               <FAQItem
                 question="Is the first preview really free?"
                 answer="Yes. The first preview is free: a range of totals and, for most drafts, feedback on your weakest criterion and the top risks in your draft (for the TOK essay and exhibition, which are marked as a whole, the band, the start of the explanation and the top risks). The complete report, with an estimated mark, comments criterion by criterion (for the TOK essay and exhibition, the whole explanation) and a ranked list of fixes, unlocks for $9.99."
@@ -234,16 +225,16 @@ export default function LandingPage() {
         </section>
 
         {/* Urgency + Final CTA */}
-        <section className="py-20 bg-gradient-to-b from-primary/5 to-background text-center">
-          <div className="container max-w-xl mx-auto">
-            <h2 className="text-3xl font-bold tracking-tight mb-4">Ready to see where your essay stands?</h2>
-            <p className="text-muted-foreground mb-8">{previewUsed ? "Paste your essay now: the full report comes back in about a minute." : "Paste your essay now: a free preview in about a minute, with no account needed."}</p>
-            <Button size="lg" className="text-base px-10 shadow-lg shadow-primary/25" asChild>
+        <section className="py-14 md:py-20 bg-muted">
+          <div className="container max-w-4xl">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-4 max-w-[20ch]">See where your essay stands before you submit it.</h2>
+            <p className="text-muted-foreground mb-7">{previewUsed ? "Paste your essay now: the full report comes back in about a minute." : "Paste your essay now: a free preview in about a minute, with no account needed."}</p>
+            <Button size="lg" className="text-base px-8 h-auto min-h-12 py-3" asChild>
               <Link href="/essay">
                 {cta} <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
-            <p className="text-xs text-muted-foreground mt-4">No account needed · 7-day money-back guarantee on paid reports</p>
+            <p className="text-sm text-muted-foreground mt-4">No account needed. 7-day money-back guarantee on paid reports.</p>
           </div>
         </section>
       </main>
@@ -259,7 +250,7 @@ export default function LandingPage() {
           <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
           <button type="button" onClick={() => window.dispatchEvent(new Event("iblens:cookie-settings"))} className="hover:text-foreground transition-colors cursor-pointer min-h-11">Cookie settings</button>
         </div>
-        <p>&copy; {new Date().getFullYear()} IBLens. Independent of the International Baccalaureate Organization, which does not endorse it. Every mark is an AI estimate, not an IB mark.</p>
+        <p>&copy; {new Date().getFullYear()} IBLens. Independent of the International Baccalaureate Organization, which does not endorse it. Every mark is an AI estimate, not an IB mark. Your text is processed by Anthropic PBC.</p>
       </footer>
     </>
   );
