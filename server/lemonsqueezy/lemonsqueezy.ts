@@ -2,7 +2,7 @@ import type { Express, Request, Response } from "express";
 import express from "express";
 import crypto from "crypto";
 import { ENV } from "../_core/env";
-import { LEMONSQUEEZY_BUY_URLS, LEMONSQUEEZY_VARIANTS } from "../../shared/pricing";
+import { LEMONSQUEEZY_BUY_URLS, LEMONSQUEEZY_VARIANTS, PAY_WHAT_YOU_WANT } from "../../shared/pricing";
 import {
   getOrderById,
   updateOrderStatus,
@@ -105,6 +105,19 @@ export function skuForVariantId(variantId: number): string | null {
 }
 
 const unverifiedWindow = { start: 0, count: 0 };
+
+/**
+ * A pay-what-you-want payment for a free preview. It buys nothing, so it must never reach
+ * the storefront path below, which would have granted a $9.99 report for a $1 payment.
+ * A known paid variant is never one, whatever the editable checkout data says.
+ */
+export function isPayWhatYouWant(attrs: any, customData: any): boolean {
+  const variantId = Number(attrs?.first_order_item?.variant_id || 0);
+  if (variantId && skuForVariantId(variantId)) return false;
+  if (variantId && PAY_WHAT_YOU_WANT.variantId && variantId === PAY_WHAT_YOU_WANT.variantId) return true;
+  const names = `${attrs?.first_order_item?.product_name || ""} ${attrs?.first_order_item?.variant_name || ""}`;
+  return /pay what you want/i.test(names) || String(customData?.kind || "") === "pay_what_you_want";
+}
 
 export function lsSkuToCredits(sku: string): { essay: number; university: number } {
   switch (sku) {
@@ -276,6 +289,21 @@ export function registerLemonsqueezyWebhook(app: Express) {
         const customData = meta.custom_data || {};
         const orderId = customData.order_id || "";
 
+        if (eventName === "order_created" && isPayWhatYouWant((body as any)?.data?.attributes, customData)) {
+          const attrs: any = (body as any)?.data?.attributes || {};
+          const paidUsd = Number(attrs.total_usd ?? attrs.total ?? 0) / 100;
+          console.log(`[LemonSqueezy] Pay what you want: $${paidUsd.toFixed(2)} for a free preview (${customData.place || "unknown place"}), order ${dataId}`);
+          if (webhookEventId) {
+            await updateWebhookEvent(webhookEventId, { paymentStatus: "pay_what_you_want", errorMessage: `usd ${paidUsd.toFixed(2)} place ${customData.place || "unknown"}` }).catch(() => {});
+          }
+          const testPurchase = (body as any)?.meta?.test_mode === true || /@example\.(com|org|net)$/i.test(String(attrs.user_email || ""));
+          if (!testPurchase && paidUsd > 0) {
+            await sendGA4PurchaseEvent({ orderId: `pwyw.${dataId}`, productSlug: "pay_what_you_want", valueUsd: paidUsd, paymentMethod: "lemonsqueezy", userId: "" })
+              .catch((ga4Err) => console.warn("[LemonSqueezy] GA4 MP event failed (non-fatal):", ga4Err));
+          }
+          return res.status(200).json({ ok: true, message: "Pay what you want recorded" });
+        }
+
         if (eventName === "order_created") {
           // An order id we no longer hold (a checkout left open past the 30 days unpaid
           // checkouts are kept) is paid for all the same, so it is credited like a
@@ -313,6 +341,15 @@ export function registerLemonsqueezyWebhook(app: Express) {
             // product without variants, so fall back to the product name.
             // The variant id is exact; the name is only a fallback for payloads without it.
             const paidVariantSku = skuForVariantId(Number(attrs.first_order_item?.variant_id || 0));
+            // A product that is neither a known variant nor named like an essay report is not
+            // credited: any new product in the store would otherwise count as one report.
+            if (!paidVariantSku && !/essay|analys/.test(variantName)) {
+              console.error(`[LemonSqueezy] Storefront purchase of an unrecognised product (${variantName}) by ${buyerEmail}, order ${dataId}: nothing credited, review it`);
+              if (webhookEventId) {
+                await updateWebhookEvent(webhookEventId, { paymentStatus: "unknown_product", errorMessage: variantName.substring(0, 500) }).catch(() => {});
+              }
+              return res.status(200).json({ ok: true, message: "Unrecognised product, needs review" });
+            }
             const guessed = paidVariantSku ? lsSkuToCredits(paidVariantSku).essay
               : /\b10\b[\s-]*(pack|essay|analys)|pack of 10/.test(variantName) ? 10
               : /\b(5|five)\b[\s-]*(pack|essay|analys)|pack of (5|five)/.test(variantName) ? 5
@@ -569,6 +606,13 @@ export function registerLemonsqueezyWebhook(app: Express) {
           } catch (emailErr) {
             console.warn("[LemonSqueezy] Email notification failed (non-fatal):", emailErr);
           }
+        } else if (eventName === "order_refunded" && isPayWhatYouWant((body as any)?.data?.attributes, customData)) {
+          // It granted nothing, so there is nothing to take back.
+          console.log(`[LemonSqueezy] Pay what you want order ${dataId} refunded`);
+          if (webhookEventId) {
+            await updateWebhookEvent(webhookEventId, { paymentStatus: "pay_what_you_want_refunded" }).catch(() => {});
+          }
+          return res.status(200).json({ ok: true, message: "Pay what you want refund recorded" });
         } else if (eventName === "order_refunded") {
           // LemonSqueezy sends this for partial refunds too. Only a full refund closes a
           // purchase: a goodwill refund of part of a pack used to close all of it, and the

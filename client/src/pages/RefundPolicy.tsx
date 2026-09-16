@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { SEOHead } from "@/components/SEOHead";
+import { PAY_WHAT_YOU_WANT } from "@shared/pricing";
 
 export default function RefundPolicy() {
   return (
@@ -20,6 +21,15 @@ export default function RefundPolicy() {
               We want you to be completely satisfied with your IBLens purchase. If for any reason you are not happy with your essay or personal statement report, you may request a full refund within <strong className="text-foreground">7 days</strong> of your purchase date, no questions asked. This guarantee is in addition to your legal rights as a consumer and does not replace them.
             </p>
           </section>
+
+          {PAY_WHAT_YOU_WANT.buyUrl && (
+            <section>
+              <h2 className="text-xl font-semibold mb-3">Pay what you want for a free preview</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                A payment you choose to make for a free preview is voluntary and unlocks nothing. The same 7 days apply: ask within 7 days and we refund it in full.
+              </p>
+            </section>
+          )}
 
           <section>
             <h2 className="text-xl font-semibold mb-3">How to request a refund</h2>

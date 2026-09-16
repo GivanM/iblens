@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Lock, AlertTriangle, CheckCircle2, Info } from "lucide-react";
 import { UCAS_QUESTIONS, UCAS_TOTAL_CHAR_LIMIT, UCAS_MIN_CHARS_PER_ANSWER } from "@shared/ucas";
+import { PayWhatYouWant } from "@/components/PayWhatYouWant";
 
 const SERIF = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
 
@@ -182,6 +183,7 @@ export function UcasReview({ result, course, isUnlocked, onBuy, buyLabel, buyPen
             )}
           </div>
         )}
+        {!result.answers && onBuy && !buyLabel && <PayWhatYouWant place="ucas_preview" />}
 
         <p className="text-xs text-muted-foreground border-t pt-4">
           IBLens gives you feedback on writing that is yours. UCAS is explicit that submitting text generated

@@ -48,6 +48,18 @@ export const LEMONSQUEEZY_BUY_URLS: Record<string, string> = {
   university_single: "",
 } as const;
 
+/**
+ * Pay what you want for a free preview, $5 suggested. It grants no credits and unlocks
+ * nothing. LemonSqueezy forbids donations "where no product exists", so this is the price
+ * of the preview the reader already received. buyUrl stays empty, and the button hidden,
+ * until the product exists in the store; the webhook also recognises it by name.
+ */
+export const PAY_WHAT_YOU_WANT = {
+  buyUrl: "",
+  variantId: 0,
+  suggestedUsd: 5,
+};
+
 /** Map from our ProductKey to LemonSqueezy SKU key */
 export const PRODUCT_KEY_TO_LS_SKU: Record<keyof typeof PRICES, string> = {
   ESSAY_SINGLE: "essay_single",

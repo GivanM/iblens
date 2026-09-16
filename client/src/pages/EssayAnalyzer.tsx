@@ -33,6 +33,7 @@ import { analytics } from "@/lib/analytics";
 import { getAnonFingerprint } from "@/lib/fingerprint";
 import { capitalise, fullReportAdds, type CriterionScope } from "@/lib/reportScope";
 import { trackEssaySubmitted, trackEssayUploadStarted } from "@/lib/analytics/track";
+import { PayWhatYouWant } from "@/components/PayWhatYouWant";
 
 const SERIF = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
 
@@ -188,6 +189,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
             </div>
           )}
         </div>
+        {!hasPaidCredit && !(deviceCredits > 0) && !(result as any)._refunded && <PayWhatYouWant place="essay_preview" />}
       </CardContent>
     </Card>
   );

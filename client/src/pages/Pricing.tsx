@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
-import { PRICE_LABELS, type ProductKey } from "@shared/pricing";
+import { PAY_WHAT_YOU_WANT, PRICE_LABELS, type ProductKey } from "@shared/pricing";
 import { PurchaseModal } from "@/components/PurchaseModal";
 import { useMarkingCta } from "@/hooks/useMarkingCta";
 import {
@@ -119,6 +119,11 @@ export default function Pricing() {
                   ? "A full report adds the estimated mark, every comment and the ranked fixes to what the preview showed."
                   : "Paste your essay with no sign-in and no credit card. The preview shows a range of totals and, for most drafts, feedback on your weakest criterion and the top risks in your draft (for the TOK essay and exhibition, the band, the start of the explanation and the top risks)."}
               </p>
+              {PAY_WHAT_YOU_WANT.buyUrl && (
+                <p className="text-sm text-muted-foreground mt-2">
+                  Previews stay free. If one helped, you can pay what you want for it afterwards (${PAY_WHAT_YOU_WANT.suggestedUsd} suggested). Paying unlocks nothing extra.
+                </p>
+              )}
             </div>
             <Button size="sm" asChild className="flex-shrink-0 self-start sm:self-auto">
               <Link href="/essay">{previewUsed ? paidLabel : "Get a free preview"}</Link>

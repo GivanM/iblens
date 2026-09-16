@@ -11,6 +11,7 @@ import { AlertTriangle, TrendingDown, CalendarClock, ArrowRight, CheckCircle2 } 
 import { REMARK_FAQ } from "@shared/remarkFaq";
 import { EE_SUBJECTS } from "@shared/rubrics";
 import { useMarkingCta } from "@/hooks/useMarkingCta";
+import { PayWhatYouWant } from "@/components/PayWhatYouWant";
 import { useAuth } from "@/_core/hooks/useAuth";
 
 const SERIF = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
@@ -181,6 +182,7 @@ function RemarkQuickCheck() {
           )}
           <p className="text-sm text-muted-foreground mb-3">The full report, with the estimated mark, the full comments and a ranked list of fixes, unlocks on the grader page, where this preview is saved, {paidLeft > 0 ? "with one of your paid reports" : "for $9.99"}. Everything here is an estimate from a language model, not the IB's mark.</p>
           <Button asChild><Link href={`/essay?type=${essayType}&session=${essayType === "EE" ? sessionSat : LATEST_RESULTS_SESSION}${essayType === "EE" ? `&subject=${encodeURIComponent(subject)}` : ""}#saved-preview`}>{paidLeft > 0 ? "Unlock it on the grader page with one of your paid reports" : "Unlock it on the grader page, $9.99"}</Link></Button>
+          {paidLeft === 0 && <div className="mt-5"><PayWhatYouWant place="remark_check" /></div>}
         </div>
       )}
     </div>
