@@ -62,7 +62,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       }
       // Without a word, a locked preview simply vanished from the page when its report opened.
       if (d.reopened > 0) {
-        toast.success(`${d.reopened === 1 ? "A report" : `${d.reopened} reports`} you had already paid for in this account ${d.reopened === 1 ? "is" : "are"} now open on this device too.`, {
+        toast.success(`${d.reopened === 1 ? "A report" : `${d.reopened} reports`} you had already paid for in this account ${d.reopened === 1 ? "was" : "were"} locked on this device. ${d.reopened === 1 ? "It is" : "They are"} open again, and in your dashboard.`, {
           action: { label: "Open dashboard", onClick: () => setLocation("/dashboard") },
         });
       }

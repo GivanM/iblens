@@ -147,7 +147,7 @@ export default function AnalysisView() {
         {header}
         <Card className="border-primary/40">
           <CardHeader>
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Free preview</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{a.unlockOrderId || a.rerunOf ? "Preview (purchase refunded)" : "Free preview"}</p>
             <CardTitle style={SERIF} className="text-xl">{title}</CardTitle>
             <p className="text-sm text-muted-foreground">{dateLabel(a.createdAt)}</p>
           </CardHeader>

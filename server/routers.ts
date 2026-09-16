@@ -101,7 +101,7 @@ IMPORTANT FORMATTING RULES:
 - Write to the student in the second person ("you", "your essay"). Never refer to them as "the student" or "the candidate".
 - In every comment longer than three sentences, put a blank line (two newline characters) between separate points, so it reads as short paragraphs.
 - Use British spelling (analyse, organise, recognise, behaviour).
-- Never write a criterion's mark or the total inside a comment, risk, leverage zone, next step or the overall comment: the report shows the marks separately. Describe the level in words (for example "the Good band descriptor"), never as a number, and ${HOLISTIC_TYPES.has(essayType) ? "for this task, marked as a whole, explain in words in the criterion comment why the mark is the higher or the lower mark of its band (for example \"the higher mark of the band, because...\"), without writing the mark itself" : "never say where in a level the mark sits (top, bottom, upper or lower end)"}; a cap may name, in words, the highest mark it allows. Rules the notes ask you to explain, such as a cap or no marks for an essay not on a prescribed title, must still be stated, in words.
+- Never write a criterion's mark or the total inside a comment, risk, leverage zone, next step or the overall comment: the report shows the marks separately. Describe the level in words (for example "the Good band descriptor"), never as a number, and ${HOLISTIC_TYPES.has(essayType) ? "for this task, marked as a whole, explain in words in the criterion comment why the mark is the higher or the lower mark of its band (for example \"the higher mark of the band, because...\"), unless the mark is zero, without writing the mark itself" : "never say where in a level the mark sits (top, bottom, upper or lower end)"}; a cap may name, in words, the highest mark it allows. Rules the notes ask you to explain, such as a cap or no marks for an essay not on a prescribed title, must still be stated, in words.
 - The work arrives as pasted text, so graphs, images, photos, diagrams and screenshots never come through, and tables may lose their layout. Never lower a mark because a graph or image is not visible, and never call one missing. Where the work describes a graph or image, judge what the description shows, and put anything about the graph itself (axes, error bars, labels) as a check for the student to make, not as a reason for the mark. If the criteria require a diagram or graph and the text refers to none, say that none was referred to and ask the student to check.`;
 
   if (rubricFragment) {
@@ -264,8 +264,11 @@ function previousScores(prev: any) {
  * transport and parsing failures ("relay poll timeout after 240s", "Failed to parse
  * AI response") do not, because they read as a broken site and say nothing useful.
  */
+const REFUNDED_DURING_RECHECK = "This report's purchase was refunded while the re-check ran, so the re-check is closed with the report.";
+
 function friendlyRunError(error: any, what: string): string {
   const msg = String(error?.message || "");
+  if (msg === REFUNDED_DURING_RECHECK) return msg;
   if (!msg || /relay|timeout|timed out|parse|json|fetch|econn|socket|network|status code|\b5\d\d\b|overloaded|rate.?limit|anthropic|invalid response|unexpected token|undefined|null/i.test(msg)) {
     return `The ${what} did not finish, and nothing was used up. Please try again in a minute.`;
   }
@@ -474,6 +477,10 @@ const essayRouter = router({
           unlockOrderId: rec.unlockOrderId ?? null,
         });
         if (analysis?.id) await markAnalysisUnlocked(analysis.id, rec.unlockOrderId ?? undefined);
+        // Refunded while the model ran: the re-check was closed with the report it belongs to.
+        if (await isPurchaseRefunded(rec.unlockOrderId).catch(() => false)) {
+          throw new TRPCError({ code: "FORBIDDEN", message: REFUNDED_DURING_RECHECK });
+        }
 
         return {
           id: analysis.id,
@@ -631,10 +638,12 @@ const essayRouter = router({
             unlockOrderId: creditOrderId,
           }).catch((copyErr) => console.warn("[UCAS PS Review] Account copy failed:", copyErr));
         }
-        if (paid) {
+        // Refunded while the model ran: the row was closed again, so only its preview goes back.
+        const refundedMeanwhile = paid && await isPurchaseRefunded(paidByDevice ? deviceOrderId : creditOrderId).catch(() => false);
+        if (paid && !refundedMeanwhile) {
           return { result, wasAnonymous: !paidCredit, unlocked: true as const, id: saved?.id };
         }
-        return { result: buildUcasTeaser(result), wasAnonymous: true };
+        return { result: buildUcasTeaser(result), wasAnonymous: true, refunded: refundedMeanwhile };
       } catch (error: any) {
         console.error("[UCAS PS Review] Error:", error);
         if (claim?.id) await deleteAnonymousAnalysis(claim.id).catch(() => {});
@@ -752,6 +761,10 @@ const essayRouter = router({
             adoptedFromId: child.id,
             rerunOf: parentCopy.id,
           }).catch((copyErr) => console.warn("[Re-check] Account copy failed:", copyErr));
+        }
+        // Refunded while the model ran: the re-check was closed with the report it belongs to.
+        if (await isPurchaseRefunded(rec.unlockOrderId).catch(() => false)) {
+          throw new TRPCError({ code: "FORBIDDEN", message: REFUNDED_DURING_RECHECK });
         }
         return {
           result,
@@ -1012,7 +1025,7 @@ const essayRouter = router({
         const refundedMeanwhile = paidByDevice && await isPurchaseRefunded(deviceOrderId).catch(() => false);
         return paidByDevice && !refundedMeanwhile
           ? { result, wasAnonymous: true, unlocked: true as const }
-          : { result: buildTeaser(result), wasAnonymous: true };
+          : { result: refundedMeanwhile ? { ...buildTeaser(result), _refunded: true } : buildTeaser(result), wasAnonymous: true, refunded: refundedMeanwhile };
       } catch (error: any) {
         console.error("[Anonymous Essay Analysis] Error:", error);
         // A run that produced nothing must not cost the free slot it claimed, nor
@@ -1122,8 +1135,11 @@ const essayRouter = router({
 
         // Free tier gets a teaser; paid credits get the full report immediately.
         // Refunded while the model ran: the row was closed again, so only its preview goes back.
-        if (wasFree || await isPurchaseRefunded(creditOrderId).catch(() => false)) {
+        if (wasFree) {
           return { id: analysis.id, result: buildTeaser(result), wasFree: true };
+        }
+        if (await isPurchaseRefunded(creditOrderId).catch(() => false)) {
+          return { id: analysis.id, result: { ...buildTeaser(result), _refunded: true }, wasFree: true, refunded: true };
         }
         return { id: analysis.id, result, wasFree: false };
       } catch (error: any) {

@@ -51,6 +51,13 @@ export default function IBEconomicsExtendedEssay() {
         <li><strong>An evaluative edge:</strong> "To what extent" phrasing that forces a judgement about how far the theory explains the evidence.</li>
       </ul>
 
+      <p>
+        One rule depends on your session. If you sit your exams in November 2026, the Extended Essay
+        guide says topics should not be historical: they should relate to economic information,
+        policies, outcomes or events that are no more than approximately five years old. The guide for
+        May 2027 onward sets no such limit.
+      </p>
+
       <h3>Examples of strong Economics EE research questions</h3>
       <ul>
         <li>
@@ -107,12 +114,6 @@ export default function IBEconomicsExtendedEssay() {
         method (6), Knowledge and understanding (6), Critical thinking (12), Presentation (4) and
         Engagement (6, marked on the three RPPF reflections). The advice above carries over, because
         research, analysis, and discussion and evaluation together make up Critical thinking.
-      </p>
-      <p>
-        One rule depends on your session. If you sit your exams in November 2026, the Extended Essay
-        guide says topics should not be historical: they should relate to economic information,
-        policies, outcomes or events that are no more than approximately five years old. The guide for
-        May 2027 onward sets no such limit.
       </p>
 
       <h2>Theory, data and diagrams: what examiners expect</h2>

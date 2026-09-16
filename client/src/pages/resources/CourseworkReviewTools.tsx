@@ -57,7 +57,7 @@ export default function CourseworkReviewTools() {
       <h2>How IBLens works</h2>
 
       <p>
-        Paste your draft, pick the work type, subject and exam session, and IBLens marks it against the criteria for that combination, including both Extended Essay rubrics and the 2027 formats for Psychology and Computer Science. It also counts the words against the limit for the task. The preview (a range of totals and, for most drafts, the weakest criterion and top risks) is free with no account; the full report (criterion by criterion, or for the TOK essay and exhibition one holistic mark, explained) is $9.99 per piece of work, with no subscription to cancel.
+        Paste your draft, pick the work type, subject and exam session, and IBLens marks it against the criteria for that combination, including both Extended Essay rubrics and the 2027 formats for Psychology and Computer Science. It also counts the words against the limit for the task. The preview (a range of totals and, for most drafts, the weakest criterion and top risks; for the TOK essay and exhibition, the band, the start of the explanation and the top risks) is free with no account; the full report (criterion by criterion, or for the TOK essay and exhibition one holistic mark, explained) is $9.99 per piece of work, with no subscription to cancel.
       </p>
 
       <p>

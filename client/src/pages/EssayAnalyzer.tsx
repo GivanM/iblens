@@ -108,7 +108,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
     <Card className="border-primary/40">
       <CardHeader>
         <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-          Free preview
+          {(result as any)._refunded ? "Preview" : "Free preview"}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-5">
@@ -346,7 +346,9 @@ export default function EssayAnalyzer() {
       const wordCount = essayText.split(/\s+/).filter(Boolean).length;
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'essay_submit', essay_type: essayType, subject, word_count: wordCount });
-      if (data.wasFree) {
+      if ((data as any).refunded) {
+        toast.info("This report's purchase was refunded while it was being marked, so only its preview is shown.");
+      } else if (data.wasFree) {
         toast.success((credits?.essayCredits ?? 0) > 0 ? "Free preview ready. Unlock the full report with one of your paid reports." : `Free preview ready. The full report unlocks for ${PRICE_LABELS.ESSAY_SINGLE}.`);
       } else {
         toast.success("Your full report is ready below.");
@@ -373,7 +375,9 @@ export default function EssayAnalyzer() {
         setRecheckTargetId(null);
         deviceReportsQ.refetch();
       }
-      try { localStorage.setItem('iblens_anon_used', 'true'); } catch { /* storage blocked */ }
+      if (!data.refunded) {
+        try { localStorage.setItem('iblens_anon_used', 'true'); } catch { /* storage blocked */ }
+      }
       anonCheckQuery.refetch();
       anonReportQ.refetch();
       const r = data.result as EssayResult;
@@ -381,7 +385,8 @@ export default function EssayAnalyzer() {
       const wordCount = essayText.split(/\s+/).filter(Boolean).length;
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'essay_submit', essay_type: essayType, subject, word_count: wordCount });
-      toast.success(data.unlocked ? "Your paid report is open below." : (deviceCreditsQ.data?.credits ?? 0) > 0 ? "Free preview ready. Unlock the full report with one of your paid reports." : `Free preview ready. The full report unlocks for ${PRICE_LABELS.ESSAY_SINGLE}.`);
+      if (data.refunded) toast.info("This report's purchase was refunded while it was being marked, so only its preview is shown.");
+      else toast.success(data.unlocked ? "Your paid report is open below." : (deviceCreditsQ.data?.credits ?? 0) > 0 ? "Free preview ready. Unlock the full report with one of your paid reports." : `Free preview ready. The full report unlocks for ${PRICE_LABELS.ESSAY_SINGLE}.`);
     },
     onError: (error: { message: string }) => {
       toast.error(error.message);
@@ -704,7 +709,7 @@ export default function EssayAnalyzer() {
 
       {!result && lockedPreview && otherWorkRequested && (
         <div className="mb-6 rounded-lg border border-border bg-muted/40 p-3 text-sm flex flex-col sm:flex-row sm:items-center gap-2">
-          <span className="flex-1 text-muted-foreground">The free preview on this device was used on {lockedLabel || "another piece of work"}. {deviceCredits > 0 || (credits?.essayCredits ?? 0) > 0 ? "The work below can be marked with one of your paid reports." : `A full report for the work below is ${PRICE_LABELS.ESSAY_SINGLE}.`}</span>
+          <span className="flex-1 text-muted-foreground">{(lockedPreview as any).wasFreeRun === false ? `A refunded report on this device (${lockedLabel || "another piece of work"}) is locked.` : `The free preview on this device was used on ${lockedLabel || "another piece of work"}.`} {deviceCredits > 0 || (credits?.essayCredits ?? 0) > 0 ? "The work below can be marked with one of your paid reports." : `A full report for the work below is ${PRICE_LABELS.ESSAY_SINGLE}.`}</span>
           {lockedPreview.preview && (
             <Button variant="ghost" className="min-h-11 h-auto whitespace-normal" onClick={() => { setResultWork({ label: lockedLabel || "", kind: lockedPreview.essayType === "TOK" || lockedPreview.essayType === "TOK Exhibition" ? "tok" : "essay" }); setResult(lockedPreview.preview as EssayResult); setResultAnalysisId(null); }}>
               Reopen that preview
@@ -727,7 +732,7 @@ export default function EssayAnalyzer() {
             <div className="flex flex-col sm:flex-row gap-2">
               {lockedPreview.preview && (
                 <Button variant="outline" className="min-h-11 h-auto whitespace-normal" onClick={() => { setResultWork({ label: lockedLabel || "", kind: lockedPreview.essayType === "TOK" || lockedPreview.essayType === "TOK Exhibition" ? "tok" : "essay" }); setResult(lockedPreview.preview as EssayResult); setResultAnalysisId(null); }}>
-                  Reopen my free preview
+                  {(lockedPreview as any).wasFreeRun === false ? "Reopen its preview" : "Reopen my free preview"}
                 </Button>
               )}
               {isAuthenticated && (credits?.essayCredits ?? 0) > 0 ? (
@@ -886,7 +891,7 @@ export default function EssayAnalyzer() {
               <p className="text-xs text-muted-foreground">Up to 1,600 words. Examiners stop reading at the limit.</p>
             )}
             {isOral && (
-              <p className="text-xs text-muted-foreground">A transcript of a practice oral that uses works and a global issue different from those of your assessed oral is marked on all four criteria: the Language A guides do not let your teacher rehearse the actual oral with you. From an outline, criteria A to C are marked and Criterion D (language) is not, because spoken language cannot be judged from notes.</p>
+              <p className="text-xs text-muted-foreground">A transcript of a practice oral that uses texts and a global issue different from those of your assessed oral is marked on all four criteria: the Language A guides do not let your teacher rehearse the actual oral with you. From an outline, criteria A to C are marked and Criterion D (language) is not, because spoken language cannot be judged from notes.</p>
             )}
             {essayType === "IA" && subject === "Music" && (
               <p className="text-xs text-muted-foreground">Paste the written portfolio. Criteria A, B1 and B2 are marked on it. C1 and C2 judge the creating exercise and the performed adaptation themselves, which text cannot carry, so the report leaves them unmarked and gives the estimated mark out of the 18 marks it assessed.</p>

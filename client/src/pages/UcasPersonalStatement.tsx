@@ -177,6 +177,7 @@ export default function UcasPersonalStatement() {
     onSuccess: (data: any) => {
       setResult(data.result);
       setRechecksLeft(null);
+      if (data.refunded) toast.info("This review's purchase was refunded while it was being written, so only its preview is shown.");
       unlockedQ.refetch();
       if (isAuthenticated) creditsQ.refetch();
       deviceCreditsQ.refetch();

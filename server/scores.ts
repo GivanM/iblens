@@ -162,6 +162,8 @@ const LEVEL_NAME = String.raw`(?:excellent|good|satisfactory|basic|rudimentary)`
 const NEAR_LEVEL = new RegExp(String.raw`\b(?:approach\w*|toward\w*|between|closer|nearer|cusp|border\w*|edg\w*|short of|not quite|just|reach\w*|beyond|above|below|strong|solid|secure|high|low|upper|lower|top|bottom|middle|mid|nearly|almost|verg\w*|comfortabl\w*|firmly|squarely|lean\w*)\b[^.;:]{0,30}\b${LEVEL_NAME}\b|\b${LEVEL_NAME}\b[^.;:]{0,12}\bto\b[^.;:]{0,20}\b${LEVEL_NAME}\b|\b${LEVEL_NAME}\b[^.;:]{0,12}\b(?:rather than|but not|not yet|at best|at most|at the (?:very )?(?:most|least)|instead of|or (?:even |possibly |perhaps )?${LEVEL_NAME})\b|\b(?:great|greater|lesser|large|full|limited)\s+extent\b`, "i");
 // A task marked as a whole shows its band already; any sentence about band, level or mark says more.
 const HOLISTIC_MARK_WORDS = /\b(?:band|bands|level|levels|boundary|mark|marks|marked|marking|score|scored|scores|grade|graded)\b/i;
+// Where a mark sits without the words band or mark: "the higher of the two", "why not higher", "one step away from Excellent".
+const HOLISTIC_PLACEMENT = /\b(?:placement|placements|placed|placing)\b|\b(?:higher|lower|upper|stronger|weaker|better|lesser|greater) of the two\b|\bwhy not (?:higher|lower)\b|\bone step (?:away )?(?:from|below|short of)\b|\b(?:weaker|stronger|better|best|weakest|strongest) (?:essays?|exhibitions?|responses?|work|ones?) (?:in|of|within|at)\b|\b(?:this|that|the same|its) range\b|\bfalls? short of the (?:higher|top|next|upper|stronger)\b|\bpossible outcomes\b/i;
 const SMALL_WORD = /\b(?:a|an)\s+(?:one|two|three|four|five|six|seven|eight|nine|ten)\b(?!-)/i;
 const SMALL_NUMBER = /\b(?:10|[0-9])\b(?!\s*(?:,\d{3}|words?|%|per ?cent|pages?|sources?|objects?|prompts?|titles?|areas?|examples?|claims?|paragraphs?|sections?|minutes?|hours?|years?|knowers?|perspectives?))/i;
 
@@ -336,7 +338,7 @@ export function statesMark(s: string, opts: MarkTextOptions = {}): boolean {
   // "full marks" in the weakest criterion's own comment is about that criterion's scale.
   if (!(opts.allow && !aboutOthers) && (NO_MARKS.test(t) || NUMBER_WORD_MARK.test(measured))) return true;
   if (POSITION.test(t)) return true;
-  if (opts.holistic) return HOLISTIC_MARK_WORDS.test(t) || NEAR_LEVEL.test(t) || NEAR_NAMED_LEVEL.test(t) || CANNOT_SCORE.test(t) || AT_TOP.test(t) || BAND_POSITION.test(t) || /\b\d+\s*(?:%|per ?cent)(?!\s+of\s+(?!the\s+marks|marks|the\s+total))/i.test(t);
+  if (opts.holistic) return HOLISTIC_MARK_WORDS.test(t) || HOLISTIC_PLACEMENT.test(t) || NEAR_LEVEL.test(t) || NEAR_NAMED_LEVEL.test(t) || CANNOT_SCORE.test(t) || AT_TOP.test(t) || BAND_POSITION.test(t) || /\b\d+\s*(?:%|per ?cent)(?!\s+of\s+(?!the\s+marks|marks|the\s+total))/i.test(t);
   // The weakest criterion's own position and caps are what its shown mark already says.
   const placed = AT_TOP.test(t) || BAND_POSITION.test(t) || CANNOT_SCORE.test(t);
   if (opts.allow) return (placed && aboutOthers) || placesOther;

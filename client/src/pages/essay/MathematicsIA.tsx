@@ -39,7 +39,7 @@ const config: SubjectConfig = {
       { title: "Mathematics for show", text: "Overly complicated methods where simpler ones would do. The guide does not count them as relevant, and a few things done well score better than many done badly." },
       { title: "Answers without understanding", text: "Correct results from a calculator or software with no reasoning shown. Obtaining the right answer is not enough to demonstrate understanding." },
       { title: "No aim", text: "Starting without saying what you want to find out. A stated aim is part of a well-organised exploration under Presentation, and reflection is easier to show when it links back to the aim." },
-      { title: "Unlabelled graphs", text: "Graphs without labels are one of the guide's examples of the lowest level of Mathematical communication." },
+      { title: "Unlabelled graphs", text: "Graphs without labels are one of the guide's examples of level 1 of Mathematical communication." },
     ],
     faq: [
       { q: "Does it work for both AA and AI?", a: "Yes. The criteria are the same for both courses. What differs is the syllabus, which sets what counts as mathematics at the level of your course. There are separate pages for Analysis and approaches and for Applications and interpretation." },

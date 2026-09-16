@@ -1181,7 +1181,8 @@ export async function openDeviceRowsOfOpenCopies(fingerprint: string, userId: nu
   let opened = 0;
   for (const row of locked as any[]) {
     const copy = await findUnlockedCopyInChain(userId, row).catch(() => null);
-    if (copy && await claimAnonymousUnlock(row.id, copy.unlockOrderId ?? null)) opened++;
+    // One report is counted once: its re-checks open with it.
+    if (copy && await claimAnonymousUnlock(row.id, copy.unlockOrderId ?? null) && !row.rerunOf) opened++;
   }
   return opened;
 }

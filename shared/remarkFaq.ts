@@ -18,6 +18,6 @@ export const REMARK_FAQ: Array<{ question: string; answer: string }> = [
   },
   {
     question: "Should I ask for a re-mark of my EE or TOK essay?",
-    answer: "The EE and the TOK essay are externally assessed, so a category 1 re-mark covers them (a re-mark covers the subject's externally assessed work, not one component, and definitively marked work cannot be re-marked). Whether it is worth it depends on how far your mark is from a grade boundary: for the EE the essay is the only component; for TOK the grade comes from the overall TOK mark, in which the essay counts for two-thirds and the exhibition for one-third. Your coordinator can see the marks and the boundaries. Checking the submitted essay against the criteria shows where it is strong and weak, but no tool can predict a re-mark.",
+    answer: "The EE and the TOK essay are externally assessed, so a category 1 re-mark covers them (a re-mark covers all of the subject's externally assessed work, not one component). Whether it is worth it depends on how far your mark is from a grade boundary: for the EE the essay is the only component; for TOK the grade comes from the overall TOK mark, in which the essay counts for two-thirds and the exhibition for one-third. Your coordinator can see the marks and the boundaries. Checking the submitted essay against the criteria shows where it is strong and weak, but no tool can predict a re-mark.",
   },
 ];

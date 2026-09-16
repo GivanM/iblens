@@ -47,13 +47,13 @@ export default function IBEEExamplesBySubject() {
       <h3>Economics Extended Essay</h3>
       <p>
         <strong>Strong research question:</strong> "To what extent has the 2023 expansion
-        of London's Ultra Low Emission Zone increased consumer surplus for residents
-        while reducing it for commuters?"
+        of London's Ultra Low Emission Zone changed consumer surplus for outer-London
+        commuters?"
       </p>
       <p>
         What makes this work: it is specific (one policy in one city), it uses Economics concepts precisely (consumer surplus, externalities,
-        cost-benefit analysis), and it has a debatable answer: the effects on
-        different groups pull in opposite directions. The student can use Transport for
+        cost-benefit analysis), and it has a debatable answer: the charge's costs and the
+        benefits of cleaner air fall on the same group. The student can use Transport for
         London data, academic studies of ULEZ impacts, and newspaper reports as sources.
       </p>
       <p>

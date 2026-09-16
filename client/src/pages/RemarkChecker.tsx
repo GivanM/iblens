@@ -19,7 +19,7 @@ const SERIF = { fontFamily: "'Playfair Display', Georgia, serif" };
 const TIMELINE = [
   { date: "Early July", event: "May session results released on candidates.ibo.org" },
   { date: "15 September", event: "Last day for enquiry upon results requests for the May session, made through your school" },
-  { date: "Mid-December", event: "November session results released (16 December in 2025: to schools from 9pm GMT and, by default, on candidates.ibo.org six hours later, at 3am GMT on 17 December, though your school can choose any time from 9pm GMT on 16 December to 48 hours after it); your coordinator confirms the date" },
+  { date: "Mid-December", event: "November session results released (16 December in 2025: to schools from 7pm GMT and, by default, on candidates.ibo.org six hours later, at 1am GMT on 17 December, though your school can choose any time from 7pm GMT on 16 December up to 48 hours after that); your coordinator confirms the date" },
   { date: "15 March", event: "Last day for enquiry upon results requests for the November session, made through your school" },
 ];
 

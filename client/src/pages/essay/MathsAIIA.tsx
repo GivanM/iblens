@@ -38,7 +38,7 @@ const config: SubjectConfig = {
       { title: "Data with no question", text: "Collecting data first and looking for mathematics afterwards leaves the exploration without an aim, which Presentation and Reflection both depend on." },
       { title: "A model that is never questioned", text: "Fitting a model and stopping there. Discussing how well it fits, what it assumes and where it breaks down is the kind of reflection that goes beyond describing results." },
       { title: "Mathematics for show", text: "Overly complicated methods where simpler ones would do. The guide does not count them as relevant, and a few things done well score better than many done badly." },
-      { title: "Unlabelled graphs", text: "Graphs without labels are one of the guide's examples of the lowest level of Mathematical communication." },
+      { title: "Unlabelled graphs", text: "Graphs without labels are one of the guide's examples of level 1 of Mathematical communication." },
     ],
     faq: [
       { q: "What is the difference between the AI and AA IA?", a: "The criteria and the 20-mark total are the same. The syllabus differs, and Use of mathematics is judged against the course you take and your level." },

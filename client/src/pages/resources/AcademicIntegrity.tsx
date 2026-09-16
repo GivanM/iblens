@@ -46,8 +46,8 @@ export default function AcademicIntegrity() {
       <p>
         Two important caveats. First, <strong>your school may have its own stricter rules</strong>: some schools
         restrict any AI use on assessed work. Check with your IB coordinator; when in doubt, disclose.
-        Second, the line is bright: the moment AI-generated text goes <em>into</em> your essay, it stops
-        being your work. Never paste AI writing into a submission.
+        Second, the line is bright: AI-generated text in your essay is not your work. Never submit it as
+        your own, and credit any AI wording you do include, as set out below.
       </p>
 
       <h2>How to use AI feedback with integrity</h2>
@@ -63,7 +63,7 @@ export default function AcademicIntegrity() {
         <li><strong>AI material in your work must be credited.</strong> The IB academic integrity policy says that if you copy or paraphrase text produced by an AI tool, or use an image, graph or other material from one, you must reference the tool in the body of the work and add it to the bibliography, and the in-text citation should use quotation marks in your school's referencing style and give the prompt you used and the date the text was generated. IBLens describes what to change rather than writing text for you, but if any wording from a report goes into your work, even paraphrased, credit it in the same way.</li>
         <li><strong>Mention it to your teacher or supervisor,</strong> as the rule above says. For the Extended Essay, a supervision session is the natural place.</li>
         <li><strong>Keep the reports with your drafts.</strong> Together they show that the revisions came from you. Save each report with your browser's print to PDF (saved reports in an account also have a Save as PDF button).</li>
-        <li><strong>Orals and the TOK exhibition work the same way.</strong> The ideas and words in your individual oral or exhibition commentary must be yours. The Language A guides let teachers give feedback on your outline, and on practice orals that use different works and global issues, but not rehearse the actual oral with you, so do not get feedback from anyone, a tool included, on a rehearsal of the oral you will deliver. A script written by a tool is never allowed.</li>
+        <li><strong>Orals and the TOK exhibition work the same way.</strong> The ideas and words in your individual oral or exhibition commentary must be yours. The Language A guides let teachers give feedback on your outline, and on practice orals that use different texts and global issues, but not rehearse the actual oral with you, so do not get feedback from anyone, a tool included, on a rehearsal of the oral you will deliver. A script written by a tool is never allowed.</li>
       </ul>
 
       <h2>What IBLens does with your essay</h2>

@@ -34,7 +34,7 @@ export default function IBEconomicsIA() {
         <li><strong>Criterion B: Terminology (2 marks).</strong> Is economic terminology relevant to the article used appropriately throughout the commentary?</li>
         <li><strong>Criterion C: Application and analysis (3 marks).</strong> Is relevant economic theory applied to the article throughout the commentary, with effective economic analysis?</li>
         <li><strong>Criterion D: Key concept (3 marks).</strong> Is a key concept identified, with its link to the article fully explained?</li>
-        <li><strong>Criterion E: Evaluation (3 marks).</strong> Are judgements supported by effective and balanced reasoning: the short run against the long run, who gains and who loses, and the assumptions underneath?</li>
+        <li><strong>Criterion E: Evaluation (3 marks).</strong> Are judgements supported by effective and balanced reasoning (for example, weighing the short run against the long run, who gains and who loses, and the assumptions underneath)?</li>
       </ul>
       <p>
         A good commentary that falls short of the top might score 2, 2, 2, 3 and 2 on the
