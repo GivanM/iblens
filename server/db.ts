@@ -1,4 +1,4 @@
-import { eq, desc, sql, and, lt, inArray } from "drizzle-orm";
+import { eq, desc, sql, and, lt, gte, inArray, isNull } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import mysql from "mysql2/promise";
 import { InsertUser, users, analyses, InsertAnalysis, payments, InsertPayment, anonymousAnalyses, InsertAnonymousAnalysis, orders, InsertOrder, webhookEvents, InsertWebhookEvent, deviceCredits, creditLedger, InsertCreditLedgerEntry, revokedSessions, creditLots } from "../drizzle/schema";
@@ -172,6 +172,24 @@ export async function getUserAnalyses(userId: number, limit = 20) {
   if (!db) return [];
 
   return db.select().from(analyses).where(eq(analyses.userId, userId)).orderBy(desc(analyses.createdAt)).limit(limit);
+}
+
+/** The newest report of this account opened within the window, re-check versions left out. */
+export async function getRecentlyOpenedReport(userId: number, withinMs: number) {
+  const db = await getDb();
+  if (!db) return null;
+  const rows = await db
+    .select({ id: analyses.id, essayType: analyses.essayType, subject: analyses.subject })
+    .from(analyses)
+    .where(and(
+      eq(analyses.userId, userId),
+      eq(analyses.unlocked, true),
+      isNull(analyses.rerunOf),
+      gte(analyses.unlockedAt, new Date(Date.now() - withinMs)),
+    ))
+    .orderBy(desc(analyses.unlockedAt))
+    .limit(1);
+  return rows[0] ?? null;
 }
 
 export async function getAnalysisById(id: number, userId: number) {

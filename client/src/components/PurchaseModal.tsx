@@ -179,7 +179,7 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPrev
           <div className="text-center">
             <p className="text-sm text-muted-foreground mb-1">{label}</p>
             <p className="text-4xl font-bold tracking-tight">{price} <span className="text-base font-medium text-muted-foreground">USD</span></p>
-            <p className="text-xs text-muted-foreground mt-1">One-time payment. No subscription.</p>
+            <p className="text-xs text-muted-foreground mt-1">One-time payment, plus VAT or sales tax where it applies. No subscription.</p>
             <div className="mt-3 rounded-lg bg-muted/50 p-3 text-left">
               <p className="text-xs font-medium mb-1">What you get</p>
               <ul className="text-xs text-muted-foreground space-y-1 list-disc pl-4">

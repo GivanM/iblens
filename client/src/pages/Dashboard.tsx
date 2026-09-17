@@ -83,8 +83,13 @@ export default function Dashboard() {
         <Card className="max-w-md w-full">
           <CardContent className="p-8 text-center">
             <h2 style={SERIF} className="text-xl font-bold mb-3">Sign in to access your dashboard</h2>
-            <p className="text-muted-foreground mb-6 text-sm">See your reports, how many paid reports you have left, and your purchases.</p>
+            <p className="text-muted-foreground mb-4 text-sm">See your reports, how many paid reports you have left, and your purchases.</p>
             <Button asChild><a href={getLoginUrl()}>Sign in</a></Button>
+            <p className="text-muted-foreground mt-6 text-sm text-left">
+              Bought a report? If you were signed in when you paid, it is in that Google account. If you paid without
+              an account, sign in with the Google account for the email you paid with and it moves here; it also stays in
+              the browser you bought it in, on the <Link href="/essay" className="underline">grader page</Link>.
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -250,7 +255,7 @@ export default function Dashboard() {
               <Loader2 className="w-6 h-6 animate-spin text-muted-foreground" />
             </div>
           ) : history.length === 0 ? (
-            <p className="text-muted-foreground text-sm text-center py-6">{credits?.freeEssayAvailable ? "No reports yet. Start with a free preview." : "No reports saved to this account yet."}</p>
+            <p className="text-muted-foreground text-sm text-center py-6">{credits?.freeEssayAvailable ? "No reports yet. Start with a free preview." : "No reports saved to this account yet."} Looking for a report you paid for? It stays in the account that was signed in when it was bought, whichever email paid.</p>
           ) : (
             <div className="space-y-2">
               {history.map((item) => (

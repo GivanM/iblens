@@ -11,6 +11,7 @@ import {
   createAnalysis,
   upsertAccountCopy,
   getUserAnalyses,
+  getRecentlyOpenedReport,
   getAnalysisById,
   canUserAnalyzeEssay,
   consumeEssayCredit,
@@ -1176,6 +1177,12 @@ const dashboardRouter = router({
       // the headline of the paid report.
       return rows.map((r: any) => (r.unlocked ? r : { ...r, predictedGrade: null, resultJson: null }));
     }),
+
+  /** The newest report opened in the last day, for the "your full report is open" notice. */
+  recentlyOpened: protectedProcedure.query(async ({ ctx }) => {
+    const row = await getRecentlyOpenedReport(ctx.user.id, 24 * 60 * 60 * 1000);
+    return row ? { id: row.id, essayType: row.essayType, subject: row.subject } : null;
+  }),
 
   /** Delete one report from the account, for real, because the privacy page says so. */
   deleteAnalysis: protectedProcedure

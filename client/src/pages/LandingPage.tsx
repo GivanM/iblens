@@ -214,7 +214,7 @@ export default function LandingPage() {
               />
               <FAQItem
                 question="What payment methods do you accept?"
-                answer="Payments are handled by Lemon Squeezy, which accepts major cards and the other methods shown at checkout. Your reports are added automatically once the payment is confirmed, and you do not need an account to pay."
+                answer="Payments are handled by Lemon Squeezy, which accepts major cards and the other methods shown at checkout. Prices are in US dollars, and VAT or sales tax is added at checkout where it applies. Your reports are added automatically once the payment is confirmed, and you do not need an account to pay."
               />
               <FAQItem
                 question="Is my essay private?"

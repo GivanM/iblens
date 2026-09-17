@@ -34,6 +34,7 @@ import { getAnonFingerprint } from "@/lib/fingerprint";
 import { capitalise, fullReportAdds, type CriterionScope } from "@/lib/reportScope";
 import { trackEssaySubmitted, trackEssayUploadStarted } from "@/lib/analytics/track";
 import { PayWhatYouWant } from "@/components/PayWhatYouWant";
+import { markReportSeen } from "@/components/ReportReadyBanner";
 
 const SERIF = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
 
@@ -1242,7 +1243,7 @@ export default function EssayAnalyzer() {
             </div>
           )}
           {(result as any).locked ? (
-            <LockedTeaser essayText={essayText} result={result} isAuthenticated={isAuthenticated} hasPaidCredit={(credits?.essayCredits ?? 0) > 0} fingerprint={anonFp} analysisId={resultAnalysisId} onUnlocked={(full: any) => { setResult(full as EssayResult); setRerunDelta(null); }} deviceCredits={deviceCredits} deviceUnlocking={deviceUnlock.isPending} onDeviceUnlock={() => deviceUnlock.mutate({ fingerprint: anonFp })} onBuy={() => openBuy("preview", resultWork?.label ?? lockedLabel, resultWork?.kind ?? "essay", (result as any)?.criteria_names ?? null)} />
+            <LockedTeaser essayText={essayText} result={result} isAuthenticated={isAuthenticated} hasPaidCredit={(credits?.essayCredits ?? 0) > 0} fingerprint={anonFp} analysisId={resultAnalysisId} onUnlocked={(full: any) => { setResult(full as EssayResult); setRerunDelta(null); markReportSeen(resultAnalysisId); }} deviceCredits={deviceCredits} deviceUnlocking={deviceUnlock.isPending} onDeviceUnlock={() => deviceUnlock.mutate({ fingerprint: anonFp })} onBuy={() => openBuy("preview", resultWork?.label ?? lockedLabel, resultWork?.kind ?? "essay", (result as any)?.criteria_names ?? null)} />
           ) : (<>
           {/* Overall Score */}
           <Card>

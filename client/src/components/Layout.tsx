@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { trpc } from "@/lib/trpc";
 import { getAnonFingerprint, rotateAnonFingerprint } from "@/lib/fingerprint";
 import { toast } from "sonner";
+import { ReportReadyBanner } from "@/components/ReportReadyBanner";
 import { LayoutDashboard, LogOut, User, Menu, X } from "lucide-react";
 import { useState } from "react";
 
@@ -88,6 +89,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
       <header className={PHOTO_HEADER_PATHS.has(location) ? `absolute inset-x-0 top-0 z-50 ${mobileMenuOpen ? "bg-background border-b border-border" : ""}` : "sticky top-0 z-50 border-b bg-background/95 backdrop-blur-md border-border"}>
+        <ReportReadyBanner />
         <div className="container flex items-center justify-between h-16">
           <div className="flex items-center gap-8">
             <Link href="/" className="flex items-center gap-2">

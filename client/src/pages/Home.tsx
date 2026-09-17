@@ -39,7 +39,7 @@ const SUBJECTS: [string, string][] = [
 const FAQ: [string, string][] = [
   ["Which subjects and types of work does IBLens mark?", "The IA or coursework in 14 subjects (Business Management, Economics, History, Biology, Chemistry, Physics, Mathematics, English A Language and Literature, English A Literature, Psychology, Computer Science, and the externally assessed coursework in Visual Arts, Music and Film), the Extended Essay, the TOK essay and the TOK exhibition. Each is marked on its own published criteria for your exam session. Visual Arts can be marked only for sessions through November 2026: from May 2027 the comparative study is no longer set."],
   ["Is the first preview really free?", "Yes. The first preview is free: a range of totals and, for most drafts, feedback on your weakest criterion and the top risks in your draft (for the TOK essay and exhibition, which are marked as a whole, the band, the start of the explanation and the top risks). The complete report, with an estimated mark, a mark and comment for each criterion that can be judged from your text (for the TOK essay and exhibition, the whole explanation) and a ranked list of fixes, unlocks for $9.99."],
-  ["What payment methods do you accept?", "Payments are handled by Lemon Squeezy, which accepts major cards and the other methods shown at checkout. Your reports are added automatically once the payment is confirmed."],
+  ["What payment methods do you accept?", "Payments are handled by Lemon Squeezy, which accepts major cards and the other methods shown at checkout. Prices are in US dollars, and VAT or sales tax is added at checkout where it applies. Your reports are added automatically once the payment is confirmed."],
   ["What if I'm not satisfied with my report?", "Email us at glushkovim@gmail.com within 7 days of your purchase and we'll refund you in full, no questions asked. We send the refund to the original payment method within 3-5 business days of approving it, and your bank may take a further 5-10 business days to show it."],
 ];
 
@@ -213,7 +213,7 @@ export default function Home() {
               <div className="hc-pack"><div><b>5 reports, {PRICE_LABELS.ESSAY_PACK_5}</b><br /><span>$5.00 per report</span></div><button type="button" className="hc-btn line" onClick={() => buy("ESSAY_PACK_5")}>Buy 5 reports</button></div>
               <div className="hc-pack"><div><b>10 reports, {PRICE_LABELS.ESSAY_PACK_10}</b><br /><span>$4.50 per report</span></div><button type="button" className="hc-btn line" onClick={() => buy("ESSAY_PACK_10")}>Buy 10 reports</button></div>
             </div>
-            <p className="fine">Not what you needed? Email us within 7 days for a full refund. <Link href="/refund-policy" className="hc-link">Refund policy</Link></p>
+            <p className="fine">Prices in US dollars; VAT or sales tax is added at checkout where it applies. Not what you needed? Email us within 7 days for a full refund. <Link href="/refund-policy" className="hc-link">Refund policy</Link></p>
           </div>
         </section>
 
