@@ -183,7 +183,7 @@ export default function Home() {
               {SUBJECTS.map(([href, label], i) => (
                 <span key={label}><Link href={href}>{label}</Link>{i < SUBJECTS.length - 1 ? ", " : ""}</span>
               ))}
-              , the coursework in Visual Arts, Music and Film, the <Link href="/essay/extended-essay">Extended Essay</Link>, the <Link href="/essay/tok-essay">TOK essay</Link> and the <Link href="/essay/tok-exhibition">TOK exhibition</Link>.
+              , the coursework in Visual Arts, <Link href="/essay/music-exploring-music-in-context">Music</Link> and <Link href="/essay/film-textual-analysis">Film</Link>, the <Link href="/essay/extended-essay">Extended Essay</Link>, the <Link href="/essay/tok-essay">TOK essay</Link> and the <Link href="/essay/tok-exhibition">TOK exhibition</Link>.
             </p>
             <p className="note">The Extended Essay can be marked on the November 2026 or the May 2027 criteria, and Psychology and Computer Science on their 2027 formats. Pick your session and the report follows it.</p>
           </div>

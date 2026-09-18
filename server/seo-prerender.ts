@@ -590,6 +590,20 @@ const routeMeta: Record<string, PageMeta> = {
     canonical: "/essay/tok-exhibition",
     schemaType: "WebPage",
   },
+  "/essay/film-textual-analysis": {
+    title: "IB Film Textual Analysis Feedback: AI Marking on the Three Criteria | IBLens",
+    description: "AI feedback on your IB Film textual analysis: cultural context, film elements and the relationships within the film text, marked out of 28, with the words counted against 1,750. Free preview first.",
+    ogType: "website",
+    canonical: "/essay/film-textual-analysis",
+    schemaType: "WebPage",
+  },
+  "/essay/music-exploring-music-in-context": {
+    title: "IB Music Exploring Music in Context Feedback: AI Marking | IBLens",
+    description: "AI feedback on the written part of your IB Music exploring music in context portfolio: selection of evidence, musical research and implications, with the words counted against 2,400. Free preview first.",
+    ogType: "website",
+    canonical: "/essay/music-exploring-music-in-context",
+    schemaType: "WebPage",
+  },
   "/essay/maths-aa-ia": {
     title: "IB Math AA IA Grader: AI Feedback on Your Analysis and Approaches Exploration | IBLens",
     description: "AI feedback on your IB Mathematics: Analysis and Approaches exploration: presentation, mathematical communication, personal engagement, reflection and use of mathematics, marked out of 20.",

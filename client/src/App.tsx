@@ -76,6 +76,8 @@ import TokEssay from "./pages/essay/TokEssay";
 import BusinessManagementIA from "./pages/essay/BusinessManagementIA";
 import ComputerScienceIA from "./pages/essay/ComputerScienceIA";
 import TokExhibition from "./pages/essay/TokExhibition";
+import FilmTextualAnalysis from "./pages/essay/FilmTextualAnalysis";
+import MusicExploringMusicInContext from "./pages/essay/MusicExploringMusicInContext";
 import MathsAAIA from "./pages/essay/MathsAAIA";
 import MathsAIIA from "./pages/essay/MathsAIIA";
 import LandingPage from "./pages/LandingPage";
@@ -100,6 +102,8 @@ function Router() {
       <Route path="/essay/business-management-ia" component={BusinessManagementIA} />
       <Route path="/essay/computer-science-ia" component={ComputerScienceIA} />
       <Route path="/essay/tok-exhibition" component={TokExhibition} />
+      <Route path="/essay/film-textual-analysis" component={FilmTextualAnalysis} />
+      <Route path="/essay/music-exploring-music-in-context" component={MusicExploringMusicInContext} />
       <Route path="/essay/maths-aa-ia" component={MathsAAIA} />
       <Route path="/essay/maths-ai-ia" component={MathsAIIA} />
       <Route path="/university" component={UniversityStrategy} />
