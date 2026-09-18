@@ -38,4 +38,6 @@ export const ESSAY_PAGE_NAMES: Record<string, string> = {
   "/essay/psychology-ia": "Psychology IA",
   "/essay/tok-essay": "TOK essay",
   "/essay/tok-exhibition": "TOK exhibition",
+  "/essay/film-textual-analysis": "Film textual analysis",
+  "/essay/music-exploring-music-in-context": "Music exploring music in context",
 };
