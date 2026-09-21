@@ -102,6 +102,10 @@
 }
 .excerpt-body th {
   font-weight: 600;
+  /* long column headings wrap so a table stays narrow on a phone */
+  white-space: normal;
+  min-width: 5.5rem;
+  vertical-align: bottom;
 }
 .excerpt-body ol {
   list-style: decimal;

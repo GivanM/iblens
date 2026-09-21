@@ -29,7 +29,7 @@ export default function IBMathIAExamples() {
         each, C and D 3 marks each, and E 6 marks:
       </p>
       <ul>
-        <li><strong>Criterion A: Presentation (4 marks).</strong> Is the exploration coherent, well organised and concise, with an introduction, a rationale, a stated aim and a conclusion, and graphs and tables placed where they are discussed?</li>
+        <li><strong>Criterion A: Presentation (4 marks).</strong> Is the exploration coherent, well organised and concise, with an introduction, a clearly described aim and a conclusion, and graphs and tables placed where they are discussed?</li>
         <li><strong>Criterion B: Mathematical communication (4 marks).</strong> Are notation, symbols and terminology correct, consistent and defined, and do you use more than one form of representation (formulae, diagrams, tables, graphs) where it helps?</li>
         <li><strong>Criterion C: Personal engagement (3 marks).</strong> Does the work show you thinking independently or creatively, presenting ideas in your own way or testing your own predictions, rather than reproducing a textbook treatment?</li>
         <li><strong>Criterion D: Reflection (3 marks).</strong> Do you discuss limitations, surprises, and what you would do differently? Is your thinking visible throughout?</li>
@@ -55,12 +55,12 @@ export default function IBMathIAExamples() {
         The exploration: the paper cone cups at a school water dispenser. For a fixed volume,
         which cone shape uses the least paper, and do the real cups use it? The mathematics is
         optimisation with derivatives, which is in the Analysis and Approaches SL syllabus, so
-        read this as an SL exploration; at HL the same aim would need mathematics commensurate
-        with HL. The five criteria are the same for Applications and Interpretation.
+        read this as an SL exploration; at HL the same aim would need mathematics that shows
+        the sophistication the HL descriptors ask for. The five criteria are the same for Applications and Interpretation.
       </p>
       <p>
-        The central result, h = r√2, is a standard textbook exercise, so on its own it would read
-        as a textbook treatment. What makes the exploration the student's own is testing the
+        The central result, h = r√2, is a standard textbook exercise, so deriving it would show
+        little personal engagement on its own. What makes the exploration the student's own is testing the
         result against real cups and following up what the test showed. The passages appear in
         the order they come in the exploration, so the criteria run A, B, E, C, D.
       </p>
@@ -69,7 +69,7 @@ export default function IBMathIAExamples() {
         heading="The aim (Criterion A: Presentation)"
         weaker={<p>In this exploration I will be looking at cones and how they are used in real life, because cones are everywhere, from ice cream to traffic cones.</p>}
         stronger={<p>The paper cups at our school's water dispenser are cones, and the bin beside it fills with them every day, which made me wonder whether their shape wastes paper. Aim: for a cone that holds a fixed volume, find the ratio of height to radius for which the cone uses the least paper, and test whether these cups use it. I measured the cups, modelled the paper as the curved surface of a cone, and minimised that area using differentiation.</p>}
-        why="Criterion A rewards an exploration that is coherent, well organised and concise, and the guide expects it to give a rationale and describe its aim. The weaker opening never states an aim: cones in real life is a topic, not a question. The stronger one gives a reason for the choice, then says what will be found, about which object and by what method, in three sentences a reader can hold on to for the rest of the exploration."
+        why="Criterion A rewards an exploration that is coherent, well organised and concise, and the guide describes a well-organised exploration as one that has an introduction, describes its aim and has a conclusion. The weaker opening never states an aim: cones in real life is a topic, not a question. The stronger one gives a reason for the choice, which helps a reader follow it, then says what will be found, about which object and by what method, in three sentences a reader can hold on to for the rest of the exploration."
       />
 
       <AnnotatedExcerpt
@@ -114,20 +114,20 @@ export default function IBMathIAExamples() {
             <p>Setting this equal to zero gives r⁶ = 9V²/(2π²), which has exactly one positive solution. Substituting V = ⅓πr²h back in gives r⁶ = r⁴h²/2, so h² = 2r² and h = r√2 ≈ 1.41r. The second derivative, d²(A²)/dr² = 12π²r² + 54V²/r⁴, is positive for every r &gt; 0, so d(A²)/dr is increasing: it is negative before this point and positive after it. A² therefore decreases and then increases, and this stationary point gives the smallest curved surface area of any cone with this volume.</p>
           </>
         }
-        why="Criterion E asks for relevant mathematics commensurate with the level of the course, used correctly and with understanding demonstrated. The weaker line asserts both the result and that it is a minimum without showing either. The stronger one derives the result, shows that it is a minimum rather than a maximum, and explains why it is the minimum over every cone of this volume. At HL this derivation alone would not be commensurate with the course, and the upper levels also ask for sophistication or rigour (level 5) and for precise mathematics with both (level 6)."
+        why="Criterion E asks for relevant mathematics commensurate with the level of the course, used correctly and with understanding demonstrated. The weaker line asserts both the result and that it is a minimum without showing either. The stronger one derives the result, shows that it is a minimum rather than a maximum, and explains why it is the minimum over every cone of this volume. At HL this derivation still counts as commensurate, because SL content is part of the HL course, but it shows no sophistication, which the guide defines as HL mathematics or SL mathematics used in a way beyond what an SL student could reasonably be expected to do: level 5 asks for sophistication or rigour, and level 6 for precise mathematics with both."
       />
 
       <AnnotatedExcerpt
         heading="Testing it against the real cups (Criterion C: Personal engagement)"
         weaker={<p>I found online that cone cups are about 7 cm wide and 9 cm tall, so they are not the optimal shape. I found this very interesting, because I have always been interested in maths and in how things are designed.</p>}
-        stronger={<p>I expected a manufacturer to minimise paper, so I predicted that the cups would be close to h = 1.41r. The cup in my hand already disagreed: h = 1.41r gives a cone about 1.4 times as wide as it is deep, and these cups are deeper than they are wide. To find out how far apart they are, I measured ten cups with vernier callipers. The paper gives slightly under the jaws, so the rim diameters ranged from 6.9 cm to 7.1 cm and the heights from 8.8 cm to 9.1 cm, with means of 7.00 cm and 9.00 cm; I took r = 3.50 cm, h = 9.00 cm and V = 115.5 cm³. The real cup has h/r = 2.57, far from 1.41. For this volume the optimum is r = 4.27 cm and h = 6.04 cm, which would use 99.3 cm² of paper instead of the real cup's 106.2 cm², 6.5% less. To see what that saving would cost, I cut out and built the optimal cone. Its net is a sector of 208°, against 130° for the real cup, and the cone is 8.5 cm across but only 6.0 cm deep: a bowl rather than a cup.</p>}
+        stronger={<p>I expected a manufacturer to minimise paper, so I predicted that the cups would be close to h = 1.41r. The cup in my hand already disagreed: h = 1.41r gives a cone about 1.4 times as wide as it is deep, and these cups are deeper than they are wide. To find out how far apart they are, I measured ten cups with vernier callipers. The paper gives slightly under the jaws, so I read each length only to the nearest millimetre: the rim diameters ranged from 6.9 cm to 7.1 cm and the heights from 8.8 cm to 9.1 cm, with means of 7.00 cm and 9.00 cm; I took r = 3.50 cm, h = 9.00 cm and V = 115.5 cm³. The real cup has h/r = 2.57, far from 1.41. For this volume the optimum is r = 4.27 cm and h = 6.04 cm, which would use 99.3 cm² of paper instead of the real cup's 106.2 cm², 6.5% less. To see what that saving would cost, I cut out and built the optimal cone. Its net is a sector of 208°, against 130° for the real cup, and the cone is 8.5 cm across but only 6.0 cm deep: a bowl rather than a cup.</p>}
         why="Saying you are interested earns nothing on Criterion C: the guide looks for engagement shown in the work. The stronger passage checks the result against the object in the student's hand, measures to find out how far apart they are, and builds the optimal cone to see what the saving would cost."
       />
 
       <AnnotatedExcerpt
         heading="What the result means (Criterion D: Reflection)"
         weaker={<p>My model was accurate and I found the optimal cup. If I did this again, I would measure more cups.</p>}
-        stronger={<p>The model answers a narrower question than the cup's designers faced. It counts only the curved surface, but a real cup uses paper in two more places. The glued overlap along the seam runs the length of the slant height, 9.66 cm on the real cup against 7.40 cm on the optimal one, so it favours the optimal shape and would make the saving larger. The rolled rim runs round the circumference, 22.0 cm on the real cup against 26.8 cm on the optimal one, so it favours the real cup and would make the saving smaller. I have not measured the width of either, which I could do by unrolling a cup, but I can still bound the effect: even ignoring the seam, the rolled rim would have to use a strip more than 1.4 cm wide to cancel the 6.9 cm² saving, much wider than it looks, so the optimal cone would still use less paper. More importantly, the optimum ignores how the cup is used: a wide, shallow cone is harder to hold and spills more easily, and a saving of 6.5% of the paper is probably not worth that, which suggests the designers optimised for use rather than material. A next step would be to add the seam and the rim to the model as strips of measured width and see where the optimum moves.</p>}
+        stronger={<p>The model answers a narrower question than the cup's designers faced. It counts only the curved surface, but a real cup uses paper in two more places. The glued overlap along the seam runs the length of the slant height, 9.66 cm on the real cup against 7.40 cm on the optimal one, so it favours the optimal shape and would make the saving larger. The rolled rim runs round the circumference, 22.0 cm on the real cup against 26.8 cm on the optimal one, so it favours the real cup and would make the saving smaller. I have not measured the width of either yet. Even ignoring the seam, the rim would cancel the 6.9 cm² saving only if its strip were at least 1.2 cm wide (a strip of width w extends the cone past its rim and adds πrw(2l + w)/l of paper). The rolled rim looks only a few millimetres across, but rolling hides the paper inside it, so this is the first thing to measure, by unrolling a cup. More importantly, the optimum ignores how the cup is used: a wide, shallow cone is harder to hold and spills more easily, and a saving of 6.5% of the paper is probably not worth that, which suggests the designers optimised for use rather than material. A next step would be to add the seam and the rim to the model as strips of measured width and see where the optimum moves.</p>}
         why="Describing results is limited reflection. The stronger passage evaluates the model's assumptions, says which way each would move the answer, weighs the result against the real problem, and proposes a specific next step: critical reflection in the sense of Criterion D. In a full exploration, reflection like this runs through the work instead of waiting for the last page."
       />
 
@@ -169,12 +169,17 @@ export default function IBMathIAExamples() {
       <p>
         A perennially popular topic, but one that frequently scores low because
         students state that golden ratio connections "prove" aesthetic preference
-        without measuring anything systematically. A high-scoring version measures a
+        without measuring anything systematically. A stronger version measures a
         defined set of buildings or compositions, chosen before looking for φ, computes
-        the ratios and compares their mean and standard deviation with φ ≈ 1.618, then
-        reflects honestly on whether the data supports the claim. Correlation does not
+        the ratios and compares their mean with φ ≈ 1.618, using their standard deviation to
+        judge whether the gap is large, then reflects honestly on whether the data supports
+        the claim. Correlation does not
         answer this question: two dimensions can be almost perfectly correlated while their
-        ratio is nowhere near φ. Hypothesis tests are not in the AA syllabus, so an AA
+        ratio is nowhere near φ. Ratios, a mean and a standard deviation are the most elementary
+        statistics in AA and are unlikely to carry Criterion E on their own, so an AA version
+        needs more, for example the regression line of the longer dimension on the shorter,
+        whose gradient can be compared with φ, or at HL a proof by induction of Binet's
+        formula for the Fibonacci numbers. Hypothesis tests are not in the AA syllabus, so an AA
         student who uses one must show they understand it. Reflection such as "the ratios
         cluster around 1.5, not 1.618, which suggests…" is the kind of thinking Criterion D
         rewards.
@@ -187,9 +192,10 @@ export default function IBMathIAExamples() {
         box) and measures its real dimensions before comparing them with the theoretical
         optimum gives Criterion C real evidence. The mathematics should justify the
         optimum, for example with a second derivative test, rather than only find it. At
-        HL a single optimisation like this is SL content and would not be commensurate with
-        the course on its own; it needs HL mathematics as well, for example a container
-        whose volume has to be found as a volume of revolution (AHL 5.17).
+        HL a single optimisation like this uses only SL techniques: it is part of the HL
+        course, but on its own it shows none of the sophistication that level 6 of Criterion E
+        requires, so an HL version needs more, for example a container whose volume has to be
+        found as a volume of revolution (AHL 5.17).
       </p>
 
       <h3>Applications and Interpretation (AI), SL and HL: topics that work</h3>
@@ -202,10 +208,10 @@ export default function IBMathIAExamples() {
         residual analysis to evaluate fit, and discusses which model is most appropriate
         and why. Non-linear regression, the sum of squared residuals and R² are HL content
         in Applications and Interpretation (AHL 4.13), so at SL use them only if you can show
-        you understand them. A chi-squared test for independence, such as whether one club
-        played at home or away and whether it won, over several seasons, can add a second
-        strand of analysis; it is in the syllabus at both SL and HL. Count each match once:
-        taking both teams from every match pairs each home win with an away loss, so the
+        you understand them. A chi-squared test for independence between venue (home or away)
+        and result (win or no win) for one club over several seasons can add a second strand
+        of analysis; it is in the syllabus at both SL and HL. Keep to one club: a table built
+        from both teams in every match pairs each home win with an away loss, so its
         observations are not independent.
       </p>
 
@@ -216,7 +222,9 @@ export default function IBMathIAExamples() {
         district of a city or the nearest recycling point in a neighbourhood, works well
         because the application is practical and the mathematics is used rather than
         described. The student should take the stations' positions from a real map,
-        construct the Voronoi cells from perpendicular bisectors, and reflect on what
+        construct the Voronoi cells from perpendicular bisectors, find the point furthest
+        from every existing station (the syllabus's toxic waste dump problem, solved at a
+        Voronoi vertex or on the boundary) as the site for a new one, and reflect on what
         straight-line distance ignores (traffic, road layout, capacity constraints).
       </p>
 
@@ -224,8 +232,10 @@ export default function IBMathIAExamples() {
       <p>
         A statistics-heavy AI exploration using publicly available health data. The
         student needs individual-level data, not published averages, for two age groups,
-        applies a t-test to compare their mean BMI, and checks the assumption the test
-        relies on: roughly normal data in each group, which BMI often is not. The key to
+        applies the course's pooled two-sample t-test to compare their mean BMI, and checks
+        what that test assumes: independent samples, similar variances in the two groups,
+        and roughly normal data, which BMI often is not, although with large samples the
+        sample means are close to normal anyway. The key to
         Criterion D here is recognising that statistical significance is not the same as
         practical significance: with a large sample, a difference too small to matter can
         still be significant.
@@ -256,9 +266,9 @@ export default function IBMathIAExamples() {
       <h3>Choosing a topic that is too broad</h3>
       <p>
         "The mathematics of climate change" cannot be explored in 20 pages. A focused
-        version, "modelling the rate of Arctic ice loss using exponential decay" with
-        a specific dataset, can. Narrow your aim to something you can actually answer
-        with the mathematics you know.
+        question can, with a specific dataset: does a linear or an exponential model better
+        fit the decline in September Arctic sea ice extent since 1979? Narrow your aim to
+        something you can answer with the mathematics you know.
       </p>
 
       <h3>Listing results without explaining them</h3>

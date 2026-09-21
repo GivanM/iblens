@@ -50,14 +50,14 @@ export default function IBChemistryIAExamples() {
       <AnnotatedExcerpt
         heading="Research question (Research design)"
         weaker={<p>How much acid is in vinegar?</p>}
-        stronger={<p>Home pickling guides tell cooks to use vinegar of 5% acidity, meaning acidity equivalent to 5 g of ethanoic acid per 100 cm³, because a weaker vinegar may not make the food acidic enough to keep safely. Do the acidities of two white vinegars labelled 5% acidity, a branded one and a budget own-brand, match their labels, when measured by titration with standardised 0.1000 mol dm⁻³ sodium hydroxide and expressed as ethanoic acid?</p>}
+        stronger={<p>Home pickling guides tell cooks to use vinegar of 5% acidity, meaning acidity equivalent to 5 g of ethanoic acid per 100 cm³, because a weaker vinegar may not make the food acidic enough to keep safely. Do the acidities of two white vinegars labelled 5% acidity, a branded one and a budget own-brand, match their labels, when measured by titration with sodium hydroxide of about 0.1 mol dm⁻³, standardised against potassium hydrogen phthalate, and expressed as ethanoic acid?</p>}
         why="The weaker question does not say which vinegar, which acid, in what units or how it will be measured, and gives no reason for asking. The stronger one gives the question a specific context (safe pickling), identifies the samples and the method, and states the value the result will be tested against, which is what the top band of Research design means by a research question described within a specific and appropriate context."
       />
 
       <AnnotatedExcerpt
         heading="Method (Research design)"
         weaker={<p>I titrated each vinegar with sodium hydroxide using phenolphthalein until it turned pink. I repeated it three times.</p>}
-        stronger={<p>One bottle of each vinegar was bought from the same shop and opened on the day of the titrations; testing more bottles was not possible in the time available, a limit discussed in the Evaluation. Each vinegar was diluted tenfold: 25.00 cm³ was pipetted into a 250.00 cm³ volumetric flask, made up to the mark with deionised water and inverted to mix, so that a titre would be about 20 cm³, large enough to keep the burette's uncertainty to about 0.5%. The sodium hydroxide was standardised on the day it was used, by titrating it against a solution made from one weighed portion of potassium hydrogen phthalate, because sodium hydroxide solution absorbs carbon dioxide from the air and its concentration falls over time. Portions of 25.00 cm³ of each diluted vinegar, with three drops of phenolphthalein, were titrated to the first pale pink that lasted 30 seconds, until three titres agreed within 0.10 cm³. Eye protection was worn: 0.1 mol dm⁻³ sodium hydroxide is below the concentration classed as an irritant, but alkali can still harm the eyes. Leftover sodium hydroxide was neutralised before being poured away.</p>}
+        stronger={<p>One bottle of each vinegar was bought from the same shop and opened on the day of the titrations; testing more bottles was not possible in the time available, a limit discussed in the Evaluation. Each vinegar was diluted tenfold: 25.00 cm³ was pipetted into a 250.00 cm³ volumetric flask, made up to the mark with deionised water and inverted to mix, so that a titre would be about 20 cm³, large enough to keep the burette's uncertainty to about 0.5%. The sodium hydroxide was standardised on the day it was used, by titrating it against a solution made from one weighed portion of potassium hydrogen phthalate, because sodium hydroxide solution absorbs carbon dioxide from the air and its concentration falls over time. Portions of 25.00 cm³ of each diluted vinegar, with three drops of 0.5% phenolphthalein indicator (below the 1% at which it is classed as a carcinogen), were titrated to the first pale pink that lasted 30 seconds, until three titres agreed within 0.10 cm³. Eye protection was worn: 0.1 mol dm⁻³ sodium hydroxide is below the concentration classed as an irritant, but alkali can still harm the eyes. Leftover sodium hydroxide was neutralised before being poured away.</p>}
         why="The weaker method leaves out everything that decides the result: the dilution, how the sodium hydroxide concentration is known, and when to stop repeating. The stronger one explains each of those choices, including why only one bottle of each was tested, covers safety and disposal, and gives enough detail to be repeated, as the top band of Research design asks."
       />
 
@@ -83,7 +83,7 @@ export default function IBChemistryIAExamples() {
       <AnnotatedExcerpt
         heading="Conclusion"
         weaker={<p>Vinegar B had less acid than vinegar A, so it is a lower quality vinegar.</p>}
-        stronger={<p>The branded vinegar's acidity is 5.02 ± 0.06 g per 100 cm³ expressed as ethanoic acid, consistent with its 5% label. The budget vinegar's is 4.71 ± 0.06 g per 100 cm³: even the top of its uncertainty range, 4.77 g per 100 cm³, is below the label, and the measured value is 0.29 g per 100 cm³ (5.8%) short of it. The branded result also argues against a fault common to both titrations, such as a wrong sodium hydroxide concentration: an error large enough to explain B's shortfall would mean A really holds about 5.33 g per 100 cm³, 6.6% above its label, which is less likely than a sound method. Reading 5% as the minimum that pickling guides mean, rather than a rounded figure (4.71 would round to 5%), the budget vinegar falls short of it, although one bottle cannot show whether that is typical of the brand.</p>}
+        stronger={<p>The branded vinegar's acidity is 5.02 ± 0.06 g per 100 cm³ expressed as ethanoic acid, consistent with its 5% label. The budget vinegar's is 4.71 ± 0.06 g per 100 cm³: even the top of its uncertainty range, 4.77 g per 100 cm³, is below the label, and the measured value is 0.29 g per 100 cm³ (5.8%) short of it. The branded result also argues against a fault common to both titrations, such as a wrong sodium hydroxide concentration: an error large enough to explain B's shortfall would mean A really holds about 5.33 g per 100 cm³, 6.6% above its label, and that is less likely than the method being sound. If 5% is read as the minimum that pickling guides mean, rather than as a rounded figure (4.71 would round to 5%), the budget vinegar falls short of it, although one bottle cannot show whether that is typical of the brand.</p>}
         why="The weaker conclusion jumps to quality, which the investigation did not measure. The stronger one answers the question for each vinegar, uses the uncertainty to decide whether the gap from the label is real, says how it reads the label, compares the result with the value that gives it meaning, and states the limit of the claim."
       />
 
@@ -97,7 +97,7 @@ export default function IBChemistryIAExamples() {
               <li>Only one bottle of each vinegar was tested, so a 5.8% shortfall could belong to one batch rather than the brand. This limits the conclusion more than anything in the titration. Testing bottles with different batch codes would show which.</li>
               <li>Each vinegar was diluted only once, so the concordant titres test the titration but not the dilution, and the comparison with A catches only errors shared by both vinegars. A slip in B's dilution would have to be large, about 1.5 cm³ on the 25.00 cm³ pipette, to explain the shortfall, but a second, independent dilution of each vinegar would rule it out.</li>
               <li>The uncertainty in the sodium hydroxide concentration (0.50%) is about as large as the burette term and, unlike it, systematic: it shifts both results in the same direction and by the same proportion, so it cannot explain why B is lower than A. At about 0.03 g per 100 cm³ it is too small to change either conclusion. Standardising against three separately weighed portions of potassium hydrogen phthalate, rather than one, would check the value and show its real spread.</li>
-              <li>Any other acid present is titrated too and counted as ethanoic acid. Vinegar labels state acidity the same way, as total acid expressed as ethanoic acid, so the comparison with the label is fair, and distilled white vinegar contains little other acid; this is why the results are reported as acidity expressed as ethanoic acid. It would matter for a question about ethanoic acid itself, for example in a cider vinegar, which also contains malic acid, and that question would need a method that measures ethanoic acid on its own.</li>
+              <li>Any other acid present is titrated too and counted as ethanoic acid. Vinegar labels state acidity the same way, as total acid expressed as ethanoic acid, which is why the results are reported like that and why the comparison with the label is fair. White vinegar also contains little acid other than ethanoic acid. It would matter for a question about ethanoic acid itself, for example in a cider vinegar, which also contains malic acid, and that question would need a method that measures ethanoic acid on its own.</li>
             </ol>
           </>
         }
@@ -118,9 +118,11 @@ export default function IBChemistryIAExamples() {
         Rates of reaction are part of the SL and HL course; rate equations, orders and rate
         constants are additional HL content. A well-executed version uses a colorimeter to
         measure absorbance at regular intervals, processes the data to find the rate, and can
-        go on to deduce the order and the rate constant. A real-world system gives the research
-        question the context that Research design asks for: the bleaching of food dyes,
-        the reduction of DCPIP by ascorbic acid, or the reaction of iodine with propanone.
+        go on to deduce the order and the rate constant. A system with a real-world link gives
+        the research question the context that Research design asks for, such as the
+        bleaching of a food dye by household bleach. The reaction of iodine with propanone
+        also suits a colorimeter, but it is a textbook reaction, so its context has to come
+        from elsewhere.
       </p>
       <p>
         <em>What separates top-band work:</em> processing the absorbance data into an
@@ -169,8 +171,9 @@ export default function IBChemistryIAExamples() {
         which goes beyond the course. Comparing the measured potentials with the standard
         values, and explaining the gap, gives both Data analysis and Evaluation plenty
         to work with. Electrode combinations with a practical context, such as the
-        metals in a particular battery or the corrosion of a specific metal, give the
-        question its context.
+        zinc in a zinc-carbon or alkaline battery, or the corrosion of a specific metal,
+        give the question its context; avoid nickel and cadmium salts, which are classed as
+        carcinogens and fall under the same IB rule as cobalt(II) chloride.
       </p>
 
       <h3>5. Chromatography and separation science</h3>
@@ -213,9 +216,10 @@ export default function IBChemistryIAExamples() {
       <p>
         "The results supported the hypothesis" is not a conclusion. "The reaction
         rate constant k increased from 0.023 s⁻¹ at 25 °C to 0.091 s⁻¹ at 45 °C,
-        which gives an activation energy of 54 kJ mol⁻¹, within the range reported in
-        the published study it cites" is a conclusion. Every number in your conclusion
-        should be traceable to a row in your data table.
+        which gives an activation energy of 54 kJ mol⁻¹, within 10% of the value reported
+        in the study cited in the introduction" is a conclusion. Every number in your
+        conclusion should be traceable to your data table or to a calculation shown in your
+        processing.
       </p>
 
       <h3>Evaluation that lists errors without quantifying their effect</h3>
@@ -244,7 +248,7 @@ export default function IBChemistryIAExamples() {
         workLabel="Chemistry IA"
         ctaHref="/essay/chemistry-ia"
         rows={[
-          { criterion: "Research design", typical: "The method is lifted from a standard class practical and the variables are simply listed.", top: "The method is justified for this specific question: why this range, this many trials, these controls." },
+          { criterion: "Research design", typical: "A standard class practical is used as it stands, with no reason given for its choices, and the variables are simply listed.", top: "The method is justified for this specific question: why this range, this many trials, these controls." },
           { criterion: "Data analysis", typical: "Raw data are tabulated and a mean is plotted; uncertainties appear once and are then forgotten.", top: "Uncertainties are carried through the processing, and the processing chosen is the one that answers the research question." },
           { criterion: "Conclusion", typical: "\"The hypothesis was supported\", with no reference to how strongly.", top: "The conclusion is stated with its uncertainty and compared against accepted values or published work." },
           { criterion: "Evaluation", typical: "Generic weaknesses: human error, not enough time, more trials next time.", top: "The relative impact of specific methodological weaknesses is explained, and so are realistic improvements that address them." },

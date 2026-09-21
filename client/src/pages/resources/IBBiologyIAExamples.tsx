@@ -81,7 +81,7 @@ export default function IBBiologyIAExamples() {
                 <tr><td>Standard deviation of the ten leaf means / mm⁻²</td><td>22</td><td>18</td></tr>
               </tbody>
             </table>
-            <p>The table summarises the 100 raw counts (five fields for each of the twenty leaves, given in full in the appendix). Each leaf's five fields were averaged first, so the leaf, not the field, is the unit of replication: fields on the same leaf are not independent of each other. Density is the mean count divided by the field area. All slides were counted on the same microscope at the same magnification, so the 4% uncertainty in the field area scales both means by the same factor: it cannot create or remove the difference or change the t-test, and it adds only about ±2 per mm² to the size of the difference.</p>
+            <p>The table summarises the 100 raw counts (five fields for each of the twenty leaves). A sample of them, the five counts for two leaves from each face, sits in the body of the report, and the rest are in the appendix. Each leaf's five fields were averaged first, so the leaf, not the field, is the unit of replication: fields on the same leaf are not independent of each other. Density is the mean count divided by the field area. All slides were counted on the same microscope at the same magnification, so the 4% uncertainty in the field area scales both means by the same factor: it cannot create or remove the difference or change the t-test, and it adds only about ±2 per mm² to the size of the difference.</p>
             <p>The variation between leaves is the uncertainty that matters here, so the ten leaf means of each group were compared with a two-sample t-test (the leaf means in each group were roughly symmetrical and the two standard deviations similar): t = 5.6, 18 degrees of freedom, p &lt; 0.001. The difference is 50 ± 19 stomata per mm² (95% confidence interval).</p>
           </>
         }
@@ -91,7 +91,7 @@ export default function IBBiologyIAExamples() {
       <AnnotatedExcerpt
         heading="Conclusion"
         weaker={<p>Sun leaves had more stomata than shade leaves, so my hypothesis was correct.</p>}
-        stronger={<p>On this ivy plant, juvenile leaves from the sunlit face had a stomatal density 38% higher than those from the shaded face: 180 compared with 130 per mm², a difference of 50 ± 19 per mm² (95% confidence interval). If leaves from the two faces did not differ on average, a difference at least this large would arise by chance in fewer than one pair of samples in a thousand (p &lt; 0.001). The test shows that the difference is very unlikely to be chance; it cannot show that light caused it, because the south face is also warmer and drier. Both means lie within the 125 to 240 per mm² reported for the lower surface of ivy leaves (Metcalfe, 2005), and the direction of the difference fits the accepted picture that leaves developing in high light form more stomata per unit area than shade leaves of the same plant.</p>}
+        stronger={<p>On this ivy plant, juvenile leaves from the sunlit face had a stomatal density 38% higher than those from the shaded face: 180 compared with 130 per mm², a difference of 50 ± 19 per mm² (95% confidence interval). If leaves from the two faces did not differ on average, a difference at least this large would arise by chance in fewer than one pair of samples in a thousand (p &lt; 0.001). The data are hard to explain as chance variation between leaves, but the test cannot show that light caused the difference, because the south face is also warmer and drier. Both means lie within the 125 to 240 per mm² reported for the lower surface of ivy leaves (Metcalfe, 2005), and the direction of the difference fits the accepted picture that leaves developing in high light form more stomata per unit area than shade leaves of the same plant.</p>}
         why="Both conclusions say that sun leaves have more stomata. The stronger one gives the size of the difference with its uncertainty, says what the test does and does not show, keeps the claim to what was sampled, and compares the result with the accepted scientific context, including a published range for this species. A full report would also cite a study for the general pattern."
       />
 
@@ -102,14 +102,14 @@ export default function IBBiologyIAExamples() {
           <>
             <p>The weaknesses that matter most are in the design, not the counting. They are listed in order, starting with the one that limits the conclusion most.</p>
             <ol>
-              <li>All twenty leaves came from one plant, so the result shows a difference within this plant and cannot be extended to ivy in general. Sampling ten plants that each grow in both sun and shade, averaging several leaves from each side of each plant, would allow a paired comparison and a claim about ivy in the area sampled.</li>
+              <li>All twenty leaves came from one plant, so the result shows a difference within this plant and cannot be extended to ivy in general. Taking one leaf from the sunlit side and one from the shaded side of each of ten plants that grow in both would keep the count at twenty leaves, allow a paired comparison and support a claim about ivy in the area sampled.</li>
               <li>Light was not the only difference between the faces: the south face is also warmer and drier, and both can affect how leaves develop, so the difference cannot be put down to light alone. Logging temperature and humidity at both faces while the leaves were expanding would show how different they were. Rooting cuttings from one plant and growing them side by side in the open and under shade cloth, counting only leaves that form after the treatment starts, would separate light from most of the rest, although it takes months rather than one morning.</li>
-              <li>Density depends on how far the epidermis expanded as well as on how many stomata formed. Sun leaves are often smaller and thicker, with smaller epidermal cells, so part of the difference may come from expansion alone. Counting the other epidermal cells in the same fields and calculating the stomatal index (the number of stomata as a percentage of stomata plus other epidermal cells) would show whether sun leaves really turn a larger share of their epidermal cells into stomata, or only have smaller cells.</li>
+              <li>Density depends on how far the epidermis expanded as well as on how many stomata formed. Sun leaves are often smaller and thicker, with smaller epidermal cells, so part of the difference may come from expansion alone. Counting the other epidermal cells in one fixed field per leaf and calculating the stomatal index (the number of stomata as a percentage of stomata plus other epidermal cells) would show whether sun leaves really turn a larger share of their epidermal cells into stomata, or only have smaller cells.</li>
               <li>Blurred areas on some peels may have hidden stomata, which makes both means slight underestimates. The blurred fields were split about evenly between the groups, so they add scatter rather than a difference and cannot explain a 38% gap. Skipping to the next fixed stage position whenever a field is more than a quarter blurred, and remaking any peel where this happens often, would remove most of the problem.</li>
             </ol>
           </>
         }
-        why="The weaker evaluation lists routine problems and a generic fix. The stronger one ranks the weaknesses by their effect on the conclusion, explains how each could bias or blur the result, and proposes a realistic improvement aimed at each one. That is what the top band of Evaluation describes: the relative impact of specific methodological weaknesses, with realistic improvements relevant to them."
+        why="The weaker evaluation lists routine problems and a generic fix. The stronger one ranks the weaknesses by their effect on the conclusion, explains how each limits, biases or blurs the result, and proposes a realistic improvement aimed at each one. That is what the top band of Evaluation describes: the relative impact of specific methodological weaknesses, with realistic improvements relevant to them."
       />
 
       <p>
@@ -236,8 +236,8 @@ export default function IBBiologyIAExamples() {
         which may have affected results."
       </p>
       <p>
-        Example of strong evaluation: "The water bath temperature varied by ±2 °C during
-        the 10-minute reaction period. Because enzyme activity rises with temperature
+        Example of strong evaluation: "The water bath temperature differed by up to ±2 °C from
+        one trial to the next. Because enzyme activity rises with temperature
         over this range, the variation added scatter to every rate, by roughly the same
         proportion at each concentration, which widened the error bars along the whole
         curve. A thermostatically
@@ -249,7 +249,7 @@ export default function IBBiologyIAExamples() {
         workLabel="Biology IA"
         ctaHref="/essay/biology-ia"
         rows={[
-          { criterion: "Research design", typical: "The method is lifted from a standard class practical and the variables are simply listed.", top: "The method is justified for this specific question: why this range, this many trials, these controls." },
+          { criterion: "Research design", typical: "A standard class practical is used as it stands, with no reason given for its choices, and the variables are simply listed.", top: "The method is justified for this specific question: why this range, this many trials, these controls." },
           { criterion: "Data analysis", typical: "Raw data are tabulated and a mean is plotted; uncertainties appear once and are then forgotten.", top: "Uncertainties are considered appropriately in the recording and processing, and the processing chosen is the one that answers the research question." },
           { criterion: "Conclusion", typical: "\"The hypothesis was supported\", with no reference to how strongly.", top: "The conclusion is stated with its uncertainty and compared against accepted values or published work." },
           { criterion: "Evaluation", typical: "Generic weaknesses: human error, not enough time, more trials next time.", top: "The relative impact of specific methodological weaknesses is explained, and so are realistic improvements that address them." },
