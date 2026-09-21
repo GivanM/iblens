@@ -177,9 +177,12 @@ export default function IBMathIAExamples() {
         answer this question: two dimensions can be almost perfectly correlated while their
         ratio is nowhere near φ. Ratios, a mean and a standard deviation are the most elementary
         statistics in AA and are unlikely to carry Criterion E on their own, so an AA version
-        needs more, for example the regression line of the longer dimension on the shorter,
-        whose gradient can be compared with φ, or at HL a proof by induction of Binet's
-        formula for the Fibonacci numbers. Hypothesis tests are not in the AA syllabus, so an AA
+        needs more, for example the regression line of the longer dimension on the shorter:
+        if every ratio were φ, the line would have gradient φ and pass through the origin, so
+        compare the gradient with φ and check that the intercept is close to zero, because a
+        gradient near φ with a large intercept means the ratios are not φ. At HL, a proof by
+        induction of Binet's formula for the Fibonacci numbers could add the rigour the upper
+        levels look for. Hypothesis tests are not in the AA syllabus, so an AA
         student who uses one must show they understand it. Reflection such as "the ratios
         cluster around 1.5, not 1.618, which suggests…" is the kind of thinking Criterion D
         rewards.
