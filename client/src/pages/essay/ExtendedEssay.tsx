@@ -3,7 +3,7 @@ import SubjectEssayPage, { SubjectConfig } from "./SubjectEssayPage";
 const config: SubjectConfig = {
   subject: "Extended Essay",
   slug: "extended-essay",
-  keyword: "IB Extended Essay",
+  keyword: "IB Extended Essay (EE)",
   metaTitle: "IB Extended Essay Grader: AI Feedback on Your EE | IBLens",
   metaDescription:
     "AI feedback on your IB Extended Essay against either rubric: the 34-mark criteria through November 2026 or the new 30-mark criteria from May 2027. Criterion-by-criterion report, free preview first.",

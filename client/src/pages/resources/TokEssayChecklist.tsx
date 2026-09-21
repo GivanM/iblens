@@ -91,7 +91,7 @@ export default function TokEssayChecklist() {
       </p>
 
       <p>
-        <Link href="/essay/tok-essay">Check your TOK essay against the IB criteria →</Link>
+        <Link href="/essay/tok-essay">Check your essay with the TOK essay grader →</Link>
       </p>
 
       <h2>Frequently asked questions</h2>

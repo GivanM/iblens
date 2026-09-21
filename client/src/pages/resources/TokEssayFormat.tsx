@@ -155,7 +155,7 @@ export default function TokEssayFormat() {
       </p>
 
       <p>
-        <Link href="/essay/tok-essay">Analyse your TOK essay with IBLens →</Link>
+        <Link href="/essay/tok-essay">Try the TOK essay grader →</Link>
       </p>
       <h2>More on TOK</h2>
 

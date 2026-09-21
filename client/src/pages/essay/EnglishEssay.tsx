@@ -3,7 +3,7 @@ import SubjectEssayPage, { SubjectConfig } from "./SubjectEssayPage";
 const config: SubjectConfig = {
   subject: "English A individual oral",
   slug: "english-essay",
-  keyword: "IB English Individual Oral",
+  keyword: "IB English A individual oral",
   metaTitle: "IB English Individual Oral Grader: AI Feedback on Your IO | IBLens",
   metaDescription:
     "AI feedback on the IB English A Individual Oral against the four published criteria: a practice transcript is marked out of 40, an outline on the first three. The HL essay is a separate component and is not covered.",

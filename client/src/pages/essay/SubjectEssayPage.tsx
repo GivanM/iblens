@@ -7,6 +7,7 @@ import { useMarkingCta } from "@/hooks/useMarkingCta";
 export interface SubjectConfig {
   subject: string;
   slug: string;
+  /** The search name of the task ("IB Physics IA"); the hero heading reads "<keyword> grader". */
   keyword: string;
   metaTitle: string;
   metaDescription: string;
@@ -49,12 +50,20 @@ export interface SubjectConfig {
     mistakesHeading: string;
     mistakes: Array<{ title: string; text: string }>;
     faq: Array<{ q: string; a: string }>;
+    /** A made-up passage written two ways, and what the criteria reward in the stronger one. */
+    example?: {
+      heading: string;
+      intro: string[];
+      versions: Array<{ label: string; text: string; comment: string }>;
+      note?: string;
+    };
   };
 }
 
 // Highlighter colours for the criteria in the sample, the same set the home page uses.
 const SWATCHES = ["#FFC27A", "#8DE8B4", "#FF9DC8", "#9CCBFF", "#FFE45C", "#D9C4FF", "#B9E4D6"];
 const DISPLAY = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
+const BODY = { fontFamily: "'Funnel Sans', system-ui, sans-serif", letterSpacing: "normal" };
 
 /** "Criterion B: Terminology" as its letter and its name; names without a letter are numbered A, B, C. */
 function splitCriterion(name: string, i: number): { letter: string; label: string } {
@@ -75,6 +84,14 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
   const totalMax = config.criteria.reduce((s, c) => s + c.max, 0);
   const totalSample = config.criteria.reduce((s, c) => s + c.sampleScore, 0);
   const holistic = config.criteria.length === 1;
+  // The line beside the hero button: what the click costs and how long it takes.
+  const heroButtonNote = previewUsed
+    ? paidLeft > 0
+      ? `Back in about a minute. Uses 1 of your paid reports (${reportsLeft}); each includes two re-checks.`
+      : "Back in about a minute. Full report $9.99, no account needed, refundable within 7 days."
+    : paidLeft > 0
+      ? "One free preview per device or account. Back in about a minute, and it uses none of your paid reports."
+      : "One free preview per device or account, no card. Back in about a minute. Full report $9.99, refundable within 7 days.";
 
   const breadcrumbs = [
     { name: "Home", url: "/" },
@@ -127,10 +144,9 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
         <section className="py-12 md:py-20">
           <div className="container grid gap-10 lg:grid-cols-[7fr_5fr] lg:gap-16 items-start">
             <div>
-              <p className="text-sm font-medium text-primary mb-4">
-                {previewUsed ? (paidLeft > 0 ? `${reportsLeft}. Each includes two re-checks.` : "Full report $9.99, no account needed, refundable within 7 days") : "One free preview per device or account, no card"}
-              </p>
+              {/* The heading names the task as students search for it, then asks the question the page answers. */}
               <h1 style={DISPLAY} className="text-4xl md:text-5xl font-semibold leading-[1.05] mb-5 max-w-[20ch]">
+                <span style={BODY} className="block text-sm font-medium leading-normal text-primary mb-4">{config.keyword} grader</span>
                 {config.heroHeadline}
               </h1>
               <p className="text-lg text-muted-foreground mb-7 max-w-[46ch] leading-relaxed">
@@ -140,9 +156,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
                 <Button size="lg" className="text-base px-7 h-auto min-h-12 py-3 whitespace-normal" asChild>
                   <Link href={config.analyzerHref}>{previewUsed ? paidLabel : "Get a free preview"}</Link>
                 </Button>
-                <span className="text-sm text-muted-foreground">
-                  {previewUsed && paidLeft > 0 ? "Back in about a minute. Uses 1 of your paid reports." : paidLeft > 0 ? "Back in about a minute. The free preview uses none of your paid reports." : "Back in about a minute. Full report $9.99, refundable within 7 days."}
-                </span>
+                <span className="text-sm text-muted-foreground max-w-[42ch]">{heroButtonNote}</span>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed border-l-2 border-primary pl-4 max-w-[60ch]">{heroNote}</p>
             </div>
@@ -221,6 +235,24 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
                 <p key={p} className="text-sm text-muted-foreground leading-relaxed mt-4">{p}</p>
               ))}
             </div>
+            {config.guide.example && (
+              <div>
+                <h2 style={DISPLAY} className="text-3xl font-semibold mb-5">{config.guide.example.heading}</h2>
+                {config.guide.example.intro.map((p) => (
+                  <p key={p} className="text-muted-foreground leading-relaxed mb-4">{p}</p>
+                ))}
+                {config.guide.example.versions.map((v) => (
+                  <figure key={v.label} className="py-5 border-t border-border">
+                    <figcaption className="font-semibold mb-3">{v.label}</figcaption>
+                    <blockquote className="rounded-xl bg-muted px-5 py-4 leading-relaxed">{v.text}</blockquote>
+                    <p className="text-muted-foreground leading-relaxed mt-3">{v.comment}</p>
+                  </figure>
+                ))}
+                {config.guide.example.note && (
+                  <p className="text-sm text-muted-foreground leading-relaxed mt-2">{config.guide.example.note}</p>
+                )}
+              </div>
+            )}
             <div>
               <h2 style={DISPLAY} className="text-3xl font-semibold mb-5">{config.guide.mistakesHeading}</h2>
               <ul>

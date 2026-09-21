@@ -3,7 +3,7 @@ import SubjectEssayPage, { SubjectConfig } from "./SubjectEssayPage";
 const config: SubjectConfig = {
   subject: "TOK exhibition",
   slug: "tok-exhibition",
-  keyword: "IB TOK Exhibition",
+  keyword: "IB TOK exhibition",
   metaTitle: "IB TOK Exhibition Grader: AI Feedback on Your Three Objects | IBLens",
   metaDescription:
     "AI feedback on your IB Theory of Knowledge exhibition: whether your three objects link convincingly to your IA prompt, read against the holistic instrument out of 10, with the words counted against 950.",

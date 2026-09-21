@@ -201,7 +201,7 @@ export default function TokEssayGuide() {
       </ul>
 
       <p>
-        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, <Link href="/essay/tok-essay" className="text-primary hover:underline">IBLens reads your TOK essay against the holistic instrument</Link> and places it in a band in about a minute, counting the words against the 1,600-word limit as it does. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">IB grade boundaries</Link> guide. For a broader look at how IB criteria work across essay types, read our <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB essay criteria explained</Link> article.
+        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, the <Link href="/essay/tok-essay" className="text-primary hover:underline">IBLens TOK essay grader</Link> reads it against the holistic instrument and places it in a band in about a minute, counting the words against the 1,600-word limit as it does. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">IB grade boundaries</Link> guide. For a broader look at how IB criteria work across essay types, read our <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB essay criteria explained</Link> article.
       </p>
       <h2>More on TOK</h2>
 

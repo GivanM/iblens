@@ -3,7 +3,7 @@ import SubjectEssayPage, { SubjectConfig } from "./SubjectEssayPage";
 const config: SubjectConfig = {
   subject: "TOK essay",
   slug: "tok-essay",
-  keyword: "IB TOK Essay",
+  keyword: "IB TOK essay",
   metaTitle: "IB TOK Essay Grader: AI Feedback on Your Theory of Knowledge Essay | IBLens",
   metaDescription:
     "AI feedback on your IB Theory of Knowledge essay, read against the holistic TOK assessment instrument out of 10, with the words counted against 1,600. Free preview first.",
@@ -32,6 +32,25 @@ const config: SubjectConfig = {
     rubricNote: [
       "An essay that does not reach these levels, or does not respond to a prescribed title for the correct session, scores 0.",
     ],
+    example: {
+      heading: "One paragraph, written two ways",
+      intro: [
+        "Both versions below answer a made-up title in the style of the prescribed titles: \"Does agreement among experts make knowledge more reliable?\" They use the same example from the natural sciences. What changes is the work the example does.",
+      ],
+      versions: [
+        {
+          label: "Version 1: the example is told",
+          text: "Experts are not always right. For example, in 1912 Alfred Wegener suggested that the continents move, but most geologists rejected his idea for decades. In the 1960s, evidence from the ocean floor showed that the continents do move. This shows that agreement among experts does not make knowledge reliable.",
+          comment: "Every fact here is correct, and that is not the problem. The example is narrated rather than used: the paragraph never asks why the geologists rejected the idea or what changed their minds, and it jumps from one case to a general conclusion. No other view is considered. This is what the lower descriptors mean by descriptive writing with limited arguments.",
+        },
+        {
+          label: "Version 2: the example is used",
+          text: "Continental drift shows why agreement among experts can be both a strength and a weakness of the natural sciences. When Alfred Wegener proposed in 1912 that the continents move, most geologists rejected the idea, largely because he could not explain what force would move them. That consensus was not stubbornness: it rested on a demand for a mechanism, a standard that usually protects science from attractive but unsupported ideas. Yet the same standard delayed acceptance until ocean-floor evidence in the 1960s pointed to one. So expert agreement makes knowledge more reliable when it reflects shared standards of evidence, but it can also slow the correction of an error. A defender of consensus could reply that the delay is the price of that reliability, since most ideas the experts reject are rejected because they are wrong.",
+          comment: "The facts are the same, but now they build a claim about how knowledge is produced in the natural sciences. The paragraph explains why the experts held their view, draws out an implication (the standard that protects knowledge can also delay it), and weighs an opposing view instead of only naming it. These are the moves the Good and Excellent descriptors describe: arguments supported by specific examples, implications considered, and evaluation of different points of view.",
+        },
+      ],
+      note: "One paragraph is never marked on its own: the whole essay gets one mark. The comparison shows the difference the descriptors describe. The report names the passages in your own essay that hold the mark back and what they would need to do.",
+    },
     mistakesHeading: "Mistakes the TOK essay bands penalise",
     mistakes: [
       { title: "Writing about the topic, not the title", text: "An essay about knowledge in general that never works with the exact wording of the prescribed title. Focus on the title is the first thing every band describes." },
