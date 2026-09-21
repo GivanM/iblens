@@ -75,6 +75,49 @@
   min-width: 6rem;
 }
 
+/* Passages of made-up coursework in the annotated IA examples (AnnotatedExcerpt): report text,
+   set a little smaller than the article, with tables that scroll on a phone. */
+.excerpt-body {
+  color: var(--foreground);
+  font-size: 0.975rem;
+  line-height: 1.65;
+}
+.excerpt-body > * + * {
+  margin-top: 0.75rem;
+}
+.excerpt-body table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+.excerpt-body th,
+.excerpt-body td {
+  border-bottom: 1px solid var(--border);
+  padding: 0.4rem 1rem 0.4rem 0;
+  text-align: left;
+  white-space: nowrap;
+}
+.excerpt-body th {
+  font-weight: 600;
+}
+.excerpt-body ol {
+  list-style: decimal;
+  padding-left: 1.25rem;
+}
+.excerpt-body li + li {
+  margin-top: 0.5rem;
+}
+/* A displayed equation with its number on the right. */
+.excerpt-body .eq {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-left: 1.25rem;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

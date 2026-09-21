@@ -23,11 +23,11 @@ export function ExamplesBridge({ workLabel, rows, ctaHref, note }: Props) {
       <h2>Why full {workLabel} examples are hard to find, and what to use instead</h2>
 
       <p>
-        Complete, high-scoring {workLabel}s are rarely published in full, and for good reason: the work belongs to the student who wrote it, and the marked examples the IB annotates go to teachers in support material rather than onto the open web. What does circulate online usually lacks the two things that would actually help you: the mark it received and the comments explaining that mark. A PDF with no score attached cannot tell you why it scored what it did.
+        Complete, high-scoring {workLabel}s are rarely published in full, and for good reason: the work belongs to the student who wrote it, and the marked examples the IB annotates go to teachers in support material rather than onto the open web. What does circulate online usually lacks the two things that would help you: the mark it received and the comments explaining that mark. A PDF with no score attached cannot tell you why it scored what it did.
       </p>
 
       <p>
-        So the real question behind "show me an example" is usually this: <em>what separates a top-band {workLabel} from an average one?</em> That difference is not stylistic. It sits in specific, nameable behaviours against each assessment criterion:
+        So what most people want from an example is the answer to this: <em>what separates a top-band {workLabel} from an average one?</em> The difference lies in specific things each criterion rewards:
       </p>
 
       <table>
@@ -60,7 +60,7 @@ export function ExamplesBridge({ workLabel, rows, ctaHref, note }: Props) {
       <h3>The faster route: check your own draft</h3>
 
       <p>
-        Reading someone else's work tells you what good looks like in general. It cannot tell you what is missing from <em>yours</em>. IBLens marks your draft against these criteria. A range of totals is free with no account needed, and for most drafts so are your weakest criterion, with its feedback, and the top risks.{workLabel === "Extended Essay" && " An AI check is outside help on the EE, so ask your supervisor before you use it."}
+        Reading someone else's work tells you what good looks like in general. It cannot tell you what is missing from <em>yours</em>. IBLens marks your draft against these criteria. Without an account you get a free range for your total and, for most drafts, your weakest criterion with its feedback and the top risks.{workLabel === "Extended Essay" ? " An AI check is outside help on the EE, so ask your supervisor before you use it." : " Ask your teacher first whether your school allows outside feedback on this work."}
       </p>
 
       <p>
