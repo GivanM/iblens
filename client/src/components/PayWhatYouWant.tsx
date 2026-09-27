@@ -12,7 +12,7 @@ import { PAY_WHAT_YOU_WANT, PRICE_LABELS } from "@shared/pricing";
  */
 export function PayWhatYouWant({ place, onNamePrice }: { place: "essay_preview" | "ucas_preview" | "remark_check"; onNamePrice?: () => void }) {
   if (!PAY_WHAT_YOU_WANT.buyUrl) return null;
-  if (onNamePrice) {
+  if (onNamePrice && PAY_WHAT_YOU_WANT.unlocksReport) {
     return (
       <div className="flex flex-col sm:flex-row sm:items-center gap-3 border-t border-border pt-4">
         <p className="text-sm text-muted-foreground flex-1">
