@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import crypto from "crypto";
-import { verifyLsSignature, lsSkuToCredits, registerLemonsqueezyWebhook } from "./lemonsqueezy/lemonsqueezy";
-import { LEMONSQUEEZY_VARIANTS, PRODUCT_KEY_TO_LS_SKU } from "../shared/pricing";
+import { verifyLsSignature, lsSkuToCredits, registerLemonsqueezyWebhook, isPayWhatYouWant, isStorefrontTip } from "./lemonsqueezy/lemonsqueezy";
+import { LEMONSQUEEZY_VARIANTS, PRODUCT_KEY_TO_LS_SKU, PAY_WHAT_YOU_WANT, LEMONSQUEEZY_BUY_URLS } from "../shared/pricing";
 
 // ---- Helper to create a valid HMAC-SHA256 signature ----
 function signBody(body: string, secret: string): string {
@@ -121,6 +121,38 @@ describe("LemonSqueezy: Variant ID Configuration", () => {
       const variantId = LEMONSQUEEZY_VARIANTS[lsSku];
       expect(variantId).toBeGreaterThan(0);
     }
+  });
+});
+
+// ---- Pay what you want: a tip, or a report bought at a price the buyer named ----
+describe("LemonSqueezy: Pay what you want", () => {
+  const pwywAttrs = { first_order_item: { variant_id: PAY_WHAT_YOU_WANT.variantId, product_name: "IBLens free preview: pay what you want" } };
+
+  it("recognises the pay-what-you-want variant", () => {
+    expect(isPayWhatYouWant(pwywAttrs, {})).toBe(true);
+  });
+
+  it("a payment carrying one of our orders buys that report, so it is not a tip", () => {
+    expect(isStorefrontTip("ord-123", pwywAttrs, { order_id: "ord-123", unlock_fp: "device-1", unlock_preview: "1" })).toBe(false);
+  });
+
+  it("a storefront payment with no order of ours is a tip and grants nothing", () => {
+    expect(isStorefrontTip("", pwywAttrs, { kind: "pay_what_you_want", place: "essay_preview" })).toBe(true);
+  });
+
+  it("a paid variant is never treated as pay what you want, whatever the checkout data says", () => {
+    const paid = { first_order_item: { variant_id: LEMONSQUEEZY_VARIANTS["essay_single"], product_name: "1 Essay Analysis" } };
+    expect(isPayWhatYouWant(paid, { kind: "pay_what_you_want" })).toBe(false);
+    expect(isStorefrontTip("", paid, { kind: "pay_what_you_want" })).toBe(false);
+  });
+
+  it("the named-price checkout has a buy URL of its own", () => {
+    expect(LEMONSQUEEZY_BUY_URLS["pay_what_you_want"]).toBe(PAY_WHAT_YOU_WANT.buyUrl);
+    expect(PAY_WHAT_YOU_WANT.minUsd).toBeGreaterThan(0);
+  });
+
+  it("a named-price order is stored as a single report, so it grants one", () => {
+    expect(lsSkuToCredits("essay_single")).toEqual({ essay: 1, university: 0 });
   });
 });
 

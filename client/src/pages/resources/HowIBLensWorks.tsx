@@ -13,7 +13,7 @@ export default function HowIBLensWorks() {
       <h1>How IBLens works</h1>
 
       <p>
-        IBLens gives AI feedback on IB Diploma coursework. It reads coursework against the published assessment criteria: criterion by criterion for the Internal Assessment and the Extended Essay, and against the single holistic scale for TOK, which has no sub-criteria. The report comes back in about a minute.
+        IBLens gives AI feedback on IB Diploma coursework. It reads coursework against the published assessment criteria: criterion by criterion for the Internal Assessment and the Extended Essay, and against the single holistic scale for TOK, which has no sub-criteria. The report comes back in a minute or two.
       </p>
 
 
@@ -210,7 +210,7 @@ export default function HowIBLensWorks() {
 
       <h3>IBLens</h3>
       <p>
-        <strong>Pros:</strong> fast (about a minute), against the published criteria, affordable, two free re-checks with each report, available at any hour.
+        <strong>Pros:</strong> fast (a minute or two), against the published criteria, affordable, two free re-checks with each report, available at any hour.
         </p>
         <p>
           <strong>Cons:</strong> an estimate from a language model, not a moderated mark; cannot verify factual accuracy, replace subject expertise or assess practical work.

@@ -76,8 +76,8 @@ export function ResourceArticle({
             </h2>
             <p className="text-muted-foreground mb-6 max-w-[60ch] leading-relaxed">
               {previewUsed
-                ? `Paste your IA, TOK work or Extended Essay, once your teacher or EE supervisor has agreed to outside feedback, and get the full report, with the estimated mark, in about a minute: ${paidLeft > 0 ? "it uses one of your paid reports" : "$9.99"}.`
-                : `Paste your IA, TOK work or Extended Essay, once your teacher or EE supervisor has agreed to outside feedback, and see how it reads against the published criteria in about a minute. The first preview is free: ${/\/resources\/(tok-|sample-reports)/.test(canonical) ? 'for TOK work, the band, the start of the explanation and the top risks' : 'a range of totals and, for most drafts, your weakest criterion and the top risks'}. The full report, with the estimated mark, is $9.99.`}
+                ? `Paste your IA, TOK work or Extended Essay, once your teacher or EE supervisor has agreed to outside feedback, and get the full report, with the estimated mark, in a minute or two: ${paidLeft > 0 ? "it uses one of your paid reports" : "$9.99"}.`
+                : `Paste your IA, TOK work or Extended Essay, once your teacher or EE supervisor has agreed to outside feedback, and see how it reads against the published criteria in a minute or two. The first preview is free: ${/\/resources\/(tok-|sample-reports)/.test(canonical) ? 'for TOK work, the band, the start of the explanation and the top risks' : 'a range of totals and, for most drafts, your weakest criterion and the top risks'}. The full report, with the estimated mark, is $9.99.`}
             </p>
             <Link href="/essay">
               <Button size="lg">

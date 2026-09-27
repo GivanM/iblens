@@ -403,6 +403,18 @@ export function isRiskAboutMissingReflection(r: any): boolean {
   return /missing|not submitted|absence|no reflection|without a reflect|automatic 0|automatic zero/.test(text);
 }
 
+/**
+ * The opening of a comment: its first sentence, or a soft cut if that sentence runs long.
+ * The preview shows this much of the weakest criterion; the rest is the report.
+ */
+export function firstSentence(text: string, limit: number): string {
+  const trimmed = typeof text === "string" ? text.trim() : "";
+  if (!trimmed) return trimmed;
+  const stop = trimmed.search(/[.!?](\s|$)/);
+  const sentence = stop > 0 ? trimmed.slice(0, stop + 1) : trimmed;
+  return sentence.length > limit ? softTruncate(sentence, limit) : sentence;
+}
+
 export function softTruncate(text: string, limit: number): string {
   if (typeof text !== "string" || text.length <= limit) return text;
   const window = text.slice(0, limit);
@@ -463,14 +475,17 @@ export function computeTeaser(result: any) {
     commentTrimmed = cleaned.dropped > 0;
     weakest = { ...weakest, comment: cleaned.text || "The full explanation is in the report." };
   }
-  // Holistic instruments have a single criterion whose comment IS the whole verdict:
-  // truncate it in the teaser so the full reasoning stays behind the unlock.
-  if (weakest && holistic && typeof weakest.comment === "string" && weakest.comment.length > 320) {
-    weakest = { ...weakest, comment: softTruncate(weakest.comment, 320) };
+  // The preview names the criterion and opens its comment; the reasoning itself is what the
+  // report is for. Before this the whole comment was free, and previews outnumbered sales
+  // 126 to 0 in a month.
+  if (weakest && typeof weakest.comment === "string") {
+    const opening = firstSentence(weakest.comment, 200);
+    if (opening.length < weakest.comment.trim().length) commentTrimmed = true;
+    weakest = { ...weakest, comment: opening };
   }
-  // With a single holistic criterion its score is the exact mark, which the free
-  // preview does not include. The band stays visible.
-  if (weakest && criteria.length === 1) {
+  // The criterion's own mark stays in the report: with the range it narrowed the total,
+  // and on a holistic instrument it is the mark itself.
+  if (weakest) {
     weakest = { ...weakest, score: null };
   }
   if (cell?.hideWeakest) weakest = null;
@@ -494,7 +509,9 @@ export function computeTeaser(result: any) {
     // A risk whose whole explanation stated marks is left out rather than shown as a bare title.
     .filter((r: any) => !r.hadDescription || r.description)
     .slice(0, 3)
-    .map(({ hadDescription, ...r }: any) => r);
+    // The first risk is shown in full. The others are named, because a named risk is
+    // something to look for and its explanation is what the report sells.
+    .map(({ hadDescription, ...r }: any, i: number) => (i === 0 ? r : { ...r, description: "" }));
   return {
     locked: true as const,
     band_range: bandRange,
@@ -542,6 +559,12 @@ export function sanitiseFrozenPreview(frozen: any) {
       weakest = { ...weakest, comment: cleaned.text || "The full explanation is in the report." };
     }
   }
+  // Kept previews are read under today's rule as well: it may only take text out.
+  if (weakest) {
+    const opening = typeof weakest.comment === "string" ? firstSentence(weakest.comment, 200) : weakest.comment;
+    if (typeof weakest.comment === "string" && opening.length < weakest.comment.trim().length) trimmed = true;
+    weakest = { ...weakest, comment: opening, score: null };
+  }
   const risks = (Array.isArray(frozen?.risks) ? frozen.risks : [])
     .filter((r: any) => typeof r === "string" || (r && typeof r === "object"))
     .filter((r: any) => !statesMark(typeof r === "string" ? r : String(r?.title || ""), { holistic }))
@@ -552,6 +575,6 @@ export function sanitiseFrozenPreview(frozen: any) {
       return { risk: { ...r, description }, gone: !!before.trim() && !description };
     })
     .filter((x: any) => !x.gone)
-    .map((x: any) => x.risk);
+    .map((x: any, i: number) => (i === 0 ? x.risk : typeof x.risk === "string" ? x.risk : { ...x.risk, description: "" }));
   return { ...frozen, weakest_criterion: weakest, weakest_comment_trimmed: !!weakest && trimmed, risks };
 }

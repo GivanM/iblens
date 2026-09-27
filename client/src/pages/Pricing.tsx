@@ -121,7 +121,7 @@ export default function Pricing() {
               </p>
               {PAY_WHAT_YOU_WANT.buyUrl && (
                 <p className="text-sm text-muted-foreground mt-2">
-                  Previews stay free. If one helped, you can pay what you want for it afterwards (${PAY_WHAT_YOU_WANT.suggestedUsd} suggested). Paying unlocks nothing extra.
+                  Previews stay free. If {PRICE_LABELS.ESSAY_SINGLE} is out of reach, name your own price for the report under your preview, from ${PAY_WHAT_YOU_WANT.minUsd} (${PAY_WHAT_YOU_WANT.suggestedUsd} suggested): it opens the same full report, with the same two re-checks.
                 </p>
               )}
             </div>

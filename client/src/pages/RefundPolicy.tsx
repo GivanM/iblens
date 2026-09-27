@@ -24,9 +24,9 @@ export default function RefundPolicy() {
 
           {PAY_WHAT_YOU_WANT.buyUrl && (
             <section>
-              <h2 className="text-xl font-semibold mb-3">Pay what you want for a free preview</h2>
+              <h2 className="text-xl font-semibold mb-3">Reports bought at a price you name</h2>
               <p className="text-muted-foreground leading-relaxed">
-                A payment you choose to make for a free preview is voluntary and unlocks nothing. The same 7 days apply: ask within 7 days and we refund it in full.
+                A report you buy by naming your own price is a report like any other: the same 7 days apply, and we refund what you paid in full. A payment made from the storefront, with no report attached to it, is voluntary and can be refunded the same way.
               </p>
             </section>
           )}

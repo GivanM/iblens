@@ -186,6 +186,7 @@ function slugToName(slug: ProductSlug): string {
     essay_pack_5: "5-Pack Essay Analyses",
     essay_pack_10: "10-Pack Essay Analyses",
     university_strategy: "University Strategy Report",
+    pay_what_you_want: "Single Essay Analysis, price named by the buyer",
   };
   return map[slug] || slug;
 }

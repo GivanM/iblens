@@ -87,11 +87,11 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
   // The line beside the hero button: what the click costs and how long it takes.
   const heroButtonNote = previewUsed
     ? paidLeft > 0
-      ? `Back in about a minute. Uses 1 of your paid reports (${reportsLeft}); each includes two re-checks.`
-      : "Back in about a minute. Full report $9.99, no account needed, refundable within 7 days."
+      ? `Back in a minute or two. Uses 1 of your paid reports (${reportsLeft}); each includes two re-checks.`
+      : "Back in a minute or two. Full report $9.99, no account needed, refundable within 7 days."
     : paidLeft > 0
-      ? "One free preview per device or account. Back in about a minute, and it uses none of your paid reports."
-      : "One free preview per device or account, no card. Back in about a minute. Full report $9.99, refundable within 7 days.";
+      ? "One free preview per device or account. Back in a minute or two, and it uses none of your paid reports."
+      : "One free preview per device or account, no card. Back in a minute or two. Full report $9.99, refundable within 7 days.";
 
   const breadcrumbs = [
     { name: "Home", url: "/" },
@@ -202,7 +202,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
             <ol className="grid md:grid-cols-3 gap-0 md:gap-10">
               {[
                 { title: "Paste your text", desc: "Copy and paste the text of your work. No file upload, and it works on any device." },
-                { title: "Marked in about a minute", desc: holistic
+                { title: "Marked in a minute or two", desc: holistic
                     ? "An AI model applies the published assessment instrument to what you pasted."
                     : `An AI model applies the published ${taskName} criteria to what you pasted.` },
                 { title: "See what to fix", desc: "The marks you are losing, and the changes most likely to recover them, in order." },
@@ -321,7 +321,7 @@ export default function SubjectEssayPage({ config }: { config: SubjectConfig }) 
                 ? paidLeft > 0
                   ? `Paste your ${pasteName} and mark it with one of your paid reports (${reportsLeft}). Each includes two re-checks.`
                   : `Paste your ${pasteName}. The free preview ${isAuthenticated ? "on your account" : "on this device"} has been used, and a full report is $9.99 with two re-checks included.`
-                : `Paste your ${pasteName} and get a free preview in about a minute. ${paidLeft > 0 ? "The full report uses one of your paid reports." : "The full report is $9.99."}`}
+                : `Paste your ${pasteName} and get a free preview in a minute or two. ${paidLeft > 0 ? "The full report uses one of your paid reports." : "The full report is $9.99."}`}
             </p>
             <Button size="lg" className="text-base px-7 h-auto min-h-12 py-3 whitespace-normal" asChild>
               <Link href={config.analyzerHref}>

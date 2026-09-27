@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { ExamplesBridge } from "@/components/ExamplesBridge";
 import { AnnotatedExcerpt } from "@/components/AnnotatedExcerpt";
 import { Link } from "wouter";
@@ -22,6 +23,8 @@ export default function IBChemistryIAExamples() {
         through the report, passage by passage, then covers which investigation types work
         best and where marks are most commonly lost.
       </p>
+
+      <GraderCta work="Chemistry IA" href="/essay?type=IA&subject=Chemistry" />
 
       <h2>How the IB Chemistry IA is marked</h2>
       <ul>

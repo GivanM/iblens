@@ -10,7 +10,7 @@ const config: SubjectConfig = {
   canonicalPath: "/essay/psychology-ia",
   heroHeadline: "Get your IB Psychology IA read against the criteria for your session",
   heroSubline:
-    "Paste your Psychology IA and choose your exam session, then find out where you are losing marks, criterion by criterion, in about a minute.",
+    "Paste your Psychology IA and choose your exam session, then find out where you are losing marks, criterion by criterion, in a minute or two.",
   analyzerHref: "/essay?type=IA&subject=Psychology",
   wordLimit: "2,200-word",
   sessionAware: true,

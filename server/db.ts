@@ -551,6 +551,13 @@ export async function updateOrderStatus(id: string, status: string, npPaymentId?
   await db.update(orders).set(updateSet).where(eq(orders.id, id));
 }
 
+/** What a name-your-price order turned out to be worth, known only when the payment lands. */
+export async function setOrderAmountUsd(id: string, amountUsd: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.update(orders).set({ amountUsd }).where(eq(orders.id, id));
+}
+
 export async function getUserOrders(userId: number) {
   const db = await getDb();
   if (!db) return [];

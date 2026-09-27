@@ -218,7 +218,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <span style={SERIF} className="text-xl font-bold block mb-2">IBLens</span>
               <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
-                AI-powered IB essay grader for IA, EE and TOK. Feedback against the published criteria in about a minute.
+                AI-powered IB essay grader for IA, EE and TOK. Feedback against the published criteria in a minute or two.
               </p>
             </div>
             <nav className="flex flex-wrap gap-x-6 gap-y-0 md:gap-y-2 md:justify-end">

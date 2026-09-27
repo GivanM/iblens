@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function IBChemistryExtendedEssay() {
@@ -16,6 +17,8 @@ export default function IBChemistryExtendedEssay() {
         <Link href="/resources/ib-extended-essay-new-criteria-2027">See what changed</Link>. If you
         sit your exams in November 2026, the older 34-mark criteria are summarised after them.
       </p>
+
+      <GraderCta work="Chemistry Extended Essay" href="/essay?type=EE&subject=Chemistry" />
       <p>
         The IB Chemistry Extended Essay (EE) is a 4,000-word independent research
         paper built on a focused investigation of a chemistry topic, using primary data

@@ -19,12 +19,14 @@ const STATUS_STYLE: Record<string, string> = {
  * dashboard both render it, so a review bought from an account reads the same in
  * both places instead of collapsing to its verdict line.
  */
-export function UcasReview({ result, course, isUnlocked, onBuy, buyLabel, buyPending }: {
+export function UcasReview({ result, course, isUnlocked, onBuy, buyLabel, buyPending, onNamePrice }: {
   result: any;
   course?: string;
   isUnlocked: boolean;
   /** Offered only where buying is possible; the dashboard copy is always a full review. */
   onBuy?: () => void;
+  /** Opens the same review at a price the reader names. */
+  onNamePrice?: () => void;
   /** "Unlock the full review, $9.99", or the paid-report wording when one is already owned. */
   buyLabel?: string;
   buyPending?: boolean;
@@ -183,7 +185,7 @@ export function UcasReview({ result, course, isUnlocked, onBuy, buyLabel, buyPen
             )}
           </div>
         )}
-        {!result.answers && onBuy && !buyLabel && <PayWhatYouWant place="ucas_preview" />}
+        {!result.answers && onBuy && !buyLabel && <PayWhatYouWant place="ucas_preview" onNamePrice={onNamePrice} />}
 
         <p className="text-xs text-muted-foreground border-t pt-4">
           IBLens gives you feedback on writing that is yours. UCAS is explicit that submitting text generated

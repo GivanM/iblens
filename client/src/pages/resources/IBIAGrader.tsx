@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function IBIAGrader() {
@@ -16,8 +17,10 @@ export default function IBIAGrader() {
         An IB Internal Assessment is usually worth 20% to 30% of the final subject grade, and more in some arts subjects. Many students submit without a clear idea of which criterion is costing them marks, because detailed feedback before submission is hard to get. Your teacher can comment on a draft, but not on every revision. Tutors charge by the hour. Classmates rarely know the criteria well enough to mark against them.
       </p>
 
+      <GraderCta work="IA" href="/essay?type=IA" />
+
       <p>
-        IBLens is an AI grader that reads your Internal Assessment against the assessment criteria for your subject and gives you an estimated mark for each criterion it can judge from the text, the marks you are losing, and what to change. It takes about a minute, and the first preview is free. Ask your teacher first: check that your teacher and your school allow outside feedback on your IA.
+        IBLens is an AI grader that reads your Internal Assessment against the assessment criteria for your subject and gives you an estimated mark for each criterion it can judge from the text, the marks you are losing, and what to change. It takes a minute or two, and the first preview is free. Ask your teacher first: check that your teacher and your school allow outside feedback on your IA.
       </p>
 
       <p>
@@ -52,7 +55,7 @@ export default function IBIAGrader() {
         <li><strong>Choose your essay type and subject.</strong> Select "Internal Assessment (IA) or coursework" and your IB subject from the dropdown.</li>
         <li><strong>Paste your IA text.</strong> Copy in the full text of your Internal Assessment: method, analysis, evaluation, everything.</li>
         <li><strong>Enter your research question.</strong> This helps the AI assess whether your investigation stays focused on a specific, answerable question.</li>
-        <li><strong>Get your report.</strong> In about a minute you receive an estimated mark for each criterion your text shows, the marks you are losing and why, and specific steps to recover them. IBLens also counts the words against your subject's limit.</li>
+        <li><strong>Get your report.</strong> In a minute or two you receive an estimated mark for each criterion your text shows, the marks you are losing and why, and specific steps to recover them. IBLens also counts the words against your subject's limit.</li>
       </ol>
 
       <h2>What you get in the report</h2>
@@ -74,7 +77,7 @@ export default function IBIAGrader() {
       <ul>
         <li><strong>vs. RevisionDojo:</strong> RevisionDojo includes AI coursework feedback in a wider revision platform; check its site for current prices. IBLens charges per report: $9.99 for one, $24.99 for five, with no subscription. Which costs less depends on how many reports you need, so compare current prices on both sites.</li>
         <li><strong>vs. a general chatbot:</strong> a general AI model marks against whatever it remembers of the criteria, which may be an older version, such as the science criteria retired in 2025. IBLens gives the model the current criteria for your subject and session, and counts the words for you.</li>
-        <li><strong>vs. a tutor:</strong> a good tutor brings subject judgement no tool has, at an hourly rate. IBLens gives you an estimate against the criteria in about a minute, for a fixed price, with two re-checks of revised versions within 14 days of the report opening.</li>
+        <li><strong>vs. a tutor:</strong> a good tutor brings subject judgement no tool has, at an hourly rate. IBLens gives you an estimate against the criteria in a minute or two, for a fixed price, with two re-checks of revised versions within 14 days of the report opening.</li>
       </ul>
 
       <h2>Is the first IB IA preview really free?</h2>

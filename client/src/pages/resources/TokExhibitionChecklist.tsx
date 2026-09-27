@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function TokExhibitionChecklist() {
@@ -15,6 +16,8 @@ export default function TokExhibitionChecklist() {
       <p>
         Like the TOK essay, the exhibition is marked holistically: one instrument, out of 10, with no separate criteria. It is internally assessed, so your teacher marks it and the IB moderates a sample. The instrument asks a single question: <em>does the exhibition successfully show how TOK manifests in the world around us?</em> Your commentary either demonstrates that through three well-chosen objects, or it does not. This checklist turns the instrument into concrete checks you can run before submitting.
       </p>
+
+      <GraderCta work="TOK exhibition" href="/essay?type=TOK%20Exhibition" />
 
       <h2>How the exhibition is marked</h2>
 

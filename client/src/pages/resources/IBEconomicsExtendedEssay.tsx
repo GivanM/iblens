@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function IBEconomicsExtendedEssay() {
@@ -16,6 +17,8 @@ export default function IBEconomicsExtendedEssay() {
         <Link href="/resources/ib-extended-essay-new-criteria-2027">See what changed</Link>. If you
         sit your exams in November 2026, the older 34-mark criteria are summarised after them.
       </p>
+
+      <GraderCta work="Economics Extended Essay" href="/essay?type=EE&subject=Economics" />
       <p>
         The IB Economics Extended Essay is a 4,000-word investigation that applies
         economic theory to a real market, policy or economic question. That word

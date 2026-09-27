@@ -54,7 +54,7 @@ export default function LandingPage() {
     <>
       <SEOHead
         title="IB Essay Grader: Free Preview of Your IA, EE or TOK Draft in About a Minute | IBLens"
-        description="Paste your IB essay and get a free preview in about a minute: a range of totals and, for most drafts, your weakest criterion and the top risks. The full report gives the estimated mark and the reasons for it. Extended Essay, IA or TOK, no account needed."
+        description="Paste your IB essay and get a free preview in a minute or two: a range of totals and, for most drafts, your weakest criterion and the top risks. The full report gives the estimated mark and the reasons for it. Extended Essay, IA or TOK, no account needed."
         canonical="/grade"
       />
 
@@ -80,12 +80,12 @@ export default function LandingPage() {
               {previewUsed ? (paidLeft > 0 ? "Uses 1 of your paid reports, no account" : "Full report $9.99, no account, refundable within 7 days") : "First preview free, no account, no card"}
             </p>
             <h1 className="text-4xl md:text-6xl font-semibold mb-5 leading-[1.03] max-w-[14ch]">
-              Grade your IB essay in about a minute
+              Grade your IB essay in a minute or two
             </h1>
             <p className="text-lg text-muted-foreground mb-8 max-w-[58ch] leading-relaxed">
               {previewUsed
-                ? "Paste your IA, TOK work or Extended Essay once your teacher or supervisor has agreed to outside feedback. The full report comes back in about a minute with the estimated mark, criterion by criterion (the TOK essay and exhibition as a whole), and ranks the fixes."
-                : "Paste your IA, TOK work or Extended Essay once your teacher or supervisor has agreed to outside feedback. The free preview comes back in about a minute with a range of totals and, for most drafts, your weakest criterion and the top risks; the full report gives the estimated mark, criterion by criterion (the TOK essay and exhibition as a whole), and ranks the fixes."}
+                ? "Paste your IA, TOK work or Extended Essay once your teacher or supervisor has agreed to outside feedback. The full report comes back in a minute or two with the estimated mark, criterion by criterion (the TOK essay and exhibition as a whole), and ranks the fixes."
+                : "Paste your IA, TOK work or Extended Essay once your teacher or supervisor has agreed to outside feedback. The free preview comes back in a minute or two with a range of totals and, for most drafts, your weakest criterion and the top risks; the full report gives the estimated mark, criterion by criterion (the TOK essay and exhibition as a whole), and ranks the fixes."}
             </p>
             <Button size="lg" className="text-base px-8 h-auto min-h-12 py-3 mb-4" asChild>
               <Link href="/essay">{cta}</Link>
@@ -101,7 +101,7 @@ export default function LandingPage() {
             <div className="grid md:grid-cols-3 gap-0 md:gap-10">
               {[
                 { step: "1", Icon: FileText, title: "Paste your essay", desc: "Copy and paste your IA, EE or TOK text and choose the task and subject." },
-                { step: "2", Icon: Clock, title: "AI marks it in about a minute", desc: "Marked against the published criteria for your subject, task and exam session." },
+                { step: "2", Icon: Clock, title: "AI marks it in a minute or two", desc: "Marked against the published criteria for your subject, task and exam session." },
                 { step: "3", Icon: ListOrdered, title: "See what to fix", desc: "The marks you are losing against the criteria, and the fixes ranked by what they recover." },
               ].map(({ step, title, desc }) => (
                 <div key={step} className="py-4 border-t border-border first:border-t-0 md:border-t-0 md:py-0">
@@ -188,7 +188,7 @@ export default function LandingPage() {
           <div className="container max-w-4xl">
             <ul className="flex flex-wrap gap-x-8 gap-y-2 text-muted-foreground">
               <li>Published IB criteria</li>
-              <li>Results in about a minute</li>
+              <li>Results in a minute or two</li>
               <li>IBLens never saves your text</li>
               <li>Coursework in 14 IB subjects</li>
             </ul>
@@ -228,7 +228,7 @@ export default function LandingPage() {
         <section className="py-14 md:py-20 bg-muted">
           <div className="container max-w-4xl">
             <h2 className="text-3xl md:text-4xl font-semibold mb-4 max-w-[20ch]">See where your essay stands before you submit it.</h2>
-            <p className="text-muted-foreground mb-7">{previewUsed ? "Paste your essay now: the full report comes back in about a minute." : "Paste your essay now: a free preview in about a minute, with no account needed."}</p>
+            <p className="text-muted-foreground mb-7">{previewUsed ? "Paste your essay now: the full report comes back in a minute or two." : "Paste your essay now: a free preview in a minute or two, with no account needed."}</p>
             <Button size="lg" className="text-base px-8 h-auto min-h-12 py-3" asChild>
               <Link href="/essay">
                 {cta} <ArrowRight className="w-4 h-4 ml-2" />

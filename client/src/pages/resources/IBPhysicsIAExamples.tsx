@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { ExamplesBridge } from "@/components/ExamplesBridge";
 import { AnnotatedExcerpt } from "@/components/AnnotatedExcerpt";
 import { Link } from "wouter";
@@ -23,6 +24,8 @@ export default function IBPhysicsIAExamples() {
         the report, passage by passage, then covers topics that tend to work and the analysis
         skills the criteria reward.
       </p>
+
+      <GraderCta work="Physics IA" href="/essay?type=IA&subject=Physics" />
 
       <h2>Marking criteria overview</h2>
       <ul>

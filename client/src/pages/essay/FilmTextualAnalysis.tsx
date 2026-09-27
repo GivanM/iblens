@@ -12,7 +12,7 @@ const config: SubjectConfig = {
   canonicalPath: "/essay/film-textual-analysis",
   heroHeadline: "Is your Film textual analysis evaluating the extract, or describing it?",
   heroSubline:
-    "Paste your textual analysis and get feedback against the three Film criteria in about a minute, with the words counted against the 1,750-word limit.",
+    "Paste your textual analysis and get feedback against the three Film criteria in a minute or two, with the words counted against the 1,750-word limit.",
   analyzerHref: "/essay?type=IA&subject=Film",
   wordLimit: "1,750-word",
   criteria: [

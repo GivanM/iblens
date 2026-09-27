@@ -46,13 +46,19 @@ export const LEMONSQUEEZY_BUY_URLS: Record<string, string> = {
   // checkout for it by accident.
   university_strategy: "",
   university_single: "",
+  // Name your own price for the report in front of you. The webhook treats a payment
+  // that carries one of our order ids like any other purchase of a single report.
+  pay_what_you_want: "https://iblens.lemonsqueezy.com/checkout/buy/cb8c296d-5334-4ce0-9c79-b4c24a4e7e49",
 } as const;
 
 /**
- * Pay what you want for a free preview, $5 suggested. It grants no credits and unlocks
- * nothing. LemonSqueezy forbids donations "where no product exists", so this is the price
- * of the preview the reader already received. buyUrl stays empty, and the button hidden,
- * until the product exists in the store; the webhook also recognises it by name.
+ * Name your own price, from $1, for the report you are looking at. It buys exactly what
+ * $9.99 buys: the full report opens and the two re-checks come with it. In the month after
+ * the free preview launched, 126 previews produced no sales at all, and nobody used the
+ * old version of this button, which took money and unlocked nothing.
+ *
+ * A payment made from the storefront, with no order of ours attached, is still recorded as a
+ * tip and grants nothing, because there is no report to open.
  */
 export const PAY_WHAT_YOU_WANT = {
   // Product "IBLens free preview: pay what you want" (id 1366245), $1 minimum, $5 suggested,
@@ -60,6 +66,7 @@ export const PAY_WHAT_YOU_WANT = {
   buyUrl: "https://iblens.lemonsqueezy.com/checkout/buy/cb8c296d-5334-4ce0-9c79-b4c24a4e7e49",
   variantId: 2134383,
   suggestedUsd: 5,
+  minUsd: 1,
 };
 
 /** Map from our ProductKey to LemonSqueezy SKU key */

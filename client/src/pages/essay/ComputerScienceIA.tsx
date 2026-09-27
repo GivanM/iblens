@@ -10,7 +10,7 @@ const config: SubjectConfig = {
   canonicalPath: "/essay/computer-science-ia",
   heroHeadline: "Is your Computer Science IA losing marks you can't see?",
   heroSubline:
-    "Paste your CS IA documentation and get feedback against the criteria for your exam session, criterion by criterion. The free preview comes back in about a minute.",
+    "Paste your CS IA documentation and get feedback against the criteria for your exam session, criterion by criterion. The free preview comes back in a minute or two.",
   analyzerHref: "/essay?type=IA&subject=Computer%20Science",
   sessionAware: true,
   criteria: [

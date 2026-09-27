@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function IBHistoryIA() {
@@ -20,6 +21,8 @@ export default function IBHistoryIA() {
         topic and question before you start. The three sections each ask for something
         specific, and that is where many investigations lose marks.
       </p>
+
+      <GraderCta work="History IA" href="/essay?type=IA&subject=History" />
 
       <h2>The three-section structure of the IB History IA</h2>
       <p>

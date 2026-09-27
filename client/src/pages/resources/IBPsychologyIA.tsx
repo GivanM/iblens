@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function IBPsychologyIA() {
@@ -16,6 +17,8 @@ export default function IBPsychologyIA() {
         <Link href="/resources/ib-psychology-ia-2027">See the 2027 Psychology IA</Link>. This
         guide covers the experimental report marked out of 22, for sessions through November 2026.
       </p>
+
+      <GraderCta work="Psychology IA" href="/essay?type=IA&subject=Psychology" />
       <p>
         The IB Psychology Internal Assessment is a report on an experiment that
         investigates a published study, theory or model. You plan and run the experiment

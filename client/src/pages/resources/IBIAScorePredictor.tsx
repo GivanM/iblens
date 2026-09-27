@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function IBIAScorePredictor() {
@@ -12,6 +13,8 @@ export default function IBIAScorePredictor() {
     >
       <h1>IB IA Score Estimator: how to estimate your Internal Assessment mark</h1>
       <p>Your teacher has marked your Internal Assessment and you want to know whether that mark will hold. It may not: the mark is checked against a global standard before it counts. Knowing how that check works, and reading your own work criterion by criterion, gets you a realistic range rather than a single hopeful number.</p>
+
+      <GraderCta work="IA" href="/essay?type=IA" />
 
       <div className="not-prose my-6 rounded-xl border border-primary/30 bg-primary/5 p-5">
         <p className="text-base font-semibold text-foreground mb-1">The estimate</p>

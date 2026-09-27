@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function ExtendedEssayGuide() {
@@ -15,6 +16,8 @@ export default function ExtendedEssayGuide() {
       <p>
         <strong>The Extended Essay is a 4,000-word independent research essay. From the May 2027 session it is marked out of 30 (Framework for the essay 6, Knowledge and understanding 6, Analysis and line of argument 6, Discussion and evaluation 8, Reflection 4); through November 2026 it is marked out of 34 on the older criteria. Together with TOK it contributes up to 3 bonus points to your Diploma.</strong>
       </p>
+
+      <GraderCta work="Extended Essay" href="/essay?type=EE" />
 
       <p>
         The Extended Essay (EE) is one of the three core requirements of the IB Diploma Programme, alongside Theory of Knowledge and CAS. It is a 4,000-word independent research paper that asks students to investigate a topic of personal interest within one of the IB subject areas. For many students, the EE represents their first experience with sustained academic research, and it contributes up to 3 bonus points towards the IB Diploma when combined with the TOK grade.
@@ -222,7 +225,7 @@ export default function ExtendedEssayGuide() {
       </ul>
 
       <p>
-        If you want criterion-based feedback on your Extended Essay before submission, ask your supervisor first, because an AI check is outside help on the EE. If they agree, <Link href="/essay/extended-essay" className="text-primary hover:underline">IBLens can mark your Extended Essay</Link> against the EE criteria for your session, the 34-mark set or the new 30-mark set, in about a minute.
+        If you want criterion-based feedback on your Extended Essay before submission, ask your supervisor first, because an AI check is outside help on the EE. If they agree, <Link href="/essay/extended-essay" className="text-primary hover:underline">IBLens can mark your Extended Essay</Link> against the EE criteria for your session, the 34-mark set or the new 30-mark set, in a minute or two.
       </p>
 
       <p>

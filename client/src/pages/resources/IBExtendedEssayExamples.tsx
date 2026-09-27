@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { ExamplesBridge } from "@/components/ExamplesBridge";
 import { Link } from "wouter";
 
@@ -13,6 +14,8 @@ export default function IBExtendedEssayExamples() {
     >
       <h1>IB Extended Essay examples: what high-scoring EEs do differently</h1>
       <p>The Extended Essay is one of the most intimidating pieces of work in the IB Diploma Programme. At 4,000 words, it is longer than anything most 16 and 17-year-olds have written, and the open format (choose your own topic, design your own research question, argue your own thesis) leaves many students stuck. The best way to get started is to study strong IB extended essay examples and understand <em>why</em> they worked, not just what they said.</p>
+
+      <GraderCta work="Extended Essay" href="/essay?type=EE" />
       <p>This guide walks through what examiners actually reward, gives you concrete example research questions by subject, shows the most common mistakes that drag scores down, and explains what separates a C-grade EE from an A.</p>
 
       <h2>What makes a high-scoring IB Extended Essay?</h2>

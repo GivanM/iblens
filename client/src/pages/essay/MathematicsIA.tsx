@@ -6,7 +6,7 @@ const config: SubjectConfig = {
   keyword: "IB Math IA",
   metaTitle: "IB Math IA Grader: AI Feedback on Your Exploration | IBLens",
   metaDescription:
-    "AI feedback in about a minute on your IB Mathematics exploration: presentation, mathematical communication, personal engagement, reflection and use of mathematics, marked out of 20.",
+    "AI feedback in a minute or two on your IB Mathematics exploration: presentation, mathematical communication, personal engagement, reflection and use of mathematics, marked out of 20.",
   canonicalPath: "/essay/math-ia",
   heroHeadline: "Where is your IB Math exploration losing marks?",
   heroSubline:

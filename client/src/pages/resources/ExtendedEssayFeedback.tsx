@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function ExtendedEssayFeedback() {
@@ -15,6 +16,8 @@ export default function ExtendedEssayFeedback() {
       <p>
         The Extended Essay is the one piece of IB work where feedback is both most valuable and most rationed. Your supervisor's written comments are limited to one complete draft, supervisors cannot edit your work, and by the time the deadline is close, most students have exactly one question: <em>is this good enough, and what do I fix first?</em> This guide covers every legitimate feedback channel, what each one can tell you, what it cannot, and when in the process to use it.
       </p>
+
+      <GraderCta work="Extended Essay" href="/essay?type=EE" />
 
       <h2>The feedback channels compared</h2>
 
@@ -61,7 +64,7 @@ export default function ExtendedEssayFeedback() {
       </p>
 
       <p>
-        <Link href="/essay/extended-essay">Get feedback on your EE draft in about a minute →</Link>
+        <Link href="/essay/extended-essay">Get feedback on your EE draft in a minute or two →</Link>
       </p>
 
       <h2>Frequently asked questions</h2>

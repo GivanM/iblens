@@ -11,7 +11,7 @@ const config: SubjectConfig = {
   canonicalPath: "/essay/music-exploring-music-in-context",
   heroHeadline: "Is the written part of your Music portfolio earning its marks?",
   heroSubline:
-    "Paste the written work from your exploring music in context portfolio and get feedback on criteria A, B1 and B2 in about a minute, with the words counted against the 2,400-word limit.",
+    "Paste the written work from your exploring music in context portfolio and get feedback on criteria A, B1 and B2 in a minute or two, with the words counted against the 2,400-word limit.",
   analyzerHref: "/essay?type=IA&subject=Music",
   wordLimit: "2,400-word",
   criteriaCaveat:

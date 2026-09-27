@@ -64,7 +64,7 @@ import {
 import { checkWordLimit, storableWordCheck, type WordCheck } from "../shared/wordcount";
 import { checkUcasMechanics, buildUcasSystemPrompt, buildUcasUserPrompt, UCAS_TOTAL_CHAR_LIMIT, UCAS_MIN_CHARS_PER_ANSWER } from "../shared/ucas";
 import { createLemonsqueezyCheckout } from "./lemonsqueezy/lemonsqueezy";
-import { LEMONSQUEEZY_VARIANTS, PRODUCT_KEY_TO_LS_SKU } from "../shared/pricing";
+import { LEMONSQUEEZY_VARIANTS, PRODUCT_KEY_TO_LS_SKU, PAY_WHAT_YOU_WANT } from "../shared/pricing";
 import { randomUUID } from "crypto";
 import { PRODUCTS } from "./products";
 import { getRubric, buildRubricPromptFragment, unmarkableReason } from "../shared/rubrics";
@@ -1267,7 +1267,7 @@ const paymentRouter = router({
   // Create LemonSqueezy card checkout for guest (unauthenticated) users
   createGuestCheckout: publicProcedure
     .input(z.object({
-      productKey: z.enum(["ESSAY_SINGLE", "ESSAY_PACK_5", "ESSAY_PACK_10", "UNIVERSITY_SINGLE"]),
+      productKey: z.enum(["ESSAY_SINGLE", "ESSAY_PACK_5", "ESSAY_PACK_10", "UNIVERSITY_SINGLE", "PAY_WHAT_YOU_WANT"]),
       email: z.string().email("Please enter a valid email address"),
       /** Device the locked report sits on, so the payment can open it without an account. */
       fingerprint: z.string().min(1).max(64).optional(),
@@ -1280,11 +1280,15 @@ const paymentRouter = router({
       if (input.productKey === "UNIVERSITY_SINGLE") {
         throw new Error("The University Strategy is no longer offered.");
       }
-      const product = PRODUCTS[input.productKey];
+      // Name your own price buys one report, so it is stored as one: the amount is
+      // whatever the buyer types at the checkout, and the payment fills it in.
+      const namedPrice = input.productKey === "PAY_WHAT_YOU_WANT";
+      const fixedKey = input.productKey === "PAY_WHAT_YOU_WANT" ? ("ESSAY_SINGLE" as const) : input.productKey;
+      const product = namedPrice ? { priceAmount: 0 } : PRODUCTS[fixedKey];
       if (!product) throw new Error("Invalid product");
 
-      const lsSku = PRODUCT_KEY_TO_LS_SKU[input.productKey];
-      const variantId = LEMONSQUEEZY_VARIANTS[lsSku];
+      const lsSku = namedPrice ? "pay_what_you_want" : PRODUCT_KEY_TO_LS_SKU[fixedKey];
+      const variantId = namedPrice ? PAY_WHAT_YOU_WANT.variantId : LEMONSQUEEZY_VARIANTS[lsSku];
       if (!variantId) throw new Error("No LemonSqueezy variant for this product");
 
       const skuMap: Record<string, string> = {
@@ -1292,6 +1296,7 @@ const paymentRouter = router({
         ESSAY_PACK_5: "essay_pack_5",
         ESSAY_PACK_10: "essay_pack_10",
         UNIVERSITY_SINGLE: "university_single",
+        PAY_WHAT_YOU_WANT: "essay_single",
       };
       const sku = skuMap[input.productKey] as any;
 
@@ -1315,7 +1320,7 @@ const paymentRouter = router({
         orderId,
         variantId,
         input.email,
-        sku,
+        lsSku,
         product.priceAmount,
         // Every purchase carries the device, because a guest's reports live on it.
         // Whether it also opens a preview is the buyer's context, not a guess.
@@ -1332,7 +1337,7 @@ const paymentRouter = router({
   // Create LemonSqueezy card checkout (requires authentication)
   createLemonsqueezyCheckout: protectedProcedure
     .input(z.object({
-      productKey: z.enum(["ESSAY_SINGLE", "ESSAY_PACK_5", "ESSAY_PACK_10", "UNIVERSITY_SINGLE"]),
+      productKey: z.enum(["ESSAY_SINGLE", "ESSAY_PACK_5", "ESSAY_PACK_10", "UNIVERSITY_SINGLE", "PAY_WHAT_YOU_WANT"]),
       /** Signed-in buyers have a device too, and their report lives on it. */
       fingerprint: z.string().min(1).max(64).optional(),
       returnTo: z.enum(["essay", "ucas-personal-statement"]).optional(),
@@ -1345,11 +1350,13 @@ const paymentRouter = router({
       if (input.productKey === "UNIVERSITY_SINGLE") {
         throw new Error("The University Strategy is no longer offered.");
       }
-      const product = PRODUCTS[input.productKey];
+      const namedPrice = input.productKey === "PAY_WHAT_YOU_WANT";
+      const fixedKey = input.productKey === "PAY_WHAT_YOU_WANT" ? ("ESSAY_SINGLE" as const) : input.productKey;
+      const product = namedPrice ? { priceAmount: 0 } : PRODUCTS[fixedKey];
       if (!product) throw new Error("Invalid product");
 
-      const lsSku = PRODUCT_KEY_TO_LS_SKU[input.productKey];
-      const variantId = LEMONSQUEEZY_VARIANTS[lsSku];
+      const lsSku = namedPrice ? "pay_what_you_want" : PRODUCT_KEY_TO_LS_SKU[fixedKey];
+      const variantId = namedPrice ? PAY_WHAT_YOU_WANT.variantId : LEMONSQUEEZY_VARIANTS[lsSku];
       if (!variantId) throw new Error("No LemonSqueezy variant for this product");
 
       // Map product key to SKU enum
@@ -1358,6 +1365,7 @@ const paymentRouter = router({
         ESSAY_PACK_5: "essay_pack_5",
         ESSAY_PACK_10: "essay_pack_10",
         UNIVERSITY_SINGLE: "university_single",
+        PAY_WHAT_YOU_WANT: "essay_single",
       };
       const sku = skuMap[input.productKey] as any;
 
@@ -1387,7 +1395,7 @@ const paymentRouter = router({
         orderId,
         variantId,
         ctx.user.email || null,
-        sku, // productSlug for redirect URL tracking
+        lsSku, // productSlug for redirect URL tracking
         product.priceAmount, // valueUsd in cents for redirect URL tracking
         input.fingerprint,
         input.returnTo,

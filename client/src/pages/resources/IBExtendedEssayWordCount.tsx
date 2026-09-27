@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function IBExtendedEssayWordCount() {
@@ -17,6 +18,8 @@ export default function IBExtendedEssayWordCount() {
         words. This guide answers those questions from the IB's own word count table
         and explains how to use the limit well.
       </p>
+
+      <GraderCta work="Extended Essay" href="/essay?type=EE" />
 
       <h2>What counts towards the 4,000-word limit</h2>
       <p>

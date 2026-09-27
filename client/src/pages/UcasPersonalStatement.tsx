@@ -41,6 +41,8 @@ export default function UcasPersonalStatement() {
   const [purchaseOpen, setPurchaseOpen] = useState(false);
   // A purchase beside a locked preview opens it; from anywhere else it adds a report.
   const [buyFor, setBuyFor] = useState<"preview" | "new">("new");
+  // The same review at a price the reader names, for someone who will not pay the fixed price.
+  const [buySku, setBuySku] = useState<"ESSAY_SINGLE" | "PAY_WHAT_YOU_WANT">("ESSAY_SINGLE");
   const [limitReached, setLimitReached] = useState<string | null>(null);
 
   const total = answers.q1.length + answers.q2.length + answers.q3.length;
@@ -168,6 +170,14 @@ export default function UcasPersonalStatement() {
     if (isAuthenticated && hasCredit) { unlockWithAccount.mutate({ fingerprint: anonFp, kind: "ucas" }); return; }
     if (!isAuthenticated && deviceCredits > 0) { unlockWithDevice.mutate({ fingerprint: anonFp, kind: "ucas" }); return; }
     setBuyFor("preview");
+    setBuySku("ESSAY_SINGLE");
+    setPurchaseOpen(true);
+  };
+
+  /** Pay for this review at a price of your own, which opens it exactly as the fixed price does. */
+  const openNamedPrice = () => {
+    setBuyFor("preview");
+    setBuySku("PAY_WHAT_YOU_WANT");
     setPurchaseOpen(true);
   };
 
@@ -447,12 +457,13 @@ export default function UcasPersonalStatement() {
           onBuy={paidReturn && paidOpens && !isUnlocked ? undefined : openFullReview}
           buyLabel={canPayHere ? "Open the full review (uses 1 paid report)" : undefined}
           buyPending={unlockWithAccount.isPending || unlockWithDevice.isPending}
+          onNamePrice={openNamedPrice}
         />
       )}
       <PurchaseModal
         open={purchaseOpen}
         onOpenChange={setPurchaseOpen}
-        sku="ESSAY_SINGLE"
+        sku={buySku}
         unlocksPreview={buyFor === "preview"}
         previewLabel={buyFor === "preview" ? "your UCAS statement" : null}
         kind="ucas"

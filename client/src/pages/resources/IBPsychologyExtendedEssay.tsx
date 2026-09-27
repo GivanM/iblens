@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function IBPsychologyExtendedEssay() {
@@ -16,6 +17,8 @@ export default function IBPsychologyExtendedEssay() {
         <Link href="/resources/ib-extended-essay-new-criteria-2027">See what changed</Link>. If you
         sit your exams in November 2026, the older 34-mark criteria are summarised after them.
       </p>
+
+      <GraderCta work="Psychology Extended Essay" href="/essay?type=EE&subject=Psychology" />
       <p>
         The IB Psychology Extended Essay is a 4,000-word argument built on published
         psychological research. That definition rules out the two things students

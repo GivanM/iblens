@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function PsychologyIA2027() {
@@ -15,6 +16,8 @@ export default function PsychologyIA2027() {
       <p>
         From the May 2027 session, the IB Psychology Internal Assessment changes format completely: instead of conducting an experiment and writing it up, you write a <strong>research proposal</strong> for a study, and no experiment is carried out at all. The proposal is marked out of 24, up from 22 for the old experimental report, and the criteria are new. If you sit your exams in May 2027 or later, this is the format you are assessed on.
       </p>
+
+      <GraderCta work="Psychology IA" href="/essay?type=IA&subject=Psychology" />
 
       <h2>Who is affected</h2>
 

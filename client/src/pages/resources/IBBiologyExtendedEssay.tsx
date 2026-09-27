@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function IBBiologyExtendedEssay() {
@@ -16,6 +17,8 @@ export default function IBBiologyExtendedEssay() {
         <Link href="/resources/ib-extended-essay-new-criteria-2027">See what changed</Link>. If you
         sit your exams in November 2026, the older 34-mark criteria are summarised after them.
       </p>
+
+      <GraderCta work="Biology Extended Essay" href="/essay?type=EE&subject=Biology" />
       <p>
         The IB Biology Extended Essay (EE) is a 4,000-word independent research
         project. Its grade, combined with your TOK grade, decides up to three bonus

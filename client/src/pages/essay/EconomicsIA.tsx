@@ -10,7 +10,7 @@ const config: SubjectConfig = {
   canonicalPath: "/essay/economics-ia",
   heroHeadline: "See where your IB Economics IA commentary loses marks before you submit",
   heroSubline:
-    "Paste your Economics IA commentary and see which criteria are costing you marks in about a minute, with the words counted against the 800-word limit.",
+    "Paste your Economics IA commentary and see which criteria are costing you marks in a minute or two, with the words counted against the 800-word limit.",
   analyzerHref: "/essay?type=IA&subject=Economics",
   wordLimit: "800-word",
   criteria: [

@@ -54,7 +54,7 @@ export default function Home() {
     <div className="hc">
       <SEOHead
         title="IB Essay Grader 2026: Free Preview, AI Feedback on IA, EE & TOK | IBLens"
-        description="AI feedback on your IB essay in about a minute: marks against the published criteria, a range of totals, the risks costing you marks, and what to fix first. Free preview, no account needed."
+        description="AI feedback on your IB essay in a minute or two: marks against the published criteria, a range of totals, the risks costing you marks, and what to fix first. Free preview, no account needed."
         canonical="/"
         jsonLd={[
           {
@@ -104,7 +104,7 @@ export default function Home() {
         <div className="hc-wrap hc-copy">
           <p className="kicker">Due on Friday?</p>
           <h1>Find out tonight which IB criterion is costing you marks.</h1>
-          <p className="lede">An IB essay grader for the IA, Extended Essay and TOK. Paste your draft and IBLens marks it against the criteria for your subject and exam session in about a minute.</p>
+          <p className="lede">An IB essay grader for the IA, Extended Essay and TOK. Paste your draft and IBLens marks it against the criteria for your subject and exam session in a minute or two.</p>
           <div className="act">
             <Link href="/essay" className="hc-btn light">{primary}</Link>
             <small>{previewUsed ? `A full report is ${paidLeft > 0 ? "one of your paid reports" : PRICE_LABELS.ESSAY_SINGLE}, with two re-checks.` : `No account needed. Full report ${PRICE_LABELS.ESSAY_SINGLE}.`}</small>

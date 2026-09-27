@@ -10,7 +10,7 @@ const config: SubjectConfig = {
   canonicalPath: "/essay/physics-ia",
   heroHeadline: "Your IB Physics IA, read against the criteria your teacher marks it on",
   heroSubline:
-    "Paste your Physics IA and get a criterion-level breakdown with a ranked improvement plan. The free preview comes back in about a minute.",
+    "Paste your Physics IA and get a criterion-level breakdown with a ranked improvement plan. The free preview comes back in a minute or two.",
   analyzerHref: "/essay?type=IA&subject=Physics",
   wordLimit: "3,000-word",
   criteria: [

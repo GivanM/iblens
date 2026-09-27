@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function ComputerScienceIA2027() {
@@ -15,6 +16,8 @@ export default function ComputerScienceIA2027() {
       <p>
         From the May 2027 session, the IB Computer Science Internal Assessment is assessed as a <strong>computational solution marked out of 30</strong>, down from 34, with a new criterion structure and no client requirement. If you sit your exams in May 2027 or later, your IA is marked with the criteria below, not the ones in most older guides.
       </p>
+
+      <GraderCta work="Computer Science IA" href="/essay?type=IA&subject=Computer%20Science" />
 
       <h2>Who is affected</h2>
 

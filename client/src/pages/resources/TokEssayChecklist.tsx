@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function TokEssayChecklist() {
@@ -15,6 +16,8 @@ export default function TokEssayChecklist() {
       <p>
         The TOK essay is marked with a single holistic instrument out of 10: there are no separate criteria with individual marks. The instrument asks one question: <em>does the student provide a clear, coherent and critical exploration of the essay title?</em> That makes self-checking possible. You do not need to juggle several rubric strands; you need to test your draft against one question, rigorously. This checklist turns that question into concrete checks you can run on your own.
       </p>
+
+      <GraderCta work="TOK essay" href="/essay?type=TOK" />
 
       <h2>How the TOK essay is actually marked</h2>
 
@@ -87,7 +90,7 @@ export default function TokEssayChecklist() {
       <h2>Self-check, teacher feedback, or AI</h2>
 
       <p>
-        Your TOK teacher's comments are the best feedback you will get, but there are not many rounds of it. Running this checklist first means your teacher's time goes on substance rather than on problems you could have caught yourself. With your teacher's agreement, for a second opinion in about a minute, IBLens applies the holistic instrument to your draft: the band it currently sits in and the opening of the comment explaining why are free, before any payment.
+        Your TOK teacher's comments are the best feedback you will get, but there are not many rounds of it. Running this checklist first means your teacher's time goes on substance rather than on problems you could have caught yourself. With your teacher's agreement, for a second opinion in a minute or two, IBLens applies the holistic instrument to your draft: the band it currently sits in and the opening of the comment explaining why are free, before any payment.
       </p>
 
       <p>

@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function TokEssayGuide() {
@@ -15,6 +16,8 @@ export default function TokEssayGuide() {
       <p>
         <strong>The TOK essay is up to 1,600 words on one of six prescribed titles, marked holistically out of 10 on one instrument with five levels and no separate criteria. Your TOK grade, together with your Extended Essay grade, decides up to 3 bonus points on your Diploma.</strong>
       </p>
+
+      <GraderCta work="TOK essay" href="/essay?type=TOK" />
 
       <p>
         The Theory of Knowledge (TOK) essay is one of the most distinctive and challenging components of the IB Diploma Programme. Unlike subject-specific essays that test your knowledge of content, the TOK essay asks you to reflect on the nature of knowledge itself: how we know what we claim to know, what counts as evidence, and how knowledge is produced differently in different areas of knowledge.
@@ -201,7 +204,7 @@ export default function TokEssayGuide() {
       </ul>
 
       <p>
-        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, the <Link href="/essay/tok-essay" className="text-primary hover:underline">IBLens TOK essay grader</Link> reads it against the holistic instrument and places it in a band in about a minute, counting the words against the 1,600-word limit as it does. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">IB grade boundaries</Link> guide. For a broader look at how IB criteria work across essay types, read our <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB essay criteria explained</Link> article.
+        If you want to test whether your TOK essay effectively addresses the prescribed title and develops strong argumentation, the <Link href="/essay/tok-essay" className="text-primary hover:underline">IBLens TOK essay grader</Link> reads it against the holistic instrument and places it in a band in a minute or two, counting the words against the 1,600-word limit as it does. For understanding how the TOK grade combines with your Extended Essay grade to contribute bonus points, see our <Link href="/resources/ib-grade-boundaries" className="text-primary hover:underline">IB grade boundaries</Link> guide. For a broader look at how IB criteria work across essay types, read our <Link href="/resources/ib-essay-criteria-explained" className="text-primary hover:underline">IB essay criteria explained</Link> article.
       </p>
       <h2>More on TOK</h2>
 

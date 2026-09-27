@@ -8,7 +8,7 @@ const config: SubjectConfig = {
   metaDescription:
     "AI feedback on your IB Chemistry Internal Assessment against the four criteria: research design, data analysis, conclusion and evaluation. Free preview first, full report $9.99.",
   canonicalPath: "/essay/chemistry-ia",
-  heroHeadline: "Check your IB Chemistry IA against the criteria, in about a minute",
+  heroHeadline: "Check your IB Chemistry IA against the criteria, in a minute or two",
   heroSubline:
     "Paste your Chemistry IA and see how it reads on every criterion, and what to improve before submission.",
   analyzerHref: "/essay?type=IA&subject=Chemistry",

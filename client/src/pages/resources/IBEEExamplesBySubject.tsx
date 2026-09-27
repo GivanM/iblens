@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { ExamplesBridge } from "@/components/ExamplesBridge";
 import { Link } from "wouter";
 
@@ -22,6 +23,8 @@ export default function IBEEExamplesBySubject() {
         examples across major subject areas and explains what each high-scoring
         version does that lower-scoring versions don't.
       </p>
+
+      <GraderCta work="Extended Essay" href="/essay?type=EE" />
 
       <h2>IB EE marking overview</h2>
       <p>

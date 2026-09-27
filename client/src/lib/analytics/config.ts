@@ -21,7 +21,9 @@ export type ProductSlug =
   | "essay_single"
   | "essay_pack_5"
   | "essay_pack_10"
-  | "university_strategy";
+  | "university_strategy"
+  // One report bought at a price the buyer names, so its value is only known at the checkout.
+  | "pay_what_you_want";
 
 export type PaymentMethod = "lemonsqueezy" | "nowpayments" | "tribute";
 export type AuthMethod = "email" | "google" | "manus_oauth";

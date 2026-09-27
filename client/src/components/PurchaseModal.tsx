@@ -13,29 +13,34 @@ import { CreditCard, Loader2, Shield, Mail } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
 import { getAnonFingerprint } from "@/lib/fingerprint";
-import { PRICE_LABELS, PRICES, type ProductKey } from "@shared/pricing";
+import { PRICE_LABELS, PRICES, PAY_WHAT_YOU_WANT, type ProductKey } from "@shared/pricing";
 import { trackBeginCheckout, trackViewItem } from "@/lib/analytics/track";
 import type { ProductSlug } from "@/lib/analytics/config";
 import { fullReportAdds, type CriterionScope } from "@/lib/reportScope";
 
-const SKU_LABELS: Record<ProductKey, string> = {
+/** The same report as ESSAY_SINGLE, at a price the buyer types in at the checkout. */
+type ModalSku = ProductKey | "PAY_WHAT_YOU_WANT";
+
+const SKU_LABELS: Record<ModalSku, string> = {
   ESSAY_SINGLE: "Full report",
   ESSAY_PACK_5: "5 reports",
   ESSAY_PACK_10: "10 reports",
   UNIVERSITY_SINGLE: "University Strategy Report",
+  PAY_WHAT_YOU_WANT: "Full report, at a price you name",
 };
 
-const SKU_COUNT: Record<ProductKey, number> = {
+const SKU_COUNT: Record<ModalSku, number> = {
   ESSAY_SINGLE: 1,
   ESSAY_PACK_5: 5,
   ESSAY_PACK_10: 10,
   UNIVERSITY_SINGLE: 1,
+  PAY_WHAT_YOU_WANT: 1,
 };
 
 interface PurchaseModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  sku: ProductKey;
+  sku: ModalSku;
   /** A signed-in buyer's locked account report, opened by this payment. */
   analysisId?: number | null;
   /**
@@ -55,12 +60,18 @@ interface PurchaseModalProps {
 }
 
 // Map ProductKey to analytics ProductSlug
-const SKU_TO_SLUG: Record<ProductKey, ProductSlug> = {
+const SKU_TO_SLUG: Record<ModalSku, ProductSlug> = {
   ESSAY_SINGLE: "essay_single",
   ESSAY_PACK_5: "essay_pack_5",
   ESSAY_PACK_10: "essay_pack_10",
   UNIVERSITY_SINGLE: "university_strategy",
+  PAY_WHAT_YOU_WANT: "pay_what_you_want",
 };
+
+/** What the checkout will charge, in dollars. Zero when the buyer names it. */
+function priceUsdOf(sku: ModalSku): number {
+  return sku === "PAY_WHAT_YOU_WANT" ? 0 : PRICES[sku] / 100;
+}
 
 export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPreview, previewLabel, kind, criteria }: PurchaseModalProps) {
   const { isAuthenticated } = useAuth();
@@ -71,7 +82,7 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPrev
   // Fire view_item when modal opens
   useEffect(() => {
     if (open) {
-      trackViewItem(SKU_TO_SLUG[sku], PRICES[sku] / 100);
+      trackViewItem(SKU_TO_SLUG[sku], priceUsdOf(sku));
     }
   }, [open, sku]);
 
@@ -116,7 +127,7 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPrev
       }
       setEmailError(null);
       setLoading(true);
-      trackBeginCheckout(SKU_TO_SLUG[sku], PRICES[sku] / 100, "lemonsqueezy");
+      trackBeginCheckout(SKU_TO_SLUG[sku], priceUsdOf(sku), "lemonsqueezy");
       // The device id always travels: a guest's reports live on this browser.
       createGuestCheckout.mutate({
         productKey: sku,
@@ -129,7 +140,7 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPrev
     }
 
     setLoading(true);
-    trackBeginCheckout(SKU_TO_SLUG[sku], PRICES[sku] / 100, "lemonsqueezy");
+    trackBeginCheckout(SKU_TO_SLUG[sku], priceUsdOf(sku), "lemonsqueezy");
     createCardCheckout.mutate({
       productKey: sku,
       fingerprint: getAnonFingerprint(),
@@ -139,7 +150,8 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPrev
     });
   };
 
-  const price = PRICE_LABELS[sku];
+  const namedPrice = sku === "PAY_WHAT_YOU_WANT";
+  const price = namedPrice ? "Your price" : PRICE_LABELS[sku];
   const label = SKU_LABELS[sku];
   const count = SKU_COUNT[sku];
   const named = previewLabel ? ` (${previewLabel})` : "";
@@ -178,8 +190,12 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPrev
         <div className="space-y-5 pt-1">
           <div className="text-center">
             <p className="text-sm text-muted-foreground mb-1">{label}</p>
-            <p className="text-4xl font-bold tracking-tight">{price} <span className="text-base font-medium text-muted-foreground">USD</span></p>
-            <p className="text-xs text-muted-foreground mt-1">One-time payment, plus VAT or sales tax where it applies. No subscription.</p>
+            <p className="text-4xl font-bold tracking-tight">{price} {!namedPrice && <span className="text-base font-medium text-muted-foreground">USD</span>}</p>
+            <p className="text-xs text-muted-foreground mt-1">
+              {namedPrice
+                ? `You type the amount at the checkout, from $${PAY_WHAT_YOU_WANT.minUsd} (we suggest $${PAY_WHAT_YOU_WANT.suggestedUsd}). It buys the same report as ${PRICE_LABELS.ESSAY_SINGLE}. One-time payment, plus VAT or sales tax where it applies.`
+                : "One-time payment, plus VAT or sales tax where it applies. No subscription."}
+            </p>
             <div className="mt-3 rounded-lg bg-muted/50 p-3 text-left">
               <p className="text-xs font-medium mb-1">What you get</p>
               <ul className="text-xs text-muted-foreground space-y-1 list-disc pl-4">
@@ -244,7 +260,7 @@ export function PurchaseModal({ open, onOpenChange, sku, analysisId, unlocksPrev
                 Opening checkout…
               </>
             ) : (
-              `Continue to checkout, ${price}`
+              namedPrice ? "Continue to checkout" : `Continue to checkout, ${price}`
             )}
           </Button>
           </div>

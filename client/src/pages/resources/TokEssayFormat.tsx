@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function TokEssayFormat() {
@@ -15,6 +16,8 @@ export default function TokEssayFormat() {
       <p>
         The IB Theory of Knowledge essay has a few firm rules and many conventions. Formatting itself earns no marks, but breaking a rule, such as the word limit, can cost you. This guide separates the two: what the TOK guide requires, what schools usually expect, what does and does not count towards the limit, and how to present citations.
       </p>
+
+      <GraderCta work="TOK essay" href="/essay?type=TOK" />
 
       <h2>Word count: the 1,600-word rule</h2>
 

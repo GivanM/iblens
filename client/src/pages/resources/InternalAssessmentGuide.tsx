@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function InternalAssessmentGuide() {
@@ -15,6 +16,8 @@ export default function InternalAssessmentGuide() {
       <p>
         <strong>Every IB subject includes an internally assessed component marked against published criteria: the sciences out of 24, History and Business Management out of 25, Mathematics out of 20, Economics 14 per commentary. Your teacher marks it and the IB moderates a sample, so the criteria are what count.</strong>
       </p>
+
+      <GraderCta work="IA" href="/essay?type=IA" />
 
       <p>
         Internal Assessments (IAs) are a core component of every IB Diploma Programme subject. Unlike externally examined papers, IAs are completed during the course, supervised by your teacher, and then externally moderated by the IB. They usually account for 20% to 30% of the final subject grade, and more in some arts subjects (the Film portfolio is 40% at SL), which makes them one of the most controllable parts of your IB score: you have weeks or months to refine them, not a timed exam.
@@ -217,7 +220,7 @@ export default function InternalAssessmentGuide() {
       </p>
 
       <p>
-        Get AI feedback on your IA in about a minute: <Link href="/essay/biology-ia" className="text-primary hover:underline">Biology IA</Link>, <Link href="/essay/chemistry-ia" className="text-primary hover:underline">Chemistry IA</Link>, <Link href="/essay/physics-ia" className="text-primary hover:underline">Physics IA</Link>, <Link href="/essay/economics-ia" className="text-primary hover:underline">Economics IA</Link>, <Link href="/essay/history-ia" className="text-primary hover:underline">History IA</Link>, <Link href="/essay/business-management-ia" className="text-primary hover:underline">Business Management IA</Link>, <Link href="/essay/math-ia" className="text-primary hover:underline">Mathematics IA</Link>, or <Link href="/essay/psychology-ia" className="text-primary hover:underline">Psychology IA</Link>, each marked against the criteria for that subject.
+        Get AI feedback on your IA in a minute or two: <Link href="/essay/biology-ia" className="text-primary hover:underline">Biology IA</Link>, <Link href="/essay/chemistry-ia" className="text-primary hover:underline">Chemistry IA</Link>, <Link href="/essay/physics-ia" className="text-primary hover:underline">Physics IA</Link>, <Link href="/essay/economics-ia" className="text-primary hover:underline">Economics IA</Link>, <Link href="/essay/history-ia" className="text-primary hover:underline">History IA</Link>, <Link href="/essay/business-management-ia" className="text-primary hover:underline">Business Management IA</Link>, <Link href="/essay/math-ia" className="text-primary hover:underline">Mathematics IA</Link>, or <Link href="/essay/psychology-ia" className="text-primary hover:underline">Psychology IA</Link>, each marked against the criteria for that subject.
       </p>
       <h2>Subject-specific IA guides</h2>
 

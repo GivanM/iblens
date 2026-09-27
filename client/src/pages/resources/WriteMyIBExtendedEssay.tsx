@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function WriteMyIBExtendedEssay() {
@@ -19,6 +20,8 @@ export default function WriteMyIBExtendedEssay() {
         reasons students get stuck, what you can realistically do to get unstuck, and
         what kind of help is actually worth pursuing.
       </p>
+
+      <GraderCta work="Extended Essay" href="/essay?type=EE" />
 
       <h2>Why students get stuck on the Extended Essay</h2>
 

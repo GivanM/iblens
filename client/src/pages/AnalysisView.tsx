@@ -167,7 +167,7 @@ export default function AnalysisView() {
                 <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-1.5">{holistic ? "The start of the explanation" : "Your weakest criterion"}</p>
                 <div className="flex justify-between gap-3 text-sm font-semibold mb-1 text-foreground"><span>{weakest.name}</span><span className="flex-shrink-0">{typeof weakest.score === "number" ? `${weakest.score}/${weakest.max}` : holistic ? `Band ${p.band_range}` : `?/${weakest.max}`}</span></div>
                 <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{weakest.comment}</p>
-                {p?.weakest_comment_trimmed && <p className="text-xs text-amber-800 mt-2">Sentences that state a mark are left out of the preview; the full report has the whole comment.</p>}
+                {p?.weakest_comment_trimmed && <p className="text-xs text-amber-800 mt-2">The preview shows the opening of this comment. The rest of it, and the mark for this criterion, are in the full report.</p>}
               </div>
             )}
             {(p?.risks || []).length > 0 && (

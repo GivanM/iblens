@@ -10,7 +10,7 @@ const config: SubjectConfig = {
   canonicalPath: "/essay/history-ia",
   heroHeadline: "Find out where your History IA loses marks before you submit",
   heroSubline:
-    "Get your History IA marked across all three sections (sources, investigation and reflection) against the History criteria, in about a minute.",
+    "Get your History IA marked across all three sections (sources, investigation and reflection) against the History criteria, in a minute or two.",
   analyzerHref: "/essay?type=IA&subject=History",
   wordLimit: "2,200-word",
   criteria: [

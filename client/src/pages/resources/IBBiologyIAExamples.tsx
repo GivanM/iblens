@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { ExamplesBridge } from "@/components/ExamplesBridge";
 import { AnnotatedExcerpt } from "@/components/AnnotatedExcerpt";
 import { Link } from "wouter";
@@ -20,6 +21,8 @@ export default function IBBiologyIAExamples() {
         investigation through the report, passage by passage, then covers topics that tend
         to work and the mistakes that cost otherwise competent investigations their marks.
       </p>
+
+      <GraderCta work="Biology IA" href="/essay?type=IA&subject=Biology" />
 
       <h2>How the IB Biology IA is marked</h2>
       <p>

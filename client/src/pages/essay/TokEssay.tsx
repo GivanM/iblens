@@ -10,7 +10,7 @@ const config: SubjectConfig = {
   canonicalPath: "/essay/tok-essay",
   heroHeadline: "Is your TOK essay actually answering the prescribed title?",
   heroSubline:
-    "Paste your TOK essay and get it read against the holistic TOK instrument, which has no sub-criteria, in about a minute. See whether your arguments are developed enough for the upper bands.",
+    "Paste your TOK essay and get it read against the holistic TOK instrument, which has no sub-criteria, in a minute or two. See whether your arguments are developed enough for the upper bands.",
   analyzerHref: "/essay?type=TOK",
   wordLimit: "1,600-word",
   criteria: [

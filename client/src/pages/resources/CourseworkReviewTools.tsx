@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function CourseworkReviewTools() {
@@ -15,6 +16,8 @@ export default function CourseworkReviewTools() {
       <p>
         Before the coursework deadline, most IB students want the same thing: an honest read on where a draft stands against the actual assessment criteria. For the Extended Essay, check with your supervisor first: its guide says students are not allowed to receive assistance with any aspect of the research, writing or proofreading of the essay beyond that which is permitted through their supervisor. A handful of tools now do this with AI. Here is how they compare, including where we fit, stated as plainly as we describe everyone else. Details below were checked in August 2026, and the RevisionDojo row again on 13 September 2026; features and prices change, so verify on each site.
       </p>
+
+      <GraderCta work="draft" href="/essay" />
 
       <h2>The comparison</h2>
 

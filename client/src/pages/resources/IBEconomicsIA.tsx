@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function IBEconomicsIA() {
@@ -18,6 +19,8 @@ export default function IBEconomicsIA() {
         within it come down to a handful of skills applied consistently, and this guide
         covers them.
       </p>
+
+      <GraderCta work="Economics IA" href="/essay?type=IA&subject=Economics" />
 
       <h2>How the IB Economics IA is marked</h2>
       <p>

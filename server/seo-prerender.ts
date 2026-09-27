@@ -113,7 +113,7 @@ const routeMeta: Record<string, PageMeta> = {
 
   "/": {
     title: "IB Essay Grader 2026: Free Preview, AI Feedback on IA, EE & TOK | IBLens",
-    description: "AI feedback on your IB essay in about a minute: marks against the published criteria, a range of totals, the risks costing you marks, and what to fix first. Free preview, no account needed.",
+    description: "AI feedback on your IB essay in a minute or two: marks against the published criteria, a range of totals, the risks costing you marks, and what to fix first. Free preview, no account needed.",
     ogType: "website",
     canonical: "/",
     schemaType: "WebSite",
@@ -127,7 +127,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/grade": {
     title: "IB Essay Grader: Free Preview of Your IA, EE or TOK Draft in About a Minute | IBLens",
-    description: "Paste your IB essay and get a free preview in about a minute: a range of totals and, for most drafts, your weakest criterion and the top risks. The full report gives the estimated mark and the reasons for it. Extended Essay, IA or TOK, no account needed.",
+    description: "Paste your IB essay and get a free preview in a minute or two: a range of totals and, for most drafts, your weakest criterion and the top risks. The full report gives the estimated mark and the reasons for it. Extended Essay, IA or TOK, no account needed.",
     ogType: "website",
     canonical: "/grade",
     schemaType: "WebPage",
@@ -467,7 +467,7 @@ const routeMeta: Record<string, PageMeta> = {
   // A design prototype of the homepage, reachable by link only.
   "/v2": {
     title: "IBLens: Find the Criterion That Is Costing You Marks",
-    description: "Paste your IA, Extended Essay or TOK essay and see which criterion is costing you marks, against the IB criteria for your subject and session, in about a minute. Free preview first.",
+    description: "Paste your IA, Extended Essay or TOK essay and see which criterion is costing you marks, against the IB criteria for your subject and session, in a minute or two. Free preview first.",
     noindex: true,
     ogType: "website",
     canonical: "/",
@@ -501,7 +501,7 @@ const routeMeta: Record<string, PageMeta> = {
   // Programmatic subject pages
   "/essay/business-management-ia": {
     title: "IB Business Management IA Grader: AI Feedback on Your Research Project | IBLens",
-    description: "AI feedback in about a minute on your IB Business Management research project, marked against the seven criteria out of 25, with the word count checked against 1,800. Free preview first.",
+    description: "AI feedback in a minute or two on your IB Business Management research project, marked against the seven criteria out of 25, with the word count checked against 1,800. Free preview first.",
     ogType: "website",
     canonical: "/essay/business-management-ia",
     schemaType: "WebPage",
@@ -522,7 +522,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/essay/biology-ia": {
     title: "IB Biology IA Grader: AI Feedback on Your Scientific Investigation | IBLens",
-    description: "AI feedback on your IB Biology Internal Assessment in about a minute, against the four criteria: research design, data analysis, conclusion and evaluation. Free preview first.",
+    description: "AI feedback on your IB Biology Internal Assessment in a minute or two, against the four criteria: research design, data analysis, conclusion and evaluation. Free preview first.",
     ogType: "website",
     canonical: "/essay/biology-ia",
     schemaType: "WebPage",
@@ -543,7 +543,7 @@ const routeMeta: Record<string, PageMeta> = {
   },
   "/essay/math-ia": {
     title: "IB Math IA Grader: AI Feedback on Your Exploration | IBLens",
-    description: "AI feedback in about a minute on your IB Mathematics exploration: presentation, mathematical communication, personal engagement, reflection and use of mathematics, marked out of 20.",
+    description: "AI feedback in a minute or two on your IB Mathematics exploration: presentation, mathematical communication, personal engagement, reflection and use of mathematics, marked out of 20.",
     ogType: "website",
     canonical: "/essay/math-ia",
     schemaType: "WebPage",

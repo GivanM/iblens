@@ -6,11 +6,11 @@ const config: SubjectConfig = {
   keyword: "IB Biology IA",
   metaTitle: "IB Biology IA Grader: AI Feedback on Your Scientific Investigation | IBLens",
   metaDescription:
-    "AI feedback on your IB Biology Internal Assessment in about a minute, against the four criteria: research design, data analysis, conclusion and evaluation. Free preview first.",
+    "AI feedback on your IB Biology Internal Assessment in a minute or two, against the four criteria: research design, data analysis, conclusion and evaluation. Free preview first.",
   canonicalPath: "/essay/biology-ia",
   heroHeadline: "Is your Biology IA losing marks you don't know about?",
   heroSubline:
-    "Paste your Biology IA report and get feedback against the IB sciences criteria, criterion by criterion. The free preview comes back in about a minute.",
+    "Paste your Biology IA report and get feedback against the IB sciences criteria, criterion by criterion. The free preview comes back in a minute or two.",
   analyzerHref: "/essay?type=IA&subject=Biology",
   wordLimit: "3,000-word",
   criteria: [

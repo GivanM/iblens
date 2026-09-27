@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function EENewCriteria2027() {
@@ -15,6 +16,8 @@ export default function EENewCriteria2027() {
       <p>
         If you sit your exams in May 2027 or later, your Extended Essay is assessed under new criteria and marked out of 30, not 34. Most guides online still describe the old rubric. This page sets out exactly what changed, what examiners now reward most, and what to check in your draft before you hand it to your supervisor.
       </p>
+
+      <GraderCta work="Extended Essay" href="/essay?type=EE" />
 
       <h2>Who is assessed under the new criteria</h2>
 

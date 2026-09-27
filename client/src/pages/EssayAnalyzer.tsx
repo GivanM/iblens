@@ -95,7 +95,7 @@ type EssayResult = {
 };
 
 
-function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, analysisId, onUnlocked, onBuy, essayText, deviceCredits = 0, onDeviceUnlock, deviceUnlocking }: any) {
+function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, analysisId, onUnlocked, onBuy, onNamePrice, essayText, deviceCredits = 0, onDeviceUnlock, deviceUnlocking }: any) {
   const unlock = trpc.essay.unlockAnalysis.useMutation({
     onSuccess: (d: any) => onUnlocked(d.result),
     onError: (e: any) => toast.error(e.message || "Unlock failed"),
@@ -128,7 +128,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
             <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-1.5">{holistic ? "The start of the explanation" : "Your weakest criterion"}</p>
             <div className="flex justify-between text-sm font-semibold mb-1 text-foreground"><span>{weakest.name}</span><span>{typeof weakest.score === "number" ? `${weakest.score}/${weakest.max}` : holistic ? `Band ${result.band_range}` : `?/${weakest.max}`}</span></div>
             <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{weakest.comment}</p>
-            {result.weakest_comment_trimmed && <p className="text-xs text-amber-800 mt-2">Sentences that state a mark are left out of the preview; the full report has the whole comment.</p>}
+            {result.weakest_comment_trimmed && <p className="text-xs text-amber-800 mt-2">The preview shows the opening of this comment. The rest of it, and the mark for this criterion, are in the full report.</p>}
           </div>
         )}
         {(result.risks || []).length > 0 && (
@@ -190,7 +190,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
             </div>
           )}
         </div>
-        {!hasPaidCredit && !(deviceCredits > 0) && !(result as any)._refunded && <PayWhatYouWant place="essay_preview" />}
+        {!hasPaidCredit && !(deviceCredits > 0) && !(result as any)._refunded && <PayWhatYouWant place="essay_preview" onNamePrice={onNamePrice} />}
       </CardContent>
     </Card>
   );
@@ -290,6 +290,8 @@ export default function EssayAnalyzer() {
   const [buyKind, setBuyKind] = useState<"essay" | "tok">("essay");
   // The criteria of the preview being bought, so the dialog promises only what it marks.
   const [buyCriteria, setBuyCriteria] = useState<CriterionScope[] | null>(null);
+  // The same report at a price the buyer names, for someone who will not pay $9.99.
+  const [buySku, setBuySku] = useState<"ESSAY_SINGLE" | "PAY_WHAT_YOU_WANT">("ESSAY_SINGLE");
   // The work the report on screen belongs to, fixed when it was produced or reopened.
   // Reading the form instead named the wrong work after the task was switched.
   const [resultWork, setResultWork] = useState<{ label: string; kind: "essay" | "tok" } | null>(null);
@@ -306,11 +308,12 @@ export default function EssayAnalyzer() {
       if (subj) setSubject(subj);
     }
   };
-  const openBuy = (kind: "preview" | "new", label: string | null = null, work: "essay" | "tok" = "essay", criteria: CriterionScope[] | null = null) => {
+  const openBuy = (kind: "preview" | "new", label: string | null = null, work: "essay" | "tok" = "essay", criteria: CriterionScope[] | null = null, sku: "ESSAY_SINGLE" | "PAY_WHAT_YOU_WANT" = "ESSAY_SINGLE") => {
     setBuyFor(kind);
     setBuyLabel(label);
     setBuyKind(work);
     setBuyCriteria(kind === "preview" ? criteria : null);
+    setBuySku(sku);
     setEssayPurchaseOpen(true);
   };
   const resultRef = useRef<HTMLDivElement | null>(null);
@@ -691,7 +694,7 @@ export default function EssayAnalyzer() {
         <p className="hidden sm:block text-xs font-semibold tracking-widest text-primary uppercase mb-3">Essay Grader</p>
         <h1 style={SERIF} className="text-3xl md:text-4xl font-bold mb-2 md:mb-3">IB essay grader</h1>
         <p className="text-muted-foreground text-base md:text-lg max-w-2xl">
-          AI feedback on your Extended Essay, IA or TOK work in about a minute, against the published criteria, with an estimated mark.
+          AI feedback on your Extended Essay, IA or TOK work in a minute or two, against the published criteria, with an estimated mark.
         </p>
       </div>
 
@@ -1096,7 +1099,7 @@ export default function EssayAnalyzer() {
           <PurchaseModal
             open={essayPurchaseOpen}
             onOpenChange={setEssayPurchaseOpen}
-            sku="ESSAY_SINGLE"
+            sku={buySku}
             analysisId={isAuthenticated && buyFor === "preview" ? resultAnalysisId : null}
             unlocksPreview={buyFor === "preview"}
             previewLabel={buyFor === "preview" ? buyLabel : null}
@@ -1243,7 +1246,7 @@ export default function EssayAnalyzer() {
             </div>
           )}
           {(result as any).locked ? (
-            <LockedTeaser essayText={essayText} result={result} isAuthenticated={isAuthenticated} hasPaidCredit={(credits?.essayCredits ?? 0) > 0} fingerprint={anonFp} analysisId={resultAnalysisId} onUnlocked={(full: any) => { setResult(full as EssayResult); setRerunDelta(null); markReportSeen(resultAnalysisId); }} deviceCredits={deviceCredits} deviceUnlocking={deviceUnlock.isPending} onDeviceUnlock={() => deviceUnlock.mutate({ fingerprint: anonFp })} onBuy={() => openBuy("preview", resultWork?.label ?? lockedLabel, resultWork?.kind ?? "essay", (result as any)?.criteria_names ?? null)} />
+            <LockedTeaser essayText={essayText} result={result} isAuthenticated={isAuthenticated} hasPaidCredit={(credits?.essayCredits ?? 0) > 0} fingerprint={anonFp} analysisId={resultAnalysisId} onUnlocked={(full: any) => { setResult(full as EssayResult); setRerunDelta(null); markReportSeen(resultAnalysisId); }} deviceCredits={deviceCredits} deviceUnlocking={deviceUnlock.isPending} onDeviceUnlock={() => deviceUnlock.mutate({ fingerprint: anonFp })} onBuy={() => openBuy("preview", resultWork?.label ?? lockedLabel, resultWork?.kind ?? "essay", (result as any)?.criteria_names ?? null)} onNamePrice={() => openBuy("preview", resultWork?.label ?? lockedLabel, resultWork?.kind ?? "essay", (result as any)?.criteria_names ?? null, "PAY_WHAT_YOU_WANT")} />
           ) : (<>
           {/* Overall Score */}
           <Card>

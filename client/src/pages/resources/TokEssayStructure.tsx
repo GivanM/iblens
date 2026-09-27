@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function TokEssayStructure() {
@@ -15,6 +16,8 @@ export default function TokEssayStructure() {
       <p>
         The IB Theory of Knowledge essay has no prescribed structure, but a clear one makes it much easier for an examiner to see a clear, coherent and critical exploration of the title, which is what the instrument rewards. This guide sets out a structure that works for most titles, paragraph by paragraph, with rough word counts and what each section needs to do.
       </p>
+
+      <GraderCta work="TOK essay" href="/essay?type=TOK" />
 
       <h2>Why structure matters in TOK</h2>
 

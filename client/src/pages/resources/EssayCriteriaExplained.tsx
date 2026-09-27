@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function EssayCriteriaExplained() {
@@ -15,6 +16,8 @@ export default function EssayCriteriaExplained() {
       <p>
         <strong>Most IB coursework is marked against published criteria with fixed mark allocations. The TOK essay and exhibition are the exception: they are marked holistically, as a single global impression. The fastest way to raise a grade is to find the heaviest criterion for your component and check your draft against its top markband first.</strong>
       </p>
+
+      <GraderCta work="draft" href="/essay" />
 
       <p>
         One of the most distinctive features of the IB Diploma Programme is its use of <strong>criterion-based assessment</strong>. Unlike norm-referenced systems (where your grade depends on how you perform relative to other students), the IB assesses each piece of work against fixed criteria with defined descriptors. This means that in theory, every student in a cohort could achieve a 7, or every student could receive a 3, depending on how well their work meets the criteria.

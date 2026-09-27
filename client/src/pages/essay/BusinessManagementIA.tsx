@@ -6,11 +6,11 @@ const config: SubjectConfig = {
   keyword: "IB Business Management IA",
   metaTitle: "IB Business Management IA Grader: AI Feedback on Your Research Project | IBLens",
   metaDescription:
-    "AI feedback in about a minute on your IB Business Management research project, marked against the seven criteria out of 25, with the word count checked against 1,800. Free preview first.",
+    "AI feedback in a minute or two on your IB Business Management research project, marked against the seven criteria out of 25, with the word count checked against 1,800. Free preview first.",
   canonicalPath: "/essay/business-management-ia",
   heroHeadline: "Is your Business Management IA scoring where you think it is?",
   heroSubline:
-    "Paste your research project and get feedback against the Business Management criteria in about a minute, with the words counted against the 1,800-word limit.",
+    "Paste your research project and get feedback against the Business Management criteria in a minute or two, with the words counted against the 1,800-word limit.",
   analyzerHref: "/essay?type=IA&subject=Business%20Management",
   wordLimit: "1,800-word",
   criteria: [

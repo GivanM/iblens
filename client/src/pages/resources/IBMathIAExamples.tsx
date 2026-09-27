@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { ExamplesBridge } from "@/components/ExamplesBridge";
 import { AnnotatedExcerpt } from "@/components/AnnotatedExcerpt";
 import { Link } from "wouter";
@@ -22,6 +23,8 @@ export default function IBMathIAExamples() {
         passages, then covers topics that work for each course and a structure that suits
         most explorations.
       </p>
+
+      <GraderCta work="Math IA" href="/essay?type=IA&subject=Mathematics" />
 
       <h2>What the criteria look for</h2>
       <p>

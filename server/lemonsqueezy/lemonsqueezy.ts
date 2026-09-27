@@ -6,6 +6,7 @@ import { LEMONSQUEEZY_BUY_URLS, LEMONSQUEEZY_VARIANTS, PAY_WHAT_YOU_WANT } from 
 import {
   getOrderById,
   updateOrderStatus,
+  setOrderAmountUsd,
   insertWebhookEvent,
   updateWebhookEvent,
   hasEarlierVerifiedWebhookEvent,
@@ -107,9 +108,10 @@ export function skuForVariantId(variantId: number): string | null {
 const unverifiedWindow = { start: 0, count: 0 };
 
 /**
- * A pay-what-you-want payment for a free preview. It buys nothing, so it must never reach
- * the storefront path below, which would have granted a $9.99 report for a $1 payment.
- * A known paid variant is never one, whatever the editable checkout data says.
+ * A payment through the pay-what-you-want product. Since 27 September 2026 one of these
+ * buys the report it was started from, so this on its own no longer decides what it grants:
+ * see isStorefrontTip. A known paid variant is never one, whatever the editable checkout
+ * data says.
  */
 export function isPayWhatYouWant(attrs: any, customData: any): boolean {
   const variantId = Number(attrs?.first_order_item?.variant_id || 0);
@@ -117,6 +119,16 @@ export function isPayWhatYouWant(attrs: any, customData: any): boolean {
   if (variantId && PAY_WHAT_YOU_WANT.variantId && variantId === PAY_WHAT_YOU_WANT.variantId) return true;
   const names = `${attrs?.first_order_item?.product_name || ""} ${attrs?.first_order_item?.variant_name || ""}`;
   return /pay what you want/i.test(names) || String(customData?.kind || "") === "pay_what_you_want";
+}
+
+/**
+ * A pay-what-you-want payment made from the storefront, with none of our orders attached.
+ * There is no report to open and no order to credit, so it is recorded and grants nothing.
+ * With an order id the same product is a report bought at a price the buyer named, and it
+ * goes through the ordinary purchase path.
+ */
+export function isStorefrontTip(orderId: string, attrs: any, customData: any): boolean {
+  return !orderId && isPayWhatYouWant(attrs, customData);
 }
 
 export function lsSkuToCredits(sku: string): { essay: number; university: number } {
@@ -289,7 +301,10 @@ export function registerLemonsqueezyWebhook(app: Express) {
         const customData = meta.custom_data || {};
         const orderId = customData.order_id || "";
 
-        if (eventName === "order_created" && isPayWhatYouWant((body as any)?.data?.attributes, customData)) {
+        // A name-your-price payment that carries one of our orders buys the report it was
+        // started from, and goes through the ordinary purchase path below. Only a payment
+        // with no order of ours, made from the storefront, is a tip that opens nothing.
+        if (eventName === "order_created" && isStorefrontTip(orderId, (body as any)?.data?.attributes, customData)) {
           const attrs: any = (body as any)?.data?.attributes || {};
           const paidUsd = Number(attrs.total_usd ?? attrs.total ?? 0) / 100;
           console.log(`[LemonSqueezy] Pay what you want: $${paidUsd.toFixed(2)} for a free preview (${customData.place || "unknown place"}), order ${dataId}`);
@@ -436,6 +451,11 @@ export function registerLemonsqueezyWebhook(app: Express) {
             console.log(`[LemonSqueezy] Credits granted to user ${order.userId}: essay=${credits.essay}, university=${credits.university}`);
           }
           await updateOrderStatus(order.id, "paid", dataId);
+          // A name-your-price order is created with no amount, because the buyer sets it.
+          if (Number((order as any).amountUsd ?? 0) === 0) {
+            const paidCents = Math.round(Number((body as any)?.data?.attributes?.total_usd ?? (body as any)?.data?.attributes?.total ?? 0));
+            if (paidCents > 0) await setOrderAmountUsd(order.id, paidCents).catch((amountErr) => console.warn("[LemonSqueezy] Could not record the amount paid:", amountErr));
+          }
           // What this payment did with its reports, recorded as its lot below: how many it
           // opened straight away, and how many it placed on the buyer's browser.
           let openedAtPurchase = 0;
@@ -606,7 +626,7 @@ export function registerLemonsqueezyWebhook(app: Express) {
           } catch (emailErr) {
             console.warn("[LemonSqueezy] Email notification failed (non-fatal):", emailErr);
           }
-        } else if (eventName === "order_refunded" && isPayWhatYouWant((body as any)?.data?.attributes, customData)) {
+        } else if (eventName === "order_refunded" && isStorefrontTip(orderId, (body as any)?.data?.attributes, customData)) {
           // It granted nothing, so there is nothing to take back.
           console.log(`[LemonSqueezy] Pay what you want order ${dataId} refunded`);
           if (webhookEventId) {

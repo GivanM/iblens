@@ -11,7 +11,7 @@ const DOES = [
   "Names the criterion losing you the most marks and says what in the text is costing them.",
   "Follows your exam session. Choose May 2027 and the Extended Essay, Psychology and Computer Science are marked on the new criteria; choose 2026 and they are marked on the current ones.",
   "Re-checks a revised draft twice within 14 days of a paid report, at no extra cost.",
-  "Comes back in about a minute, at any hour, including the night before a deadline.",
+  "Comes back in a minute or two, at any hour, including the night before a deadline.",
 ];
 
 export function ScopeSheet() {

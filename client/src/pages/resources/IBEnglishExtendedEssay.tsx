@@ -1,4 +1,5 @@
 import { ResourceArticle } from "@/components/ResourceArticle";
+import { GraderCta } from "@/components/GraderCta";
 import { Link } from "wouter";
 
 export default function IBEnglishExtendedEssay() {
@@ -16,6 +17,8 @@ export default function IBEnglishExtendedEssay() {
         <Link href="/resources/ib-extended-essay-new-criteria-2027">See what changed</Link>. If you
         sit your exams in November 2026, the older 34-mark criteria are summarised after them.
       </p>
+
+      <GraderCta work="English Extended Essay" href="/essay?type=EE&subject=English%20A%3A%20Literature" />
       <p>
         An IB English Extended Essay is an extended piece of literary criticism: a
         4,000-word argument about how a clearly defined text, or a small group of texts, works. That framing matters,
