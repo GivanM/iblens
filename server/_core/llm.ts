@@ -217,6 +217,13 @@ function toAnthropicToolChoice(tc: ToolChoice): Record<string, unknown> {
  * Shown to the student when the model and its fallback both decline the text. Retrying
  * does not help, so this is not the "try again in a minute" message.
  */
+/**
+ * The account's own spend limit, not a fault in the request. On 21 September 2026 a test run
+ * in another project on the same key used the organisation's limit up, and thirteen students
+ * were told to "try again in a minute" for the rest of the day. Say what actually happened.
+ */
+export const MODEL_LIMIT_REACHED = "The marking service has reached its limit for now, and nothing was used up. This is on our side, not your work. Please try again later today, or email glushkovim@gmail.com if it keeps happening.";
+
 export const MODEL_DECLINED = "The marking model declined to mark this text, and nothing was used up. This occasionally happens with work on sensitive subjects: email glushkovim@gmail.com with your subject and topic and we will check what happened.";
 
 function fromAnthropicResponse(data: Record<string, unknown>): InvokeResult {
@@ -476,6 +483,12 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
         console.warn(`[LLM] upstream ${response.status} on attempt ${attempt}/${MAX_ATTEMPTS}, retrying`);
         await new Promise((r) => setTimeout(r, RETRY_DELAYS_MS[attempt - 1]));
         continue;
+      }
+      // "You have reached your specified API usage limits" comes back as a 400, so it never
+      // retries and the generic wording sent students away with the wrong advice.
+      if (/usage limit|credit balance|billing/i.test(errorText)) {
+        console.error(`[LLM] account limit reached: ${errorText.slice(0, 300)}`);
+        throw new Error(MODEL_LIMIT_REACHED);
       }
       throw new Error(
         `LLM invoke failed: ${response.status} ${response.statusText} – ${errorText}`

@@ -1,13 +1,21 @@
 import { describe, expect, it, vi } from "vitest";
 import { appRouter } from "./routers";
 import { COOKIE_NAME } from "../shared/const";
+import { PRICES } from "../shared/pricing";
 import type { TrpcContext } from "./_core/context";
 
 // Mock the db module with credit-based model
 vi.mock("./db", () => ({
   canUserAnalyzeEssay: vi.fn().mockResolvedValue({ allowed: true, isFree: true, reason: null }),
   canUserAnalyzeUniversity: vi.fn().mockResolvedValue({ allowed: true, reason: null }),
-  consumeEssayCredit: vi.fn().mockResolvedValue(undefined),
+  // It reports what it actually took, because the free slot can be gone by the time it runs.
+  consumeEssayCredit: vi.fn().mockResolvedValue("free"),
+  // The purchase a paid run is charged to. Added when reports were tied to their order.
+  takeFromOldestLot: vi.fn().mockResolvedValue(null),
+  returnToLot: vi.fn().mockResolvedValue(true),
+  // A refund that lands while a report is being produced closes it instead of selling it twice.
+  isPurchaseRefunded: vi.fn().mockResolvedValue(false),
+  refundEssayConsumption: vi.fn().mockResolvedValue(undefined),
   consumeUniversityCredit: vi.fn().mockResolvedValue(undefined),
   createAnalysis: vi.fn().mockResolvedValue({ id: 1 }),
   getUserAnalyses: vi.fn().mockResolvedValue([
@@ -171,11 +179,18 @@ describe("essay.analyze", () => {
     expect(result.id).toBe(1);
     expect(result.wasFree).toBe(true);
     expect(result.result).toBeDefined();
-    expect(result.result.predicted_score).toBe(5);
-    expect(result.result.max_score).toBe(7);
-    expect(result.result.criteria).toHaveLength(1);
-    expect(result.result.risks).toHaveLength(1);
-    expect(result.result.next_steps).toHaveLength(2);
+    // A free run returns the preview, never the report: the mark, the comments on every
+    // criterion and the fix list stay on the server until a report is bought.
+    const preview: any = result.result;
+    expect(preview.locked).toBe(true);
+    expect(preview.max_score).toBe(7);
+    expect(preview.band_range).toBeTruthy();
+    expect(preview.predicted_score).toBeUndefined();
+    expect(preview.overall_comment).toBeUndefined();
+    expect(preview.next_steps).toBeUndefined();
+    expect(preview.criteria).toBeUndefined();
+    expect(preview.criteria_names).toHaveLength(1);
+    expect(preview.weakest_criterion?.score ?? null).toBeNull();
   });
 
   it("rejects when user is not authenticated", async () => {
@@ -255,9 +270,10 @@ describe("pricing.products", () => {
     const caller = appRouter.createCaller(ctx);
     const result = await caller.pricing.products();
     expect(result).toBeDefined();
-    expect(result.ESSAY_SINGLE.price).toBe(4.99);
-    expect(result.ESSAY_PACK_5.price).toBe(19.99);
-    expect(result.ESSAY_PACK_10.price).toBe(34.99);
-    expect(result.UNIVERSITY_SINGLE.price).toBe(25);
+    // Read from the same constants the site sells at, so a price change does not fail here.
+    expect(result.ESSAY_SINGLE.price).toBe(PRICES.ESSAY_SINGLE / 100);
+    expect(result.ESSAY_PACK_5.price).toBe(PRICES.ESSAY_PACK_5 / 100);
+    expect(result.ESSAY_PACK_10.price).toBe(PRICES.ESSAY_PACK_10 / 100);
+    expect(result.UNIVERSITY_SINGLE.price).toBe(PRICES.UNIVERSITY_SINGLE / 100);
   });
 });

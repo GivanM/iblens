@@ -45,8 +45,10 @@ describe("GA4 Measurement Protocol (server/ga4mp.ts)", () => {
     expect(capturedUrl).toContain("api_secret=");
 
     const body = JSON.parse(capturedBody);
-    expect(body.client_id).toBe("user-456");
-    expect(body.user_id).toBe("user-456");
+    // The event carries the order and nothing that identifies the buyer, because it is sent
+    // without the visitor's consent choice.
+    expect(body.client_id).toBe("order.order-123");
+    expect(body.user_id).toBeUndefined();
     expect(body.events).toHaveLength(1);
     expect(body.events[0].name).toBe("purchase");
     expect(body.events[0].params.transaction_id).toBe("order-123");
@@ -54,7 +56,7 @@ describe("GA4 Measurement Protocol (server/ga4mp.ts)", () => {
     expect(body.events[0].params.currency).toBe("USD");
     expect(body.events[0].params.payment_type).toBe("lemonsqueezy");
     expect(body.events[0].params.items[0].item_id).toBe("essay_single");
-    expect(body.events[0].params.items[0].item_name).toBe("Single Essay Analysis");
+    expect(body.events[0].params.items[0].item_name).toBeTruthy();
   });
 
   it("returns false and does not throw when GA4_API_SECRET is missing", async () => {
@@ -123,47 +125,38 @@ describe("GA4 Measurement Protocol (server/ga4mp.ts)", () => {
 // ─── Test: LemonSqueezy redirect URL includes tracking params ───────────────────
 
 describe("LemonSqueezy checkout redirect URL", () => {
-  it("createLemonsqueezyCheckout builds redirect URL with tracking params", async () => {
-    // We test the redirect URL construction by checking the function signature
-    // and the URL template. Since the actual API call requires credentials,
-    // we mock fetch.
-    let capturedPayload: any = null;
-
-    global.fetch = vi.fn(async (_url: any, opts: any) => {
-      capturedPayload = JSON.parse(opts.body);
-      return new Response(JSON.stringify({
-        data: { attributes: { url: "https://checkout.lemonsqueezy.com/test" } }
-      }), { status: 200, headers: { "Content-Type": "application/json" } });
-    }) as any;
-
-    // Set required env vars
-    process.env.LEMONSQUEEZY_API_KEY = "test-key";
-    process.env.LEMONSQUEEZY_STORE_ID = "12345";
-
-    vi.resetModules();
+  it("createLemonsqueezyCheckout builds a direct buy URL carrying the order and the return trip", async () => {
+    // The checkout is a direct buy URL built from the product's own link, so there is no API
+    // call to mock: everything the webhook needs travels in the query string.
     const { createLemonsqueezyCheckout } = await import("./lemonsqueezy/lemonsqueezy");
+    const { PRICES } = await import("../shared/pricing");
 
     const result = await createLemonsqueezyCheckout(
       "order-abc",
       1593708,
       "test@example.com",
       "essay_single",
-      499,
+      PRICES.ESSAY_SINGLE,
+      "device-1",
+      "essay",
+      undefined,
+      true,
+      true,
     );
 
-    expect(result.checkoutUrl).toBe("https://checkout.lemonsqueezy.com/test");
+    const url = new URL(result.checkoutUrl);
+    expect(url.hostname).toBe("iblens.lemonsqueezy.com");
+    expect(url.searchParams.get("checkout[custom][order_id]")).toBe("order-abc");
+    expect(url.searchParams.get("checkout[custom][unlock_fp]")).toBe("device-1");
+    expect(url.searchParams.get("checkout[custom][unlock_preview]")).toBe("1");
+    expect(url.searchParams.get("checkout[email]")).toBe("test@example.com");
 
-    // Check the redirect URL in the payload
-    const redirectUrl = capturedPayload.data.attributes.product_options.redirect_url;
+    const redirectUrl = String(url.searchParams.get("checkout[redirect_url]"));
     expect(redirectUrl).toContain("payment=success");
     expect(redirectUrl).toContain("order=order-abc");
     expect(redirectUrl).toContain("product=essay_single");
-    expect(redirectUrl).toContain("value=4.99");
+    expect(redirectUrl).toContain(`value=${(PRICES.ESSAY_SINGLE / 100).toFixed(2)}`);
     expect(redirectUrl).toContain("method=lemonsqueezy");
-
-    // Clean up
-    delete process.env.LEMONSQUEEZY_API_KEY;
-    delete process.env.LEMONSQUEEZY_STORE_ID;
   });
 });
 

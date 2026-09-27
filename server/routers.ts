@@ -5,7 +5,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { sdk } from "./_core/sdk";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 import { z } from "zod";
-import { invokeLLM, MODEL_DECLINED } from "./_core/llm";
+import { invokeLLM, MODEL_DECLINED, MODEL_LIMIT_REACHED } from "./_core/llm";
 import { parseModelJson } from "./_core/modelJson";
 import {
   createAnalysis,
@@ -282,7 +282,7 @@ const REFUNDED_DURING_RECHECK = "This report's purchase was refunded while the r
 
 function friendlyRunError(error: any, what: string): string {
   const msg = String(error?.message || "");
-  if (msg === REFUNDED_DURING_RECHECK || msg === MODEL_DECLINED) return msg;
+  if (msg === REFUNDED_DURING_RECHECK || msg === MODEL_DECLINED || msg === MODEL_LIMIT_REACHED) return msg;
   if (!msg || /relay|timeout|timed out|parse|json|fetch|econn|socket|network|status code|\b5\d\d\b|overloaded|rate.?limit|anthropic|invalid response|unexpected token|undefined|null/i.test(msg)) {
     return `The ${what} did not finish, and nothing was used up. Please try again in a minute.`;
   }

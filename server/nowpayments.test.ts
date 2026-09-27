@@ -152,14 +152,12 @@ describe("skuToCredits", () => {
 // ---- Env var tests ----
 
 describe("NOWPayments env vars", () => {
-  it("NOWPAYMENTS_API_KEY is set", () => {
-    expect(process.env.NOWPAYMENTS_API_KEY).toBeDefined();
-    expect(process.env.NOWPAYMENTS_API_KEY!.length).toBeGreaterThan(0);
-  });
-
-  it("NOWPAYMENTS_IPN_SECRET is set", () => {
-    expect(process.env.NOWPAYMENTS_IPN_SECRET).toBeDefined();
-    expect(process.env.NOWPAYMENTS_IPN_SECRET!.length).toBeGreaterThan(0);
+  // Payments run through LemonSqueezy. The NOWPayments keys are deliberately unset in
+  // production, and the code below must hold whether they are configured or not.
+  it("either both NOWPayments keys are configured, or neither is", () => {
+    const hasKey = !!process.env.NOWPAYMENTS_API_KEY;
+    const hasSecret = !!process.env.NOWPAYMENTS_IPN_SECRET;
+    expect(hasKey).toBe(hasSecret);
   });
 });
 
@@ -522,15 +520,14 @@ describe("Rubric registry", () => {
 describe("Centralized pricing", () => {
   it("PRICES are in cents and consistent with PRICE_LABELS", async () => {
     const { PRICES, PRICE_LABELS } = await import("../shared/pricing");
-    expect(PRICES.ESSAY_SINGLE).toBe(499);
-    expect(PRICES.ESSAY_PACK_5).toBe(1999);
-    expect(PRICES.ESSAY_PACK_10).toBe(3499);
-    expect(PRICES.UNIVERSITY_SINGLE).toBe(2500);
-
-    expect(PRICE_LABELS.ESSAY_SINGLE).toBe("$9.99");
-    expect(PRICE_LABELS.ESSAY_PACK_5).toBe("$24.99");
-    expect(PRICE_LABELS.ESSAY_PACK_10).toBe("$44.99");
-    expect(PRICE_LABELS.UNIVERSITY_SINGLE).toBe("$25");
+    // The labels are what the site shows, so they are checked against the cents they come from.
+    expect(PRICE_LABELS.ESSAY_SINGLE).toBe(`$${(PRICES.ESSAY_SINGLE / 100).toFixed(2)}`);
+    expect(PRICE_LABELS.ESSAY_PACK_5).toBe(`$${(PRICES.ESSAY_PACK_5 / 100).toFixed(2)}`);
+    expect(PRICE_LABELS.ESSAY_PACK_10).toBe(`$${(PRICES.ESSAY_PACK_10 / 100).toFixed(2)}`);
+    expect(PRICE_LABELS.UNIVERSITY_SINGLE).toBe(`$${(PRICES.UNIVERSITY_SINGLE / 100).toFixed(0)}`);
+    expect(PRICES.ESSAY_SINGLE % 1).toBe(0);
+    expect(PRICES.ESSAY_PACK_5).toBeGreaterThan(PRICES.ESSAY_SINGLE);
+    expect(PRICES.ESSAY_PACK_10).toBeGreaterThan(PRICES.ESSAY_PACK_5);
   });
 
   it("PRODUCTS import prices from shared/pricing (not hardcoded)", async () => {
@@ -562,32 +559,37 @@ describe("New rubrics (Task 5)", () => {
     expect(rubric!.totalMarks).toBe(40);
   });
 
-  it("Visual Arts IA has 4 criteria totalling 20 marks", async () => {
+  // Totals and criteria counts as the official guides set them, checked when the rubrics were
+  // rewritten from the guides in July 2026: the comparative study is 30 at SL (42 at HL, with
+  // Criterion F), the Music portfolio 24 and the Film textual analysis 28.
+  it("Visual Arts comparative study has 5 criteria totalling 30 marks at SL", async () => {
     const { getRubric } = await import("../shared/rubrics");
     const rubric = getRubric("IA", "Visual Arts");
     expect(rubric).toBeDefined();
-    expect(rubric!.criteria.length).toBe(4);
-    expect(rubric!.totalMarks).toBe(20);
+    expect(rubric!.criteria.length).toBe(5);
+    expect(rubric!.totalMarks).toBe(30);
     const total = rubric!.criteria.reduce((sum, c) => sum + c.max, 0);
-    expect(total).toBe(20);
+    expect(total).toBe(30);
   });
 
-  it("Music IA has 4 criteria totalling 20 marks", async () => {
+  it("Music portfolio has 5 criteria totalling 24 marks", async () => {
     const { getRubric } = await import("../shared/rubrics");
     const rubric = getRubric("IA", "Music");
     expect(rubric).toBeDefined();
-    expect(rubric!.criteria.length).toBe(4);
-    expect(rubric!.totalMarks).toBe(20);
+    expect(rubric!.criteria.length).toBe(5);
+    expect(rubric!.totalMarks).toBe(24);
+    const total = rubric!.criteria.reduce((sum, c) => sum + c.max, 0);
+    expect(total).toBe(24);
   });
 
-  it("Film IA has 4 criteria totalling 20 marks", async () => {
+  it("Film textual analysis has 3 criteria totalling 28 marks", async () => {
     const { getRubric } = await import("../shared/rubrics");
     const rubric = getRubric("IA", "Film");
     expect(rubric).toBeDefined();
-    expect(rubric!.criteria.length).toBe(4);
-    expect(rubric!.totalMarks).toBe(20);
+    expect(rubric!.criteria.length).toBe(3);
+    expect(rubric!.totalMarks).toBe(28);
     const total = rubric!.criteria.reduce((sum, c) => sum + c.max, 0);
-    expect(total).toBe(20);
+    expect(total).toBe(28);
   });
 
   it("all new rubrics have non-empty descriptors for each criterion", async () => {
@@ -610,9 +612,10 @@ describe("New rubrics (Task 5)", () => {
 describe("Email helper (Task 4)", () => {
   it("getSkuHumanName returns human-readable names for known SKUs", async () => {
     const { getSkuHumanName } = await import("./email");
-    expect(getSkuHumanName("essay_single")).toBe("Single Essay Analysis");
-    expect(getSkuHumanName("essay_pack_5")).toBe("5-Pack Essay Analyses");
-    expect(getSkuHumanName("essay_pack_10")).toBe("10-Pack Essay Analyses");
+    // The names a buyer reads in the receipt, the same words the site uses.
+    expect(getSkuHumanName("essay_single")).toBe("Full report");
+    expect(getSkuHumanName("essay_pack_5")).toBe("5 reports");
+    expect(getSkuHumanName("essay_pack_10")).toBe("10 reports");
     expect(getSkuHumanName("university_single")).toBe("University Strategy Report");
     expect(getSkuHumanName("university_strategy")).toBe("University Strategy Report");
   });
