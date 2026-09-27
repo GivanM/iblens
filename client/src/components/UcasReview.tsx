@@ -185,7 +185,7 @@ export function UcasReview({ result, course, isUnlocked, onBuy, buyLabel, buyPen
             )}
           </div>
         )}
-        {!result.answers && onBuy && !buyLabel && <PayWhatYouWant place="ucas_preview" onNamePrice={onNamePrice} />}
+        {!result.answers && onBuy && !buyLabel && onNamePrice && <PayWhatYouWant onNamePrice={onNamePrice} />}
 
         <p className="text-xs text-muted-foreground border-t pt-4">
           IBLens gives you feedback on writing that is yours. UCAS is explicit that submitting text generated

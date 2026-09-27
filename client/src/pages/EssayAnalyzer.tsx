@@ -190,7 +190,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
             </div>
           )}
         </div>
-        {!hasPaidCredit && !(deviceCredits > 0) && !(result as any)._refunded && <PayWhatYouWant place="essay_preview" onNamePrice={onNamePrice} />}
+        {!hasPaidCredit && !(deviceCredits > 0) && !(result as any)._refunded && <PayWhatYouWant onNamePrice={onNamePrice} />}
       </CardContent>
     </Card>
   );

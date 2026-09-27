@@ -68,15 +68,12 @@ export const PAY_WHAT_YOU_WANT = {
   suggestedUsd: 5,
   minUsd: 1,
   /**
-   * Whether the button offers to open the report. The checkout page carries the product's own
-   * description, which still reads "It does not unlock the full report or add paid reports",
-   * and a payment page that contradicts the button it came from is worse than no button.
-   * Flip this to true once the product (id 1366245) in the LemonSqueezy dashboard is renamed
-   * to something like "IBLens full report: name your price" and its description says that the
-   * payment opens the report the reader is looking at, with its two re-checks. The server side
-   * is already live: a payment carrying one of our order ids opens that report either way.
+   * On since 27 September 2026, when the product (id 1366245) was renamed "IBLens full report:
+   * name your price" and its description rewritten, so the checkout page says the same thing
+   * as the button that leads to it. Turning this off leaves the server side alone: a payment
+   * carrying one of our order ids opens its report either way.
    */
-  unlocksReport: false,
+  unlocksReport: true,
 };
 
 /** Map from our ProductKey to LemonSqueezy SKU key */
