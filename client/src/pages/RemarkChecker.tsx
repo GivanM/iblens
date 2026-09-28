@@ -163,7 +163,7 @@ function RemarkQuickCheck() {
             <p className="text-xs text-muted-foreground mb-3">Criterion E is marked on your reflections form, which this check does not include, so the estimate covers the other criteria only.</p>
           )}
           {!result.weakest_criterion && essayType === "EE" && (
-            <p className="text-sm rounded-lg border border-border bg-muted/40 p-4 mb-4 text-muted-foreground">This preview names no criterion and lists no risks: for this draft, either would give the estimated mark away. The full report scores every criterion that can be marked from what you pasted.</p>
+            <p className="text-sm rounded-lg border border-border bg-muted/40 p-4 mb-4 text-muted-foreground">This draft loses its marks evenly rather than in one place, so there is no single weakest criterion to name. The full report scores every criterion that can be marked from what you pasted.</p>
           )}
           {result.weakest_criterion && (
             <div className="rounded-lg border border-border bg-muted/40 p-4 mb-4">

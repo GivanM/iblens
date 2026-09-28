@@ -53,6 +53,9 @@ export default function AnalysisView() {
   const utils = trpc.useUtils();
   const creditsQ = trpc.dashboard.credits.useQuery(undefined, { enabled: Number.isFinite(id) });
   const paidLeft = creditsQ.data?.essayCredits ?? 0;
+  // The same funnel step as on the run page: pressing the button, counted apart from a
+  // checkout actually being created.
+  const noteClick = trpc.payment.noteUnlockClick.useMutation();
   const unlockHere = trpc.essay.unlockAnalysis.useMutation({
     onSuccess: () => { toast.success("Report unlocked."); utils.dashboard.analysis.invalidate(); utils.dashboard.credits.invalidate(); },
     onError: (e: any) => toast.error(e.message || "Could not unlock this report"),
@@ -160,7 +163,7 @@ export default function AnalysisView() {
             )}
             {p?.band_range && !holistic && <p className="text-xs text-muted-foreground -mt-3">IBLens's estimated total is somewhere in this range. It is not a margin of error; the full report gives the estimate.</p>}
             {!weakest && !holistic && p?.band_range && (
-              <p className="text-sm rounded-lg border border-border bg-muted/40 p-4 text-muted-foreground">This preview names no criterion and lists no risks: for this draft, either would give the estimated mark away. The full report scores every criterion that can be marked from what you pasted.</p>
+              <p className="text-sm rounded-lg border border-border bg-muted/40 p-4 text-muted-foreground">This draft loses its marks evenly rather than in one place, so there is no single weakest criterion to name. The full report scores every criterion that can be marked from what you pasted.</p>
             )}
             {weakest && (
               <div className="rounded-lg border border-amber-300 bg-amber-50 p-4">
@@ -180,7 +183,7 @@ export default function AnalysisView() {
                 </ul>
               </div>
             )}
-            <div className="rounded-lg bg-primary/5 border border-primary/30 p-4 space-y-3">
+            <div id="open-this-report" className="rounded-lg bg-primary/5 border border-primary/30 p-4 space-y-3">
               <p className="text-sm flex items-start gap-2">
                 <Lock className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary" />
                 <span>The full report adds {fullReportAdds(p?.criteria_names)}, with two free re-checks of revised versions within 14 days of it opening.</span>
@@ -200,9 +203,15 @@ export default function AnalysisView() {
                   {unlockHere.isPending ? "Unlocking…" : `Unlock with 1 of your ${paidLeft} paid ${paidLeft === 1 ? "report" : "reports"}`}
                 </Button>
               ) : (
-                <Button className="min-h-11 h-auto whitespace-normal" onClick={() => setBuyOpen(true)}>
-                  Unlock the full report, {PRICE_LABELS.ESSAY_SINGLE}
-                </Button>
+                <>
+                  <Button className="w-full sm:w-auto min-h-11 h-auto py-2.5 text-base font-semibold whitespace-normal" onClick={() => { noteClick.mutate(); setBuyOpen(true); }}>
+                    Show my mark and my fix list, {PRICE_LABELS.ESSAY_SINGLE}
+                  </Button>
+                  <p className="text-sm text-muted-foreground">
+                    <a href="/refund-policy" target="_blank" rel="noopener" className="underline hover:text-foreground">Full refund within 7 days</a>, no questions asked.{" "}
+                    <a href="/resources/sample-reports" target="_blank" rel="noopener" className="underline hover:text-foreground">Read three real reports in full</a>, unedited, before you decide.
+                  </p>
+                </>
               )}
             </div>
           </CardContent>
