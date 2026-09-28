@@ -89,7 +89,7 @@ const productKeySchema = z.enum(["ESSAY_SINGLE", "ESSAY_PACK_5", "ESSAY_PACK_10"
 // Tasks marked on one holistic instrument: the band is free, so the paid report must say why the mark is the higher or lower one in it.
 const HOLISTIC_TYPES = new Set(["TOK", "TOK Exhibition"]);
 
-function buildEssaySystemPrompt(essayType: string, subject: string, examSession?: string): string {
+export function buildEssaySystemPrompt(essayType: string, subject: string, examSession?: string): string {
   const rubric = getRubric(essayType, subject, examSession);
   const rubricFragment = buildRubricPromptFragment(essayType, subject, examSession);
 
@@ -148,7 +148,7 @@ function buildWordCountBlock(check: WordCheck | null): string {
   return lines.join("\n");
 }
 
-function buildEssayUserPrompt(essayType: string, subject: string, researchQuestion: string | undefined, essayText: string, examSession?: string, reflections?: string): string {
+export function buildEssayUserPrompt(essayType: string, subject: string, researchQuestion: string | undefined, essayText: string, examSession?: string, reflections?: string): string {
   const rubric = getRubric(essayType, subject, examSession);
 
   let criteriaExample: string;

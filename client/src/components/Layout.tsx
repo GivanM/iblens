@@ -231,6 +231,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <Link href="/terms" className="inline-flex items-center min-h-11 md:min-h-0 text-sm text-muted-foreground hover:text-foreground transition-colors">Terms</Link>
               <Link href="/refund-policy" className="inline-flex items-center min-h-11 md:min-h-0 text-sm text-muted-foreground hover:text-foreground transition-colors">Refund policy</Link>
               <Link href="/resources/academic-integrity" className="inline-flex items-center min-h-11 md:min-h-0 text-sm text-muted-foreground hover:text-foreground transition-colors">Academic integrity</Link>
+              <a href="mailto:glushkovim@gmail.com" className="inline-flex items-center min-h-11 md:min-h-0 text-sm text-muted-foreground hover:text-foreground transition-colors">Contact</a>
               <button type="button" onClick={() => window.dispatchEvent(new Event("iblens:cookie-settings"))} className="inline-flex items-center min-h-11 md:min-h-0 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Cookie settings</button>
             </nav>
           </div>

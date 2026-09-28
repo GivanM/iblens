@@ -1146,7 +1146,7 @@ export default function EssayAnalyzer() {
             <h2 style={SERIF} className="text-lg font-bold">What a full report looks like</h2>
           </div>
           <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-full border">
-            Example · Business Management IA
+            Example · Business Management IA · made-up scores
           </span>
         </div>
 
