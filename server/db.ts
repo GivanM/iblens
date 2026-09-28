@@ -1,7 +1,7 @@
 import { eq, desc, sql, and, lt, gte, inArray, isNull } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import mysql from "mysql2/promise";
-import { InsertUser, users, analyses, InsertAnalysis, payments, InsertPayment, anonymousAnalyses, InsertAnonymousAnalysis, orders, InsertOrder, webhookEvents, InsertWebhookEvent, deviceCredits, creditLedger, InsertCreditLedgerEntry, revokedSessions, creditLots } from "../drizzle/schema";
+import { InsertUser, users, analyses, InsertAnalysis, payments, InsertPayment, anonymousAnalyses, InsertAnonymousAnalysis, orders, InsertOrder, webhookEvents, InsertWebhookEvent, deviceCredits, creditLedger, InsertCreditLedgerEntry, revokedSessions, creditLots, abCounts } from "../drizzle/schema";
 import crypto from "crypto";
 import { ENV } from './_core/env';
 
@@ -1718,4 +1718,35 @@ export async function consumeAnalysisRerun(id: number, userId: number) {
   }
   const fresh = await db.select({ used: analyses.rerunsUsed }).from(analyses).where(eq(analyses.id, id)).limit(1);
   return { ok: true as const, record: rec, rerunsLeft: Math.max(0, 2 - Number(fresh[0]?.used ?? 2)) };
+}
+
+/**
+ * Daily funnel totals, four steps and no visitor rows: a locked preview delivered, the
+ * unlock button pressed, a checkout created, an order paid. Measured on the server because
+ * the consent banner leaves the client's own analytics blind for everyone who never answers
+ * it. In the thirteen days to 27 September 2026 the only numbers we had were 60 previews and
+ * 4 checkouts, with the step between them invisible.
+ */
+export type FunnelStep = "preview" | "lock_cta" | "checkout" | "paid";
+
+export async function bumpFunnel(event: FunnelStep, device: "desktop" | "mobile") {
+  const db = await getDb();
+  if (!db) return;
+  const day = new Date().toISOString().slice(0, 10);
+  try {
+    await db.insert(abCounts)
+      .values({ test: "funnel", variant: device === "mobile" ? 1 : 0, event, day, n: 1 })
+      .onDuplicateKeyUpdate({ set: { n: sql`${abCounts.n} + 1` } });
+  } catch {
+    // Counting must never break the thing being counted.
+  }
+}
+
+/** Every funnel row since a date, for the daily print-out. */
+export async function funnelCounts(sinceDay: string) {
+  const db = await getDb();
+  if (!db) return [];
+  return await db.select().from(abCounts)
+    .where(and(eq(abCounts.test, "funnel"), gte(abCounts.day, sinceDay)))
+    .orderBy(abCounts.day);
 }

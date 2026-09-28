@@ -6,6 +6,9 @@ import type { TrpcContext } from "./_core/context";
 
 // Mock the db module with credit-based model
 vi.mock("./db", () => ({
+  // Daily funnel totals. A counter that throws must not take the run down with it, and the
+  // mock has to exist for the same reason the real one swallows its own errors.
+  bumpFunnel: vi.fn().mockResolvedValue(undefined),
   canUserAnalyzeEssay: vi.fn().mockResolvedValue({ allowed: true, isFree: true, reason: null }),
   canUserAnalyzeUniversity: vi.fn().mockResolvedValue({ allowed: true, reason: null }),
   // It reports what it actually took, because the free slot can be gone by the time it runs.
@@ -89,6 +92,8 @@ vi.mock("./_core/llm", () => ({
       },
     ],
   }),
+  MODEL_DECLINED: "declined",
+  MODEL_LIMIT_REACHED: "limit reached",
 }));
 
 

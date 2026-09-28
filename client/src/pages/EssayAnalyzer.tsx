@@ -31,9 +31,8 @@ import { countWords, type WordCheck } from "@shared/wordcount";
 import { IA_RUBRIC_SUBJECTS, EE_SUBJECTS, COURSEWORK_LABELS, unmarkableReason } from "@shared/rubrics";
 import { analytics } from "@/lib/analytics";
 import { getAnonFingerprint } from "@/lib/fingerprint";
-import { capitalise, fullReportAdds, type CriterionScope } from "@/lib/reportScope";
+import { type CriterionScope } from "@/lib/reportScope";
 import { trackEssaySubmitted, trackEssayUploadStarted } from "@/lib/analytics/track";
-import { PayWhatYouWant } from "@/components/PayWhatYouWant";
 import { markReportSeen } from "@/components/ReportReadyBanner";
 
 const SERIF = { fontFamily: "'Funnel Display', 'Funnel Sans', system-ui, sans-serif", letterSpacing: "-0.015em" };
@@ -106,6 +105,49 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
   const others = (result.criteria_names || []).filter((c: any) => c?.name !== weakest?.name && c?.assessed !== false);
   const unassessed = (result.criteria_names || []).filter((c: any) => c?.assessed === false);
   const doUnlock = () => unlock.mutate(analysisId ? { analysisId } : { fingerprint });
+  // Pressing the button is its own funnel step. Until now the only measured steps were the
+  // preview and a created checkout, and nothing said which of the two the drop-off sat between.
+  const noteClick = trpc.payment.noteUnlockClick.useMutation();
+  const price = PRICE_LABELS.ESSAY_SINGLE;
+  /**
+   * The one thing the reader is meant to do, placed where they are looking. It used to sit
+   * after six blocks of what the preview withholds, and on a phone it fell below a paragraph:
+   * over thirteen days 60 delivered previews produced 4 checkouts. The guarantee and the two
+   * proofs stand next to the price, not on /pricing and not inside the checkout dialog that
+   * only someone who already pressed buy ever sees.
+   */
+  const buyCta = (
+    <div className="rounded-lg bg-primary/5 border border-primary/30 p-4 space-y-3">
+      {!isAuthenticated && deviceCredits > 0 && !analysisId ? (
+        <>
+          <p className="text-sm"><strong className="text-foreground">This browser has {deviceCredits} paid {deviceCredits === 1 ? "report" : "reports"}.</strong> Open this one in full with one of them.</p>
+          <Button className="w-full sm:w-auto min-h-11" disabled={deviceUnlocking} onClick={onDeviceUnlock}>{deviceUnlocking ? "Opening\u2026" : "Open the full report"}</Button>
+        </>
+      ) : hasPaidCredit ? (
+        <>
+          <p className="text-sm"><strong className="text-foreground">You have a paid report to use.</strong> Open this one in full with it.</p>
+          <Button className="w-full sm:w-auto min-h-11" disabled={unlock.isPending} onClick={doUnlock}>{unlock.isPending ? "Opening\u2026" : "Open the full report"}</Button>
+        </>
+      ) : (
+        <>
+          <Button
+            className="w-full sm:w-auto min-h-11 h-auto py-2.5 text-base font-semibold whitespace-normal"
+            onClick={() => { noteClick.mutate(); onBuy(); }}
+          >
+            Show my mark and my fix list, {price}
+          </Button>
+          <p className="text-sm text-muted-foreground">
+            It opens on this page straight away, with no account, and two free re-checks of a revised version within 14 days.{" "}
+            <a href="/refund-policy" target="_blank" rel="noopener" className="underline hover:text-foreground">Full refund within 7 days</a>, no questions asked.
+          </p>
+          <p className="text-xs text-muted-foreground">
+            One payment of {price}. A tutor charges by the hour and reads your draft when they have a slot.{" "}
+            <a href="/resources/sample-reports" target="_blank" rel="noopener" className="underline hover:text-foreground">Read three real reports in full</a>, unedited, before you decide.
+          </p>
+        </>
+      )}
+    </div>
+  );
   return (
     <Card className="border-primary/40">
       <CardHeader>
@@ -118,10 +160,10 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
           <span style={SERIF} className="text-4xl font-bold">{holistic ? "Band" : "Range"} {result.band_range}</span>
           <span className="text-sm text-muted-foreground">out of {result.max_score}</span>
         </div>
-        {!holistic && <p className="text-xs text-muted-foreground -mt-3">IBLens's estimated total is somewhere in this range. It is not a margin of error; the full report gives the estimate.</p>}
+        {buyCta}
         <WordCheckNote check={result._wordCheck} text={essayText} />
         {!weakest && !holistic && (
-          <p className="text-sm rounded-lg border border-border bg-muted/40 p-4 text-muted-foreground">This preview names no criterion and lists no risks: for this draft, either would give the estimated mark away. The full report scores every criterion that can be marked from what you pasted.</p>
+          <p className="text-sm rounded-lg border border-border bg-muted/40 p-4 text-muted-foreground">This draft loses its marks evenly rather than in one place, so there is no single weakest criterion to name. The full report scores every criterion that can be marked from what you pasted.</p>
         )}
         {weakest && (
           <div className="rounded-lg border border-amber-300 bg-amber-50 p-4">
@@ -142,7 +184,7 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
           </div>
         )}
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Locked in the full report</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">In the full report</p>
           <ul className="space-y-2">
             {others.map((c: any) => (
               <li key={c.name} className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -158,39 +200,20 @@ function LockedTeaser({ result, isAuthenticated, hasPaidCredit, fingerprint, ana
           </ul>
           <p className="text-xs text-muted-foreground mt-3">
             {holistic
-              ? "This task is marked as a whole, against one instrument. The preview shows the band and the start of the explanation; the full report gives the estimated mark and the whole explanation."
-              : `${weakest ? "The criterion shown above is the one where this draft loses the largest share of its available marks. The others are scored in the full report." : "No criterion is named in this preview, because naming one would give the estimated mark away. Every criterion that can be marked from your text is scored in the full report."}${unassessed.length ? ` Not assessed from the pasted text: ${unassessed.map((c: any) => c.name).join(", ")}.` : ""}`}
+              ? "This task is marked as a whole, against one instrument. The full report gives the estimated mark and the whole explanation."
+              : `${weakest ? "The criterion above is where this draft loses the largest share of its available marks. The full report scores the rest." : "The full report scores every criterion that can be marked from your text."}${unassessed.length ? ` Not assessed from the pasted text: ${unassessed.map((c: any) => c.name).join(", ")}.` : ""} The range is where IBLens puts the total; the report gives the estimate itself.`}
           </p>
         </div>
-        <div className="rounded-lg bg-primary/5 border border-primary/30 p-4">
-          {!isAuthenticated && deviceCredits > 0 && !analysisId ? (
-            <div className="flex flex-col sm:flex-row items-center gap-3">
-              <p className="text-sm flex-1"><strong className="text-foreground">This browser has {deviceCredits} paid {deviceCredits === 1 ? "report" : "reports"}.</strong> Open this one in full with one of them.</p>
-              <Button disabled={deviceUnlocking} onClick={onDeviceUnlock}>{deviceUnlocking ? "Unlocking…" : "Unlock the full report (uses 1 paid report)"}</Button>
-            </div>
-          ) : !isAuthenticated ? (
-            <div className="space-y-2">
-              <div className="flex flex-col sm:flex-row items-center gap-3">
-                <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report, $9.99.</strong> No account needed: pay with your email and it opens straight away, with two free re-checks of revised versions of this work within 14 days of it opening.</p>
-                <Button className="min-h-11" onClick={onBuy}>Buy &amp; unlock, $9.99</Button>
-              </div>
-              <p className="text-xs text-muted-foreground">
-                Prefer to keep everything in one place? <a href={getLoginUrl()} className="underline">Sign in first</a> and the report is saved to your account.
-              </p>
-            </div>
-          ) : hasPaidCredit ? (
-            <div className="flex flex-col sm:flex-row items-center gap-3">
-              <p className="text-sm flex-1"><strong className="text-foreground">You have a paid report to use.</strong> Open the full report now.</p>
-              <Button disabled={unlock.isPending} onClick={doUnlock}>{unlock.isPending ? "Unlocking…" : "Unlock the full report (uses 1 paid report)"}</Button>
-            </div>
-          ) : (
-            <div className="flex flex-col sm:flex-row items-center gap-3">
-              <p className="text-sm flex-1"><strong className="text-foreground">Unlock the full report, $9.99.</strong> {capitalise(fullReportAdds(result.criteria_names))}, plus two free re-checks of revised versions of this work within 14 days, so you can see whether your edits landed.</p>
-              <Button className="min-h-11" onClick={onBuy}>Buy &amp; unlock, $9.99</Button>
-            </div>
-          )}
-        </div>
-        {!hasPaidCredit && !(deviceCredits > 0) && !(result as any)._refunded && <PayWhatYouWant onNamePrice={onNamePrice} />}
+        {buyCta}
+        {!isAuthenticated && !hasPaidCredit && !(deviceCredits > 0) && !(result as any)._refunded && (
+          <p className="text-xs text-muted-foreground">
+            Want the report kept in an account rather than in this browser?{" "}
+            <a href={getLoginUrl()} className="underline hover:text-foreground">Sign in first</a>.
+            {" "}Cannot spend {price} right now?{" "}
+            <button type="button" onClick={onNamePrice} className="underline hover:text-foreground cursor-pointer">name your own price</button>{" "}
+            and the same full report opens.
+          </p>
+        )}
       </CardContent>
     </Card>
   );

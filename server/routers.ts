@@ -39,6 +39,7 @@ import {
   moveDeviceLotsToAccount,
   findAccountCopyOf,
   isPurchaseRefunded,
+  bumpFunnel,
   reopenAccountChain,
   findUnlockedCopyInChain,
   openDeviceRowsOfOpenCopies,
@@ -267,6 +268,15 @@ function previousScores(prev: any) {
  * transport and parsing failures ("relay poll timeout after 240s", "Failed to parse
  * AI response") do not, because they read as a broken site and say nothing useful.
  */
+/**
+ * Which kind of screen the request came from, for the funnel counters. Coarse on purpose:
+ * the counters hold daily totals, not visitors.
+ */
+function deviceOf(req: any): "desktop" | "mobile" {
+  const ua = String(req?.headers?.["user-agent"] ?? "");
+  return /iPhone|iPad|Android|Mobile/i.test(ua) ? "mobile" : "desktop";
+}
+
 /**
  * A device credit and the purchase it belongs to, taken together. Signing in between the two
  * moved the purchase to the account, and the report was saved with no purchase a refund could close.
@@ -940,7 +950,7 @@ const essayRouter = router({
       /** Spend a credit this device owns. Asked for explicitly, never assumed. */
       spendDeviceCredit: z.boolean().optional(),
     }))
-    .mutation(async ({ input }) => {
+    .mutation(async ({ input, ctx }) => {
       const unmarkable = unmarkableReason(input.essayType, input.subject, input.examSession);
       if (unmarkable) throw new TRPCError({ code: "BAD_REQUEST", message: unmarkable });
       // Use client-provided fingerprint (UUID stored in localStorage)
@@ -1037,9 +1047,9 @@ const essayRouter = router({
 
         // Refunded while the model ran: the row was closed again, so only its preview goes back.
         const refundedMeanwhile = paidByDevice && await isPurchaseRefunded(deviceOrderId).catch(() => false);
-        return paidByDevice && !refundedMeanwhile
-          ? { result, wasAnonymous: true, unlocked: true as const }
-          : { result: refundedMeanwhile ? { ...buildTeaser(result), _refunded: true } : buildTeaser(result), wasAnonymous: true, refunded: refundedMeanwhile };
+        if (paidByDevice && !refundedMeanwhile) return { result, wasAnonymous: true, unlocked: true as const };
+        await bumpFunnel("preview", deviceOf(ctx.req));
+        return { result: refundedMeanwhile ? { ...buildTeaser(result), _refunded: true } : buildTeaser(result), wasAnonymous: true, refunded: refundedMeanwhile };
       } catch (error: any) {
         console.error("[Anonymous Essay Analysis] Error:", error);
         // A run that produced nothing must not cost the free slot it claimed, nor
@@ -1146,6 +1156,7 @@ const essayRouter = router({
         // Free tier gets a teaser; paid credits get the full report immediately.
         // Refunded while the model ran: the row was closed again, so only its preview goes back.
         if (wasFree) {
+          await bumpFunnel("preview", deviceOf(ctx.req));
           return { id: analysis.id, result: buildTeaser(result), wasFree: true };
         }
         if (await isPurchaseRefunded(creditOrderId).catch(() => false)) {
@@ -1265,6 +1276,18 @@ const paymentRouter = router({
     }),
 
   // Create LemonSqueezy card checkout for guest (unauthenticated) users
+  /**
+   * The unlock button under a locked preview was pressed. Counted on its own because the step
+   * between "saw the lock" and "a checkout exists" was the one blind spot in the funnel: over
+   * the thirteen days to 27 September 2026, 60 previews produced 4 checkouts and nothing said
+   * whether the rest never pressed the button or pressed it and fell out on the way.
+   */
+  noteUnlockClick: publicProcedure
+    .mutation(async ({ ctx }) => {
+      await bumpFunnel("lock_cta", deviceOf(ctx.req));
+      return { ok: true as const };
+    }),
+
   createGuestCheckout: publicProcedure
     .input(z.object({
       productKey: z.enum(["ESSAY_SINGLE", "ESSAY_PACK_5", "ESSAY_PACK_10", "UNIVERSITY_SINGLE", "PAY_WHAT_YOU_WANT"]),
@@ -1276,7 +1299,7 @@ const paymentRouter = router({
       /** Bought beside a locked preview, which the payment should open. */
       unlockPreview: z.boolean().optional(),
     }))
-    .mutation(async ({ input }) => {
+    .mutation(async ({ input, ctx }) => {
       if (input.productKey === "UNIVERSITY_SINGLE") {
         throw new Error("The University Strategy is no longer offered.");
       }
@@ -1331,6 +1354,7 @@ const paymentRouter = router({
         true,
       );
 
+      await bumpFunnel("checkout", deviceOf(ctx.req));
       return { checkoutUrl, orderId };
     }),
 
@@ -1404,6 +1428,7 @@ const paymentRouter = router({
         false,
       );
 
+      await bumpFunnel("checkout", deviceOf(ctx.req));
       return { checkoutUrl, orderId };
     }),
 });

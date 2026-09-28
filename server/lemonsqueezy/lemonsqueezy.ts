@@ -7,6 +7,7 @@ import {
   getOrderById,
   updateOrderStatus,
   setOrderAmountUsd,
+  bumpFunnel,
   insertWebhookEvent,
   updateWebhookEvent,
   hasEarlierVerifiedWebhookEvent,
@@ -451,6 +452,9 @@ export function registerLemonsqueezyWebhook(app: Express) {
             console.log(`[LemonSqueezy] Credits granted to user ${order.userId}: essay=${credits.essay}, university=${credits.university}`);
           }
           await updateOrderStatus(order.id, "paid", dataId);
+          // The last step of the funnel. The webhook has no user agent of its own, so a paid
+          // order is counted against the desktop column and the split is read one step earlier.
+          await bumpFunnel("paid", "desktop");
           // A name-your-price order is created with no amount, because the buyer sets it.
           if (Number((order as any).amountUsd ?? 0) === 0) {
             const paidCents = Math.round(Number((body as any)?.data?.attributes?.total_usd ?? (body as any)?.data?.attributes?.total ?? 0));
